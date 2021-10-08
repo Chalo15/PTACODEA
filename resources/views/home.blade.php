@@ -26,7 +26,7 @@
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6 text-center aligne-item-center">
             <h3>Clinica de Fisioterapia</h3>
-            <i id="iconoPrincipal" class="d-block fas fa-user-md"></i>
+            <i class="d-block fas fa-user-md"></i>
             <button class="btn btn-primary">Ingresar</button>
         </div>
     </div>
