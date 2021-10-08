@@ -1,0 +1,37 @@
+/*Colores CODEA*/
+:root{
+    --primary:rgb(0,0,0);
+}
+
+
+
+
+.fisioterapia_clinica .fa-user-md{
+    color:rgb(0,0,0);
+    font-size: 140px;
+}
+.atleta_registro .fa-running{
+    color:rgb(0,0,0);
+    font-size: 140px;
+}
+.gimnasio .fa-dumbbell{
+    color:rgb(0,0,0);
+    font-size: 140px;
+}
+.mi_perfil .fa-user{
+    color:rgb(0,0,0);
+    font-size: 140px;
+}
+.navbar-app{
+    background-color: rgb(0,0,0);
+}
+
+
+.btn-primary{
+    border: rgb(0,0,0);
+    background-color: rgb(237, 33, 41);
+}
+.btn-primary:hover{
+    border: rgb(237, 33, 41);
+    background-color:rgb(0,0,0);
+}
