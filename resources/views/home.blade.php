@@ -28,6 +28,7 @@
             <h3>Clinica de Fisioterapia</h3>
             <i id="iconoPrincipal" class="d-block fas fa-user-md"></i>
             <button class="btn btn-primary">Ingresar</button>
+
         </div>
     </div>
 </div>
