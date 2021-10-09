@@ -28,8 +28,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreignId('role_id')->constrained('role');
         });
     }
 

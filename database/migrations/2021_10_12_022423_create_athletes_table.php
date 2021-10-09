@@ -18,6 +18,7 @@ class CreateAthletesTable extends Migration
             $table->string('emergency_contact');
             $table->string('policy')->unique();
             $table->timestamps();
+
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('sport_id')->constrained('sports');
             $table->foreignId('coach_id')->constrained('coaches');
