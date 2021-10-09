@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-    $('#contact_form').bootstrapValidator({
+    $('#formulario_registro').bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -45,6 +45,13 @@ $(document).ready(function() {
                     }
                 }
             },
+            direccion: {
+                validators: {
+                    notEmpty: {
+                        message: 'Por favor ingrese su dirección'
+                    }
+                }
+            },
 			 edad: {
                 validators: {
                      stringLength: {
@@ -59,10 +66,17 @@ $(document).ready(function() {
 			correo: {
                 validators: {
                     notEmpty: {
+<<<<<<< Updated upstream
                         message: 'Por favor ingrese su correo electrónico'
                     },
                     emailAddress: {
                         message: 'Por favor ingrese un correo electrónico válido'
+=======
+                        message: 'Por favor ingrese su dirección de correo'
+                    },
+                    emailAddress: {
+                        message: 'Por favor ingrese una dirección de correo válida'
+>>>>>>> Stashed changes
                     }
                 }
             },
@@ -76,6 +90,7 @@ $(document).ready(function() {
                         }
                     }
                 },
+<<<<<<< Updated upstream
 			},
             direccion: {
                 validators: {
@@ -84,11 +99,15 @@ $(document).ready(function() {
                     }
                 }
             },
+=======
+			}
+        
+>>>>>>> Stashed changes
             }
         })
         .on('success.form.bv', function(e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-                $('#contact_form').data('bootstrapValidator').resetForm();
+            $('#registrado').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#formulario_registro').data('bootstrapValidator').resetForm();
 
             // Prevent form submission
             e.preventDefault();

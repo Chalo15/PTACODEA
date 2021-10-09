@@ -7,7 +7,7 @@
 
 <div class="container px-5 py-10 md-auto">
 
-<form class="well form-horizontal" action=" " method="post"  id="contact_form">
+<form class="well form-horizontal" action=" " method="post"  id="formulario_registro">
 <fieldset>
   
 
@@ -37,7 +37,7 @@
 <label class="col-md-4 control-label">Cédula</label>  
 <div class="col-md-4 inputGroupContainer">
 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
-<input  name="cedula" placeholder="Cédula" class="form-control"  type="number" max=9 min=0></div>
+<input  name="cedula" placeholder="Cédula" class="form-control"  type="number"></div>
 </div>
 </div>
 
@@ -72,7 +72,7 @@
 <div class="form-group"><label class="col-md-4 control-label">Edad</label>  
 <div class="col-md-2 inputGroupContainer">
 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
-<input name="edad" placeholder="Edad" class="form-control" type="number" min="0" max="99"></div>
+<input name="edad" placeholder="Edad" class="form-control" type="number"></div>
 </div>
 </div>
 
@@ -103,7 +103,7 @@
 </div>
 
 <!-- Success message-->
-<div class="alert alert-success" role="alert" id="success_message">Éxito al procesar su registro! <i class="glyphicon glyphicon-thumbs-up"></i> </div> 
+<div class="alert alert-success" role="alert" id="registrado">Éxito al procesar su registro! <i class="glyphicon glyphicon-thumbs-up"></i> </div> 
 
 <!-- Enviar y PDF -->
 <div class="form-group">
