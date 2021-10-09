@@ -5,18 +5,13 @@
 
 @section('content')
 
-<script src="{{ asset('js/athletes.js') }}" defer></script>
-<link href="{{ asset('../../css/athletes.css') }}" rel="stylesheet">
-
-<div class="container-fluid px-5 py-10 md-auto">
-<div class="row d-flex justify-content-center">
-<div class="col-xl-6 col-lg-12 col-md-10 col-10 text-left">
-  
+<div class="container px-5 py-10 md-auto">
 
 <form class="well form-horizontal" action=" " method="post"  id="contact_form">
 <fieldset>
+  
 
-<!-- Form Name -->
+<!-- Tíitulo del formulario -->
 <legend><center><h2><b>Formulario de registro</b></h2></center></legend><br>
 
 <!-- Nombre-->
@@ -29,7 +24,6 @@
 </div> 
 
 <!-- Apellidos -->
-
 <div class="form-group">
 <label class="col-md-4 control-label" >Apellidos</label> 
 <div class="col-md-4 inputGroupContainer">
@@ -39,23 +33,20 @@
 </div>
 
 <!-- Cedula-->
-
 <div class="form-group">
 <label class="col-md-4 control-label">Cédula</label>  
 <div class="col-md-4 inputGroupContainer">
-<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-<input  name="id" placeholder="Cédula" class="form-control"  type="number" max=9 min=0></div>
+<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
+<input  name="cedula" placeholder="Cédula" class="form-control"  type="number" max=9 min=0></div>
 </div>
 </div>
 
 <!-- Disciplina-->
-
 <div class="form-group"> <label class="col-md-4 control-label">Disciplina</label>
 <div class="col-md-4 selectContainer">
 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
 <select name="department" class="form-control selectpicker">
   <option value="">Seleccione su disciplina</option>
-
   <option >Ajedrez</option> <option >Atletismo</option>
   <option >Baloncesto Femenino</option><option>Baloncesto Masculino</option>
   <option>Balonmano Masculino</option> <option >Beisbol</option>
@@ -78,16 +69,15 @@
 </div>
 
 <!-- Edad -->
-   
 <div class="form-group"><label class="col-md-4 control-label">Edad</label>  
 <div class="col-md-2 inputGroupContainer">
-<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-<input name="edad" placeholder="" class="form-control" type="number" min="0" max="99"></div>
+<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
+<input name="edad" placeholder="Edad" class="form-control" type="number" min="0" max="99"></div>
 </div>
 </div>
 
 <!-- Correo-->
-   <div class="form-group">
+<div class="form-group">
 <label class="col-md-4 control-label">Correo</label>  
 <div class="col-md-4 inputGroupContainer">
 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -96,7 +86,6 @@
 </div>
 
 <!-- Teléfono-->
-   
 <div class="form-group"><label class="col-md-4 control-label">Teléfono</label>  
 <div class="col-md-4 inputGroupContainer">
 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
@@ -105,12 +94,11 @@
 </div> 
 
 <!-- Dirreccion-->
-
 <div class="form-group">
 <label class="col-md-4 control-label" >Dirección</label> 
 <div class="col-md-8 inputGroupContainer">
-<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-<input name="direccion" placeholder="Direción" class="form-control"  type="text"></div>
+<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+<input name="direccion" placeholder="Dirección" class="form-control"  type="text"></div>
 </div>
 </div>
 
@@ -120,15 +108,12 @@
 <!-- Enviar y PDF -->
 <div class="form-group">
 <label class="col-md-4 control-label"></label>
-<div class="col-md-2"><button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspEnviar <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button></div>
-<div class="form-group col-sm-6 flex-column d-flex"><br><input type="file" class="form-control-file" id="pdf"> <small id="pfd" class="text-muted">En esta sección introduzca los archivos .PDF que se le solicitan.</div>
+<div class="col-md-4"><button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspEnviar <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button></div>
+<div class="form-group col-sm-4 flex-column d-flex"><input type="file" class="form-control-file" id="pdf"> <small id="pfd" class="text-muted">En esta sección introduzca los archivos .PDF que se le solicitan.</div>
 </div>
 </fieldset>
 </form>
 </div>
-</div><!-- /.container -->
+</div><!-- /.Final del contenedor -->
 
 
-
-
-@endsection()

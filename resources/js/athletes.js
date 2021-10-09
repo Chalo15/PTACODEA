@@ -1,64 +1,62 @@
 
 $(document).ready(function() {
     $('#contact_form').bootstrapValidator({
-        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            first_name: {
+            nombre: {
                 validators: {
                         stringLength: {
                         min: 2,
                     },
                         notEmpty: {
-                        message: 'Please enter your First Name'
+                        message: 'Por favor ingrese su nombre'
                     }
                 }
             },
-             last_name: {
+             apellidos: {
                 validators: {
                      stringLength: {
                         min: 2,
                     },
                     notEmpty: {
-                        message: 'Please enter your Last Name'
+                        message: 'Por favor ingrese sus apellidos'
                     }
                 }
             },
-			 user_name: {
+            cedula: {
                 validators: {
                      stringLength: {
-                        min: 8,
+                        min: 0,
+                        max: 9,
                     },
                     notEmpty: {
-                        message: 'Please enter your Username'
+                        message: 'Por favor ingrese su cédula'
                     }
                 }
             },
-			 user_password: {
+            disciplina: {
+                validators: {
+                    notEmpty: {
+                        message: 'Por favor seleccione una disciplina'
+                    }
+                }
+            },
+			 edad: {
                 validators: {
                      stringLength: {
-                        min: 8,
+                        min: 0,
+                        max: 99,
                     },
                     notEmpty: {
-                        message: 'Please enter your Password'
+                        message: 'Por favor ingrese su edad'
                     }
                 }
             },
-			confirm_password: {
-                validators: {
-                     stringLength: {
-                        min: 8,
-                    },
-                    notEmpty: {
-                        message: 'Please confirm your Password'
-                    }
-                }
-            },
-            email: {
+			email: {
                 validators: {
                     notEmpty: {
                         message: 'Please enter your Email Address'
@@ -68,24 +66,24 @@ $(document).ready(function() {
                     }
                 }
             },
-            contact_no: {
+            telefono: {
                 validators: {
                   stringLength: {
-                        min: 12, 
+                        min: 8, 
                         max: 12,
                     notEmpty: {
                         message: 'Please enter your Contact No.'
-                     }
-                }
-            },
-			 department: {
+                        }
+                    }
+                },
+			},
+            disciplina: {
                 validators: {
                     notEmpty: {
-                        message: 'Please select your Department/Office'
+                        message: 'Por favor seleccione una disciplina'
                     }
                 }
             },
-                }
             }
         })
         .on('success.form.bv', function(e) {
