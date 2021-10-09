@@ -14,9 +14,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        /* $user = new User();
+        $user = new User();
         $user->password = "12345";
-        $user->identification = 207910178;
+        $user->identification = 200178;
         $user->name = "Carlos Alpizar Gutierrez";
         $user->birthdate = '1999-04-21';
         $user->phone = 83451018;
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
 
         $user1 = new User();
         $user1->password = "12345";
-        $user1->identification = 207630342;
+        $user1->identification = 0342;
         $user1->name = "Josue Perez Sequeira";
         $user1->birthdate = '1997-02-04';
         $user1->phone = 86155929;
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
 
         $user2 = new User();
         $user2->password = "12345";
-        $user2->identification = 201335556;
+        $user2->identification = 20556;
         $user2->name = "atleta1";
         $user2->birthdate = '1999-04-21';
         $user2->phone = 4561616;
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
 
         $user3 = new User();
         $user3->password = "4555";
-        $user3->identification = 4525;
+        $user3->identification = 25;
         $user3->name = "Atleta 2";
         $user3->birthdate = '1999-04-21';
         $user3->phone = 834510148;
@@ -64,11 +64,11 @@ class UserSeeder extends Seeder
 
         $user4 = new User();
         $user4->password = "12545";
-        $user4->identification = 555;
+        $user4->identification = 55;
         $user4->name = "Atheta3";
         $user4->birthdate = '1999-04-21';
         $user4->phone = 834512018;
-        $user4->email = "hhgvn@hotmail.com";
+        $user4->email = "vn@hotmail.com";
         $user4->address = "Alajuela, Alajuela, El Roble";
         $user4->gendet = 'M';
         $user4->role_id = 3;
@@ -76,7 +76,7 @@ class UserSeeder extends Seeder
 
         $user5 = new User();
         $user5->password = "125hm45";
-        $user5->identification = 55445;
+        $user5->identification = 45;
         $user5->name = "entrenador 1";
         $user5->birthdate = '1999-04-21';
         $user5->phone = 834512018;
@@ -88,11 +88,11 @@ class UserSeeder extends Seeder
 
         $user6 = new User();
         $user6->password = "12545";
-        $user6->identification = 5544775;
+        $user6->identification = 1;
         $user6->name = "entrenador 2";
         $user6->birthdate = '1999-04-21';
         $user6->phone = 83562018;
-        $user6->email = "hhgvn@11hotmail.com";
+        $user6->email = "n@11hotmail.com";
         $user6->address = "Alajuela, Alajuela, El Roble";
         $user6->gendet = 'M';
         $user6->role_id = 2;
@@ -101,14 +101,14 @@ class UserSeeder extends Seeder
 
         $user7 = new User();
         $user7->password = "125hbm45";
-        $user7->identification = 554442775;
+        $user7->identification = 575;
         $user7->name = "entrenador 3";
         $user7->birthdate = '1999-04-21';
         $user7->phone = 835620138;
-        $user7->email = "hhgkn@11hotmail.com";
+        $user7->email = "@11hotmail.com";
         $user7->address = "Alajuela, Alajuela, El Roble";
         $user7->gendet = 'M';
         $user7->role_id = 2;
-        $user7->save();*/
+        $user7->save();
     }
 }

@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
         $role1->description = "Instructor";
         $role1->save();
 
-        /*$role2 = new Role();
+        $role2 = new Role();
         $role2->description = "Atleta";
         $role2->save();
 
@@ -32,6 +32,6 @@ class RoleSeeder extends Seeder
 
         $role4 = new Role();
         $role4->description = "Musculacion";
-        $role4->save();*/
+        $role4->save();
     }
 }

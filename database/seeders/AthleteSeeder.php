@@ -14,13 +14,13 @@ class AthleteSeeder extends Seeder
      */
     public function run()
     {
-        /*$athlete = new Athlete();
+        $athlete = new Athlete();
         $athlete->emergency_contact = "Papito";
         $athlete->policy = "123456";
         $athlete->user_id = "3";
         $athlete->sport_id = "1";
         $athlete->coach_id = "1";
-        $athlete->$athlete->save();
+        $athlete->save();
 
         $athlete1 = new Athlete();
         $athlete1->emergency_contact = "Mamita";
@@ -32,10 +32,10 @@ class AthleteSeeder extends Seeder
 
         $athlete2 = new Athlete();
         $athlete2->emergency_contact = "Mamita";
-        $athlete2->policy = "987654";
+        $athlete2->policy = "9854";
         $athlete2->user_id = "5";
         $athlete2->sport_id = "3";
         $athlete2->coach_id = "1";
-        $athlete2->save();*/
+        $athlete2->save();
     }
 }

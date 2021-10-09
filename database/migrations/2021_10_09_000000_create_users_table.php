@@ -23,12 +23,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('address');
             $table->char('gendet');
-            $table->unsignedBigInteger('role_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreignId('role_id')->constrained('role');
+            $table->foreignId('role_id')->constrained('roles');
         });
     }
 

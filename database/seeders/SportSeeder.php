@@ -15,7 +15,7 @@ class SportSeeder extends Seeder
     public function run()
     {
 
-        /* $sport = new Sport();
+        $sport = new Sport();
         $sport->description = "Futbol";
         $sport->save();
 
@@ -26,6 +26,6 @@ class SportSeeder extends Seeder
 
         $sport2 = new Sport();
         $sport2->description = "Natacion";
-        $sport2->save();*/
+        $sport2->save();
     }
 }
