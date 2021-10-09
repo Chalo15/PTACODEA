@@ -56,13 +56,13 @@ $(document).ready(function() {
                     }
                 }
             },
-			email: {
+			correo: {
                 validators: {
                     notEmpty: {
-                        message: 'Please enter your Email Address'
+                        message: 'Por favor ingrese su correo electrónico'
                     },
                     emailAddress: {
-                        message: 'Please enter a valid Email Address'
+                        message: 'Por favor ingrese un correo electrónico válido'
                     }
                 }
             },
@@ -72,15 +72,15 @@ $(document).ready(function() {
                         min: 8, 
                         max: 12,
                     notEmpty: {
-                        message: 'Please enter your Contact No.'
+                        message: 'Por favor ingrese su número de teléfono'
                         }
                     }
                 },
 			},
-            disciplina: {
+            direccion: {
                 validators: {
                     notEmpty: {
-                        message: 'Por favor seleccione una disciplina'
+                        message: 'Por favor ingrese su dirección'
                     }
                 }
             },
