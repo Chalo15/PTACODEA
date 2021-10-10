@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Cambiar contraseña') }}</div>
+                <div class="card-header"><h3 class="d-5">Cambiar Contraseña</h3></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">

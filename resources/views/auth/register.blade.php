@@ -38,7 +38,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
@@ -61,10 +61,14 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="form-group row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8 col-sm-12">
                                 <button type="submit" class="btn btn-negro">
-                                    {{ __('Registrar') }}
+                                    {{ __('Registrarse') }}
+                                </button>
+                                <button class="btn btn-negro ml-auto m-1">
+                                    {{__('Registrarse como Atleta')}}
                                 </button>
                             </div>
                         </div>

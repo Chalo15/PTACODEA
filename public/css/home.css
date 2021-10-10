@@ -115,6 +115,15 @@ body{
     font-size: 110px;
 }
 
+/*Usuario pagina*/
+.register_as_athlete .fa-id-card {
+    color:var(--negro);
+    font-size: 120vh;
+}
+
+
+
+
 .navbar-app{
     color:var(--negro);
 }
