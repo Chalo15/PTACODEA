@@ -12,6 +12,10 @@ $(document).ready(function() {
                         stringLength: {
                         min: 2,
                     },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'Caracteres incorrectos en su nombre',
+                    },
                         notEmpty: {
                         message: 'Por favor ingrese su nombre'
                     }
@@ -21,6 +25,10 @@ $(document).ready(function() {
                 validators: {
                      stringLength: {
                         min: 2,
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z0-9_]+$/,
+                        message: 'Caracteres incorrectos en su nombre',
                     },
                     notEmpty: {
                         message: 'Por favor ingrese sus apellidos'
@@ -32,6 +40,9 @@ $(document).ready(function() {
                      stringLength: {
                         min: 0,
                         max: 9,
+                    },
+                    numeric: {
+                        message: 'La cédula debe contener solo números',
                     },
                     notEmpty: {
                         message: 'Por favor ingrese su cédula'
@@ -58,6 +69,9 @@ $(document).ready(function() {
                         min: 0,
                         max: 99,
                     },
+                    numeric: {
+                        message: 'La edad debe contener solo números',
+                    },
                     notEmpty: {
                         message: 'Por favor ingrese su edad'
                     }
@@ -66,17 +80,11 @@ $(document).ready(function() {
 			correo: {
                 validators: {
                     notEmpty: {
-<<<<<<< Updated upstream
                         message: 'Por favor ingrese su correo electrónico'
                     },
                     emailAddress: {
                         message: 'Por favor ingrese un correo electrónico válido'
-=======
-                        message: 'Por favor ingrese su dirección de correo'
-                    },
-                    emailAddress: {
-                        message: 'Por favor ingrese una dirección de correo válida'
->>>>>>> Stashed changes
+
                     }
                 }
             },
@@ -85,25 +93,17 @@ $(document).ready(function() {
                   stringLength: {
                         min: 8, 
                         max: 12,
+                    numeric: {
+                        message: 'El teléfono debe contener solo números',
+                    },
                     notEmpty: {
                         message: 'Por favor ingrese su número de teléfono'
                         }
                     }
                 },
-<<<<<<< Updated upstream
 			},
-            direccion: {
-                validators: {
-                    notEmpty: {
-                        message: 'Por favor ingrese su dirección'
-                    }
-                }
-            },
-=======
-			}
         
->>>>>>> Stashed changes
-            }
+        }
         })
         .on('success.form.bv', function(e) {
             $('#registrado').slideDown({ opacity: "show" }, "slow") // Do something ...
