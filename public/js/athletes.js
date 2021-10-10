@@ -1,12 +1,10 @@
 
 $(document).ready(function() {
     $('#formulario_registro').bootstrapValidator({
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
         fields: {
+            plugins: {
+                bootstrap3: new FormValidation.plugins.Bootstrap3(),
+            },
             nombre: {
                 validators: {
                         stringLength: {
@@ -56,14 +54,7 @@ $(document).ready(function() {
                     }
                 }
             },
-            direccion: {
-                validators: {
-                    notEmpty: {
-                        message: 'Por favor ingrese su dirección'
-                    }
-                }
-            },
-			 edad: {
+            edad: {
                 validators: {
                      stringLength: {
                         min: 0,
@@ -77,7 +68,7 @@ $(document).ready(function() {
                     }
                 }
             },
-			correo: {
+          	correo: {
                 validators: {
                     notEmpty: {
                         message: 'Por favor ingrese su correo electrónico'
@@ -102,25 +93,17 @@ $(document).ready(function() {
                     }
                 },
 			},
+            direccion: {
+                validators: {
+                    notEmpty: {
+                        message: 'Por favor ingrese su dirección'
+                    }
+                }
+            },
         
         }
         })
-        .on('success.form.bv', function(e) {
-            $('#registrado').slideDown({ opacity: "show" }, "slow") // Do something ...
-                $('#formulario_registro').data('bootstrapValidator').resetForm();
+ });
 
-            // Prevent form submission
-            e.preventDefault();
-
-            // Get the form instance
-            var $form = $(e.target);
-
-            // Get the BootstrapValidator instance
-            var bv = $form.data('bootstrapValidator');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                console.log(result);
-            }, 'json');
-        });
-});
+         
+      
