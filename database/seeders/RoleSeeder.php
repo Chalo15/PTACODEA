@@ -15,27 +15,23 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $role = new Role();
-        $role->description="admin";
+        $role->description = "Admin";
         $role->save();
 
         $role1 = new Role();
-        $role1->description="instructor";
+        $role1->description = "Instructor";
         $role1->save();
 
-
         $role2 = new Role();
-        $role2->description="athlete";
+        $role2->description = "Atleta";
         $role2->save();
 
-
-
-        $role3= new Role();
-        $role3->description="fisioterapia";
+        $role3 = new Role();
+        $role3->description = "Fisioterapia";
         $role3->save();
 
-
         $role4 = new Role();
-        $role4->description="musculacion";
+        $role4->description = "Musculacion";
         $role4->save();
     }
 }
