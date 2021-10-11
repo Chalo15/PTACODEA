@@ -14,28 +14,15 @@ class AthleteSeeder extends Seeder
      */
     public function run()
     {
+        /*
         $athlete = new Athlete();
+        $athlete->user_id = 1;
+        $athlete->sport_id = 1;
+        $athlete->coach_id = 1;
         $athlete->emergency_contact = "Papito";
         $athlete->policy = "123456";
-        $athlete->user_id = "3";
-        $athlete->sport_id = "1";
-        $athlete->coach_id = "1";
-        $athlete->save();
+        $athele->state='P';
 
-        $athlete1 = new Athlete();
-        $athlete1->emergency_contact = "Mamita";
-        $athlete1->policy = "987654";
-        $athlete1->user_id = "4";
-        $athlete1->sport_id = "2";
-        $athlete1->coach_id = "1";
-        $athlete1->save();
-
-        $athlete2 = new Athlete();
-        $athlete2->emergency_contact = "Mamita";
-        $athlete2->policy = "9854";
-        $athlete2->user_id = "5";
-        $athlete2->sport_id = "3";
-        $athlete2->coach_id = "1";
-        $athlete2->save();
+        $athlete->save();*/
     }
 }
