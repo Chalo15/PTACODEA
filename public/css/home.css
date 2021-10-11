@@ -1,0 +1,174 @@
+/*Margenes y padding en 0%*/
+body{
+    margin: 0%;
+    padding: 0%;
+    
+}
+/*Colores de CODEA*/
+:root{
+    --negro:rgb(35,32,31);
+    --naranja:rgb(240,123,45);
+    --rojo:rgb(237,33,45);
+    --blanco:rgb(255,255,255);
+}
+/*LOGO DE CODEA*/
+/*.logo{
+    background-color: var(--blanco);
+ }*/
+
+/*--App.blade--*/
+
+/*--Backgrounds--*/
+.bg-negro{
+    background-color: var(--negro);
+}
+.bg-blanco{
+    background-color: var(--blanco);
+}
+.bg-naranja{
+    background-color: var(--naranja);
+}
+.bg-rojo{
+    background-color: var(--rojo);
+}
+
+/*--Botones--*/
+
+  /*Boton negro*/
+.btn-negro{
+    background-color: var(--negro);
+    border:none;
+    color: white;
+  }
+.btn-negro:hover{
+    background-color: var(--rojo);
+    color: white;
+}
+.btn-negro:focus{
+    background-color: var(--naranja);
+    box-shadow: none;
+}
+/*Boton rojo*/
+.btn-rojo{
+    background-color: var(--rojo);
+    border:none;
+    color: white;
+  }
+.btn-rojo:hover{
+    background-color: var(--negro);
+    color: white;
+}
+.btn-rojo:focus{
+    background-color: var(--naranja);
+    box-shadow: none;
+}
+
+/*Boton naranja*/
+.btn-naranja{
+    background-color: var(--naranja);
+    border:none;
+    color: white;
+  }
+.btn-naranja:hover{
+    background-color: var(--negro);
+    color: white;
+}
+.btn.naranja:focus{
+    background-color: var(--naranja);
+    box-shadow: none;
+}
+/*Boton blanco*/
+.btn-blanco{
+    background-color: var(--blanco);
+    border:none;
+    color: black;
+  }
+.btn-blanco:hover{
+    background-color: var(--negro);
+    color: white;
+}
+.btn-blanco:focus{
+    background-color: var(--naranja);
+    box-shadow: none;
+}
+
+
+/*Navbar app*/
+.nav-item a{
+    font-size: 18px;
+}
+
+/*Main Page*/
+.fisioterapia_clinica .fa-user-md{
+    color:var(--negro);
+    font-size: 110px;
+}
+.atleta_registro .fa-running{
+    color:var(--negro);
+    font-size: 110px;
+}
+.gimnasio .fa-dumbbell{
+    color:var(--negro);
+    font-size: 110px;
+}
+.mi_perfil .user-icon .fa-user{
+    color:var(--negro);
+    font-size: 110px;
+}
+
+
+/*Usuario pagina*/
+.register_as_athlete .fa-id-card {
+    color:var(--negro);
+    font-size: 20vh;
+}
+
+
+
+
+
+.navbar-app{
+    color:var(--negro);
+}
+
+
+/*App*/
+.user-item{
+    color: var(--blanco);
+}
+.user-item:hover{
+    color: red;
+}
+.dropdown-menu .salir:hover{
+    color: var(--rojo);
+}
+
+/*--LOGIN--*/
+
+.usuario .fa-user{
+    font-size: 10vh;
+    color: var(--rojo);
+}
+.form-container{
+    border:solid 1px var(--negro);
+    padding: 50px 60px;
+    margin-top: 10vh;
+}
+
+.card-body .form-group .form-control{
+    box-shadow: var(--rojo);
+    color: var(--negro);
+}
+.card-body .form-group .form-control:focus{
+    box-shadow: var(--rojo);
+    border-color: #6c757d;
+}
+
+
+/*Cambio de color de un elemento a dentro del login*/
+.form-group a{
+    color: var(--blanco);
+} 
+.form-group a:hover{
+    color: var(--blanco);
+} 
