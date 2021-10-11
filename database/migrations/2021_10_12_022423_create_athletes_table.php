@@ -25,7 +25,7 @@ class CreateAthletesTable extends Migration
             $table->string('lastname_manager');
             $table->integer('identification_manager');
             $table->date('birthdate_manager');
-            $table->string('contact_manager');
+            $table->integer('contact_manager');
             $table->string('policy')->unique();
             $table->timestamps();
         });
