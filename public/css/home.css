@@ -97,6 +97,7 @@ body{
 .nav-item a{
     font-size: 18px;
 }
+
 /*Main Page*/
 .fisioterapia_clinica .fa-user-md{
     color:var(--negro);
@@ -115,11 +116,13 @@ body{
     font-size: 110px;
 }
 
+
 /*Usuario pagina*/
 .register_as_athlete .fa-id-card {
     color:var(--negro);
-    font-size: 120vh;
+    font-size: 20vh;
 }
+
 
 
 
@@ -127,9 +130,6 @@ body{
 .navbar-app{
     color:var(--negro);
 }
-
-
-
 
 
 /*App*/
@@ -145,6 +145,10 @@ body{
 
 /*--LOGIN--*/
 
+.usuario .fa-user{
+    font-size: 10vh;
+    color: var(--rojo);
+}
 .form-container{
     border:solid 1px var(--negro);
     padding: 50px 60px;
