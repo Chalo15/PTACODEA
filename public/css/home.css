@@ -12,9 +12,14 @@ body{
     --blanco:rgb(255,255,255);
 }
 /*LOGO DE CODEA*/
-/*.logo{
+.logo{
     background-color: var(--blanco);
- }*/
+}
+.logo img{
+    max-width: 100%;
+    clip-path: inset(0 5% 0 0);
+}
+
 
 /*--App.blade--*/
 
@@ -101,19 +106,19 @@ body{
 /*Main Page*/
 .fisioterapia_clinica .fa-user-md{
     color:var(--negro);
-    font-size: 110px;
+    font-size: 750%;
 }
 .atleta_registro .fa-running{
     color:var(--negro);
-    font-size: 110px;
+    font-size: 750%
 }
 .gimnasio .fa-dumbbell{
     color:var(--negro);
-    font-size: 110px;
+    font-size: 750%
 }
 .mi_perfil .user-icon .fa-user{
     color:var(--negro);
-    font-size: 110px;
+    font-size: 750%
 }
 
 
@@ -147,7 +152,7 @@ body{
 
 .usuario .fa-user{
     font-size: 10vh;
-    color: var(--rojo);
+    color: var(--negro);
 }
 .form-container{
     border:solid 1px var(--negro);
