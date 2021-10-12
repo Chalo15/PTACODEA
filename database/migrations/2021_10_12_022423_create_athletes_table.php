@@ -19,12 +19,13 @@ class CreateAthletesTable extends Migration
             $table->foreignId('sport_id')->constrained('sports');
             $table->foreignId('coach_id')->constrained('coaches');
             $table->char('state');
-            $table->string('blood');
+            $table->string('blood')->nullable();
             $table->char('laterality');
             $table->string('name_manager');
             $table->string('lastname_manager');
+            $table->string('manager');
             $table->integer('identification_manager');
-            $table->date('birthdate_manager');
+            //$table->date('birthdate_manager');
             $table->integer('contact_manager');
             $table->string('policy')->unique();
             $table->timestamps();
