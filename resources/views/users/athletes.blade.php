@@ -15,9 +15,9 @@
       </div>
 
       <div class="card-body">
-        <form class="well form-horizontal" action=" " method="post"  id="formulario_registro">
+        <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro">
               <!-- Tíitulo del formulario -->
-
+                @csrf
                 <!-- Nombre -->
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">Nombre</label>  
@@ -25,7 +25,7 @@
                     <input  name="nombre" placeholder="Nombre" class="form-control"  type="text">
                   </div>
                 </div>
-
+{{$errors}}
                 <!-- Apellidos -->
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right" >Apellidos</label> 
@@ -47,7 +47,12 @@
                   <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
                   <div class="col-md-5 ">
                     <select name="department" class="form-control selectpicker">
-                      <option value="">Seleccione su disciplina</option>
+                      @foreach ($sports as $sport)
+                      <option value="{{$sport->id}}">
+                      {{$sport->description}}</option>
+                          
+                      @endforeach
+                      {{-- <option value="">Seleccione su disciplina</option>
                       <option >Ajedrez</option> <option >Atletismo</option>
                       <option >Baloncesto Femenino</option><option>Baloncesto Masculino</option>
                       <option >Balonmano Masculino</option> <option >Beisbol</option>
@@ -62,7 +67,7 @@
                       <option >Triatlon</option> <option >Voleibol Masculino</option>
                       <option >Voleibol Playa</option> <option >Tiro con arco</option>
                       <option >Football Americano</option> <option >Balonmano Femenino</option>
-                      <option >Voleibol Femenino</option>
+                      <option >Voleibol Femenino</option> --}}
                     </select>
                   </div>
                 </div>
@@ -71,15 +76,16 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">Edad</label>  
                   <div class="col-md-5">
-                  <input name="edad" placeholder="Edad" class="form-control" type="number" min=0 max=99></div>
+                  <input name="edad" placeholder="Edad" class="form-control" type="date" min=0 max=99></div>
                 </div>
 
                 <!-- Género -->
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">Género</label>
                   <div class="col-md-7">
-                    <div class="checkbox"><label><input type="checkbox" name="femenino" value="f" /> Femenino</label></div>
-                    <div class="checkbox"><label><input type="checkbox" name="masculino" value="m" /> Masculino</label></div>
+                    <div class="checkbox"><label><input type="radio" name="genero" value="f" /> Femenino</label></div>
+                    <div class="checkbox"><label><input type="radio" name="genero" value="m" /> Masculino</label></div>
+                    <div class="checkbox"><label><input type="radio" name="genero" value="n" /> Otro</label></div>
                   </div>
                 </div>
 
@@ -115,11 +121,11 @@
                   </div>
                 </div>
 
-                <!-- Dirrección -->
+                <!-- Dirección -->
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right" >Dirección exacta</label> 
                   <div class="col-md-7">
-                    <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="" id="" cols="44" rows="5"></textarea>
+                    <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" cols="44" rows="5"></textarea>
                   </div>
                 </div>
                 
@@ -197,7 +203,7 @@
 
                 <div class="form-group row" >
                   <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                    <input type="file" class="offset-md-4  form-control-file" id="pdf"> 
+                    <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf"> 
                     <small id="pfd" class="text-muted">
                       En esta sección introduzca los archivos .PDF que se le solicitan.
                   </div>

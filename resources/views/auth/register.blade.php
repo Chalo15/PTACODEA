@@ -129,7 +129,7 @@
                                 <button type="submit" class="btn btn-negro m-1">
                                     {{ __('Registrarse') }}
                                 </button>
-                                <button class="btn btn-negro ml-auto m-1">
+                                <button   onclick="window.location='{{ url("users/athletes") }}'" class="btn btn-negro ml-auto m-1">
                                     {{__('Registrarse como Atleta')}}
                                 </button>
                             </div>
