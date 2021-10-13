@@ -8,65 +8,68 @@ use Illuminate\Http\Request;
 
 class guardarAtletaController extends Controller
 {
-    public function guardado(Request $request){
+    public function guardado(Request $request)
+    {
 
-        $rol= 3;
+        $rol = 3;
 
-        //validaciones 
+        //validaciones
         $request->validate([
 
-            'nombre'=>'required',
-            'nombre'=>'alpha',
-            'apellidos'=>'required',
-            'apellidos'=>'alpha',
-            'cedula'=>'required',
-            'department'=>'required',
-            'edad'=>'required',
-            'genero'=>'required',
-            'correo'=>'required',
-            'telefono'=>'required',
-            'provincia'=>'required',
-            'provincia'=>'alpha',
-            'canton'=>'required',
-            'direccion'=>'required',
-            'nombre_encargado'=>'required',
-            'apellidos_encargado'=>'required',
-            'cedula_encargado'=>'required',
-            'telefono_encargado'=>'required',
-            'parentesco'=>'required'
+            'nombre' => 'required',
+            'nombre' => 'alpha',
+            'apellidos' => 'required',
+            'apellidos' => 'alpha',
+            'cedula' => 'required|digits:9',
+            'department' => 'required',
+            'edad' => 'required',
+            'genero' => 'required',
+            'correo' => 'required|email',
+            'telefono' => 'required|digits:8',
+            'sangre' => 'required',
+            'provincia' => 'required',
+            'provincia' => 'alpha',
+            'canton' => 'required',
+            'direccion' => 'required',
+            'nombre_encargado' => 'required',
+            'apellidos_encargado' => 'required',
+            'cedula_encargado' => 'required|digits:9',
+            'telefono_encargado' => 'required|digits:8',
+            'parentesco' => 'required'
         ]);
 
-        $user=User::create([
-            'role_id'=>3,
-            'identification'=>$request->cedula,
-            'password'=>'123',
-            'name'=>$request->nombre,
-            'lastname'=>$request->apellidos,
-            'birthdate'=>$request->edad,
-            'phone'=>$request->telefono,
-            'email'=>$request->correo,
-            'province'=>$request->provincia,
-            'city'=>$request->canton,
-            'address'=>$request->direccion,           
-            'gender'=>$request->genero
+        $user = User::create([
+            'role_id' => 3,
+            'identification' => $request->cedula,
+            'password' => $request->cedula,
+            'name' => $request->nombre,
+            'lastname' => $request->apellidos,
+            'birthdate' => $request->edad,
+            'phone' => $request->telefono,
+            'email' => $request->correo,
+            'province' => $request->provincia,
+            'city' => $request->canton,
+            'address' => $request->direccion,
+            'gender' => $request->genero
         ]);
 
-        $athlete=Athlete::create([
-            'sport_id'=>$request->department,
-            'name_manager'=>$request->nombre_encargado,
-            'lastname_manager'=>$request->apellidos_encargado,
-            'identification_manager'=>$request->cedula_encargado,
-            'contact_manager'=>$request->telefono_encargado,
-            'manager'=>$request->parentesco,
-            'state'=>'p',
-            'user_id'=>$user->id,
-            'coach_id'=>1,
-            'laterality'=>'d',
-            'policy'=>rand(0,100)
+        $athlete = Athlete::create([
+            'sport_id' => $request->department,
+            'name_manager' => $request->nombre_encargado,
+            'lastname_manager' => $request->apellidos_encargado,
+            'identification_manager' => $request->cedula_encargado,
+            'contact_manager' => $request->telefono_encargado,
+            'blood' => $request->sangre,
+            'state' => 'p',
+            'user_id' => $user->id,
+            'laterality' => 'd',
+            'manager' => $request->parentesco,
+            'policy' => rand(0, 100)
         ]);
 
        // return view('users.athletes'); //usar cuando es GET
         return redirect()->route('login')->with('status', 'El atleta se ha registrado correctamente'); //Se usa solo cuando es POST
+
 
         //Se realiza las inserciones en las columnas de cada tabla con los datos proveneintes del forms de atleta
         /*$v_saveU->name = $request->nombre;
@@ -95,10 +98,10 @@ class guardarAtletaController extends Controller
         $v_saveA->policy=111;
        // $v_saveA->identification = $request->archivo;//campo en tabla para meter archivo
 
-    
+
         $v_saveA->save();*/
 
         //returnredirect()->route('')
-        
+
     }
 }
