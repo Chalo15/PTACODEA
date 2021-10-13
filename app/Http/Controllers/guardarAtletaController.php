@@ -65,8 +65,8 @@ class guardarAtletaController extends Controller
             'policy'=>rand(0,100)
         ]);
 
-       // return view('users.athletes');
-        return redirect()->route('login')->with('status', 'El atleta se ha registrado correctamente');
+       // return view('users.athletes'); //usar cuando es GET
+        return redirect()->route('login')->with('status', 'El atleta se ha registrado correctamente'); //Se usa solo cuando es POST
 
         //Se realiza las inserciones en las columnas de cada tabla con los datos proveneintes del forms de atleta
         /*$v_saveU->name = $request->nombre;
