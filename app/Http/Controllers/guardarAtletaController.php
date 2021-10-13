@@ -24,7 +24,7 @@ class guardarAtletaController extends Controller
             'department' => 'required',
             'edad' => 'required',
             'genero' => 'required',
-            'correo' => 'required',
+            'correo' => 'required|email',
             'telefono' => 'required|digits:8',
             'provincia' => 'required',
             'provincia' => 'alpha',
