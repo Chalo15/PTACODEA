@@ -101,7 +101,7 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"> N° Teléfono</label>
                     <div class="col-md-5">
-                    <input name="telefono" placeholder="(+506)" class="form-control" type="number" pattern="[0-9]{8}" >
+                    <input name="telefono" placeholder="(+506)88888888" class="form-control" type="number" pattern="[0-9]{8}" >
                   </div>
                 </div>
 
@@ -176,7 +176,7 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"> N° Teléfono del encargado(a)</label>
                    <div class="col-md-4 inputGroupContainer">
-                    <input name="telefono_encargado" placeholder="(+506)" class="form-control" type="number"  pattern="[0-9]{8}">
+                    <input name="telefono_encargado" placeholder="(+506)88888888" class="form-control" type="number"  pattern="[0-9]{8}">
                   </div>
                 </div>
 
