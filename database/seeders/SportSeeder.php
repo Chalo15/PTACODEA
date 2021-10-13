@@ -31,7 +31,6 @@ class SportSeeder extends Seeder
         $sport2 = new Sport();
         $sport2->description = "Baloncesto";
         $sport2->save();
-<<<<<<< Updated upstream
 
 
         $sport3 = new Sport();
@@ -124,19 +123,19 @@ class SportSeeder extends Seeder
         $sport20->description = "Voleibol";
         $sport20->save();
 
-        $sport20 = new Sport();
-        $sport20->description = "Voleibol De Playa";
-        $sport20->save();
-
         $sport21 = new Sport();
-        $sport21->description = "Tiro Con Arco";
+        $sport21->description = "Voleibol De Playa";
         $sport21->save();
 
-
-
         $sport22 = new Sport();
-        $sport22->description = "Football Americano";
+        $sport22->description = "Tiro Con Arco";
         $sport22->save();
+
+
+
+        $sport23 = new Sport();
+        $sport23->description = "Football Americano";
+        $sport23->save();
 
 
 

@@ -15,7 +15,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            
+
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-7">
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group row">
-                            
+
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
 
                             <div class="col-md-7">
@@ -45,11 +45,11 @@
                         </div>
 
                         <div class="form-group row">
-                            
+
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Cédula') }}</label>
 
                             <div class="col-md-7">
-                                <input placeholder="Cédula" id="name" type="number" class="form-control @error('cedula') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input placeholder="Cédula" id="name" type="number" pattern="[0-9]{9}" class="form-control @error('cedula') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('cedula')
                                     <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <!-- Género -->
                         <div class="form-group row">
 
@@ -75,11 +75,11 @@
                         </div>
 
                         <div class="form-group row">
-                            
+
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
 
                             <div class="col-md-7">
-                                <input placeholder="Teléfono" id="name" type="number" class="form-control @error('telefono') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input placeholder="Teléfono" id="name" type="number" pattern="[0-9]{8}" class="form-control @error('telefono') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('telefono')
                                     <span class="invalid-feedback" role="alert">
@@ -102,7 +102,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
