@@ -38,7 +38,7 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">Cédula</label>
                   <div class="col-md-7">
-                    <input  name="cedula" placeholder="Cédula" class="form-control"  type="number" pattern="[0-9]{9}">
+                    <input  name="cedula" pattern="[0-9]{9}" placeholder="Cédula" class="form-control"  type="number" >
                   </div>
                 </div>
 
@@ -101,7 +101,7 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"> N° Teléfono</label>
                     <div class="col-md-5">
-                    <input name="telefono" placeholder="(+506)88888888" class="form-control" type="number" pattern="[0-9]{8}" >
+                    <input name="telefono" pattern="[0-9]{8}" placeholder="(+506)88888888" class="form-control" type="number"  >
                   </div>
                 </div>
 
@@ -109,9 +109,9 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right" >Provincia</label>
                   <div class="col-md-3 selectContainer">
-                    <select name="provincia" placeholder="Provincia" class="form-control selectpicker">
+                    <select name="provincia" placeholder="Provincia" class="form-control" type="text">
                         <option value="0">Seleccione su Provincia</option>
-                            <option value="San Jose">San Jose</option>
+                            <option value="SanJose">SanJose</option>
                             <option value="Alajuela">Alajuela</option>
                             <option value="Cartago">Cartago</option>
                             <option value="Heredia">Heredia</option>
@@ -168,7 +168,7 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">N° Cédula del encargado(a)</label>
                   <div class="col-md-4 inputGroupContainer">
-                    <input  name="cedula_encargado" placeholder="Cédula" class="form-control"  type="number" pattern="[0-9]{9}">
+                    <input  name="cedula_encargado" placeholder="Cédula"  pattern="[0-9]{9}" class="form-control"  type="number">
                   </div>
                 </div>
 
@@ -176,7 +176,7 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"> N° Teléfono del encargado(a)</label>
                    <div class="col-md-4 inputGroupContainer">
-                    <input name="telefono_encargado" placeholder="(+506)88888888" class="form-control" type="number"  pattern="[0-9]{8}">
+                    <input name="telefono_encargado"  pattern="[0-9]{8}" placeholder="(+506)88888888" class="form-control" type="number" >
                   </div>
                 </div>
 

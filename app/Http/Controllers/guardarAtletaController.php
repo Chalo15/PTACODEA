@@ -13,27 +13,27 @@ class guardarAtletaController extends Controller
 
         $rol = 3;
 
-        //validaciones 
+        //validaciones
         $request->validate([
 
             'nombre' => 'required',
             'nombre' => 'alpha',
             'apellidos' => 'required',
             'apellidos' => 'alpha',
-            'cedula' => 'required',
+            'cedula' => 'required|digits:9',
             'department' => 'required',
             'edad' => 'required',
             'genero' => 'required',
             'correo' => 'required',
-            'telefono' => 'required',
+            'telefono' => 'required|digits:8',
             'provincia' => 'required',
             'provincia' => 'alpha',
             'canton' => 'required',
             'direccion' => 'required',
             'nombre_encargado' => 'required',
             'apellidos_encargado' => 'required',
-            'cedula_encargado' => 'required',
-            'telefono_encargado' => 'required',
+            'cedula_encargado' => 'required|digits:9',
+            'telefono_encargado' => 'required|digits:8',
             'parentesco' => 'required'
         ]);
 
@@ -65,7 +65,7 @@ class guardarAtletaController extends Controller
             'policy' => rand(0, 100)
         ]);
 
-        // return view('users.athletes'); Siempre que se usa el Get es con view 
+        // return view('users.athletes'); Siempre que se usa el Get es con view
         return redirect()->route('login')->with('status', 'El atleta se ha registrado correctamente');
 
         //Se realiza las inserciones en las columnas de cada tabla con los datos proveneintes del forms de atleta
@@ -95,7 +95,7 @@ class guardarAtletaController extends Controller
         $v_saveA->policy=111;
        // $v_saveA->identification = $request->archivo;//campo en tabla para meter archivo
 
-    
+
         $v_saveA->save();*/
 
         //returnredirect()->route('')
