@@ -136,8 +136,5 @@ class SportSeeder extends Seeder
         $sport23 = new Sport();
         $sport23->description = "Football Americano";
         $sport23->save();
-
-
-
     }
 }

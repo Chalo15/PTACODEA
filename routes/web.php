@@ -21,11 +21,17 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/users/athletes', [App\Http\Controllers\UsersController::class, 'index'])->name('athletes');
-
 Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_module');
 
+Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
+
 Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::class, 'guardado'])->name('athletes.guardado');
+
+Route::get('/usuario', [App\Http\Controllers\UserController::class, 'index'])->name('users');
+
+Route::post('/usuario', [App\Http\Controllers\UserController::class, 'guardarUser'])->name('users.guardar');
+
+
     
 
 
