@@ -104,7 +104,23 @@
                     <input name="telefono" pattern="[0-9]{8}" placeholder="(+506)88888888" class="form-control" type="number"  >
                   </div>
                 </div>
-
+                <!-- Sangre -->
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right" >Tipo de Sangre</label>
+                    <div class="col-md-3 selectContainer">
+                    <select name="sangre" placeholder="Tipo Sangre" class="form-control" type="text">
+                        <option value="0">Seleccione su Tipo de Sangre</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                </div>
                 <!-- Provincia -->
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right" >Provincia</label>

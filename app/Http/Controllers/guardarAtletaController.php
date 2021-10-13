@@ -24,8 +24,9 @@ class guardarAtletaController extends Controller
             'department' => 'required',
             'edad' => 'required',
             'genero' => 'required',
-            'correo' => 'required',
+            'correo' => 'required|email',
             'telefono' => 'required|digits:8',
+            'sangre' => 'required',
             'provincia' => 'required',
             'provincia' => 'alpha',
             'canton' => 'required',
@@ -58,10 +59,11 @@ class guardarAtletaController extends Controller
             'lastname_manager' => $request->apellidos_encargado,
             'identification_manager' => $request->cedula_encargado,
             'contact_manager' => $request->telefono_encargado,
-            'manager' => $request->parentesco,
+            'blood' => $request->sangre,
             'state' => 'p',
             'user_id' => $user->id,
             'laterality' => 'd',
+            'manager' => $request->parentesco,
             'policy' => rand(0, 100)
         ]);
 
