@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Coach;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CoachFactory extends Factory
@@ -23,8 +24,8 @@ class CoachFactory extends Factory
     {
         return [
 
-            'user_id' => $this->faker->unique()->randomElement(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
-            'sport_id' => $this->faker->randomElement(['1', '2', '3', '4']),
+            'user_id' => User::factory()->create(),
+            'sport_id' => 1,
 
         ];
     }

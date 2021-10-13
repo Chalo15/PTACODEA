@@ -21,20 +21,47 @@ class UserFactory extends Factory
      * @return array
      */
     public function definition()
+
     {
+
         return [
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+
+            'role_id' => 2,
+
             'identification' => $this->faker->unique()->randomNumber(),
+
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+
             'name' => $this->faker->name(),
+
+            'lastname' => $this->faker->name(),
+
             'birthdate' => now(),
+
             'phone' => $this->faker->randomNumber(),
+
             'email' => $this->faker->unique()->safeEmail(),
+
+            'province' => $this->faker->sentence(),
+
+            'city' => $this->faker->sentence(),
+
             'address' => $this->faker->sentence(),
-            'gendet' => $this->faker->randomElement(['F', 'M', 'O']),
-            'role_id' => $this->faker->randomElement(['1', '2']),
+
+            'gender' => $this->faker->randomElement(['F', 'M', 'O']),
+
+            'contract_number' => $this->faker->randomNumber(),
+
+            'contract_year' => $this->faker->randomNumber(),
+
+            'experience' => $this->faker->randomNumber(),
+
             'email_verified_at' => now(),
+
             // password
+
             'remember_token' => Str::random(10),
+
         ];
     }
 

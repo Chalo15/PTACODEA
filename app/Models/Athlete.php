@@ -19,11 +19,6 @@ class Athlete extends Model
         return $this->belongsTo(Sport::class);
     }
 
-    public function coach()
-    {
-
-        return $this->belongsTo(Coach::class);
-    }
     use HasFactory;
 
     /**
@@ -31,7 +26,5 @@ class Athlete extends Model
      *
      * @var string[]
      */
-    protected $guarded = [
-      
-    ];
+    protected $guarded = [];
 }
