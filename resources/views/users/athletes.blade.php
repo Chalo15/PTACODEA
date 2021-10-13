@@ -132,7 +132,7 @@
                 <!-- Mensaje de encargado -->
                 <div class="form-group row"> <br>
                   <div class="col-md-12 text-center">
-                    <smal class=" text-muted">***   La sieguiente sección se completa únicamente en caso de ser menor de edad.   ***
+                    <smal class=" text-muted">***   La siguiente sección se completa únicamente en caso de ser menor de edad.   ***
                   </div>
                 </div>
 

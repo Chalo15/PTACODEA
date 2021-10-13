@@ -10,17 +10,19 @@ class guardarAtletaController extends Controller
 {
     public function guardado(Request $request){
 
+        $rol= 3;
+
         //validaciones 
-        /*$request->validate([
+        $request->validate([
 
             'nombre'=>'required',
             'nombre'=>'alpha',
             'apellidos'=>'required',
             'apellidos'=>'alpha',
             'cedula'=>'required',
-            'departement'=>'required',
+            'department'=>'required',
             'edad'=>'required',
-            ''=>'required',
+            'genero'=>'required',
             'correo'=>'required',
             'telefono'=>'required',
             'provincia'=>'required',
@@ -31,16 +33,43 @@ class guardarAtletaController extends Controller
             'apellidos_encargado'=>'required',
             'cedula_encargado'=>'required',
             'telefono_encargado'=>'required',
-            'parentesco'=>'required',
-            'archivo'=>'required'
-        ]);*/
+            'parentesco'=>'required'
+        ]);
 
-        //Secrean los objetos de los modelos de la base de datos 
-        $v_saveU = new User();
-        $v_saveA= new Athlete();
+        $user=User::create([
+            'role_id'=>3,
+            'identification'=>$request->cedula,
+            'password'=>'123',
+            'name'=>$request->nombre,
+            'lastname'=>$request->apellidos,
+            'birthdate'=>$request->edad,
+            'phone'=>$request->telefono,
+            'email'=>$request->correo,
+            'province'=>$request->provincia,
+            'city'=>$request->canton,
+            'address'=>$request->direccion,           
+            'gender'=>$request->genero
+        ]);
+
+        $athlete=Athlete::create([
+            'sport_id'=>$request->department,
+            'name_manager'=>$request->nombre_encargado,
+            'lastname_manager'=>$request->apellidos_encargado,
+            'identification_manager'=>$request->cedula_encargado,
+            'contact_manager'=>$request->telefono_encargado,
+            'manager'=>$request->parentesco,
+            'state'=>'p',
+            'user_id'=>$user->id,
+            'coach_id'=>1,
+            'laterality'=>'d',
+            'policy'=>rand(0,100)
+        ]);
+
+       // return view('users.athletes');
+        return redirect()->route('login')->with('status', 'El atleta se ha registrado correctamente');
 
         //Se realiza las inserciones en las columnas de cada tabla con los datos proveneintes del forms de atleta
-        $v_saveU->name = $request->nombre;
+        /*$v_saveU->name = $request->nombre;
         $v_saveU->lastname = $request->apellidos;
         $v_saveU->identification = $request->cedula;
         $v_saveA->sport_id = $request->department;
@@ -67,7 +96,7 @@ class guardarAtletaController extends Controller
        // $v_saveA->identification = $request->archivo;//campo en tabla para meter archivo
 
     
-        $v_saveA->save();
+        $v_saveA->save();*/
 
         //returnredirect()->route('')
         

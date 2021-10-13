@@ -11,6 +11,12 @@
                 <div class="usuario text-center"><i class="fas fa-user p-2"></i></div>
 
                 <div class="card-body">
+                    @if (session('status'))
+                    {{-- <div class="alert alert-primary" role="alert"> --}}
+                    {{session('status')}}
+                    {{-- </div> --}}
+                    @endif
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

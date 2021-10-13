@@ -24,6 +24,15 @@ class Coach extends Model
         return $this->hasMany(Athlete::class);
     }
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $guarded = [
+      
+    ];
+
 
 
 
