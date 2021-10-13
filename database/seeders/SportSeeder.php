@@ -31,6 +31,7 @@ class SportSeeder extends Seeder
         $sport2 = new Sport();
         $sport2->description = "Baloncesto";
         $sport2->save();
+<<<<<<< Updated upstream
         
 
         $sport3 = new Sport();
@@ -138,5 +139,11 @@ class SportSeeder extends Seeder
         $sport22->save();
         
      
+=======
+
+        $sport3 = new Sport();
+        $sport3->description = "Voleybol";
+        $sport3->save();
+>>>>>>> Stashed changes
     }
 }

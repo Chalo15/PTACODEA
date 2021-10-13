@@ -24,8 +24,13 @@ class CoachFactory extends Factory
     {
         return [
 
+<<<<<<< Updated upstream
             'user_id' => User::factory()->create(),
             'sport_id' => 1,
+=======
+            'user_id' => $this->faker->unique()->randomElement(['1', '2', '3', '5']),
+            'sport_id' => $this->faker->randomElement(['1', '2', '3', '4']),
+>>>>>>> Stashed changes
 
         ];
     }
