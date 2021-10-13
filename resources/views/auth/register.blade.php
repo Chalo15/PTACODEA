@@ -130,7 +130,7 @@
                                     {{ __('Registrarse') }}
                                 </button>
                                 <button class="btn btn-negro ml-auto m-1">
-                                    {{__('Registrarse como Atleta')}}
+                                {{__('Registrarse como Atleta')}}
                                 </button>
                             </div>
                         </div>
