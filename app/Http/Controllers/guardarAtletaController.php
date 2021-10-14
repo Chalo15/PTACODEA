@@ -17,7 +17,6 @@ class guardarAtletaController extends Controller
         $request->validate([
 
             'nombre' => 'required',
-            'nombre' => 'alpha',
             'apellidos' => 'required',
             'cedula' => 'required|digits:9',
             'department' => 'required',
@@ -54,7 +53,7 @@ class guardarAtletaController extends Controller
         ]);
 
 
-        
+
         $athlete = Athlete::create([
             'sport_id' => $request->department,
             'name_manager' => $request->nombre_encargado,
@@ -77,9 +76,9 @@ class guardarAtletaController extends Controller
 
             if($v_pdf->guessExtension()=="pdf"){
                 copy($v_pdf,$url);
-                
+
                 $athlete->url=$v_nombre;
-                
+
             }
 
         }
@@ -121,5 +120,5 @@ class guardarAtletaController extends Controller
 
     }
 
-    
+
 }
