@@ -175,6 +175,7 @@
                   </div>
                 </div>
 
+
                 <!-- Teléfono del encargad@-->
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"> N° Teléfono del encargado(a)</label>
@@ -182,6 +183,26 @@
                     <input name="telefono_encargado"  pattern="[0-9]{8}" placeholder="(+506)88888888" class="form-control" type="number" value= "{{ old('telefono_encargado') }}">
                   </div>
                 </div>
+=======
+<!-- Proviancias -->
+<div class="form-group"> <label class="col-md-4 control-label">Provincia</label>
+<div class="col-md-3 selectContainer">
+<select name="department" class="form-control selectpicker">
+  <option value="">Seleccione su provincia</option>
+  <option >San José</option> 
+  <option >Alajuela </option>
+  <option >Cartago </option> 
+  <option >Heredia</option>
+  <option >Guanacaste </option>
+  <option >Puntarenas </option>
+  <option >Limón </option>
+</select>
+</div>
+</div>
+
+<!-- Registrar alerta -->
+<div class="alert alert-success" role="alert" id="registrado">Éxito al procesar su registro! <i class="glyphicon glyphicon-thumbs-up"></i> </div> 
+
 
                 <!-- Parentesco -->
                 <div class="form-group row">
