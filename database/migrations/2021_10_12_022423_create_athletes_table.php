@@ -15,12 +15,19 @@ class CreateAthletesTable extends Migration
     {
         Schema::create('athletes', function (Blueprint $table) {
             $table->id();
-            $table->string('emergency_contact');
-            $table->string('policy')->unique();
-            $table->timestamps();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('sport_id')->constrained('sports');
-            $table->foreignId('coach_id')->constrained('coaches');
+            $table->char('state');
+            $table->string('blood')->nullable();
+            $table->char('laterality');
+            $table->string('name_manager');
+            $table->string('lastname_manager');
+            $table->string('manager');
+            $table->integer('identification_manager');
+            $table->integer('contact_manager');
+            $table->string('url')->nullable();
+            $table->string('policy')->unique();
+            $table->timestamps();
         });
     }
 

@@ -10,19 +10,21 @@ class Athlete extends Model
     public function user()
     {
 
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     public function sport()
     {
 
-        return $this->belongsTo('App\Models\sport');
+        return $this->belongsTo(Sport::class);
     }
 
-    public function coach()
-    {
-
-        return $this->belongsTo('App\Models\coach');
-    }
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $guarded = [];
 }

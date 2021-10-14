@@ -25,13 +25,12 @@
 
     <link href="{{ asset('css/home.css')}}" rel="stylesheet">
 
-    <link href="../../css/home.css" rel="stylesheet">
-    <link href="{{ asset('../../css/athletes.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/athletes.css') }}" rel="stylesheet">
 
 
     <!-- Fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
- <!--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> 
+ <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
 -->
 
@@ -41,8 +40,8 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-negro shadow-sm ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <div class="col-sm-12 col-md-12">
-                        <img class="text-left" src="{{ asset('img/2.gif') }}" height="80px" width="80px" alt="Logo de codea">
+                    <div class="logo col-sm-12 col-md-12">
+                        <img class="logo_codea text-left" src="{{ asset('img/2.gif') }}" height="80px" width="80px" alt="Logo de codea">
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
