@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Athlete;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 class guardarAtletaController extends Controller
 {
     public function guardado(Request $request)
@@ -19,7 +19,6 @@ class guardarAtletaController extends Controller
             'nombre' => 'required',
             'nombre' => 'alpha',
             'apellidos' => 'required',
-            'apellidos' => 'alpha',
             'cedula' => 'required|digits:9',
             'department' => 'required',
             'edad' => 'required',
@@ -35,7 +34,8 @@ class guardarAtletaController extends Controller
             'apellidos_encargado' => 'required',
             'cedula_encargado' => 'required|digits:9',
             'telefono_encargado' => 'required|digits:8',
-            'parentesco' => 'required'
+            'parentesco' => 'required',
+            'poliza'=>'required'
         ]);
 
         $user = User::create([
@@ -53,6 +53,8 @@ class guardarAtletaController extends Controller
             'gender' => $request->genero
         ]);
 
+
+        
         $athlete = Athlete::create([
             'sport_id' => $request->department,
             'name_manager' => $request->nombre_encargado,
@@ -64,9 +66,24 @@ class guardarAtletaController extends Controller
             'user_id' => $user->id,
             'laterality' => 'd',
             'manager' => $request->parentesco,
-            'policy' => rand(0, 100)
+            'policy' => $request->poliza
         ]);
 
+        if($request->hasFile("archivo")){
+
+            $v_pdf=$request->file('archivo');
+            $v_nombre="pdf_".time().".".$v_pdf->guessExtension();
+            $url=public_path("storage/".$v_nombre);
+
+            if($v_pdf->guessExtension()=="pdf"){
+                copy($v_pdf,$url);
+                
+                $athlete->url=$v_nombre;
+                
+            }
+
+        }
+        $athlete->save();
         // return view('users.athletes'); Siempre que se usa el Get es con view
         return redirect()->route('login')->with('status', 'El atleta se ha registrado correctamente');
 
@@ -103,4 +120,6 @@ class guardarAtletaController extends Controller
         //returnredirect()->route('')
 
     }
+
+    
 }
