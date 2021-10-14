@@ -17,7 +17,6 @@ class guardarAtletaController extends Controller
         $request->validate([
 
             'nombre' => 'required',
-            'nombre' => 'alpha',
             'apellidos' => 'required',
             'cedula' => 'required|digits:9',
             'department' => 'required',
