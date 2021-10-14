@@ -19,7 +19,7 @@
               <!-- Tíitulo del formulario -->
                 @csrf
 
-                {{$errors}}
+              
                 <!-- Nombre -->
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">Nombre</label>
