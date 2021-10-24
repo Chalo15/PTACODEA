@@ -20,6 +20,14 @@ class Coach extends Model
     }
 
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $guarded = [];
+
+
 
 
     use HasFactory;

@@ -1,20 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
 
-                <div class="text-center card-header"><h3 class="d-5">Verificacion de Usuario</h3></div>
+                <div class="text-center card-header">
+                    <h3 class="d-5">Verificacion de Usuario</h3>
+                </div>
 
                 <div class="usuario text-center"><i class="fas fa-user p-2"></i></div>
 
-                <div class="card-header">{{ __('Iniciar sesión') }}</div>
-
-
                 <div class="card-body">
+                    @if (session('status'))
+                    {{-- <div class="alert alert-primary" role="alert"> --}}
+                    {{session('status')}}
+                    {{-- </div> --}}
+                    @endif
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -22,16 +26,13 @@
 
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Cé') }}</label>
-
-
-                            <div class="col-md-6">
-                                <input  placeholder="Correo" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <div class="col-md-7">
+                                <input placeholder="Correo" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -39,13 +40,13 @@
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <input placeholder="Contraseña" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -68,9 +69,9 @@
                                     {{ __('Iniciar') }}
                                 </button>
                                 @if (Route::has('password.request'))
-                                    <a class="forgot-password btn btn-negro" href="{{ route('password.request') }}">
-                                        {{ __('Olvidé mi contraseña') }}
-                                    </a>
+                                <a class="forgot-password btn btn-negro" href="{{ route('password.request') }}">
+                                    {{ __('Olvidé mi contraseña') }}
+                                </a>
                                 @endif
                             </div>
                         </div>
