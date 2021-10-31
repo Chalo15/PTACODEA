@@ -30,3 +30,5 @@ Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::c
 
 
 
+Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_module');
+
