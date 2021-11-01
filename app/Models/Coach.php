@@ -19,10 +19,13 @@ class Coach extends Model
         return $this->belongsTo(Sport::class);
     }
 
-    public function athletes()
-    {
-        return $this->hasMany(Athlete::class);
-    }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $guarded = [];
 
 
 
