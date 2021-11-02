@@ -30,6 +30,6 @@ Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'inde
 
 Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::class, 'guardado'])->name('athletes.guardado');
     
-
+Route::get('/coach', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
 
 
