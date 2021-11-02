@@ -54,8 +54,5 @@ class User extends Authenticatable
     {
         return $this->hasOne(Coach::class);
     }
-    public function session_data()
-    {
-        return $this->hasOne(SessionData::class);
-    }
+
 }
