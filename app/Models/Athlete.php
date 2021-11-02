@@ -27,4 +27,11 @@ class Athlete extends Model
      * @var string[]
      */
     protected $guarded = [];
+
+    protected $fillable = [
+        'identification',
+        'name',
+        'lastname',
+        'email',        
+    ];
 }

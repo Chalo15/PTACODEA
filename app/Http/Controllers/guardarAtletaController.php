@@ -22,8 +22,7 @@ class guardarAtletaController extends Controller
             'correo' => 'required|email',
             'telefono' => 'required|digits:8',
             'sangre' => 'required',
-            'provincia' => 'required',
-            'provincia' => 'alpha',
+            'provincia' => 'required|alpha',
             'canton' => 'required',
             'direccion' => 'required',
             'nombre_encargado' => 'required',
@@ -74,17 +73,17 @@ class guardarAtletaController extends Controller
 
             if($v_pdf->guessExtension()=="pdf"){
                 copy($v_pdf,$url);
-                
+
                 $athlete->url=$v_nombre;
-                
+
             }
 
         }
         $athlete->save();
-        // return view('users.athletes'); Siempre que se usa el Get es con view
-        return redirect()->route('login')->with('status', 'El atleta se ha registrado correctamente');  
+    return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */);//cambiar color
+
 
     }
 
-    
+
 }

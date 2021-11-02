@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
     return view('auth.login');
+
+
 });
 
 Auth::routes();
@@ -26,13 +29,6 @@ Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'inde
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
 
 Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::class, 'guardado'])->name('athletes.guardado');
-
-Route::get('/usuario', [App\Http\Controllers\UserController::class, 'index'])->name('users');
-
-Route::post('/usuario', [App\Http\Controllers\UserController::class, 'guardarUser'])->name('users.guardar');
-
-
-    
-
-
+  
+Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_request');
 
