@@ -12,8 +12,8 @@ body{
     --blanco:rgb(255,255,255);
 }
 /*LOGO DE CODEA*/
-.logo_codea{
-    background-color: var(--blanco);
+.logo{
+    background-color: none;
 }
 
 
