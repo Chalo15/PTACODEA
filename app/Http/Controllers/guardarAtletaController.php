@@ -51,8 +51,7 @@ class guardarAtletaController extends Controller
             'gender' => $request->genero
         ]);
 
-    
-        
+
         $athlete = Athlete::create([
             'sport_id' => $request->department,
             'name_manager' => $request->nombre_encargado,
@@ -75,9 +74,9 @@ class guardarAtletaController extends Controller
 
             if($v_pdf->guessExtension()=="pdf"){
                 copy($v_pdf,$url);
-                
+
                 $athlete->url=$v_nombre;
-                
+
             }
 
         }
@@ -87,5 +86,5 @@ class guardarAtletaController extends Controller
 
     }
 
-    
+
 }
