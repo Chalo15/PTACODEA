@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $guarded = [
-      
+
     ];
 
     /**
@@ -53,5 +53,9 @@ class User extends Authenticatable
     public function coach()
     {
         return $this->hasOne(Coach::class);
+    }
+    public function session_data()
+    {
+        return $this->hasOne(SessionData::class);
     }
 }
