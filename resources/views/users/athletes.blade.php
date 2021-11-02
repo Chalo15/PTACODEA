@@ -123,9 +123,11 @@
 
                 <!-- Dirección -->
                 <div class="form-group row">
+
                   <label class="col-md-4 col-form-label text-md-right" >Dirección exacta</label>
                   <div class="col-md-7">
                     <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" cols="44" rows="5" value= "{{ old('direccion') }}"></textarea>
+                    
                   </div>
                 </div>
 
@@ -225,10 +227,20 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"></label>
                   <div class="col-md-7">
-                    <button type="submit" class="btn btn-negro" >Enviar</button>
+                    <button type="submit" class="btn btn-negro" >Registrar</button>
                   </div>
                 </div>
                 
+
+
+                <div class="form-group row" >
+                  <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
+                    <input type="file" class="offset-md-4  form-control-file" id="pdf"> 
+                    <small id="pfd" class="text-muted">
+                      En esta sección introduzca los archivos .PDF que se le solicitan.
+                  </div>
+                </div>
+
           </form>
       </div>
 
