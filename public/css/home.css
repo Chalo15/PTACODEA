@@ -13,7 +13,7 @@ body{
 }
 /*LOGO DE CODEA*/
 .logo{
-    background-color: var(--blanco);
+    background-color: none;
 }
 .logo img{
     max-width: 100%;

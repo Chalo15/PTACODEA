@@ -51,7 +51,7 @@ class guardarAtletaController extends Controller
             'gender' => $request->genero
         ]);
 
-
+    
         
         $athlete = Athlete::create([
             'sport_id' => $request->department,
