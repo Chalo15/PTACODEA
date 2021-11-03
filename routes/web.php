@@ -32,3 +32,6 @@ Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::c
   
 Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_request');
 
+Route::get('/coach', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
+
+
