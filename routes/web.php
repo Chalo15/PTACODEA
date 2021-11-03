@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +34,15 @@ Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'inde
 
 Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::class, 'guardado'])->name('athletes.guardado');
 
-Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'addDataSession'])->name('athletes.addDatasession');
+Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'index'])->name('athletes_index');
+
+Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'addSessionData'])->name('athletes.add');
+
+Route::post('test', function (Request $request) {
+
+    dd($request->all());
+
+})->name("athlete_index");
 
 
 

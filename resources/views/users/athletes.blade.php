@@ -233,7 +233,10 @@
 
           </form>
       </div>
+      <button   onclick="window.location='{{ url("users/athletes/datasession") }}'" class="btn btn-negro ml-auto m-1">
+        {{__('Registrarse Datos Sesion')}}
 
+    </button>
       </div>
 
     </div>

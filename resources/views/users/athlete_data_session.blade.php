@@ -20,7 +20,7 @@
       </div>
 
       <div class="card-body">
-        <form class="well form-horizontal" action="{{route('athletes.addDatasession')}} " method="post"  id="form_reg_session_data" enctype="multipart/form-data">
+        <form class="well form-horizontal" action="{{route('athletes_index')}} " method="post"  id="form_reg_session_data" enctype="multipart/form-data">
               <!-- Título del formulario -->
                 @csrf
 
@@ -86,12 +86,13 @@
 
                   <!-- Levantamiento maximo de peso -->
                 <x-row>
-                    <x-input name="peso" placeholder="Peso maximo" label="Levantamiento maximo de Peso"/>
+                    <x-input name="peso" placeholder="Peso maximo" label="Levantamiento maximo de Peso">
                         <select name="detallePeso" placeholder="Peso Maximo" class="form-control" type="text" value= "{{ old('detallePeso') }}">
                             <option value="0">Seleccione la medida</option>
                                 <option value=" Kg">Kilogramos</option>
                                 <option value=" Lb">Libras</option>
                             </select>
+                        </x-input>
                 </x-row>
 
 
@@ -99,13 +100,6 @@
                 <x-row>
                     <x-input name="prueba" placeholder="Prueba" label="Prueba de bateria"/>
                   </x-row>
-
-
-                <!-- Registrar Datos -->
-                <x-row>
-                  Éxito al procesar su registro!
-                  <i class="glyphicon glyphicon-thumbs-up"></i>
-                </x-row>
 
 
                 <div class="form-group row">

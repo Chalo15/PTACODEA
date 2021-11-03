@@ -40,4 +40,7 @@ class SessionDataController extends Controller
 
 
     }
+    function index(){
+        return view('users.athlete_data_session');
+    }
 }
