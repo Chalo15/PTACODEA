@@ -15,14 +15,16 @@ class SessionDataController extends Controller
         //validaciones
         $request->validate([
 
-            'tiempo' => 'required',
+            'tiempo' => 'required|digits_between:1,10',
+            'detalleTiempo' => 'required',
             'competicion' => 'required',
-            'distancia' => 'required',
+            'distancia' => 'required|digits_between:1,10',
+            'detalleDistancia' => 'required',
             'tecnica' => 'required',
             'aspectos' => 'required',
             'info' => 'required'
         ]);
-
+        //dd($request->all());
         $user = SessionData::create([
             'time' => $request->tiempo + $request->detalleTiempo,
             'competition' => $request->competicion,

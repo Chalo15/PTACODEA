@@ -36,13 +36,8 @@ Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::c
 
 Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'index'])->name('athletes_index');
 
-Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'addSessionData'])->name('athletes.add');
+Route::post('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'addDataSession'])->name('athletes.add');
 
-Route::post('test', function (Request $request) {
-
-    dd($request->all());
-
-})->name("athlete_index");
 
 
 

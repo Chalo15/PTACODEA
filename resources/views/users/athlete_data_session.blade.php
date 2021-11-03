@@ -20,7 +20,7 @@
       </div>
 
       <div class="card-body">
-        <form class="well form-horizontal" action="{{route('athletes_index')}} " method="post"  id="form_reg_session_data" enctype="multipart/form-data">
+        <form class="well form-horizontal" action="{{route('athletes.add')}} " method="post"  id="form_reg_session_data" enctype="multipart/form-data">
               <!-- Título del formulario -->
                 @csrf
 
@@ -28,12 +28,14 @@
                 <!-- Tiempo -->
                 <x-row>
                       <x-input name="tiempo" placeholder="Tiempo" label="Tiempo"/>
-                      <select name="detalleTiempo" placeholder="Tiempo" class="form-control" type="text" value= "{{ old('detalleTiempo') }}">
-                        <option value="0">Seleccione la medida</option>
+                      <label class="col-md-4 col-form-label text-md-right">Seleccione la unidad de medida del tiempo</label>
+                      <div class="col-md-3 selectContainer">
+                      <select name="detalleTiempo" class="form-control" value= "{{ old('detalleTiempo') }}">
                             <option value=" Seg">Segundos</option>
                             <option value=" Min">Minutos</option>
                             <option value=" Hrs">Horas</option>
-                        </select>
+                      </select>
+                    </div>
                 </x-row>
 
                 <!-- Competicion -->
@@ -45,12 +47,14 @@
 
                 <x-row>
                   <x-input name="distancia" placeholder="Distancia maxima alcanzada" label="Distancia maxima alcanzada"/>
-                  <select name="detalleDistancia" placeholder="Distancia Maxima" class="form-control" type="text" value= "{{ old('detalleDistancia') }}">
-                    <option value="0">Seleccione la medida</option>
+                  <label class="col-md-4 col-form-label text-md-right">Seleccione la unidad de medida de la Distancia</label>
+                      <div class="col-md-3 selectContainer">
+                  <select name="detalleDistancia" class="form-control" value= "{{ old('detalleDistancia') }}" >
                         <option value=" Metros">Metros</option>
                         <option value=" Kilometros">Kilometros</option>
                         <option value=" Yardas">Yardas</option>
                   </select>
+                </div>
                 </x-row>
 
                 <!-- Tecnica -->
@@ -60,13 +64,19 @@
 
                 <!-- Aspectos a Mejorar -->
                 <x-row>
-                    <x-input name="aspectos" placeholder="Aspectos a Mejorar" label="Aspectos a Mejorar"/>
-                  </x-row>
+                    <label class="col-md-4 col-form-label text-md-right">Aspectos a mejorar</label>
+                      <div class="col-md-3 selectContainer">
+                    <textarea placeholder="Aspectos a mejorar" name="aspectos" cols="44" rows="5" value= "{{ old('aspectos') }}"></textarea>
+                      </div>
+                </x-row>
 
                   <!-- Informacion Adicional de la sesion -->
-                <x-row>
-                    <x-input name="info" placeholder="Informacion adicional" label="Informacion adicional"/>
-                  </x-row>
+                  <x-row>
+                    <label class="col-md-4 col-form-label text-md-right">Informacion Adicional de la sesion</label>
+                      <div class="col-md-3 selectContainer">
+                    <textarea placeholder="Informacion adicional" name="info" cols="44" rows="5" value= "{{ old('info') }}"></textarea>
+                      </div>
+                </x-row>
 
                   <!-- Nivel -->
                 <x-row>
@@ -86,13 +96,14 @@
 
                   <!-- Levantamiento maximo de peso -->
                 <x-row>
-                    <x-input name="peso" placeholder="Peso maximo" label="Levantamiento maximo de Peso">
-                        <select name="detallePeso" placeholder="Peso Maximo" class="form-control" type="text" value= "{{ old('detallePeso') }}">
-                            <option value="0">Seleccione la medida</option>
+                    <x-input name="peso" placeholder="Peso maximo" label="Levantamiento maximo de Peso"/>
+                        <label class="col-md-4 col-form-label text-md-right">Seleccione la Unidad de medida del Peso</label>
+                      <div class="col-md-3 selectContainer">
+                        <select name="detallePeso" class="form-control">
                                 <option value=" Kg">Kilogramos</option>
                                 <option value=" Lb">Libras</option>
                             </select>
-                        </x-input>
+                    </div>
                 </x-row>
 
 
