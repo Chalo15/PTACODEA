@@ -20,7 +20,7 @@
       </div>
 
       <div class="card-body">
-        <form class="well form-horizontal" action="{{route('/')}} " method="post"  id="form_reg_session_data" enctype="multipart/form-data">
+        <form class="well form-horizontal" action="{{route('athletes.addDatasession')}} " method="post"  id="form_reg_session_data" enctype="multipart/form-data">
               <!-- Título del formulario -->
                 @csrf
 
@@ -28,10 +28,12 @@
                 <!-- Tiempo -->
                 <x-row>
                       <x-input name="tiempo" placeholder="Tiempo" label="Tiempo"/>
-                      <x-row class="checkbox"><label><x-input type="radio" name="detalleTiempo" value=" Seg" /> Segundos</label></x-row>
-                      <x-row class="checkbox"><label><x-input type="radio" name="detalleTiempo" value=" Min" /> Minutos</label></x-row>
-                      <x-row class="checkbox"><label><x-input type="radio" name="detalleTiempo" value=" hrs" /> Horas</label></x-row>
-
+                      <select name="detalleTiempo" placeholder="Tiempo" class="form-control" type="text" value= "{{ old('detalleTiempo') }}">
+                        <option value="0">Seleccione la medida</option>
+                            <option value=" Seg">Segundos</option>
+                            <option value=" Min">Minutos</option>
+                            <option value=" Hrs">Horas</option>
+                        </select>
                 </x-row>
 
                 <!-- Competicion -->
@@ -43,6 +45,12 @@
 
                 <x-row>
                   <x-input name="distancia" placeholder="Distancia maxima alcanzada" label="Distancia maxima alcanzada"/>
+                  <select name="detalleDistancia" placeholder="Distancia Maxima" class="form-control" type="text" value= "{{ old('detalleDistancia') }}">
+                    <option value="0">Seleccione la medida</option>
+                        <option value=" Metros">Metros</option>
+                        <option value=" Kilometros">Kilometros</option>
+                        <option value=" Yardas">Yardas</option>
+                  </select>
                 </x-row>
 
                 <!-- Tecnica -->
@@ -79,9 +87,11 @@
                   <!-- Levantamiento maximo de peso -->
                 <x-row>
                     <x-input name="peso" placeholder="Peso maximo" label="Levantamiento maximo de Peso"/>
-                    <x-row class="checkbox"><label><x-input type="radio" name="detallePeso" value=" Kg" /> Kilogramos</label></x-row>
-                    <x-row class="checkbox"><label><x-input type="radio" name="detallePeso" value=" Lb" /> Libras</label></x-row>
-
+                        <select name="detallePeso" placeholder="Peso Maximo" class="form-control" type="text" value= "{{ old('detallePeso') }}">
+                            <option value="0">Seleccione la medida</option>
+                                <option value=" Kg">Kilogramos</option>
+                                <option value=" Lb">Libras</option>
+                            </select>
                 </x-row>
 
 
