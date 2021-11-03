@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
+@if(session('status'))
+    <div class="alert alert-{{ session('status')['color'] }} alert-dismissible fade show" role="alert">
+        {{ session('status')['mensaje'] }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
 <div class="container">
 
   <div class="row justify-content-center">
@@ -16,33 +21,26 @@
 
       <div class="card-body">
         <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
-              <!-- Tíitulo del formulario -->
+              <!-- Título del formulario -->
                 @csrf
 
               
                 <!-- Nombre -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">Nombre</label>
-                    <div class="col-md-7">
-                    <input  name="nombre" placeholder="Nombre" class="form-control"  type="text" value= "{{ old('nombre') }}">
-                  </div>
-                </div>
+                <x-row>
+                      <x-input name="nombre" placeholder="Nombre" label="Nombre"/>
+                </x-row>
 
                 <!-- Apellidos -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right" >Apellidos</label>
-                  <div class="col-md-7">
-                    <input name="apellidos" placeholder="Apellidos" class="form-control"  type="text" value= "{{ old('apellidos') }}">
-                  </div>
-                </div>
-
+                <x-row>
+                  <x-input name="apellidos" placeholder="Apellidos" label="Apellidos"/>
+                </x-row>
+ 
                 <!-- Cedula -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">Cédula</label>
-                  <div class="col-md-7">
-                    <input  name="cedula" pattern="[0-9]{9}" placeholder="Cédula" class="form-control"  type="number"value= "{{ old('cedula') }}" >
-                  </div>
-                </div>
+
+                <x-row>
+                  <x-input name="cedula" placeholder="Cedula" label="Cédula"/>
+                </x-row>
+                
 
                 <!-- Disciplina -->
                 <div class="form-group row">
@@ -60,11 +58,9 @@
                 </div>
 
                 <!-- Edad -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">Edad</label>
-                  <div class="col-md-5">
-                  <input name="edad" placeholder="Edad" class="form-control" type="date"value= "{{ old('edad') }}"></div>
-                </div>
+                <x-row>
+                  <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
+                </x-row>
 
                 <!-- Género -->
                 <div class="form-group row">
@@ -77,20 +73,15 @@
                 </div>
 
                 <!-- Correo -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">Correo electrónico</label>
-                  <div class="col-md-7">
-                    <input name="correo" placeholder="E-mail" class="form-control"  type="email"value= "{{ old('correo') }}">
-                  </div>
-                </div>
+                <x-row>
+                  <x-input name="correo" placeholder="E-mail" label="Correo electrónico" type="email"/>
+                </x-row>
 
                 <!-- Teléfono -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right"> N° Teléfono</label>
-                    <div class="col-md-5">
-                    <input name="telefono" pattern="[0-9]{8}" placeholder="(+506)88888888" class="form-control" type="number"  value= "{{ old('telefono') }}">
-                  </div>
-                </div>
+                <x-row>
+                  <x-input name="telefono" placeholder="(+506)88888888" label="N° Teléfono" type="number"/>
+                </x-row>
+               
                 <!-- Sangre -->
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label text-md-right" >Tipo de Sangre</label>
@@ -126,25 +117,24 @@
                 </div>
 
                 <!-- Cantón -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right" >Cantón</label>
-                  <div class="col-md-7">
-                    <input name="canton" placeholder="Cantón" class="form-control"  type="text" value= "{{ old('canton') }}">
-                  </div>
-                </div>
+                <x-row>
+                  <x-input name="canton" placeholder="Cantón" label="Cantón" />
+                </x-row>
 
                 <!-- Dirección -->
                 <div class="form-group row">
+
                   <label class="col-md-4 col-form-label text-md-right" >Dirección exacta</label>
                   <div class="col-md-7">
                     <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" cols="44" rows="5" value= "{{ old('direccion') }}"></textarea>
+                    
                   </div>
                 </div>
 
                 <!-- Mensaje de encargado -->
                 <div class="form-group row"> <br>
                   <div class="col-md-12 text-center">
-                    <smal class=" text-muted">***   La siguiente sección se completa únicamente en caso de ser menor de edad.   ***
+                    <small class=" text-muted">***   La siguiente sección se completa únicamente en caso de ser menor de edad.   ***
                   </div>
                 </div>
 
@@ -152,56 +142,43 @@
                 <h3 class="d-5 text-center">Datos del responsable</h3>
 
                 <!-- Nombre del encargad@-->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">Nombre del encargado(a)</label>
-                  <div class="col-md-7 inputGroupContainer">
-                    <input  name="nombre_encargado" placeholder="Nombre" class="form-control"  type="text" value= "{{ old('nombre_encargado') }}">
-                  </div>
-                </div>
+                <x-row>
+                  <x-input name="nombre_encargado" placeholder="Nombre" label="Nombre del encargado(a)" />
+                </x-row>
 
                 <!-- Apellidos del encargad@ -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">Apellidos del encargado(a)</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <input  name="apellidos_encargado" placeholder="Apellidos" class="form-control"  type="text" value= "{{ old('apellidos_encargado') }}">
-                  </div>
-                </div>
-
+                <x-row>
+                  <x-input name="apellidos_encargado" placeholder="Apellidos" label="Apellidos del encargado(a)" />
+                </x-row>
+                
                 <!-- Cedula del encargad@ -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">N° Cédula del encargado(a)</label>
-                  <div class="col-md-4 inputGroupContainer">
-                    <input  name="cedula_encargado" placeholder="Cédula"  pattern="[0-9]{9}" class="form-control"  type="number" value= "{{ old('cedula_encargado') }}">
-                  </div>
-                </div>
-
+                <x-row>
+                  <x-input name="cedula_encargado" placeholder="Cédula" label="N° Cédula del encargado(a)" type="number" />
+                </x-row>
 
                 <!-- Teléfono del encargad@-->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right"> N° Teléfono del encargado(a)</label>
-                   <div class="col-md-4 inputGroupContainer">
-                    <input name="telefono_encargado"  pattern="[0-9]{8}" placeholder="(+506)88888888" class="form-control" type="number" value= "{{ old('telefono_encargado') }}">
-                  </div>
-                </div>
-=======
-<!-- Proviancias -->
-<div class="form-group"> <label class="col-md-4 control-label">Provincia</label>
-<div class="col-md-3 selectContainer">
-<select name="department" class="form-control selectpicker">
-  <option value="">Seleccione su provincia</option>
-  <option >San José</option> 
-  <option >Alajuela </option>
-  <option >Cartago </option> 
-  <option >Heredia</option>
-  <option >Guanacaste </option>
-  <option >Puntarenas </option>
-  <option >Limón </option>
-</select>
-</div>
-</div>
+                <x-row>
+                  <x-input name="telefono_encargado" placeholder="(+506)88888888" label="N° Teléfono del encargado(a)" type="number"/>
+                </x-row>
 
-<!-- Registrar alerta -->
-<div class="alert alert-success" role="alert" id="registrado">Éxito al procesar su registro! <i class="glyphicon glyphicon-thumbs-up"></i> </div> 
+                <!-- Proviancias -->
+                <!--<div class="form-group"> <label class="col-md-4 control-label">Provincia</label>
+                <div class="col-md-3 selectContainer">
+                <select name="department" class="form-control selectpicker">
+                  <option value="">Seleccione su provincia</option>
+                  <option >San José</option> 
+                  <option >Alajuela </option>
+                  <option >Cartago </option> 
+                  <option >Heredia</option>
+                  <option >Guanacaste </option>
+                  <option >Puntarenas </option>
+                  <option >Limón </option>
+                </select>
+                </div>
+                </div> -->
+
+                <!-- Registrar alerta -->
+ 
 
 
                 <!-- Parentesco -->
@@ -222,18 +199,9 @@
 
 
                 <!-- Numero de Poliza -->
-
-                <div class="form-group row">
-
-                  <label class="col-md-4 col-form-label text-md-right">Numero de Poliza</label>
-
-                  <div class="col-md-4 inputGroupContainer">
-
-                  <input  name="poliza" placeholder="Numero de Poliza" class="form-control"  type="text">
-
-                  </div>
-
-              </div>
+                <x-row>
+                  <x-input name="poliza" placeholder="Numero de Poliza" label="Numero de Poliza" />
+                </x-row>
               
                 <!-- Registrar alerta -->
                 <div class="alert alert-success" role="alert" id="registrado">
@@ -248,7 +216,7 @@
                         <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
                           <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value= "{{ old('archivo') }}" >
                           <small id="pfd" class="text-muted">
-                            En esta sección introduzca los archivos .PDF que se le solicitan.
+                            En esta sección introduzca el archivo pdf solicitado.
                         </div>
                       </div>
                     
@@ -259,10 +227,20 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"></label>
                   <div class="col-md-7">
-                    <button type="submit" class="btn btn-negro" >Enviar</button>
+                    <button type="submit" class="btn btn-negro" >Registrar</button>
                   </div>
                 </div>
                 
+
+
+                <div class="form-group row" >
+                  <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
+                    <input type="file" class="offset-md-4  form-control-file" id="pdf"> 
+                    <small id="pfd" class="text-muted">
+                      En esta sección introduzca los archivos .PDF que se le solicitan.
+                  </div>
+                </div>
+
           </form>
       </div>
 
@@ -272,6 +250,6 @@
 
   </div>
 
-</div>
 
+</div>
 @endsection

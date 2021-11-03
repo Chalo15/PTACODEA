@@ -129,9 +129,10 @@
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-negro m-1">
                                     {{ __('Registrarse') }}
-                                </button>
+
                                 <button   onclick="window.location='{{ url("users/athletes") }}'" class="btn btn-negro ml-auto m-1">
                                     {{__('Registrarse como Atleta')}}
+
                                 </button>
                             </div>
                         </div>

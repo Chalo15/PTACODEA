@@ -41,7 +41,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <div class="logo col-sm-12 col-md-12">
-                        <img class="logo_codea text-left" src="{{ asset('img/2.gif') }}" height="80px" width="80px" alt="Logo de codea">
+                        <img class="logo_codea text-left" src="{{ asset('img/Logo.gif') }}" height="70px" width="61px" alt="Logo de codea">
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
