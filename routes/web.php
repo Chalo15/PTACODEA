@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     return view('auth.login');
-
-
 });
 
 Auth::routes();
@@ -31,6 +31,11 @@ Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'inde
 
 Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::class, 'guardado'])->name('athletes.guardado');
 
+Route::get('test', function () {
 
+    return view('PruebaCKEDITOR.vistackeditor');
+});
 
-
+Route::post('test', function (Request $request) {
+    dd($request->all());
+})->name("testF");
