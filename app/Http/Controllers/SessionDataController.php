@@ -15,10 +15,10 @@ class SessionDataController extends Controller
         //validaciones
         $request->validate([
 
-            'tiempo' => 'required|digits_between:1,10',
+            'tiempo' => 'required',
             'detalleTiempo' => 'required',
             'competicion' => 'required',
-            'distancia' => 'required|digits_between:1,10',
+            'distancia' => 'required',
             'detalleDistancia' => 'required',
             'tecnica' => 'required',
             'aspectos' => 'required',
@@ -26,23 +26,20 @@ class SessionDataController extends Controller
         ]);
         //dd($request->all());
         $user = SessionData::create([
-            'time' => $request->tiempo + $request->detalleTiempo,
+            'tiempo' => $request->tiempo ,
             'competition' => $request->competicion,
-            'distance' => $request->distancia + $request->detalleDistancia,
+            'distance' => $request->distancia,
             'technique' => $request->apellidos,
             'aspects_to_improve' => $request->aspectos,
             'additional_info' => $request->info,
             'level' => $request->nivel,
             'category' => $request->categoria,
             'branch' => $request->rama,
-            'max_weight' => $request->peso + $request->detallePeso,
+            'max_weight' => $request->peso,
             'battery_test' => $request->prueba
         ]);
     return redirect()->route('login')->with('status'/*,['mensaje'=>'Los datos se han registrado correctamente','color'=>'done'] */);//cambiar color
 
 
-    }
-    function index(){
-        return view('users.athlete_data_session');
     }
 }
