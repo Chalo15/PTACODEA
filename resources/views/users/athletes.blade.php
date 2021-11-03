@@ -81,8 +81,7 @@
                   <div class="col-md-7">
                     <div class="checkbox"><label><input type="radio" name="genero" value="f" /> Femenino</label></div>
                     <div class="checkbox"><label><input type="radio" name="genero" value="m" /> Masculino</label></div>
-                    <div class="checkbox"><label><input type="radio" name="genero" value="n" /> Otro</label></div>
-                  </div>
+                    </div>
                 </div>
 
                 <!-- Correo -->
