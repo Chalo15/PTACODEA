@@ -1,10 +1,11 @@
 /*Main Page*/
 .registro_de_datos_atleta .fa-address-card{
-    color:var(--negro);
+    color:var(--orange);
     font-size: 750%
+
 }
 .reservar_gimnasio .fa-book{
-    color:var(--negro);
+    color:var(--red);
     font-size: 750%
 }
 .mi_perfil .user-icon .fa-user{
