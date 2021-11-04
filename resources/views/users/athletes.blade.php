@@ -16,7 +16,7 @@
       <div class="card">
 
       <div class="text-center card-header">
-        <h3 class="d-5">Formulario de registro del atleta</h3>
+        <h3 class="d-5">Formulario de Registro del Atleta</h3>
       </div>
 
       <div class="card-body">
@@ -136,11 +136,10 @@
                 <!-- Dirección -->
                 <div class="form-group row">
 
-                  <label class="col-md-4 col-form-label text-md-right" >Dirección exacta</label>
-                  <div class="col-md-7">
-                    <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" cols="44" rows="5" value= "{{ old('direccion') }}"></textarea>
-                    
-                  </div>
+                  <label class="col-md-4 col-sm-12 col-form-label text-md-right" >Dirección exacta</label>
+                    <div class="col-md-7 col-sm-12">
+                        <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" style="width:100%; height:150px;" value= "{{ old('direccion') }}"></textarea>
+                    </div>
                 </div>
 
                 <!-- Mensaje de encargado -->
@@ -229,7 +228,7 @@
                             En esta sección introduzca el archivo pdf solicitado.
                         </div>
                       </div>
-                    
+
                    </div>
                  </div>
                   
@@ -237,14 +236,6 @@
                   <label class="col-md-4 col-form-label text-md-right"></label>
                   <div class="col-md-7">
                     <button type="submit" class="btn btn-negro" >Registrar</button>
-                  </div>
-                </div>
-
-                <div class="form-group row" >
-                  <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                    <input type="file" class="offset-md-4  form-control-file" id="pdf"> 
-                    <small id="pfd" class="text-muted">
-                      En esta sección introduzca los archivos .PDF que se le solicitan.
                   </div>
                 </div>
           </form>
