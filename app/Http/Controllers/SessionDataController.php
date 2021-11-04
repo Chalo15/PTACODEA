@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class SessionDataController extends Controller
 {
+
+    public function index(){
+
+        return view('users.athlete_data_session');
+
+    }
+
     public function addDataSession(Request $request)
     {
 
@@ -26,8 +33,8 @@ class SessionDataController extends Controller
         ]);
         //dd($request->all());
         $user = SessionData::create([
-            'user_id' => 1,
-            'tiempo' => $request->tiempo,
+            'user_id'=>1,//pendiente de recibir dato por post
+            'tiempo' => $request->tiempo ,
             'competition' => $request->competicion,
             'distance' => $request->distancia,
             'technique' => $request->tecnica,
@@ -39,11 +46,9 @@ class SessionDataController extends Controller
             'max_weight' => $request->peso,
             'battery_test' => $request->prueba
         ]);
-    //return redirect()->route('login')->with('status'/*,['mensaje'=>'Los datos se han registrado correctamente','color'=>'done'] */);//cambiar color
+    return redirect()->route('practicas')->with('status'/*,['mensaje'=>'Los datos se han registrado correctamente','color'=>'done'] */);//cambiar color
 
 
     }
-    public function index(){
-        return view('users.athlete_data_session');
-    }
+    
 }

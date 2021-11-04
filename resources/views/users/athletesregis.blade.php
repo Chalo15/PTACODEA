@@ -27,7 +27,7 @@
                                 <tr>
                                     <td>{{$atleta->name}}</td>
                                     <td>{{$atleta->lastname}}</td>
-                                    <td><button class="btn btn-negro">Registrar Datos De Sesión</button></td> <!--Se debe eliminar esta fila y reemplazarla por la de abajo con los datos pertinentes.-->
+                                    <td><button  onclick="window.location='{{ route('practicas') }}'" class="btn btn-negro ml-auto m-1" method="post" >Registrar Datos De Sesión</button></td> <!--Se debe eliminar esta fila y reemplazarla por la de abajo con los datos pertinentes.-->
                                     <!--<td><a href='realizar.php?id=".$fila['id_ruta']."' style='color:#D35400'>Registrar datos de sesión</a></td>-->
                                 </tr>      
                                 

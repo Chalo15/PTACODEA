@@ -75,4 +75,20 @@ class UsersController extends Controller
     return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */);//cambiar color
     }
 
+    function vistaPracticas(){
+    return view('users.instructor');
+
+    }
+
+    function guardarPractica(Request $request){
+
+
+    }
+    function vistaPracticaExtra(){
+        return view('users.athlete_data_session');
+    }
+
+    /*function listaAtletas(){
+        return view('auth.register');
+    }*/
 }
