@@ -16,7 +16,7 @@ class CreateSessionDataTable extends Migration
         Schema::create('session_data', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->string('time');
+            $table->string('tiempo');
             $table->string('competition');
             $table->string('distance');
             $table->string('technique');

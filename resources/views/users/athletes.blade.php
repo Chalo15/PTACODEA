@@ -24,7 +24,7 @@
               <!-- Título del formulario -->
                 @csrf
 
-              
+
                 <!-- Nombre -->
                 <x-row>
                       <x-input name="nombre" placeholder="Nombre" label="Nombre"/>
@@ -34,13 +34,13 @@
                 <x-row>
                   <x-input name="apellidos" placeholder="Apellidos" label="Apellidos"/>
                 </x-row>
- 
+
                 <!-- Cedula -->
 
                 <x-row>
                   <x-input name="cedula" placeholder="Cedula" label="Cédula"/>
                 </x-row>
-                
+
 
                 <!-- Disciplina -->
 
@@ -165,9 +165,9 @@
                 <div class="col-md-3 selectContainer">
                 <select name="department" class="form-control selectpicker">
                   <option value="">Seleccione su provincia</option>
-                  <option >San José</option> 
+                  <option >San José</option>
                   <option >Alajuela </option>
-                  <option >Cartago </option> 
+                  <option >Cartago </option>
                   <option >Heredia</option>
                   <option >Guanacaste </option>
                   <option >Puntarenas </option>
