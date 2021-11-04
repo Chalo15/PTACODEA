@@ -12,7 +12,6 @@ class guardarAtletaController extends Controller
     {
         $rol = 3;
 
-
         //validaciones
         $request->validate([
             'nombre' => 'required',
@@ -52,7 +51,7 @@ class guardarAtletaController extends Controller
         ]);
 
         $athlete = Athlete::create([
-            
+
             'sport_id' => $request->department,
             'name_manager' => $request->nombre_encargado,
             'lastname_manager' => $request->apellidos_encargado,
