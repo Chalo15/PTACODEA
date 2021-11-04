@@ -23,7 +23,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//Route::get('/home', [App\Http\Controllers\AthleteController::class, 'a_p_d'])->name('home');
 
 Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_module');
 
@@ -35,4 +34,5 @@ Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'inde
 
 Route::get('/coach', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
 
+Route::get('/coach/registrar', [App\Http\Controllers\AthleteController::class, 'a_p_d'])->name('datosatletas');
 
