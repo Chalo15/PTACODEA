@@ -26,10 +26,11 @@ class SessionDataController extends Controller
         ]);
         //dd($request->all());
         $user = SessionData::create([
-            'tiempo' => $request->tiempo ,
+            'user_id' => 1,
+            'tiempo' => $request->tiempo,
             'competition' => $request->competicion,
             'distance' => $request->distancia,
-            'technique' => $request->apellidos,
+            'technique' => $request->tecnica,
             'aspects_to_improve' => $request->aspectos,
             'additional_info' => $request->info,
             'level' => $request->nivel,
@@ -41,5 +42,8 @@ class SessionDataController extends Controller
     return redirect()->route('login')->with('status'/*,['mensaje'=>'Los datos se han registrado correctamente','color'=>'done'] */);//cambiar color
 
 
+    }
+    public function index(){
+        return view('users.athlete_data_session');
     }
 }
