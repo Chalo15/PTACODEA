@@ -11,11 +11,8 @@ class guardarAtletaController extends Controller
     public function guardado(Request $request)
     {
 
-        $rol = 3;
-
         //validaciones
         $request->validate([
-
             'nombre' => 'required',
             'apellidos' => 'required',
             'cedula' => 'required|digits:9',
@@ -36,6 +33,7 @@ class guardarAtletaController extends Controller
             'poliza'=>'required'
         ]);
 
+        // Inserciones a la tabla Users.
         $user = User::create([
             'role_id' => 3,
             'identification' => $request->cedula,
@@ -51,7 +49,7 @@ class guardarAtletaController extends Controller
             'gender' => $request->genero
         ]);
 
-
+        // Insercion a la tabla Athletes.
         $athlete = Athlete::create([
             'sport_id' => $request->department,
             'name_manager' => $request->nombre_encargado,
@@ -62,6 +60,7 @@ class guardarAtletaController extends Controller
             'state' => 'p',
             'user_id' => $user->id,
             'laterality' => 'd',
+            'coach_id'=>1,
             'manager' => $request->parentesco,
             'policy' => $request->poliza
         ]);

@@ -23,8 +23,6 @@
         <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
               <!-- Título del formulario -->
                 @csrf
-
-              
                 <!-- Nombre -->
                 <x-row>
                       <x-input name="nombre" placeholder="Nombre" label="Nombre"/>
@@ -46,13 +44,28 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
                   <div class="col-md-5 ">
-                    <select name="department" class="form-control selectpicker" value= "{{ old('department') }}">
+                    <select name="department" class="form-control selectpicker" value="{{old('department')}}">
                       @foreach ($sports as $sport)
                       <option value="{{$sport->id}}">
                       {{$sport->description}}</option>
 
                       @endforeach
-                    
+                      {{-- <option value="">Seleccione su disciplina</option>
+                      <option >Ajedrez</option> <option >Atletismo</option>
+                      <option >Baloncesto Femenino</option><option>Baloncesto Masculino</option>
+                      <option >Balonmano Masculino</option> <option >Beisbol</option>
+                      <option >Boxeo</option><option >Ciclismo</option>
+                      <option >Futbol Masculino</option><option >Futbol Femenino</option>
+                      <option >Futsal Masculino</option><option >Futsal Femenino</option>
+                      <option >Gimnasia Artística</option> <option >Gimnasia Rítmica</option>
+                      <option >Halterofilia</option> <option >Judo</option>
+                      <option >Karate Do</option> <option> Natación</option>
+                      <option >Patinaje</option> <option >Taek Won Do</option>
+                      <option >Tenis de campo</option> <option >Tenis de mesa</option>
+                      <option >Triatlon</option> <option >Voleibol Masculino</option>
+                      <option >Voleibol Playa</option> <option >Tiro con arco</option>
+                      <option >Football Americano</option> <option >Balonmano Femenino</option>
+                      <option >Voleibol Femenino</option> --}}
                     </select>
                   </div>
                 </div>
@@ -85,7 +98,7 @@
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label text-md-right" >Tipo de Sangre</label>
                     <div class="col-md-3 selectContainer">
-                    <select name="sangre" placeholder="Tipo Sangre" class="form-control" type="text" value= "{{ old('sangre') }}">
+                    <select name="sangre" placeholder="Tipo Sangre" class="form-control" type="text" value="{{old('sangre')}}">
                         <option value="0">Seleccione su Tipo de Sangre</option>
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
@@ -102,7 +115,7 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right" >Provincia</label>
                   <div class="col-md-3 selectContainer">
-                    <select name="provincia" placeholder="Provincia" class="form-control" type="text" value= "{{ old('provincia') }}">
+                    <select name="provincia" placeholder="Provincia" class="form-control" type="text" value="{{old('provincia')}}">
                         <option value="0">Seleccione su Provincia</option>
                             <option value="SanJose">SanJose</option>
                             <option value="Alajuela">Alajuela</option>
@@ -179,12 +192,11 @@
                 <!-- Registrar alerta -->
  
 
-
                 <!-- Parentesco -->
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">Parentesco</label>
                   <div class="col-md-3 selectContainer">
-                    <select name="parentesco" class="form-control selectpicker" value= "{{ old('parentesco') }}">
+                    <select name="parentesco" class="form-control selectpicker" value="{{old('parentesco')}}">
                       <option value="">Seleccione su parentesco</option>
                       <option >Madre</option>
                       <option >Padre</option>
@@ -195,7 +207,6 @@
                     </select>
                   </div>
                 </div>
-
 
                 <!-- Numero de Poliza -->
                 <x-row>
@@ -221,7 +232,6 @@
                     
                    </div>
                  </div>
-
                   
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"></label>
@@ -229,8 +239,6 @@
                     <button type="submit" class="btn btn-negro" >Registrar</button>
                   </div>
                 </div>
-                
-
 
                 <div class="form-group row" >
                   <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
@@ -239,7 +247,6 @@
                       En esta sección introduzca los archivos .PDF que se le solicitan.
                   </div>
                 </div>
-
           </form>
       </div>
 
