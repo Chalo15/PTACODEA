@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    return view('users/athlete_request');
+    return view('auth.login');
 
 
 });
