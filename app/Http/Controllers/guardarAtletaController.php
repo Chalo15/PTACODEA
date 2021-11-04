@@ -10,6 +10,8 @@ class guardarAtletaController extends Controller
 {
     public function guardado(Request $request)
     {
+        $rol = 3;
+
 
         //validaciones
         $request->validate([
