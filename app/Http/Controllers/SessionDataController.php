@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class SessionDataController extends Controller
 {
+
+    public function index(){
+
+        return view('users.athlete_data_session');
+
+    }
+
     public function addDataSession(Request $request)
     {
 
@@ -26,10 +33,11 @@ class SessionDataController extends Controller
         ]);
         //dd($request->all());
         $user = SessionData::create([
+            'user_id'=>1,//pendiente de recibir dato por post
             'tiempo' => $request->tiempo ,
             'competition' => $request->competicion,
             'distance' => $request->distancia,
-            'technique' => $request->apellidos,
+            'technique' => $request->tecnica,
             'aspects_to_improve' => $request->aspectos,
             'additional_info' => $request->info,
             'level' => $request->nivel,

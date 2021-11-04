@@ -25,4 +25,8 @@ class UsersController extends Controller
     function vistaPracticaExtra(){
         return view('users.athlete_data_session');
     }
+
+    /*function listaAtletas(){
+        return view('auth.register');
+    }*/
 }
