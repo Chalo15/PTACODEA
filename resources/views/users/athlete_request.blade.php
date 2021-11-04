@@ -14,14 +14,15 @@
             <td scope="col">Id disciplina</td> 
             </tr>
         </thead>
-        @foreach ($athlete_requests as $athlete_request)
-        <tbody>            
+        
+        <tbody>
+        @foreach ($users as $user)            
             </tr>        
-            <td scope="col">{{ $athlete_request->identification }}</td>
-            <td scope="col">{{ $athlete_request->name }}</td>
-            <td scope="col">{{ $athlete_request->lastname }}</td>
-            <td scope="col">{{ $athlete_request->phone }}</td>
-            <td scope="col">{{ $athlete_request->sport_id }}</td>
+            <td scope="col">{{ $user->identification }}</td>
+            <td scope="col">{{ $user->name }}</td>
+            <td scope="col">{{ $user->lastname }}</td>
+            <td scope="col">{{ $user->phone }}</td>
+            <td scope="col">{{ $user->sport->description }}</td>
             <td>
                 <form action = "{{ route('athlete_accepted', $athlete_request->identification) }}" method = "POST">
                     @csfr
@@ -34,8 +35,8 @@
                 </form>
             </td>
             </tr>
-        </tbody>
-        @endforeach  
+        @endforeach 
+        </tbody>         
     </table>
 </div>
 @endsection
