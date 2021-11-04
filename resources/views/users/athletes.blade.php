@@ -23,6 +23,8 @@
         <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
               <!-- Título del formulario -->
                 @csrf
+
+
                 <!-- Nombre -->
                 <x-row>
                       <x-input name="nombre" placeholder="Nombre" label="Nombre"/>
@@ -32,13 +34,13 @@
                 <x-row>
                   <x-input name="apellidos" placeholder="Apellidos" label="Apellidos"/>
                 </x-row>
- 
+
                 <!-- Cedula -->
 
                 <x-row>
                   <x-input name="cedula" placeholder="Cedula" label="Cédula"/>
                 </x-row>
-                
+
 
                 <!-- Disciplina -->
                 <div class="form-group row">
@@ -50,22 +52,6 @@
                       {{$sport->description}}</option>
 
                       @endforeach
-                      {{-- <option value="">Seleccione su disciplina</option>
-                      <option >Ajedrez</option> <option >Atletismo</option>
-                      <option >Baloncesto Femenino</option><option>Baloncesto Masculino</option>
-                      <option >Balonmano Masculino</option> <option >Beisbol</option>
-                      <option >Boxeo</option><option >Ciclismo</option>
-                      <option >Futbol Masculino</option><option >Futbol Femenino</option>
-                      <option >Futsal Masculino</option><option >Futsal Femenino</option>
-                      <option >Gimnasia Artística</option> <option >Gimnasia Rítmica</option>
-                      <option >Halterofilia</option> <option >Judo</option>
-                      <option >Karate Do</option> <option> Natación</option>
-                      <option >Patinaje</option> <option >Taek Won Do</option>
-                      <option >Tenis de campo</option> <option >Tenis de mesa</option>
-                      <option >Triatlon</option> <option >Voleibol Masculino</option>
-                      <option >Voleibol Playa</option> <option >Tiro con arco</option>
-                      <option >Football Americano</option> <option >Balonmano Femenino</option>
-                      <option >Voleibol Femenino</option> --}}
                     </select>
                   </div>
                 </div>
@@ -93,7 +79,7 @@
                 <x-row>
                   <x-input name="telefono" placeholder="(+506)88888888" label="N° Teléfono" type="number"/>
                 </x-row>
-               
+
                 <!-- Sangre -->
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label text-md-right" >Tipo de Sangre</label>
@@ -136,10 +122,11 @@
                 <!-- Dirección -->
                 <div class="form-group row">
 
-                  <label class="col-md-4 col-sm-12 col-form-label text-md-right" >Dirección exacta</label>
-                    <div class="col-md-7 col-sm-12">
-                        <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" style="width:100%; height:150px;" value= "{{ old('direccion') }}"></textarea>
-                    </div>
+                  <label class="col-md-4 col-form-label text-md-right" >Dirección exacta</label>
+                  <div class="col-md-7">
+                    <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" cols="44" rows="5" value= "{{ old('direccion') }}"></textarea>
+
+                  </div>
                 </div>
 
                 <!-- Mensaje de encargado -->
@@ -161,7 +148,7 @@
                 <x-row>
                   <x-input name="apellidos_encargado" placeholder="Apellidos" label="Apellidos del encargado(a)" />
                 </x-row>
-                
+
                 <!-- Cedula del encargad@ -->
                 <x-row>
                   <x-input name="cedula_encargado" placeholder="Cédula" label="N° Cédula del encargado(a)" type="number" />
@@ -177,9 +164,9 @@
                 <div class="col-md-3 selectContainer">
                 <select name="department" class="form-control selectpicker">
                   <option value="">Seleccione su provincia</option>
-                  <option >San José</option> 
+                  <option >San José</option>
                   <option >Alajuela </option>
-                  <option >Cartago </option> 
+                  <option >Cartago </option>
                   <option >Heredia</option>
                   <option >Guanacaste </option>
                   <option >Puntarenas </option>
@@ -189,7 +176,7 @@
                 </div> -->
 
                 <!-- Registrar alerta -->
- 
+
 
                 <!-- Parentesco -->
                 <div class="form-group row">
@@ -211,7 +198,7 @@
                 <x-row>
                   <x-input name="poliza" placeholder="Numero de Poliza" label="Numero de Poliza" />
                 </x-row>
-              
+
                 <!-- Registrar alerta -->
                 <div class="alert alert-success" role="alert" id="registrado">
                   Éxito al procesar su registro!
@@ -231,7 +218,8 @@
 
                    </div>
                  </div>
-                  
+
+
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right"></label>
                   <div class="col-md-7">
@@ -240,7 +228,10 @@
                 </div>
           </form>
       </div>
+     <!-- <button   onclick="window.location='{{ url("users/athletes/datasession") }}'" class="btn btn-negro ml-auto m-1">
+        {{__('Registrarse Datos Sesion')}}
 
+    </button>-->
       </div>
 
     </div>
