@@ -39,7 +39,7 @@ class SessionDataController extends Controller
             'max_weight' => $request->peso,
             'battery_test' => $request->prueba
         ]);
-    return redirect()->route('login')->with('status'/*,['mensaje'=>'Los datos se han registrado correctamente','color'=>'done'] */);//cambiar color
+    //return redirect()->route('login')->with('status'/*,['mensaje'=>'Los datos se han registrado correctamente','color'=>'done'] */);//cambiar color
 
 
     }
