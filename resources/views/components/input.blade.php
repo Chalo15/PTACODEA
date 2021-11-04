@@ -2,7 +2,7 @@
 
 <label class="col-md-4 col-form-label text-md-right" for="{{ $name }}">{{ $label }}</label>
 <div class="col-md-7">
-<input value="{{ old($name) }}" placeholder="{{$placeholder}}" type="{{ $type }}" name="{{ $name }}" class="form-control form-control-{{ $size }} {{ $errors->has($name) ? 'is-invalid' : '' }}" id="validationServer03" aria-describedby="validationServer03Feedback">
+<input class="form-control" value="{{ old($name) }}" placeholder="{{$placeholder}}" type="{{ $type }}" name="{{ $name }}" class="form-control form-control-{{ $size }} {{ $errors->has($name) ? 'is-invalid' : '' }}" id="validationServer03" aria-describedby="validationServer03Feedback">
 </div>
 @error($name)
 <div id="validationServer03Feedback" class="invalid-feedback">

@@ -16,7 +16,7 @@
       <div class="card">
 
       <div class="text-center card-header">
-        <h3 class="d-5">Formulario de registro del atleta</h3>
+        <h3 class="d-5">Formulario de Registro del Atleta</h3>
       </div>
 
       <div class="card-body">
@@ -43,6 +43,18 @@
 
 
                 <!-- Disciplina -->
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
+                  <div class="col-md-5 ">
+                    <select name="department" class="form-control selectpicker" value="{{old('department')}}">
+                      @foreach ($sports as $sport)
+                      <option value="{{$sport->id}}">
+                      {{$sport->description}}</option>
+
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
 
                 <x-row>
                   <x-select name="department" label="Seleccion de disciplina" type="text" >
@@ -160,21 +172,7 @@
                             <x-input name="telefono_encargado" placeholder="(+506)88888888" label="N° Teléfono del encargado(a)" type="number" />
                         </x-row>
 
-                        <!-- Proviancias -->
-                        <!--<div class="form-group"> <label class="col-md-4 control-label">Provincia</label>
-                <div class="col-md-3 selectContainer">
-                <select name="department" class="form-control selectpicker">
-                  <option value="">Seleccione su provincia</option>
-                  <option >San José</option>
-                  <option >Alajuela </option>
-                  <option >Cartago </option>
-                  <option >Heredia</option>
-                  <option >Guanacaste </option>
-                  <option >Puntarenas </option>
-                  <option >Limón </option>
-                </select>
-                </div>
-                </div> -->
+                      
 
                         <!-- Registrar alerta -->
 
@@ -196,6 +194,8 @@
                             </div>
                         </div>
 
+                   </div>
+                 </div>
 
                         <!-- Numero de Poliza -->
                         <x-row>

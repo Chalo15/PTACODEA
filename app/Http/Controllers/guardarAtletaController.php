@@ -10,6 +10,8 @@ class guardarAtletaController extends Controller
 {
     public function guardado(Request $request)
     {
+        $rol = 3;
+
 
         //validaciones
         $request->validate([
@@ -80,7 +82,7 @@ class guardarAtletaController extends Controller
 
         }
         $athlete->save();
-    return redirect()->route('login')->with('status',['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] );//cambiar color
+    return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
 
 
     }

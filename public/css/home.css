@@ -109,6 +109,12 @@ body{
     color:var(--negro);
     font-size: 750%
 }
+
+.Registrar_funcionario .fa-running{
+    color:var(--negro);
+    font-size: 750%
+}
+
 .gimnasio .fa-dumbbell{
     color:var(--negro);
     font-size: 750%
