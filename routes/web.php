@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-
+  
     return view('auth.login');
+
 });
 
 Auth::routes();
@@ -19,6 +20,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 //Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_module');
+Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
 
 //retorno de vista de formulario de registro de atletas
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
@@ -37,6 +39,12 @@ Route::get('/coach/coach_interface', [App\Http\Controllers\CoachController::clas
 
 //retorno de vista de tabla de atletas por disciplina
 Route::get('/coach/registrar', [App\Http\Controllers\AthleteController::class, 'a_p_d'])->name('datosatletas');
+
+Route::get('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'index'])->name('athlete_Res');
+
+Route::delete('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'destroy'])->name('athlete_delete');
+
+Route::post('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'acceptedAthlete'])->name('athlete_accepted');
 
 
 

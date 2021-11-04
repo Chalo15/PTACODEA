@@ -9,15 +9,27 @@ use DB;
 
 class athlete_requestsController extends Controller
 {
+    /*public function __construct(){
+        $this->middleware(['auth']);
+    }*/
     function index(){
-        $athlete_requests = \DB::table('users')
-            ->join('athletes','athletes.user_id',"=",'users.id')
+        /*$athleterequests = \DB::table('users')
             ->select('users.identification', 'users.name','users.lastname','users.phone', 'athletes.sport_id')
-            ->where('athletes.state',"p")
+            ->join('athletes','athletes.user_id',"=",'users.id')
+            ->where("athletes.state","=", 'p')
             ->orderBy('identificacion', 'DESC')
             ->get();
-        return view('users.athlete_requests', ['athlete_requests'=>$athlete_requests]);
+        return view('users.athlete_request', ['athleterequests'=>$athleterequests]);  
+        dd($athleterequests->all());*/
+
+
+        $atletas = new Athlete;
+        $atletas = Athlete::where("state", "=", 'p')->get(); 
+        $users = $atletas->map->user->flatten();
+        return view('users.athlete_request', ['users'=>$users]);
+        
     }
+  
 
     public function destroy(Request $request){
         $request->delete();
