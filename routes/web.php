@@ -33,7 +33,7 @@ Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::c
   
 Route::get('/coach', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
 
-Route::get('/users/instructor', [App\Http\Controllers\UsersController::class, 'vistaPracticas']);
+Route::get('/users/instructor', [App\Http\Controllers\UsersController::class, 'vistaPracticas'])->name('practicas');
 Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'index'])->name('athletes_index');
 
 Route::post('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'addDataSession'])->name('athletes.add');

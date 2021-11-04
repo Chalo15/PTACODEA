@@ -17,7 +17,7 @@
         </textarea>
     <p><input type="submit" value="Submit"></p>
 </form>
-<button   onclick="window.location='{{ url("users/athlete_data_session") }}'" class="btn btn-negro ml-auto m-1">
+<button   onclick="window.location='{{ route('athletes_index') }}'" class="btn btn-negro ml-auto m-1">
     {{__('Datos extra')}}
 
 </button>
