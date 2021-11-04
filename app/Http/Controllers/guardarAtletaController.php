@@ -49,8 +49,8 @@ class guardarAtletaController extends Controller
             'gender' => $request->genero
         ]);
 
-        // Insercion a la tabla Athletes.
         $athlete = Athlete::create([
+            
             'sport_id' => $request->department,
             'name_manager' => $request->nombre_encargado,
             'lastname_manager' => $request->apellidos_encargado,
@@ -80,7 +80,7 @@ class guardarAtletaController extends Controller
 
         }
         $athlete->save();
-    return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */);//cambiar color
+    return redirect()->route('login')->with('status',['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] );//cambiar color
 
 
     }

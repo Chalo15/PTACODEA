@@ -19,6 +19,10 @@ class Athlete extends Model
         return $this->belongsTo(Sport::class);
     }
 
+    public function sessionData()
+    {
+        return $this->hasOne(SessionData::class);
+    }
     use HasFactory;
 
     /**
