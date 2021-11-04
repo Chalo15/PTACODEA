@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +43,21 @@ Route::post('/users/athlete_request', [App\Http\Controllers\athlete_requestsCont
 
 Route::get('/coach', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
 
+Route::get('/users/instructor', [App\Http\Controllers\UsersController::class, 'vistaPracticas'])->name('practicas');
 
+Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'index'])->name('athletes_index');
+
+Route::post('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'addDataSession'])->name('athletes.add');
+
+Route::post('/users/instructor', [App\Http\Controllers\UsersController::class, 'guardarPractica'])->name('instructor.practica');
+
+Route::get('/users/athlete_data_session', [App\Http\Controllers\UsersController::class, 'vistaPracticaExtra']);
+
+Route::get('test', function () {
+
+    return view('PruebaCKEDITOR.vistackeditor');
+});
+
+Route::post('test', function (Request $request) {
+    dd($request->all());
+})->name("testF");
