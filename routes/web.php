@@ -34,3 +34,6 @@ Route::delete('/users/athlete_request', [App\Http\Controllers\Atleta_moduleContr
 
 Route::delete('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'acceptedAthlete'])->name('athlete_accepted');
 
+Route::get('/coach', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
+
+
