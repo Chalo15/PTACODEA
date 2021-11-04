@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    return view('auth.login');
+    return view('users.athlete_ request');
 
 
 });
@@ -28,9 +28,15 @@ Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'inde
 
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
 
+Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
+
 Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::class, 'guardado'])->name('athletes.guardado');
   
-Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_request');
+Route::get('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_request');
+
+Route::delete('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'destroy'])->name('athlete_delete');
+
+Route::delete('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'acceptedAthlete'])->name('athlete_accepted');
 
 Route::get('/coach', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
 

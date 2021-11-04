@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sport;
+
 use Illuminate\Support\Facades\Auth;
+
 
 class AthleteController extends Controller
 {
@@ -12,6 +14,7 @@ class AthleteController extends Controller
             'sports'=>Sport::all()
         ]);
     }
+
 
     function a_p_d(){
         /*$data = User::select('users.name', 'users.lastname')
