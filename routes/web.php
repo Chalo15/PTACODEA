@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    return view('users.funcionarios');
+    return view('home');
 
 });
 
@@ -31,3 +31,9 @@ Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::c
   
 Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_request');
 
+
+//Rutas de los funcionarios
+
+Route::post('user/funcionarios',[App\Http\Controllers\UsersController::class,'guardarFuncionario'])->name('funcionarios.guardarFuncionario');
+
+Route::get('users/funcionarios',[App\Http\Controllers\UsersController::class,'vistaFuncionario'])->name('funcionarios');
