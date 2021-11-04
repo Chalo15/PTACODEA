@@ -59,64 +59,8 @@
                   <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
                 </x-row>
 
-                <!-- Género -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">Género</label>
-                  <div class="col-md-7">
-                    <div class="checkbox"><label><input type="radio" name="genero" value="f" /> Femenino</label></div>
-                    <div class="checkbox"><label><input type="radio" name="genero" value="m" /> Masculino</label></div>
-                    </div>
-                </div>
-
-            <div class="card">
-
-                <div class="text-center card-header">
-                    <h3 class="d-5">Formulario de registro del atleta</h3>
-                </div>
-
-                <div class="card-body">
-                    <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post" id="formulario_registro" enctype="multipart/form-data">
-                        <!-- Título del formulario -->
-                        @csrf
-
-
-                        <!-- Nombre -->
-                        <x-row>
-                            <x-input name="nombre" placeholder="Nombre" label="Nombre" />
-                        </x-row>
-
-                        <!-- Apellidos -->
-                        <x-row>
-                            <x-input name="apellidos" placeholder="Apellidos" label="Apellidos" />
-                        </x-row>
-
-                        <!-- Cedula -->
-
-                        <x-row>
-                            <x-input name="cedula" placeholder="Cedula" label="Cédula" />
-                        </x-row>
-
-
-                        <!-- Disciplina -->
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
-                            <div class="col-md-5 ">
-                                <select name="department" class="form-control selectpicker" value="{{ old('department') }}">
-                                    @foreach ($sports as $sport)
-                                    <option value="{{$sport->id}}">
-                                        {{$sport->description}}</option>
-
-                                    @endforeach
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Edad -->
-                        <x-row>
-                            <x-input name="edad" placeholder="Edad" label="Edad" type="date" />
-                        </x-row>
-
+ 
+              
                         <!-- Género -->
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Género</label>
@@ -156,7 +100,7 @@
                         </div>
                         <!-- Provincia -->
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Provincia</label>
+                            <label class="col-md-4 col-form-label text-md-right">Provincia de residencia</label>
                             <div class="col-md-3 selectContainer">
                                 <select name="provincia" placeholder="Provincia" class="form-control" type="text" value="{{ old('provincia') }}">
                                     <option value="0">Seleccione su Provincia</option>
@@ -259,10 +203,10 @@
                         </x-row>
 
                         <!-- Registrar alerta -->
-                        <div class="alert alert-success" role="alert" id="registrado">
+                       <!-- <div class="alert alert-success" role="alert" id="registrado">
                             Éxito al procesar su registro!
                             <i class="glyphicon glyphicon-thumbs-up"></i>
-                        </div>
+                        </div>-->
 
                         <!-- Enviar y PDF -->
                         <div class="card">
@@ -283,16 +227,6 @@
                             <label class="col-md-4 col-form-label text-md-right"></label>
                             <div class="col-md-7">
                                 <button type="submit" class="btn btn-negro">Registrar</button>
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group row">
-                            <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                                <input type="file" class="offset-md-4  form-control-file" id="pdf">
-                                <small id="pfd" class="text-muted">
-                                    En esta sección introduzca los archivos .PDF que se le solicitan.
                             </div>
                         </div>
 

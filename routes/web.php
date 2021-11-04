@@ -33,6 +33,12 @@ Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::c
   
 Route::get('/coach', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
 
+Route::get('/users/instructor', [App\Http\Controllers\UsersController::class, 'vistaPracticas']);
+
+Route::post('/users/instructor', [App\Http\Controllers\UsersController::class, 'guardarPractica'])->name('instructor.practica');
+
+Route::get('/users/athlete_data_session', [App\Http\Controllers\UsersController::class, 'vistaPracticaExtra']);
+
 Route::get('test', function () {
 
     return view('PruebaCKEDITOR.vistackeditor');
