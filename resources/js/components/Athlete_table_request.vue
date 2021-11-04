@@ -29,7 +29,7 @@
 
 <script>
     export default{
-        Data(){
+        data(){
             return {
                 solicitudes:[],
             }

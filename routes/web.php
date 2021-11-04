@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    return view('users.athlete_ request');
+    return view('users/athlete_request');
 
 
 });
@@ -26,19 +26,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/home', [App\Http\Controllers\AthleteController::class, 'a_p_d'])->name('home');
 
-Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_module');
-
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
 
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
 
 Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::class, 'guardado'])->name('athletes.guardado');
   
-Route::get('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_request');
+Route::get('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'index'])->name('athlete_Res');
 
-Route::delete('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'destroy'])->name('athlete_delete');
+Route::delete('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'destroy'])->name('athlete_delete');
 
-Route::delete('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'acceptedAthlete'])->name('athlete_accepted');
+Route::post('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'acceptedAthlete'])->name('athlete_accepted');
 
 Route::get('/coach', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
 
