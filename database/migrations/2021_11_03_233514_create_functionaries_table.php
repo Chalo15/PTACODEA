@@ -18,9 +18,7 @@ class CreateFunctionariesTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('sport_id')->constrained('sports');
             $table->integer('phone');
-            $table->string('contract_number');
-            $table->string('contract_period');
-            $table->string('url_id')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

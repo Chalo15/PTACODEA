@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Functionary;
+use App\Models\Sport;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -31,24 +32,24 @@ class FunctionaryController extends Controller
         ]);
 
         $user = User::create([
-            'role_id' => 1,
+            'role_id' => 2,
             'name' => $request->nombre,
             'lastname'=>$request->apellidos,
             'identification'=>$request->cedula,
             'password'=>$request->cedula,
             'gender'=>$request->genero,
-            'department'=>$request->department,
             'phone'=>$request->telCelular,
-            'email'=>$request->email,
+            'email'=>$request->correo,
             'address'=>$request->direccion,
+            'contract_number' => $request->numContrato,
+            'contract_year' => $request->periodoContrato,
+            'experience'=>$request->experiencia,
 
         ]);
 
         $functionary = Functionary::create([
             'sport_id' => $request->department,
             'phone' => $request->teleHabitacion,
-            'contract_number' => $request->numContrato,
-            'contract_period' => $request->periodoContrato,
             'user_id' => $user->id
         ]);
 
@@ -67,7 +68,14 @@ class FunctionaryController extends Controller
 
         }
         $functionary->save();
+    return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
 
+    }
+
+    function vistaFuncionario(){
+        return view('users.funcionarios',[
+            'sports'=>Sport::all()
+        ]);
     }
 
 }

@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
         /*\App\Models\Sport::factory(30)->create();
         \App\Models\Coach::factory(10)->create();
         \App\Models\Athlete::factory(5)->create();*/
-        //$this->call(RoleSeeder::class);
-        //$this->call(SportSeeder::class);
-        //$this->call(UserSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(SportSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(CoachSeeder::class);
         //$this->call(AthleteSeeder::class);
     }
