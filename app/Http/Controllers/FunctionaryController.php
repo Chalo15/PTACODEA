@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Functionary;
-use App\Models\Sport;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class FunctionaryController extends Controller
 {
+    function vistaFuncionario(){
+        return view('users.funcionary',[
+            'roles'=>Role::all()
+        ]);
+    }
     public function guardarFuncionario(Request $request)
     {
         $id_role = 3;
@@ -18,7 +23,7 @@ class FunctionaryController extends Controller
             'nombre' => 'required',
             'apellidos' => 'required',
             'cedula' => 'required|digits:9',
-            'department' => 'required',
+            'tipo' => 'required',
             'telCelular' => 'required',
             'correo' => 'required|email',
             'password'=>'required',
@@ -32,7 +37,7 @@ class FunctionaryController extends Controller
         ]);
 
         $user = User::create([
-            'role_id' => 2,
+            'role_id' => $request->tipo,
             'name' => $request->nombre,
             'lastname'=>$request->apellidos,
             'identification'=>$request->cedula,
@@ -48,7 +53,6 @@ class FunctionaryController extends Controller
         ]);
 
         $functionary = Functionary::create([
-            'sport_id' => $request->department,
             'phone' => $request->teleHabitacion,
             'user_id' => $user->id
         ]);
@@ -70,12 +74,6 @@ class FunctionaryController extends Controller
         $functionary->save();
     return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
 
-    }
-
-    function vistaFuncionario(){
-        return view('users.funcionarios',[
-            'sports'=>Sport::all()
-        ]);
     }
 
 }

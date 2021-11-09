@@ -52,6 +52,10 @@ Route::post('/users/athletes/datasession',  [App\Http\Controllers\SessionDataCon
 Route::post('/users/instructor', [App\Http\Controllers\UsersController::class, 'guardarPractica'])->name('instructor.practica');
 
 
-Route::post('user/funcionarios',[App\Http\Controllers\FunctionaryController::class,'guardarFuncionario'])->name('funcionarios.guardarFuncionario');
+Route::post('/users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'guardarFuncionario'])->name('funcionarios.guardarFuncionario');
 
-Route::get('users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'vistaFuncionario'])->name('funcionarios');
+Route::get('/users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'vistaFuncionario'])->name('funcionarios');
+
+Route::post('/users/coaches',[App\Http\Controllers\CoachController::class,'guardarCoach'])->name('coach.guardarCoach');
+
+Route::get('/users/coaches',[App\Http\Controllers\CoachController::class,'vistaCoaches'])->name('coaches');
