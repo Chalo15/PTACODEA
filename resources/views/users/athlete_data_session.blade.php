@@ -100,8 +100,8 @@
                         <label class="col-md-4 col-form-label text-md-right">Seleccione la Unidad de medida del Peso</label>
                       <div class="col-md-3 selectContainer">
                         <select name="detallePeso" class="form-control">
-                                <option value=" Kg">Kilogramos</option>
-                                <option value=" Lb">Libras</option>
+                                <option value="Kg">Kilogramos</option>
+                                <option value="Lb">Libras</option>
                             </select>
                     </div>
                 </x-row>

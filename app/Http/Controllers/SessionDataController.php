@@ -35,8 +35,10 @@ class SessionDataController extends Controller
         $user = SessionData::create([
             'user_id'=>1,//pendiente de recibir dato por post
             'tiempo' => $request->tiempo ,
+            'detail_time' => $request->detalleTiempo ,
             'competition' => $request->competicion,
             'distance' => $request->distancia,
+            'detail_distance' => $request->detalleDistancia,
             'technique' => $request->tecnica,
             'aspects_to_improve' => $request->aspectos,
             'additional_info' => $request->info,
@@ -44,11 +46,12 @@ class SessionDataController extends Controller
             'category' => $request->categoria,
             'branch' => $request->rama,
             'max_weight' => $request->peso,
+            'detail_max_weight' => $request->detallePeso,
             'battery_test' => $request->prueba
         ]);
     return redirect()->route('practicas')->with('status'/*,['mensaje'=>'Los datos se han registrado correctamente','color'=>'done'] */);//cambiar color
 
 
     }
-    
+
 }

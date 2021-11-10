@@ -15,6 +15,9 @@ class CreateFunctionariesTable extends Migration
     {
         Schema::create('functionaries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->integer('phone');
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

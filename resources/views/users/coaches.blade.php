@@ -15,13 +15,13 @@
 
                 <!-- Titulo-->
                 <div class="text-center card-header">
-                    <h3 class="d-5">Formulario de registro de funcionario</h3>
+                    <h3 class="d-5">Formulario de registro de Entrenadores</h3>
                 </div>
                 <div class="card-body">
 
                     <!-- Formulario-->
 
-                    <form class="well form-horizontal" action="{{route('funcionarios.guardarFuncionario')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
+                    <form class="well form-horizontal" action="{{route('coach.guardarCoach')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
                         @csrf
 
                         <!--Nombre-->
@@ -66,7 +66,7 @@
                             <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
                             <div class="col-md-5">
                                 <select name="department" class="form-control selectpicker" value= "{{ old('department') }}">
-                                    @foreach ($sports as $sport) 
+                                    @foreach ($sports as $sport)
                                     <option value="{{$sport->id}}">
                                         {{$sport->description}}
                                     </option>
