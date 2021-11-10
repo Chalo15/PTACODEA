@@ -15,12 +15,12 @@
 
       <div class="card">
 
-      <div class="text-center card-header">
-        <h3 class="d-5">Formulario de Registro del Atleta</h3>
-      </div>
+         <div class="text-center card-header">
+          <h3 class="d-5">Formulario de Registro del Atleta</h3>
+         </div>
 
-      <div class="card-body">
-        <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
+        <div class="card-body">
+          <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
               <!-- Título del formulario -->
                 @csrf
 
@@ -50,7 +50,6 @@
                       @foreach ($sports as $sport)
                       <option value="{{$sport->id}}">
                       {{$sport->description}}</option>
-
                       @endforeach
                     </select>
                   </div>
@@ -62,40 +61,18 @@
                     <option value="{{$sport->id}}">
                     {{$sport->description}}</option>
                     @endforeach
-                  </x-select>
-                </x-row>
-
-                  <x-input name="canton" placeholder="Cantón" label="Cantón" />
-                </x-row>
-
-                <!-- Dirección -->
-                <div class="form-group row">
-
-                  <label class="col-md-4 col-form-label text-md-right" >Dirección exacta</label>
-                  <div class="col-md-7">
-                    <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" cols="44" rows="5" value= "{{ old('direccion') }}"></textarea>
-
-                  </div>
-                </div>
-
-                <!-- Mensaje de encargado -->
-                <div class="form-group row"> <br>
-                  <div class="col-md-12 text-center">
-                    <small class=" text-muted">***   La siguiente sección se completa únicamente en caso de ser menor de edad.   ***
-                  </div>
-                </div>
-
-                <!-- Sección de datos del responsable-->
-                <h3 class="d-5 text-center">Datos del responsable</h3>
+                  </x-select> 
+                </x-row>  
+              
 
                 <!-- Edad -->
                 <x-row>
                   <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
                 </x-row>
 
-
-
-                        <!-- Género -->
+ 
+              
+                 <!-- Género -->
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Género</label>
                             <div class="col-md-7">
@@ -194,7 +171,7 @@
                             <x-input name="telefono_encargado" placeholder="(+506)88888888" label="N° Teléfono del encargado(a)" type="number" />
                         </x-row>
 
-
+                      
 
                         <!-- Registrar alerta -->
 
@@ -215,48 +192,40 @@
                                 </select>
                             </div>
                         </div>
-
-                   </div>
-                 </div>
-
+                        
                         <!-- Numero de Poliza -->
                         <x-row>
-                            <x-input name="poliza" placeholder="Numero de Poliza" label="Numero de Poliza" />
-                        </x-row>
+                          <x-input name="poliza" placeholder="Numero de Poliza" label="Numero de Poliza" />
+                      </x-row>
 
-                        <!-- Registrar alerta -->
-                       <!-- <div class="alert alert-success" role="alert" id="registrado">
-                            Éxito al procesar su registro!
-                            <i class="glyphicon glyphicon-thumbs-up"></i>
-                        </div>-->
-
-                        <!-- Enviar y PDF -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                                        <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value="{{ old('archivo') }}">
-                                        <small id="pfd" class="text-muted">
-                                            En esta sección introduzca el archivo pdf solicitado.
-                                    </div>
+                       <!-- Enviar y PDF -->
+                       <div class="card">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
+                                    <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value="{{ old('archivo') }}">
+                                    <small id="pfd" class="text-muted">
+                                        En esta sección introduzca el archivo pdf solicitado.
                                 </div>
-
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right"></label>
-                            <div class="col-md-7">
-                                <button type="submit" class="btn btn-negro">Registrar</button>
-                            </div>
                         </div>
+                    </div>
 
-                    </form>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-md-right"></label>
+                        <div class="col-md-7">
+                            <button type="submit" class="btn btn-negro">Registrar</button>
+                        </div>
+                    </div>
+
+                  </form>
+                 
+
+
                 </div>
-          </form>
-      </div>
-     <!-- <button   onclick="window.location='{{ url("users/athletes/datasession") }}'" class="btn btn-negro ml-auto m-1">
-        {{__('Registrarse Datos Sesion')}}
+
+            </div>
 
         </div>
 
