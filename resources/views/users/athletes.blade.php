@@ -43,7 +43,7 @@
 
 
                 <!-- Disciplina -->
-                <div class="form-group row">
+               <!-- <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
                   <div class="col-md-5 ">
                     <select name="department" class="form-control selectpicker" value="{{old('department')}}">
@@ -54,7 +54,7 @@
                       @endforeach
                     </select>
                   </div>
-                </div>
+                </div>-->
 
                 <x-row>
                   <x-select name="department" label="Seleccion de disciplina" type="text" >

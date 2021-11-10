@@ -22,13 +22,13 @@
                 <td scope="col">{{ $user->name }}</td>
                 <td scope="col">{{ $user->lastname }}</td>
                 <td scope="col">{{ $user->phone }}</td>
-                <td scope="col">{{ $user->sport->description }}</td>
+                <td scope="col">{{ $user->sport_id }}</td>
                 <td>
-                    <form action = "{{ route('athlete_accepted', $athlete_request->identification) }}" method = "POST">
-                        @csfr
+                    <form action = "{{ route('athlete_accepted', $user->identification) }}" method = "POST">
+                        @csrf
                         <button class="btn btn-negro" type ="submit">Aceptar</button>
                     </form>   
-                    <form action="{{ route('athlete_delete', $athlete_request->identification) }}" method = "POST">
+                    <form action="{{ route('athlete_delete', $user->identification) }}" method = "POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-negro" type ="submit">Denegar</button>
