@@ -52,29 +52,6 @@
                   </x-select>
                 </x-row>
 
-                  <x-input name="canton" placeholder="Cantón" label="Cantón" />
-                </x-row>
-
-                <!-- Dirección -->
-                <div class="form-group row">
-
-                  <label class="col-md-4 col-form-label text-md-right" >Dirección exacta</label>
-                  <div class="col-md-7">
-                    <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" cols="44" rows="5" value= "{{ old('direccion') }}"></textarea>
-
-                  </div>
-                </div>
-
-                <!-- Mensaje de encargado -->
-                <div class="form-group row"> <br>
-                  <div class="col-md-12 text-center">
-                    <small class=" text-muted">***   La siguiente sección se completa únicamente en caso de ser menor de edad.   ***
-                  </div>
-                </div>
-
-                <!-- Sección de datos del responsable-->
-                <h3 class="d-5 text-center">Datos del responsable</h3>
-
                 <!-- Edad -->
                 <x-row>
                   <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
@@ -203,8 +180,6 @@
                             </div>
                         </div>
 
-                   </div>
-                 </div>
 
                         <!-- Numero de Poliza -->
                         <x-row>
@@ -244,7 +219,7 @@
       </div>
      <!-- <button   onclick="window.location='{{ url("users/athletes/datasession") }}'" class="btn btn-negro ml-auto m-1">
         {{__('Registrarse Datos Sesion')}}
-
+     -->
         </div>
 
     </div>
