@@ -51,7 +51,7 @@ class guardarAtletaController extends Controller
         ]);
 
         $athlete = Athlete::create([
-
+            'user_id' => $user->id,
             'sport_id' => $request->department,
             'name_manager' => $request->nombre_encargado,
             'lastname_manager' => $request->apellidos_encargado,
@@ -59,9 +59,7 @@ class guardarAtletaController extends Controller
             'contact_manager' => $request->telefono_encargado,
             'blood' => $request->sangre,
             'state' => 'p',
-            'user_id' => $user->id,
             'laterality' => 'd',
-            'coach_id'=>1,
             'manager' => $request->parentesco,
             'policy' => $request->poliza
         ]);

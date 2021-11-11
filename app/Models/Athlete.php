@@ -33,9 +33,16 @@ class Athlete extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'identification',
-        'name',
-        'lastname',
-        'email',        
+        'user_id',
+        'sport_id',
+        'name_manager',
+        'lastname_manager',
+        'identification_manager',
+        'contact_manager',
+        'blood',
+        'state',
+        'laterality',
+        'manager',
+        'policy',
     ];
 }
