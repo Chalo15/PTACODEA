@@ -44,13 +44,18 @@
 
                 <!-- Disciplina -->
                 <x-row>
-                  <x-select name="department" label="Seleccion de disciplina" type="text" >
-                    @foreach ($sports as $sport)
-                    <option value="{{$sport->id}}">
-                    {{$sport->description}}</option>
-                    @endforeach
-                  </x-select>
-                </x-row>
+                            <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
+                            <div class="col-md-5">
+                                <select name="department" class="form-control selectpicker" value= "{{ old('department') }}">
+                                    @foreach ($sports as $sport)
+                                    <option value="{{$sport->id}}">
+                                        {{$sport->description}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </x-row>
 
                 <!-- Edad -->
                 <x-row>

@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 class guardarAtletaController extends Controller
 {
+    function vistaAtleta(){
+        return view('users.athletes',[
+            'sports'=>Sport::all()
+        ]);
+    }
     public function guardado(Request $request)
     {
         $rol = 3;
