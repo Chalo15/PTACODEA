@@ -72,7 +72,7 @@
 
                   <!-- Informacion Adicional de la sesion -->
                   <x-row>
-                    <label class="col-md-4 col-form-label text-md-right">Informacion Adicional de la sesion</label>
+                    <label class="col-md-4 col-form-label text-md-right">Información Adicional de la sesión</label>
                       <div class="col-md-3 selectContainer">
                     <textarea placeholder="Informacion adicional" name="info" cols="44" rows="5" value= "{{ old('info') }}"></textarea>
                       </div>
