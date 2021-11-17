@@ -36,7 +36,7 @@
 
                         <!--Cedula--->
                         <x-row>
-                            <x-input name="cedula" placeholder="Cedula" label="Cedula" type="number"/>
+                            <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cedula" type="number"/>
                         </x-row>
 
                         <!--Genero-->
@@ -78,7 +78,7 @@
 
                         <!--Telefono de habitacion-->
                         <x-row>
-                            <x-input name="teleHabitacion" placeholder="Teléfono de habitación" label="Tel. Habitacion" type="number"/>
+                            <x-input name="teleHabitacion" placeholder="Teléfono de habitación Formato 8 Digitos" label="Tel. Habitacion" type="number"/>
                         </x-row>
 
                         <!--Correo -->
@@ -88,7 +88,7 @@
 
                         <!--Telefono Celular -->
                         <x-row>
-                            <x-input name="telCelular" placeholder="Telefono Celular" label="Tel. Celular" type="number"/>
+                            <x-input name="telCelular" placeholder="Telefono Celular Formato 8 Digitos" label="Tel. Celular" type="number"/>
                         </x-row>
 
                         <!--Direccion (text-area) -->

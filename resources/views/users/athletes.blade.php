@@ -38,7 +38,7 @@
                 <!-- Cedula -->
 
                 <x-row>
-                  <x-input name="cedula" placeholder="Cedula" label="Cédula"/>
+                  <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cédula"/>
                 </x-row>
 
 
