@@ -20,7 +20,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-//Route::get('/users', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_module');
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
 
 //retorno de vista de formulario de registro de atletas
@@ -28,12 +27,6 @@ Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'i
 
 //guardado de registro de atletas
 Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::class, 'guardado'])->name('athletes.guardado');
-  
-//Route::get('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'index'])->name('athlete_request');
-
-//Route::delete('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'destroy'])->name('athlete_delete');
-
-//Route::delete('/users/athlete_request', [App\Http\Controllers\Atleta_moduleController::class, 'acceptedAthlete'])->name('athlete_accepted');
 
 //retorna vista de menu principal de instructor
 Route::get('/coach/coach_interface', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
@@ -59,6 +52,10 @@ Route::post('/users/athletes/datasession',  [App\Http\Controllers\SessionDataCon
 Route::post('/users/instructor', [App\Http\Controllers\UsersController::class, 'guardarPractica'])->name('instructor.practica');
 
 
-Route::post('user/funcionarios',[App\Http\Controllers\UsersController::class,'guardarFuncionario'])->name('funcionarios.guardarFuncionario');
+Route::post('/users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'guardarFuncionario'])->name('funcionarios.guardarFuncionario');
 
-Route::get('users/funcionarios',[App\Http\Controllers\UsersController::class,'vistaFuncionario'])->name('funcionarios');
+Route::get('/users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'vistaFuncionario'])->name('funcionarios');
+
+Route::post('/users/coaches',[App\Http\Controllers\CoachController::class,'guardarCoach'])->name('coach.guardarCoach');
+
+Route::get('/users/coaches',[App\Http\Controllers\CoachController::class,'vistaCoaches'])->name('coaches');

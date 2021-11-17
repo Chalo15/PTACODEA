@@ -15,12 +15,6 @@ class UsersController extends Controller
         ]);
     }
 
-    function vistaFuncionario(){
-        return view('users.funcionarios',[
-            'sports'=>Sport::all()
-        ]);
-    }
-
     public function guardarFuncionario(Request $request)
     {
         $id_role = 3;

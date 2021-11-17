@@ -72,7 +72,7 @@
 
                   <!-- Informacion Adicional de la sesion -->
                   <x-row>
-                    <label class="col-md-4 col-form-label text-md-right">Informacion Adicional de la sesion</label>
+                    <label class="col-md-4 col-form-label text-md-right">Información Adicional de la sesión</label>
                       <div class="col-md-3 selectContainer">
                     <textarea placeholder="Informacion adicional" name="info" cols="44" rows="5" value= "{{ old('info') }}"></textarea>
                       </div>
@@ -100,8 +100,8 @@
                         <label class="col-md-4 col-form-label text-md-right">Seleccione la Unidad de medida del Peso</label>
                       <div class="col-md-3 selectContainer">
                         <select name="detallePeso" class="form-control">
-                                <option value=" Kg">Kilogramos</option>
-                                <option value=" Lb">Libras</option>
+                                <option value="Kg">Kilogramos</option>
+                                <option value="Lb">Libras</option>
                             </select>
                     </div>
                 </x-row>

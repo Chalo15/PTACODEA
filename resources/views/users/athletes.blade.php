@@ -38,41 +38,32 @@
                 <!-- Cedula -->
 
                 <x-row>
-                  <x-input name="cedula" placeholder="Cedula" label="Cédula"/>
+                  <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cédula"/>
                 </x-row>
 
 
                 <!-- Disciplina -->
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
-                  <div class="col-md-5 ">
-                    <select name="department" class="form-control selectpicker" value="{{old('department')}}">
-                      @foreach ($sports as $sport)
-                      <option value="{{$sport->id}}">
-                      {{$sport->description}}</option>
-
-                      @endforeach
-                    </select>
-                  </div>
-                </div>
-
                 <x-row>
-                  <x-select name="department" label="Seleccion de disciplina" type="text" >
-                    @foreach ($sports as $sport)
-                    <option value="{{$sport->id}}">
-                    {{$sport->description}}</option>
-                    @endforeach
-                  </x-select> 
-                </x-row>  
-              
+                            <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
+                            <div class="col-md-5">
+                                <select name="department" class="form-control selectpicker" value= "{{ old('department') }}">
+                                    @foreach ($sports as $sport)
+                                    <option value="{{$sport->id}}">
+                                        {{$sport->description}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </x-row>
 
                 <!-- Edad -->
                 <x-row>
                   <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
                 </x-row>
 
- 
-              
+
+
                         <!-- Género -->
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Género</label>
@@ -116,13 +107,13 @@
                             <div class="col-md-3 selectContainer">
                                 <select name="provincia" placeholder="Provincia" class="form-control" type="text" value="{{ old('provincia') }}">
                                     <option value="0">Seleccione su Provincia</option>
-                                    <option value="SanJose">SanJose</option>
+                                    <option value="SanJose">SanJosé</option>
                                     <option value="Alajuela">Alajuela</option>
                                     <option value="Cartago">Cartago</option>
                                     <option value="Heredia">Heredia</option>
                                     <option value="Guanacaste">Guanacaste</option>
                                     <option value="Puntarenas">Puntarenas</option>
-                                    <option value="Limon">Limon</option>
+                                    <option value="Limon">Limón</option>
                                 </select>
                             </div>
                         </div>
@@ -143,7 +134,7 @@
                         </div>
 
                         <!-- Mensaje de encargado -->
-                        <div class="form-group row"> <br>
+                        <div class="form-group row">
                             <div class="col-md-12 text-center">
                                 <small class=" text-muted">*** La siguiente sección se completa únicamente en caso de ser menor de edad. ***
                             </div>
@@ -172,7 +163,7 @@
                             <x-input name="telefono_encargado" placeholder="(+506)88888888" label="N° Teléfono del encargado(a)" type="number" />
                         </x-row>
 
-                      
+
 
                         <!-- Registrar alerta -->
 
@@ -194,8 +185,6 @@
                             </div>
                         </div>
 
-                   </div>
-                 </div>
 
                         <!-- Numero de Poliza -->
                         <x-row>
@@ -231,9 +220,11 @@
 
                     </form>
                 </div>
-
-            </div>
-
+          </form>
+      </div>
+     <!-- <button   onclick="window.location='{{ url("users/athletes/datasession") }}'" class="btn btn-negro ml-auto m-1">
+        {{__('Registrarse Datos Sesion')}}
+     -->
         </div>
 
     </div>

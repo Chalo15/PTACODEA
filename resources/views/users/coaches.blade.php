@@ -15,13 +15,13 @@
 
                 <!-- Titulo-->
                 <div class="text-center card-header">
-                    <h3 class="d-5">Formulario de registro de funcionario</h3>
+                    <h3 class="d-5">Formulario de registro de Entrenadores</h3>
                 </div>
                 <div class="card-body">
 
                     <!-- Formulario-->
 
-                    <form class="well form-horizontal" action="{{route('funcionarios.guardarFuncionario')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
+                    <form class="well form-horizontal" action="{{route('coach.guardarCoach')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
                         @csrf
 
                         <!--Nombre-->
@@ -36,7 +36,7 @@
 
                         <!--Cedula--->
                         <x-row>
-                            <x-input name="cedula" placeholder="Cedula" label="Cedula" type="number"/>
+                            <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cedula" type="number"/>
                         </x-row>
 
                         <!--Genero-->
@@ -66,7 +66,7 @@
                             <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
                             <div class="col-md-5">
                                 <select name="department" class="form-control selectpicker" value= "{{ old('department') }}">
-                                    @foreach ($sports as $sport) 
+                                    @foreach ($sports as $sport)
                                     <option value="{{$sport->id}}">
                                         {{$sport->description}}
                                     </option>
@@ -78,7 +78,7 @@
 
                         <!--Telefono de habitacion-->
                         <x-row>
-                            <x-input name="teleHabitacion" placeholder="Teléfono de habitación" label="Tel. Habitacion" type="number"/>
+                            <x-input name="teleHabitacion" placeholder="Teléfono de habitación Formato 8 Digitos" label="Tel. Habitacion" type="number"/>
                         </x-row>
 
                         <!--Correo -->
@@ -88,14 +88,14 @@
 
                         <!--Telefono Celular -->
                         <x-row>
-                            <x-input name="telCelular" placeholder="Telefono Celular" label="Tel. Celular" type="number"/>
+                            <x-input name="telCelular" placeholder="Telefono Celular Formato 8 Digitos" label="Tel. Celular" type="number"/>
                         </x-row>
 
                         <!--Direccion (text-area) -->
                         <x-row>
                             <label class="col-md-4 col-sm-12 col-form-label text-md-right" >Dirección exacta</label>
                             <div class="col-md-7 col-sm-12">
-                                <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" style="width:100%; height:100px;" value= "{{ old('direccion') }}"></textarea>
+                                <textarea placeholder="Por favor escriba su dirección lo mas exacta posible" name="direccion" id="" style="width:100%; height:100px;" value= "{{ old('direccion') }}"></textarea>
                             </div>
                         </x-row>
 
@@ -117,7 +117,7 @@
                         <!--Fotocopia de la cedula (boton para adjuntar pdf) -->
                         <!--Insercion de pdfs -->
                         <div class="card">
-                            <p class="text-center">En esta seccion debe adjuntar la fotocopia de su cedula en forma de pdf</p>
+                            <p class="text-center">En esta sección debe adjuntar la fotocopia de su cedula en forma de pdf</p>
                             <div class="card-body">
                                 <div class="form-group row" >
                                     <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
