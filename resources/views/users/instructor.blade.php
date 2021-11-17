@@ -4,7 +4,7 @@
 
 
 <div class="text-center card-header">
-<h1>Registro de sesion de entrenamiento</h1>
+<h1>Registro de sesión de entrenamiento</h1>
 </div>
 <x-row>
     <x-input name="fecha" placeholder="Fecha de entrenamiento" label="Fecha de entrenamiento" type="date" />

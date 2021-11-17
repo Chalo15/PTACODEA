@@ -107,13 +107,13 @@
                             <div class="col-md-3 selectContainer">
                                 <select name="provincia" placeholder="Provincia" class="form-control" type="text" value="{{ old('provincia') }}">
                                     <option value="0">Seleccione su Provincia</option>
-                                    <option value="SanJose">SanJose</option>
+                                    <option value="SanJose">SanJosé</option>
                                     <option value="Alajuela">Alajuela</option>
                                     <option value="Cartago">Cartago</option>
                                     <option value="Heredia">Heredia</option>
                                     <option value="Guanacaste">Guanacaste</option>
                                     <option value="Puntarenas">Puntarenas</option>
-                                    <option value="Limon">Limon</option>
+                                    <option value="Limon">Limón</option>
                                 </select>
                             </div>
                         </div>
