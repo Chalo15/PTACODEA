@@ -199,7 +199,7 @@
                       </x-row>
 
                        <!-- Enviar y PDF -->
-                       <div class="card">
+                     <div class="card">
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
