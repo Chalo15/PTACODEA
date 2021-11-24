@@ -8,14 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 class guardarAtletaController extends Controller
 {
+    function vistaAtleta(){
+        return view('users.athletes',[
+            'sports'=>Sport::all()
+        ]);
+    }
     public function guardado(Request $request)
     {
-
         $rol = 3;
 
         //validaciones
         $request->validate([
-
             'nombre' => 'required',
             'apellidos' => 'required',
             'cedula' => 'required|digits:9',
@@ -36,6 +39,7 @@ class guardarAtletaController extends Controller
             'poliza'=>'required'
         ]);
 
+        // Inserciones a la tabla Users.
         $user = User::create([
             'role_id' => 3,
             'identification' => $request->cedula,
@@ -52,6 +56,7 @@ class guardarAtletaController extends Controller
         ]);
 
         $athlete = Athlete::create([
+            'user_id' => $user->id,
             'sport_id' => $request->department,
             'name_manager' => $request->nombre_encargado,
             'lastname_manager' => $request->apellidos_encargado,
@@ -59,7 +64,6 @@ class guardarAtletaController extends Controller
             'contact_manager' => $request->telefono_encargado,
             'blood' => $request->sangre,
             'state' => 'p',
-            'user_id' => $user->id,
             'laterality' => 'd',
             'manager' => $request->parentesco,
             'policy' => $request->poliza
@@ -80,7 +84,7 @@ class guardarAtletaController extends Controller
 
         }
         $athlete->save();
-    return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */);//cambiar color
+    return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
 
 
     }

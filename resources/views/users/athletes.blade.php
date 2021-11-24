@@ -9,58 +9,60 @@
 @endif
 <div class="container">
 
-    <div class="row justify-content-center">
+  <div class="row justify-content-center">
 
-        <div class="col-md-8">
+    <div class="col-md-8">
 
-            <div class="card">
+      <div class="card">
 
-                <div class="text-center card-header">
-                    <h3 class="d-5">Formulario de registro del atleta</h3>
-                </div>
+      <div class="text-center card-header">
+        <h3 class="d-5">Formulario de Registro del Atleta</h3>
+      </div>
 
-                <div class="card-body">
-                    <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post" id="formulario_registro" enctype="multipart/form-data">
-                        <!-- Título del formulario -->
-                        @csrf
-
-
-                        <!-- Nombre -->
-                        <x-row>
-                            <x-input name="nombre" placeholder="Nombre" label="Nombre" />
-                        </x-row>
-
-                        <!-- Apellidos -->
-                        <x-row>
-                            <x-input name="apellidos" placeholder="Apellidos" label="Apellidos" />
-                        </x-row>
-
-                        <!-- Cedula -->
-
-                        <x-row>
-                            <x-input name="cedula" placeholder="Cedula" label="Cédula" />
-                        </x-row>
+      <div class="card-body">
+        <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
+              <!-- Título del formulario -->
+                @csrf
 
 
-                        <!-- Disciplina -->
-                        <div class="form-group row">
+                <!-- Nombre -->
+                <x-row>
+                      <x-input name="nombre" placeholder="Nombre" label="Nombre"/>
+                </x-row>
+
+                <!-- Apellidos -->
+                <x-row>
+                  <x-input name="apellidos" placeholder="Apellidos" label="Apellidos"/>
+                </x-row>
+
+                <!-- Cedula -->
+
+                <x-row>
+                  <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cédula"/>
+                </x-row>
+
+
+                <!-- Disciplina -->
+                <x-row>
                             <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
-                            <div class="col-md-5 ">
-                                <select name="department" class="form-control selectpicker" value="{{ old('department') }}">
+                            <div class="col-md-5">
+                                <select name="department" class="form-control selectpicker" value= "{{ old('department') }}">
                                     @foreach ($sports as $sport)
                                     <option value="{{$sport->id}}">
-                                        {{$sport->description}}</option>
-
+                                        {{$sport->description}}
+                                    </option>
                                     @endforeach
-
                                 </select>
                             </div>
-                        </div>
 
-                        <!-- Edad -->
-                        <x-row>
-                            <x-input name="edad" placeholder="Edad" label="Edad" type="date" />
                         </x-row>
+
+                <!-- Edad -->
+                <x-row>
+                  <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
+                </x-row>
+
+
 
                         <!-- Género -->
                         <div class="form-group row">
@@ -101,17 +103,17 @@
                         </div>
                         <!-- Provincia -->
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Provincia</label>
+                            <label class="col-md-4 col-form-label text-md-right">Provincia de residencia</label>
                             <div class="col-md-3 selectContainer">
                                 <select name="provincia" placeholder="Provincia" class="form-control" type="text" value="{{ old('provincia') }}">
                                     <option value="0">Seleccione su Provincia</option>
-                                    <option value="SanJose">SanJose</option>
+                                    <option value="SanJose">SanJosé</option>
                                     <option value="Alajuela">Alajuela</option>
                                     <option value="Cartago">Cartago</option>
                                     <option value="Heredia">Heredia</option>
                                     <option value="Guanacaste">Guanacaste</option>
                                     <option value="Puntarenas">Puntarenas</option>
-                                    <option value="Limon">Limon</option>
+                                    <option value="Limon">Limón</option>
                                 </select>
                             </div>
                         </div>
@@ -132,7 +134,7 @@
                         </div>
 
                         <!-- Mensaje de encargado -->
-                        <div class="form-group row"> <br>
+                        <div class="form-group row">
                             <div class="col-md-12 text-center">
                                 <small class=" text-muted">*** La siguiente sección se completa únicamente en caso de ser menor de edad. ***
                             </div>
@@ -161,21 +163,7 @@
                             <x-input name="telefono_encargado" placeholder="(+506)88888888" label="N° Teléfono del encargado(a)" type="number" />
                         </x-row>
 
-                        <!-- Proviancias -->
-                        <!--<div class="form-group"> <label class="col-md-4 control-label">Provincia</label>
-                <div class="col-md-3 selectContainer">
-                <select name="department" class="form-control selectpicker">
-                  <option value="">Seleccione su provincia</option>
-                  <option >San José</option> 
-                  <option >Alajuela </option>
-                  <option >Cartago </option> 
-                  <option >Heredia</option>
-                  <option >Guanacaste </option>
-                  <option >Puntarenas </option>
-                  <option >Limón </option>
-                </select>
-                </div>
-                </div> -->
+
 
                         <!-- Registrar alerta -->
 
@@ -204,10 +192,10 @@
                         </x-row>
 
                         <!-- Registrar alerta -->
-                        <div class="alert alert-success" role="alert" id="registrado">
+                       <!-- <div class="alert alert-success" role="alert" id="registrado">
                             Éxito al procesar su registro!
                             <i class="glyphicon glyphicon-thumbs-up"></i>
-                        </div>
+                        </div>-->
 
                         <!-- Enviar y PDF -->
                         <div class="card">
@@ -223,7 +211,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right"></label>
                             <div class="col-md-7">
@@ -231,21 +218,13 @@
                             </div>
                         </div>
 
-
-
-                        <div class="form-group row">
-                            <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                                <input type="file" class="offset-md-4  form-control-file" id="pdf">
-                                <small id="pfd" class="text-muted">
-                                    En esta sección introduzca los archivos .PDF que se le solicitan.
-                            </div>
-                        </div>
-
                     </form>
                 </div>
-
-            </div>
-
+          </form>
+      </div>
+     <!-- <button   onclick="window.location='{{ url("users/athletes/datasession") }}'" class="btn btn-negro ml-auto m-1">
+        {{__('Registrarse Datos Sesion')}}
+     -->
         </div>
 
     </div>
