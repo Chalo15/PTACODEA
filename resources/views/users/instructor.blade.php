@@ -15,10 +15,11 @@
     <textarea name="content" id="editor">
            
         </textarea>
+        
     <p><input type="submit" value="Submit"></p>
 </form>
 <button   onclick="window.location='{{ route('athletes_index') }}'" class="btn btn-negro ml-auto m-1">
-    {{__('Datos extra')}}
+    {{__('Datos Adicionales del Atleta')}}
 
 </button>
 <script>

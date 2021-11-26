@@ -1,8 +1,9 @@
 <?php
-
+use App\Models\Athlete;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -17,16 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 //menu principal de super usuario
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
+//menu principal de Atletas
+Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
 
 //retorno de vista de formulario de registro de atletas
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
 
 //guardado de registro de atletas
-Route::post('/users/athletes',  [App\Http\Controllers\guardarAtletaController::class, 'guardado'])->name('athletes.guardado');
+Route::post('/users/athletes',  [App\Http\Controllers\AthleteController::class, 'guardado'])->name('athletes.guardado');
 
 //retorna vista de menu principal de instructor
 Route::get('/coach/coach_interface', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade');
