@@ -8,8 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 class guardarAtletaController extends Controller
 {
+    function vistaAtleta(){
+        return view('users.athletes',[
+            'sports'=>Sport::all()
+        ]);
+    }
     public function guardado(Request $request)
     {
+        $rol = 3;
 
         //validaciones
         $request->validate([
@@ -49,8 +55,8 @@ class guardarAtletaController extends Controller
             'gender' => $request->genero
         ]);
 
-        // Insercion a la tabla Athletes.
         $athlete = Athlete::create([
+            'user_id' => $user->id,
             'sport_id' => $request->department,
             'name_manager' => $request->nombre_encargado,
             'lastname_manager' => $request->apellidos_encargado,
@@ -58,9 +64,7 @@ class guardarAtletaController extends Controller
             'contact_manager' => $request->telefono_encargado,
             'blood' => $request->sangre,
             'state' => 'p',
-            'user_id' => $user->id,
             'laterality' => 'd',
-            'coach_id'=>1,
             'manager' => $request->parentesco,
             'policy' => $request->poliza
         ]);
@@ -80,7 +84,7 @@ class guardarAtletaController extends Controller
 
         }
         $athlete->save();
-    return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */);//cambiar color
+    return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
 
 
     }

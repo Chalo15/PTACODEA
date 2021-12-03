@@ -26,8 +26,8 @@
             <div class="registro_de_datos_atleta">
                 <h4 class="">Registrar datos del atleta</h4>
                 <i class="d-block fas fa-address-card p-2"></i>
-                {{--<button class="btn btn-negro">Ingresar</button>--}}
-                <a class="btn btn-negro" href="coach/registrar">Ingresar</a>
+                <a href="/coach/registrar"  class="btn btn-negro">Ingresar</a>
+                
             </div>
         </div>
     </div>
