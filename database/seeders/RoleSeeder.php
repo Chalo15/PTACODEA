@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
+//use App\Models\Role;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -14,28 +16,48 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $role = new Role();
-        $role->description = "Admin";
-        $role->save();
+        $role = Role::create(['name'=>'Admin']);
 
-        $role1 = new Role();
-        $role1->description = "Instructor";
-        $role1->save();
+        $role1 = Role::create(['name'=>'Instructor']);
 
-        $role2 = new Role();
-        $role2->description = "Atleta";
-        $role2->save();
+        $role2 = Role::create(['name'=>'Atleta']);
 
-        $role3 = new Role();
-        $role3->description = "Fisioterapia";
-        $role3->save();
+        $role3 = Role::create(['name'=>'Fisioterapia']);
 
-        $role4 = new Role();
-        $role4->description = "Musculacion";
-        $role4->save();
+        $role4 = Role::create(['name'=>'Musculacion']);
 
-        $role5 = new Role();
-        $role5->description = "Usuario Externo";
-        $role5->save();
+        $role5 = Role::create(['name'=>'Usuario Externo']);
+
+        //SuperAdministrador
+        Permission::create(['name'=>'athletes']);
+
+        Permission::create(['name'=>'athletes.guardado']);
+
+        Permission::create(['name'=>'coach_interface.blade']);
+
+        Permission::create(['name'=>'datosatletas']);
+
+        Permission::create(['name'=>'athlete_Res']);
+
+        Permission::create(['name'=>'athlete_delete']);
+
+        Permission::create(['name'=>'athlete_accepted']);
+
+        Permission::create(['name'=>'practicas']);
+
+        Permission::create(['name'=>'athletes_index']);
+
+        Permission::create(['name'=>'athletes.add']);
+
+        Permission::create(['name'=>'instructor.practica']);
+
+        Permission::create(['name'=>'funcionarios.guardarFuncionario']);
+
+        Permission::create(['name'=>'funcionarios']);
+
+        Permission::create(['name'=>'coach.guardarCoach']);
+
+        Permission::create(['name'=>'coaches']);
+
     }
 }

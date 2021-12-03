@@ -19,7 +19,7 @@ Auth::routes();
 //menu principal de super usuario
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //menu principal de Atletas
-Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
+//Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
 
 //retorno de vista de formulario de registro de atletas
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
