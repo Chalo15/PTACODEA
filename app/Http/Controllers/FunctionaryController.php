@@ -19,8 +19,9 @@ class FunctionaryController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('funcionario',['only'=>['index']]);
+        $this->middleware('funcionario',['only'=>['vistaFuncionario']]);
     }
+
     public function guardarFuncionario(Request $request)
     {
         $id_role = 3;
