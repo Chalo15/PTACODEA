@@ -13,6 +13,11 @@ class SessionDataController extends Controller
         return view('users.athlete_data_session');
 
     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('administrador',['only'=>['index']]);
+    }
 
     public function addDataSession(Request $request)
     {

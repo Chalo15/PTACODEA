@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -33,9 +34,9 @@ class UserSeeder extends Seeder
         $user->save();
 
         $user1 = new User();
-        $user1->role_id = 2;
+        $user1->role_id = 1;
         $user1->identification = 240;
-        $user1->password = "12346";
+        $user1->password = Hash::make("12346");
         $user1->name = "Josue";
         $user1->lastname = "Perez Sequeira";
         $user1->birthdate = '1999-04-21';
