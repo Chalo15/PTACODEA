@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-//use App\Models\Role;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -16,48 +14,32 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::create(['name'=>'Admin']);
+        $role = new Role();
+        $role->description = "Admin";
+        $role->save();
 
-        $role1 = Role::create(['name'=>'Instructor']);
+        $role1 = new Role();
+        $role1->description = "Instructor";
+        $role1->save();
 
-        $role2 = Role::create(['name'=>'Atleta']);
+        $role2 = new Role();
+        $role2->description = "Funcionario";
+        $role2->save();
 
-        $role3 = Role::create(['name'=>'Fisioterapia']);
+        $role3 = new Role();
+        $role3->description = "Atleta";
+        $role3->save();
 
-        $role4 = Role::create(['name'=>'Musculacion']);
+        $role4 = new Role();
+        $role4->description = "Fisioterapia";
+        $role4->save();
 
-        $role5 = Role::create(['name'=>'Usuario Externo']);
+        $role5 = new Role();
+        $role5->description = "Musculacion";
+        $role5->save();
 
-        //SuperAdministrador
-        Permission::create(['name'=>'athletes']);
-
-        Permission::create(['name'=>'athletes.guardado']);
-
-        Permission::create(['name'=>'coach_interface.blade']);
-
-        Permission::create(['name'=>'datosatletas']);
-
-        Permission::create(['name'=>'athlete_Res']);
-
-        Permission::create(['name'=>'athlete_delete']);
-
-        Permission::create(['name'=>'athlete_accepted']);
-
-        Permission::create(['name'=>'practicas']);
-
-        Permission::create(['name'=>'athletes_index']);
-
-        Permission::create(['name'=>'athletes.add']);
-
-        Permission::create(['name'=>'instructor.practica']);
-
-        Permission::create(['name'=>'funcionarios.guardarFuncionario']);
-
-        Permission::create(['name'=>'funcionarios']);
-
-        Permission::create(['name'=>'coach.guardarCoach']);
-
-        Permission::create(['name'=>'coaches']);
-
+        $role6 = new Role();
+        $role6->description = "Usuario Externo";
+        $role6->save();
     }
 }

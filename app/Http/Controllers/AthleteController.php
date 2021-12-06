@@ -11,10 +11,18 @@ use Illuminate\Support\Facades\Storage;
 
 class AthleteController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('atleta',['only'=>['index']]);
+    }
+
     function index(){
         return view('users.athletes',[
             'sports'=>Sport::all()
         ]);
+        
     }
 
     function a_p_d(){

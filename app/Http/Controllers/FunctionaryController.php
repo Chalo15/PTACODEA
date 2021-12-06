@@ -15,6 +15,12 @@ class FunctionaryController extends Controller
             'roles'=>Role::all()
         ]);
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('funcionario',['only'=>['index']]);
+    }
     public function guardarFuncionario(Request $request)
     {
         $id_role = 3;
