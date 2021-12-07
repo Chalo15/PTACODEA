@@ -43,7 +43,7 @@ Route::post('/users/athlete_request', [App\Http\Controllers\athlete_requestsCont
 Route::get('/users/instructor', [App\Http\Controllers\UsersController::class, 'vistaPracticas'])->name('practicas')->middleware(['can:roles,"Instructor","Admin"']);
 //retorno de vista de datos extra
 Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'index'])->name('athletes_index')->middleware(['can:roles,"Admin","Instructor"']);
-//guardado de datos extra de deatos de instructor
+//guardado de datos extra de datos de instructor
 Route::post('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'addDataSession'])->name('athletes.add');
 
 
@@ -58,3 +58,7 @@ Route::get('/users/funcionarios',[App\Http\Controllers\FunctionaryController::cl
 Route::post('/users/coaches',[App\Http\Controllers\CoachController::class,'guardarCoach'])->name('coach.guardarCoach');
 //Vista del formulario de agregar entrenadores
 Route::get('/users/coaches',[App\Http\Controllers\CoachController::class,'vistaCoaches'])->name('coaches')->middleware(['can:roles,"Admin"']);
+//Guarda los datos del nuevo Usuario
+Route::post('/users/register',[App\Http\Controllers\UsersController::class,'guardarUsuario'])->name('user.guardarUser');
+//Vista del formulario de agregar Usuarios
+Route::get('/users/register',[App\Http\Controllers\UsersController::class,'index'])->name('register');

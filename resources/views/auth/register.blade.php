@@ -11,7 +11,7 @@
                 <div class="usuario text-center"><i class="fas fa-user p-2"></i></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('user.guardarUser') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -19,7 +19,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-7">
-                                <input placeholder="Nombre" id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input placeholder="Nombre" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
 
                             <div class="col-md-7">
-                                <input placeholder="Apellidos" id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                <input placeholder="Apellidos" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
 
                                 @error('apellido')
                                     <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Cédula') }}</label>
 
                             <div class="col-md-7">
-                                <input placeholder="Cédula" id="identification" type="number" pattern="[0-9]{9}" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ old('identification') }}" required autocomplete="identification" autofocus>
+                                <input placeholder="Cédula" type="number" pattern="[0-9]{9}" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ old('identification') }}" required autocomplete="identification" autofocus>
 
                                 @error('cedula')
                                     <span class="invalid-feedback" role="alert">
@@ -66,9 +66,9 @@
 
                             <div class="col-md-7 ">
 
-                                <div class="checkbox"><label><input id="gender" type="radio" name="genero" value="f" /> Femenino</label></div>
-                                <div class="checkbox"><label><input id="gender" type="radio" name="genero" value="m" /> Masculino</label></div>
-                                <div class="checkbox"><label><input id="gender" type="radio" name="genero" value="n" /> Otro</label></div>
+                                <div class="checkbox"><label><input type="radio" name="genero" value="f" /> Femenino</label></div>
+                                <div class="checkbox"><label><input type="radio" name="genero" value="m" /> Masculino</label></div>
+                                <div class="checkbox"><label><input type="radio" name="genero" value="n" /> Otro</label></div>
 
                             </div>
 
@@ -79,7 +79,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
 
                             <div class="col-md-7">
-                                <input placeholder="Teléfono" id="name" type="number" pattern="[0-9]{8}" class="form-control @error('phone') is-invalid @enderror" name="name" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                <input placeholder="Teléfono" type="number" pattern="[0-9]{8}" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                 @error('telefono')
                                     <span class="invalid-feedback" role="alert">
