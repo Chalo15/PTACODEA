@@ -10,50 +10,35 @@ use App\Models\User;
 class UsersController extends Controller
 {
     function index(){
-        return view('users.athletes',[
+        return view('auth.register',[
             'sports'=>Sport::all()
         ]);
     }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('administrador',['only'=>['index']]);
-    }
-
-    public function guardarFuncionario(Request $request)
+    public function guardarUsuario(Request $request)
     {
         $id_role = 3;
 
         $request->validate([
-            'nombre' => 'required',
-            'apellidos' => 'required',
-            'cedula' => 'required|digits:9',
-            'department' => 'required',
-            'teleHabitacion' => 'required',
-            'correo' => 'required|email',
+            'name' => 'required',
+            'lastname' => 'required',
+            'identification' => 'required|digits:9',
+            'phone' => 'required',
+            'email' => 'required|email',
             'password'=>'required',
             'genero'=>'required',
-            //datos del funcionario
-            'telCelular' => 'required|digits:8',
-            'direccion' => 'required',
-            'numContrato' => 'required',
-            'periodoContrato' =>'required',
-            'archivo'=>'required'
         ]);
 
         //Insercion de datos del funcionario a la tabla users
         $User = User::create([
-            'role_id' => 2,
-            'name' => $request->nombre,
-            'lastname'=>$request->apellidos,
-            'identification'=>$request->cedula,
+            'role_id' => 7,
+            'name' => $request->name,
+            'lastname'=>$request->lastname,
+            'identification'=>$request->identification,
             'password'=>$request->password,
             'gender'=>$request->genero,
-            //department
-            'phone'=>$request->teleHabitacion,
-            'email'=>$request->correo,
-            'address'=>$request->correo,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
 
         ]);
         /*

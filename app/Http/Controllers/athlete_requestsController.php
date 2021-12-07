@@ -9,9 +9,9 @@ use DB;
 
 class athlete_requestsController extends Controller
 {
-    /*public function __construct(){
+    public function __construct(){
         $this->middleware(['auth']);
-    }*/
+    }
     function index(){
         /*$athleterequests = \DB::table('users')
             ->select('users.identification', 'users.name','users.lastname','users.phone', 'athletes.sport_id')

@@ -15,7 +15,6 @@ class AthleteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('atleta',['only'=>['index']]);
     }
 
     function index(){
