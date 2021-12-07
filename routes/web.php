@@ -17,12 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 //menu principal de super usuario
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['can:roles,"Admin"']);
 //menu principal de Atletas
 //Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
 
 //retorno de vista de formulario de registro de atletas
-Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
+Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes')->middleware(['can:roles,"Atleta","Admin","Musculacion"']);
 
 //guardado de registro de atletas
 Route::post('/users/athletes',  [App\Http\Controllers\AthleteController::class, 'guardado'])->name('athletes.guardado');
@@ -40,7 +40,7 @@ Route::delete('/users/athlete_request', [App\Http\Controllers\athlete_requestsCo
 Route::post('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'acceptedAthlete'])->name('athlete_accepted');
 
 //retorna vista de fromulario de registro de datos de instructor
-Route::get('/users/instructor', [App\Http\Controllers\UsersController::class, 'vistaPracticas'])->name('practicas')->middleware(['can:roles,"Instructor","Admin","Musculacion"']);
+Route::get('/users/instructor', [App\Http\Controllers\UsersController::class, 'vistaPracticas'])->name('practicas')->middleware(['can:roles,"Atleta","Admin","Musculacion"']);
 //retorno de vista de datos extra
 Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'index'])->name('athletes_index');
 //guardado de datos extra de deatos de instructor
@@ -53,7 +53,7 @@ Route::post('/users/instructor', [App\Http\Controllers\UsersController::class, '
 
 Route::post('/users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'guardarFuncionario'])->name('funcionarios.guardarFuncionario');
 
-Route::get('/users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'vistaFuncionario'])->name('funcionarios');
+Route::get('/users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'vistaFuncionario'])->name('funcionarios')->middleware(['can:roles,"Instructor","Admin","Musculacion"']);
 
 Route::post('/users/coaches',[App\Http\Controllers\CoachController::class,'guardarCoach'])->name('coach.guardarCoach');
 

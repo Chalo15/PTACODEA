@@ -13,11 +13,26 @@
 <form action="{{route('instructor.practica')}} " method="post">
     @csrf
 
-    @can('role',"Musculacion")
+  @can('role',"Musculacion")
     <textarea name="content" id="editor">
-            
+            <!--<h1>Musc</h1>-->
         </textarea>
-        @endcan
+      @endcan
+<!--      @can('role',"Musculacion")
+    <textarea name="content" id="editor">
+    <h1>Atleta</h1>
+        </textarea>
+      @endcan
+      @can('role',"Atleta")
+    <textarea name="content" id="editor">
+    <h1>5</h1>
+        </textarea>
+      @endcan
+      @can('role',"Musculacion")
+    <textarea name="content" id="editor">
+    <h1>Admin</h1>
+        </textarea>
+      @endcan -->
     <p><input type="submit" value="Submit"></p>
 </form>
 <button   onclick="window.location='{{ route('athletes_index') }}'" class="btn btn-negro ml-auto m-1">
