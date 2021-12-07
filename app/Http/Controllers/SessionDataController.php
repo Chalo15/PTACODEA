@@ -16,7 +16,6 @@ class SessionDataController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('administrador',['only'=>['index']]);
     }
 
     public function addDataSession(Request $request)
