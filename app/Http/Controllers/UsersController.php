@@ -15,6 +15,12 @@ class UsersController extends Controller
         ]);
     }
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('administrador',['only'=>['index']]);
+    }
+
     public function guardarFuncionario(Request $request)
     {
         $id_role = 3;
