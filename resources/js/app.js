@@ -4,7 +4,7 @@ require("./bootstrap");
 
 
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('athlete_table_r', require('./Athlete_table_request.vue').default);
 
 const app = new Vue({
     el: '#app',

@@ -16,9 +16,11 @@ class CreateSessionDataTable extends Migration
         Schema::create('session_data', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->string('time');
+            $table->string('tiempo');
+            $table->string('detail_time');
             $table->string('competition');
             $table->string('distance');
+            $table->string('detail_distance');
             $table->string('technique');
             $table->string('aspects_to_improve');
             $table->string('additional_info');
@@ -26,6 +28,7 @@ class CreateSessionDataTable extends Migration
             $table->string('category')->nullable();
             $table->string('branch')->nullable();
             $table->string('max_weight')->nullable();
+            $table->string('detail_max_weight')->nullable();
             $table->string('battery_test')->nullable();
             $table->timestamps();
         });
