@@ -28,7 +28,7 @@ class CreateAthletesTable extends Migration
             $table->string('url')->nullable();
             $table->string('policy')->unique();
             $table->timestamps();
-        });
+        });p
     }
 
     /**
