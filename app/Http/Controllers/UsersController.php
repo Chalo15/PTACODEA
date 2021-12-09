@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sport;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Athlete;
 use App\Models\User;
@@ -35,7 +36,7 @@ class UsersController extends Controller
             'name' => $request->name,
             'lastname'=>$request->lastname,
             'identification'=>$request->identification,
-            'password'=>$request->password,
+            'password'=>Hash::make($request->password),
             'gender'=>$request->genero,
             'phone'=>$request->phone,
             'email'=>$request->email,
