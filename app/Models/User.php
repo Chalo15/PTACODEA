@@ -32,9 +32,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Functionary::class);
     }
-    protected $guarded = [
-
-    ];
+    protected $guarded = [];
 
     protected $hidden = [
         'password',
@@ -46,7 +44,6 @@ class User extends Authenticatable
     ];
 
     protected $fillable = [
-<<<<<<< Updated upstream
         'role_id',
         'identification',
         'password',
@@ -64,12 +61,4 @@ class User extends Authenticatable
         'experience',
         'email_verified_at',
     ];
-=======
-        'name',
-        'identification',
-        'password',
-        'role_id'
-    ];
-
->>>>>>> Stashed changes
 }

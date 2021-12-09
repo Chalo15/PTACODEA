@@ -17,7 +17,7 @@ class CoachSeeder extends Seeder
         $coach = new Coach();
         $coach->user_id = 2;
         $coach->sport_id = 1;
-        $coach->phone = 86764667;
+        $coach->phone = 28676677;
         $coach->save();
 
         $coach1 = new Coach();
