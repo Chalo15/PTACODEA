@@ -13,6 +13,11 @@ class CoachController extends Controller
         return view('coach.coach_interface');
     }
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     function vistaCoaches(){
         return view('users.coaches',[
             'sports'=>Sport::all()
