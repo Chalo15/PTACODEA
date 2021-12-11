@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-
 Route::get('/', function () {
 
     return view('auth.login');
@@ -62,3 +60,5 @@ Route::get('/users/coaches',[App\Http\Controllers\CoachController::class,'vistaC
 Route::post('/users/register',[App\Http\Controllers\UsersController::class,'guardarUsuario'])->name('user.guardarUser');
 //Vista del formulario de agregar Usuarios
 Route::get('/users/register',[App\Http\Controllers\UsersController::class,'index'])->name('register');
+//Vista para visualizar datos del atleta
+Route::get('/athletes/verdatos',[App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);

@@ -9,41 +9,41 @@
 @endif
 <div class="container">
 
-  <div class="row justify-content-center">
+    <div class="row justify-content-center">
 
-    <div class="col-md-8">
+        <div class="col-md-8">
 
-      <div class="card">
+            <div class="card">
 
-      <div class="text-center card-header">
-        <h3 class="d-5">Formulario de Registro del Atleta</h3>
-      </div>
+                <div class="text-center card-header">
+                    <h3 class="d-5">Formulario de Registro del Atleta</h3>
+                </div>
 
-      <div class="card-body">
-        <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
-              <!-- Título del formulario -->
-                @csrf
-
-
-                <!-- Nombre -->
-                <x-row>
-                      <x-input name="nombre" placeholder="Nombre" label="Nombre"/>
-                </x-row>
-
-                <!-- Apellidos -->
-                <x-row>
-                  <x-input name="apellidos" placeholder="Apellidos" label="Apellidos"/>
-                </x-row>
-
-                <!-- Cedula -->
-
-                <x-row>
-                  <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cédula"/>
-                </x-row>
+                <div class="card-body">
+                    <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
+                        <!-- Título del formulario -->
+                        @csrf
 
 
-                <!-- Disciplina -->
-                <x-row>
+                        <!-- Nombre -->
+                        <x-row>
+                                <x-input name="nombre" placeholder="Nombre" label="Nombre"/>
+                        </x-row>
+
+                        <!-- Apellidos -->
+                        <x-row>
+                            <x-input name="apellidos" placeholder="Apellidos" label="Apellidos"/>
+                        </x-row>
+
+                        <!-- Cedula -->
+
+                        <x-row>
+                            <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cédula"/>
+                        </x-row>
+
+
+                        <!-- Disciplina -->
+                        <x-row>
                             <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
                             <div class="col-md-5">
                                 <select name="department" class="form-control selectpicker" value= "{{ old('department') }}">
@@ -57,12 +57,10 @@
 
                         </x-row>
 
-                <!-- Edad -->
-                <x-row>
-                  <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
-                </x-row>
-
-
+                        <!-- Edad -->
+                        <x-row>
+                            <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
+                        </x-row>
 
                         <!-- Género -->
                         <div class="form-group row">
@@ -164,9 +162,7 @@
                         </x-row>
 
 
-
                         <!-- Registrar alerta -->
-
 
 
                         <!-- Parentesco -->
@@ -192,7 +188,7 @@
                         </x-row>
 
                         <!-- Registrar alerta -->
-                       <!-- <div class="alert alert-success" role="alert" id="registrado">
+                        <!-- <div class="alert alert-success" role="alert" id="registrado">
                             Éxito al procesar su registro!
                             <i class="glyphicon glyphicon-thumbs-up"></i>
                         </div>-->
@@ -220,15 +216,13 @@
 
                     </form>
                 </div>
-          </form>
-      </div>
-     <!-- <button   onclick="window.location='{{ url("users/athletes/datasession") }}'" class="btn btn-negro ml-auto m-1">
-        {{__('Registrarse Datos Sesion')}}
-     -->
+            </div>
+        <!-- <button   onclick="window.location='{{ url("users/athletes/datasession") }}'" class="btn btn-negro ml-auto m-1">
+            {{__('Registrarse Datos Sesion')}}
+        -->
         </div>
 
     </div>
-
 
 </div>
 @endsection

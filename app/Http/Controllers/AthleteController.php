@@ -30,7 +30,7 @@ class AthleteController extends Controller
                 ->where("athletes.state", "=", 'a')
                 ->get();*/
 
-        Auth::loginUsingId(2);
+        //Auth::loginUsingId(2);
         $disciplina = Auth::user()->coach->sport;
         $atletas = $disciplina->athletes;
         $verif = $atletas->where("state", "=", 'a');
@@ -46,9 +46,13 @@ class AthleteController extends Controller
         ]);
     }
 
+    function vistaDatos(){
+        return view('athletes.seedata');
+    }
+
     public function guardado(Request $request)
     {
-        $rol = 3;
+        $rol = 4;
 
         //validaciones
         $request->validate([
@@ -74,7 +78,7 @@ class AthleteController extends Controller
 
         // Inserciones a la tabla Users.
         $user = User::create([
-            'role_id' => 3,
+            'role_id' => 4,
             'identification' => $request->cedula,
             'password' => $request->cedula,
             'name' => $request->nombre,
