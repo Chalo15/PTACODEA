@@ -26,6 +26,7 @@ class CoachFactory extends Factory
 
             'user_id' => User::factory()->create(),
             'sport_id' => 1,
+            'phone' => User::factory()->create(),
 
         ];
     }

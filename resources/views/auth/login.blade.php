@@ -68,11 +68,11 @@
                                 <button type="submit" class="btn btn-negro">
                                     {{ __('Iniciar') }}
                                 </button>
-                                @if (Route::has('password.request'))
+                                <!--@if (Route::has('password.request'))
                                 <a class="forgot-password btn btn-negro" href="{{ route('password.request') }}">
                                     {{ __('Olvidé mi contraseña') }}
                                 </a>
-                                @endif
+                                @endif-->
                             </div>
                         </div>
                     </form>
