@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+
+
 use App\Models\Sport;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Athlete;
 use App\Models\User;
 
 class UsersController extends Controller
 {
-    function index(){
-        return view('auth.register',[
-            'sports'=>Sport::all()
+    function index()
+    {
+        return view('auth.register', [
+            'sports' => Sport::all()
         ]);
     }
 
@@ -26,20 +29,20 @@ class UsersController extends Controller
             'identification' => 'required|digits:9',
             'phone' => 'required',
             'email' => 'required|email',
-            'password'=>'required',
-            'genero'=>'required',
+            'password' => 'required',
+            'genero' => 'required',
         ]);
 
         //Insercion de datos del funcionario a la tabla users
         $User = User::create([
             'role_id' => 7,
             'name' => $request->name,
-            'lastname'=>$request->lastname,
-            'identification'=>$request->identification,
-            'password'=>Hash::make($request->password),
-            'gender'=>$request->genero,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
+            'lastname' => $request->lastname,
+            'identification' => $request->identification,
+            'password' => Hash::make($request->password),
+            'gender' => $request->genero,
+            'phone' => $request->phone,
+            'email' => $request->email,
 
         ]);
         /*
@@ -58,19 +61,19 @@ class UsersController extends Controller
 
         }
         */
-    return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */);//cambiar color
+        return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */); //cambiar color
     }
 
-    function vistaPracticas(){
-    return view('users.instructor');
-
+    function vistaPracticas()
+    {
+        return view('users.instructor');
     }
 
-    function guardarPractica(Request $request){
-
-
+    function guardarPractica(Request $request)
+    {
     }
-    function vistaPracticaExtra(){
+    function vistaPracticaExtra()
+    {
         return view('users.athlete_data_session');
     }
 

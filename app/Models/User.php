@@ -32,9 +32,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Functionary::class);
     }
-    protected $guarded = [
-
-    ];
+    protected $guarded = [];
 
     protected $hidden = [
         'password',
