@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->integer('contract_year')->nullable();
             $table->integer('experience')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

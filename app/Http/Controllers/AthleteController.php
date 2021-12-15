@@ -125,4 +125,51 @@ class AthleteController extends Controller
         $athlete->save();
     return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
     }
+
+    public function vistaPerfil(){//retorna la vista de perfil de atleta con los datos ya presentes en la base tales como nombre, etc.
+        
+
+
+        $usuario = Auth::user();
+       // $usuario= Auth::user();
+        //$atletas = Athlete::where("user_id", "=", 3 )->get(); 
+        //$users = $atletas->map->user->flatten();
+        Auth::logout();
+        return view('user.athlete_profile', ['user'=>$usuario]);
+    }
+    public function guardaPerfil(Request $request){
+
+        $request->validate([
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'correo' => 'required|email',
+            'telefono' => 'required|digits:8',
+        ]);
+        $user=new User;
+            $user->name=$request->nombre;
+            $user->lastname=$request->apellidos;
+            $user->email=$request->correo;
+            $user->phone=$request->telefono;
+
+
+        if($request->hasFile("imagen")){
+
+            if($user->photo!=null){
+
+                Storage::disk('storage/imagenes')->delete($user->photo);
+                $user->photo->delete();
+            }
+
+            $v_photo=$request->imagen('imagen');
+            $v_nombre="photo_".time().".".$v_photo->guessExtension();
+            $url=public_path("storage/imagenes/".$v_nombre);
+
+            if($v_photo->guessExtension()=="jpeg||png"){
+                copy($v_photo,$url);
+                $user->photo=$v_nombre;
+            }
+        }
+        $user->save();
+    return redirect()->route('athlete_profile')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );
+    }
 }
