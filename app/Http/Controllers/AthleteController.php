@@ -17,6 +17,7 @@ class AthleteController extends Controller
         $this->middleware('auth');
     }
 
+
     function index(){
         return view('users.athletes',[
             'sports'=>Sport::all()
@@ -30,7 +31,7 @@ class AthleteController extends Controller
                 ->where("athletes.state", "=", 'a')
                 ->get();*/
 
-        Auth::loginUsingId(2);
+        //Auth::loginUsingId(2);
         $disciplina = Auth::user()->coach->sport;
         $atletas = $disciplina->athletes;
         $verif = $atletas->where("state", "=", 'a');
@@ -46,9 +47,17 @@ class AthleteController extends Controller
         ]);
     }
 
+    function vistaDatos(Request $id){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
+        $id = 1; 
+        $atleta = new Athlete;
+        $atleta = Athlete::where("user_id", "=", 9)->get(); 
+        $user = $atleta->map->user->flatten();
+        return view('athletes.seedata', ['user'=>$user], ['atleta'=>$atleta]);
+    }
+
     public function guardado(Request $request)
     {
-        $rol = 3;
+        $rol = 4;
 
         //validaciones
         $request->validate([
@@ -74,7 +83,7 @@ class AthleteController extends Controller
 
         // Inserciones a la tabla Users.
         $user = User::create([
-            'role_id' => 3,
+            'role_id' => 4,
             'identification' => $request->cedula,
             'password' => $request->cedula,
             'name' => $request->nombre,
@@ -116,6 +125,4 @@ class AthleteController extends Controller
         $athlete->save();
     return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
     }
-
-    
 }

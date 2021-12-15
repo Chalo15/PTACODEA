@@ -37,12 +37,12 @@ class UsersController extends Controller
         $User = User::create([
             'role_id' => 7,
             'name' => $request->name,
-            'lastname' => $request->lastname,
-            'identification' => $request->identification,
-            'password' => Hash::make($request->password),
-            'gender' => $request->genero,
-            'phone' => $request->phone,
-            'email' => $request->email,
+            'lastname'=>$request->lastname,
+            'identification'=>$request->identification,
+            'password'=>Hash::make($request->password),
+            'gender'=>$request->genero,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
 
         ]);
         /*

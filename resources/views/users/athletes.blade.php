@@ -9,53 +9,41 @@
 @endif
 <div class="container">
 
-  <div class="row justify-content-center">
+    <div class="row justify-content-center">
 
-    <div class="col-md-8">
+        <div class="col-md-8">
 
-      <div class="card">
+            <div class="card">
 
-         <div class="text-center card-header">
-          <h3 class="d-5">Formulario de Registro del Atleta</h3>
-         </div>
+                <div class="text-center card-header">
+                    <h3 class="d-5">Formulario de Registro del Atleta</h3>
+                </div>
 
-        <div class="card-body">
-          <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
-              <!-- Título del formulario -->
-                @csrf
-
-
-                <!-- Nombre -->
-                <x-row>
-                      <x-input name="nombre" placeholder="Nombre" label="Nombre"/>
-                </x-row>
-
-                <!-- Apellidos -->
-                <x-row>
-                  <x-input name="apellidos" placeholder="Apellidos" label="Apellidos"/>
-                </x-row>
-
-                <!-- Cedula -->
-
-                <x-row>
-                  <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cédula"/>
-                </x-row>
+                <div class="card-body">
+                    <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
+                        <!-- Título del formulario -->
+                        @csrf
 
 
-                <!-- Disciplina -->
-               <!-- <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
-                  <div class="col-md-5 ">
-                    <select name="department" class="form-control selectpicker" value="{{old('department')}}">
-                      @foreach ($sports as $sport)
-                      <option value="{{$sport->id}}">
-                      {{$sport->description}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                </div>-->
+                        <!-- Nombre -->
+                        <x-row>
+                                <x-input name="nombre" placeholder="Nombre" label="Nombre"/>
+                        </x-row>
 
-                <x-row>
+                        <!-- Apellidos -->
+                        <x-row>
+                            <x-input name="apellidos" placeholder="Apellidos" label="Apellidos"/>
+                        </x-row>
+
+                        <!-- Cedula -->
+
+                        <x-row>
+                            <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cédula"/>
+                        </x-row>
+
+
+                        <!-- Disciplina -->
+                        <x-row>
                             <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
                             <div class="col-md-5">
                                 <select name="department" class="form-control selectpicker" value= "{{ old('department') }}">
@@ -69,14 +57,12 @@
 
                         </x-row>
 
-                <!-- Edad -->
-                <x-row>
-                  <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
-                </x-row>
+                        <!-- Edad -->
+                        <x-row>
+                            <x-input name="edad" placeholder="Edad" label="Edad" type="date"/>
+                        </x-row>
 
- 
-              
-                 <!-- Género -->
+                        <!-- Género -->
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Género</label>
                             <div class="col-md-7">
@@ -175,10 +161,8 @@
                             <x-input name="telefono_encargado" placeholder="(+506)88888888" label="N° Teléfono del encargado(a)" type="number" />
                         </x-row>
 
-                      
 
                         <!-- Registrar alerta -->
-
 
 
                         <!-- Parentesco -->
@@ -199,17 +183,24 @@
                         
                         <!-- Numero de Poliza -->
                         <x-row>
-                          <x-input name="poliza" placeholder="Numero de Poliza" label="Numero de Poliza" />
-                      </x-row>
+                            <x-input name="poliza" placeholder="Numero de Poliza" label="Numero de Poliza" />
+                        </x-row>
 
-                       <!-- Enviar y PDF -->
-                     <div class="card">
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                                    <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value="{{ old('archivo') }}">
-                                    <small id="pfd" class="text-muted">
-                                        En esta sección introduzca el archivo pdf solicitado.
+                        <!-- Registrar alerta -->
+                        <!-- <div class="alert alert-success" role="alert" id="registrado">
+                            Éxito al procesar su registro!
+                            <i class="glyphicon glyphicon-thumbs-up"></i>
+                        </div>-->
+
+                        <!-- Enviar y PDF -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
+                                        <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value="{{ old('archivo') }}">
+                                        <small id="pfd" class="text-muted">
+                                            En esta sección introduzca el archivo pdf solicitado.
+                                    </div>
                                 </div>
                             </div>
 
@@ -234,7 +225,6 @@
         </div>
 
     </div>
-
 
 </div>
 @endsection
