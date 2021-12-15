@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\Sport;
-use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Http\Request;
 use App\Models\Athlete;
 use App\Models\User;

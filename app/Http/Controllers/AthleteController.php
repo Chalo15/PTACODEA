@@ -17,6 +17,7 @@ class AthleteController extends Controller
         $this->middleware('auth');
     }
 
+
     function index(){
         return view('users.athletes',[
             'sports'=>Sport::all()
@@ -117,5 +118,4 @@ class AthleteController extends Controller
     return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
     }
 
-    
 }
