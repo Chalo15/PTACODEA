@@ -15,7 +15,7 @@ Route::get('/', function () {
 // LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
 Auth::routes();
 //Menu Principal de los Roles
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['can:roles,"Admin","Instructor","Funcionario","Atleta","Fisioterapia","Musculacion","Usuario Externo"']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //menu principal de Atletas
 //Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
 
@@ -60,5 +60,12 @@ Route::get('/users/coaches',[App\Http\Controllers\CoachController::class,'vistaC
 Route::post('/users/register',[App\Http\Controllers\UsersController::class,'guardarUsuario'])->name('user.guardarUser');
 //Vista del formulario de agregar Usuarios
 Route::get('/users/register',[App\Http\Controllers\UsersController::class,'index'])->name('register');
+
 //Vista para visualizar datos del atleta
 Route::get('/athletes/verdatos',[App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);
+
+//Vista del formulario de agregar extra de usuarios
+Route::get('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataController::class,'datos_extra'])->name('datos_extra');
+//Añadido de los datos extra del atleta
+Route::post('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataController::class,'add_extra_data'])->name('add_extra_data');
+
