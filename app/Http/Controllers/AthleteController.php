@@ -46,8 +46,12 @@ class AthleteController extends Controller
         ]);
     }
 
-    function vistaDatos(){
-        return view('athletes.seedata');
+    function vistaDatos(Request $id){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
+        $id = 1; 
+        $atleta = new Athlete;
+        $atleta = Athlete::where("user_id", "=", 9)->get(); 
+        $user = $atleta->map->user->flatten();
+        return view('athletes.seedata', ['user'=>$user], ['atleta'=>$atleta]);
     }
 
     public function guardado(Request $request)
@@ -120,6 +124,5 @@ class AthleteController extends Controller
         $athlete->save();
     return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
     }
-
     
 }
