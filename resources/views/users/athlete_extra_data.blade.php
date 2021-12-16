@@ -21,7 +21,7 @@
         <div class="card">
 
         <div class="text-center card-header">
-          <h3 class="d-5">Datos extra del atleta</h3>
+          <h3 class="text-dark">Datos extra del atleta</h3>
         </div> 
 
         <div class="card-body">

@@ -11,16 +11,38 @@ body{
     height: 100%;
 }
 
+.athlete_extra_data{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
+}
 .athlete_data_session{
     background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
     background-size:cover;
     height: 100%;
 }
 
+.athlete_extra_data h1,h2,h3,h4,h5{
+    color: black;
+}
+
+.athlete_data_session h1,h2,h3,h4,h5{
+    color: black;
+}
+
 .athlete_request{
     background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
     background-size:cover;
     height: 100%;
+    
+}
+
+.athlete_request h1,h2,h3,h4,h5{
+    color: white;
+}
+
+.athlete_request tr{
+    color: white;
 }
 
 .athletes{
@@ -33,10 +55,19 @@ body{
     background-size:cover;
     height: 100%;
 }
-
-.athlete_data_session h1,h2,h3,h4,h5{
-    color: black;
+.seedata{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
 }
+
+
+
+.seedata h1,h2,h3,h4,h5{
+    color: white;
+}
+
+
 
 
 

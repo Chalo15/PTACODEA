@@ -52,7 +52,7 @@ class AthleteController extends Controller
     function vistaDatos(Request $id){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
         $id = 1; 
         $atleta = new Athlete;
-        $atleta = Athlete::where("user_id", "=", 9)->get(); 
+        $atleta = Athlete::where("user_id", "=", 4)->get(); 
         $user = $atleta->map->user->flatten();
         return view('athletes.seedata', ['user'=>$user], ['atleta'=>$atleta]);
     }

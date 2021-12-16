@@ -24,7 +24,7 @@
                     <div class="atleta_registro">
                         <h4 class="">Analizar Solicitud</h4>
                         <i class="d-block fas fa-running p-2"></i>
-                        <button class="btn btn-negro">Ingresar</button>
+                        <button class="btn btn-negro" onclick= "window.location='{{ route('athlete_Res') }}'">Ingresar</button>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 text-center aligne-item-center">
@@ -57,7 +57,7 @@
                     <div class="Registrar_funcionario">
                         <h4 class="">Registrar Funcionario</h4>
                         <i class="d-block fas fa-swimmer"></i>
-                        <button class="btn btn-negro" onclick="window.location='{{ url("users/athletes/datasession") }}'">Registrar</button>
+                        <button class="btn btn-negro" onclick= "window.location='{{ route('funcionarios') }}'" class="btn btn-negro">Ingresar</button>
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                     <div class="expediente">
                         <h4 class="">Ver Expediente</h4>
                         <i class="d-block fas fa-id-card-alt p-2"></i>
-                        <button class="btn btn-negro">Ingresar</button>
+                        <button class="btn btn-negro" onclick= "window.location='{{ url('/athletes/verdatos') }}'">Ingresar</button>
                     </div>
                 </div>
             </div>
@@ -150,8 +150,8 @@
 
         
     </div> 
+
 </body>
 
-    
     @endsection
     
