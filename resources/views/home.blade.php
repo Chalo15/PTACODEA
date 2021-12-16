@@ -130,7 +130,7 @@
                     <div class="mi_perfil">
                         <h4 class="">Mi Perfil</h4>
                         <i class="d-block fas fa-user-circle p-2"></i>
-                        <button class="btn btn-negro">Ingresar</button>
+                        <button onclick= "window.location='{{ route('perfil.atleta') }}'" class="btn btn-negro">Ingresar</button>
                     </div>
                 </div>
 

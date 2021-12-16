@@ -16,7 +16,7 @@ class AthleteController extends Controller
 
     public function __construct()
     {
-        /*$this->middleware('auth');*/
+        $this->middleware('auth');
     }
 
 
@@ -132,12 +132,12 @@ class AthleteController extends Controller
         
 
 
-        $usuario = Auth::user();
+        $usuario = Auth::user()->user;
        // $usuario= Auth::user();
         //$atletas = Athlete::where("user_id", "=", 3 )->get(); 
         //$users = $atletas->map->user->flatten();
         Auth::logout();
-        return view('user.athlete_profile', ['user'=>$usuario]);
+    return view('users.athlete_profile' /*['user'=>$usuario])*/);
     }
     public function guardaPerfil(Request $request){
 
@@ -147,7 +147,7 @@ class AthleteController extends Controller
             'correo' => 'required|email',
             'telefono' => 'required|digits:8',
         ]);
-        $user=new User;
+        $user=Auth::user()->user;
             $user->name=$request->nombre;
             $user->lastname=$request->apellidos;
             $user->email=$request->correo;

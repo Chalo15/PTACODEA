@@ -13,8 +13,8 @@
 
                     <div class="card-body">
                         
-                       <!--@foreach($athletes as $ath)-->
-                       @foreach($user as $us) 
+                       
+                       
                         <form class="well form-horizontal" action="{{route('saveProfile')}} " method="post"  id="formulario_perfil" enctype="multipart/form-data">
                             
                             @csrf
@@ -24,9 +24,7 @@
                                 <img id="seleccionada" style="max-height: 300px;">
                             </div>-->     
                             
-                            <x-row>
-                                <img src="/storage/imagen/{{$us->photo}}" width="60%">
-                            </x-row> 
+                     
 
                             <x-row>
                                 <input name="imagen" id="imagen" type='file' class="hidden"/>
@@ -34,21 +32,21 @@
 
                                 <!-- Formulario-->
                             <x-row>
-                                <x-input name="nombre" placeholder={{$us->name}} label="Nombre"/> <!--duda -->  
+                                <x-input name="nombre" placeholder={{Auth::name()}} label="Nombre"/> <!--duda -->  
                             </x-row>    
 
                             <x-row>
-                                <x-input name="apellidos" placeholder={{$us->lastname}} label="Apellidos"/> <!--duda -->  
+                                <x-input name="apellidos" placeholder={{Auth::user()->lastname}} label="Apellidos"/> <!--duda -->  
                             </x-row> 
                             
                             <x-row>
-                                <x-input name="correo" placeholder={{$us->email}} label="Correo"/> <!--duda -->  
+                                <x-input name="correo" placeholder={{Auth::user()->email}} label="Correo"/> <!--duda -->  
                             </x-row>  
                             <x-row>
-                                <x-input name="nacimiento" placeholder={{$us->birthdate}} label="Fecha de nacimiento"/> <!--duda -->  
+                                <x-input name="nacimiento" placeholder={{Auth::user()->birthdate}} label="Fecha de nacimiento"/> <!--duda -->  
                             </x-row>      
                             <x-row>
-                                <x-input name="telefono" placeholder={{$us->phone}} label="Teléfono"/> <!--duda -->  
+                                <x-input name="telefono" placeholder={{Auth::user()->phone}} label="Teléfono"/> <!--duda -->  
                             </x-row>    
 
                             <div class="form-group row">
@@ -64,8 +62,8 @@
                             </div>
 
                         </form> 
-                        @endforeach
-                       <!-- @endforeach     -->
+                        
+                      
                     </div>    
             
             
