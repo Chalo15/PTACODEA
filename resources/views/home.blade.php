@@ -7,6 +7,7 @@
 
     <div class="homePaige container-fluid ">
 
+
     <!-- Vista del menu principal del Usuario Administrador -->
 
         @can('role',"Admin")
@@ -56,7 +57,7 @@
                     <div class="Registrar_funcionario">
                         <h4 class="">Registrar Funcionario</h4>
                         <i class="d-block fas fa-swimmer"></i>
-                        <button class="btn btn-negro">Registrar</button>
+                        <button class="btn btn-negro" onclick="window.location='{{ url("users/athletes/datasession") }}'">Registrar</button>
                     </div>
                 </div>
             </div>
@@ -65,14 +66,10 @@
         @endcan
 
 
-
-        
-        
-
     <!-- Vista del menu principal del Instructor -->
 
         @can('role',"Instructor")
-        <div class="Instructor ">
+        <div class="Instructor">
 
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-12 col-lg-12 ">

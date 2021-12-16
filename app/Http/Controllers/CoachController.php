@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use App\Models\Coach;
 use App\Models\Sport;
 use App\Models\User;
@@ -49,7 +50,7 @@ class CoachController extends Controller
             'name' => $request->nombre,
             'lastname'=>$request->apellidos,
             'identification'=>$request->cedula,
-            'password'=>$request->cedula,
+            'password'=>Hash::make($request->cedula),
             'gender'=>$request->genero,
             'phone'=>$request->telCelular,
             'email'=>$request->correo,

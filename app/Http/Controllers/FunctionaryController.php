@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\Functionary;
 use App\Models\Role;
 use App\Models\User;
@@ -47,7 +47,7 @@ class FunctionaryController extends Controller
             'name' => $request->nombre,
             'lastname'=>$request->apellidos,
             'identification'=>$request->cedula,
-            'password'=>$request->cedula,
+            'password'=>Hash::make($request->cedula),
             'gender'=>$request->genero,
             'phone'=>$request->telCelular,
             'email'=>$request->correo,
