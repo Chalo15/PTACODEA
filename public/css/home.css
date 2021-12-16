@@ -2,8 +2,18 @@
 body{
     margin: 0%;
     padding: 0%;
-    
 }
+
+
+
+.bodyHomePaige{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
+}
+
+
+
 /*Colores de CODEA*/
 :root{
     --negro:rgb(35,32,31);
@@ -96,34 +106,112 @@ body{
 
 
 /*Navbar app*/
+
+
 .nav-item a{
     font-size: 18px;
 }
 
-/*Main Page*/
+/*---HOME---*/
+
+
+/*Administrador*/
+.Admin h1{
+    color: white;
+}
+.Admin h2{
+    color: white;
+}
+.Admin h3{
+    color: white;
+}
+.Admin h4{
+    color: white;
+}
+
 .fisioterapia_clinica .fa-user-md{
-    color:var(--negro);
+    color:white;
     font-size: 750%;
 }
 .atleta_registro .fa-running{
-    color:var(--negro);
+    color:white;
     font-size: 750%
 }
 
-.Registrar_funcionario .fa-running{
-    color:var(--negro);
+
+
+.Registrar_funcionario .fa-swimmer{
+    color:white;
     font-size: 750%
 }
 
 .gimnasio .fa-dumbbell{
-    color:var(--negro);
+    color:white;
     font-size: 750%
 }
-.mi_perfil .user-icon .fa-user{
-    color:var(--negro);
+.mi_perfil .fa-user{
+    color:white;
     font-size: 750%
 }
 
+
+/*Instructor*/
+
+.Instructor h1{
+    color: white;
+}
+.Instructor h2{
+    color: white;
+}
+.Instructor h3{
+    color: white;
+}
+.Instructor h4{
+    color: white;
+}
+
+.Instructor .registro_de_datos_atleta .fa-address-card{
+    color:white;
+    font-size: 750%
+
+}
+.Instructor .reservar_gimnasio .fa-book{
+    color:white;
+    font-size: 750%
+}
+.Instructor .mi_perfil .user-icon .fa-user{
+    color:white;
+    font-size: 750%
+}
+
+
+/*Atleta*/
+
+.Atleta h1{
+    color: white;
+}
+.Atleta h2{
+    color: white;
+}
+.Atleta h3{
+    color: white;
+}
+.Atleta h4{
+    color: white;
+}
+
+.Atleta .reservar_gimnasio .fa-book{
+    color:white;
+    font-size: 750%
+}
+.Atleta .mi_perfil .fa-user-circle{
+    color:white;
+    font-size: 750%
+}
+.Atleta .expediente .fa-id-card-alt{
+    color:white;
+    font-size: 750%
+}
 
 /*Usuario pagina*/
 .register_as_athlete .fa-id-card {
@@ -180,3 +268,5 @@ body{
 .form-group a:hover{
     color: var(--blanco);
 } 
+
+

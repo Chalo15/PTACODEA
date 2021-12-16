@@ -7,7 +7,7 @@
             <div class="card">
 
                 <div class="text-center card-header">
-                    <h3 class="d-5">Verificacion de Usuario</h3>
+                    <h3>Verificacion de Usuario</h3>
                 </div>
 
                 <div class="usuario text-center"><i class="fas fa-user p-2"></i></div>
