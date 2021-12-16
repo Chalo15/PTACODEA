@@ -5,12 +5,39 @@ body{
 }
 
 
-
 .bodyHomePaige{
     background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
     background-size:cover;
     height: 100%;
 }
+
+.athlete_data_session{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
+}
+
+.athlete_request{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
+}
+
+.athletes{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
+}
+.funcionary{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
+}
+
+.athlete_data_session h1,h2,h3,h4,h5{
+    color: black;
+}
+
 
 
 

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Hash;
 use App\Models\Athlete;
 use App\Models\Sport;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +16,7 @@ class AthleteController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        /*$this->middleware('auth');*/
     }
 
 
@@ -85,7 +87,7 @@ class AthleteController extends Controller
         $user = User::create([
             'role_id' => 4,
             'identification' => $request->cedula,
-            'password' => $request->cedula,
+            'password' => Hash::make($request->cedula),
             'name' => $request->nombre,
             'lastname' => $request->apellidos,
             'birthdate' => $request->edad,
