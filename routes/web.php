@@ -69,7 +69,7 @@ Route::get('/users/register',[App\Http\Controllers\UsersController::class,'index
 Route::get('/athletes/verdatos',[App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);
 
 //Vista del formulario de agregar extra de usuarios
-Route::get('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataController::class,'datos_extra'])->name('datos_extra')->middleware(['can:roles,"Atleta']);
+Route::get('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataController::class,'datos_extra'])->name('datos_extra');
 //Añadido de los datos extra del atleta
 Route::post('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataController::class,'add_extra_data'])->name('add_extra_data');
 

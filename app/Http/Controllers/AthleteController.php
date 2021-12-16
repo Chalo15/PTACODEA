@@ -132,12 +132,14 @@ class AthleteController extends Controller
         
 
 
-        $usuario = Auth::user()->user;
+        $usuario = Auth::id();
+        $persona= User::where("identification", "=", 117490248);
+        //$users=$persona->map->user->flatten();
        // $usuario= Auth::user();
         //$atletas = Athlete::where("user_id", "=", 3 )->get(); 
         //$users = $atletas->map->user->flatten();
         Auth::logout();
-    return view('users.athlete_profile' /*['user'=>$usuario])*/);
+    return view('users.athlete_profile', ['user'=>$persona]);
     }
     public function guardaPerfil(Request $request){
 
