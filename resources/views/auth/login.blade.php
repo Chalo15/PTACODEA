@@ -7,7 +7,7 @@
             <div class="card">
 
                 <div class="text-center card-header">
-                    <h3>Verificacion de Usuario</h3>
+                    <h3 class="text-dark">Verificacion de Usuario</h3>
                 </div>
 
                 <div class="usuario text-center"><i class="fas fa-user p-2"></i></div>
@@ -68,11 +68,13 @@
                                 <button type="submit" class="btn btn-negro">
                                     {{ __('Iniciar') }}
                                 </button>
-                                <!--@if (Route::has('password.request'))
-                                <a class="forgot-password btn btn-negro" href="{{ route('password.request') }}">
+                                @if (Route::has('password.request'))
+
+                                <!--<a class="forgot-password btn btn-negro" href="{{ route('password.request') }}">
                                     {{ __('Olvidé mi contraseña') }}
-                                </a>
-                                @endif-->
+                                </a>-->
+
+                                @endif
                             </div>
                         </div>
                     </form>
