@@ -41,5 +41,9 @@ class RoleSeeder extends Seeder
         $role6 = new Role();
         $role6->description = "Usuario Externo";
         $role6->save();
+
+        $role7 = new Role();
+        $role7->description = "Guarda Seguridad";
+        $role7->save();
     }
 }

@@ -84,18 +84,44 @@
 
                     <!-- Nivel -->
                     <x-row>
-                      <x-input name="nivel" placeholder="Nivel" label="Nivel"/>
-                    </x-row>
+                      <label class="col-md-4 col-form-label text-md-right">Nivel</label>
+                      <div class="col-md-3 selectContainer">
+                        <select name="nivel" class="form-control">
+                          <option value="Principiante">Principiante</option>
+                          <option value="Intermedio">Intermedio</option>
+                          <option value="Avanzado">Avanzado</option>
+                              </select>
+                            </div>
+                  </x-row>
                     
                     <!-- Categoria -->
                     <x-row>
-                      <x-input name="categoria" placeholder="Categoria" label="Categoria"/>
-                    </x-row>
+                      <label class="col-md-4 col-form-label text-md-right">Categoria</label>
+                      <div class="col-md-3 selectContainer">
+                        <select name="categoria" class="form-control">
+                          <option value="U-7">U-7</option>
+                          <option value="U-9">U-9</option>
+                          <option value="U-11">U-11</option>
+                          <option value="U-13">U-13</option>
+                          <option value="U-15">U-15</option>
+                          <option value="U-17">U-17</option>
+                          <option value="U-19">U-19</option>
+                          <option value="U-21">U-21</option>
+                          <option value="U-23">U-23</option>
+                              </select>
+                            </div>
+                  </x-row>
                     
                     <!-- Rama -->
                     <x-row>
-                      <x-input name="rama" placeholder="Rama" label="Rama"/>
-                    </x-row>
+                      <label class="col-md-4 col-form-label text-md-right">Rama</label>
+                      <div class="col-md-3 selectContainer">
+                        <select name="rama" class="form-control">
+                          <option value="Masculino">Masculino</option>
+                          <option value="Femenino">Femenino</option>
+                              </select>
+                            </div>
+                  </x-row>
                     
                     
                     <!-- Levantamiento maximo de peso -->
