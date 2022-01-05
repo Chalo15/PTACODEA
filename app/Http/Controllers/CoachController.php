@@ -35,7 +35,7 @@ class CoachController extends Controller
             'department' => 'required',
             'telCelular' => 'required',
             'correo' => 'required|email',
-            'password'=>'required',
+            'password'=>'required1confirmed',
             'genero'=>'required',
             //datos del funcionario
             'teleHabitacion' => 'required|digits:8',
