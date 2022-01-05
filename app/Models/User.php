@@ -60,5 +60,6 @@ class User extends Authenticatable
         'contract_year',
         'experience',
         'email_verified_at',
+        'photo',
     ];
 }

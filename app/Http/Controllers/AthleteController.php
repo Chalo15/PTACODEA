@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Hash;
 use App\Models\Athlete;
 use App\Models\Sport;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +33,7 @@ class AthleteController extends Controller
                 ->where("athletes.state", "=", 'a')
                 ->get();*/
 
-        Auth::loginUsingId(2);
+        //Auth::loginUsingId(2);
         $disciplina = Auth::user()->coach->sport;
         $atletas = $disciplina->athletes;
         $verif = $atletas->where("state", "=", 'a');
@@ -47,9 +49,17 @@ class AthleteController extends Controller
         ]);
     }
 
+    function vistaDatos(Request $id){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
+        $id = 1; 
+        $atleta = new Athlete;
+        $atleta = Athlete::where("user_id", "=", 4)->get(); 
+        $user = $atleta->map->user->flatten();
+        return view('athletes.seedata', ['user'=>$user], ['atleta'=>$atleta]);
+    }
+
     public function guardado(Request $request)
     {
-        $rol = 3;
+        $rol = 4;
 
         //validaciones
         $request->validate([
@@ -75,9 +85,9 @@ class AthleteController extends Controller
 
         // Inserciones a la tabla Users.
         $user = User::create([
-            'role_id' => 3,
+            'role_id' => 4,
             'identification' => $request->cedula,
-            'password' => $request->cedula,
+            'password' => Hash::make($request->cedula),
             'name' => $request->nombre,
             'lastname' => $request->apellidos,
             'birthdate' => $request->edad,
@@ -118,4 +128,52 @@ class AthleteController extends Controller
     return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
     }
 
+    public function vistaPerfil(){//retorna la vista de perfil de atleta con los datos ya presentes en la base tales como nombre, etc.
+        
+
+
+        $usuario = Auth::id();
+        $persona= User::where("identification", "=", 117490248);
+        //$users=$persona->map->user->flatten();
+       // $usuario= Auth::user();
+        //$atletas = Athlete::where("user_id", "=", 3 )->get(); 
+        //$users = $atletas->map->user->flatten();
+        Auth::logout();
+    return view('users.athlete_profile', ['user'=>$persona]);
+    }
+    public function guardaPerfil(Request $request){
+
+        $request->validate([
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'correo' => 'required|email',
+            'telefono' => 'required|digits:8',
+        ]);
+        $user=Auth::user()->user;
+            $user->name=$request->nombre;
+            $user->lastname=$request->apellidos;
+            $user->email=$request->correo;
+            $user->phone=$request->telefono;
+
+
+        if($request->hasFile("imagen")){
+
+            if($user->photo!=null){
+
+                Storage::disk('storage/imagenes')->delete($user->photo);
+                $user->photo->delete();
+            }
+
+            $v_photo=$request->imagen('imagen');
+            $v_nombre="photo_".time().".".$v_photo->guessExtension();
+            $url=public_path("storage/imagenes/".$v_nombre);
+
+            if($v_photo->guessExtension()=="jpeg||png"){
+                copy($v_photo,$url);
+                $user->photo=$v_nombre;
+            }
+        }
+        $user->save();
+    return redirect()->route('athlete_profile')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );
+    }
 }
