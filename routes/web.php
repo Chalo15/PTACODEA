@@ -25,6 +25,12 @@ Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'i
 //guardado de registro de atletas
 Route::post('/users/athletes',  [App\Http\Controllers\AthleteController::class, 'guardado'])->name('athletes.guardado');
 
+//retorno de vista de formulario de registro de atletas externos
+Route::get('/users/externalathletes', [App\Http\Controllers\ExternalAthleteController::class, 'index'])->name('external_athletes');
+
+//guardado de registro de atletas Externos
+Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteController::class, 'guardado'])->name('external_athletes.guardado');
+
 //retorna vista de perfil personal de atleta
 Route::get('/users/athlete_profile', [\App\Http\Controllers\AthleteController::class, 'vistaPerfil'])->name('perfil.atleta')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta"']);
 //guarda las modificaciones del perfil del atleta
