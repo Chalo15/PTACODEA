@@ -23,7 +23,7 @@
                     </div>
                     
                     <div class="card-body">
-                        <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
+                        <form class="well form-horizontal" action="{{route('external_athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
                             <!-- Título del formulario -->
                             @csrf
                             
