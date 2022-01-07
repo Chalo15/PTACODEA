@@ -138,7 +138,7 @@
                     <div class="expediente">
                         <h4 class="">Ver Expediente</h4>
                         <i class="d-block fas fa-id-card-alt p-2"></i>
-                        <button class="btn btn-negro" onclick= "window.location='{{ url('/athletes/verdatos') }}'">Ingresar</button>
+                        <button class="btn btn-negro" onclick= "window.location='{{ url('/athletes/seedata') }}'">Ingresar</button>
                     </div>
                 </div>
             </div>
@@ -149,6 +149,74 @@
         @endcan
 
         
+    <!-- Vista del menu principal de Fisioterapia -->
+        @can('role',"Fisioterapia")
+            
+        <div class="Fisioterapia">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-12 col-lg-12 ">
+                    <h2 class="display-5 text-center py-5">Fisioterapia</h2>
+                </div>
+            </div>
+
+            <div class="row justify-content-center p-1">
+
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4 text-center aligne-item-center">
+                    <div class="mi_perfil">
+                        <h4 class="">Mi Perfil</h4>
+                        <i class="d-block fas fa-user-circle p-2"></i>
+                        <button class="btn btn-negro">Ingresar</button>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4 text-center aligne-item-center">
+                    <div class="expediente">
+                        <h4 class="">Registrar datos de atleta</h4>
+                        <i class="d-block fas fa-id-card-alt p-2"></i>
+                        <button class="btn btn-negro" onclick= "window.location='{{ url('/physiotherapy/appointment') }}'">Ingresar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        
+        @endcan
+
+        <!-- Vista del menu principal de Musculacion -->
+        @can('role',"Musculacion")
+            
+        <div class="Musculacion">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-12 col-lg-12 ">
+                    <h2 class="display-5 text-center py-5">Musculación</h2>
+                </div>
+            </div>
+
+            <div class="row justify-content-center p-1">
+
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4 text-center aligne-item-center">
+                    <div class="mi_perfil">
+                        <h4 class="">Mi Perfil</h4>
+                        <i class="d-block fas fa-user-circle p-2"></i>
+                        <button class="btn btn-negro">Ingresar</button>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4 text-center aligne-item-center">
+                    <div class="expediente">
+                        <h4 class="">Registrar datos de atleta</h4>
+                        <i class="d-block fas fa-id-card-alt p-2"></i>
+                        <button class="btn btn-negro" onclick= "window.location='{{ url('/musculation/report') }}'">Ingresar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        
+        @endcan
+
     </div> 
 
 </body>

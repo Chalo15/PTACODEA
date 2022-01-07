@@ -79,3 +79,8 @@ Route::get('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataController
 //Añadido de los datos extra del atleta
 Route::post('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataController::class,'add_extra_data'])->name('add_extra_data');
 
+//Registrar datos de atleta por parte del fisioterapeuta
+Route::get('/physiotherapy/appointment',[App\Http\Controllers\FunctionaryController::class,'appointment'])->name('appointment')->middleware(['can:roles,"Fisioterapia"']);
+
+//Registrar datos de atleta por parte del encargado de musculacion
+Route::get('/musculation/report',[App\Http\Controllers\FunctionaryController::class,'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
