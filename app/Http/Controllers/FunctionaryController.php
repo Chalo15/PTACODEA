@@ -82,4 +82,12 @@ class FunctionaryController extends Controller
 
     }
 
+    function appointment(){
+        return view('physiotherapy.appointment');
+    }
+
+    function report(){
+        return view('musculation.report');
+    }
+
 }
