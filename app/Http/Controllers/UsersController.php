@@ -8,7 +8,11 @@ use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Athlete;
+use App\Models\Coach;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Collection;
 
 class UsersController extends Controller
 {
@@ -37,12 +41,12 @@ class UsersController extends Controller
         $User = User::create([
             'role_id' => 7,
             'name' => $request->name,
-            'lastname'=>$request->lastname,
-            'identification'=>$request->identification,
-            'password'=>Hash::make($request->password),
-            'gender'=>$request->genero,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
+            'lastname' => $request->lastname,
+            'identification' => $request->identification,
+            'password' => Hash::make($request->password),
+            'gender' => $request->genero,
+            'phone' => $request->phone,
+            'email' => $request->email,
 
         ]);
         /*
@@ -71,7 +75,14 @@ class UsersController extends Controller
 
     function guardarPractica(Request $request)
     {
-        
+
+        $user = Auth::user()->id;
+        $coach = new Coach();
+        $coach = Coach::where("user_id", "=", $user);
+        $sport = $coach->map->sport->flatten();
+
+
+        dd($coach->map->sport->flatten());
     }
     function vistaPracticaExtra()
     {
