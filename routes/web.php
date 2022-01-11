@@ -20,11 +20,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
 
 //retorno de vista de formulario de registro de atletas
-Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes')->middleware(['can:roles,"Admin","Instructor"']);
+Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
 
 //guardado de registro de atletas
 Route::post('/users/athletes',  [App\Http\Controllers\AthleteController::class, 'guardado'])->name('athletes.guardado');
 
+//retorno de vista de formulario de registro de atletas externos
+Route::get('/users/externalathletes', [App\Http\Controllers\ExternalAthleteController::class, 'index'])->name('external_athletes');
+
+//guardado de registro de atletas Externos
+Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteController::class, 'guardado'])->name('external_athletes.guardado');
+
+//retorna vista de perfil personal de atleta
+Route::get('/users/athlete_profile', [\App\Http\Controllers\AthleteController::class, 'vistaPerfil'])->name('perfil.atleta')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta"']);
+//guarda las modificaciones del perfil del atleta
+Route::put('users/athlete_profile', [App\Http\Controllers\AthleteController::class, 'guardaPerfil'])->name('saveProfile');
 //retorna vista de menu principal de instructor
 Route::get('/coach/coach_interface', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade')->middleware(['can:roles,"Admin","Instructor"']);
 

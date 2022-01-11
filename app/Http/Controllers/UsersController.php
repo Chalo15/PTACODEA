@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Hash;
+
 
 use App\Models\Sport;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Athlete;
 use App\Models\User;
 
@@ -29,7 +29,7 @@ class UsersController extends Controller
             'identification' => 'required|digits:9',
             'phone' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|confirmed',
             'genero' => 'required',
         ]);
 
@@ -71,6 +71,7 @@ class UsersController extends Controller
 
     function guardarPractica(Request $request)
     {
+        
     }
     function vistaPracticaExtra()
     {

@@ -41,7 +41,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-negro shadow-sm ">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('home') }}">
                     <div class="logo col-sm-12 col-md-12">
                         <img class="logo_codea text-left" src="{{ asset('img/Logo.gif') }}" height="70px" width="61px" alt="Logo de codea">
                     </div>
@@ -91,12 +91,10 @@
                 </div>
             </div>
         </nav>
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
-        <footer>
 
-        </footer>
     </div>
 </body>
 </html>

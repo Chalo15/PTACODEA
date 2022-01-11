@@ -44,5 +44,6 @@ class Athlete extends Model
         'laterality',
         'manager',
         'policy',
+        'name',
     ];
 }

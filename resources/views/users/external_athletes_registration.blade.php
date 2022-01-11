@@ -23,7 +23,7 @@
                     </div>
                     
                     <div class="card-body">
-                        <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
+                        <form class="well form-horizontal" action="{{route('external_athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
                             <!-- Título del formulario -->
                             @csrf
                             
@@ -143,7 +143,7 @@
                                     <div class="checkbox"><label><input type="radio" name="lateralidad" value="A" /> Ambidiestro</label></div>
                                 </div>
                             </div>
-                            
+
                             <!-- Mensaje de encargado -->
                             <div class="form-group row">
                                 <div class="col-md-12 text-center">
