@@ -70,19 +70,17 @@ class UsersController extends Controller
 
     function vistaPracticas()
     {
-        return view('users.instructor');
+        $user = Auth::user()->id;
+        $coach = new Coach();
+        $coach = Coach::where("user_id", "=", $user)->first();
+        $sport = $coach->sport;
+
+
+        return view('users.instructor', compact('sport'));
     }
 
     function guardarPractica(Request $request)
     {
-
-        $user = Auth::user()->id;
-        $coach = new Coach();
-        $coach = Coach::where("user_id", "=", $user);
-        $sport = $coach->map->sport->flatten();
-
-
-        dd($coach->map->sport->flatten());
     }
     function vistaPracticaExtra()
     {

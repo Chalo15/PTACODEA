@@ -20,5 +20,44 @@
                 <div class="card">
 
                     <div class="text-center card-header">
-                        <h3 class="d-5">Formulario de registro de datos de sesiones de entrenamiento para disciplinas</h3>
+                        <h3 class="d-5">Configuracion de toma de datos</h3>
+                        <br>
+                        <h3 class="d-5">{{$sport->description}}</h3>
+                        <div>
+                            <form action="{{route('ckeditor', $sport)}} " method="post">
+                                @csrf
+                                @method('put')
+
+                                <textarea name="content" id="editor">
+
+                            </textarea>
+                                <br>
+                                <p><input type="submit" value="Enviar" class="btn btn-negro ml-auto m-1"></p>
+
+                            </form>
+
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+
+            removePlugins: ['Heading', 'Link', 'InsertImage'],
+
+            toolbar: ['bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote']
+
+        })
+
+        .catch(error => {
+
+            console.log(error);
+
+        });
+    @endsection
