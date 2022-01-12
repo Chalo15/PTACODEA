@@ -1,10 +1,8 @@
 /*Margenes y padding en 0%*/
-body{
-    margin: 0%;
-    padding: 0%;
-}
+
 .logo_codea{
     background-color: white;
+    
 }
 
 
@@ -19,6 +17,18 @@ body{
     background-size:cover;
     height: 100%;
 
+}
+.bodyLogin h1{
+    color: black;
+}
+.bodyLogin h2{
+    color: black;
+}
+.bodyLogin h3{
+    color: black;
+}
+.bodyLogin h4{
+    color: black;
 }
 
 .athlete_extra_data{
@@ -36,7 +46,16 @@ body{
     color: black;
 }
 
-.athlete_data_session h1,h2,h3,h4,h5{
+.athlete_data_session h2{
+    color: black;
+}
+.athlete_data_session h3{
+    color: black;
+}
+.athlete_data_session h4{
+    color: black;
+}
+.athlete_data_session h5{
     color: black;
 }
 
@@ -61,7 +80,17 @@ body{
     color: black;
 }
 
-.athlete_request h1,h2,h3,h4,h5{
+.athlete_request h1{
+    color: white;
+}
+
+.athlete_request h2{
+    color: white;
+}
+.athlete_request h3{
+    color: white;
+}
+.athlete_request h4{
     color: white;
 }
 
@@ -75,6 +104,22 @@ body{
     height: 100%;
 
 }
+.athletes h1{
+    color: black;
+}
+.athletes h2{
+    color: black;
+}
+.athletes h3{
+    color: black;
+}
+.athletes h4{
+    color: black;
+}
+.athletes h5{
+    color: black;
+}
+
 .funcionary{
     background-image: url(../img/Degradado.png);
     background-size:cover;
