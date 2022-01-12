@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Athlete;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -9,8 +10,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     return view('auth.login');
-
-
 });
 // LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
 Auth::routes();
@@ -24,6 +23,12 @@ Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'i
 
 //guardado de registro de atletas
 Route::post('/users/athletes',  [App\Http\Controllers\AthleteController::class, 'guardado'])->name('athletes.guardado');
+
+//retorno de vista de formulario de registro de atletas externos
+Route::get('/users/externalathletes', [App\Http\Controllers\ExternalAthleteController::class, 'index'])->name('external_athletes');
+
+//guardado de registro de atletas Externos
+Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteController::class, 'guardado'])->name('external_athletes.guardado');
 
 //retorna vista de perfil personal de atleta
 Route::get('/users/athlete_profile', [\App\Http\Controllers\AthleteController::class, 'vistaPerfil'])->name('perfil.atleta')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta"']);
@@ -53,23 +58,26 @@ Route::post('/users/athletes/datasession',  [App\Http\Controllers\SessionDataCon
 Route::post('/users/instructor', [App\Http\Controllers\UsersController::class, 'guardarPractica'])->name('instructor.practica');
 
 //Guarda los datos del nuevo funcionario
-Route::post('/users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'guardarFuncionario'])->name('funcionarios.guardarFuncionario');
+Route::post('/users/funcionarios', [App\Http\Controllers\FunctionaryController::class, 'guardarFuncionario'])->name('funcionarios.guardarFuncionario');
 //Vista del formulario de agregar funcionarios
-Route::get('/users/funcionarios',[App\Http\Controllers\FunctionaryController::class,'vistaFuncionario'])->name('funcionarios')->middleware(['can:roles,"Admin"']);
+Route::get('/users/funcionarios', [App\Http\Controllers\FunctionaryController::class, 'vistaFuncionario'])->name('funcionarios')->middleware(['can:roles,"Admin"']);
 //Guarda los datos del nuevo entrenador
-Route::post('/users/coaches',[App\Http\Controllers\CoachController::class,'guardarCoach'])->name('coach.guardarCoach');
+Route::post('/users/coaches', [App\Http\Controllers\CoachController::class, 'guardarCoach'])->name('coach.guardarCoach');
 //Vista del formulario de agregar entrenadores
-Route::get('/users/coaches',[App\Http\Controllers\CoachController::class,'vistaCoaches'])->name('coaches')->middleware(['can:roles,"Admin"']);
+Route::get('/users/coaches', [App\Http\Controllers\CoachController::class, 'vistaCoaches'])->name('coaches')->middleware(['can:roles,"Admin"']);
 //Guarda los datos del nuevo Usuario
-Route::post('/users/register',[App\Http\Controllers\UsersController::class,'guardarUsuario'])->name('user.guardarUser');
+Route::post('/users/register', [App\Http\Controllers\UsersController::class, 'guardarUsuario'])->name('user.guardarUser');
 //Vista del formulario de agregar Usuarios
-Route::get('/users/register',[App\Http\Controllers\UsersController::class,'index'])->name('register');
+Route::get('/users/register', [App\Http\Controllers\UsersController::class, 'index'])->name('register');
 
 //Vista para visualizar datos del atleta
-Route::get('/athletes/verdatos',[App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);
+Route::get('/athletes/verdatos', [App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);
 
 //Vista del formulario de agregar extra de usuarios
-Route::get('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataController::class,'datos_extra'])->name('datos_extra');
+Route::get('/users/athlete_extra_data', [App\Http\Controllers\ExtraDataController::class, 'datos_extra'])->name('datos_extra');
 //Añadido de los datos extra del atleta
-Route::post('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataController::class,'add_extra_data'])->name('add_extra_data');
+Route::post('/users/athlete_extra_data', [App\Http\Controllers\ExtraDataController::class, 'add_extra_data'])->name('add_extra_data');
 
+
+Route::get('/config/ckeditor', [App\Http\Controllers\SportController::class, 'index'])->name('vista.ckeditor')->middleware(['can:roles,"Admin","Instructor"']);
+Route::put('/config/ckeditor/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
