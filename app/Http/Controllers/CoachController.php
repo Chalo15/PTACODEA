@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 
 class CoachController extends Controller
 {
-    function index(){
+    function index()
+    {
         return view('coach.coach_interface');
     }
 
@@ -19,9 +20,10 @@ class CoachController extends Controller
         $this->middleware('auth');
     }*/
 
-    function vistaCoaches(){
-        return view('users.coaches',[
-            'sports'=>Sport::all()
+    function vistaCoaches()
+    {
+        return view('users.coaches', [
+            'sports' => Sport::all()
         ]);
     }
     public function guardarCoach(Request $request)
@@ -35,29 +37,29 @@ class CoachController extends Controller
             'department' => 'required',
             'telCelular' => 'required',
             'correo' => 'required|email',
-            'password'=>'required',
-            'genero'=>'required',
+            'password' => 'required|confirmed',
+            'genero' => 'required',
             //datos del funcionario
             'teleHabitacion' => 'required|digits:8',
             'direccion' => 'required',
             'numContrato' => 'required',
-            'periodoContrato' =>'required',
+            'periodoContrato' => 'required',
 
         ]);
 
         $user = User::create([
             'role_id' => 2,
             'name' => $request->nombre,
-            'lastname'=>$request->apellidos,
-            'identification'=>$request->cedula,
-            'password'=>Hash::make($request->cedula),
-            'gender'=>$request->genero,
-            'phone'=>$request->telCelular,
-            'email'=>$request->correo,
-            'address'=>$request->direccion,
+            'lastname' => $request->apellidos,
+            'identification' => $request->cedula,
+            'password' => Hash::make($request->cedula),
+            'gender' => $request->genero,
+            'phone' => $request->telCelular,
+            'email' => $request->correo,
+            'address' => $request->direccion,
             'contract_number' => $request->numContrato,
             'contract_year' => $request->periodoContrato,
-            'experience'=>$request->experiencia,
+            'experience' => $request->experiencia,
 
         ]);
 
@@ -67,22 +69,20 @@ class CoachController extends Controller
             'user_id' => $user->id
         ]);
 
-        if($request->hasFile("archivo")){
+        if ($request->hasFile("archivo")) {
 
-            $v_pdf=$request->file('archivo');
-            $v_nombre="pdf_".time().".".$v_pdf->guessExtension();
-            $url=public_path("storage/".$v_nombre);
+            $v_pdf = $request->file('archivo');
+            $v_nombre = "pdf_" . time() . "." . $v_pdf->guessExtension();
+            $url = public_path("storage/" . $v_nombre);
 
-            if($v_pdf->guessExtension()=="pdf"){
-                copy($v_pdf,$url);
+            if ($v_pdf->guessExtension() == "pdf") {
+                copy($v_pdf, $url);
 
-                $coach->url=$v_nombre;
-
+                $coach->url = $v_nombre;
             }
-
         }
         $coach->save();
-    return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
+        return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/); //cambiar color
 
     }
 }

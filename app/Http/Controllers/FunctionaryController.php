@@ -32,7 +32,7 @@ class FunctionaryController extends Controller
             'tipo' => 'required',
             'telCelular' => 'required',
             'correo' => 'required|email',
-            'password'=>'required',
+            'password'=>'required|confirmed',
             'genero'=>'required',
             //datos del funcionario
             'teleHabitacion' => 'required|digits:8',

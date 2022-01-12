@@ -11,30 +11,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 
-class AthleteController extends Controller
+class ExternalAthleteController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     function index(){
-        return view('users.athletes',[
+        return view('users.external_athletes_registration',[
             'sports'=>Sport::all()
         ]);
         
     }
-
-    function Reserva_Form(){
-
-        return view('Reservations.booking_form');
-    }
-    
-
-
-
 
     function a_p_d(){
         /*$data = User::select('users.name', 'users.lastname')
@@ -53,7 +38,7 @@ class AthleteController extends Controller
     }
 
     function vistaAtleta(){
-        return view('users.athletes',[
+        return view('users.external_athletes_registration',[
             'sports'=>Sport::all()
         ]);
     }
@@ -89,7 +74,8 @@ class AthleteController extends Controller
             'cedula_encargado' => 'required|digits:9',
             'telefono_encargado' => 'required|digits:8',
             'parentesco' => 'required',
-            'poliza'=>'required'
+            'poliza'=>'required',
+            'lateralidad'=>'required'
         ]);
 
         // Inserciones a la tabla Users.
@@ -116,7 +102,7 @@ class AthleteController extends Controller
             'identification_manager' => $request->cedula_encargado,
             'contact_manager' => $request->telefono_encargado,
             'blood' => $request->sangre,
-            'state' => 'a',
+            'state' => 'p',
             'laterality' => $request->lateralidad,
             'manager' => $request->parentesco,
             'policy' => $request->poliza

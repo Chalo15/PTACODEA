@@ -41,7 +41,7 @@
     <div id="app">
         <nav class="barranav navbar navbar-expand-md navbar-dark bg-negro shadow-sm ">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('home') }}">
                     <div class="logo col-sm-12 col-md-12">
                         <img class="logo_codea text-left" src="{{ asset('img/Logo.gif') }}" height="60px" width="51px" alt="Logo de codea">
                     </div>

@@ -1,4 +1,11 @@
 /*Margenes y padding en 0%*/
+body{
+    margin: 0%;
+    padding: 0%;
+}
+.logo_codea{
+    background-color: white;
+}
 
 
 .bodyHomePaige{
@@ -14,16 +21,52 @@
 
 }
 
+.athlete_extra_data{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
+}
 .athlete_data_session{
     background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
 
+.athlete_extra_data h1,h2,h3,h4,h5{
+    color: black;
+}
+
+.athlete_data_session h1,h2,h3,h4,h5{
+    color: black;
+}
+
+
+.funcionary h3{
+    color: black;
+}
+
 .athlete_request{
     background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
+    
+}
+.athlete_data_session h1{
+    color: black;
+}
+.athlete_data_session h2{
+    color: black;
+}
+.athlete_data_session h3{
+    color: black;
+}
+
+.athlete_request h1,h2,h3,h4,h5{
+    color: white;
+}
+
+.athlete_request tr{
+    color: white;
 }
 
 .athletes{
@@ -43,11 +86,19 @@
     background-size:cover;
     height: 100%;
 }
-
-
-.athlete_data_session h1,h2,h3,h4,h5{
-    color: black;
+.seedata{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
 }
+
+
+
+.seedata h1,h2,h3,h4,h5{
+    color: white;
+}
+
+
 
 
 

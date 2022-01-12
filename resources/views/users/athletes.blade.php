@@ -147,7 +147,20 @@
                                 </div>
                                     
                             </div>
-                            <div class="col-md-12 text-center">
+                            
+                            <!-- Lateralidad -->
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">Lateralidad</label>
+                                <div class="col-md-7">
+                                    <div class="checkbox"><label><input type="radio" name="lateralidad" value="D" /> Diestro</label></div>
+                                    <div class="checkbox"><label><input type="radio" name="lateralidad" value="I" /> Zurdo</label></div>
+                                    <div class="checkbox"><label><input type="radio" name="lateralidad" value="A" /> Ambidiestro</label></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Mensaje de encargado -->
+                            <div class="form-group row">
+                                <div class="col-md-12 text-center">
                                     <small class=" text-muted">*** La siguiente sección se completa únicamente en caso de ser menor de edad. ***
                             </div>
                             
