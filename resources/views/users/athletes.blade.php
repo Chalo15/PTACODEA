@@ -135,6 +135,7 @@
                             </div>
                             
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <!-- Lateralidad -->
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">Lateralidad</label>
@@ -197,6 +198,58 @@
                                 </div>
                             </div>
                             
+=======
+                            <!-- Mensaje de encargado -->
+                            <div class="form-group row">
+                                <div class="col-md-12 text-center">
+                                    <small class=" text-muted">*** La siguiente sección se completa únicamente en caso de ser menor de edad. ***
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Sección de datos del responsable-->
+                                    <h3 class="d-5 text-center">Datos del responsable</h3>
+                                    
+                                    <!-- Nombre del encargad@-->
+                            <x-row>
+                                <x-input name="nombre_encargado" placeholder="Nombre" label="Nombre del encargado(a)" />
+                            </x-row>
+                            
+                            <!-- Apellidos del encargad@ -->
+                            <x-row>
+                                <x-input name="apellidos_encargado" placeholder="Apellidos" label="Apellidos del encargado(a)" />
+                            </x-row>
+                            
+                            <!-- Cedula del encargad@ -->
+                            <x-row>
+                                <x-input name="cedula_encargado" placeholder="Cédula" label="N° Cédula del encargado(a)" type="number" />
+                            </x-row>
+                            
+                            <!-- Teléfono del encargad@-->
+                            <x-row>
+                                <x-input name="telefono_encargado" placeholder="(+506)88888888" label="N° Teléfono del encargado(a)" type="number" />
+                            </x-row>
+                            
+                            
+                            <!-- Registrar alerta -->
+                            
+                            
+                            <!-- Parentesco -->
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">Parentesco</label>
+                                <div class="col-md-3 selectContainer">
+                                    <select name="parentesco" class="form-control selectpicker" value="{{ old('parentesco') }}">
+                                        <option value="">Seleccione su parentesco</option>
+                                        <option>Madre</option>
+                                        <option>Padre</option>
+                                        <option>Abuelo(a)</option>
+                                        <option>Tío(a)</option>
+                                        <option>Hermano(a)</option>
+                                        <option>Encargado(a)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+>>>>>>> parent of 64af3d7 (Css, home page)
 
                             <!-- Numero de Poliza -->
                             <x-row>
