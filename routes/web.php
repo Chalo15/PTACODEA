@@ -13,14 +13,10 @@ Route::get('/', function () {
 });
 // LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
 Auth::routes();
-
 //Menu Principal de los Roles
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //menu principal de Atletas
 //Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
-
-//Retorno de vista formulario de reserva de instalaciones
-Route::get('/Reservations/booking_form', [App\Http\Controllers\AthleteController::class, 'Reserva_Form'])->name('booking_form');
 
 //retorno de vista de formulario de registro de atletas
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');

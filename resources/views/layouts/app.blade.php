@@ -39,11 +39,11 @@
 </head>
 <body>
     <div id="app">
-        <nav class="barranav navbar navbar-expand-md navbar-dark bg-negro shadow-sm ">
+        <nav class="navbar navbar-expand-md navbar-dark bg-negro shadow-sm ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('home') }}">
                     <div class="logo col-sm-12 col-md-12">
-                        <img class="logo_codea text-left" src="{{ asset('img/Logo.gif') }}" height="60px" width="51px" alt="Logo de codea">
+                        <img class="logo_codea text-left" src="{{ asset('img/Logo.gif') }}" height="70px" width="61px" alt="Logo de codea">
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -59,15 +59,15 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <!--<li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesion') }}</a>
-                                </li> -->
+                                </li>
                             @endif
 
                             @if (Route::has('register'))
-                                <!--<li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                                </li> -->
+                                </li>
                             @endif
                         @else
                             <li class="main-navbar nav-item dropdown">
@@ -91,7 +91,6 @@
                 </div>
             </div>
         </nav>
-        
         <main class="">
             @yield('content')
         </main>
