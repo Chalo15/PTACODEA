@@ -1,38 +1,49 @@
 /*Margenes y padding en 0%*/
-body{
-    margin: 0%;
-    padding: 0%;
-}
 
 
 .bodyHomePaige{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
 
+.bodyLogin{
+    background-image: url(../img/Degradado.png);
+    background-size:cover;
+    height: 100%;
+
+}
+
 .athlete_data_session{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
 
 .athlete_request{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
 
 .athletes{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
+
 }
 .funcionary{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
+
+.booking_form_body{
+    background-image: url(../img/Degradado.png);
+    background-size:cover;
+    height: 100%;
+}
+
 
 .athlete_data_session h1,h2,h3,h4,h5{
     color: black;
@@ -165,8 +176,6 @@ body{
     font-size: 750%
 }
 
-
-
 .Registrar_funcionario .fa-swimmer{
     color:white;
     font-size: 750%
@@ -180,6 +189,9 @@ body{
     color:white;
     font-size: 750%
 }
+
+
+
 
 
 /*Instructor*/
@@ -212,7 +224,31 @@ body{
 }
 
 
+/*Formulario ATLETA*/
+
+.boton_datos{
+    color: black;
+    border: none;
+}
+.boton_datos:hover{
+    color: black;
+    border: none;
+}
+.boton_datos:focus{
+    border-color: white;
+    box-shadow: none;
+}
+.boton_datos:active{
+    border-color: white;
+    border: none;
+    box-shadow: none;
+}
+
+
+
 /*Atleta*/
+
+
 
 .Atleta h1{
     color: white;
@@ -256,6 +292,9 @@ body{
 
 
 /*App*/
+.logo_codea{
+    background-color: white;
+}
 .user-item{
     color: var(--blanco);
 }
@@ -268,10 +307,14 @@ body{
 
 /*--LOGIN--*/
 
+
+
 .usuario .fa-user{
     font-size: 10vh;
     color: var(--negro);
 }
+
+
 .form-container{
     border:solid 1px var(--negro);
     padding: 50px 60px;
@@ -288,6 +331,8 @@ body{
 }
 
 
+
+
 /*Cambio de color de un elemento a dentro del login*/
 .form-group a{
     color: var(--blanco);
@@ -296,4 +341,6 @@ body{
     color: var(--blanco);
 } 
 
+
+/*Formulario Reserva de Instalaciones*/
 

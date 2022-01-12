@@ -27,6 +27,15 @@ class AthleteController extends Controller
         
     }
 
+    function Reserva_Form(){
+
+        return view('Reservations.booking_form');
+    }
+    
+
+
+
+
     function a_p_d(){
         /*$data = User::select('users.name', 'users.lastname')
                 ->join('athletes', 'users.id', '=', 'athletes.user_id')
