@@ -84,4 +84,5 @@ Route::get('/physiotherapy/listAthletes',[App\Http\Controllers\FunctionaryContro
 Route::get('/physiotherapy/appointment/{id}',[App\Http\Controllers\FunctionaryController::class,'appointment'])->name('appointment')->middleware(['can:roles,"Fisioterapia"']);
 
 //Registrar datos de atleta por parte del encargado de musculacion
+Route::get('/musculation/catalogAthletes',[App\Http\Controllers\FunctionaryController::class,'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
 Route::get('/musculation/report',[App\Http\Controllers\FunctionaryController::class,'report'])->name('report')->middleware(['can:roles,"Musculacion"']);

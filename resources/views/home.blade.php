@@ -207,7 +207,7 @@
                     <div class="expediente">
                         <h4 class="">Registrar datos de atleta</h4>
                         <i class="d-block fas fa-id-card-alt p-2"></i>
-                        <button class="btn btn-negro" onclick= "window.location='{{ url('/musculation/report') }}'">Ingresar</button>
+                        <button class="btn btn-negro" onclick= "window.location='{{ url('/musculation/catalogAthletes') }}'">Ingresar</button>
                     </div>
                 </div>
             </div>
