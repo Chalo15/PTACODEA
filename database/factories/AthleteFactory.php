@@ -26,7 +26,7 @@ class AthleteFactory extends Factory
 
             'user_id' => $this->faker->unique()->randomElement(['15', '16', '17']),
             'sport_id' => $this->faker->randomElement(['1', '2', '3', '4']),
-            'state' => $this->faker->randomElement(['P', 'A', 'I']),
+            'state' => $this->faker->randomElement(['A', 'A', 'a']),
             'blood' => $this->faker->randomElement(['A+', 'B+', 'AB+', 'O-']),
             'laterality' => $this->faker->randomElement(['D', 'I', 'A']),
             'name_manager' => $this->faker->sentence(),

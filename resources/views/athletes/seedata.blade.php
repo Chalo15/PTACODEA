@@ -63,9 +63,10 @@
                         <p class="form-control-static">{{ $us->address}}</p>
                     </div>
                 </div>
-            </form> 
+            </div>    
             
-        </div>    
+        </form> 
+            
 
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-6 col-lg-6 p-1 m-3">
