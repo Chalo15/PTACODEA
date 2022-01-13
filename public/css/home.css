@@ -131,6 +131,44 @@
     background-size:cover;
     height: 100%;
 }
+.booking_form_body h1{
+    color: black;
+}
+.booking_form_body h2{
+    color: black;
+}
+.booking_form_body h3{
+    color: black;
+}
+.booking_form_body h4{
+    color: black;
+}
+.booking_form_body h5{
+    color: black;
+}
+
+.change_photo{
+    background-image: url(../img/Degradado.png);
+    background-size:cover;
+    height: 100%;
+}
+.change_photo h1{
+    color: black;
+}
+.change_photo h2{
+    color: black;
+}
+.change_photo h3{
+    color: black;
+}
+.change_photo h4{
+    color: black;
+}
+.change_photo h5{
+    color: black;
+}
+
+
 .seedata{
     background-image: url(../img/Degradado.png);
     background-size:cover;
