@@ -15,7 +15,7 @@
                                  <tbody>
                                     @foreach ($user as $athlete)
                                     <tr>
-                                        <td><a href="/musculation/report">{{$athlete->name}}{{" "}}{{$athlete->lastname}}</a></td>                                       
+                                        <td><a href="{{ url ('musculation/report',[$athlete->id]) }}">{{$athlete->name}}{{" "}}{{$athlete->lastname}}</a></td>                                  
                                     </tr>                                      
                                     @endforeach
                                 </tbody>

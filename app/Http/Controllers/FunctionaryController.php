@@ -106,8 +106,11 @@ class FunctionaryController extends Controller
         return view('musculation.catalogAthletes', compact('user'));
     }
 
-    function report(){
-        return view('musculation.report');
+    function report($id){
+        $users = new User;
+        $users = User::where("id", "=", $id)->first(); 
+
+        return view('musculation.report', compact('users'));
     }
 
 }
