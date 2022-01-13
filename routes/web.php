@@ -40,11 +40,11 @@ Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteCon
 //Rutas enfocadas en el modulo de perfil de usuario////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //retorna vista de perfil personal de atleta
-Route::get('/users/athlete_profile', [\App\Http\Controllers\AthleteController::class, 'vistaPerfil'])->name('perfil.atleta')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta"']);
+Route::get('/users/athlete_profile', [\App\Http\Controllers\AthleteController::class, 'vistaPerfil'])->name('perfil.atleta')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta","Fisioterapia","Musculacion"']);
 //guarda las modificaciones del perfil del atleta
 Route::put('users/athlete_profile', [App\Http\Controllers\AthleteController::class, 'guardaPerfil'])->name('saveProfile');
 //cambia foto de perfil
-Route::get('/users/update_photo', [\App\Http\Controllers\AthleteController::class, 'vistaSelectorFoto'])->name('changePhoto')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta"']);
+Route::get('/users/update_photo', [\App\Http\Controllers\AthleteController::class, 'vistaSelectorFoto'])->name('changePhoto')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta","Fisioterapia","Musculacion"']);
 //Guarda la foto de perfil seleccionada
 Route::post('/users/update_photo',  [App\Http\Controllers\AthleteController::class, 'guardaFoto'])->name('savePhoto');
 

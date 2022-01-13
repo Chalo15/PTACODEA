@@ -215,7 +215,7 @@ class AthleteController extends Controller
         $usuario->save();
         return redirect()->route('perfil.atleta')->with('status');
     }
-}
+
     public function index_athleteview(){
         $atletas = new Athlete;
         $atletas = Athlete::where("state", "=", 'a')->get(); 
