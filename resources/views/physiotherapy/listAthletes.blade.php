@@ -15,7 +15,7 @@
                                  <tbody>
                                     @foreach ($user as $athlete)
                                     <tr>
-                                        <td><a href= "{{ route ( 'appointment') }}">{{$athlete->name}}{{" "}}{{$athlete->lastname}}</a></td>                                       
+                                        <td><a href="{{ url ('physiotherapy/appointment',[$athlete->id]) }}">{{$athlete->name}}{{" "}}{{$athlete->lastname}}</a></td>                                       
                                     </tr>                                      
                                     @endforeach
                                 </tbody>

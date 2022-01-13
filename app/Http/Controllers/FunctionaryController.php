@@ -90,8 +90,12 @@ class FunctionaryController extends Controller
 
         return view('physiotherapy.listAthletes', compact('user'));
     }
-    function appointment(){
-        return view('physiotherapy.appointment'); 
+    function appointment($id){
+
+        $users = new User;
+        $users = User::where("id", "=", $id)->first(); 
+
+        return view('physiotherapy.appointment', compact('users')); 
     }
 
     function catalog(){

@@ -12,28 +12,37 @@
 
         <form class="form-horizontal row justify-content-center h5">
             @csrf
+            @foreach ($users as $user)
+            @endforeach
             
             <div class="form-group row">
-
+                
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Completo') }}</label>
-
+                
                 <div class="col-md-7">
-                    <input placeholder="Nombre" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$users->name}}{{" "}}{{$users->lastname}}" required autocomplete="name" autofocus readonly>
+                    
                     @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div>
             </div>
-
+            
             <div class="form-group row">
 
                 <label for="age" class="col-md-4 col-form-label text-md-right">{{ __('Edad') }}</label>
 
                 <div class="col-md-7">
-                    <input placeholder="Edad" type="number" pattern="[0-9]{2}" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
+                    
+                    <?php 
+                        $fch_actual  = new DateTime(date("Y-m-d"));
+                        $fch_nac = new DateTime($users->birthdate);
+                        $diferencia = $fch_actual->diff($fch_nac);
+                    ?>
+
+                    <input type="number" class="form-control @error('age') is-invalid @enderror" name="age" value="<?php echo $diferencia->y;?>" required autocomplete="age" autofocus readonly>
 
                     @error('age')
                         <span class="invalid-feedback" role="alert">
@@ -48,7 +57,7 @@
                 <label for="identification" class="col-md-4 col-form-label text-md-right">{{ __('Cédula') }}</label>
 
                 <div class="col-md-7">
-                    <input placeholder="Cédula" type="number" pattern="[0-9]{9}" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ old('identification') }}" required autocomplete="identification" autofocus>
+                    <input type="text" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ $users->identification }}" required autocomplete="identification" autofocus readonly>
 
                     @error('identification')
                         <span class="invalid-feedback" role="alert">
@@ -63,7 +72,7 @@
                 <label for="discipline" class="col-md-4 col-form-label text-md-right">{{ __('Disciplina') }}</label>
 
                 <div class="col-md-7">
-                    <input placeholder="Disciplina" type="text" class="form-control @error('discipline') is-invalid @enderror" name="discipline" value="{{ old('discipline') }}" required autocomplete="discipline" autofocus>
+                    <input type="text" class="form-control @error('discipline') is-invalid @enderror" name="discipline" value="{{ old('discipline') }}" required autocomplete="discipline" autofocus readonly>
 
                     @error('discipline')
                         <span class="invalid-feedback" role="alert">
@@ -78,7 +87,7 @@
                 <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
 
                 <div class="col-md-7">
-                    <input placeholder="Teléfono" type="number" pattern="[0-9]{8}" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                    <input type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $users->phone }}" required autocomplete="phone" autofocus readonly>
 
                     @error('telefono')
                         <span class="invalid-feedback" role="alert">
@@ -93,7 +102,9 @@
                 <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Sesión') }}</label>
 
                 <div class="col-md-7">
-                    <input placeholder="Fecha" type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ old('date') }}" required autocomplete="date" autofocus>
+                    <?php $fcha = date("Y-m-d");?>
+
+                    <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="<?php echo $fcha;?>" required autocomplete="date" autofocus readonly>
 
                     @error('date')
                         <span class="invalid-feedback" role="alert">

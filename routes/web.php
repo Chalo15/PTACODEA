@@ -81,7 +81,7 @@ Route::post('/users/athlete_extra_data',[App\Http\Controllers\ExtraDataControlle
 
 //Registrar datos de atleta por parte del fisioterapeuta
 Route::get('/physiotherapy/listAthletes',[App\Http\Controllers\FunctionaryController::class,'list'])->name('listAthletes')->middleware(['can:roles,"Fisioterapia"']);
-Route::get('/physiotherapy/appointment',[App\Http\Controllers\FunctionaryController::class,'appointment'])->name('appointment')->middleware(['can:roles,"Fisioterapia"']);
+Route::get('/physiotherapy/appointment/{id}',[App\Http\Controllers\FunctionaryController::class,'appointment'])->name('appointment')->middleware(['can:roles,"Fisioterapia"']);
 
 //Registrar datos de atleta por parte del encargado de musculacion
 Route::get('/musculation/catalogAthletes',[App\Http\Controllers\FunctionaryController::class,'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
