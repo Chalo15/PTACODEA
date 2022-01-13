@@ -147,7 +147,7 @@ class AthleteController extends Controller
        // $usuario= Auth::user();
         //$atletas = Athlete::where("user_id", "=", 3 )->get(); 
         //$users = $atletas->map->user->flatten();
-        Auth::logout();
+       // Auth::logout();
     return view('users.athlete_profile', ['user'=>$persona]);
     }
     public function guardaPerfil(Request $request){
@@ -184,5 +184,48 @@ class AthleteController extends Controller
         }
         $user->save();
     return redirect()->route('athlete_profile')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );
+    }
+
+    public function vistaSelectorFoto(){
+    return view('users.change_photo');
+    }
+
+    public function guardaFoto(Request $request){
+        $user=Auth::user()->identification;
+        $usuario= new User();
+        $usuario=User::where("identification", "=", $user)->first();
+
+        $request->validate([
+            'imagen'=>'required|image|mimes:jpeg,png,svg|max:1024'
+        ]);
+       // $url= $request->all();
+
+
+
+        if($request->hasFile("imagen")){
+
+            $img=$request->file('imagen');
+            $imgseleccionada="prf_".time().".".$img->guessExtension();
+            $url=public_path("storage/imagenes/".$imgseleccionada);
+
+            if($img->guessExtension()=="jpeg"||$img->guessExtension()=="png"||$img->guessExtension()=="svg"){
+                copy($img,$url);
+                $usuario->photo=$imgseleccionada;
+            }   
+        }
+
+
+
+        // if($img=$request->file('imagen')){
+        //     $ruta='storage/imagenes/';
+        //     $imgseleccionada=date('YmdHis').".".$img->getClientOriginalExtension();
+        //     $img->move($ruta, $imgseleccionada );
+        //     //$url['imagen']="$imgseleccionada";//posible duda
+        //     dd($imgseleccionada);
+            
+        // }
+        
+        $usuario->save();
+        return redirect()->route('perfil.atleta')->with('status');
     }
 }

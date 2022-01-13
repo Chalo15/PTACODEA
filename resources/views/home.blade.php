@@ -49,7 +49,7 @@
                     <div class="mi_perfil">
                         <h4 class="">Mi Perfil</h4>
                         <i class="d-block fas fa-user p-2"></i>
-                        <button class="btn btn-negro">Ingresar</button>
+                        <button onclick= "window.location='{{ route('perfil.atleta') }}'" class="btn btn-negro">Ingresar</button>
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@
                     <div class="mi_perfil">
                         <h4 class="">Mi Perfil</h4>
                         <i class="d-block fas fa-user p-2"></i>
-                        <button class="btn btn-negro">Ingresar</button>
+                        <button onclick= "window.location='{{ route('perfil.atleta') }}'" class="btn btn-negro">Ingresar</button>
                     </div>
                 </div>
                 <div class="col-12 col-sm-4 col-md-4 col-lg-4 text-center aligne-item-center">
@@ -131,7 +131,7 @@
                     <div class="mi_perfil">
                         <h4 class="">Mi Perfil</h4>
                         <i class="d-block fas fa-user-circle p-2"></i>
-                        <button onclick= "window.location='{{ route('datos_extra') }}'" class="btn btn-negro">Ingresar</button>
+                        <button onclick= "window.location='{{ route('perfil.atleta') }}'" class="btn btn-negro">Ingresar</button>
                     </div>
                 </div>
 

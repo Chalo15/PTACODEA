@@ -34,12 +34,25 @@ Route::get('/users/externalathletes', [App\Http\Controllers\ExternalAthleteContr
 //guardado de registro de atletas Externos
 Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteController::class, 'guardado'])->name('external_athletes.guardado');
 
+
+
+
+//Rutas enfocadas en el modulo de perfil de usuario////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //retorna vista de perfil personal de atleta
 Route::get('/users/athlete_profile', [\App\Http\Controllers\AthleteController::class, 'vistaPerfil'])->name('perfil.atleta')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta"']);
 //guarda las modificaciones del perfil del atleta
 Route::put('users/athlete_profile', [App\Http\Controllers\AthleteController::class, 'guardaPerfil'])->name('saveProfile');
+//cambia foto de perfil
+Route::get('/users/update_photo', [\App\Http\Controllers\AthleteController::class, 'vistaSelectorFoto'])->name('changePhoto')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta"']);
+//Guarda la foto de perfil seleccionada
+Route::post('/users/update_photo',  [App\Http\Controllers\AthleteController::class, 'guardaFoto'])->name('savePhoto');
+
+
+
 //retorna vista de menu principal de instructor
 Route::get('/coach/coach_interface', [App\Http\Controllers\CoachController::class, 'index'])->name('coach_interface.blade')->middleware(['can:roles,"Admin","Instructor"']);
+
 
 //retorno de vista de tabla de atletas por disciplina
 Route::get('/coach/registrar', [App\Http\Controllers\AthleteController::class, 'a_p_d'])->name('datosatletas')->middleware(['can:roles,"Admin","Funcionario","Instructor"']);
