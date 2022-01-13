@@ -11,7 +11,7 @@
 
                   
                         
-                      {{-- @foreach($user as $us)  --}}
+                     
                        
                         <form class="well form-horizontal" action="{{route('saveProfile')}} " method="post"  id="formulario_perfil" enctype="multipart/form-data">
                             
@@ -21,10 +21,13 @@
                             <!--foto de perfil-->
 
                             <x-row>
-                                <tr>
-                                    <img src="{{ asset('storage\imagenes\profile.png')}}"  width="60%">
+                                <div class="col-md-7">
 
-                                </tr>
+                                    <tr>
+                                        <img src="{{ asset('storage\imagenes\profile.png')}}"  width="25%">
+    
+                                    </tr>
+                                </div>
                             </x-row>
                             <br>
 
@@ -42,22 +45,58 @@
 
 
                             <x-row>
-                                <x-input name="nombre" placeholder="" label="Nombre"/> <!--duda -->  
+                                <div class="col-md-7">
+
+                                    <label >Nombre</label>
+                                    <input value="{{$persona->name}}" type="text" name="name" class="form-control form-control-sm ">
+                                    {{-- <input class="form-control" value="{{ $persona->name }}" placeholder="" type="text" name="name" class="form-control form-control-sm " > --}}
+                                    </div>
+                                {{-- <x-input value="{{$persona->name}}" name="nombre" placeholder="" label="Nombre"/>   --}}
                             </x-row>                                                    
 
                             <x-row>
-                                <x-input name="apellidos" placeholder="" label="Apellidos"/> <!--duda -->  
+                                <div class="col-md-7">
+                                    <label >Apellidos</label>
+                                    <input value="{{$persona->lastname}}" type="text" name="lastname" class="form-control form-control-sm ">
+                                </div>
+                                {{-- <input class="form-control" value="{{ $persona->lastname }}" placeholder="" type="text" name="apellidos" class="form-control form-control-sm " > --}}
+                                {{-- <x-input value="{{$persona->lastname}}" name="apellidos" placeholder="" label="Apellidos"/>   --}}
                             </x-row> 
                             
                             <x-row>
-                                <x-input name="correo" placeholder="" label="Correo"/> <!--duda -->  
+                                <div class="col-md-7">
+
+                                    <label >Correo</label>
+                                  
+                                    <input value="{{$persona->email}}" type="text" name="email" class="form-control form-control-sm ">
+                                </div>
+                                
+                                {{-- <input class="form-control" value="{{ $persona->email }}" placeholder="" type="text" name="correo" class="form-control form-control-sm " > --}}
+                                {{-- <x-input value="{{$persona->email}}" name="correo" placeholder="" label="Correo"/>   --}}
                             </x-row>  
                             <x-row>
-                                <x-input name="nacimiento" placeholder="" label="Fecha de nacimiento"/> <!--duda -->  
-                            </x-row>      
-                            <x-row>
-                                <x-input name="telefono" placeholder="" label="Teléfono"/> <!--duda -->  
-                            </x-row>    
+                                <div class="col-md-7">
+                                    
+                                    <label >Fecha de nacimiento</label>
+                                    <input value="{{$persona->birthdate}}" type="text" name="birthdate" class="form-control form-control-sm ">
+                                </div>
+                                {{-- <input class="form-control" value="{{ $persona->birthdate }}" placeholder="" type="text" name="nacimiento" class="form-control form-control-sm " > --}}
+                                {{-- <x-input value="{{$persona->birthdate}}" name="nacimiento" placeholder="" label="Fecha de nacimiento"/>   --}}
+                                </x-row> 
+                                
+                                <div class="form-group row">
+                                    <div class="col-md-8 offset-md-4">
+                                        <x-row>
+                                            <div class="col-md-7">
+                                            
+                                                <label >Teléfono</label>
+                                                <input value="{{$persona->phone}}" type="text" name="phone" class="form-control form-control-sm ">
+                                            </div>
+
+                                        {{-- <input class="form-control" value="{{ $persona->phone }}" placeholder="" type="text" name="telefono" class="form-control form-control-sm " > --}}
+                                        {{-- <x-input value="{{$persona->phone}}" name="telefono" placeholder="" label="Teléfono"/>   --}}
+                                         </x-row>    
+                                         
 
                             
 
@@ -73,18 +112,9 @@
                                 </div>
                             </div>
                             
-                           
-
-                                <!-- Formulario-->
-                            
-                            
 
                         </form> 
-                        {{-- @endforeach --}}
-                      
-                        
-            
-            
+
                  </div>
             </div>
         </div>

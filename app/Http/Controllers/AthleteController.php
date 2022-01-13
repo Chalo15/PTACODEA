@@ -141,14 +141,11 @@ class AthleteController extends Controller
         
 
 
-        $usuario = Auth::id();
-        $persona= User::where("identification", "=", 117490248);
-        //$users=$persona->map->user->flatten();
-       // $usuario= Auth::user();
-        //$atletas = Athlete::where("user_id", "=", 3 )->get(); 
-        //$users = $atletas->map->user->flatten();
-       // Auth::logout();
-    return view('users.athlete_profile', ['user'=>$persona]);
+        $usuario = Auth::user()->identification;
+        $persona= new User();
+        $persona=User::where("identification", "=", $usuario)->first();
+    
+       return view('users.athlete_profile', compact('persona'));
     }
     public function guardaPerfil(Request $request){
 
@@ -191,14 +188,13 @@ class AthleteController extends Controller
     }
 
     public function guardaFoto(Request $request){
+        $request->validate([
+            'imagen'=>'required|image|mimes:jpg,jpeg,png,svg|max:1024'
+        ]);
         $user=Auth::user()->identification;
         $usuario= new User();
         $usuario=User::where("identification", "=", $user)->first();
-
-        $request->validate([
-            'imagen'=>'required|image|mimes:jpeg,png,svg|max:1024'
-        ]);
-       // $url= $request->all();
+     
 
 
 
@@ -208,22 +204,12 @@ class AthleteController extends Controller
             $imgseleccionada="prf_".time().".".$img->guessExtension();
             $url=public_path("storage/imagenes/".$imgseleccionada);
 
-            if($img->guessExtension()=="jpeg"||$img->guessExtension()=="png"||$img->guessExtension()=="svg"){
+           
+            if($img->guessExtension()=="jpeg"||$img->guessExtension()=="png"||$img->guessExtension()=="svg"||$img->guessExtension()=="jpg"){
                 copy($img,$url);
                 $usuario->photo=$imgseleccionada;
             }   
         }
-
-
-
-        // if($img=$request->file('imagen')){
-        //     $ruta='storage/imagenes/';
-        //     $imgseleccionada=date('YmdHis').".".$img->getClientOriginalExtension();
-        //     $img->move($ruta, $imgseleccionada );
-        //     //$url['imagen']="$imgseleccionada";//posible duda
-        //     dd($imgseleccionada);
-            
-        // }
         
         $usuario->save();
         return redirect()->route('perfil.atleta')->with('status');
