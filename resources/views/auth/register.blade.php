@@ -107,32 +107,33 @@
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
-                            <div class="col-md-7">
-                                <input placeholder="Contraseña"  type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <div class="col-md-7">
+                                        <input placeholder="Contraseña"  type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
 
-                            <div class="col-md-7">
-                                <input placeholder="Confirmar Contraseña"  type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div class="col-md-7">
+                                    <input placeholder="Confirmar Contraseña"  type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                </div>
+
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-8 offset-md-4">
+                                <div class="col-8 col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-negro m-1">
                                         {{ __('Registrarse') }}
-
-                                <button onclick= "window.location='{{ url('users/externalathletes') }}'" class="btn btn-negro ml-auto m-1">
-                                    {{__('Registrarse como Atleta')}}
-
+                                    </button>
+                                    <button onclick= "window.location='{{ url('users/externalathletes') }}'" class="btn btn-negro">
+                                            {{__('Registrarse como Atleta')}}
                                     </button>
                                 </div>
                             </div>
