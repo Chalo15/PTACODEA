@@ -94,6 +94,14 @@ class FunctionaryController extends Controller
         return view('physiotherapy.appointment'); 
     }
 
+    function catalog(){
+        $athlete = new Athlete;
+        $athlete = Athlete::where("state", "=", 'a')->get(); 
+        $user = $athlete->map->user->flatten();
+
+        return view('musculation.catalogAthletes', compact('user'));
+    }
+
     function report(){
         return view('musculation.report');
     }
