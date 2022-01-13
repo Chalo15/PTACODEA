@@ -42,9 +42,9 @@ Route::get('/coach/registrar', [App\Http\Controllers\AthleteController::class, '
 //Vista de solicitudes pendientes
 Route::get('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'index'])->name('athlete_Res')->middleware(['can:roles,"Admin"']);
 //Elimina las solicitudes de atletas no deseados
-Route::delete('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'destroy'])->name('athlete_delete');
+Route::put('/users/athlete_request/{user}', [App\Http\Controllers\athlete_requestsController::class, 'destroy'])->name('athlete_delete');
 //Guarda los datos de las solicitudes de atletas aprovadas o rechazadas
-Route::post('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'acceptedAthlete'])->name('athlete_accepted');
+Route::put('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'acceptedAthlete'])->name('athlete_accepted');
 
 //retorna vista de fromulario de registro de datos de instructor
 Route::get('/users/instructor', [App\Http\Controllers\UsersController::class, 'vistaPracticas'])->name('practicas')->middleware(['can:roles,"Instructor","Admin"']);
@@ -71,7 +71,7 @@ Route::post('/users/register', [App\Http\Controllers\UsersController::class, 'gu
 Route::get('/users/register', [App\Http\Controllers\UsersController::class, 'index'])->name('register');
 
 //Vista para visualizar datos del atleta
-Route::get('/athletes/verdatos', [App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);
+Route::get('/athletes/verdatos/{athlete}', [App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);
 
 //Vista del formulario de agregar extra de usuarios
 Route::get('/users/athlete_extra_data', [App\Http\Controllers\ExtraDataController::class, 'datos_extra'])->name('datos_extra');
@@ -81,3 +81,11 @@ Route::post('/users/athlete_extra_data', [App\Http\Controllers\ExtraDataControll
 
 Route::get('/config/ckeditor', [App\Http\Controllers\SportController::class, 'index'])->name('vista.ckeditor')->middleware(['can:roles,"Admin","Instructor"']);
 Route::put('/config/ckeditor/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
+
+//Vista de Atletas Registrados
+Route::get('/athletes/viewathlete', [App\Http\Controllers\AthleteController::class, 'index_athleteview'])->name('athletesview')->middleware(['can:roles,"Admin"']);
+//Modificar datos de atleta
+//Ver datos específicos
+//Eliminar un atleta
+Route::put('/athletes/viewathlete/{athlete}', [App\Http\Controllers\AthleteController::class, 'athleteview_delete'])->name('athlete.delete');
+
