@@ -7,6 +7,7 @@ use App\Models\Functionary;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Athlete;
 
 class FunctionaryController extends Controller
 {
@@ -80,6 +81,36 @@ class FunctionaryController extends Controller
         $functionary->save();
     return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
 
+    }
+
+    function list(){
+        $athlete = new Athlete;
+        $athlete = Athlete::where("state", "=", 'a')->get(); 
+        $user = $athlete->map->user->flatten();
+
+        return view('physiotherapy.listAthletes', compact('user'));
+    }
+    function appointment($id){
+
+        $users = new User;
+        $users = User::where("id", "=", $id)->first(); 
+
+        return view('physiotherapy.appointment', compact('users')); 
+    }
+
+    function catalog(){
+        $athlete = new Athlete;
+        $athlete = Athlete::where("state", "=", 'a')->get(); 
+        $user = $athlete->map->user->flatten();
+
+        return view('musculation.catalogAthletes', compact('user'));
+    }
+
+    function report($id){
+        $users = new User;
+        $users = User::where("id", "=", $id)->first(); 
+
+        return view('musculation.report', compact('users'));
     }
 
 }

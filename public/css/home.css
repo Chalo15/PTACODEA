@@ -137,6 +137,12 @@
     height: 100%;
 }
 
+.listAthletes{
+    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-size:cover;
+    height: 100%;
+}
+
 .body_porfile {
     background-image: url(../img/Degradado.png);
     background-size:cover;
@@ -160,13 +166,9 @@
 }
 
 
-
-
 .seedata h1,h2,h3,h4,h5{
     color: white;
 }
-
-
 
 
 
@@ -391,6 +393,26 @@
     font-size: 750%
 }
 .Atleta .expediente .fa-id-card-alt{
+    color:white;
+    font-size: 750%
+}
+
+/*CSS de Fisioterapia*/
+.Fisioterapia .mi_perfil .fa-user-circle{
+    color:white;
+    font-size: 750%
+}
+.Fisioterapia .expediente .fa-id-card-alt{
+    color:white;
+    font-size: 750%
+}
+
+/*CSS de Musculacion*/
+.Musculacion .mi_perfil .fa-user-circle{
+    color:white;
+    font-size: 750%
+}
+.Musculacion .expediente .fa-id-card-alt{
     color:white;
     font-size: 750%
 }
