@@ -7,6 +7,7 @@ use App\Models\Functionary;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Athlete;
 
 class FunctionaryController extends Controller
 {
@@ -82,8 +83,15 @@ class FunctionaryController extends Controller
 
     }
 
+    function list(){
+        $athlete = new Athlete;
+        $athlete = Athlete::where("state", "=", 'a')->get(); 
+        $user = $athlete->map->user->flatten();
+
+        return view('physiotherapy.listAthletes', compact('user'));
+    }
     function appointment(){
-        return view('physiotherapy.appointment');
+        return view('physiotherapy.appointment'); 
     }
 
     function report(){
