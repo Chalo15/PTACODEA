@@ -68,15 +68,15 @@ class UsersController extends Controller
         return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */); //cambiar color
     }
 
-    function vistaPracticas()
+    function vistaPracticas($atleta)
     {
+
         $user = Auth::user()->id;
         $coach = new Coach();
         $coach = Coach::where("user_id", "=", $user)->first();
         $sport = $coach->sport;
-
-
-        return view('users.instructor', compact('sport'));
+        $athlete = $atleta;
+        return view('users.instructor', compact('sport'), compact('athlete'));
     }
 
     function guardarPractica(Request $request)

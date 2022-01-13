@@ -64,14 +64,14 @@ Route::delete('/users/athlete_request', [App\Http\Controllers\athlete_requestsCo
 Route::post('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'acceptedAthlete'])->name('athlete_accepted');
 
 //retorna vista de fromulario de registro de datos de instructor
-Route::get('/users/instructor', [App\Http\Controllers\UsersController::class, 'vistaPracticas'])->name('practicas')->middleware(['can:roles,"Instructor","Admin"']);
+
 //retorno de vista de datos extra
 Route::get('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'index'])->name('athletes_index')->middleware(['can:roles,"Admin","Instructor"']);
 //guardado de datos extra de datos de instructor
 Route::post('/users/athletes/datasession',  [App\Http\Controllers\SessionDataController::class, 'addDataSession'])->name('athletes.add');
 
 
-//guarda datos de entrenamiento diario
+Route::get('/users/instructor/{atleta}', [App\Http\Controllers\UsersController::class, 'vistaPracticas'])->name('practicas')->middleware(['can:roles,"Instructor","Admin"']);
 Route::post('/users/instructor', [App\Http\Controllers\UsersController::class, 'guardarPractica'])->name('instructor.practica');
 
 //Guarda los datos del nuevo funcionario
@@ -98,3 +98,7 @@ Route::post('/users/athlete_extra_data', [App\Http\Controllers\ExtraDataControll
 
 Route::get('/config/ckeditor', [App\Http\Controllers\SportController::class, 'index'])->name('vista.ckeditor')->middleware(['can:roles,"Admin","Instructor"']);
 Route::put('/config/ckeditor/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
+
+
+Route::get('/coach/select_athlete', [App\Http\Controllers\SportController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
+Route::post('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
