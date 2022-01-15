@@ -102,15 +102,15 @@ Route::put('/config/ckeditor/{sport}', [App\Http\Controllers\SportController::cl
 
 
 //Registrar datos de atleta por parte del fisioterapeuta
-Route::get('/physiotherapy/listAthletes',[App\Http\Controllers\FunctionaryController::class,'list'])->name('listAthletes')->middleware(['can:roles,"Fisioterapia"']);
-Route::get('/physiotherapy/appointment/{id}',[App\Http\Controllers\FunctionaryController::class,'appointment'])->name('appointment')->middleware(['can:roles,"Fisioterapia"']);
+Route::get('/physiotherapy/listAthletes', [App\Http\Controllers\FunctionaryController::class, 'list'])->name('listAthletes')->middleware(['can:roles,"Fisioterapia"']);
+Route::get('/physiotherapy/appointment/{id}', [App\Http\Controllers\FunctionaryController::class, 'appointment'])->name('appointment')->middleware(['can:roles,"Fisioterapia"']);
 
 //Registrar datos de atleta por parte del encargado de musculacion
-Route::get('/musculation/catalogAthletes',[App\Http\Controllers\FunctionaryController::class,'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
-Route::get('/musculation/report/{id}',[App\Http\Controllers\FunctionaryController::class,'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
+Route::get('/musculation/catalogAthletes', [App\Http\Controllers\FunctionaryController::class, 'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
+Route::get('/musculation/report/{id}', [App\Http\Controllers\FunctionaryController::class, 'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
 
 Route::get('/coach/select_athlete', [App\Http\Controllers\SportController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
-Route::post('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
+Route::put('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
 
 //Vista de Atletas Registrados
 Route::get('/athletes/viewathlete', [App\Http\Controllers\AthleteController::class, 'index_athleteview'])->name('athletesview')->middleware(['can:roles,"Admin"']);
@@ -118,5 +118,3 @@ Route::get('/athletes/viewathlete', [App\Http\Controllers\AthleteController::cla
 //Ver datos específicos
 //Eliminar un atleta
 Route::put('/athletes/viewathlete/{athlete}', [App\Http\Controllers\AthleteController::class, 'athleteview_delete'])->name('athlete.delete');
-
-
