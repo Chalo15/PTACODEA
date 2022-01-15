@@ -14,6 +14,8 @@
             @csrf
             @foreach ($users as $user)
             @endforeach
+
+
             
             <div class="form-group row">
                 
@@ -72,7 +74,7 @@
                 <label for="discipline" class="col-md-4 col-form-label text-md-right">{{ __('Disciplina') }}</label>
 
                 <div class="col-md-7">
-                    <input type="text" class="form-control @error('discipline') is-invalid @enderror" name="discipline" value="{{ old('discipline') }}" required autocomplete="discipline" autofocus readonly>
+                    <input type="text" class="form-control @error('discipline') is-invalid @enderror" name="discipline" value="{{ $sports->description }}" required autocomplete="discipline" autofocus readonly>
 
                     @error('discipline')
                         <span class="invalid-feedback" role="alert">
@@ -114,10 +116,30 @@
                 </div>
             </div>
 
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-6 col-lg-6 p-5 m-3">
+
+                        <textarea name="content" id="editor">
+                            
+                        </textarea>
+                        <p><input type="submit" value="Enviar" class="btn btn-negro ml-auto p-3 m-5"></p>
+
+                    </div>
+                </div>
+            </div>
         </form>
 
     </div>
 
 </body>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+        console.error(error);
+        });
+
 
 @endsection
