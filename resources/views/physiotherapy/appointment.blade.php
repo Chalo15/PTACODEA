@@ -21,7 +21,7 @@
             
             <div class="form-group row">
                 
-                <label for="name" class="col-md-1 col-form-label text-md-right text-light">{{ __('Atleta: ') }}</label>                
+                <label for="name" class="col-md-1 col-form-label text-md-right text-light">{{ __('Atleta ') }}</label>                
                 <div class="col-md-3">
                     <input type="text" class="form-control" name="name" value="{{$users->name}}{{" "}}{{$users->lastname}}" required autocomplete="name" autofocus readonly>            
                 </div>
@@ -41,16 +41,16 @@
 
 
   
-                <label for="identification" class="col-md-1 col-form-label text-md-right text-light">{{ __('Cédula') }}</label>
+                <label for="identification" class="col-md-1 col-form-label text-md-right text-light">{{ __('Cédula ') }}</label>
                 <div class="col-md-3">
                     <input type="text" class="form-control" name="identification" value="{{ $users->identification }}" required autocomplete="identification" autofocus readonly>
 
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row p-3">
 
-                <label for="discipline" class="col-md-1 col-form-label text-md-right text-light">{{ __('Disciplina') }}</label>
+                <label for="discipline" class="col-md-1 col-form-label text-md-right text-light">{{ __('Disciplina ') }}</label>
                 <div class="col-md-3">
                     <input type="text" class="form-control" name="discipline" value="{{ $sports->description }}" required autocomplete="discipline" autofocus readonly>
 
@@ -58,14 +58,14 @@
          
 
 
-                <label for="phone" class="col-md-1 col-form-label text-md-right text-light">{{ __('Teléfono') }}</label>
+                <label for="phone" class="col-md-1 col-form-label text-md-right text-light">{{ __('Teléfono ') }}</label>
                 <div class="col-md-3">
                     <input type="number" class="form-control" name="phone" value="{{ $users->phone }}" required autocomplete="phone" autofocus readonly>
 
                 </div>
      
 
-                <label for="date" class="col-md-1 col-form-label text-md-right text-light">{{ __('Fecha de Sesión') }}</label>
+                <label for="date" class="col-md-1 col-form-label text-md-right text-light">{{ __('Fecha Sesión ') }}</label>
                  <div class="col-md-3">
                     <?php $fcha = date("Y-m-d");?>
 
@@ -73,11 +73,13 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row justify-content-center p-5">
                 <textarea name="content" id="editor">   
                 </textarea>
-                <p><input type="submit" value="Enviar" class="btn btn-negro ml-auto p-3 m-5"></p>
-            </div>
+                <div class="col-md-12 text-center">
+                    <p><input type="submit" value="Enviar" class="btn btn-negro ml-auto p-3 m-5"></p>
+
+                </div>
             </div>
         </form>
     </div>
