@@ -30,7 +30,7 @@ class SportController extends Controller
     {
         $sport->ckeditor = $request->content;
         $sport->save();
-        return view('home');
+        return redirect()->route('home');
     }
 
 
