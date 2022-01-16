@@ -19,9 +19,9 @@
             
             <div class="form-group row">
                 
-                <label for="name" class="col-md-4 col-form-label text-md-right text-light">{{ __('Atleta: ') }}</label>
+                <label for="name" class="col-md-1 col-form-label text-md-right text-light">{{ __('Atleta: ') }}</label>
                 
-                <div class="col-md-7">
+                <div class="col-md-3">
                     <input type="text" class="form-control" name="name" value="{{$users->name}}{{" "}}{{$users->lastname}}" required autocomplete="name" autofocus readonly>
 
                 </div>
@@ -29,9 +29,9 @@
             
             <div class="form-group row">
 
-                <label for="age" class="col-md-4 col-form-label text-md-right text-light">{{ __('Edad') }}</label>
+                <label for="age" class="col-md-1 col-form-label text-md-right text-light">{{ __('Edad') }}</label>
 
-                <div class="col-md-7">
+                <div class="col-md-3">
                     
                     <?php 
                         $fch_actual  = new DateTime(date("Y-m-d"));
@@ -46,9 +46,9 @@
 
             <div class="form-group row">
 
-                <label for="identification" class="col-md-4 col-form-label text-md-right text-light">{{ __('Cédula') }}</label>
+                <label for="identification" class="col-md-1 col-form-label text-md-right text-light">{{ __('Cédula') }}</label>
 
-                <div class="col-md-7">
+                <div class="col-md-3">
                     <input type="text" class="form-control" name="identification" value="{{ $users->identification }}" required autocomplete="identification" autofocus readonly>
 
                 </div>
@@ -56,9 +56,9 @@
 
             <div class="form-group row">
 
-                <label for="discipline" class="col-md-4 col-form-label text-md-right text-light">{{ __('Disciplina') }}</label>
+                <label for="discipline" class="col-md-1 col-form-label text-md-right text-light">{{ __('Disciplina') }}</label>
 
-                <div class="col-md-7">
+                <div class="col-md-3">
                     <input type="text" class="form-control" name="discipline" value="{{ $sports->description }}" required autocomplete="discipline" autofocus readonly>
 
                 </div>
@@ -66,9 +66,9 @@
 
             <div class="form-group row">
 
-                <label for="phone" class="col-md-4 col-form-label text-md-right text-light">{{ __('Teléfono') }}</label>
+                <label for="phone" class="col-md-1 col-form-label text-md-right text-light">{{ __('Teléfono') }}</label>
 
-                <div class="col-md-7">
+                <div class="col-md-3">
                     <input type="number" class="form-control" name="phone" value="{{ $users->phone }}" required autocomplete="phone" autofocus readonly>
 
                 </div>
@@ -76,9 +76,9 @@
 
             <div class="form-group row">
 
-                <label for="date" class="col-md-4 col-form-label text-md-right text-light">{{ __('Fecha de Sesión') }}</label>
+                <label for="date" class="col-md-1 col-form-label text-md-right text-light">{{ __('Fecha de Sesión') }}</label>
 
-                <div class="col-md-7">
+                <div class="col-md-3">
                     <?php $fcha = date("Y-m-d");?>
 
                     <input type="date" class="form-control" name="date" value="<?php echo $fcha;?>" required autocomplete="date" autofocus readonly>
