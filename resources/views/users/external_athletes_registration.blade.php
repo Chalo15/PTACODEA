@@ -87,7 +87,7 @@
                             <!-- Sangre -->
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">Tipo de Sangre</label>
-                                <div class="col-md-3 selectContainer">
+                                <div class="col-md-5 selectContainer">
                                     <select name="sangre" placeholder="Tipo Sangre" class="form-control" type="text" value="{{ old('sangre') }}">
                                         <option value="0">Seleccione su Tipo de Sangre</option>
                                         <option value="A+">A+</option>
@@ -104,7 +104,7 @@
                             <!-- Provincia -->
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">Provincia de residencia</label>
-                                <div class="col-md-3 selectContainer">
+                                <div class="col-md-5 selectContainer">
                                     <select name="provincia" onchange="cambia()" placeholder="Provincia" class="seleccion form-control" type="text" value="{{ old('provincia') }}">
                                         <option value="0">Seleccione su Provincia</option>
                                         <option value="SanJose">San José</option>
@@ -121,9 +121,9 @@
                             <!-- Cantón -->
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">Cantón</label>
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <select class="seleccion form-control" name="canton">
-                                        <option value="-">Seleccione
+                                        <option value="-">Seleccione su Cantón</option>
                                     </select>
 
                                 </div>
