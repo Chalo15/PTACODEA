@@ -1,14 +1,5 @@
 <x-app-layout title="Crear Usuario">
 
-
-    {{-- <div x-data="{ open: false }">
-        <button @click="open = !open">Expand</button>
-
-        <span x-show="open">
-            Content...
-        </span>
-    </div> --}}
-
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('users.index')}}" class="btn btn-success">Atrás</a>
