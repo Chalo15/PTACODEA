@@ -29,7 +29,7 @@
 
                                 <textarea name="content" id="editor">
 
-                            </textarea>
+                                </textarea>
                                 <br>
                                 <p><input type="submit" value="Enviar" class="btn btn-negro ml-auto m-1"></p>
 
@@ -44,21 +44,4 @@
 
 
 </body>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-
-            removePlugins: ['Heading', 'Link', 'InsertImage'],
-
-            toolbar: ['bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote']
-
-        })
-
-        .catch(error => {
-
-            console.log(error);
-
-        });
-
-</script>
 @endsection

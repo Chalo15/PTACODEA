@@ -40,7 +40,9 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 //     forceTLS: true
 // });
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-ClassicEditor.create(document.querySelector("#editor"))
+ClassicEditor.create(document.querySelector("#editor"), {
+    removePlugins: ["EasyImage", "ImageUpload", "MediaEmbed"]
+})
     .then(editor => {
         console.log(editor);
     })
