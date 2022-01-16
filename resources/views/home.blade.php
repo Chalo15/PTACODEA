@@ -66,6 +66,13 @@
                         </div>
                     </div>
 
+                    <div class="col-12 col-sm-2 col-md-2 col-lg-2 text-center aligne-item-center">
+                        <div class="Registrar_funcionario">
+                            <h4>Atletas</h4>
+                            <a href="{{ route('athletes.index') }}" class="btn btn-negro">Acceder</a>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>

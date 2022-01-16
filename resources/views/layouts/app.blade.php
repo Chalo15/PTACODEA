@@ -74,7 +74,7 @@
         <main class="container my-5">
             @yield('content')
 
-            {{ $slot }}
+            {{-- {{ $slot }} --}}
         </main>
 
     </div>

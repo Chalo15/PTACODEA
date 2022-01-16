@@ -1,54 +1,94 @@
-@extends('layouts.app')
-
-@section('content')
-<body class="athlete_request">
-    
-
-    <div class="container-fluid">
-        <h1 class = "text-center">Atletas Registrados en el Sistema</h1>
-        <hr>
-        <div class="table-responsive card-body">
-            <table border="2" class="table align-middle">
-                <tr>
-                    <td scope="col">Identificación</td>
-                    <td scope="col">Nombre</td>
-                    <td scope="col">Apellidos</td>
-                    <td scope="col">Telefono</td>
-                    <td scope="col">Id Disciplina</td> 
-                    <td scope="col">Acción</td>
-                </tr>
-            </thead>
-                
-                <tbody>
-                @foreach ($users as $user)
-                @foreach ($atletas as $atleta)         
-                    </tr>        
-                    <td scope="col">{{ $user->identification }}</td>
-                    <td scope="col">{{ $user->name }}</td>
-                    <td scope="col">{{ $user->lastname }}</td>
-                    <td scope="col">{{ $user->phone }}</td>
-                    <td scope="col">{{ $atleta->sport_id }}</td>
-                    <td>
-                        <div class="justify-content-center text-center">
-                            <form class="d-inline" action = "{{ route('datos', $atleta) }}" method = "GET">
-                                @csrf
-                                <button class="d-inline btn btn-negro" type ="submit">Ver Datos</button>
-                            </form> 
-                            
-                            <form class="d-inline " action="{{ route('athlete.delete', $atleta) }}" method = "POST">
-                                @csrf
-                                @method('PUT')
-                                <button class="d-inline btn btn-negro" type ="submit">Eliminar</button>
-                            </form>
-                        </div>
-                    </td>
-                    </tr>
-                @endforeach 
-                @endforeach
-                </tbody>         
-            </table>
+<x-app-layout title="Atletas">
+    <div class="row">
+        <div class="col mb-3">
+            <a href="{{ route('home') }}" class="btn btn-success">Atrás</a>
         </div>
     </div>
-    
-</body>
-@endsection
+
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    Atletas
+                    <a href="{{ route('athletes.create') }}" class="btn btn-success">
+                        Nuevo
+                    </a>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <x-table>
+                                <x-slot name="head">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Identificación</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Telefono</th>
+                                        <th>Disciplina</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </x-slot>
+
+                                <x-slot name="body">
+                                    @foreach ($athletes as $athlete)
+                                    <tr>
+                                        <td>{{ $athlete->id }}</td>
+                                        <td>{{ $athlete->user->identification }}</td>
+                                        <td>{{ $athlete->user->name . " " . $athlete->user->lastname }}</td>
+                                        <td>{{ $athlete->user->phone }}</td>
+                                        <td>{{ $athlete->sport->description }}</td>
+                                        <td width="100px" class="text-center">
+
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    <a class="dropdown-item" href="{{ route('athletes.show', $athlete->id) }}">
+                                                        <i class="fas fa-info-circle"></i> &nbsp;
+                                                        Información
+                                                    </a>
+
+                                                    <a class="dropdown-item" href="{{ route('athletes.edit', $athlete->id) }}">
+                                                        <i class="fas fa-edit"></i> &nbsp;
+                                                        Editar
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </x-slot>
+
+                                <x-slot name="foot">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Identificación</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Telefono</th>
+                                        <th>Disciplina</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </x-slot>
+                            </x-table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col d-flex justify-content-end">
+                                    {{ $athletes->links() }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</x-app-layout>

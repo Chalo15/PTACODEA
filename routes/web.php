@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AthleteController;
+use App\Http\Controllers\AthletesController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportsController;
@@ -72,6 +74,19 @@ Route::prefix('sports')->group(function () {
     Route::get('{sport}/edit', [SportsController::class, 'edit'])->name('sports.edit');
     Route::put('{sport}', [SportsController::class, 'update'])->name('sports.update');
 });
+
+/**
+ * Rutas de Atletas
+ */
+Route::prefix('athletes')->group(function () {
+    Route::get('', [AthletesController::class, 'index'])->name('athletes.index');
+    Route::get('create', [AthletesController::class, 'create'])->name('athletes.create');
+    Route::post('', [AthletesController::class, 'store'])->name('athletes.store');
+    Route::get('{athlete}', [AthletesController::class, 'show'])->name('athletes.show');
+    Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
+    Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
+});
+
 
 
 //Rutas enfocadas en el modulo de perfil de usuario////////////////////////////////////////////////////////////////////////////////////////////////////
