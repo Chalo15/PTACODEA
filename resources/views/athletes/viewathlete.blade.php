@@ -5,7 +5,7 @@
     
 
     <div class="container-fluid">
-        <h1 class = "text-center">Solicitudes de Registro de Atletas</h1>
+        <h1 class = "text-center">Atletas Registrados en el Sistema</h1>
         <hr>
         <div class="table-responsive card-body">
             <table border="2" class="table align-middle">
@@ -20,29 +20,31 @@
             </thead>
                 
                 <tbody>
-                @foreach ($users as $user)            
+                @foreach ($users as $user)
+                @foreach ($atletas as $atleta)         
                     </tr>        
                     <td scope="col">{{ $user->identification }}</td>
                     <td scope="col">{{ $user->name }}</td>
                     <td scope="col">{{ $user->lastname }}</td>
                     <td scope="col">{{ $user->phone }}</td>
-                    <td scope="col">{{ $user->sport_id }}</td>
+                    <td scope="col">{{ $atleta->sport_id }}</td>
                     <td>
                         <div class="justify-content-center text-center">
-                            <form class="d-inline" action = "{{ route('athlete_accepted', $user) }}" method = "POST">
+                            <form class="d-inline" action = "{{ route('datos', $atleta) }}" method = "GET">
+                                @csrf
+                                <button class="d-inline btn btn-negro" type ="submit">Ver Datos</button>
+                            </form> 
+                            
+                            <form class="d-inline " action="{{ route('athlete.delete', $atleta) }}" method = "POST">
                                 @csrf
                                 @method('PUT')
-                                <button class="d-inline btn btn-negro" type ="submit">Aceptar</button>
-                            </form>   
-                            <form class="d-inline " action="{{ route('athlete_delete', $user) }}" method = "POST">
-                                @csrf
-                                @method('PUT')
-                                <button class="d-inline btn btn-negro" type ="submit">Denegar</button>
+                                <button class="d-inline btn btn-negro" type ="submit">Eliminar</button>
                             </form>
                         </div>
                     </td>
                     </tr>
                 @endforeach 
+                @endforeach
                 </tbody>         
             </table>
         </div>
@@ -50,5 +52,3 @@
     
 </body>
 @endsection
-
-

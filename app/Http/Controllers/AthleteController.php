@@ -58,10 +58,10 @@ class AthleteController extends Controller
         ]);
     }
 
-    function vistaDatos(Request $id){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
-        $id = 1; 
+    function vistaDatos(Athlete $request){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
+        $id = $request->user_id;
         $atleta = new Athlete;
-        $atleta = Athlete::where("user_id", "=", 4)->get(); 
+        $atleta = Athlete::where("user_id", "=", $id)->get(); 
         $user = $atleta->map->user->flatten();
         return view('athletes.seedata', ['user'=>$user], ['atleta'=>$atleta]);
     }
@@ -183,6 +183,7 @@ class AthleteController extends Controller
     return redirect()->route('athlete_profile')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );
     }
 
+
     public function vistaSelectorFoto(){
     return view('users.change_photo');
     }
@@ -214,4 +215,22 @@ class AthleteController extends Controller
         $usuario->save();
         return redirect()->route('perfil.atleta')->with('status');
     }
+
+    public function index_athleteview(){
+        $atletas = new Athlete;
+        $atletas = Athlete::where("state", "=", 'a')->get(); 
+        $users = $atletas->map->user->flatten();
+        return view('athletes.viewathlete', ['users'=>$users], ['atletas' =>$atletas]);        
+    }
+    public function athleteview_modify(Request $request){
+
+    }
+    public function athleteview_delete(Athlete $atleta){
+
+        $atleta->state = 'n';
+        $atleta->save();
+        
+    }
 }
+
+

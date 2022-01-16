@@ -6,7 +6,7 @@
     
     <div class="container">
 
-        <div class="row justify-content-center">
+        <div class="py-3 row justify-content-center">
 
             <div class="col-md-8">
                 <div class="card">
@@ -27,7 +27,7 @@
                             <div class="form-group">
 
                                 <div class="col-md-12 col-12 justify-content-center text-center">
-                                    <img src="{{ asset('img/Degradado.png')}}"  width="50%">
+                                    <img src="{{ asset('storage/imagenes/profile.png')}}"  width="50%">
                                 </div>
 
                             </div>
