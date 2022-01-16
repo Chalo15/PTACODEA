@@ -1,5 +1,14 @@
 <x-app-layout title="Crear Usuario">
 
+
+    {{-- <div x-data="{ open: false }">
+        <button @click="open = !open">Expand</button>
+
+        <span x-show="open">
+            Content...
+        </span>
+    </div> --}}
+
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('users.index')}}" class="btn btn-success">Atrás</a>
@@ -11,123 +20,139 @@
             <x-card title="Crear Usuario" color="primary">
 
                 <x-slot name="body">
-                    <form class="well form-horizontal" action="{{route('funcionarios.guardarFuncionario')}} " method="post" id="formulario_registro" enctype="multipart/form-data">
-                        @csrf
 
-                        <!--Nombre-->
-                        <x-row>
-                            <x-input name="nombre" placeholder="Nombre" label="Nombre" />
-                        </x-row>
+                    <div x-data="{ role: {{ old('tipo') ?? '1' }} }">
+                        <form class="well form-horizontal" action="{{route('funcionarios.guardarFuncionario')}} " method="post" id="formulario_registro" enctype="multipart/form-data">
+                            @csrf
 
-                        <!--Apellidos-->
-                        <x-row>
-                            <x-input name="apellidos" placeholder="Apellidos" label="Apellidos" />
-                        </x-row>
+                            <!--Nombre-->
+                            <x-row>
+                                <x-input name="nombre" placeholder="Nombre" label="Nombre" />
+                            </x-row>
 
-                        <!--Cedula--->
-                        <x-row>
-                            <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cedula" type="number" />
-                        </x-row>
+                            <!--Apellidos-->
+                            <x-row>
+                                <x-input name="apellidos" placeholder="Apellidos" label="Apellidos" />
+                            </x-row>
 
-                        <!--Genero-->
-                        <x-row>
-                            <label class="col-md-4 col-form-label text-md-right">Género</label>
-                            <div class="col-md-7">
-                                <div class="checkbox"><label><input type="radio" name="genero" value="f" /> Femenino</label></div>
-                                <div class="checkbox"><label><input type="radio" name="genero" value="m" /> Masculino</label></div>
-                                <div class="checkbox"><label><input type="radio" name="genero" value="n" /> Otro</label></div>
-                            </div>
-                        </x-row>
+                            <!--Cedula--->
+                            <x-row>
+                                <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cedula" type="number" />
+                            </x-row>
 
-                        <!--Password-->
-                        <x-row>
-                            <x-input name="password" placeholder="Contraseña" label="Contraseña" type="password" />
-                        </x-row>
+                            <!--Genero-->
+                            <x-row>
+                                <label class="col-md-4 col-form-label text-md-right">Género</label>
+                                <div class="col-md-7">
+                                    <div class="checkbox"><label><input type="radio" name="genero" value="f" /> Femenino</label></div>
+                                    <div class="checkbox"><label><input type="radio" name="genero" value="m" /> Masculino</label></div>
+                                    <div class="checkbox"><label><input type="radio" name="genero" value="n" /> Otro</label></div>
+                                </div>
+                            </x-row>
 
-                        <!-- Comfirmar password-->
-                        <x-row>
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
-                            <div class="col-md-7">
-                                <input placeholder="Confirmar Contraseña" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </x-row>
-                        <!--Rol del Funcionario-->
-                        <x-row>
-                            <label class="col-md-4 col-form-label text-md-right ">Permisos del Funcionario</label>
-                            <div class="col-md-5">
-                                <select name="tipo" class="form-control selectpicker" value="{{ old('tipo') }}">
-                                    @foreach ($roles as $role)
-                                    <option value="{{$role->id}}">
-                                        {{$role->description}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <!--Password-->
+                            <x-row>
+                                <x-input name="password" placeholder="Contraseña" label="Contraseña" type="password" />
+                            </x-row>
 
-                        </x-row>
+                            <!-- Comfirmar password-->
+                            <x-row>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
+                                <div class="col-md-7">
+                                    <input placeholder="Confirmar Contraseña" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </x-row>
 
-                        <!--Telefono de habitacion-->
-                        <x-row>
-                            <x-input name="teleHabitacion" placeholder="Teléfono de habitación Formato 8 Digitos" label="Tel. Habitacion" type="number" />
-                        </x-row>
+                            <!--Rol del Funcionario-->
+                            <x-row>
+                                <label class="col-md-4 col-form-label text-md-right ">Permisos del Funcionario</label>
+                                <div class="col-md-5">
+                                    <select name="tipo" class="form-control selectpicker" value="{{ old('tipo') }}" x-model="role">
+                                        @foreach ($roles as $role)
+                                        <option value="{{$role->id}}">
+                                            {{$role->description}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                        <!--Correo -->
-                        <x-row>
-                            <x-input name="correo" placeholder="Correo" label="Correo" type="email" />
-                        </x-row>
+                            </x-row>
 
-                        <!--Telefono Celular -->
-                        <x-row>
-                            <x-input name="telCelular" placeholder="Telefono Celular Formato 8 Digitos" label="Tel. Celular" type="number" />
-                        </x-row>
+                            <span x-show="role == 1">
+                                <input type="text" id="pepe">
+                                <input type="text">
+                                <input type="text">
+                                <input type="text">
+                                <input type="text">
+                                <input type="text">
+                                <input type="text">
+                                <input type="text">
+                            </span>
 
-                        <!--Direccion (text-area) -->
-                        <x-row>
-                            <label class="col-md-4 col-sm-12 col-form-label text-md-right">Dirección exacta</label>
-                            <div class="col-md-7 col-sm-12">
-                                <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" style="width:100%; height:100px;" value="{{ old('direccion') }}"></textarea>
-                            </div>
-                        </x-row>
+                            <!--Telefono de habitacion-->
+                            <x-row>
+                                <x-input name="teleHabitacion" placeholder="Teléfono de habitación Formato 8 Digitos" label="Tel. Habitacion" type="number" />
+                            </x-row>
 
-                        <!--Años de experiencia -->
-                        <x-row>
-                            <x-input name="experiencia" placeholder="Años de experiencia" label="Años de experiencia" type="number" />
-                        </x-row>
+                            <!--Correo -->
+                            <x-row>
+                                <x-input name="correo" placeholder="Correo" label="Correo" type="email" />
+                            </x-row>
 
-                        <!--Numero de contrato -->
-                        <x-row>
-                            <x-input name="numContrato" placeholder="Numero de contrato" label="Numero de Contrato" type="number" />
-                        </x-row>
+                            <!--Telefono Celular -->
+                            <x-row>
+                                <x-input name="telCelular" placeholder="Telefono Celular Formato 8 Digitos" label="Tel. Celular" type="number" />
+                            </x-row>
 
-                        <!--Periodo de ligamen con la institucion (meses de contrato) -->
-                        <x-row>
-                            <x-input name="periodoContrato" placeholder="Periodo de ligamen con la institución" type="number" label="Periodo" />
-                        </x-row>
+                            <!--Direccion (text-area) -->
+                            <x-row>
+                                <label class="col-md-4 col-sm-12 col-form-label text-md-right">Dirección exacta</label>
+                                <div class="col-md-7 col-sm-12">
+                                    <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" style="width:100%; height:100px;" value="{{ old('direccion') }}"></textarea>
+                                </div>
+                            </x-row>
 
-                        <!--Fotocopia de la cedula (boton para adjuntar pdf) -->
-                        <!--Insercion de pdfs -->
-                        <div class="card">
-                            <p class="text-center">En esta seccion debe adjuntar la fotocopia de su cedula en forma de pdf</p>
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                                        <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value="{{ old('archivo') }}">
-                                        <small id="pfd" class="offset-md-1 text-center text-muted">
-                                            En esta sección introduzca el archivo pdf solicitado.
-                                        </small>
+                            <!--Años de experiencia -->
+                            <x-row>
+                                <x-input name="experiencia" placeholder="Años de experiencia" label="Años de experiencia" type="number" />
+                            </x-row>
+
+                            <!--Numero de contrato -->
+                            <x-row>
+                                <x-input name="numContrato" placeholder="Numero de contrato" label="Numero de Contrato" type="number" />
+                            </x-row>
+
+                            <!--Periodo de ligamen con la institucion (meses de contrato) -->
+                            <x-row>
+                                <x-input name="periodoContrato" placeholder="Periodo de ligamen con la institución" type="number" label="Periodo" />
+                            </x-row>
+
+                            <!--Fotocopia de la cedula (boton para adjuntar pdf) -->
+                            <!--Insercion de pdfs -->
+                            <div class="card">
+                                <p class="text-center">En esta seccion debe adjuntar la fotocopia de su cedula en forma de pdf</p>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
+                                            <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value="{{ old('archivo') }}">
+                                            <small id="pfd" class="offset-md-1 text-center text-muted">
+                                                En esta sección introduzca el archivo pdf solicitado.
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!--Boton para registrar funcionario -->
-                        <x-row>
-                            <div class="offset-md-4 col-md-6 p-2">
-                                <button type="submit" class="btn btn-negro">Registrar</button>
-                            </div>
-                        </x-row>
+                            <!--Boton para registrar funcionario -->
+                            <x-row>
+                                <div class="offset-md-4 col-md-6 p-2">
+                                    <button type="submit" class="btn btn-negro">Registrar</button>
+                                </div>
+                            </x-row>
 
-                    </form>
+                        </form>
+                    </div>
+
                 </x-slot>
 
             </x-card>

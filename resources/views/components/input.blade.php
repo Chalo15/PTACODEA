@@ -1,11 +1,12 @@
-@props(['name', 'placeholder','label', 'size' => 'sm', 'type'=> 'text', 'icon' => null])<!--ver si es necesario el icon-->
+@props(['name', 'type'=> 'text'])
 
-<label class="col-md-4 col-form-label text-md-right" for="{{ $name }}">{{ $label }}</label>
-<div class="form-controller col-md-7">
-<input class="form-control" value="{{ old($name) }}" placeholder="{{$placeholder}}" type="{{ $type }}" name="{{ $name }}" class="form-control form-control-{{ $size }} {{ $errors->has($name) ? 'is-invalid' : '' }}" id="validationServer03" aria-describedby="validationServer03Feedback">
+@php
+$invalid = $errors->has($name) ? 'is-invalid' : '';
+@endphp
+
+<div class="col">
+    <input type="{{ $type }}" name="{{ $name }}" {{ $attributes->merge(['class' => "form-control $invalid"]) }}>
+    @error($name)
+    <div class="invalid-feedback">{{ ucfirst($message) }}</div>
+    @enderror
 </div>
-@error($name)
-<div id="validationServer03Feedback" class="invalid-feedback">
-    {{ $message }}
-</div>
-@enderror

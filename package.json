@@ -28,6 +28,7 @@
         "@ckeditor/ckeditor5-build-classic": "^31.0.0",
         "@ckeditor/ckeditor5-build-inline": "^31.1.0",
         "@ckeditor/ckeditor5-ui": "^31.1.0",
-        "@fortawesome/fontawesome-free": "^5.15.4"
+        "@fortawesome/fontawesome-free": "^5.15.4",
+        "alpinejs": "^3.8.1"
     }
 }

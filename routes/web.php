@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\AthletesController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportsController;
 use App\Http\Controllers\UsersController;
 use App\Models\Athlete;
+use App\Models\Sport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +46,10 @@ Route::get('/users/externalathletes', [App\Http\Controllers\ExternalAthleteContr
 //guardado de registro de atletas Externos
 Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteController::class, 'guardado'])->name('external_athletes.guardado');
 
+Route::get('register', function () {
+    $sports = Sport::all();
+    return view('auth.register', compact('sports'));
+});
 
 /**
  * Rutas de Usuarios

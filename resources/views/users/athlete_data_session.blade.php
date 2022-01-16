@@ -162,3 +162,12 @@
     </div>
 </body>
 @endsection
+
+
+// Training Session
+// Musculation Session
+// Physio Session
+
+Musculars
+Physios
+Trainings
