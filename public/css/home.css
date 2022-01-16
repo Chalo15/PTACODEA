@@ -1,24 +1,43 @@
 /*Margenes y padding en 0%*/
-body{
-    margin: 0%;
-    padding: 0%;
+
+.logo_codea{
+    background-color: white;
+    
 }
 
-
-
 .bodyHomePaige{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
 
+.bodyLogin{
+    background-image: url(../img/Degradado.png);
+    background-size:cover;
+    height: 100%;
+
+}
+
+.bodyLogin h1{
+    color: black;
+}
+.bodyLogin h2{
+    color: black;
+}
+.bodyLogin h3{
+    color: black;
+}
+.bodyLogin h4{
+    color: black;
+}
+
 .athlete_extra_data{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
 .athlete_data_session{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
@@ -27,7 +46,16 @@ body{
     color: black;
 }
 
-.athlete_data_session h1,h2,h3,h4,h5{
+.athlete_data_session h2{
+    color: black;
+}
+.athlete_data_session h3{
+    color: black;
+}
+.athlete_data_session h4{
+    color: black;
+}
+.athlete_data_session h5{
     color: black;
 }
 
@@ -37,7 +65,7 @@ body{
 }
 
 .athlete_request{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
     
@@ -52,7 +80,17 @@ body{
     color: black;
 }
 
-.athlete_request h1,h2,h3,h4,h5{
+.athlete_request h1{
+    color: white;
+}
+
+.athlete_request h2{
+    color: white;
+}
+.athlete_request h3{
+    color: white;
+}
+.athlete_request h4{
     color: white;
 }
 
@@ -61,17 +99,78 @@ body{
 }
 
 .athletes{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
+
 }
+.athletes h1{
+    color: black;
+}
+.athletes h2{
+    color: black;
+}
+.athletes h3{
+    color: black;
+}
+.athletes h4{
+    color: black;
+}
+.athletes h5{
+    color: black;
+}
+
 .funcionary{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
+
+.booking_form_body{
+    background-image: url(../img/Degradado.png);
+    background-size:cover;
+    height: 100%;
+}
+.booking_form_body h1{
+    color: black;
+}
+.booking_form_body h2{
+    color: black;
+}
+.booking_form_body h3{
+    color: black;
+}
+.booking_form_body h4{
+    color: black;
+}
+.booking_form_body h5{
+    color: black;
+}
+
+.change_photo{
+    background-image: url(../img/Degradado.png);
+    background-size:cover;
+    height: 100%;
+}
+.change_photo h1{
+    color: black;
+}
+.change_photo h2{
+    color: black;
+}
+.change_photo h3{
+    color: black;
+}
+.change_photo h4{
+    color: black;
+}
+.change_photo h5{
+    color: black;
+}
+
+
 .seedata{
-    background-image: url("https://photy.org/photos/red-black-lines-photy.org.jpg");
+    background-image: url(../img/Degradado.png);
     background-size:cover;
     height: 100%;
 }
@@ -82,11 +181,32 @@ body{
     height: 100%;
 }
 
-.seedata h1,h2,h3,h4,h5{
-    color: white;
+.body_porfile {
+    background-image: url(../img/Degradado.png);
+    background-size:cover;
+    height: 100%;
+}
+
+.body_porfile h1{
+    color: black;
+}
+.body_porfile h2{
+    color: black;
+}
+.body_porfile h3{
+    color: black;
+}
+.body_porfile h4{
+    color: black;
+}
+.body_porfile h5{
+    color: black;
 }
 
 
+.seedata h1,h2,h3,h4,h5{
+    color: white;
+}
 
 
 
@@ -215,8 +335,6 @@ body{
     font-size: 750%
 }
 
-
-
 .Registrar_funcionario .fa-swimmer{
     color:white;
     font-size: 750%
@@ -230,6 +348,9 @@ body{
     color:white;
     font-size: 750%
 }
+
+
+
 
 
 /*Instructor*/
@@ -262,7 +383,31 @@ body{
 }
 
 
+/*Formulario ATLETA*/
+
+.boton_datos{
+    color: black;
+    border: none;
+}
+.boton_datos:hover{
+    color: black;
+    border: none;
+}
+.boton_datos:focus{
+    border-color: white;
+    box-shadow: none;
+}
+.boton_datos:active{
+    border-color: white;
+    border: none;
+    box-shadow: none;
+}
+
+
+
 /*Atleta*/
+
+
 
 .Atleta h1{
     color: white;
@@ -326,6 +471,9 @@ body{
 
 
 /*App*/
+.logo_codea{
+    background-color: white;
+}
 .user-item{
     color: var(--blanco);
 }
@@ -338,10 +486,14 @@ body{
 
 /*--LOGIN--*/
 
+
+
 .usuario .fa-user{
     font-size: 10vh;
     color: var(--negro);
 }
+
+
 .form-container{
     border:solid 1px var(--negro);
     padding: 50px 60px;
@@ -358,6 +510,8 @@ body{
 }
 
 
+
+
 /*Cambio de color de un elemento a dentro del login*/
 .form-group a{
     color: var(--blanco);
@@ -366,4 +520,6 @@ body{
     color: var(--blanco);
 } 
 
+
+/*Formulario Reserva de Instalaciones*/
 

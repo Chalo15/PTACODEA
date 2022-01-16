@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card my-3">
 
                 <div class="text-center card-header">
                     <h3 class="text-dark">Verificacion de Usuario</h3>
@@ -27,8 +28,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Usuario') }}</label>
 
                             <div class="col-md-7">
-                                <input placeholder="Usuario" id="email" type="number" class="form-control @error('email') is-invalid @enderror" name="identification" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                                <input placeholder="Usuario" id="email" type="number" class="usuario_login form-control @error('email') is-invalid @enderror" name="identification" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -66,11 +66,11 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-negro">
-                                    {{ __('Iniciar') }}
+                                    {{ __('Iniciar Sesion') }}
                                 </button>
-                                @if (Route::has('password.request'))
-
-                                <!--<a class="forgot-password btn btn-negro" href="{{ route('password.request') }}">
+                                <a href="{{ route('register') }}" type="button" class="btn btn-negro">{{ __('Registrarse') }}</a>
+                                <!--@if (Route::has('password.request'))
+                                <a class="forgot-password btn btn-negro" href="{{ route('password.request') }}">
                                     {{ __('Olvidé mi contraseña') }}
                                 </a>-->
 

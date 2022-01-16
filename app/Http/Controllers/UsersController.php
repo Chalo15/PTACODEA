@@ -8,7 +8,11 @@ use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Athlete;
+use App\Models\Coach;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Collection;
 
 class UsersController extends Controller
 {
@@ -37,12 +41,12 @@ class UsersController extends Controller
         $User = User::create([
             'role_id' => 7,
             'name' => $request->name,
-            'lastname'=>$request->lastname,
-            'identification'=>$request->identification,
-            'password'=>Hash::make($request->password),
-            'gender'=>$request->genero,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
+            'lastname' => $request->lastname,
+            'identification' => $request->identification,
+            'password' => Hash::make($request->password),
+            'gender' => $request->genero,
+            'phone' => $request->phone,
+            'email' => $request->email,
 
         ]);
         /*
@@ -64,14 +68,19 @@ class UsersController extends Controller
         return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */); //cambiar color
     }
 
-    function vistaPracticas()
+    function vistaPracticas($atleta)
     {
-        return view('users.instructor');
+
+        $user = Auth::user()->id;
+        $coach = new Coach();
+        $coach = Coach::where("user_id", "=", $user)->first();
+        $sport = $coach->sport;
+        $athlete = $atleta;
+        return view('users.instructor', compact('sport', 'athelete'));
     }
 
     function guardarPractica(Request $request)
     {
-        
     }
     function vistaPracticaExtra()
     {

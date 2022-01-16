@@ -27,6 +27,15 @@ class AthleteController extends Controller
         
     }
 
+    function Reserva_Form(){
+
+        return view('Reservations.booking_form');
+    }
+    
+
+
+
+
     function a_p_d(){
         /*$data = User::select('users.name', 'users.lastname')
                 ->join('athletes', 'users.id', '=', 'athletes.user_id')
@@ -49,10 +58,10 @@ class AthleteController extends Controller
         ]);
     }
 
-    function vistaDatos(Request $id){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
-        $id = 1; 
+    function vistaDatos(Athlete $request){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
+        $id = $request->user_id;
         $atleta = new Athlete;
-        $atleta = Athlete::where("user_id", "=", 4)->get(); 
+        $atleta = Athlete::where("user_id", "=", $id)->get(); 
         $user = $atleta->map->user->flatten();
         return view('athletes.seedata', ['user'=>$user], ['atleta'=>$atleta]);
     }
@@ -132,14 +141,11 @@ class AthleteController extends Controller
         
 
 
-        $usuario = Auth::id();
-        $persona= User::where("identification", "=", 117490248);
-        //$users=$persona->map->user->flatten();
-       // $usuario= Auth::user();
-        //$atletas = Athlete::where("user_id", "=", 3 )->get(); 
-        //$users = $atletas->map->user->flatten();
-        Auth::logout();
-    return view('users.athlete_profile', ['user'=>$persona]);
+        $usuario = Auth::user()->identification;
+        $persona= new User();
+        $persona=User::where("identification", "=", $usuario)->first();
+    
+       return view('users.athlete_profile', compact('persona'));
     }
     public function guardaPerfil(Request $request){
 
@@ -176,4 +182,55 @@ class AthleteController extends Controller
         $user->save();
     return redirect()->route('athlete_profile')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );
     }
+
+
+    public function vistaSelectorFoto(){
+    return view('users.change_photo');
+    }
+
+    public function guardaFoto(Request $request){
+        $request->validate([
+            'imagen'=>'required|image|mimes:jpg,jpeg,png,svg|max:1024'
+        ]);
+        $user=Auth::user()->identification;
+        $usuario= new User();
+        $usuario=User::where("identification", "=", $user)->first();
+     
+
+
+
+        if($request->hasFile("imagen")){
+
+            $img=$request->file('imagen');
+            $imgseleccionada="prf_".time().".".$img->guessExtension();
+            $url=public_path("storage/imagenes/".$imgseleccionada);
+
+           
+            if($img->guessExtension()=="jpeg"||$img->guessExtension()=="png"||$img->guessExtension()=="svg"||$img->guessExtension()=="jpg"){
+                copy($img,$url);
+                $usuario->photo=$imgseleccionada;
+            }   
+        }
+        
+        $usuario->save();
+        return redirect()->route('perfil.atleta')->with('status');
+    }
+
+    public function index_athleteview(){
+        $atletas = new Athlete;
+        $atletas = Athlete::where("state", "=", 'a')->get(); 
+        $users = $atletas->map->user->flatten();
+        return view('athletes.viewathlete', ['users'=>$users], ['atletas' =>$atletas]);        
+    }
+    public function athleteview_modify(Request $request){
+
+    }
+    public function athleteview_delete(Athlete $atleta){
+
+        $atleta->state = 'n';
+        $atleta->save();
+        
+    }
 }
+
+

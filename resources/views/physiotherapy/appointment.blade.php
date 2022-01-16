@@ -5,8 +5,8 @@
 
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-6 col-lg-6 p-1 m-3">
-                <h2 class="display-5 text-center">Registrar Datos de Sesión</h2>                
+        <div class="col-sm-12 col-md-6 col-lg-6 p-1 m-3">
+                <h2 class="display-5 text-center ">Registrar Datos de Sesión</h2>                
             </div>
         </div>
 

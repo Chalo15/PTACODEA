@@ -13,17 +13,7 @@ class athlete_requestsController extends Controller
     public function __construct(){
         $this->middleware(['auth']);
     }
-    function index(){
-        /*$athleterequests = \DB::table('users')
-            ->select('users.identification', 'users.name','users.lastname','users.phone', 'athletes.sport_id')
-            ->join('athletes','athletes.user_id',"=",'users.id')
-            ->where("athletes.state","=", 'p')
-            ->orderBy('identificacion', 'DESC')
-            ->get();
-        return view('users.athlete_request', ['athleterequests'=>$athleterequests]);  
-        dd($athleterequests->all());*/
-
-
+    function index(){    
         $atletas = new Athlete;
         $atletas = Athlete::where("state", "=", 'p')->get(); 
         $users = $atletas->map->user->flatten();
@@ -32,12 +22,24 @@ class athlete_requestsController extends Controller
     }
   
 
-    public function destroy(Request $request){
-        $request->delete();
+    public function destroy(User $request){
+        $request->state = 'd';
+        $atleta = New Athlete;
+        $atleta->state = $request->state;
+
+        return $request->name;
+
         return back()->with('succes','Solicitud de registro de atleta denegada correctamente');
+
+        $atleta->save();
     }
 
-    public function acceptedAthlete(Request $request){
+    public function acceptedAthlete(User $request){
+        $request->state = 'a';
+        $atleta = New Athlete;
+        $atleta->state = $request->state;
+        return back()->with('succes','Solicitud de registro de atleta aprobada correctamente');
 
+        $atleta->save();
     } 
 }

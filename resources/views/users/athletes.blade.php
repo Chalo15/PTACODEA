@@ -10,6 +10,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+
     <div class="container">
         
         <div class="row justify-content-center">
@@ -19,7 +20,7 @@
                 <div class="card">
                     
                     <div class="text-center card-header">
-                        <h3 class="d-5">Formulario de Registro del Atleta</h3>
+                        <h3 class="d-5">Formulari de Registro del Atleta</h3>
                     </div>
                     
                     <div class="card-body">
@@ -149,7 +150,7 @@
                                 <div class="col-md-12 text-center">
                                     <small class=" text-muted">*** La siguiente sección se completa únicamente en caso de ser menor de edad. ***
                                         </div>
-                                    </div>
+                            </div>
                                     
                                     <!-- Sección de datos del responsable-->
                                     <h3 class="d-5 text-center">Datos del responsable</h3>
