@@ -1,19 +1,26 @@
 <?php
 
-namespace App\View\Components\Forms;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Input extends Component
+class AppLayout extends Component
 {
+    /**
+     * The page title.
+     *
+     * @var string
+     */
+    public $title;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($title)
     {
-        //
+        $this->title = 'PTA CODEA > ' . $title;
     }
 
     /**
@@ -23,6 +30,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('components.forms.input');
+        return view('layouts.app');
     }
 }

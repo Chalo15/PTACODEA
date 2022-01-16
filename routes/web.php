@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\RequestsController;
+use App\Http\Controllers\SportController;
+use App\Http\Controllers\SportsController;
+use App\Http\Controllers\UsersController;
 use App\Models\Athlete;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -22,6 +26,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Retorno de vista formulario de reserva de instalaciones
 Route::get('/Reservations/booking_form', [App\Http\Controllers\AthleteController::class, 'Reserva_Form'])->name('booking_form');
 
+/**
+ * Rutas de Atletas
+ */
+
 //retorno de vista de formulario de registro de atletas
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
 
@@ -35,6 +43,35 @@ Route::get('/users/externalathletes', [App\Http\Controllers\ExternalAthleteContr
 Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteController::class, 'guardado'])->name('external_athletes.guardado');
 
 
+/**
+ * Rutas de Usuarios
+ */
+Route::prefix('users')->group(function () {
+    Route::get('', [UsersController::class, 'index'])->name('users.index');
+    Route::get('create', [UsersController::class, 'create'])->name('users.create');
+    Route::post('', [UsersController::class, 'store'])->name('users.store');
+    Route::get('{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
+    Route::put('{user}', [UsersController::class, 'update'])->name('users.update');
+});
+
+/**
+ * Rutas de Solicitudes
+ */
+Route::prefix('requests')->group(function () {
+    Route::get('', [RequestsController::class, 'index'])->name('requests.index');
+    Route::put('{user}/deny', [RequestsController::class, 'deny'])->name('requests.deny');
+    Route::put('{user/accept}', [RequestsController::class, 'accept'])->name('requests.accept');
+});
+
+/**
+ * Rutas de Deportes
+ */
+Route::prefix('sports')->group(function () {
+    Route::get('', [SportsController::class, 'index'])->name('sports.index');
+    Route::get('{sport}', [SportsController::class, 'show'])->name('sports.show');
+    Route::get('{sport}/edit', [SportsController::class, 'edit'])->name('sports.edit');
+    Route::put('{sport}', [SportsController::class, 'update'])->name('sports.update');
+});
 
 
 //Rutas enfocadas en el modulo de perfil de usuario////////////////////////////////////////////////////////////////////////////////////////////////////

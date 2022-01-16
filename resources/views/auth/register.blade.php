@@ -7,7 +7,9 @@
             <div class="col-md-8">
                 <div class="card my-3">
 
-                    <div class="text-center card-header"><h3 class="d-5">Registro de Usuario</h3></div>
+                    <div class="text-center card-header">
+                        <h3 class="d-5">Registro de Usuario</h3>
+                    </div>
 
                     <div class="usuario text-center"><i class="fas fa-user p-2"></i></div>
 
@@ -23,9 +25,9 @@
                                     <input placeholder="Nombre" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
@@ -38,9 +40,9 @@
                                     <input placeholder="Apellidos" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
 
                                     @error('apellido')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
@@ -53,9 +55,9 @@
                                     <input placeholder="Cédula" type="number" pattern="[0-9]{9}" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ old('identification') }}" required autocomplete="identification" autofocus>
 
                                     @error('cedula')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
@@ -83,9 +85,9 @@
                                     <input placeholder="Teléfono" type="number" pattern="[0-9]{8}" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                     @error('telefono')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
@@ -97,9 +99,9 @@
                                     <input placeholder="Correo" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
@@ -107,22 +109,22 @@
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
-                                    <div class="col-md-7">
-                                        <input placeholder="Contraseña"  type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="col-md-7">
+                                    <input placeholder="Contraseña" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
 
                                 <div class="col-md-7">
-                                    <input placeholder="Confirmar Contraseña"  type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input placeholder="Confirmar Contraseña" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 </div>
 
                             </div>
@@ -132,9 +134,10 @@
                                     <button type="submit" class="btn btn-negro m-1">
                                         {{ __('Registrarse') }}
                                     </button>
-                                    <button onclick= "window.location='{{ url('users/externalathletes') }}'" class="btn btn-negro">
-                                            {{__('Registrarse como Atleta')}}
-                                    </button>
+
+                                    <a href="/users/externalathletes" class="btn btn-negro">
+                                        {{__('Registrarse como Atleta')}}
+                                    </a>
                                 </div>
                             </div>
 
