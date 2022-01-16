@@ -22,7 +22,7 @@
                     </div>
                     
                     <div class="card-body">
-                        <form class="well form-horizontal" action="{{route('external_athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
+                        <form name="formulario1" class="well form-horizontal" action="{{route('external_athletes.guardado')}} " method="post"  id="formulario_registro" enctype="multipart/form-data">
                             <!-- Título del formulario -->
                             @csrf
                             
@@ -105,9 +105,9 @@
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">Provincia de residencia</label>
                                 <div class="col-md-3 selectContainer">
-                                    <select name="provincia" placeholder="Provincia" class="form-control" type="text" value="{{ old('provincia') }}">
+                                    <select name="provincia" onchange="cambia()" placeholder="Provincia" class="seleccion form-control" type="text" value="{{ old('provincia') }}">
                                         <option value="0">Seleccione su Provincia</option>
-                                        <option value="SanJose">SanJosé</option>
+                                        <option value="SanJose">San José</option>
                                         <option value="Alajuela">Alajuela</option>
                                         <option value="Cartago">Cartago</option>
                                         <option value="Heredia">Heredia</option>
@@ -119,9 +119,15 @@
                             </div>
                             
                             <!-- Cantón -->
-                            <x-row>
-                                <x-input name="canton" placeholder="Cantón" label="Cantón" />
-                            </x-row>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">Cantón</label>
+                                <div class="col-md-3">
+                                    <select class="seleccion form-control" name="canton">
+                                        <option value="-">Seleccione
+                                    </select>
+
+                                </div>
+                            </div>
                             
                             <!-- Dirección -->
                             <div class="form-group row">
@@ -238,16 +244,6 @@
                             
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-                                
-
 
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right"></label>
