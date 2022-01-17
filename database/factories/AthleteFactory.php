@@ -23,7 +23,6 @@ class AthleteFactory extends Factory
     public function definition()
     {
         return [
-
             'user_id' => $this->faker->unique()->randomElement(['15', '16', '17']),
             'sport_id' => $this->faker->randomElement(['1', '2', '3', '4']),
             'state' => $this->faker->randomElement(['A', 'A', 'a']),

@@ -57,6 +57,27 @@ class User extends Authenticatable
     ];
 
     /**
+     * Encriptación de la contraseña.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Obtenga el nombre completo del usuario.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->last_name}";
+    }
+
+    /**
      * Obtener el role al que pertenece el usuario.
      */
     public function role()
