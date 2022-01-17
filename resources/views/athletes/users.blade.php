@@ -10,6 +10,7 @@
                 <button class="btn btn-negro">Ingresar</button>
             </div>
         </div>
+
         <div class="col-sm-12 col-md-6 col-xs-6">
             <div class="register_as_athlete">
                 <h4 class="">Ver Expediente</h4>

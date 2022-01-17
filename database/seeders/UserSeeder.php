@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         $user->identification = 20;
         $user->password = "12346";
         $user->name = "Josue";
-        $user->lastname = "Perez Sequeira";
+        $user->last_name = "Perez Sequeira";
         $user->birthdate = '1999-04-21';
         $user->phone = 4555;
         $user->email = "555@hotmail.com";
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
         $user1->identification = 240;
         $user1->password = Hash::make("12346");
         $user1->name = "Josue";
-        $user1->lastname = "Perez Sequeira";
+        $user1->last_name = "Perez Sequeira";
         $user1->birthdate = '1999-04-21';
         $user1->phone = 45555;
         $user1->email = "5554@hotmail.com";

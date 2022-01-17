@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
-
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Athlete;
 use App\Models\Coach;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -18,12 +18,42 @@ class UsersController extends Controller
 {
     function index()
     {
-        return view('auth.register', [
-            'sports' => Sport::all()
-        ]);
+        $users = User::with('role')->paginate(5);
+
+        return view('users.index', compact('users'));
     }
 
-    public function guardarUsuario(Request $request)
+    public function create()
+    {
+        $roles = Role::all();
+
+        $sports = Sport::all();
+
+        return view('users.create', compact('roles', 'sports'));
+    }
+
+    public function store(StoreUserRequest $request)
+    {
+        User::create($request->validated());
+
+        if ($request->role_id == 2) {
+            //
+        }
+
+        return redirect()->route('users.index');
+    }
+
+    public function edit(user $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(request $request, user $user)
+    {
+        // Guardar cambios en DB
+    }
+
+    public function guardarusuario(StoreUserRequest $request)
     {
         $id_role = 3;
 
@@ -37,26 +67,26 @@ class UsersController extends Controller
             'genero' => 'required',
         ]);
 
-        //Insercion de datos del funcionario a la tabla users
-        $User = User::create([
+        //insercion de datos del funcionario a la tabla users
+        $user = user::create([
             'role_id' => 7,
             'name' => $request->name,
             'lastname' => $request->lastname,
             'identification' => $request->identification,
-            'password' => Hash::make($request->password),
+            'password' => hash::make($request->password),
             'gender' => $request->genero,
             'phone' => $request->phone,
             'email' => $request->email,
 
         ]);
         /*
-        if($request->hasFile("archivo")){
+        if($request->hasfile("archivo")){
 
             $v_pdf=$request->file('archivo');
-            $v_nombre="pdf_".time().".".$v_pdf->guessExtension();
+            $v_nombre="pdf_".time().".".$v_pdf->guessextension();
             $url=public_path("storage/".$v_nombre);
 
-            if($v_pdf->guessExtension()=="pdf"){
+            if($v_pdf->guessextension()=="pdf"){
                 copy($v_pdf,$url);
 
                 $athlete->url=$v_nombre;
@@ -65,29 +95,29 @@ class UsersController extends Controller
 
         }
         */
-        return redirect()->route('home')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done'] */); //cambiar color
+        return redirect()->route('home')->with('status'/*,['mensaje'=>'el atleta se ha registrado correctamente','color'=>'done'] */); //cambiar color
     }
 
-    function vistaPracticas($atleta)
+    function vistapracticas($atleta)
     {
 
-        $user = Auth::user()->id;
-        $coach = new Coach();
-        $coach = Coach::where("user_id", "=", $user)->first();
+        $user = auth::user()->id;
+        $coach = new coach();
+        $coach = coach::where("user_id", "=", $user)->first();
         $sport = $coach->sport;
         $athlete = $atleta;
         return view('users.instructor', compact('sport', 'athelete'));
     }
 
-    function guardarPractica(Request $request)
+    function guardarpractica(request $request)
     {
     }
-    function vistaPracticaExtra()
+    function vistapracticaextra()
     {
         return view('users.athlete_data_session');
     }
 
-    /*function listaAtletas(){
+    /*function listaatletas(){
         return view('auth.register');
     }*/
 }

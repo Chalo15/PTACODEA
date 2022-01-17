@@ -1,26 +1,76 @@
 <?php
 
+use App\Http\Controllers\AthleteController;
+use App\Http\Controllers\AthletesController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\RequestsController;
+use App\Http\Controllers\SportController;
+use App\Http\Controllers\SportsController;
+use App\Http\Controllers\UsersController;
 use App\Models\Athlete;
+use App\Models\Sport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
-
-Route::get('/', function () {
-
-    return view('auth.login');
-});
-// LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
 Auth::routes();
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**
+ * Rutas de Usuarios
+ */
+Route::prefix('users')->group(function () {
+    Route::get('', [UsersController::class, 'index'])->name('users.index');
+    Route::get('create', [UsersController::class, 'create'])->name('users.create');
+    Route::post('', [UsersController::class, 'store'])->name('users.store');
+    Route::get('{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
+    Route::put('{user}', [UsersController::class, 'update'])->name('users.update');
+});
+
+/**
+ * Rutas de Solicitudes
+ */
+Route::prefix('requests')->group(function () {
+    Route::get('', [RequestsController::class, 'index'])->name('requests.index');
+    Route::put('{user}/deny', [RequestsController::class, 'deny'])->name('requests.deny');
+    Route::put('{user/accept}', [RequestsController::class, 'accept'])->name('requests.accept');
+});
+
+/**
+ * Rutas de Deportes
+ */
+Route::prefix('sports')->group(function () {
+    Route::get('', [SportsController::class, 'index'])->name('sports.index');
+    Route::get('{sport}', [SportsController::class, 'show'])->name('sports.show');
+    Route::get('{sport}/edit', [SportsController::class, 'edit'])->name('sports.edit');
+    Route::put('{sport}', [SportsController::class, 'update'])->name('sports.update');
+});
+
+/**
+ * Rutas de Atletas
+ */
+Route::prefix('athletes')->group(function () {
+    Route::get('', [AthletesController::class, 'index'])->name('athletes.index');
+    Route::get('create', [AthletesController::class, 'create'])->name('athletes.create');
+    Route::post('', [AthletesController::class, 'store'])->name('athletes.store');
+    Route::get('{athlete}', [AthletesController::class, 'show'])->name('athletes.show');
+    Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
+    Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
+});
+
+// LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
+
 //Menu Principal de los Roles
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //menu principal de Atletas
 //Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
 
 //Retorno de vista formulario de reserva de instalaciones
 Route::get('/Reservations/booking_form', [App\Http\Controllers\AthleteController::class, 'Reserva_Form'])->name('booking_form');
+
+/**
+ * Rutas de Atletas
+ */
 
 //retorno de vista de formulario de registro de atletas
 Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
@@ -34,6 +84,10 @@ Route::get('/users/externalathletes', [App\Http\Controllers\ExternalAthleteContr
 //guardado de registro de atletas Externos
 Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteController::class, 'guardado'])->name('external_athletes.guardado');
 
+// Route::get('register', function () {
+//     $sports = Sport::all();
+//     return view('auth.register', compact('sports'));
+// });
 
 
 
@@ -85,7 +139,7 @@ Route::get('/users/coaches', [App\Http\Controllers\CoachController::class, 'vist
 //Guarda los datos del nuevo Usuario
 Route::post('/users/register', [App\Http\Controllers\UsersController::class, 'guardarUsuario'])->name('user.guardarUser');
 //Vista del formulario de agregar Usuarios
-Route::get('/users/register', [App\Http\Controllers\UsersController::class, 'index'])->name('register');
+// Route::get('/users/register', [App\Http\Controllers\UsersController::class, 'index'])->name('register');
 
 //Vista para visualizar datos del atleta
 Route::get('/athletes/verdatos/{athlete}', [App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);

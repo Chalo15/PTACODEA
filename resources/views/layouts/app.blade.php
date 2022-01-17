@@ -7,37 +7,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'PTACODEA') }}</title>
-    
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/athletes.js') }}" defer></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
-    <script src="/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
-    <script src="/vendors/formvalidation/dist/js/plugins/Bootstrap3.min.js"></script>
--->
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    {{-- <title>{{ config('app.name', 'PTACODEA') }}</title> --}}
+    <title>{{ $title }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/home.css')}}" rel="stylesheet">
-
-    <link href="{{ asset('css/athletes.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('css/coach.css') }}" rel="stylesheet">
-
-
-    <!-- Fontawesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
- <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
--->
-
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body>
+
+<body class="bg-dark">
     <div id="app">
         <nav class="barranav navbar navbar-expand-md navbar-dark bg-negro shadow-sm ">
             <div class="container-fluid">
@@ -58,42 +38,43 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <!--<li class="nav-item">
+                        @if (Route::has('login'))
+                        <!--<li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesion') }}</a>
                                 </li> -->
-                            @endif
+                        @endif
 
-                            @if (Route::has('register'))
-                                <!--<li class="nav-item">
+                        @if (Route::has('register'))
+                        <!--<li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                                 </li> -->
-                            @endif
+                        @endif
                         @else
-                            <li class="main-navbar nav-item dropdown">
-                                <a id="navbarDropdown" class="user-navbar nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="salir dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                        <li class="main-navbar nav-item dropdown">
+                            <a id="navbarDropdown" class="user-navbar nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+                            <div class="salir dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Salir') }}
-                                    </a>
+                                    {{ __('Salir') }}
+                                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-        
-        <main class="">
+
+        <main class="container my-5">
             @yield('content')
+
+            {{ $slot }}
         </main>
 
     </div>

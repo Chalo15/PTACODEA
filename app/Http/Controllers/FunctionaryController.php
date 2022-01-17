@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Athlete;
+use App\Models\Sport;
 
 class FunctionaryController extends Controller
 {
@@ -95,7 +96,14 @@ class FunctionaryController extends Controller
         $users = new User;
         $users = User::where("id", "=", $id)->first(); 
 
-        return view('physiotherapy.appointment', compact('users')); 
+        $athletes = new Athlete;
+        $athletes = Athlete::where("user_id","=",$users->id)->first();
+
+        $sports = new Sport;
+        $sports = Sport::where("id","=",$athletes->sport_id)->first();
+
+
+        return view('physiotherapy.appointment', compact('users'), compact('sports')); 
     }
 
     function catalog(){
