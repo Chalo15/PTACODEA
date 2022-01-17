@@ -13,6 +13,34 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    protected $fillable = [
+        'identification',
+        'name',
+        'last_name',
+        'birthdate',
+        'province',
+        'city',
+        'email',
+        'phone',
+        'address',
+        'gender',
+        'experience',
+        'contract_number',
+        'contract_year',
+        'role_id',
+        'photo',
+        'password',
+        'email_verified_at',
+    ];
 
     public function role()
     {
@@ -32,34 +60,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Functionary::class);
     }
-    protected $guarded = [];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    protected $fillable = [
-        'role_id',
-        'identification',
-        'password',
-        'name',
-        'lastname',
-        'birthdate',
-        'phone',
-        'email',
-        'province',
-        'city',
-        'address',
-        'gender',
-        'contract_number',
-        'contract_year',
-        'experience',
-        'email_verified_at',
-        'photo',
-    ];
 }

@@ -8,6 +8,7 @@
 
     <div class="row">
         <div class="col">
+
             <x-card title="Usuarios" color="primary">
 
                 <x-slot name="header" class="d-flex justify-content-end align-items-center">

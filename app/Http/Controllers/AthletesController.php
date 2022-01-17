@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAthleteRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use Illuminate\Http\Request;
@@ -24,8 +25,9 @@ class AthletesController extends Controller
         return view('athletes.create', compact('sports'));
     }
 
-    public function store()
+    public function store(StoreAthleteRequest $request)
     {
+        //
     }
 
     public function edit(Athlete $athlete)

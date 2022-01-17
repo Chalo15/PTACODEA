@@ -27,12 +27,20 @@ class UsersController extends Controller
     {
         $roles = Role::all();
 
-        return view('users.create', compact('roles'));
+        $sports = Sport::all();
+
+        return view('users.create', compact('roles', 'sports'));
     }
 
     public function store(StoreUserRequest $request)
     {
-        // Guardar usuario en DB
+        User::create($request->validated());
+
+        if ($request->role_id == 2) {
+            //
+        }
+
+        return redirect()->route('users.index');
     }
 
     public function edit(user $user)
@@ -45,7 +53,7 @@ class UsersController extends Controller
         // Guardar cambios en DB
     }
 
-    public function guardarusuario(request $request)
+    public function guardarusuario(StoreUserRequest $request)
     {
         $id_role = 3;
 

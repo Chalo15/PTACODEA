@@ -13,43 +13,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
-
-Route::get('/', function () {
-
-    return view('auth.login');
-});
-// LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
 Auth::routes();
 
-//Menu Principal de los Roles
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//menu principal de Atletas
-//Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
-
-//Retorno de vista formulario de reserva de instalaciones
-Route::get('/Reservations/booking_form', [App\Http\Controllers\AthleteController::class, 'Reserva_Form'])->name('booking_form');
-
-/**
- * Rutas de Atletas
- */
-
-//retorno de vista de formulario de registro de atletas
-Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
-
-//guardado de registro de atletas
-Route::post('/users/athletes',  [App\Http\Controllers\AthleteController::class, 'guardado'])->name('athletes.guardado');
-
-//retorno de vista de formulario de registro de atletas externos
-Route::get('/users/externalathletes', [App\Http\Controllers\ExternalAthleteController::class, 'index'])->name('external_athletes');
-
-//guardado de registro de atletas Externos
-Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteController::class, 'guardado'])->name('external_athletes.guardado');
-
-Route::get('register', function () {
-    $sports = Sport::all();
-    return view('auth.register', compact('sports'));
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /**
  * Rutas de Usuarios
@@ -92,6 +58,36 @@ Route::prefix('athletes')->group(function () {
     Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
 });
+
+// LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
+
+//Menu Principal de los Roles
+//menu principal de Atletas
+//Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'inicio'])->name('welcome');
+
+//Retorno de vista formulario de reserva de instalaciones
+Route::get('/Reservations/booking_form', [App\Http\Controllers\AthleteController::class, 'Reserva_Form'])->name('booking_form');
+
+/**
+ * Rutas de Atletas
+ */
+
+//retorno de vista de formulario de registro de atletas
+Route::get('/users/athletes', [App\Http\Controllers\AthleteController::class, 'index'])->name('athletes');
+
+//guardado de registro de atletas
+Route::post('/users/athletes',  [App\Http\Controllers\AthleteController::class, 'guardado'])->name('athletes.guardado');
+
+//retorno de vista de formulario de registro de atletas externos
+Route::get('/users/externalathletes', [App\Http\Controllers\ExternalAthleteController::class, 'index'])->name('external_athletes');
+
+//guardado de registro de atletas Externos
+Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteController::class, 'guardado'])->name('external_athletes.guardado');
+
+// Route::get('register', function () {
+//     $sports = Sport::all();
+//     return view('auth.register', compact('sports'));
+// });
 
 
 
@@ -143,7 +139,7 @@ Route::get('/users/coaches', [App\Http\Controllers\CoachController::class, 'vist
 //Guarda los datos del nuevo Usuario
 Route::post('/users/register', [App\Http\Controllers\UsersController::class, 'guardarUsuario'])->name('user.guardarUser');
 //Vista del formulario de agregar Usuarios
-Route::get('/users/register', [App\Http\Controllers\UsersController::class, 'index'])->name('register');
+// Route::get('/users/register', [App\Http\Controllers\UsersController::class, 'index'])->name('register');
 
 //Vista para visualizar datos del atleta
 Route::get('/athletes/verdatos/{athlete}', [App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);
