@@ -8,215 +8,315 @@
 
     <div class="row">
         <div class="col">
-
-            <div class="card">
+            <div class="card mb-5">
                 <div class="card-header">
-                    Nuevo Atleta
+                    Crear Atleta
                 </div>
 
                 <div class="card-body">
-                    <form class="well form-horizontal" action="{{route('athletes.guardado')}} " method="post" id="formulario_registro" enctype="multipart/form-data">
-                        <!-- Título del formulario -->
+                    <form action="{{ route('athletes.store') }}" method="POST">
                         @csrf
 
-
-                        <!-- Nombre -->
-                        <x-row>
-                            <x-input name="nombre" placeholder="Nombre" label="Nombre" />
-                        </x-row>
-
-                        <!-- Apellidos -->
-                        <x-row>
-                            <x-input name="apellidos" placeholder="Apellidos" label="Apellidos" />
-                        </x-row>
-
-                        <!-- Cedula -->
-
-                        <x-row>
-                            <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cédula" />
-                        </x-row>
-
-
-                        <!-- Disciplina -->
-                        <x-row>
-                            <label class="col-md-4 col-form-label text-md-right ">Disciplina</label>
-                            <div class="col-md-5">
-                                <select name="department" class="form-control selectpicker" value="{{ old('department') }}">
-                                    @foreach ($sports as $sport)
-                                    <option value="{{$sport->id}}">
-                                        {{$sport->description}}
-                                    </option>
-                                    @endforeach
-                                </select>
+                        <div x-data="{ isOpen: {{ old('is_user') ? 'true' : 'false' }} }">
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="is_user" id="is_user" x-model="isOpen">
+                                <label class="form-check-label" for="is_user">
+                                    ¿El usuario se encuentra registrado en el sistema?
+                                </label>
                             </div>
 
-                        </x-row>
+                            <hr>
 
-                        <!-- Edad -->
-                        <x-row>
-                            <x-input name="edad" placeholder="Edad" label="Edad" type="date" />
-                        </x-row>
-
-                        <!-- Género -->
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Género</label>
-                            <div class="col-md-7">
-                                <div class="checkbox"><label><input type="radio" name="genero" value="f" /> Femenino</label></div>
-                                <div class="checkbox"><label><input type="radio" name="genero" value="m" /> Masculino</label></div>
-                                <div class="checkbox"><label><input type="radio" name="genero" value="n" /> Otro</label></div>
-                            </div>
-                        </div>
-
-                        <!-- Correo -->
-                        <x-row>
-                            <x-input name="correo" placeholder="E-mail" label="Correo electrónico" type="email" />
-                        </x-row>
-
-                        <!-- Teléfono -->
-                        <x-row>
-                            <x-input name="telefono" placeholder="(+506)88888888" label="N° Teléfono" type="number" />
-                        </x-row>
-
-                        <!-- Sangre -->
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Tipo de Sangre</label>
-                            <div class="col-md-3 selectContainer">
-                                <select name="sangre" placeholder="Tipo Sangre" class="form-control" type="text" value="{{ old('sangre') }}">
-                                    <option value="0">Seleccione su Tipo de Sangre</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- Provincia -->
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Provincia de residencia</label>
-                            <div class="col-md-3 selectContainer">
-                                <select name="provincia" placeholder="Provincia" class="form-control" type="text" value="{{ old('provincia') }}">
-                                    <option value="0">Seleccione su Provincia</option>
-                                    <option value="SanJose">SanJosé</option>
-                                    <option value="Alajuela">Alajuela</option>
-                                    <option value="Cartago">Cartago</option>
-                                    <option value="Heredia">Heredia</option>
-                                    <option value="Guanacaste">Guanacaste</option>
-                                    <option value="Puntarenas">Puntarenas</option>
-                                    <option value="Limon">Limón</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Cantón -->
-                        <x-row>
-                            <x-input name="canton" placeholder="Cantón" label="Cantón" />
-                        </x-row>
-
-                        <!-- Dirección -->
-                        <div class="form-group row">
-
-                            <label class="col-md-4 col-form-label text-md-right">Dirección exacta</label>
-                            <div class="col-md-7">
-                                <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" cols="44" rows="5" value="{{ old('direccion') }}"></textarea>
-
-                            </div>
-                        </div>
-
-                        <!-- Lateralidad -->
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Lateralidad</label>
-                            <div class="col-md-7">
-                                <div class="checkbox"><label><input type="radio" name="lateralidad" value="D" /> Diestro</label></div>
-                                <div class="checkbox"><label><input type="radio" name="lateralidad" value="I" /> Zurdo</label></div>
-                                <div class="checkbox"><label><input type="radio" name="lateralidad" value="A" /> Ambidiestro</label></div>
-                            </div>
-                        </div>
-
-                        <!-- Mensaje de encargado -->
-                        <div class="form-group row">
-                            <div class="col-md-12 text-center">
-                                <small class=" text-muted">*** La siguiente sección se completa únicamente en caso de ser menor de edad. ***
-                            </div>
-                        </div>
-
-                        <!-- Sección de datos del responsable-->
-                        <h3 class="d-5 text-center">Datos del responsable</h3>
-
-                        <!-- Nombre del encargad@-->
-                        <x-row>
-                            <x-input name="nombre_encargado" placeholder="Nombre" label="Nombre del encargado(a)" />
-                        </x-row>
-
-                        <!-- Apellidos del encargad@ -->
-                        <x-row>
-                            <x-input name="apellidos_encargado" placeholder="Apellidos" label="Apellidos del encargado(a)" />
-                        </x-row>
-
-                        <!-- Cedula del encargad@ -->
-                        <x-row>
-                            <x-input name="cedula_encargado" placeholder="Cédula" label="N° Cédula del encargado(a)" type="number" />
-                        </x-row>
-
-                        <!-- Teléfono del encargad@-->
-                        <x-row>
-                            <x-input name="telefono_encargado" placeholder="(+506)88888888" label="N° Teléfono del encargado(a)" type="number" />
-                        </x-row>
-
-
-                        <!-- Registrar alerta -->
-
-
-                        <!-- Parentesco -->
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Parentesco</label>
-                            <div class="col-md-3 selectContainer">
-                                <select name="parentesco" class="form-control selectpicker" value="{{ old('parentesco') }}">
-                                    <option value="">Seleccione su parentesco</option>
-                                    <option>Madre</option>
-                                    <option>Padre</option>
-                                    <option>Abuelo(a)</option>
-                                    <option>Tío(a)</option>
-                                    <option>Hermano(a)</option>
-                                    <option>Encargado(a)</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <!-- Numero de Poliza -->
-                        <x-row>
-                            <x-input name="poliza" placeholder="Numero de Poliza" label="Numero de Poliza" />
-                        </x-row>
-
-                        <!-- Registrar alerta -->
-                        <!-- <div class="alert alert-success" role="alert" id="registrado">
-                                Éxito al procesar su registro!
-                                <i class="glyphicon glyphicon-thumbs-up"></i>
-                            </div>-->
-
-                        <!-- Enviar y PDF -->
-                        <div class="card">
-                            <div class="card-body">
+                            <div x-show="isOpen">
+                                {{-- Usuario --}}
                                 <div class="form-group row">
-                                    <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                                        <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value="{{ old('archivo') }}">
-                                        <small id="pfd" class="text-muted">
-                                            En esta sección introduzca el archivo pdf solicitado.
+                                    <label for="user_id" class="col-sm-4 col-form-label">Usuario</label>
+                                    <div class="col-sm-8">
+                                        <x-select name="user_id">
+                                            <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                            @foreach ($users as $user)
+                                            <option {{ old('user_id') == $user->id ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->identification . ' | ' . $user->name . " " . $user->last_name }}</option>
+                                            @endforeach
+                                        </x-select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div x-show="!isOpen">
+                                {{-- Cédula de Identidad o DIMEX --}}
+                                <div class="form-group row">
+                                    <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="identification" value="{{ old('identification') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Nombre --}}
+                                <div class="form-group row">
+                                    <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="name" value="{{ old('name') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Apellidos --}}
+                                <div class="form-group row">
+                                    <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="last_name" value="{{ old('last_name') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Fecha de Nacimiento --}}
+                                <div class="form-group row">
+                                    <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
+                                    <div class="col-sm-8">
+                                        <x-input type="date" name="birthdate" value="{{ old('birthdate') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Provincia --}}
+                                <div class="form-group row">
+                                    <label for="province" class="col-sm-4 col-form-label">Provincia</label>
+                                    <div class="col-sm-8">
+                                        @php
+                                        $provinces = ['San José', 'Alajuela', 'Cartago', 'Heredia', 'Guanacaste', 'Puntarenas', 'Limón'];
+                                        @endphp
+
+                                        <x-select name="province">
+                                            <option disabled {{ old('province') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                            @foreach ($provinces as $province)
+                                            <option {{ old('province') == $province ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
+                                            @endforeach
+                                        </x-select>
+                                    </div>
+                                </div>
+
+                                {{-- Ciudad --}}
+                                <div class="form-group row">
+                                    <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="city" value="{{ old('city') }}" />
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                {{-- Correo Electrónico --}}
+                                <div class="form-group row">
+                                    <label for="email" class="col-sm-4 col-form-label">Correo Electrónico</label>
+                                    <div class="col-sm-8">
+                                        <x-input type="email" name="email" value="{{ old('email') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Teléfono --}}
+                                <div class="form-group row">
+                                    <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="phone" type="number" value="{{ old('phone') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Dirección Exacta --}}
+                                <div class="form-group row">
+                                    <label for="address" class="col-sm-4 col-form-label">Dirección</label>
+                                    <div class="col-sm-8">
+                                        <x-textarea name="address">
+                                            {{ old('address') }}
+                                        </x-textarea>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                {{-- Género --}}
+                                <div class="form-group row">
+                                    <label for="gender" class="col-sm-4 col-form-label">Género</label>
+                                    <div class="col-sm-8">
+                                        @php
+                                        $genders = ['Masculino', 'Femenino', 'Otro'];
+                                        @endphp
+
+                                        @foreach ($genders as $gender)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                            <label class="form-check-label" for="gender-{{ $loop->index }}">
+                                                {{ $gender }}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                {{-- Contraseña --}}
+                                <div class="form-group row">
+                                    <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="password" type="password" />
+                                    </div>
+                                </div>
+
+                                {{-- Confirmación de contraseña --}}
+                                <div class="form-group row">
+                                    <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de contraseña</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="password_confirmation" type="password" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        {{-- Disciplina --}}
+                        <div class="form-group row">
+                            <label for="sport_id" class="col-sm-4 col-form-label">Deporte</label>
+                            <div class="col-sm-8">
+                                <x-select name="sport_id">
+                                    <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                    @foreach ($sports as $sport)
+                                    <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
+                                    @endforeach
+                                </x-select>
+                            </div>
+                        </div>
+
+                        {{-- Tipo de Sangre --}}
+                        <div class="form-group row">
+                            <label for="blood" class="col-sm-4 col-form-label">Tipo de Sangre</label>
+                            <div class="col-sm-8">
+                                @php
+                                $bloods = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+                                @endphp
+
+                                <x-select name="blood">
+                                    <option disabled {{ old('blood') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                    @foreach ($bloods as $blood)
+                                    <option {{ old('blood') == $blood ? 'selected' : '' }} value="{{ $blood }}">{{ $blood }}</option>
+                                    @endforeach
+                                </x-select>
+                            </div>
+                        </div>
+
+                        {{-- Lateralidad --}}
+                        <div class="form-group row">
+                            <label for="laterality" class="col-sm-4 col-form-label">Lateralidad</label>
+                            <div class="col-sm-8">
+                                @php
+                                $lateralities = ['Diestro', 'Zurdo', 'Ambidiestro'];
+                                @endphp
+
+                                @foreach ($lateralities as $laterality)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
+                                    <label class="form-check-label" for="laterality-{{ $loop->index }}">
+                                        {{ $laterality }}
+                                    </label>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div x-data="{ isOpen: {{ old('is_younger') ? 'true' : 'false' }} }">
+
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="is_younger" id="is_younger" x-model="isOpen">
+                                <label class="form-check-label" for="is_younger">
+                                    ¿El atleta es menor de edad?
+                                </label>
+                            </div>
+
+                            <div x-show="isOpen">
+
+                                <div class="row">
+                                    <div class="col mb-3 d-flex justify-content-center">
+                                        Información del Responsable
+                                    </div>
+                                </div>
+
+                                {{-- Cédula de Identidad o DIMEX --}}
+                                <div class="form-group row">
+                                    <label for="identification_manager" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="identification_manager" value="{{ old('identification_manager') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Nombre --}}
+                                <div class="form-group row">
+                                    <label for="name_manager" class="col-sm-4 col-form-label">Nombre</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="name_manager" value="{{ old('name_manager') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Apellidos --}}
+                                <div class="form-group row">
+                                    <label for="lastname_manager" class="col-sm-4 col-form-label">Apellidos</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="lastname_manager" value="{{ old('lastname_manager') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Teléfono --}}
+                                <div class="form-group row">
+                                    <label for="contact_manager" class="col-sm-4 col-form-label">Teléfono</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="contact_manager" type="number" value="{{ old('contact_manager') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Parentezco --}}
+                                <div class="form-group row">
+                                    <label for="manager" class="col-sm-4 col-form-label">Parentezco</label>
+                                    <div class="col-sm-8">
+                                        @php
+                                        $relationships = ['Madre', 'Padre', 'Abuelo(a)', 'Tío(a)', 'Hermano(a)', 'Encargado(a)'];
+                                        @endphp
+
+                                        <x-select name="manager">
+                                            <option disabled {{ old('manager') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                            @foreach ($relationships as $relationship)
+                                            <option {{ old('manager') == $relationship ? 'selected' : '' }} value="{{ $relationship }}">{{ $relationship }}</option>
+                                            @endforeach
+                                        </x-select>
+                                    </div>
+                                </div>
+
+                                {{-- Número de Póliza --}}
+                                <div class="form-group row">
+                                    <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="policy" type="number" value="{{ old('policy') }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Fotocópia de Cédula --}}
+                                <div class="form-group row">
+                                    <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                    <div class="col-sm-8">
+
+                                        <div class="input-group mb-3">
+                                            <div class="custom-file">
+                                                <input name="url" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01">
+                                                <label class="custom-file-label" for="identification_image">Elija el archivo </label>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
 
                             </div>
+
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right"></label>
-                            <div class="col-md-7">
-                                <button type="submit" class="btn btn-negro">Registrar</button>
-                            </div>
+                        <div class="form-group d-flex justify-content-end">
+                            <button class="btn btn-dark">Registrar</button>
                         </div>
 
                     </form>
@@ -224,7 +324,5 @@
             </div>
         </div>
     </div>
-
-
 
 </x-app-layout>

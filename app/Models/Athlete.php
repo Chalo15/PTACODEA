@@ -7,6 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Athlete extends Model
 {
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'sport_id',
+        'state',
+        'blood',
+        'laterality',
+        'name_manager',
+        'lastname_manager',
+        'manager',
+        'identification_manager',
+        'contact_manager',
+        'url',
+        'policy',
+    ];
+
     public function user()
     {
 
@@ -23,27 +40,4 @@ class Athlete extends Model
     {
         return $this->hasOne(SessionData::class);
     }
-    use HasFactory;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
-    protected $guarded = [];
-
-    protected $fillable = [
-        'user_id',
-        'sport_id',
-        'name_manager',
-        'lastname_manager',
-        'identification_manager',
-        'contact_manager',
-        'blood',
-        'state',
-        'laterality',
-        'manager',
-        'policy',
-        'name',
-    ];
 }

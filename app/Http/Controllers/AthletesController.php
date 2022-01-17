@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAthleteRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AthletesController extends Controller
@@ -22,12 +23,22 @@ class AthletesController extends Controller
     {
         $sports = Sport::all();
 
-        return view('athletes.create', compact('sports'));
+        $users = User::where('role_id', '=', 7)->get();
+
+        return view('athletes.create', compact('sports', 'users'));
     }
 
     public function store(StoreAthleteRequest $request)
     {
-        //
+        $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated() + ['role_id' => 7]);
+
+        $user->athlete()->create($request->validated() + ['state' => 'A']);
+
+        $user->update([
+            'role_id' => 4
+        ]);
+
+        return redirect()->route('athletes.index')->with('status', '¡Atleta creado exitosamente!');
     }
 
     public function edit(Athlete $athlete)

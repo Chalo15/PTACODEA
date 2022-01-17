@@ -1,4 +1,5 @@
 <x-app-layout title="Atletas">
+
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('home') }}" class="btn btn-success">Atrás</a>

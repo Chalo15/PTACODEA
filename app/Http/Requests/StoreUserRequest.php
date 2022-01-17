@@ -44,6 +44,8 @@ class StoreUserRequest extends FormRequest
 
         if ($this->role_id == 2) {
             $array['sport_id'] = ['required'];
+
+            // Teléfono de habitación
         }
 
         return $array;
