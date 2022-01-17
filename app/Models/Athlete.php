@@ -9,6 +9,11 @@ class Athlete extends Model
 {
     use HasFactory;
 
+    /**
+     * Los atributos que son asignables en masa.
+     *
+     * @var array
+     */
     protected $fillable = [
         'user_id',
         'sport_id',
@@ -24,15 +29,19 @@ class Athlete extends Model
         'policy',
     ];
 
+    /**
+     * Obtener el usuario al que pertenece el atleta.
+     */
     public function user()
     {
-
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Obtener el deporte al que pertenece el atleta.
+     */
     public function sport()
     {
-
         return $this->belongsTo(Sport::class);
     }
 

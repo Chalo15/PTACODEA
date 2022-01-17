@@ -106,9 +106,9 @@
                         <div class="atleta_registro">
                             <h4 class="">Analizar Solicitud</h4>
                             <i class="d-block fas fa-running p-2"></i>
-                            <a href="{{ route('requests.index') }}" class="btn btn-negro">
-                                Acceder
-                            </a>
+                            {{-- <a href="{{ route('requests.index') }}" class="btn btn-negro">
+                            Acceder
+                            </a> --}}
                         </div>
                     </div>
 

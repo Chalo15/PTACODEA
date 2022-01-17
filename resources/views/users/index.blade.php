@@ -8,16 +8,15 @@
 
     <div class="row">
         <div class="col">
-
-            <x-card title="Usuarios" color="primary">
-
-                <x-slot name="header" class="d-flex justify-content-end align-items-center">
+            <div class="card">
+                <div class="card-header">
+                    Usuarios
                     <a href="{{ route('users.create') }}" class="btn btn-success">
                         Nuevo
                     </a>
-                </x-slot>
+                </div>
 
-                <x-slot name="body">
+                <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <x-table>
@@ -35,7 +34,7 @@
                                     @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->identification }}</td>
-                                        <td>{{ $user->name . " " .  $user->lastname }}</td>
+                                        <td>{{ $user->name . " " .  $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->role->description }}</td>
                                         <td width="100px" class="text-center">
@@ -76,11 +75,8 @@
                             {{ $users->links() }}
                         </div>
                     </div>
-
-                </x-slot>
-
-            </x-card>
-
+                </div>
+            </div>
         </div>
     </div>
 

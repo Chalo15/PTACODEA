@@ -3,19 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
-use App\Models\Sport;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Athlete;
-use App\Models\Coach;
+use App\Models\Sport;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Collection;
 
 class UsersController extends Controller
 {
+    /**
+     * Cree una nueva instancia de controlador.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Mostrar una lista del recurso.
+     *
+     * @return \Illuminate\Http\Response
+     */
     function index()
     {
         $users = User::with('role')->paginate(5);
@@ -23,6 +32,11 @@ class UsersController extends Controller
         return view('users.index', compact('users'));
     }
 
+    /**
+     * Muestra el formulario para crear un nuevo recurso.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $roles = Role::all();
@@ -32,92 +46,72 @@ class UsersController extends Controller
         return view('users.create', compact('roles', 'sports'));
     }
 
+    /**
+     * Almacene un recurso recién creado en el almacenamiento.
+     *
+     * @param  \App\Http\Requests\StoreUserRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(StoreUserRequest $request)
     {
-        User::create($request->validated());
+        $user = User::create($request->validated());
 
         if ($request->role_id == 2) {
-            //
+            /**
+             * Almacenaje de la imagen porque es un Coach
+             *
+             * Revisar código.
+             */
+
+            // if ($request->hasFile("archivo")) {
+            //     $v_pdf = $request->file('archivo');
+            //     $v_nombre = "pdf_" . time() . "." . $v_pdf->guessExtension();
+            //     $url = public_path("storage/" . $v_nombre);
+            //     if ($v_pdf->guessExtension() == "pdf") {
+            //         copy($v_pdf, $url);
+            //         $coach->url = $v_nombre;
+            //     }
+            // }
+
+        } else if ($request->role_id == 2) {
+            /**
+             * Almacenaje en caso que sea funcionario.
+             *
+             * Revisar el código.
+             */
+
+            // $img=$request->file('imagen');
+            // $imgseleccionada="prf_".time().".".$img->guessExtension();
+            // $url=public_path("storage/imagenes/".$imgseleccionada);
+            // if($img->guessExtension()=="jpeg"||$img->guessExtension()=="png"||$img->guessExtension()=="svg"||$img->guessExtension()=="jpg"){
+            //     copy($img,$url);
+            //     $usuario->photo=$imgseleccionada;
+            // }
         }
 
         return redirect()->route('users.index');
     }
 
-    public function edit(user $user)
+    /**
+     * Mostrar el formulario para editar el recurso especificado.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
     {
         return view('users.edit', compact('user'));
     }
 
-    public function update(request $request, user $user)
+    /**
+     * Actualice el recurso especificado en el almacenamiento.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, User $user)
     {
-        // Guardar cambios en DB
+        //
     }
-
-    public function guardarusuario(StoreUserRequest $request)
-    {
-        $id_role = 3;
-
-        $request->validate([
-            'name' => 'required',
-            'lastname' => 'required',
-            'identification' => 'required|digits:9',
-            'phone' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed',
-            'genero' => 'required',
-        ]);
-
-        //insercion de datos del funcionario a la tabla users
-        $user = user::create([
-            'role_id' => 7,
-            'name' => $request->name,
-            'lastname' => $request->lastname,
-            'identification' => $request->identification,
-            'password' => hash::make($request->password),
-            'gender' => $request->genero,
-            'phone' => $request->phone,
-            'email' => $request->email,
-
-        ]);
-        /*
-        if($request->hasfile("archivo")){
-
-            $v_pdf=$request->file('archivo');
-            $v_nombre="pdf_".time().".".$v_pdf->guessextension();
-            $url=public_path("storage/".$v_nombre);
-
-            if($v_pdf->guessextension()=="pdf"){
-                copy($v_pdf,$url);
-
-                $athlete->url=$v_nombre;
-
-            }
-
-        }
-        */
-        return redirect()->route('home')->with('status'/*,['mensaje'=>'el atleta se ha registrado correctamente','color'=>'done'] */); //cambiar color
-    }
-
-    function vistapracticas($atleta)
-    {
-
-        $user = auth::user()->id;
-        $coach = new coach();
-        $coach = coach::where("user_id", "=", $user)->first();
-        $sport = $coach->sport;
-        $athlete = $atleta;
-        return view('users.instructor', compact('sport', 'athelete'));
-    }
-
-    function guardarpractica(request $request)
-    {
-    }
-    function vistapracticaextra()
-    {
-        return view('users.athlete_data_session');
-    }
-
-    /*function listaatletas(){
-        return view('auth.register');
-    }*/
 }

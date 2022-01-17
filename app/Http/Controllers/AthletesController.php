@@ -10,6 +10,21 @@ use Illuminate\Http\Request;
 
 class AthletesController extends Controller
 {
+    /**
+     * Cree una nueva instancia de controlador.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Mostrar una lista del recurso.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         // Determinar según por rol cuales atletas retornar.
@@ -19,6 +34,11 @@ class AthletesController extends Controller
         return view('athletes.index', compact('athletes'));
     }
 
+    /**
+     * Muestra el formulario para crear un nuevo recurso.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $sports = Sport::all();
@@ -28,6 +48,12 @@ class AthletesController extends Controller
         return view('athletes.create', compact('sports', 'users'));
     }
 
+    /**
+     * Almacene un recurso recién creado en el almacenamiento.
+     *
+     * @param  \App\Http\Requests\StoreAthleteRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(StoreAthleteRequest $request)
     {
         $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated() + ['role_id' => 7]);
@@ -38,9 +64,17 @@ class AthletesController extends Controller
             'role_id' => 4
         ]);
 
+        // Almacenaje de la imagen.
+
         return redirect()->route('athletes.index')->with('status', '¡Atleta creado exitosamente!');
     }
 
+    /**
+     * Mostrar el formulario para editar el recurso especificado.
+     *
+     * @param  \App\Models\Athlete  $athlete
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Athlete $athlete)
     {
         $athlete->with('user');
@@ -48,7 +82,15 @@ class AthletesController extends Controller
         return view('athletes.edit', compact('athlete'));
     }
 
-    public function update()
+    /**
+     * Actualice el recurso especificado en el almacenamiento.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Athlete  $athlete
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Athlete $athlete)
     {
+        //
     }
 }

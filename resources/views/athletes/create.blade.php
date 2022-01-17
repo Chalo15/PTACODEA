@@ -310,9 +310,7 @@
 
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
 
                         <div class="form-group d-flex justify-content-end">

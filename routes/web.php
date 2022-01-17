@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Rutas de autenticación.
+ */
 Auth::routes();
 
+/**
+ * Ruta de Inicio
+ */
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /**
@@ -26,15 +32,6 @@ Route::prefix('users')->group(function () {
     Route::post('', [UsersController::class, 'store'])->name('users.store');
     Route::get('{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
     Route::put('{user}', [UsersController::class, 'update'])->name('users.update');
-});
-
-/**
- * Rutas de Solicitudes
- */
-Route::prefix('requests')->group(function () {
-    Route::get('', [RequestsController::class, 'index'])->name('requests.index');
-    Route::put('{user}/deny', [RequestsController::class, 'deny'])->name('requests.deny');
-    Route::put('{user/accept}', [RequestsController::class, 'accept'])->name('requests.accept');
 });
 
 /**
