@@ -15,6 +15,19 @@ class CreatePhysiosTable extends Migration
     {
         Schema::create('physios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('athlete_id')->constrained('athletes');
+            $table->date('date');
+            $table->string('SPH');
+            $table->string('APP');
+            $table->string('treatment');
+            $table->string('surgeries');
+            $table->string('fractures');
+            $table->date('session_timer');
+            $table->date('inability');
+            $table->integer('count_session');
+            $table->string('severity');
+            $table->longText('details');
             $table->timestamps();
         });
     }

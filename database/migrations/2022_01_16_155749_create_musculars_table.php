@@ -15,6 +15,36 @@ class CreateMuscularsTable extends Migration
     {
         Schema::create('musculars', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('athlete_id')->constrained('athletes');
+            $table->date('date');
+            $table->string('calcification');
+            $table->float('physiological_age');
+            $table->float('weight');
+            $table->float('height');
+            $table->float('BMI');
+            $table->float('waist');
+            $table->float('hip');
+            $table->float('cint_code');
+            $table->float('tricipital');
+            $table->float('subscapular');
+            $table->float('abdominal');
+            $table->float('suprailiac');
+            $table->float('thigh');
+            $table->float('calf');
+            $table->float('wrist');
+            $table->float('elbow');
+            $table->float('knee');
+            $table->float('biceps');
+            $table->float('calories');
+            $table->float('BMI_high');
+            $table->float('icc_high');
+            $table->float('fat');
+            $table->float('residual');
+            $table->float('bone');
+            $table->float('visceral');
+            $table->text('get_better');
+            $table->longText('details');
             $table->timestamps();
         });
     }
