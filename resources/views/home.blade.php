@@ -313,9 +313,25 @@
 
             </div>
 
-
             @endcan
 
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        console.log();
+
+    </script>
+    @endpush
+
+    @push('stylesheet')
+    <style>
+        .test-js {
+            background: red;
+        }
+
+    </style>
+    @endpush
+
 </x-app-layout>

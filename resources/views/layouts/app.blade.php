@@ -13,8 +13,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    @stack('stylesheet')
+
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
+    @stack('scripts')
 </head>
 
 <body class="bg-dark">
@@ -64,7 +68,9 @@
         </nav>
 
         <main class="container my-5">
+
             {{ $slot }}
+
         </main>
     </div>
 

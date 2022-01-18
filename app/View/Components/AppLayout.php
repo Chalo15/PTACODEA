@@ -20,7 +20,7 @@ class AppLayout extends Component
      */
     public function __construct($title)
     {
-        $this->title = 'PTA CODEA > ' . $title;
+        $this->title = 'PTACODEA > ' . $title;
     }
 
     /**
