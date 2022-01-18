@@ -34,7 +34,7 @@
                                     @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->identification }}</td>
-                                        <td>{{ $user->name . " " .  $user->last_name }}</td>
+                                        <td>{{ $user->full_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->role->description }}</td>
                                         <td width="100px" class="text-center">

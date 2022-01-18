@@ -14,11 +14,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @stack('stylesheet')
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-
-    @stack('scripts')
 </head>
 
 <body class="bg-dark">
@@ -39,7 +34,7 @@
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name . ' ' . Auth::user()->last_name }}
+                                {{ Auth::user()->full_name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -73,6 +68,11 @@
 
         </main>
     </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+
+    @stack('scripts')
 
 </body>
 
