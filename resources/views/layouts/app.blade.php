@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
 
+    <link rel="icon" href="{{ asset('favicon.png') }}" sizes="32x32" />
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -16,12 +18,14 @@
     @stack('stylesheet')
 </head>
 
-<body class="bg-dark">
+{{-- <body class="bg-dark"> --}}
+<body class="bg-white-codea">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm"> --}}
+        <nav class="navbar navbar-expand-md navbar-black-codea bg-black-codea shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('img/LOGO_CODEA.gif') }}" alt="" width="25%" height="25%">
+                    <img src="{{ asset('img/logo-codea.gif') }}" alt="" width="30%" height="30%">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

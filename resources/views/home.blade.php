@@ -1,6 +1,8 @@
 <x-app-layout title="Inicio">
 
     <div class="row">
+
+
         @can('role',"Admin")
         <div class="col-md mb-3">
             <div class="card text-center">
@@ -11,7 +13,7 @@
                     <i class="fas fa-users fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('users.index') }}" class="btn btn-outline-dark btn-block">Acceder</a>
+                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-block">Acceder</a>
                 </div>
             </div>
         </div>
@@ -27,7 +29,7 @@
                     <i class="fas fa-swimmer fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('athletes.index') }}" class="btn btn-outline-dark btn-block">Acceder</a>
+                    <a href="{{ route('athletes.index') }}" class="btn btn-primary btn-block">Acceder</a>
                 </div>
             </div>
         </div>
@@ -43,7 +45,7 @@
                     <i class="fas fa-table-tennis fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('sports.index') }}" class="btn btn-outline-dark btn-block">Acceder</a>
+                    <a href="{{ route('sports.index') }}" class="btn btn-primary btn-block">Acceder</a>
                 </div>
             </div>
         </div>
@@ -61,7 +63,7 @@
                     <i class="fas fa-dumbbell fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-outline-dark btn-block">Acceder</a>
+                    <a href="#" class="btn btn-primary btn-block">Acceder</a>
                 </div>
             </div>
         </div>
@@ -77,7 +79,7 @@
                     <i class="fas fa-user-md fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-outline-dark btn-block">Acceder</a>
+                    <a href="#" class="btn btn-primary btn-block">Acceder</a>
                 </div>
             </div>
         </div>

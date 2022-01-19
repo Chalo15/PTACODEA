@@ -35,7 +35,10 @@
                             </div>
 
                             <div class="form-group d-flex justify-content-end">
-                                <button class="btn btn-primary">Iniciar Sesión</button>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-sign-in-alt"></i> &nbsp;
+                                    Iniciar Sesión
+                                </button>
                             </div>
                         </form>
 

@@ -69,7 +69,10 @@
                             </div>
 
                             <div class="form-group d-flex justify-content-end">
-                                <button class="btn btn-dark">Registrar</button>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-sign-in-alt"></i> &nbsp;
+                                    Registrar
+                                </button>
                             </div>
 
                         </form>
