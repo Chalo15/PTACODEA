@@ -2,7 +2,10 @@
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('athletes.index') }}" class="btn btn-success">Atrás</a>
+            <a href="{{ route('athletes.index') }}" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> &nbsp;
+                Atrás
+            </a>
         </div>
     </div>
 
@@ -313,10 +316,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group d-flex justify-content-end">
-                            <button class="btn btn-dark">Registrar</button>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-save"></i> &nbsp;
+                                Guardar
+                            </button>
                         </div>
-
                     </form>
                 </div>
             </div>

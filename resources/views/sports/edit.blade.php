@@ -19,9 +19,11 @@
                         <form action="{{route('ckeditor', $sport)}} " method="post">
                             @csrf
                             @method('put')
-                            <textarea name="content" id="editor"></textarea>
+
+                            <x-editor name="content" value="{{ $sport->ckeditor }}" />
+
                             <br>
-                            <p><input type="submit" value="Enviar" class="btn btn-negro ml-auto m-1"></p>
+                            <p><input type="submit" value="Enviar" class="btn btn-dark ml-auto m-1"></p>
 
                         </form>
 
@@ -30,6 +32,5 @@
             </div>
         </div>
     </div>
-
 
 </x-app-layout>
