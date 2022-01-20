@@ -61,7 +61,7 @@ Route::get('/users/athlete_request', [App\Http\Controllers\athlete_requestsContr
 //Elimina las solicitudes de atletas no deseados
 Route::put('/users/athlete_request/{user}', [App\Http\Controllers\athlete_requestsController::class, 'destroy'])->name('athlete_delete');
 //Guarda los datos de las solicitudes de atletas aprovadas o rechazadas
-Route::put('/users/athlete_request', [App\Http\Controllers\athlete_requestsController::class, 'acceptedAthlete'])->name('athlete_accepted');
+Route::put('/users/athlete_request1/{user}', [App\Http\Controllers\athlete_requestsController::class, 'acceptedAthlete'])->name('athlete_accepted');
 
 //retorna vista de fromulario de registro de datos de instructor
 
@@ -88,7 +88,7 @@ Route::post('/users/register', [App\Http\Controllers\UsersController::class, 'gu
 Route::get('/users/register', [App\Http\Controllers\UsersController::class, 'index'])->name('register');
 
 //Vista para visualizar datos del atleta
-Route::get('/athletes/verdatos/{athlete}', [App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);
+Route::get('/athletes/verdatos/{id}', [App\Http\Controllers\AthleteController::class, 'vistaDatos'])->name('datos')->middleware(['can:roles,"Admin","Atleta"']);
 
 //Vista del formulario de agregar extra de usuarios
 Route::get('/users/athlete_extra_data', [App\Http\Controllers\ExtraDataController::class, 'datos_extra'])->name('datos_extra');

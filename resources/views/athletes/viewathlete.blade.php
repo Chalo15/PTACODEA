@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<body class="athlete_request">
-    
-
+<body class="athlete_request">  
     <div class="container-fluid">
         <h1 class = "text-center">Atletas Registrados en el Sistema</h1>
         <hr>
@@ -30,12 +28,12 @@
                     <td scope="col">{{ $atleta->sport_id }}</td>
                     <td>
                         <div class="justify-content-center text-center">
-                            <form class="d-inline" action = "{{ route('datos', $atleta) }}" method = "GET">
+                            <form class="d-inline" action = "{{ route('datos', $atleta->id) }}" method = "GET">
                                 @csrf
                                 <button class="d-inline btn btn-negro" type ="submit">Ver Datos</button>
                             </form> 
                             
-                            <form class="d-inline " action="{{ route('athlete.delete', $atleta) }}" method = "POST">
+                            <form class="d-inline " action="{{ route('athlete.delete', $atleta->id) }}" method = "GET">
                                 @csrf
                                 @method('PUT')
                                 <button class="d-inline btn btn-negro" type ="submit">Eliminar</button>

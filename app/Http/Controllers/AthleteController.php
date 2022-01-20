@@ -58,12 +58,13 @@ class AthleteController extends Controller
         ]);
     }
 
-    function vistaDatos(Athlete $request){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
-        $id = $request->user_id;
-        $atleta = new Athlete;
-        $atleta = Athlete::where("user_id", "=", $id)->get(); 
-        $user = $atleta->map->user->flatten();
-        return view('athletes.seedata', ['user'=>$user], ['atleta'=>$atleta]);
+    function vistaDatos($atleta){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
+        $id = $atleta;
+        $atleta1 = new Athlete;
+        $atleta1 = Athlete::where("id", "=", $id)->first();
+        $user = new User;
+        $user =  User::where("id","=", $atleta1->user_id)->first();
+        return view('athletes.seedata', ['us'=>$user], ['athlete'=>$atleta1]);
     }
 
     public function guardado(Request $request)
@@ -215,7 +216,6 @@ class AthleteController extends Controller
         $usuario->save();
         return redirect()->route('perfil.atleta')->with('status');
     }
-}
     public function index_athleteview(){
         $atletas = new Athlete;
         $atletas = Athlete::where("state", "=", 'a')->get(); 
