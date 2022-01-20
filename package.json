@@ -10,6 +10,11 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^31.0.0",
+        "@ckeditor/ckeditor5-build-inline": "^31.1.0",
+        "@ckeditor/ckeditor5-ui": "^31.1.0",
+        "@fortawesome/fontawesome-free": "^5.15.4",
+        "alpinejs": "^3.8.1",
         "axios": "^0.21",
         "bootstrap": "^4.6.1",
         "jquery": "^3.6",
@@ -22,11 +27,6 @@
         "sass-loader": "^11.0.1",
         "vue": "^2.6.12",
         "vue-loader": "^15.9.7",
-        "vue-template-compiler": "^2.6.12",
-        "@ckeditor/ckeditor5-build-classic": "^31.0.0",
-        "@ckeditor/ckeditor5-build-inline": "^31.1.0",
-        "@ckeditor/ckeditor5-ui": "^31.1.0",
-        "@fortawesome/fontawesome-free": "^5.15.4",
-        "alpinejs": "^3.8.1"
+        "vue-template-compiler": "^2.6.12"
     }
 }

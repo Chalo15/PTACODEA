@@ -38,3 +38,13 @@ Alpine.start();
  * CKEditor
  */
 window.ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
+
+/**
+ * Plugins
+ */
+$(function () {
+
+    // Datatables
+    $('#datatable').DataTable(/** Datatables Configuration */ require('./config/_datatables.config').default);
+
+})

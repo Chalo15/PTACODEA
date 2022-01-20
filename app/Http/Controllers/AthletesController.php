@@ -29,7 +29,7 @@ class AthletesController extends Controller
     {
         // Determinar según por rol cuales atletas retornar.
 
-        $athletes = Athlete::with('user')->paginate(5);
+        $athletes = Athlete::with('user')->get();
 
         return view('athletes.index', compact('athletes'));
     }
