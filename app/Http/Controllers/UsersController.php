@@ -73,7 +73,7 @@ class UsersController extends Controller
             //     }
             // }
 
-        } else if ($request->role_id == 2) {
+        } else if ($request->role_id == 3) {
             /**
              * Almacenaje en caso que sea funcionario.
              *

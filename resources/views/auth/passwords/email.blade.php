@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="form-group d-flex justify-content-end">
-                                <button class="btn btn-dark">Enviar enlace de recuperación</button>
+                                <button class="btn btn-primary">Enviar enlace de recuperación</button>
                             </div>
                         </form>
                     </div>

@@ -2,13 +2,15 @@
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('users.index')}}" class="btn btn-success">Atrás</a>
+            <a href="{{ route('users.index') }}" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> &nbsp;
+                Atrás
+            </a>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-
             <div class="card">
                 <div class="card-header">
                     Crear Usuario
@@ -233,8 +235,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group d-flex justify-content-end">
-                            <button class="btn btn-dark">Registrar</button>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-save"></i> &nbsp;
+                                Guardar
+                            </button>
                         </div>
 
                     </form>
@@ -383,5 +388,12 @@
         </x-card> --}}
     </div>
     </div>
+
+
+
+
+
+
+
 
 </x-app-layout>

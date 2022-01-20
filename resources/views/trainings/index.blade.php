@@ -1,8 +1,8 @@
-<x-app-layout title="Deportes">
+<x-app-layout title="Usuarios">
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('home') }}" class="btn btn-primary">Atrás</a>
+            <a href="{{ route('home') }}" class="btn btn-success">Atrás</a>
         </div>
     </div>
 
@@ -10,7 +10,10 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Deportes
+                    Usuarios
+                    <a href="{{ route('users.create') }}" class="btn btn-success">
+                        Nuevo
+                    </a>
                 </div>
 
                 <div class="card-body">
@@ -19,17 +22,21 @@
                             <x-table>
                                 <x-slot name="head">
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Descripción</th>
+                                        <th>Cédula</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Correo electrónico</th>
+                                        <th>Rol</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </x-slot>
 
                                 <x-slot name="body">
-                                    @foreach ($sports as $sport)
+                                    @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $sport->id }}</td>
-                                        <td>{{ $sport->description }}</td>
+                                        <td>{{ $user->identification }}</td>
+                                        <td>{{ $user->name . " " .  $user->last_name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->role->description }}</td>
                                         <td width="100px" class="text-center">
 
                                             <div class="dropdown">
@@ -38,12 +45,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item" href="{{ route('sports.show', $sport->id) }}">
-                                                        <i class="fas fa-info-circle"></i> &nbsp;
-                                                        Información
-                                                    </a>
-
-                                                    <a class="dropdown-item" href="{{ route('sports.edit', $sport->id) }}">
+                                                    <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">
                                                         <i class="fas fa-edit"></i> &nbsp;
                                                         Editar
                                                     </a>
@@ -57,8 +59,10 @@
 
                                 <x-slot name="foot">
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Descripción</th>
+                                        <th>Cédula</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Correo electrónico</th>
+                                        <th>Rol</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </x-slot>
@@ -68,12 +72,11 @@
 
                     <div class="row">
                         <div class="col d-flex justify-content-end">
-                            {{ $sports->links() }}
+                            {{ $users->links() }}
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
