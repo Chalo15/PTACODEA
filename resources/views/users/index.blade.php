@@ -2,7 +2,10 @@
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('home') }}" class="btn btn-success">Atrás</a>
+            <a href="{{ route('home') }}" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> &nbsp;
+                Atrás
+            </a>
         </div>
     </div>
 
@@ -10,10 +13,17 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Usuarios
-                    <a href="{{ route('users.create') }}" class="btn btn-success">
-                        Nuevo
-                    </a>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            Usuarios
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <a href="{{ route('users.create') }}" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> &nbsp;
+                                Nuevo
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -34,7 +44,7 @@
                                     @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->identification }}</td>
-                                        <td>{{ $user->name . " " .  $user->last_name }}</td>
+                                        <td>{{ $user->full_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->role->description }}</td>
                                         <td width="100px" class="text-center">
