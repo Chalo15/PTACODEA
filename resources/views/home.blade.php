@@ -140,6 +140,7 @@
                         <h4 class="">Ver Expediente</h4>
                         <i class="d-block fas fa-id-card-alt p-2"></i>
                         <button class="btn btn-negro" onclick= "window.location='{{ url('/athletes/seedata') }}'">Ingresar</button>
+                        {{-- falla --}}
                     </div>
                 </div>
             </div>
@@ -166,7 +167,7 @@
                     <div class="mi_perfil">
                         <h4 class="">Mi Perfil</h4>
                         <i class="d-block fas fa-user-circle p-2"></i>
-                        <button class="btn btn-negro">Ingresar</button>
+                        <button onclick= "window.location='{{ route('perfil.atleta') }}'" class="btn btn-negro">Ingresar</button>
                     </div>
                 </div>
 
@@ -200,7 +201,7 @@
                     <div class="mi_perfil">
                         <h4 class="">Mi Perfil</h4>
                         <i class="d-block fas fa-user-circle p-2"></i>
-                        <button class="btn btn-negro">Ingresar</button>
+                        <button onclick= "window.location='{{ route('perfil.atleta') }}'" class="btn btn-negro">Ingresar</button>
                     </div>
                 </div>
 

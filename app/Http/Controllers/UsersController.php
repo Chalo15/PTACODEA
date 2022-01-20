@@ -76,7 +76,7 @@ class UsersController extends Controller
         $coach = Coach::where("user_id", "=", $user)->first();
         $sport = $coach->sport;
         $athlete = $atleta;
-        return view('users.instructor', compact('sport'), compact('athlete'));
+        return view('users.instructor', compact('sport', 'athelete'));
     }
 
     function guardarPractica(Request $request)

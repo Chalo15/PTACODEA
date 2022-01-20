@@ -40,11 +40,11 @@ Route::post('/users/externalathletes',  [App\Http\Controllers\ExternalAthleteCon
 //Rutas enfocadas en el modulo de perfil de usuario////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //retorna vista de perfil personal de atleta
-Route::get('/users/athlete_profile', [\App\Http\Controllers\AthleteController::class, 'vistaPerfil'])->name('perfil.atleta')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta"']);
+Route::get('/users/athlete_profile', [\App\Http\Controllers\AthleteController::class, 'vistaPerfil'])->name('perfil.atleta')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta","Fisioterapia","Musculacion"']);
 //guarda las modificaciones del perfil del atleta
 Route::put('users/athlete_profile', [App\Http\Controllers\AthleteController::class, 'guardaPerfil'])->name('saveProfile');
 //cambia foto de perfil
-Route::get('/users/update_photo', [\App\Http\Controllers\AthleteController::class, 'vistaSelectorFoto'])->name('changePhoto')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta"']);
+Route::get('/users/update_photo', [\App\Http\Controllers\AthleteController::class, 'vistaSelectorFoto'])->name('changePhoto')->middleware(['can:roles, "Admin","Instructor","Funcionario","Atleta","Fisioterapia","Musculacion"']);
 //Guarda la foto de perfil seleccionada
 Route::post('/users/update_photo',  [App\Http\Controllers\AthleteController::class, 'guardaFoto'])->name('savePhoto');
 
@@ -102,15 +102,15 @@ Route::put('/config/ckeditor/{sport}', [App\Http\Controllers\SportController::cl
 
 
 //Registrar datos de atleta por parte del fisioterapeuta
-Route::get('/physiotherapy/listAthletes',[App\Http\Controllers\FunctionaryController::class,'list'])->name('listAthletes')->middleware(['can:roles,"Fisioterapia"']);
-Route::get('/physiotherapy/appointment/{id}',[App\Http\Controllers\FunctionaryController::class,'appointment'])->name('appointment')->middleware(['can:roles,"Fisioterapia"']);
+Route::get('/physiotherapy/listAthletes', [App\Http\Controllers\FunctionaryController::class, 'list'])->name('listAthletes')->middleware(['can:roles,"Fisioterapia"']);
+Route::get('/physiotherapy/appointment/{id}', [App\Http\Controllers\FunctionaryController::class, 'appointment'])->name('appointment')->middleware(['can:roles,"Fisioterapia"']);
 
 //Registrar datos de atleta por parte del encargado de musculacion
-Route::get('/musculation/catalogAthletes',[App\Http\Controllers\FunctionaryController::class,'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
-Route::get('/musculation/report/{id}',[App\Http\Controllers\FunctionaryController::class,'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
+Route::get('/musculation/catalogAthletes', [App\Http\Controllers\FunctionaryController::class, 'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
+Route::get('/musculation/report/{id}', [App\Http\Controllers\FunctionaryController::class, 'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
 
 Route::get('/coach/select_athlete', [App\Http\Controllers\SportController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
-Route::post('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
+Route::put('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
 
 //Vista de Atletas Registrados
 Route::get('/athletes/viewathlete', [App\Http\Controllers\AthleteController::class, 'index_athleteview'])->name('athletesview')->middleware(['can:roles,"Admin"']);
@@ -118,5 +118,3 @@ Route::get('/athletes/viewathlete', [App\Http\Controllers\AthleteController::cla
 //Ver datos específicos
 //Eliminar un atleta
 Route::put('/athletes/viewathlete/{athlete}', [App\Http\Controllers\AthleteController::class, 'athleteview_delete'])->name('athlete.delete');
-
-

@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/athletes.js') }}" defer></script>
+    <script src="{{ asset('js/script.js')}}" defer></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
     <script src="/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
     <script src="/vendors/formvalidation/dist/js/plugins/Bootstrap3.min.js"></script>
