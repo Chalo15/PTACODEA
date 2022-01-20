@@ -22,24 +22,24 @@ class athlete_requestsController extends Controller
     }
   
 
-    public function destroy(User $request){
-        $request->state = 'd';
+    public function destroy($user){
+       
         $atleta = New Athlete;
-        $atleta->state = $request->state;
-
-        return $request->name;
-
+        $atleta = Athlete::where("user_id", "=", $user)->first();
+        $atleta->state = 'r';
+        $atleta->save();
         return back()->with('succes','Solicitud de registro de atleta denegada correctamente');
 
-        $atleta->save();
+        
     }
 
-    public function acceptedAthlete(User $request){
-        $request->state = 'a';
+    public function acceptedAthlete($user){
         $atleta = New Athlete;
-        $atleta->state = $request->state;
+        $atleta = Athlete::where("user_id", "=", $user)->first();
+        $atleta->state = 'a';
+        $atleta->save();
         return back()->with('succes','Solicitud de registro de atleta aprobada correctamente');
 
-        $atleta->save();
+        
     } 
 }

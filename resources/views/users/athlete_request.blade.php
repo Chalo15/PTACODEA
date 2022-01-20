@@ -29,12 +29,12 @@
                     <td scope="col">{{ $user->sport_id }}</td>
                     <td>
                         <div class="justify-content-center text-center">
-                            <form class="d-inline" action = "{{ route('athlete_accepted', $user) }}" method = "POST">
+                            <form class="d-inline" action = "{{ route('athlete_accepted', $user->id) }}" method = "POST">
                                 @csrf
                                 @method('PUT')
                                 <button class="d-inline btn btn-negro" type ="submit">Aceptar</button>
                             </form>   
-                            <form class="d-inline " action="{{ route('athlete_delete', $user) }}" method = "POST">
+                            <form class="d-inline " action="{{ route('athlete_delete', $user->id) }}" method = "POST">
                                 @csrf
                                 @method('PUT')
                                 <button class="d-inline btn btn-negro" type ="submit">Denegar</button>

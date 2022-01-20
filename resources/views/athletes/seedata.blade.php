@@ -2,10 +2,7 @@
 
 @section('content')
 <body class="seedata text-light">
-    
     <div class="container-fluid">
-        @foreach($user as $us)
-        @foreach($atleta as $athlete)
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-6 col-lg-6 p-1 m-3">
                 <h2 class="display-5 text-center"><u>Información de Contacto</u></h2>                
@@ -166,8 +163,6 @@
             </div>
             
         </div>
-        @endforeach 
-        @endforeach
     </div>
     
 </body>
