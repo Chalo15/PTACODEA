@@ -43,7 +43,10 @@ class CreateMuscularsTable extends Migration
             $table->float('fat');
             $table->float('residual');
             $table->float('bone');
+            $table->float('muscle');
             $table->float('visceral');
+            $table->float('ideal_weight');
+            $table->float('calories');
             $table->text('get_better');
             $table->longText('details');
             $table->timestamps();

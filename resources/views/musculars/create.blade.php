@@ -202,17 +202,95 @@
 
             {{-- Pantorrilla Cm --}}
             <div class="form-group row">
-                <label for="elbow" class="col-sm-4 col-form-label">Pantorrilla Cm</label>
+                <label for="calf_cm" class="col-sm-4 col-form-label">Pantorrilla Cm</label>
                 <div class="col-sm-8">
-                    <x-input name="elbow" type="number" value="{{ old('elbow') }}" />
+                    <x-input name="calf_cm" type="number" value="{{ old('calf_cm') }}" />
                 </div>
             </div>
 
-            {{-- Rodilla Cm --}}
+                </div>
+            </div>
+
+            <hr>
+
+            <label for="weight" class="col-sm-4 col-form-label">Resultados</label>
+            <br>
+            {{-- %Grasa --}}
             <div class="form-group row">
-                <label for="knee" class="col-sm-4 col-form-label">Rodilla Cm</label>
+                <label for="fat" class="col-sm-4 col-form-label">%Grasa</label>
                 <div class="col-sm-8">
-                    <x-input name="knee" type="number" value="{{ old('knee') }}" />
+                    <x-input name="fat" type="number" value="{{ old('fat') }}" />
+                </div>
+            </div>
+
+            {{-- %Residual --}}
+            <div class="form-group row">
+                <label for="residual" class="col-sm-4 col-form-label">%Residual</label>
+                <div class="col-sm-8">
+                    <x-input name="residual" type="number" value="{{ old('residual') }}" />
+                </div>
+            </div>
+
+            {{-- %Óseo --}}
+            <div class="form-group row">
+                <label for="bone" class="col-sm-4 col-form-label">%Óseo</label>
+                <div class="col-sm-8">
+                    <x-input name="bone" type="number" value="{{ old('bone') }}" />
+                </div>
+            </div>
+
+            {{-- %Musculo --}}
+            <div class="form-group row">
+                <label for="muscle" class="col-sm-4 col-form-label">%Musculo</label>
+                <div class="col-sm-8">
+                    <x-input name="muscle" type="number" value="{{ old('muscle') }}" />
+                </div>
+            </div>
+
+            {{-- %Visceral --}}
+            <div class="form-group row">
+                <label for="visceral" class="col-sm-4 col-form-label">%Visceral</label>
+                <div class="col-sm-8">
+                    <x-input name="visceral" type="number" value="{{ old('visceral') }}" />
+                </div>
+            </div>
+
+                </div>
+            </div>
+
+            <hr>
+
+            <label for="weight" class="col-sm-4 col-form-label">Recomendaciones</label>
+            <br>
+            {{-- Peso Ideal Kg --}}
+            <div class="form-group row">
+                <label for="ideal_weight" class="col-sm-4 col-form-label">Peso Ideal Kg</label>
+                <div class="col-sm-8">
+                    <x-input name="ideal_weight" type="number" value="{{ old('ideal_weight') }}" />
+                </div>
+            </div>
+
+            {{-- Requerimiento Calorico --}}
+            <div class="form-group row">
+                <label for="calories" class="col-sm-4 col-form-label">Requerimiento Calorico</label>
+                <div class="col-sm-8">
+                    <x-input name="calories" type="number" value="{{ old('calories') }}" />
+                </div>
+            </div>
+
+            {{-- IMC Alto --}}
+            <div class="form-group row">
+                <label for="BMI_high" class="col-sm-4 col-form-label">IMC Alto</label>
+                <div class="col-sm-8">
+                    <x-input name="BMI_high" type="number" value="{{ old('BMI_high') }}" />
+                </div>
+            </div>
+
+            {{-- ICC Alto --}}
+            <div class="form-group row">
+                <label for="icc_high" class="col-sm-4 col-form-label">ICC Alto</label>
+                <div class="col-sm-8">
+                    <x-input name="icc_high" type="number" value="{{ old('icc_high') }}" />
                 </div>
             </div>
 
