@@ -15,10 +15,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col d-flex align-items-center">
-                            Usuarios
+                            Documentos
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <a href="{{ route('users.create') }}" class="btn btn-primary">
+                            <a href="{{ route('physios.create') }}" class="btn btn-primary">
                                 <i class="fas fa-plus"></i> &nbsp;
                                 Nuevo
                             </a>
@@ -32,21 +32,29 @@
                             <x-table>
                                 <x-slot name="head">
                                     <tr>
-                                        <th>Cédula</th>
+                                        <th>Documento</th>
+                                        <th>Fecha</th>
+                                        <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
-                                        <th>Correo electrónico</th>
-                                        <th>Rol</th>
+                                        <th>Disciplina</th>
+                                        <th>Cédula del Fisioterapeuta</th>
+                                        <th>Nombre Completo</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </x-slot>
 
                                 <x-slot name="body">
-                                    @foreach ($users as $user)
+                                    @foreach ($physio as $physios)
                                     <tr>
-                                        <td>{{ $user->identification }}</td>
-                                        <td>{{ $user->full_name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role->description }}</td>
+                                        <td>{{ $physios->id }}</td>
+                                        <td>{{ $physios->date }}</td>
+                                        <td>{{ $physios->athelete->user->identification }}</td>
+                                        <td>{{ $physios->athlete->user->name . " " . $physios->athlete->user->lastname}}</td>
+                                        <td>{{ $physios->athelete->sport->description }}</td>
+                                        <td>{{ $physios->user->identification }}</td>
+                                        <td>{{ $physios->user->name . " " . $physios->user->lastname}}</td>
+                                        <th>Acciones</th>
+
                                         <td width="100px" class="text-center">
 
                                             <div class="dropdown">
@@ -55,7 +63,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">
+                                                    <a class="dropdown-item" href="{{ route('users.edit', $physio->id) }}">
                                                         <i class="fas fa-edit"></i> &nbsp;
                                                         Editar
                                                     </a>
@@ -69,10 +77,13 @@
 
                                 <x-slot name="foot">
                                     <tr>
-                                        <th>Cédula</th>
+                                        <th>Documento</th>
+                                        <th>Fecha</th>
+                                        <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
-                                        <th>Correo electrónico</th>
-                                        <th>Rol</th>
+                                        <th>Disciplina</th>
+                                        <th>Cédula del Fisioterapeuta</th>
+                                        <th>Nombre Completo</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </x-slot>
@@ -82,7 +93,7 @@
 
                     <div class="row">
                         <div class="col d-flex justify-content-end">
-                            {{ $users->links() }}
+                            {{ $physio->links() }}
                         </div>
                     </div>
                 </div>

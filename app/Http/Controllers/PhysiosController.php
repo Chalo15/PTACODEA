@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Physio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PhysiosController extends Controller
 {
@@ -24,7 +25,20 @@ class PhysiosController extends Controller
      */
     public function index()
     {
-        //
+
+        $role = Auth::user()->role->description;
+        $user = Auth::user()->id;
+
+
+        if ($role == "Admin") {
+            $physio = Physio::with('user')->paginate(5);
+            return view('physios.index', compact('physio'));
+        } else {
+
+            $physio = new Physio();
+            $physio = Physio::where('user_id', '=', $user)->paginate(5);
+            return view('physios.index', compact('physio'));
+        }
     }
 
     /**

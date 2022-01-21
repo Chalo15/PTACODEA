@@ -3,6 +3,7 @@
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\AthletesController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PhysiosController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportsController;
@@ -55,6 +56,28 @@ Route::prefix('athletes')->group(function () {
     Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
 });
+
+Route::prefix('athletes')->group(function () {
+    Route::get('', [AthletesController::class, 'index'])->name('athletes.index');
+    Route::get('create', [AthletesController::class, 'create'])->name('athletes.create');
+    Route::post('', [AthletesController::class, 'store'])->name('athletes.store');
+    Route::get('{athlete}', [AthletesController::class, 'show'])->name('athletes.show');
+    Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
+    Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
+});
+
+
+Route::prefix('physios')->group(function () {
+    Route::get('', [PhysiosController::class, 'index'])->name('physios.index');
+    Route::get('create', [PhysiosController::class, 'create'])->name('physios.create');
+    Route::post('', [PhysiosController::class, 'store'])->name('physios.store');
+    Route::get('{athlete}', [PhysiosController::class, 'show'])->name('physios.show');
+    Route::get('{athlete}/edit', [PhysiosController::class, 'edit'])->name('physios.edit');
+    Route::put('{athlete}', [PhysiosController::class, 'update'])->name('physios.update');
+});
+
+
+
 
 // LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
 
