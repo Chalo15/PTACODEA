@@ -63,7 +63,7 @@
                     <i class="fas fa-dumbbell fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder</a>
                 </div>
             </div>
         </div>
