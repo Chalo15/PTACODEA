@@ -31,10 +31,6 @@ class AthletesController extends Controller
         // Determinar según por rol cuales atletas retornar.
         $rol = Auth::user()->role->description;
         if($rol == "Admin"){
-
-<<<<<<< Updated upstream
-        $rol = Auth::user()->role->description;
-        if($rol == "Admin"){
             $athletes = Athlete::with('user')->paginate(5);
 
             return view('athletes.index', compact('athletes'));
@@ -50,20 +46,6 @@ class AthletesController extends Controller
             return view('athletes.index', ['athletes' => $athletes]);
         }
 
-=======
-            $athletes = Athlete::with('user')->paginate(5);
-
-            return view('athletes.index', compact('athletes'));
-        }
-        
-        if($rol == "Admin"){
-
-            $athletes = Athlete::with('user')->paginate(5);
-
-            return view('athletes.index', compact('athletes'));
-        }
-        
->>>>>>> Stashed changes
     }
 
     /**
