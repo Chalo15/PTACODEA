@@ -160,8 +160,8 @@ Route::get('/physiotherapy/appointment/{id}', [App\Http\Controllers\FunctionaryC
 Route::get('/musculation/catalogAthletes', [App\Http\Controllers\FunctionaryController::class, 'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
 Route::get('/musculation/report/{id}', [App\Http\Controllers\FunctionaryController::class, 'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
 
-Route::get('/coach/select_athlete', [App\Http\Controllers\SportController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
-Route::put('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
+Route::get('/coach/select_athlete', [App\Http\Controllers\SportsController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
+Route::put('/coach/select_athlete/{sport}', [App\Http\Controllers\SportsController::class, 'edit'])->name('ckeditor');
 
 //Vista de Atletas Registrados
 Route::get('/athletes/viewathlete', [App\Http\Controllers\AthleteController::class, 'index_athleteview'])->name('athletesview')->middleware(['can:roles,"Admin"']);
