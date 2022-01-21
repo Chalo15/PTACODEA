@@ -24,7 +24,19 @@ class MuscularsController extends Controller
      */
     public function index()
     {
-        //
+        $role = Auth::user()->role->description;
+        $user = Auth::user()->id;
+
+
+        if ($role == "Admin") {
+            $muscular = Muscular::with('user')->paginate(5);
+            return view('musculars.index', compact('muscular'));
+        } else {
+
+            $muscular = new Muscular();
+            $muscular = Muscular::where('user_id', '=', $user)->paginate(5);
+            return view('musculars.index', compact('muscular'));
+        }
     }
 
     /**
