@@ -60,6 +60,8 @@ class SportsController extends Controller
      */
     public function update(Request $request, Sport $sport)
     {
-        //
+        $sport->ckeditor = $request->content;
+        $sport->save();
+        return redirect()->route('sports.index')->with('status', '¡Plantilla generada exitosamente!');
     }
 }

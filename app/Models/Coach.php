@@ -36,4 +36,9 @@ class Coach extends Model
     {
         return $this->belongsTo(Sport::class);
     }
+
+    public function trainings()
+    {
+        return $this->hasMany(Training::class);
+    }
 }

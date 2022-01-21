@@ -79,7 +79,7 @@
                     <i class="fas fa-user-md fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder</a>
                 </div>
             </div>
         </div>
