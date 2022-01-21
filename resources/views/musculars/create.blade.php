@@ -42,10 +42,6 @@
                                 <x-input name="age" type="number" value="{{ old('age') }}" />
                             </div>
                         </div>
-                </div>
-            </div>
-
-            <hr>
 
             {{-- Peso Kg --}}
             <div class="form-group row">
@@ -71,11 +67,6 @@
                 </div>
             </div>
 
-                </div>
-            </div>
-
-            <hr>
-
             {{-- Circ. Cintura Cm --}}
             <div class="form-group row">
                 <label for="waist" class="col-sm-4 col-form-label">Circ. Cintura Cm</label>
@@ -100,11 +91,10 @@
                 </div>
             </div>
 
-                </div>
-            </div>
-
             <hr>
-            <label for="weight" class="col-sm-4 col-form-label">Pliegues</label>
+            <div class="form-group row">
+                <label for="weight" class="col-sm-4 col-form-label">Pliegues</label>
+            </div>
             <br>
             {{-- Tricipital --}}
             <div class="form-group row">
@@ -154,12 +144,10 @@
                 </div>
             </div>
 
-                </div>
-            </div>
-
             <hr>
-
-            <label for="weight" class="col-sm-4 col-form-label">Diametros</label>
+            <div class="form-group row">
+                <label for="weight" class="col-sm-4 col-form-label">Diametros</label>
+            </div>
             <br>
             {{-- Muñeca Cm --}}
             <div class="form-group row">
@@ -185,12 +173,10 @@
                 </div>
             </div>
 
-                </div>
-            </div>
-
             <hr>
-
-            <label for="weight" class="col-sm-4 col-form-label">Anchuras</label>
+            <div class="form-group row">
+                <label for="weight" class="col-sm-4 col-form-label">Anchuras</label>
+            </div>
             <br>
             {{-- Biceps Cm --}}
             <div class="form-group row">
@@ -208,12 +194,10 @@
                 </div>
             </div>
 
-                </div>
-            </div>
-
             <hr>
-
-            <label for="weight" class="col-sm-4 col-form-label">Resultados</label>
+            <div class="form-group row">
+                <label for="weight" class="col-sm-4 col-form-label">Resultados</label>
+            </div>
             <br>
             {{-- %Grasa --}}
             <div class="form-group row">
@@ -255,12 +239,10 @@
                 </div>
             </div>
 
-                </div>
-            </div>
-
             <hr>
-
-            <label for="weight" class="col-sm-4 col-form-label">Recomendaciones</label>
+            <div class="form-group row">
+                <label for="weight" class="col-sm-4 col-form-label">Recomendaciones</label>
+            </div>
             <br>
             {{-- Peso Ideal Kg --}}
             <div class="form-group row">
@@ -294,9 +276,6 @@
                 </div>
             </div>
 
-                </div>
-            </div>
-
             <hr>
 
             <div class="d-flex justify-content-end">
@@ -309,7 +288,8 @@
             </form>
         </div>
     </div>
-
+    </div>
+    </div>
     </div>
     </div>
 </x-app-layout>

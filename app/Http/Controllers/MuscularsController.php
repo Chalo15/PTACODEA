@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Muscular;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MuscularsController extends Controller
@@ -46,7 +47,8 @@ class MuscularsController extends Controller
      */
     public function create()
     {
-        //
+        $muscular = Muscular::with('user')->paginate(5);
+            return view('musculars.create', compact('muscular'));
     }
 
     /**
