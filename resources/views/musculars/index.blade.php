@@ -45,33 +45,36 @@
 
                                 <x-slot name="body">
                                     @foreach ($muscular as $musculars)
-                                    <tr>
-                                        <td>{{ $musculars->id }}</td>
-                                        <td>{{ $musculars->date }}</td>
-                                        <td>{{ $musculars->athelete->user->identification }}</td>
-                                        <td>{{ $musculars->athlete->user->name . " " . $musculars->athlete->user->lastname}}</td>
-                                        <td>{{ $musculars->athelete->sport->description }}</td>
-                                        <td>{{ $musculars->user->identification }}</td>
-                                        <td>{{ $musculars->user->name . " " . $musculars->user->lastname}}</td>
-                                        <th>Acciones</th>
+                                        <tr>
+                                            <td>{{ $musculars->id }}</td>
+                                            <td>{{ $musculars->date }}</td>
+                                            <td>{{ $musculars->athelete->user->identification }}</td>
+                                            <td>{{ $musculars->athlete->user->name . ' ' . $musculars->athlete->user->lastname }}
+                                            </td>
+                                            <td>{{ $musculars->athelete->sport->description }}</td>
+                                            <td>{{ $musculars->user->identification }}</td>
+                                            <td>{{ $musculars->user->name . ' ' . $musculars->user->lastname }}</td>
+                                            <th>Acciones</th>
 
-                                        <td width="100px" class="text-center">
+                                            <td width="100px" class="text-center">
 
-                                            <div class="dropdown">
-                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </button>
+                                                <div class="dropdown">
+                                                    <button class="btn" type="button" id="dropdownMenu2"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
 
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item" href="{{ route('users.edit', $muscular->id) }}">
-                                                        <i class="fas fa-edit"></i> &nbsp;
-                                                        Editar
-                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('users.edit', $muscular->id) }}">
+                                                            <i class="fas fa-edit"></i> &nbsp;
+                                                            Editar
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </x-slot>
 

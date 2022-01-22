@@ -48,7 +48,7 @@ class MuscularsController extends Controller
     public function create()
     {
         $muscular = Muscular::with('user')->paginate(5);
-            return view('musculars.create', compact('muscular'));
+        return view('musculars.create', compact('muscular'));
     }
 
     /**
