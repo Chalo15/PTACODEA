@@ -25,6 +25,24 @@
                             <label for="user_id" class="col-sm-4 col-form-label">Instrumento de Medición</label>
                         </div>
 
+                        <div x-show="isOpen">
+                            {{-- Usuario --}}
+                            <div class="form-group row">
+                                <label for="user_id" class="col-sm-4 col-form-label">Usuario</label>
+                                <div class="col-sm-8">
+                                    <x-select name="user_id">
+                                        <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> --
+                                            Seleccione -- </option>
+                                        @foreach ($users as $user)
+                                            <option {{ old('user_id') == $user->id ? 'selected' : '' }}
+                                                value="{{ $user->id }}">
+                                                {{ $user->identification . ' | ' . $user->name . ' ' . $user->last_name }}
+                                            </option>
+                                        @endforeach
+                                    </x-select>
+                                </div>
+                            </div>
+                        </div>
 
                         {{-- Fecha de Toma Datos --}}
                         <div class="form-group row">

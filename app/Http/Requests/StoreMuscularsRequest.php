@@ -24,8 +24,8 @@ class StoreMuscularsRequest extends FormRequest
     public function rules()
     {
         $rules = [
+            'user_id'          => ['required'],
             'date'             => ['required'],
-            'calcification'    => ['required'],
             'physiological_age'=> ['required', 'numeric'],
             'weight'           => ['required', 'numeric'],
             'height'           => ['required', 'numeric'],
