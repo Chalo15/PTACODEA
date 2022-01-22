@@ -37,9 +37,9 @@
 
                         {{-- Edad Fisiologica--}}
                         <div class="form-group row">
-                            <label for="age" class="col-sm-4 col-form-label">Edad</label>
+                            <label for="physiological_age" class="col-sm-4 col-form-label">Edad</label>
                             <div class="col-sm-8">
-                                <x-input name="age" type="number" value="{{ old('age') }}" />
+                                <x-input name="physiological_age" type="number" value="{{ old('physiological_age') }}" />
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@
 
             <hr>
             <div class="form-group row">
-                <label for="weight" class="col-sm-4 col-form-label">Pliegues</label>
+                <label class="col-sm-4 col-form-label">Pliegues</label>
             </div>
             <br>
             {{-- Tricipital --}}
@@ -146,7 +146,7 @@
 
             <hr>
             <div class="form-group row">
-                <label for="weight" class="col-sm-4 col-form-label">Diametros</label>
+                <label class="col-sm-4 col-form-label">Diametros</label>
             </div>
             <br>
             {{-- Muñeca Cm --}}
@@ -175,7 +175,7 @@
 
             <hr>
             <div class="form-group row">
-                <label for="weight" class="col-sm-4 col-form-label">Anchuras</label>
+                <label class="col-sm-4 col-form-label">Anchuras</label>
             </div>
             <br>
             {{-- Biceps Cm --}}
@@ -196,7 +196,7 @@
 
             <hr>
             <div class="form-group row">
-                <label for="weight" class="col-sm-4 col-form-label">Resultados</label>
+                <label class="col-sm-4 col-form-label">Resultados</label>
             </div>
             <br>
             {{-- %Grasa --}}
@@ -241,7 +241,7 @@
 
             <hr>
             <div class="form-group row">
-                <label for="weight" class="col-sm-4 col-form-label">Recomendaciones</label>
+                <label  class="col-sm-4 col-form-label">Recomendaciones</label>
             </div>
             <br>
             {{-- Peso Ideal Kg --}}
@@ -277,6 +277,19 @@
             </div>
 
             <hr>
+            <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Acotacciones Extras</label>
+            </div>
+
+            <div class="form-group row">
+            <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
+                <textarea placeholder="Aspectos por mejorar" name="get_better" cols="44" rows="5" value="{{ old('get_better') }}"></textarea>           
+            </div>
+
+            <div class="form-group row">
+            <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
+                <textarea placeholder="Otros Detalles" name="details" cols="44" rows="5" value="{{ old('details') }}"></textarea>           
+            </div>
 
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary">
