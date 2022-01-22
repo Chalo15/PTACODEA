@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAthleteRequest extends FormRequest
+class StoreMuscularsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,33 +26,33 @@ class StoreAthleteRequest extends FormRequest
         $rules = [
             'date'             => ['required'],
             'calcification'    => ['required'],
-            'physiological_age' => ['required'],
-            'weight'           => ['required'],
-            'height'           => ['required'],
-            'bmi'              => ['required'],
-            'waist'            => ['required'],
-            'hip'              => ['required'],
+            'physiological_age'=> ['required', 'numeric'],
+            'weight'           => ['required', 'numeric'],
+            'height'           => ['required', 'numeric'],
+            'bmi'              => ['required', 'numeric'],
+            'waist'            => ['required', 'numeric'],
+            'hip'              => ['required', 'numeric'],
             'cint'             => ['required', 'numeric'],
-            'tricipital'       => ['required'],
-            'subscapular'      => ['required'],
-            'abdominal'        => ['required'],
-            'suprailiac'       => ['required'],
-            'thigh'            => ['required'],
-            'calf'             => ['required'],
+            'tricipital'       => ['required', 'numeric'],
+            'subscapular'      => ['required', 'numeric'],
+            'abdominal'        => ['required', 'numeric'],
+            'suprailiac'       => ['required', 'numeric'],
+            'thigh'            => ['required', 'numeric'],
+            'calf'             => ['required', 'numeric'],
             'wrist'            => ['required', 'numeric'],
-            'elbow'            => ['required'],
-            'knee'             => ['required'],
-            'biceps'           => ['required'],
-            'calf_cm'          => ['required'],
-            'calories'         => ['required'],
-            'BMI_high'         => ['required'],
+            'elbow'            => ['required', 'numeric'],
+            'knee'             => ['required', 'numeric'],
+            'biceps'           => ['required', 'numeric'],
+            'calf_cm'          => ['required', 'numeric'],
+            'calories'         => ['required', 'numeric'],
+            'BMI_high'         => ['required', 'numeric'],
             'icc_high'         => ['required', 'numeric'],
-            'fat'              => ['required'],
-            'residual'         => ['required'],
-            'bone'             => ['required'],
-            'muscle'           => ['required'],
-            'visceral'         => ['required'],
-            'ideal_weight'     => ['required'],
+            'fat'              => ['required', 'numeric'],
+            'residual'         => ['required', 'numeric'],
+            'bone'             => ['required', 'numeric'],
+            'muscle'           => ['required', 'numeric'],
+            'visceral'         => ['required', 'numeric'],
+            'ideal_weight'     => ['required', 'numeric'],
             'get_better'       => ['required'],
             'details'          => ['required']
         ];

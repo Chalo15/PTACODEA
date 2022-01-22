@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Muscular;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -59,7 +60,10 @@ class MuscularsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user= new User;
+        $user->athlete()->create($request->validated() + ['state' => 'A']);
+
+        return redirect()->route('musculars.index')->with('status', 'Registro creado exitosamente!');
     }
 
     /**
