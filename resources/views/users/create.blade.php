@@ -2,8 +2,8 @@
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('users.index') }}" class="btn btn-primary">
-                <i class="fas fa-arrow-left"></i> &nbsp;
+            <a href="{{ route('home') }}" class="btn btn-primary">
+                <i class="fas fa-reply"></i> &nbsp;
                 Atrás
             </a>
         </div>
@@ -30,7 +30,7 @@
 
                         {{-- Nombre --}}
                         <div class="form-group row">
-                            <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
+                            <label for="name" class="col-sm-4 col-form-label">Nombre</label>
                             <div class="col-sm-8">
                                 <x-input name="name" value="{{ old('name') }}" />
                             </div>
@@ -56,10 +56,6 @@
                         <div class="form-group row">
                             <label for="province" class="col-sm-4 col-form-label">Provincia</label>
                             <div class="col-sm-8">
-                                @php
-                                $provinces = ['San José', 'Alajuela', 'Cartago', 'Heredia', 'Guanacaste', 'Puntarenas', 'Limón'];
-                                @endphp
-
                                 <x-select name="province">
                                     <option {{ old('province') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($provinces as $province)
@@ -111,14 +107,10 @@
                         <div class="form-group row">
                             <label for="gender" class="col-sm-4 col-form-label">Género</label>
                             <div class="col-sm-8">
-                                @php
-                                $genders = ['Masculino', 'Femenino', 'Otro'];
-                                @endphp
-
                                 @foreach ($genders as $gender)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
-                                    <label class="form-check-label" for="gender-{{ $loop->index }}">
+                                <div class="custom-control custom-radio">
+                                    <input {{ (old('gender') && old('gender') == $gender ) || !old('gender') && $loop->index == 0 ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                    <label class="custom-control-label" for="gender-{{ $loop->index }}">
                                         {{ $gender }}
                                     </label>
                                 </div>
@@ -158,7 +150,7 @@
                         <div x-data="{ role: '{{ old('role_id') ?? '' }}' }">
 
                             <div class="form-group row">
-                                <label for="role" class="col-sm-4 col-form-label">Rol</label>
+                                <label for="role_id" class="col-sm-4 col-form-label">Rol</label>
                                 <div class="col-sm-8">
                                     <x-select name="role_id" x-model="role">
                                         <option disabled value=""> -- Seleccione -- </option>

@@ -2,7 +2,10 @@
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('home') }}" class="btn btn-primary">Atrás</a>
+            <a href="{{ route('home') }}" class="btn btn-primary">
+                <i class="fas fa-reply"></i> &nbsp;
+                Atrás
+            </a>
         </div>
     </div>
 

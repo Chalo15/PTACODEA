@@ -20,7 +20,7 @@
 $invalid = $errors->has($name) ? 'is-invalid' : '';
 @endphp
 
-<select name="{{ $name }}" {{ $attributes->merge(['class' => "form-control {$invalid}"]) }}>
+<select name="{{ $name }}" id="{{ $name }}" {{ $attributes->merge(['class' => "form-control {$invalid}"]) }}>
     {{ $slot }}
 </select>
 
