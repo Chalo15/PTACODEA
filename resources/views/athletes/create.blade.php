@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('users.index') }}" class="btn btn-primary">
+            <a href="{{ route('athletes.index') }}" class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i> &nbsp;
                 Atrás
             </a>
