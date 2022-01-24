@@ -45,7 +45,7 @@
                                 <td>{{ $user->full_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role->description }}</td>
-                                <td width="100px" class="text-center">
+                                <td width="50px" class="text-center">
 
                                     <div class="dropdown">
                                         <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">

@@ -14,6 +14,7 @@
         "@ckeditor/ckeditor5-build-inline": "^31.1.0",
         "@ckeditor/ckeditor5-ui": "^31.1.0",
         "@fortawesome/fontawesome-free": "^5.15.4",
+        "@ttskch/select2-bootstrap4-theme": "^1.5.2",
         "alpinejs": "^3.8.1",
         "axios": "^0.21",
         "bootstrap": "^4.6.1",
@@ -25,6 +26,7 @@
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.43.4",
         "sass-loader": "^11.0.1",
+        "select2": "^4.1.0-rc.0",
         "vue": "^2.6.12",
         "vue-loader": "^15.9.7",
         "vue-template-compiler": "^2.6.12"

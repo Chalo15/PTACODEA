@@ -35,12 +35,12 @@
                                 <div class="form-group row">
                                     <label for="user_id" class="col-sm-4 col-form-label">Usuario</label>
                                     <div class="col-sm-8">
-                                        <x-select name="user_id">
+                                        <x-select2 name="user_id">
                                             <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                             @foreach ($users as $user)
                                             <option {{ old('user_id') == $user->id ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->identification . ' | ' . $user->name . " " . $user->last_name }}</option>
                                             @endforeach
-                                        </x-select>
+                                        </x-select2>
                                     </div>
                                 </div>
                             </div>
@@ -170,12 +170,12 @@
                         <div class="form-group row">
                             <label for="sport_id" class="col-sm-4 col-form-label">Deporte</label>
                             <div class="col-sm-8">
-                                <x-select name="sport_id">
+                                <x-select2 name="sport_id">
                                     <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($sports as $sport)
                                     <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
                                     @endforeach
-                                </x-select>
+                                </x-select2>
                             </div>
                         </div>
 
