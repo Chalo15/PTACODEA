@@ -20,21 +20,21 @@
                     <form action="{{ route('physios.store') }}" method="POST">
                         @csrf
 
-                        {{-- Nombre --}}
-                        <div class="form-group row">
-                            <label for="name" class="col-sm-4 col-form-label">Nombre</label>
-                            <div class="col-sm-8">
-                                <x-input name="name" value="{{ old('name') }}" />
-                            </div>
-                        </div>
+                                <!--'athletes', 'user'-->
+                                {{-- Atleta --}}
+                                <div class="form-group row">
+                                    <label for="athlete" class="col-sm-4 col-form-label">Usuario</label>
+                                    <div class="col-sm-8">
+                                        <x-select name="athlete">
+                                            <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                            @foreach ($athletes as $athlete)
+                                            <option {{ old('user_id') == $athlete->user->id ? 'selected' : '' }} value="{{ $athlete->user->id }}">{{ $athlete->user->identification . ' | ' . $athlete->user->name . " " . $athlete->user->last_name }}</option>
+                                            @endforeach
+                                        </x-select>
+                                    </div>
+                                </div>
 
-                        {{-- Nombre --}}
-                        <div class="form-group row">
-                            <label for="name" class="col-sm-4 col-form-label">Nombre</label>
-                            <div class="col-sm-8">
-                                <x-input name="name" value="{{ old('name') }}" />
-                            </div>
-                        </div>
+                       
 
                 </div>
 
