@@ -9,7 +9,7 @@ class Muscular extends Model
 {
     use HasFactory;
 
-    public function athelete()
+    public function athlete()
     {
         return $this->belongsTo(Athlete::class);
     }
@@ -21,14 +21,15 @@ class Muscular extends Model
     protected $guarded = [];
 
     protected $fillable = [
+            'athlete_id'   ,
             'date'   ,
             'physiological_age',
             'weight'           ,
             'height'           ,
-            'bmi'              ,
+            'BMI'              ,
             'waist'            ,
             'hip'        ,
-            'cint'       ,
+            'cint_code'       ,
             'tricipital' ,
             'subscapular',
             'abdominal'  ,
@@ -49,6 +50,7 @@ class Muscular extends Model
             'muscle'  ,
             'visceral',
             'ideal_weight',
-            'get_better'
+            'get_better',
+            'details'
     ];
 }

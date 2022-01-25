@@ -45,33 +45,36 @@
 
                                 <x-slot name="body">
                                     @foreach ($physio as $physios)
-                                    <tr>
-                                        <td>{{ $physios->id }}</td>
-                                        <td>{{ $physios->date }}</td>
-                                        <td>{{ $physios->athelete->user->identification }}</td>
-                                        <td>{{ $physios->athlete->user->name . " " . $physios->athlete->user->lastname}}</td>
-                                        <td>{{ $physios->athelete->sport->description }}</td>
-                                        <td>{{ $physios->user->identification }}</td>
-                                        <td>{{ $physios->user->name . " " . $physios->user->lastname}}</td>
-                                        <th>Acciones</th>
+                                        <tr>
+                                            <td>{{ $physios->id }}</td>
+                                            <td>{{ $physios->date }}</td>
+                                            <td>{{ $physios->athelete->user->identification }}</td>
+                                            <td>{{ $physios->athlete->user->name . ' ' . $physios->athlete->user->lastname }}
+                                            </td>
+                                            <td>{{ $physios->athelete->sport->description }}</td>
+                                            <td>{{ $physios->user->identification }}</td>
+                                            <td>{{ $physios->user->name . ' ' . $physios->user->lastname }}</td>
+                                            <th>Acciones</th>
 
-                                        <td width="100px" class="text-center">
+                                            <td width="100px" class="text-center">
 
-                                            <div class="dropdown">
-                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </button>
+                                                <div class="dropdown">
+                                                    <button class="btn" type="button" id="dropdownMenu2"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
 
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item" href="{{ route('users.edit', $physio->id) }}">
-                                                        <i class="fas fa-edit"></i> &nbsp;
-                                                        Editar
-                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('physios.edit', $physio->id) }}">
+                                                            <i class="fas fa-edit"></i> &nbsp;
+                                                            Editar
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </x-slot>
 

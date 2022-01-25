@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMuscularsRequest;
+use App\Http\Requests\StoreMuscularRequest;
 use App\Models\Athlete;
 use App\Models\Muscular;
 use App\Models\User;
@@ -33,13 +33,12 @@ class MuscularsController extends Controller
 
 
         if ($role == "Admin") {
-            $muscular = Muscular::with('user')->paginate(5);
-            return view('musculars.index', compact('muscular'));
+            $musculars = Muscular::with('user')->paginate(5);
+            return view('musculars.index', compact('musculars'));
         } else {
 
-            $muscular = new Muscular();
-            $muscular = Muscular::where('user_id', '=', $user)->paginate(5);
-            return view('musculars.index', compact('muscular'));
+            $musculars = Muscular::where('user_id', '=', $user)->paginate(5);
+            return view('musculars.index', compact('musculars'));
         }
     }
 
@@ -50,22 +49,21 @@ class MuscularsController extends Controller
      */
     public function create()
     {
-        $muscular = Muscular::with('user')->paginate(5);
-        $users = User::where('role_id', '=', 4)->get();
-        return view('musculars.create', compact('muscular','users'));
+        $athletes = Athlete::with('user')->get();
+        return view('musculars.create', compact('athletes'));
     }
 
     /**
      * Almacene un recurso recién creado en el almacenamiento.
      *
-     * @param  \App\Http\Requests\StoreMuscularsRequest  $request
+     * @param  \App\Http\Requests\StoreMuscularRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMuscularsRequest $request)
+    public function store(StoreMuscularRequest $request)
     {
-        $user = $request->is_user ? Athlete::findOrFail($request->user_id) : Muscular::create($request->validated());
-        //$identification = $user->athlete()->id;
-        //$user->musculars()->create($request->validated());
+        //dd($request->all());
+        $user = $request->user();
+        $user->musculars()->create($request->validated());
 
         /*$user->update([
             'athlete_id' => $identification

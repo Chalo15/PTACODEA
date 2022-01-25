@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMuscularsRequest extends FormRequest
+class StoreMuscularRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class StoreMuscularsRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'user_id'          => ['required'],
             'athlete_id'       => ['required'],
             'date'             => ['required'],
             'physiological_age'=> ['required', 'numeric'],

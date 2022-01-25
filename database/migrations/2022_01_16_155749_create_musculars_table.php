@@ -18,7 +18,6 @@ class CreateMuscularsTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('athlete_id')->constrained('athletes');
             $table->date('date');
-            $table->string('calcification')->nullable();
             $table->float('physiological_age');
             $table->float('weight');
             $table->float('height');
