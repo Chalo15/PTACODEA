@@ -35,7 +35,7 @@
                                             Seleccione -- </option>
                                         @foreach ($users as $user)
                                             <option {{ old('user_id') == $user->id ? 'selected' : '' }}
-                                                value="{{ $user->id }}">
+                                                value="{{ $user->identification }}">
                                                 {{ $user->identification . ' | ' . $user->name . ' ' . $user->last_name }}
                                             </option>
                                         @endforeach

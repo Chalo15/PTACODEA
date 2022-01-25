@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMuscularsRequest;
+use App\Models\Athlete;
 use App\Models\Muscular;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,7 @@ class MuscularsController extends Controller
      */
     public function store(StoreMuscularsRequest $request)
     {
-        $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated()+ ['role_id' => '4']);
+        $user = $request->is_user ? Athlete::findOrFail($request->user_id) : Athlete::create($request->validated());
         //$identification = $user->athlete()->id;
         $user->musculars()->create($request->validated() + ['state' => 'A']);
 
