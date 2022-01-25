@@ -25,14 +25,15 @@ class StoreMuscularsRequest extends FormRequest
     {
         $rules = [
             'user_id'          => ['required'],
+            'athlete_id'       => ['required'],
             'date'             => ['required'],
             'physiological_age'=> ['required', 'numeric'],
             'weight'           => ['required', 'numeric'],
             'height'           => ['required', 'numeric'],
-            'bmi'              => ['required', 'numeric'],
+            'BMI'              => ['required', 'numeric'],
             'waist'            => ['required', 'numeric'],
             'hip'              => ['required', 'numeric'],
-            'cint'             => ['required', 'numeric'],
+            'cint_code'        => ['required', 'numeric'],
             'tricipital'       => ['required', 'numeric'],
             'subscapular'      => ['required', 'numeric'],
             'abdominal'        => ['required', 'numeric'],

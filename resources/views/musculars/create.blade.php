@@ -80,9 +80,9 @@
 
                         {{-- IMC --}}
                         <div class="form-group row">
-                            <label for="bmi" class="col-sm-4 col-form-label">IMC</label>
+                            <label for="BMI" class="col-sm-4 col-form-label">IMC</label>
                             <div class="col-sm-8">
-                                <x-input name="bmi" type="number" value="{{ old('bmi') }}" />
+                                <x-input name="BMI" type="number" value="{{ old('BMI') }}" />
                             </div>
                         </div>
 
@@ -302,14 +302,14 @@
 
                         <div class="form-group row">
                             <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
-                            <textarea placeholder="Aspectos por mejorar" name="get_better" cols="44" rows="5"
-                                value="{{ old('get_better') }}"></textarea>
+                            <x-textarea placeholder="Aspectos por mejorar" name="get_better" cols="44" rows="5"
+                                value="{{ old('get_better') }}" />
                         </div>
 
                         <div class="form-group row">
                             <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
-                            <textarea placeholder="Otros Detalles" name="details" cols="44" rows="5"
-                                value="{{ old('details') }}"></textarea>
+                            <x-textarea placeholder="Otros Detalles" name="details" cols="44" rows="5"
+                                value="{{ old('details') }}" />
                         </div>
 
                         <div class="d-flex justify-content-end">

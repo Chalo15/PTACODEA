@@ -37,7 +37,7 @@ class AthletesController extends Controller
         }
 
         if($rol == "Instructor"){
-            
+
             $sport_id = Auth::user()->coach->sport_id;
 
             $athletes = new Athlete();

@@ -63,9 +63,9 @@ class MuscularsController extends Controller
      */
     public function store(StoreMuscularsRequest $request)
     {
-        $user = $request->is_user ? Athlete::findOrFail($request->user_id) : Athlete::create($request->validated());
+        $user = $request->is_user ? Athlete::findOrFail($request->user_id) : Muscular::create($request->validated());
         //$identification = $user->athlete()->id;
-        $user->musculars()->create($request->validated() + ['state' => 'A']);
+        //$user->musculars()->create($request->validated());
 
         /*$user->update([
             'athlete_id' => $identification
