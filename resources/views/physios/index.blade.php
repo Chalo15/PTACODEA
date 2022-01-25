@@ -49,12 +49,11 @@
                                             <td>{{ $physios->id }}</td>
                                             <td>{{ $physios->date }}</td>
                                             <td>{{ $physios->athelete->user->identification }}</td>
-                                            <td>{{ $physios->athlete->user->name . ' ' . $physios->athlete->user->lastname }}
+                                            <td>{{ $physios->athlete->user->name . ' ' . $physios->athlete->user->last_name }}
                                             </td>
                                             <td>{{ $physios->athelete->sport->description }}</td>
                                             <td>{{ $physios->user->identification }}</td>
-                                            <td>{{ $physios->user->name . ' ' . $physios->user->lastname }}</td>
-                                            <th>Acciones</th>
+                                            <td>{{ $physios->user->name . ' ' . $physios->user->last_name }}</td>
 
                                             <td width="100px" class="text-center">
 

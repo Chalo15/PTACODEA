@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('home') }}" class="btn btn-primary">
-                <i class="fas fa-arrow-left"></i> &nbsp;
+                <i class="fas fa-reply"></i> &nbsp;
                 Atrás
             </a>
         </div>
@@ -54,7 +54,6 @@
                                             <td>{{ $muscular->athlete->sport->description }}</td>
                                             <td>{{ $muscular->user->identification }}</td>
                                             <td>{{ $muscular->user->name . ' ' . $muscular->user->last_name }}</td>
-                                            <th>Acciones</th>
 
                                             <td width="100px" class="text-center">
 
@@ -77,7 +76,6 @@
                                         </tr>
                                     @endforeach
                                 </x-slot>
-
                                 <x-slot name="foot">
                                     <tr>
                                         <th>Documento</th>
