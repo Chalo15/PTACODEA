@@ -38,3 +38,9 @@ Alpine.start();
  * CKEditor
  */
 window.ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
+
+/**
+ * Select2
+ */
+require('select2');
+

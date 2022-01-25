@@ -20,7 +20,7 @@
                             @csrf
                             @method('put')
 
-                            <x-editor name="content" value="{{ $sport->ckeditor }}" />
+                            <x-editor name="content" value="{!! $sport->ckeditor !!}" />
                             <br>
                             <p><input type="submit" value="Enviar" class="btn btn-dark ml-auto m-1"></p>
 

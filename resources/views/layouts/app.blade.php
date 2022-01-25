@@ -15,36 +15,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        main>.container {
-            padding: 60px 15px 0;
-        }
-
-        .footer>.container {
-            padding-right: 15px;
-            padding-left: 15px;
-        }
-
-        code {
-            font-size: 80%;
-        }
-
-    </style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
 
     @stack('stylesheet')
 
@@ -76,6 +47,8 @@
                                     <i class="fas fa-user-circle"></i> &nbsp;
                                     Perfil
                                 </a>
+
+                                <div class="dropdown-divider"></div>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -114,6 +87,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 
     @stack('scripts')
 

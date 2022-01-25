@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Physio;
 use Illuminate\Http\Request;
+use App\Models\Athlete;
+use App\Models\Coach;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class PhysiosController extends Controller
@@ -48,7 +51,11 @@ class PhysiosController extends Controller
      */
     public function create()
     {
-        //
+        $athletes = Athlete::with('user')->get();
+
+        $severities = config("general.severities");
+
+        return view('physios.create', compact('athletes', 'severities'));
     }
 
     /**
@@ -59,7 +66,8 @@ class PhysiosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user()->id;
+        dd($user);
     }
 
     /**

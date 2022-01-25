@@ -4,7 +4,7 @@
 $invalid = $errors->has($name) ? 'is-invalid' : '';
 @endphp
 
-<textarea name="{{ $name }}" {{ $attributes->merge(['class' => "form-control $invalid"]) }}>
+<textarea name="{{ $name }}" id="{{ $name }}" {{ $attributes->merge(['class' => "form-control $invalid"]) }}>
 {{ $slot }}
 </textarea>
 

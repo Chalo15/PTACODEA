@@ -2,8 +2,8 @@
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('users.index') }}" class="btn btn-primary">
-                <i class="fas fa-arrow-left"></i> &nbsp;
+            <a href="{{ route('physios.index') }}" class="btn btn-primary">
+                <i class="fas fa-reply"></i> &nbsp;
                 Atrás
             </a>
         </div>
@@ -20,144 +20,160 @@
                     <form action="{{ route('physios.store') }}" method="POST">
                         @csrf
 
-
+                        {{-- Atleta --}}
                         <div class="form-group row">
-                            <label for="user_id" class="col-sm-4 col-form-label">Usuario</label>
+                            <label for="athlete" class="col-sm-4 col-form-label">Usuario</label>
                             <div class="col-sm-8">
-                                <x-select name="user_id">
+                                <x-select2 name="athlete">
                                     <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($athletes as $athlete)
                                     <option {{ old('user_id') == $athlete->user->id ? 'selected' : '' }} value="{{ $athlete->user->id }}">{{ $athlete->user->identification . ' | ' . $athlete->user->name . " " . $athlete->user->last_name }}</option>
                                     @endforeach
+                                </x-select2>
+                            </div>
+                        </div>
+
+
+
+                        {{-- Fecha de registr --}}
+                        @php
+
+                        $today = today()->toDateString();
+                        $lastWeek = today()->subDays(7)->toDateString();
+                        $nextWeek = today()->addDay(7)->toDateString();
+
+                        @endphp
+                        <div class="form-group row">
+
+                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
+                            <div class="col-sm-8">
+                                <x-input name="date" type="date" min="{{$lastWeek}}" max="{{$nextWeek}}" value="{{$today}}" />
+                            </div>
+                        </div>
+
+                        {{-- SPH --}}
+                        <div class="form-group row">
+                            <label for="SPH" class="col-sm-4 col-form-label">SPH</label>
+                            <div class="col-sm-8">
+                                <x-textarea name="SPH" value="{{ old('SPPH') }}" />
+                            </div>
+                        </div>
+
+                        {{-- APP --}}
+                        <div class="form-group row">
+                            <label for="APP" class="col-sm-4 col-form-label">APP</label>
+                            <div class="col-sm-8">
+                                <x-textarea name="APP" value="{{ old('APP') }}" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="treatment" class="col-sm-4 col-form-label">Tratamiento</label>
+                            <div class="col-sm-8">
+                                <x-textarea name="treatment" value="{{ old('treatment') }}" />
+                            </div>
+                        </div>
+
+                        <div x-data="{ isOpen: {{ old('is_surgeries') ? 'true' : 'false' }} }">
+
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="is_surgeries" id="is_surgeries" x-model="isOpen">
+                                <label class="form-check-label" for="is_surgeries">
+                                    ¿El atleta tiene alguna cirugía?
+                                </label>
+                            </div>
+
+                            <div x-show="isOpen">
+                                {{-- Cédula de Identidad o DIMEX --}}
+                                <div class="form-group row">
+                                    <label for="surgeries" class="col-sm-4 col-form-label">Detalle del tratamiento</label>
+                                    <div class="col-sm-8">
+                                        <x-textarea name="surgeries" value="{{ old('surgeries') }}" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div x-data="{ isOpen: {{ old('is_fractures') ? 'true' : 'false' }} }">
+
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="is_fractures" id="is_fractures" x-model="isOpen">
+                                <label class="form-check-label" for="is_fractures">
+                                    ¿El atleta tiene alguna fractura?
+                                </label>
+                            </div>
+
+                            <div x-show="isOpen">
+                                {{-- Cédula de Identidad o DIMEX --}}
+                                <div class="form-group row">
+                                    <label for="fractures" class="col-sm-4 col-form-label">Detalle de la fractura</label>
+                                    <div class="col-sm-8">
+                                        <x-textarea name="fractures" value="{{ old('fractures') }}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {{-- hora de inicio --}}
+                        <div class="form-group row">
+                            <label for="time_start" class="col-sm-4 col-form-label">Hora de inicio</label>
+                            <div class="col-sm-8">
+                                <x-input name="time_start" type="time" value="{{ old('time_start') }}" />
+                            </div>
+                        </div>
+
+
+                        {{-- hora de fin --}}
+                        <div class="form-group row">
+                            <label for="time_end" class="col-sm-4 col-form-label">Hora de fin</label>
+                            <div class="col-sm-8">
+                                <x-input name="time_end" type="time" value="{{ old('time_end') }}" />
+                            </div>
+                        </div>
+
+                        {{-- tiempo de baja --}}
+                        <div class="form-group row">
+                            <label for="inability" class="col-sm-4 col-form-label">Fecha de inactividad</label>
+                            <div class="col-sm-8">
+                                <x-input name="inability" type="date" min="{{date('Y-m-d')}}" value="{{ old('inability') }}" />
+                            </div>
+                        </div>
+
+                        {{-- tiempo de baja --}}
+                        <div class="form-group row">
+                            <label for="inability" class="col-sm-4 col-form-label">Cantidad de sesiones</label>
+                            <div class="col-sm-8">
+                                <x-input name="inability" type="number" min="1" value="{{ old('session') }}" />
+                            </div>
+                        </div>
+
+
+                        {{-- Tipo de lesion --}}
+                        <div class="form-group row">
+                            <label for="severity" class="col-sm-4 col-form-label">Tipo de lesión</label>
+                            <div class="col-sm-8">
+                                <x-select name="severity">
+                                    <option disabled {{ old('severity') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                    @foreach ($severities as $severity)
+                                    <option {{ old('severity') == $severity ? 'selected' : '' }} value="{{ $severity }}">{{ $severity }}</option>
+                                    @endforeach
                                 </x-select>
                             </div>
                         </div>
-
-                        {{-- Fecha de Nacimiento --}}
-                        <div class="form-group row">
-                            <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Documento</label>
-                            <div class="col-sm-8">
-                                <x-input type="date" name="birthdate" value="{{ old('birthdate') }}" />
-                            </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-save"></i> &nbsp;
+                                Guardar
+                            </button>
                         </div>
-
-
-                        {{-- Ciudad --}}
-                        <div class="form-group row">
-                            <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
-                            <div class="col-sm-8">
-                                <x-input name="city" value="{{ old('city') }}" />
-                            </div>
-                        </div>
-
+                    </form>
                 </div>
             </div>
-
-            <hr>
-
-            {{-- Años de Experiencia --}}
-            <div class="form-group row">
-                <label for="experience" class="col-sm-4 col-form-label">Años de Experiencia</label>
-                <div class="col-sm-8">
-                    <x-input name="experience" type="number" value="{{ old('experience') }}" />
-                </div>
-            </div>
-
-            {{-- Número de Contrato --}}
-            <div class="form-group row">
-                <label for="contract_number" class="col-sm-4 col-form-label">Número de Contrato</label>
-                <div class="col-sm-8">
-                    <x-input name="contract_number" type="number" value="{{ old('contract_number') }}" />
-                </div>
-            </div>
-
-            {{-- Año de Contrato --}}
-            <div class="form-group row">
-                <label for="contract_year" class="col-sm-4 col-form-label">Año de Contrato</label>
-                <div class="col-sm-8">
-                    <x-input name="contract_year" type="number" value="{{ old('contract_year') }}" />
-                </div>
-            </div>
-
-
-
-            {{-- Role --}}
-            <div x-data="{ role: '{{ old('role_id') ?? '' }}' }">
-
-                <div class="form-group row">
-                    <label for="role" class="col-sm-4 col-form-label">Rol</label>
-                    <div class="col-sm-8">
-                        <x-select name="role_id" x-model="role">
-                            <option disabled value=""> -- Seleccione -- </option>
-                            @foreach ($roles as $role)
-
-                            @if($role->id == 4)
-                            @continue
-                            @endif
-
-                            <option value="{{ $role->id }}">{{ $role->description }}</option>
-
-                            @endforeach
-                        </x-select>
-                    </div>
-                </div>
-
-                {{-- Entrenadores --}}
-                <div x-show="role == 2">
-
-                    {{-- Deporte --}}
-                    <div class="form-group row">
-                        <label for="sport" class="col-sm-4 col-form-label">Deporte</label>
-                        <div class="col-sm-8">
-                            <x-select name="sport_id">
-                                <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
-                                @foreach ($sports as $sport)
-                                <option {{ old('sport_id') == $sport->id ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
-                                @endforeach
-                            </x-select>
-                        </div>
-                    </div>
-
-                    {{-- Teléfono Celular --}}
-                    <div class="form-group row">
-                        <label for="cellphone" class="col-sm-4 col-form-label">Teléfono Celular</label>
-                        <div class="col-sm-8">
-                            <x-input name="cellphone" type="number" value="{{ old('cellphone') }}" />
-                        </div>
-                    </div>
-
-                    {{-- Fotocópia de Cédula --}}
-                    <div class="form-group row">
-                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
-                        <div class="col-sm-8">
-
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    <input name="identification_image" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01">
-                                    <label class="custom-file-label" for="identification_image">Elija el archivo </label>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <hr>
-
-
-            <div class="d-flex justify-content-end">
-                <button class="btn btn-primary">
-                    <i class="fas fa-save"></i> &nbsp;
-                    Guardar
-                </button>
-            </div>
-
-            </form>
         </div>
     </div>
 
-    </div>
-    </div>
+
 </x-app-layout>
