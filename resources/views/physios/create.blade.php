@@ -20,16 +20,24 @@
                     <form action="{{ route('physios.store') }}" method="POST">
                         @csrf
 
-                                                        {{-- Nombre --}}
-                                                        <div class="form-group row">
-                                                            <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
-                                                            <div class="col-sm-8">
-                                                                <x-input name="name" value="{{ old('name') }}" />
-                                                            </div>
-                                                        </div>
+                        {{-- Nombre --}}
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label">Nombre</label>
+                            <div class="col-sm-8">
+                                <x-input name="name" value="{{ old('name') }}" />
+                            </div>
+                        </div>
 
-    </div>
+                        {{-- Nombre --}}
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-4 col-form-label">Nombre</label>
+                            <div class="col-sm-8">
+                                <x-input name="name" value="{{ old('name') }}" />
+                            </div>
+                        </div>
 
-    </div>
-    </div>
+                </div>
+
+            </div>
+        </div>
 </x-app-layout>
