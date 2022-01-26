@@ -1,6 +1,7 @@
 body {
     background-color: $red-codea;
-    background: linear-gradient(90deg, $black-codea, $red-codea);
+    background: linear-gradient($black-codea, $red-codea);
+    background-attachment: fixed;
 }
 
 .bd-placeholder-img {

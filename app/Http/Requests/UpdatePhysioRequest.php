@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePhysioRequest extends FormRequest
+class UpdatePhysioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class StorePhysioRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'athlete_id'   => ['required'],
             'date'      => ['required'],
             'sph' => ['required'],
             'app' => ['required'],

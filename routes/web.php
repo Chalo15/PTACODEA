@@ -72,9 +72,9 @@ Route::prefix('physios')->group(function () {
     Route::get('', [PhysiosController::class, 'index'])->name('physios.index');
     Route::get('create', [PhysiosController::class, 'create'])->name('physios.create');
     Route::post('', [PhysiosController::class, 'store'])->name('physios.store');
-    Route::get('{athlete}', [PhysiosController::class, 'show'])->name('physios.show');
-    Route::get('{athlete}/edit', [PhysiosController::class, 'edit'])->name('physios.edit');
-    Route::put('{athlete}', [PhysiosController::class, 'update'])->name('physios.update');
+    Route::get('{physio}', [PhysiosController::class, 'show'])->name('physios.show');
+    Route::get('{physio}/edit', [PhysiosController::class, 'edit'])->name('physios.edit');
+    Route::put('{physio}', [PhysiosController::class, 'update'])->name('physios.update');
 });
 
 

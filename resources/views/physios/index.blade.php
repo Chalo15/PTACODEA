@@ -44,16 +44,16 @@
                                 </x-slot>
 
                                 <x-slot name="body">
-                                    @foreach ($physio as $physios)
-                                        <tr>
-                                            <td>{{ $physios->id }}</td>
-                                            <td>{{ $physios->date }}</td>
-                                            <td>{{ $physios->athlete->user->identification }}</td>
-                                            <td>{{ $physios->athlete->user->name . ' ' . $physios->athlete->user->last_name }}
-                                            </td>
-                                            <td>{{ $physios->athlete->sport->description }}</td>
-                                            <td>{{ $physios->user->identification }}</td>
-                                            <td>{{ $physios->user->name . ' ' . $physios->user->last_name }}</td>
+                                    @foreach ($physios as $physio)
+                                    <tr>
+                                        <td>{{ $physio->id }}</td>
+                                        <td>{{ $physio->date }}</td>
+                                        <td>{{ $physio->athlete->user->identification }}</td>
+                                        <td>{{ $physio->athlete->user->name . " " . $physio->athlete->user->lastname}}</td>
+                                        <td>{{ $physio->athlete->sport->description }}</td>
+                                        <td>{{ $physio->user->identification }}</td>
+                                        <td>{{ $physio->user->name . " " . $physio->user->last_name}}</td>
+
 
                                             <td width="100px" class="text-center">
 
@@ -63,13 +63,11 @@
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </button>
 
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('physios.edit', $physios->id) }}">
-                                                            <i class="fas fa-edit"></i> &nbsp;
-                                                            Editar
-                                                        </a>
-                                                    </div>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    <a class="dropdown-item" href="{{ route('physios.edit', $physio) }}">
+                                                        <i class="fas fa-edit"></i> &nbsp;
+                                                        Editar
+                                                    </a>
                                                 </div>
 
                                             </td>
@@ -93,11 +91,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col d-flex justify-content-end">
-                            {{ $physio->links() }}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -182,7 +182,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="inability" class="col-sm-4 col-form-label">Datos extra</label>
+                            <label for="details" class="col-sm-4 col-form-label">Datos extra</label>
                             <div class="col-sm-8">
                                 <x-editor name="details" />
                             </div>
