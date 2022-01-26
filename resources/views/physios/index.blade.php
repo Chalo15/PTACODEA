@@ -49,7 +49,7 @@
                                         <td>{{ $physio->id }}</td>
                                         <td>{{ $physio->date }}</td>
                                         <td>{{ $physio->athlete->user->identification }}</td>
-                                        <td>{{ $physio->athlete->user->name . " " . $physio->athlete->user->lastname}}</td>
+                                        <td>{{ $physio->athlete->user->name . " " . $physio->athlete->user->last_name}}</td>
                                         <td>{{ $physio->athlete->sport->description }}</td>
                                         <td>{{ $physio->user->identification }}</td>
                                         <td>{{ $physio->user->name . " " . $physio->user->last_name}}</td>

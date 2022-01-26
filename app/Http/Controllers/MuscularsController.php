@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMuscularRequest;
+use App\Http\Requests\UpdateMuscularRequest;
 use App\Models\Athlete;
 use App\Models\Muscular;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -90,19 +90,23 @@ class MuscularsController extends Controller
      */
     public function edit(Muscular $muscular)
     {
-        //
+        $muscular->with('athlete');
+
+        return view('musculars.edit', compact('muscular'));
     }
 
     /**
      * Actualice el recurso especificado en el almacenamiento.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\UpdateMuscularRequest  $request
      * @param  \App\Models\Muscular $muscular
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Muscular $muscular)
+    public function update(UpdateMuscularRequest $request, Muscular $muscular)
     {
-        //
+        $muscular->update($request->validated());
+
+        return redirect()->route('musculars.index')->with('status', 'Documento editado exitosamente!');
     }
 
     /**
