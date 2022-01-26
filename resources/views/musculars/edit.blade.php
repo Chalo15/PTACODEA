@@ -29,8 +29,7 @@
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
                             <div class="col-sm-8">
-                                <x-input type="number" name="athlete_id" readonly
-                                    value="{{ $muscular->athlete->user->full_name }}">
+                                <x-input name="athlete_id" readonly value="{{ $muscular->athlete->user->full_name }}">
                                 </x-input>
                             </div>
                         </div>

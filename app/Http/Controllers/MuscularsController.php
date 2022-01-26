@@ -6,6 +6,7 @@ use App\Http\Requests\StoreMuscularRequest;
 use App\Http\Requests\UpdateMuscularRequest;
 use App\Models\Athlete;
 use App\Models\Muscular;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 

@@ -162,7 +162,8 @@
                             <label for="severity" class="col-sm-4 col-form-label">Tipo de lesión</label>
                             <div class="col-sm-8">
                                 <x-select name="severity">
-                                    <option disabled {{ $physio->severity ? '' : 'selected' }} value=""> -- Seleccione
+                                    <option disabled {{ $physio->severity ? '' : 'selected' }} value=""> --
+                                        Seleccione
                                         -- </option>
                                     @foreach ($severities as $severity)
                                         <option {{ old('severity') == $severity ? 'selected' : '' }}
