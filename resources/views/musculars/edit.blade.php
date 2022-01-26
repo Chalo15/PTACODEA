@@ -15,7 +15,7 @@
                 <div class="card-header">
                     Generar Sesión
                 </div>
-                @json($errors->all())
+                {{--@json($errors->all())--}}
                 <div class="card-body">
                     <form action="{{ route('musculars.update') }}" method="POST">
                         @csrf
