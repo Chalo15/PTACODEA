@@ -15,7 +15,7 @@
                 <div class="card-header">
                     Generar Sesión
                 </div>
-               {{--}} @json($errors->all())--}}
+                {{-- }} @json($errors->all()) --}}
                 <div class="card-body">
                     <form action="{{ route('musculars.store') }}" method="POST">
                         @csrf
@@ -299,14 +299,14 @@
                         </div>
 
                         <div class="form-group row">
-                        <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
+                            <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
                             <div class="col-sm-8">
-                               <x-textarea name="get_better" value="{{ old('get_better') }}" />
+                                <x-textarea name="get_better" value="{{ old('get_better') }}" />
                             </div>
                         </div>
 
                         <div class="form-group row">
-                             <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
+                            <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
                             <div class="col-sm-8">
                                 <x-editor name="details" value="{!! old('details') !!}" />
                             </div>

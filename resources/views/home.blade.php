@@ -2,113 +2,112 @@
 
     <div class="row">
 
-        @can('role',"Admin")
-        <div class="col-md mb-3">
-            <div class="card text-center">
-                <div class="card-header">
-                    Usuarios
-                </div>
-                <div class="card-body">
-                    <i class="fas fa-users fa-5x"></i>
-                </div>
-                <div class="card-footer">
-                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-block">
-                        Acceder &nbsp;
-                        <i class="fas fa-share"></i>
-                    </a>
+        @can('role', 'Admin')
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Usuarios
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-users fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('users.index') }}" class="btn btn-primary btn-block">
+                            Acceder &nbsp;
+                            <i class="fas fa-share"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
         @endcan
 
-        @can('role',"Admin")
-        <div class="col-md mb-3">
-            <div class="card text-center">
-                <div class="card-header">
-                    Atletas
-                </div>
-                <div class="card-body">
-                    <i class="fas fa-swimmer fa-5x"></i>
-                </div>
-                <div class="card-footer">
-                    <a href="{{ route('athletes.index') }}" class="btn btn-primary btn-block">
-                        Acceder &nbsp;
-                        <i class="fas fa-share"></i>
-                    </a>
+        @can('role', 'Admin')
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Atletas
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-swimmer fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('athletes.index') }}" class="btn btn-primary btn-block">
+                            Acceder &nbsp;
+                            <i class="fas fa-share"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
         @endcan
 
-        @can('role',"Admin")
-        <div class="col-md mb-3">
-            <div class="card text-center">
-                <div class="card-header">
-                    Deportes
-                </div>
-                <div class="card-body">
-                    <i class="fas fa-table-tennis fa-5x"></i>
-                </div>
-                <div class="card-footer">
-                    <a href="{{ route('sports.index') }}" class="btn btn-primary btn-block">
-                        Acceder &nbsp;
-                        <i class="fas fa-share"></i>
-                    </a>
+        @can('role', 'Admin')
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Deportes
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-table-tennis fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('sports.index') }}" class="btn btn-primary btn-block">
+                            Acceder &nbsp;
+                            <i class="fas fa-share"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
         @endcan
     </div>
 
     <div class="row">
-        @can('role',"Admin")
-        <div class="col-md mb-3">
-            <div class="card text-center">
-                <div class="card-header">
-                    Gimnasio
-                </div>
-                <div class="card-body">
-                    <i class="fas fa-dumbbell fa-5x"></i>
-                </div>
-                <div class="card-footer">
-                    <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder</a>
+        @can('role', 'Admin')
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Gimnasio
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-dumbbell fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    </div>
                 </div>
             </div>
-        </div>
         @endcan
 
-        @can('role',"Admin","Fisioterapia")
-        <div class="col-md mb-3">
-            <div class="card text-center">
-                <div class="card-header">
-                    Fisioterápia
-                </div>
-                <div class="card-body">
-                    <i class="fas fa-user-md fa-5x"></i>
-                </div>
-                <div class="card-footer">
-                    <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder</a>
+        @can('role', 'Admin', 'Fisioterapia')
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Fisioterápia
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-user-md fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    </div>
                 </div>
             </div>
-        </div>
         @endcan
 
     </div>
 
     @push('scripts')
-    <script>
-        console.log();
-
-    </script>
+        <script>
+            console.log();
+        </script>
     @endpush
 
     @push('stylesheet')
-    <style>
-        .test-js {
-            background: red;
-        }
+        <style>
+            .test-js {
+                background: red;
+            }
 
-    </style>
+        </style>
     @endpush
 
 </x-app-layout>
@@ -120,7 +119,7 @@
 
             <!-- Vista del menu principal del Usuario Administrador -->
 
-            @can('role',"Admin")
+            @can('role', 'Admin')
 
             <div class="Admin">
 
@@ -193,7 +192,7 @@ Acceder
 @endcan
 
 
-@can('role',"Instructor")
+@can('role', 'Instructor')
 <div class="Instructor">
 
     <div class="row justify-content-center">
@@ -231,7 +230,7 @@ Acceder
 
 
 
-@can('role',"Atleta")
+@can('role', 'Atleta')
 
 <div class="Atleta">
     <div class="row justify-content-center">
@@ -273,7 +272,7 @@ Acceder
 
 
 
-@can('role',"Fisioterapia")
+@can('role', 'Fisioterapia')
 
 <div class="Fisioterapia">
     <div class="row justify-content-center">
@@ -306,7 +305,7 @@ Acceder
 
 @endcan
 
-@can('role',"Musculacion")
+@can('role', 'Musculacion')
 
 <div class="Musculacion">
     <div class="row justify-content-center">
