@@ -59,7 +59,17 @@ class AthletesController extends Controller
 
         $users = User::where('role_id', '=', 7)->get();
 
-        return view('athletes.create', compact('sports', 'users'));
+        $genders = config('general.genders');
+
+        $provinces = config('general.provinces');
+
+        $bloods = config('general.bloods');
+
+        $lateralities = config('general.lateralities');
+
+        $relationships = config('general.relationships');
+
+        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships'));
     }
 
     /**

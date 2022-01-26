@@ -4,9 +4,9 @@
 $invalid = $errors->has($name) ? 'is-invalid' : '';
 @endphp
 
-<textarea name="{{ $name }}" id="{{ $name }}" {{ $attributes->merge(['class' => "form-control $invalid"]) }}>
-{{ $slot }}
-</textarea>
+<select style="width: 100%;" name="{{ $name }}" {{ $attributes->merge(['class' => "form-control select2 {$invalid}"]) }}>
+    {{ $slot }}
+</select>
 
 @error($name)
 <div class="invalid-feedback">{{ $message }}</div>
