@@ -29,7 +29,7 @@
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
                             <div class="col-sm-8">
-                                <x-select name="athlete_id">
+                                <x-select2 name="athlete_id">
                                     <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> --
                                         Seleccione -- </option>
                                     @foreach ($athletes as $athlete)
@@ -38,7 +38,7 @@
                                             {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
                                         </option>
                                     @endforeach
-                                </x-select>
+                                </x-select2>
                             </div>
                         </div>
 
