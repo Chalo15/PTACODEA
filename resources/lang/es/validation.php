@@ -209,6 +209,10 @@ return [
         'blood'                  => 'tipo de sangre',
         'laterality'             => 'lateralidad',
 
-        'user_id'                => 'usuario'
+        'user_id'                => 'usuario',
+        'experience'             => 'años de experiencia',
+        'contract_number'        => 'número de contrato',
+        'contract_year'          => 'año de contrato',
+        'role_id'                => 'rol'
     ],
 ];

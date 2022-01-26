@@ -2,7 +2,6 @@
 
     <div class="row">
 
-
         @can('role',"Admin")
         <div class="col-md mb-3">
             <div class="card text-center">
@@ -13,7 +12,10 @@
                     <i class="fas fa-users fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-block">
+                        Acceder &nbsp;
+                        <i class="fas fa-share"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -29,7 +31,10 @@
                     <i class="fas fa-swimmer fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('athletes.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('athletes.index') }}" class="btn btn-primary btn-block">
+                        Acceder &nbsp;
+                        <i class="fas fa-share"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -45,7 +50,10 @@
                     <i class="fas fa-table-tennis fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('sports.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('sports.index') }}" class="btn btn-primary btn-block">
+                        Acceder &nbsp;
+                        <i class="fas fa-share"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -69,7 +77,7 @@
         </div>
         @endcan
 
-        @can('role',"Admin")
+        @can('role',"Admin","Fisioterapia")
         <div class="col-md mb-3">
             <div class="card text-center">
                 <div class="card-header">
@@ -84,6 +92,7 @@
             </div>
         </div>
         @endcan
+
     </div>
 
     @push('scripts')

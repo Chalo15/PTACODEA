@@ -18,16 +18,17 @@ class CreatePhysiosTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('athlete_id')->constrained('athletes');
             $table->date('date');
-            $table->string('SPH');
-            $table->string('APP');
-            $table->string('treatment');
-            $table->string('surgeries');
-            $table->string('fractures');
-            $table->date('session_timer');
+            $table->text('sph');
+            $table->text('app');
+            $table->text('treatment');
+            $table->text('surgeries')->nullable();
+            $table->text('fractures')->nullable();
+            $table->time('session_start');
+            $table->time('session_end');
             $table->date('inability');
             $table->integer('count_session');
             $table->string('severity');
-            $table->longText('details');
+            $table->longText('details')->nullable();
             $table->timestamps();
         });
     }

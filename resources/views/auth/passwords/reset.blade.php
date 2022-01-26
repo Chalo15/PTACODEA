@@ -1,7 +1,7 @@
 <x-guest-layout title="Cambiar Contraseña">
 
     <div class="d-flex justify-content-center">
-        <div class="row" style="width: 700px;">
+        <div class="row auth-card">
             <div class="col">
 
                 <div class="card">

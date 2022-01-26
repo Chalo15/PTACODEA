@@ -40,11 +40,7 @@ Alpine.start();
 window.ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
 
 /**
- * Plugins
+ * Select2
  */
-$(function () {
+require('select2');
 
-    // Datatables
-    $('#datatable').DataTable(/** Datatables Configuration */ require('./config/_datatables.config').default);
-
-})

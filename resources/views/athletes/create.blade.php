@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('athletes.index') }}" class="btn btn-primary">
-                <i class="fas fa-arrow-left"></i> &nbsp;
+                <i class="fas fa-reply"></i> &nbsp;
                 Atrás
             </a>
         </div>
@@ -35,12 +35,12 @@
                                 <div class="form-group row">
                                     <label for="user_id" class="col-sm-4 col-form-label">Usuario</label>
                                     <div class="col-sm-8">
-                                        <x-select name="user_id">
+                                        <x-select2 name="user_id">
                                             <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                             @foreach ($users as $user)
                                             <option {{ old('user_id') == $user->id ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->identification . ' | ' . $user->name . " " . $user->last_name }}</option>
                                             @endforeach
-                                        </x-select>
+                                        </x-select2>
                                     </div>
                                 </div>
                             </div>
@@ -82,10 +82,6 @@
                                 <div class="form-group row">
                                     <label for="province" class="col-sm-4 col-form-label">Provincia</label>
                                     <div class="col-sm-8">
-                                        @php
-                                        $provinces = ['San José', 'Alajuela', 'Cartago', 'Heredia', 'Guanacaste', 'Puntarenas', 'Limón'];
-                                        @endphp
-
                                         <x-select name="province">
                                             <option disabled {{ old('province') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                             @foreach ($provinces as $province)
@@ -137,14 +133,10 @@
                                 <div class="form-group row">
                                     <label for="gender" class="col-sm-4 col-form-label">Género</label>
                                     <div class="col-sm-8">
-                                        @php
-                                        $genders = ['Masculino', 'Femenino', 'Otro'];
-                                        @endphp
-
                                         @foreach ($genders as $gender)
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
-                                            <label class="form-check-label" for="gender-{{ $loop->index }}">
+                                        <div class="custom-control custom-radio">
+                                            <input {{ (old('gender') && old('gender') == $gender ) || !old('gender') && $loop->index == 0 ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                            <label class="custom-control-label" for="gender-{{ $loop->index }}">
                                                 {{ $gender }}
                                             </label>
                                         </div>
@@ -178,12 +170,12 @@
                         <div class="form-group row">
                             <label for="sport_id" class="col-sm-4 col-form-label">Deporte</label>
                             <div class="col-sm-8">
-                                <x-select name="sport_id">
+                                <x-select2 name="sport_id">
                                     <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($sports as $sport)
                                     <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
                                     @endforeach
-                                </x-select>
+                                </x-select2>
                             </div>
                         </div>
 
@@ -191,10 +183,6 @@
                         <div class="form-group row">
                             <label for="blood" class="col-sm-4 col-form-label">Tipo de Sangre</label>
                             <div class="col-sm-8">
-                                @php
-                                $bloods = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-                                @endphp
-
                                 <x-select name="blood">
                                     <option disabled {{ old('blood') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($bloods as $blood)
@@ -208,14 +196,10 @@
                         <div class="form-group row">
                             <label for="laterality" class="col-sm-4 col-form-label">Lateralidad</label>
                             <div class="col-sm-8">
-                                @php
-                                $lateralities = ['Diestro', 'Zurdo', 'Ambidiestro'];
-                                @endphp
-
                                 @foreach ($lateralities as $laterality)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
-                                    <label class="form-check-label" for="laterality-{{ $loop->index }}">
+                                <div class="custom-control custom-radio">
+                                    <input {{ (old('laterality') && old('laterality') == $laterality ) || !old('laterality') && $loop->index == 0 ? 'checked' : '' }} class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
+                                    <label class="custom-control-label" for="laterality-{{ $loop->index }}">
                                         {{ $laterality }}
                                     </label>
                                 </div>
@@ -278,10 +262,6 @@
                                 <div class="form-group row">
                                     <label for="manager" class="col-sm-4 col-form-label">Parentezco</label>
                                     <div class="col-sm-8">
-                                        @php
-                                        $relationships = ['Madre', 'Padre', 'Abuelo(a)', 'Tío(a)', 'Hermano(a)', 'Encargado(a)'];
-                                        @endphp
-
                                         <x-select name="manager">
                                             <option disabled {{ old('manager') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                             @foreach ($relationships as $relationship)

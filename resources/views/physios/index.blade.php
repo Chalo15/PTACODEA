@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('home') }}" class="btn btn-primary">
-                <i class="fas fa-arrow-left"></i> &nbsp;
+                <i class="fas fa-reply"></i> &nbsp;
                 Atrás
             </a>
         </div>
@@ -44,16 +44,16 @@
                                 </x-slot>
 
                                 <x-slot name="body">
-                                    @foreach ($physio as $physios)
+                                    @foreach ($physios as $physio)
                                     <tr>
-                                        <td>{{ $physios->id }}</td>
-                                        <td>{{ $physios->date }}</td>
-                                        <td>{{ $physios->athelete->user->identification }}</td>
-                                        <td>{{ $physios->athlete->user->name . " " . $physios->athlete->user->lastname}}</td>
-                                        <td>{{ $physios->athelete->sport->description }}</td>
-                                        <td>{{ $physios->user->identification }}</td>
-                                        <td>{{ $physios->user->name . " " . $physios->user->lastname}}</td>
-                                        <th>Acciones</th>
+                                        <td>{{ $physio->id }}</td>
+                                        <td>{{ $physio->date }}</td>
+                                        <td>{{ $physio->athlete->user->identification }}</td>
+                                        <td>{{ $physio->athlete->user->name . " " . $physio->athlete->user->lastname}}</td>
+                                        <td>{{ $physio->athlete->sport->description }}</td>
+                                        <td>{{ $physio->user->identification }}</td>
+                                        <td>{{ $physio->user->name . " " . $physio->user->last_name}}</td>
+
 
                                         <td width="100px" class="text-center">
 
@@ -63,7 +63,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item" href="{{ route('users.edit', $physio->id) }}">
+                                                    <a class="dropdown-item" href="{{ route('physios.edit', $physio) }}">
                                                         <i class="fas fa-edit"></i> &nbsp;
                                                         Editar
                                                     </a>
@@ -91,11 +91,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col d-flex justify-content-end">
-                            {{ $physio->links() }}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

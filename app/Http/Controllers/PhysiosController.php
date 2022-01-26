@@ -8,6 +8,8 @@ use App\Models\Athlete;
 use App\Models\Coach;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StorePhysioRequest;
+use App\Http\Requests\UpdatePhysioRequest;
 
 class PhysiosController extends Controller
 {
@@ -34,13 +36,12 @@ class PhysiosController extends Controller
 
 
         if ($role == "Admin") {
-            $physio = Physio::with('user')->paginate(5);
-            return view('physios.index', compact('physio'));
+            $physios = Physio::with('user')->get();
+            return view('physios.index', compact('physios'));
         } else {
 
-            $physio = new Physio();
-            $physio = Physio::where('user_id', '=', $user)->paginate(5);
-            return view('physios.index', compact('physio'));
+            $physios = Physio::where('user_id', '=', $user)->get();
+            return view('physios.index', compact('physios'));
         }
     }
 
@@ -51,10 +52,11 @@ class PhysiosController extends Controller
      */
     public function create()
     {
-        $athletes = Athlete::with('user')->paginate(5);
-        $user = Auth::user()->id;
+        $athletes = Athlete::with('user')->get();
 
-        return view('physios.create', compact('athletes', 'user'));
+        $severities = config("general.severities");
+
+        return view('physios.create', compact('athletes', 'severities'));
     }
 
     /**
@@ -63,9 +65,13 @@ class PhysiosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePhysioRequest $request)
     {
-        //
+        $user = $request->user();
+
+        $user->physios()->create($request->validated());
+
+        return redirect()->route('physios.index')->with('status', 'Documento creado exitosamente!');
     }
 
     /**
@@ -87,7 +93,10 @@ class PhysiosController extends Controller
      */
     public function edit(Physio $physio)
     {
-        //
+        $physio->with('athlete');
+        $severities = config("general.severities");
+
+        return view('physios.edit', compact('physio', 'severities'));
     }
 
     /**
@@ -97,9 +106,11 @@ class PhysiosController extends Controller
      * @param  \App\Models\Physio  $physio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Physio $physio)
+    public function update(UpdatePhysioRequest $request, Physio $physio)
     {
-        //
+        $physio->update($request->validated());
+
+        return redirect()->route('physios.index')->with('status', 'Documento editado exitosamente!');
     }
 
     /**
