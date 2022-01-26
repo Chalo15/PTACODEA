@@ -51,10 +51,11 @@ class PhysiosController extends Controller
      */
     public function create()
     {
-        $athletes = Athlete::with('user')->paginate(5);
-        $user = Auth::user()->id;
+        $athletes = Athlete::with('user')->get();
 
-        return view('physios.create', compact('athletes', 'user'));
+        $severities = config("general.severities");
+
+        return view('physios.create', compact('athletes', 'severities'));
     }
 
     /**
@@ -65,7 +66,8 @@ class PhysiosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user()->id;
+        dd($user);
     }
 
     /**

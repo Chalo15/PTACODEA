@@ -4,7 +4,7 @@
 $invalid = $errors->has($name) ? 'is-invalid' : '';
 @endphp
 
-<select style="width: 100%;" name="{{ $name }}" {{ $attributes->merge(['class' => "form-control select2 {$invalid}"]) }}>
+<select style="width: 100%;" name="{{ $name }}" id="{{ $name }}" {{ $attributes->merge(['class' => "form-control select2 {$invalid}"]) }}>
     {{ $slot }}
 </select>
 
