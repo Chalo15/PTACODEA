@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('musculars.index') }}" class="btn btn-primary">
-                <i class="fas fa-arrow-left"></i> &nbsp;
+                <i class="fas fa-reply"></i> &nbsp;
                 Atrás
             </a>
         </div>
@@ -301,15 +301,17 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
-                            <textarea placeholder="Aspectos por mejorar" name="get_better" cols="44" rows="5"
-                                value="{{ old('get_better') }}"></textarea>
+                        <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
+                            <div class="col-sm-8">
+                               <x-textarea name="get_better" value="{{ old('get_better') }}" />
+                            </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
-                            <textarea placeholder="Otros Detalles" name="details" cols="44" rows="5"
-                                value="{{ old('details') }}"></textarea>
+                             <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
+                            <div class="col-sm-8">
+                                <x-editor name="details" value="{!! old('details') !!}" />
+                            </div>
                         </div>
 
                         <div class="d-flex justify-content-end">
