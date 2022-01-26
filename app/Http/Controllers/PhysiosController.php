@@ -39,8 +39,6 @@ class PhysiosController extends Controller
             $physio = Physio::with('user')->paginate(5);
             return view('physios.index', compact('physio'));
         } else {
-
-            $physio = new Physio();
             $physio = Physio::where('user_id', '=', $user)->paginate(5);
             return view('physios.index', compact('physio'));
         }

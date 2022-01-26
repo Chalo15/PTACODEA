@@ -48,10 +48,10 @@
                                         <tr>
                                             <td>{{ $physios->id }}</td>
                                             <td>{{ $physios->date }}</td>
-                                            <td>{{ $physios->athelete->user->identification }}</td>
+                                            <td>{{ $physios->athlete->user->identification }}</td>
                                             <td>{{ $physios->athlete->user->name . ' ' . $physios->athlete->user->last_name }}
                                             </td>
-                                            <td>{{ $physios->athelete->sport->description }}</td>
+                                            <td>{{ $physios->athlete->sport->description }}</td>
                                             <td>{{ $physios->user->identification }}</td>
                                             <td>{{ $physios->user->name . ' ' . $physios->user->last_name }}</td>
 
@@ -65,7 +65,7 @@
 
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('physios.edit', $physio->id) }}">
+                                                            href="{{ route('physios.edit', $physios->id) }}">
                                                             <i class="fas fa-edit"></i> &nbsp;
                                                             Editar
                                                         </a>
