@@ -4,6 +4,7 @@ use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\AthletesController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PhysiosController;
+use App\Http\Controllers\MuscularsController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportsController;
@@ -57,13 +58,13 @@ Route::prefix('athletes')->group(function () {
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
 });
 
-Route::prefix('athletes')->group(function () {
-    Route::get('', [AthletesController::class, 'index'])->name('athletes.index');
-    Route::get('create', [AthletesController::class, 'create'])->name('athletes.create');
-    Route::post('', [AthletesController::class, 'store'])->name('athletes.store');
-    Route::get('{athlete}', [AthletesController::class, 'show'])->name('athletes.show');
-    Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
-    Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
+Route::prefix('musculars')->group(function () {
+    Route::get('', [MuscularsController::class, 'index'])->name('musculars.index');
+    Route::get('create', [MuscularsController::class, 'create'])->name('musculars.create');
+    Route::post('', [MuscularsController::class, 'store'])->name('musculars.store');
+    Route::get('{athlete}', [MuscularsController::class, 'show'])->name('musculars.show');
+    Route::get('{athlete}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit');
+    Route::put('{athlete}', [MuscularsController::class, 'update'])->name('musculars.update');
 });
 
 
@@ -75,6 +76,7 @@ Route::prefix('physios')->group(function () {
     Route::get('{athlete}/edit', [PhysiosController::class, 'edit'])->name('physios.edit');
     Route::put('{athlete}', [PhysiosController::class, 'update'])->name('physios.update');
 });
+
 
 
 

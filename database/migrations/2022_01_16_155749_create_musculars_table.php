@@ -36,13 +36,16 @@ class CreateMuscularsTable extends Migration
             $table->float('elbow');
             $table->float('knee');
             $table->float('biceps');
+            $table->float('calf_cm');
             $table->float('calories');
             $table->float('BMI_high');
             $table->float('icc_high');
             $table->float('fat');
             $table->float('residual');
             $table->float('bone');
+            $table->float('muscle');
             $table->float('visceral');
+            $table->float('ideal_weight');
             $table->text('get_better');
             $table->longText('details');
             $table->timestamps();

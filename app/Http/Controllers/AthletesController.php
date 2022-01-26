@@ -29,7 +29,6 @@ class AthletesController extends Controller
     public function index()
     {
         // Determinar según por rol cuales atletas retornar.
-
         $rol = Auth::user()->role->description;
         if ($rol == "Admin") {
             $athletes = Athlete::with('user')->paginate(5);
