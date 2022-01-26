@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Sport;
 use App\Models\Role;
 use App\Models\User;
@@ -104,7 +105,17 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $user->with('user');
+
+        $roles = Role::all();
+
+        $sports = Sport::all();
+
+        $genders = config('general.genders');
+
+        $provinces = config('general.provinces');
+
+        return view('users.edit', compact('user', 'roles', 'sports', 'genders', 'provinces'));
     }
 
     /**
@@ -114,8 +125,9 @@ class UsersController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+        return redirect()->route('users.index')->with('status', 'Usuario editado exitosamente!');
     }
 }
