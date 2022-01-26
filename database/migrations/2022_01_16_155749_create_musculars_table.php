@@ -21,7 +21,7 @@ class CreateMuscularsTable extends Migration
             $table->float('physiological_age');
             $table->float('weight');
             $table->float('height');
-            $table->float('BMI');
+            $table->float('bmi');
             $table->float('waist');
             $table->float('hip');
             $table->float('cint_code');
@@ -37,7 +37,7 @@ class CreateMuscularsTable extends Migration
             $table->float('biceps');
             $table->float('calf_cm');
             $table->float('calories');
-            $table->float('BMI_high');
+            $table->float('bmi_high');
             $table->float('icc_high');
             $table->float('fat');
             $table->float('residual');

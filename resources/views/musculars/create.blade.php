@@ -78,9 +78,9 @@
 
                         {{-- IMC --}}
                         <div class="form-group row">
-                            <label for="BMI" class="col-sm-4 col-form-label">IMC</label>
+                            <label for="bmi" class="col-sm-4 col-form-label">IMC</label>
                             <div class="col-sm-8">
-                                <x-input name="BMI" type="number" value="{{ old('BMI') }}" />
+                                <x-input name="bmi" type="number" value="{{ old('bmi') }}" />
                             </div>
                         </div>
 
@@ -279,9 +279,9 @@
 
                         {{-- IMC Alto --}}
                         <div class="form-group row">
-                            <label for="BMI_high" class="col-sm-4 col-form-label">IMC Alto</label>
+                            <label for="bmi_high" class="col-sm-4 col-form-label">IMC Alto</label>
                             <div class="col-sm-8">
-                                <x-input name="BMI_high" type="number" value="{{ old('BMI_high') }}" />
+                                <x-input name="bmi_high" type="number" value="{{ old('bmi_high') }}" />
                             </div>
                         </div>
 
