@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMuscularRequest;
+use App\Models\Athlete;
 use App\Models\Muscular;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MuscularsController extends Controller
@@ -24,7 +28,18 @@ class MuscularsController extends Controller
      */
     public function index()
     {
-        //
+        $role = Auth::user()->role->description;
+        $user = Auth::user()->id;
+
+
+        if ($role == "Admin") {
+            $musculars = Muscular::with('user')->paginate(5);
+            return view('musculars.index', compact('musculars'));
+        } else {
+
+            $musculars = Muscular::where('user_id', '=', $user)->paginate(5);
+            return view('musculars.index', compact('musculars'));
+        }
     }
 
     /**
@@ -34,18 +49,26 @@ class MuscularsController extends Controller
      */
     public function create()
     {
-        //
+        $athletes = Athlete::with('user')->get();
+        return view('musculars.create', compact('athletes'));
     }
 
     /**
      * Almacene un recurso recién creado en el almacenamiento.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreMuscularRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMuscularRequest $request)
     {
-        //
+        //dd($request->all());
+        $user = $request->user();
+        $user->musculars()->create($request->validated());
+
+        /*$user->update([
+            'athlete_id' => $identification
+        ]);*/
+        return redirect()->route('musculars.index')->with('status', 'Registro creado exitosamente!');
     }
 
     /**

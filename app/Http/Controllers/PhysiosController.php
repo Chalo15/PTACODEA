@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Physio;
 use Illuminate\Http\Request;
+use App\Models\Athlete;
+use App\Models\Coach;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StorePhysioRequest;
+
 
 class PhysiosController extends Controller
 {
@@ -24,7 +30,18 @@ class PhysiosController extends Controller
      */
     public function index()
     {
-        //
+
+        $role = Auth::user()->role->description;
+        $user = Auth::user()->id;
+
+
+        if ($role == "Admin") {
+            $physio = Physio::with('user')->paginate(5);
+            return view('physios.index', compact('physio'));
+        } else {
+            $physio = Physio::where('user_id', '=', $user)->paginate(5);
+            return view('physios.index', compact('physio'));
+        }
     }
 
     /**
@@ -34,7 +51,11 @@ class PhysiosController extends Controller
      */
     public function create()
     {
-        //
+        $athletes = Athlete::with('user')->get();
+
+        $severities = config("general.severities");
+
+        return view('physios.create', compact('athletes', 'severities'));
     }
 
     /**
@@ -43,9 +64,12 @@ class PhysiosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePhysioRequest $request)
     {
-        //
+        $user = $request->user();
+        $user->physios()->create($request->validated());
+
+        return redirect()->route('physios.index')->with('status', 'Documento creado exitosamente!');
     }
 
     /**

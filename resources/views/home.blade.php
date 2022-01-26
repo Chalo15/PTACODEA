@@ -2,7 +2,6 @@
 
     <div class="row">
 
-
         @can('role',"Admin")
         <div class="col-md mb-3">
             <div class="card text-center">
@@ -13,7 +12,10 @@
                     <i class="fas fa-users fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-block">
+                        Acceder &nbsp;
+                        <i class="fas fa-share"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -29,7 +31,10 @@
                     <i class="fas fa-swimmer fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('athletes.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('athletes.index') }}" class="btn btn-primary btn-block">
+                        Acceder &nbsp;
+                        <i class="fas fa-share"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -45,7 +50,10 @@
                     <i class="fas fa-table-tennis fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('sports.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('sports.index') }}" class="btn btn-primary btn-block">
+                        Acceder &nbsp;
+                        <i class="fas fa-share"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -63,7 +71,10 @@
                     <i class="fas fa-dumbbell fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">
+                        Acceder &nbsp;
+                        <i class="fas fa-share"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -79,11 +90,12 @@
                     <i class="fas fa-user-md fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary btn-block">Acceder</a>
+                    <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder</a>
                 </div>
             </div>
         </div>
         @endcan
+
     </div>
 
     @push('scripts')
@@ -312,7 +324,7 @@ Acceder
             <div class="mi_perfil">
                 <h4 class="">Mi Perfil</h4>
                 <i class="d-block fas fa-user-circle p-2"></i>
-                <button onclick="window.location='{{ route('perfil.atleta') }}'" class="btn btn-negro">Ingresar</button>
+                <button onclick="window.location='{{ route('musculars.index') }}'" class="btn btn-negro">Ingresar</button>
             </div>
         </div>
 

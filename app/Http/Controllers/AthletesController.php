@@ -6,6 +6,7 @@ use App\Http\Requests\StoreAthleteRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AthletesController extends Controller
@@ -28,10 +29,22 @@ class AthletesController extends Controller
     public function index()
     {
         // Determinar según por rol cuales atletas retornar.
+        $rol = Auth::user()->role->description;
+        if ($rol == "Admin") {
+            $athletes = Athlete::with('user')->paginate(5);
 
-        $athletes = Athlete::with('user')->get();
+            return view('athletes.index', compact('athletes'));
+        }
 
-        return view('athletes.index', compact('athletes'));
+        if ($rol == "Instructor") {
+
+            $sport_id = Auth::user()->coach->sport_id;
+
+            $athletes = new Athlete();
+            $athletes = Athlete::where("sport_id", "=", $sport_id)->paginate(5);
+
+            return view('athletes.index', ['athletes' => $athletes]);
+        }
     }
 
     /**
@@ -45,7 +58,17 @@ class AthletesController extends Controller
 
         $users = User::where('role_id', '=', 7)->get();
 
-        return view('athletes.create', compact('sports', 'users'));
+        $genders = config('general.genders');
+
+        $provinces = config('general.provinces');
+
+        $bloods = config('general.bloods');
+
+        $lateralities = config('general.lateralities');
+
+        $relationships = config('general.relationships');
+
+        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships'));
     }
 
     /**

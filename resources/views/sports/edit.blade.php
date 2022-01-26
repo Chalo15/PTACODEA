@@ -16,12 +16,11 @@
                 <div class="card-body">
                     <h3 class="d-5">{{$sport->description}}</h3>
                     <div>
-                        <form action="{{route('ckeditor', $sport)}} " method="post">
+                        <form action="{{route('sports.update', $sport)}} " method="post">
                             @csrf
                             @method('put')
 
-                            <x-editor name="content" value="{{ $sport->ckeditor }}" />
-
+                            <x-editor name="content" value="{!! $sport->ckeditor !!}" />
                             <br>
                             <p><input type="submit" value="Enviar" class="btn btn-dark ml-auto m-1"></p>
 

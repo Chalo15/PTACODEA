@@ -43,7 +43,11 @@ class UsersController extends Controller
 
         $sports = Sport::all();
 
-        return view('users.create', compact('roles', 'sports'));
+        $genders = config('general.genders');
+
+        $provinces = config('general.provinces');
+
+        return view('users.create', compact('roles', 'sports', 'genders', 'provinces'));
     }
 
     /**

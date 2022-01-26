@@ -3,6 +3,8 @@
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\AthletesController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PhysiosController;
+use App\Http\Controllers\MuscularsController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportsController;
@@ -55,6 +57,29 @@ Route::prefix('athletes')->group(function () {
     Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
 });
+
+Route::prefix('musculars')->group(function () {
+    Route::get('', [MuscularsController::class, 'index'])->name('musculars.index');
+    Route::get('create', [MuscularsController::class, 'create'])->name('musculars.create');
+    Route::post('', [MuscularsController::class, 'store'])->name('musculars.store');
+    Route::get('{athlete}', [MuscularsController::class, 'show'])->name('musculars.show');
+    Route::get('{athlete}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit');
+    Route::put('{athlete}', [MuscularsController::class, 'update'])->name('musculars.update');
+});
+
+
+Route::prefix('physios')->group(function () {
+    Route::get('', [PhysiosController::class, 'index'])->name('physios.index');
+    Route::get('create', [PhysiosController::class, 'create'])->name('physios.create');
+    Route::post('', [PhysiosController::class, 'store'])->name('physios.store');
+    Route::get('{athlete}', [PhysiosController::class, 'show'])->name('physios.show');
+    Route::get('{athlete}/edit', [PhysiosController::class, 'edit'])->name('physios.edit');
+    Route::put('{athlete}', [PhysiosController::class, 'update'])->name('physios.update');
+});
+
+
+
+
 
 // LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
 
@@ -160,8 +185,8 @@ Route::get('/physiotherapy/appointment/{id}', [App\Http\Controllers\FunctionaryC
 Route::get('/musculation/catalogAthletes', [App\Http\Controllers\FunctionaryController::class, 'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
 Route::get('/musculation/report/{id}', [App\Http\Controllers\FunctionaryController::class, 'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
 
-Route::get('/coach/select_athlete', [App\Http\Controllers\SportController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
-Route::put('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
+Route::get('/coach/select_athlete', [App\Http\Controllers\SportsController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
+Route::put('/coach/select_athlete/{sport}', [App\Http\Controllers\SportsController::class, 'edit'])->name('ckeditor');
 
 //Vista de Atletas Registrados
 Route::get('/athletes/viewathlete', [App\Http\Controllers\AthleteController::class, 'index_athleteview'])->name('athletesview')->middleware(['can:roles,"Admin"']);
