@@ -22,12 +22,12 @@
 
                         {{-- Atleta --}}
                         <div class="form-group row">
-                            <label for="athlete" class="col-sm-4 col-form-label">Usuario</label>
+                            <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
                             <div class="col-sm-8">
-                                <x-select2 name="athlete">
-                                    <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                <x-select2 name="athlete_id">
+                                    <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($athletes as $athlete)
-                                    <option {{ old('user_id') == $athlete->user->id ? 'selected' : '' }} value="{{ $athlete->user->id }}">{{ $athlete->user->identification . ' | ' . $athlete->user->name . " " . $athlete->user->last_name }}</option>
+                                    <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->user->id }}">{{ $athlete->user->identification . ' | ' . $athlete->user->name . " " . $athlete->user->last_name }}</option>
                                     @endforeach
                                 </x-select2>
                             </div>
@@ -53,17 +53,17 @@
 
                         {{-- SPH --}}
                         <div class="form-group row">
-                            <label for="SPH" class="col-sm-4 col-form-label">SPH</label>
+                            <label for="sph" class="col-sm-4 col-form-label">SPH</label>
                             <div class="col-sm-8">
-                                <x-textarea name="SPH" value="{{ old('SPPH') }}" />
+                                <x-textarea name="sph" value="{{ old('sph') }}" />
                             </div>
                         </div>
 
                         {{-- APP --}}
                         <div class="form-group row">
-                            <label for="APP" class="col-sm-4 col-form-label">APP</label>
+                            <label for="app" class="col-sm-4 col-form-label">APP</label>
                             <div class="col-sm-8">
-                                <x-textarea name="APP" value="{{ old('APP') }}" />
+                                <x-textarea name="app" value="{{ old('app') }}" />
                             </div>
                         </div>
 
@@ -119,18 +119,18 @@
 
                         {{-- hora de inicio --}}
                         <div class="form-group row">
-                            <label for="time_start" class="col-sm-4 col-form-label">Hora de inicio</label>
+                            <label for="session_start" class="col-sm-4 col-form-label">Hora de inicio</label>
                             <div class="col-sm-8">
-                                <x-input name="time_start" type="time" value="{{ old('time_start') }}" />
+                                <x-input name="session_start" type="time" value="{{ old('session_start') }}" />
                             </div>
                         </div>
 
 
                         {{-- hora de fin --}}
                         <div class="form-group row">
-                            <label for="time_end" class="col-sm-4 col-form-label">Hora de fin</label>
+                            <label for="session_end" class="col-sm-4 col-form-label">Hora de fin</label>
                             <div class="col-sm-8">
-                                <x-input name="time_end" type="time" value="{{ old('time_end') }}" />
+                                <x-input name="session_end" type="time" value="{{ old('session_end') }}" />
                             </div>
                         </div>
 
@@ -144,9 +144,9 @@
 
                         {{-- tiempo de baja --}}
                         <div class="form-group row">
-                            <label for="inability" class="col-sm-4 col-form-label">Cantidad de sesiones</label>
+                            <label for="count_session" class="col-sm-4 col-form-label">Cantidad de sesiones</label>
                             <div class="col-sm-8">
-                                <x-input name="inability" type="number" min="1" value="{{ old('session') }}" />
+                                <x-input name="count_session" type="number" min="1" value="{{ old('count_session') }}" />
                             </div>
                         </div>
 
@@ -163,6 +163,14 @@
                                 </x-select>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="inability" class="col-sm-4 col-form-label">Datos extra</label>
+                            <div class="col-sm-8">
+                                <x-editor name="details" />
+                            </div>
+                        </div>
+
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary">
                                 <i class="fas fa-save"></i> &nbsp;

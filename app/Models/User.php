@@ -115,4 +115,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Physio::class);
     }
+    protected $guarded = [];
 }

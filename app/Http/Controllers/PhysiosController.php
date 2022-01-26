@@ -8,6 +8,8 @@ use App\Models\Athlete;
 use App\Models\Coach;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StorePhysioRequest;
+
 
 class PhysiosController extends Controller
 {
@@ -64,10 +66,12 @@ class PhysiosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePhysioRequest $request)
     {
-        $user = Auth::user()->id;
-        dd($user);
+        $user = $request->user();
+        $user->physios()->create($request->validated());
+
+        return redirect()->route('physios.index')->with('status', 'Documento creado exitosamente!');
     }
 
     /**
