@@ -71,6 +71,7 @@ Route::prefix('musculars')->group(function () {
     Route::get('{muscular}', [MuscularsController::class, 'show'])->name('musculars.show');
     Route::get('{muscular}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit');
     Route::put('{muscular}', [MuscularsController::class, 'update'])->name('musculars.update');
+    Route::get('{muscular}/generate-pdf', [MuscularsController::class, 'generatePDF'])->name('musculars.generate-pdf');
 });
 
 

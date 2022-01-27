@@ -9,6 +9,8 @@ use App\Models\Muscular;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use PDF;
+
 
 class MuscularsController extends Controller
 {
@@ -119,5 +121,12 @@ class MuscularsController extends Controller
     public function destroy(Muscular $muscular)
     {
         //
+    }
+
+    
+    public function generatePDF(Muscular $muscular)
+    {
+        $pdf = PDF::loadView('pdfs.muscular', compact('muscular'));
+        return $pdf->download('documento.pdf');
     }
 }
