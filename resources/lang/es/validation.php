@@ -125,12 +125,94 @@ return [
     'uploaded'             => 'Subir :attribute ha fallado.',
     'url'                  => ':Attribute debe ser una URL válida.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
-    'custom'               => [
-        'email'    => [
-            'unique' => 'El :attribute ya ha sido registrado.',
-        ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Validation Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify custom validation messages for attributes using the
+    | convention "attribute.rule" to name the lines. This makes it quick to
+    | specify a specific custom language line for a given attribute rule.
+    |
+    */
+
+    'custom' => [
         'password' => [
             'min' => 'La :attribute debe contener más de :min caracteres',
         ],
+        'email'    => [
+            'unique' => 'El :attribute ya ha sido registrado.',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Validation Attributes
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used to swap our attribute placeholder
+    | with something more reader friendly such as "E-Mail Address" instead
+    | of "email". This simply helps us make our message more expressive.
+    |
+    */
+
+    'attributes' => [
+        'address'                => 'dirección',
+        'age'                    => 'edad',
+        'body'                   => 'contenido',
+        'city'                   => 'ciudad',
+        'content'                => 'contenido',
+        'country'                => 'país',
+        'current_password'       => 'contraseña actual',
+        'date'                   => 'fecha',
+        'day'                    => 'día',
+        'description'            => 'descripción',
+        'email'                  => 'correo electrónico',
+        'excerpt'                => 'extracto',
+        'first_name'             => 'nombre',
+        'gender'                 => 'género',
+        'hour'                   => 'hora',
+        'last_name'              => 'apellidos',
+        'message'                => 'mensaje',
+        'minute'                 => 'minuto',
+        'mobile'                 => 'móvil',
+        'month'                  => 'mes',
+        'name'                   => 'nombre',
+        'password'               => 'contraseña',
+        'password_confirmation'  => 'confirmación de la contraseña',
+        'phone'                  => 'teléfono',
+        'photo'                  => 'foto',
+        'price'                  => 'precio',
+        'role'                   => 'rol',
+        'second'                 => 'segundo',
+        'sex'                    => 'sexo',
+        'subject'                => 'asunto',
+        'terms'                  => 'términos',
+        'time'                   => 'hora',
+        'title'                  => 'título',
+        'username'               => 'usuario',
+        'year'                   => 'año',
+
+        'identification'         => 'cédula de identidad o DIMEX',
+        'province'               => 'provincia',
+        'birthdate'              => 'fecha de nacimiento',
+
+        'identification_manager' => 'cédula de identidad o DIMEX',
+        'name_manager'           => 'nombre',
+        'lastname_manager'       => 'apellidos',
+        'contact_manager'        => 'teléfono',
+        'manager'                => 'parentezco',
+        'policy'                 => 'número de póliza',
+
+        'sport_id'               => 'deporte',
+        'blood'                  => 'tipo de sangre',
+        'laterality'             => 'lateralidad',
+
+        'user_id'                => 'usuario',
+        'experience'             => 'años de experiencia',
+        'contract_number'        => 'número de contrato',
+        'contract_year'          => 'año de contrato',
+        'role_id'                => 'rol'
     ],
 ];

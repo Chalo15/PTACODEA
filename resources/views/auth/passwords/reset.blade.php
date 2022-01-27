@@ -1,65 +1,57 @@
-@extends('layouts.app')
+<x-guest-layout title="Cambiar Contraseña">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <div class="d-flex justify-content-center">
+        <div class="row auth-card">
+            <div class="col">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+                <div class="card">
+                    <div class="card-header">
+                        Cambiar Contraseña
+                    </div>
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+                    <div class="card-body">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <form action="{{ route('password.update') }}" method="POST">
+                            @csrf
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                            {{-- Token --}}
+                            <input type="hidden" name="token" value="{{ $token }}">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            {{-- Correo electrónico --}}
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-4 col-form-label">Correo Electrónico</label>
+                                <div class="col-sm-8">
+                                    <x-input name="email" placeholder="johndoe@example.com" value="{{ old('email') }}" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            {{-- Contraseña --}}
+                            <div class="form-group row">
+                                <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
+                                <div class="col-sm-8">
+                                    <x-input name="password" type="password" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            {{-- Confirmación de contraseña --}}
+                            <div class="form-group row">
+                                <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de contraseña</label>
+                                <div class="col-sm-8">
+                                    <x-input name="password_confirmation" type="password" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
+                            <div class="form-group d-flex justify-content-end">
+                                <button class="btn btn-dark">Restablecer contraseña</button>
                             </div>
-                        </div>
-                    </form>
+
+                        </form>
+
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+</x-guest-layout>

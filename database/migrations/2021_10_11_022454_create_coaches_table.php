@@ -15,9 +15,11 @@ class CreateCoachesTable extends Migration
     {
         Schema::create('coaches', function (Blueprint $table) {
 
+            $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('sport_id')->constrained('sports');
-            $table->id();
+            $table->integer('phone');
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

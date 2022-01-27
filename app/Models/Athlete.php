@@ -7,22 +7,61 @@ use Illuminate\Database\Eloquent\Model;
 
 class Athlete extends Model
 {
+    use HasFactory;
+
+    /**
+     * Los atributos que son asignables en masa.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'sport_id',
+        'state',
+        'blood',
+        'laterality',
+        'name_manager',
+        'lastname_manager',
+        'manager',
+        'identification_manager',
+        'contact_manager',
+        'url',
+        'policy',
+    ];
+
+    /**
+     * Obtener el usuario al que pertenece el atleta.
+     */
     public function user()
     {
-
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
+    /**
+     * Obtener el deporte al que pertenece el atleta.
+     */
     public function sport()
     {
-
-        return $this->belongsTo('App\Models\sport');
+        return $this->belongsTo(Sport::class);
     }
 
-    public function coach()
+    public function sessionData()
     {
-
-        return $this->belongsTo('App\Models\coach');
+        return $this->hasOne(SessionData::class);
     }
-    use HasFactory;
+
+    public function trainings()
+    {
+        return $this->hasMany(Training::class);
+    }
+
+    public function physios()
+    {
+        return $this->hasMany(Physio::class);
+    }
+
+    public function musculars()
+    {
+        return $this->hasMany(Muscular::class);
+    }
 }

@@ -2,7 +2,7 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
@@ -17,3 +17,20 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+$black-codea: #000000;
+$orange-codea: rgb(240, 123, 45);
+$red-codea: rgb(237, 33, 45);
+$white-codea: rgb(255, 255, 255);
+$gray-codea: #54595f;
+
+// Custom Colors Bootstrap
+$primary: $red-codea;
+$secondary: $gray-codea;
+$theme-colors: (
+    "black-codea": #000000,
+    "orange-codea": rgb(240, 123, 45),
+    "red-codea": rgb(237, 33, 45),
+    "white-codea": rgb(255, 255, 255),
+    "gray-codea": #54595f
+);

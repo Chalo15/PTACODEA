@@ -23,13 +23,17 @@ class AthleteFactory extends Factory
     public function definition()
     {
         return [
-
-            'emergency_contact' => $this->faker->randomNumber(),
-            'policy' => $this->faker->unique()->sentence(),
-            'coach_id' => $this->faker->randomElement(['1', '2', '3', '4']),
+            'user_id' => $this->faker->unique()->randomElement(['15', '16', '17']),
             'sport_id' => $this->faker->randomElement(['1', '2', '3', '4']),
-            'user_id' => $this->faker->unique()->randomElement(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
-
+            'state' => $this->faker->randomElement(['A', 'A', 'a']),
+            'blood' => $this->faker->randomElement(['A+', 'B+', 'AB+', 'O-']),
+            'laterality' => $this->faker->randomElement(['D', 'I', 'A']),
+            'name_manager' => $this->faker->sentence(),
+            'lastname_manager' => $this->faker->sentence(),
+            'identification_manager' => $this->faker->randomNumber(),
+            'contact_manager' => $this->faker->randomNumber(),
+            'policy' => $this->faker->randomNumber(),
+            'manager' => "207910178",
         ];
     }
 }

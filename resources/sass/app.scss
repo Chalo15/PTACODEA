@@ -1,11 +1,21 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Fuentes
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
+// Fontawesome
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
-@import '~@fortawesome\fontawesome-free/css/all.min.css';
+// Select2
+@import "~select2/dist/css/select2.css";
+
+// Select2 bootstrap theme.
+@import "~@ttskch/select2-bootstrap4-theme/src/select2-bootstrap4.scss";
+
+// Proyecto
+// @import "./proyecto";
+@import "./bootstrap";
