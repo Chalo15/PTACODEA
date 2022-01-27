@@ -47,7 +47,7 @@
                                     @foreach ($physios as $physio)
                                     <tr>
                                         <td>{{ $physio->id }}</td>
-                                        <td>{{ $physio->date }}</td>
+                                        <td>{{ $physio->date->isoFormat('LL') }}</td>
                                         <td>{{ $physio->athlete->user->identification }}</td>
                                         <td>{{ $physio->athlete->user->name . " " . $physio->athlete->user->last_name}}</td>
                                         <td>{{ $physio->athlete->sport->description }}</td>

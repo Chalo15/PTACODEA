@@ -125,9 +125,14 @@ class PhysiosController extends Controller
         //
     }
 
+    /**
+     * Generacion de pdf de fisioterapeutas.
+     *
+     * @param  \App\Models\Physio  $physio
+     */
     public function generatePDF(Physio $physio)
     {
         $pdf = PDF::loadView('pdfs.physio', compact('physio'));
-        return $pdf->download('documento.pdf');
+        return $pdf->download($physio->athlete->user->full_name . '.pdf');
     }
 }
