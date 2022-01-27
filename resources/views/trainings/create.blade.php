@@ -127,7 +127,9 @@
                         <div class="form-group row">
                             <label for="details" class="col-sm-4 col-form-label">Datos extra</label>
                             <div class="col-sm-8">
-                                <x-editor name="details" value="{!! old('details') !!}" />
+                                @foreach ($athletes as $athlete)
+                                <x-editor name="details" value="{!! $athlete->sport->ckeditor !!}" />
+                                @endforeach
                             </div>
                         </div>
 
