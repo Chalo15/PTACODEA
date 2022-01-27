@@ -17,8 +17,9 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('physios.store') }}" method="POST">
+                    <form action="{{ route('physios.update',$physio->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
 
                         {{-- Atleta --}}
                         <div class="form-group row">

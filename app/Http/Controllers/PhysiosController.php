@@ -9,7 +9,7 @@ use App\Models\Coach;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePhysioRequest;
-
+use App\Http\Requests\UpdatePhysioRequest;
 
 class PhysiosController extends Controller
 {
@@ -106,9 +106,11 @@ class PhysiosController extends Controller
      * @param  \App\Models\Physio  $physio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Physio $physio)
+    public function update(UpdatePhysioRequest $request, Physio $physio)
     {
-        //
+        $physio->update($request->validated());
+
+        return redirect()->route('physios.index')->with('status', 'Documento editado exitosamente!');
     }
 
     /**
