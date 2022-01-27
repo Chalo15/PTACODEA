@@ -27,6 +27,10 @@ class Physio extends Model
         'details',
     ];
 
+    protected $casts = [
+        'date' => 'date'
+    ];
+
     public function athlete()
     {
         return $this->belongsTo(Athlete::class);

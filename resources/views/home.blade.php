@@ -65,7 +65,7 @@
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
-                        Gimnasio
+                        Musculación
                     </div>
                     <div class="card-body">
                         <i class="fas fa-dumbbell fa-5x"></i>

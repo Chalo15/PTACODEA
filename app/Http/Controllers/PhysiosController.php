@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePhysioRequest;
 use App\Http\Requests\UpdatePhysioRequest;
+use PDF;
 
 class PhysiosController extends Controller
 {
@@ -122,5 +123,20 @@ class PhysiosController extends Controller
     public function destroy(Physio $physio)
     {
         //
+    }
+
+    /**
+     * Generacion de pdf de fisioterapeutas.
+     *
+     * @param  \App\Models\Physio  $physio
+     */
+    public function generatePDF(Physio $physio)
+    {
+        $pdf = PDF::loadView('pdfs.physio', compact('physio'));
+
+        return $pdf->download('document.pdf');
+
+        return $pdf->download($physio->athlete->user->full_name . '.pdf');
+
     }
 }
