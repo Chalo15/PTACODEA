@@ -115,5 +115,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Physio::class);
     }
+
+    public function trainings()
+    {
+        return $this->hasMany(Training::class);
+    }
     protected $guarded = [];
 }
