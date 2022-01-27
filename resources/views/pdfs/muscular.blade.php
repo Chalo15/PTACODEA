@@ -11,6 +11,7 @@
       /** Define the margins of your page **/
       @page {
           margin: 100px 25px;
+          
       }
 
       header {
