@@ -8,6 +8,7 @@ use App\Http\Controllers\MuscularsController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportsController;
+use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
 use App\Models\Athlete;
 use App\Models\Sport;
@@ -77,6 +78,15 @@ Route::prefix('physios')->group(function () {
     Route::put('{physio}', [PhysiosController::class, 'update'])->name('physios.update');
 });
 
+
+Route::prefix('trainings')->group(function () {
+    Route::get('', [TrainingsController::class, 'index'])->name('trainings.index');
+    Route::get('create', [TrainingsController::class, 'create'])->name('trainings.create');
+    Route::post('', [TrainingsController::class, 'store'])->name('trainings.store');
+    Route::get('{training}', [TrainingsController::class, 'show'])->name('trainings.show');
+    Route::get('{training}/edit', [TrainingsController::class, 'edit'])->name('trainings.edit');
+    Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
+});
 
 
 

@@ -93,6 +93,22 @@
             </div>
         @endcan
 
+        @can('role', 'Admin', 'Instructor')
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Instructor
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-medal fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+        @endcan
+
     </div>
 
     @push('scripts')
