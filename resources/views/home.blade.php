@@ -77,7 +77,23 @@
             </div>
         @endcan
 
-        @can('roles', 'Admin', 'Fisioterapia')
+        @can('roles', 'Musculacion')
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Musculación
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-dumbbell fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+        @endcan
+
+        @can('roles', 'Admin')
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -93,7 +109,39 @@
             </div>
         @endcan
 
-        @can('roles', 'Admin', 'Instructor')
+        @can('roles', 'Fisioterapia')
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Fisioterápia
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-user-md fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+        @endcan
+
+        @can('roles', 'Admin')
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Instructor
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-medal fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+        @endcan
+
+        @can('roles', 'Instructor')
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">

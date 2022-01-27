@@ -68,6 +68,7 @@
                                                         <i class="fas fa-edit"></i> &nbsp;
                                                         Editar
                                                     </a>
+
                                                 </div>
 
                                             </td>

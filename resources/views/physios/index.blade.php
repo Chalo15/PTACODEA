@@ -64,10 +64,12 @@
                                                     </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    @can('roles', 'Fisioterapia')
                                                     <a class="dropdown-item" href="{{ route('physios.edit', $physio) }}">
                                                         <i class="fas fa-edit"></i> &nbsp;
                                                         Editar
                                                     </a>
+                                                    @endcan
                                                     <a class="dropdown-item" href="{{ route('physios.generate-pdf', $physio->id) }}">
                                                         <i class="fas fa-download"></i> &nbsp;
                                                         Descargar
