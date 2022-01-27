@@ -34,6 +34,7 @@ class StorePhysioRequest extends FormRequest
             'inability' => ['required'],
             'severity' => ['required'],
             'count_session' => ['required'],
+            'details' => ['nullable']
         ];
 
         if ($this->is_surgeries) {

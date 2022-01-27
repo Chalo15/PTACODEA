@@ -27,7 +27,7 @@ class Physio extends Model
         'details',
     ];
 
-    public function athelete()
+    public function athlete()
     {
         return $this->belongsTo(Athlete::class);
     }

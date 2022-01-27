@@ -36,13 +36,12 @@ class PhysiosController extends Controller
 
 
         if ($role == "Admin") {
-            $physio = Physio::with('user')->paginate(5);
-            return view('physios.index', compact('physio'));
+            $physios = Physio::with('user')->get();
+            return view('physios.index', compact('physios'));
         } else {
 
-            $physio = new Physio();
-            $physio = Physio::where('user_id', '=', $user)->paginate(5);
-            return view('physios.index', compact('physio'));
+            $physios = Physio::where('user_id', '=', $user)->get();
+            return view('physios.index', compact('physios'));
         }
     }
 
@@ -69,6 +68,7 @@ class PhysiosController extends Controller
     public function store(StorePhysioRequest $request)
     {
         $user = $request->user();
+
         $user->physios()->create($request->validated());
 
         return redirect()->route('physios.index')->with('status', 'Documento creado exitosamente!');
@@ -93,7 +93,10 @@ class PhysiosController extends Controller
      */
     public function edit(Physio $physio)
     {
-        //
+        $physio->with('athlete');
+        $severities = config("general.severities");
+
+        return view('physios.edit', compact('physio', 'severities'));
     }
 
     /**

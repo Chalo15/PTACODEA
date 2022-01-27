@@ -80,7 +80,7 @@
         </div>
         @endcan
 
-        @can('role',"Admin")
+        @can('role',"Admin","Fisioterapia")
         <div class="col-md mb-3">
             <div class="card text-center">
                 <div class="card-header">

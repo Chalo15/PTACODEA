@@ -27,7 +27,7 @@
                                 <x-select2 name="athlete_id">
                                     <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($athletes as $athlete)
-                                    <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->user->id }}">{{ $athlete->user->identification . ' | ' . $athlete->user->name . " " . $athlete->user->last_name }}</option>
+                                    <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">{{ $athlete->user->identification . ' | ' . $athlete->user->name . " " . $athlete->user->last_name }}</option>
                                     @endforeach
                                 </x-select2>
                             </div>
@@ -165,7 +165,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="inability" class="col-sm-4 col-form-label">Datos extra</label>
+                            <label for="details" class="col-sm-4 col-form-label">Datos extra</label>
                             <div class="col-sm-8">
                                 <x-editor name="details" />
                             </div>
