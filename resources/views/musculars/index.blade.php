@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('home') }}" class="btn btn-primary">
-            <i class="fas fa-reply"></i> &nbsp;
+                <i class="fas fa-reply"></i> &nbsp;
                 Atrás
             </a>
         </div>
@@ -44,17 +44,16 @@
                                 </x-slot>
 
                                 <x-slot name="body">
-                                    @foreach ($muscular as $musculars)
+                                    @foreach ($musculars as $muscular)
                                         <tr>
-                                            <td>{{ $musculars->id }}</td>
-                                            <td>{{ $musculars->date }}</td>
-                                            <td>{{ $musculars->athelete->user->identification }}</td>
-                                            <td>{{ $musculars->athlete->user->name . ' ' . $musculars->athlete->user->lastname }}
+                                            <td>{{ $muscular->id }}</td>
+                                            <td>{{ $muscular->date }}</td>
+                                            <td>{{ $muscular->athlete->user->identification }}</td>
+                                            <td>{{ $muscular->athlete->user->name . ' ' . $muscular->athlete->user->last_name }}
                                             </td>
-                                            <td>{{ $musculars->athelete->sport->description }}</td>
-                                            <td>{{ $musculars->user->identification }}</td>
-                                            <td>{{ $musculars->user->name . ' ' . $musculars->user->lastname }}</td>
-                                            <th>Acciones</th>
+                                            <td>{{ $muscular->athlete->sport->description }}</td>
+                                            <td>{{ $muscular->user->identification }}</td>
+                                            <td>{{ $muscular->user->name . ' ' . $muscular->user->last_name }}</td>
 
                                             <td width="100px" class="text-center">
 
@@ -66,10 +65,14 @@
 
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                         <a class="dropdown-item"
-                                                            href="{{ route('users.edit', $muscular->id) }}">
+                                                            href="{{ route('musculars.edit', $muscular->id) }}">
                                                             <i class="fas fa-edit"></i> &nbsp;
                                                             Editar
                                                         </a>
+                                                        <a class="dropdown-item" href="{{ route('musculars.generate-pdf', $muscular->id) }}">
+                                                        <i class="fas fa-download"></i> &nbsp;
+                                                        Descargar
+                                                         </a>
                                                     </div>
                                                 </div>
 
@@ -77,7 +80,6 @@
                                         </tr>
                                     @endforeach
                                 </x-slot>
-
                                 <x-slot name="foot">
                                     <tr>
                                         <th>Documento</th>
@@ -96,7 +98,7 @@
 
                     <div class="row">
                         <div class="col d-flex justify-content-end">
-                            {{ $muscular->links() }}
+                            {{ $musculars->links() }}
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\AthletesController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PhysiosController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\MuscularsController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\SportController;
@@ -24,6 +25,11 @@ Auth::routes();
  * Ruta de Inicio
  */
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**
+ * Ruta para imprimir PDF's
+ */
+//Route::get('{id}/download', [App\Http\Controllers\PDFController::class, 'download'])->name('pdf.download');
 
 /**
  * Rutas de Usuarios
@@ -62,9 +68,10 @@ Route::prefix('musculars')->group(function () {
     Route::get('', [MuscularsController::class, 'index'])->name('musculars.index');
     Route::get('create', [MuscularsController::class, 'create'])->name('musculars.create');
     Route::post('', [MuscularsController::class, 'store'])->name('musculars.store');
-    Route::get('{athlete}', [MuscularsController::class, 'show'])->name('musculars.show');
-    Route::get('{athlete}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit');
-    Route::put('{athlete}', [MuscularsController::class, 'update'])->name('musculars.update');
+    Route::get('{muscular}', [MuscularsController::class, 'show'])->name('musculars.show');
+    Route::get('{muscular}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit');
+    Route::put('{muscular}', [MuscularsController::class, 'update'])->name('musculars.update');
+    Route::get('{muscular}/generate-pdf', [MuscularsController::class, 'generatePDF'])->name('musculars.generate-pdf');
 });
 
 
@@ -75,6 +82,7 @@ Route::prefix('physios')->group(function () {
     Route::get('{physio}', [PhysiosController::class, 'show'])->name('physios.show');
     Route::get('{physio}/edit', [PhysiosController::class, 'edit'])->name('physios.edit');
     Route::put('{physio}', [PhysiosController::class, 'update'])->name('physios.update');
+    Route::get('{physio}/generate-pdf', [PhysiosController::class, 'generatePDF'])->name('physios.generate-pdf');
 });
 
 

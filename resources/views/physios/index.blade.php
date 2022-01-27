@@ -47,31 +47,35 @@
                                     @foreach ($physios as $physio)
                                     <tr>
                                         <td>{{ $physio->id }}</td>
-                                        <td>{{ $physio->date }}</td>
+                                        <td>{{ $physio->date->isoFormat('LL') }}</td>
                                         <td>{{ $physio->athlete->user->identification }}</td>
-                                        <td>{{ $physio->athlete->user->name . " " . $physio->athlete->user->lastname}}</td>
+                                        <td>{{ $physio->athlete->user->name . " " . $physio->athlete->user->last_name}}</td>
                                         <td>{{ $physio->athlete->sport->description }}</td>
                                         <td>{{ $physio->user->identification }}</td>
                                         <td>{{ $physio->user->name . " " . $physio->user->last_name}}</td>
 
 
-                                        <td width="100px" class="text-center">
+                                            <td width="100px" class="text-center">
 
-                                            <div class="dropdown">
-                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </button>
+                                                <div class="dropdown">
+                                                    <button class="btn" type="button" id="dropdownMenu2"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                     <a class="dropdown-item" href="{{ route('physios.edit', $physio) }}">
                                                         <i class="fas fa-edit"></i> &nbsp;
                                                         Editar
                                                     </a>
+                                                    <a class="dropdown-item" href="{{ route('physios.generate-pdf', $physio->id) }}">
+                                                        <i class="fas fa-download"></i> &nbsp;
+                                                        Descargar
+                                                    </a>
                                                 </div>
-                                            </div>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </x-slot>
 
