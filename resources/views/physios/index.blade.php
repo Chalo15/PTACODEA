@@ -68,6 +68,10 @@
                                                         <i class="fas fa-edit"></i> &nbsp;
                                                         Editar
                                                     </a>
+                                                    <a class="dropdown-item" href="{{ route('physios.generate-pdf', $physio->id) }}">
+                                                        <i class="fas fa-download"></i> &nbsp;
+                                                        Descargar
+                                                    </a>
                                                 </div>
 
                                             </td>
