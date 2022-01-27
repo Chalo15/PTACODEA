@@ -38,7 +38,6 @@
                         </div>
 
 
-
                         {{-- Fecha de registr --}}
                         @php
 
@@ -96,8 +95,7 @@
                             <div x-show="isOpen">
                                 {{-- Cédula de Identidad o DIMEX --}}
                                 <div class="form-group row">
-                                    <label for="surgeries" class="col-sm-4 col-form-label">Detalle del
-                                        tratamiento</label>
+                                    <label for="surgeries" class="col-sm-4 col-form-label">Detalle del tratamiento</label>
                                     <div class="col-sm-8">
                                         <x-textarea name="surgeries" value="{{ old('surgeries') }}" />
                                     </div>
