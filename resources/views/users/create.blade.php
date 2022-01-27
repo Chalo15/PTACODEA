@@ -9,6 +9,16 @@
         </div>
     </div>
 
+    {{-- Fecha de registr --}}
+    @php
+
+    $today = today()->toDateString();
+    $age = today()->subYears(18)->toDateString();
+
+    @endphp
+
+
+
     <div class="row">
         <div class="col">
             <div class="card">
@@ -48,7 +58,7 @@
                         <div class="form-group row">
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
-                                <x-input type="date" name="birthdate" value="{{ old('birthdate') }}" />
+                                <x-input type="date" max="{{$age}}" name="birthdate" value="{{ old('birthdate') }}" />
                             </div>
                         </div>
 
