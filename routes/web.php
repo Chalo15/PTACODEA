@@ -62,9 +62,9 @@ Route::prefix('musculars')->group(function () {
     Route::get('', [MuscularsController::class, 'index'])->name('musculars.index');
     Route::get('create', [MuscularsController::class, 'create'])->name('musculars.create');
     Route::post('', [MuscularsController::class, 'store'])->name('musculars.store');
-    Route::get('{athlete}', [MuscularsController::class, 'show'])->name('musculars.show');
-    Route::get('{athlete}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit');
-    Route::put('{athlete}', [MuscularsController::class, 'update'])->name('musculars.update');
+    Route::get('{muscular}', [MuscularsController::class, 'show'])->name('musculars.show');
+    Route::get('{muscular}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit');
+    Route::put('{muscular}', [MuscularsController::class, 'update'])->name('musculars.update');
 });
 
 

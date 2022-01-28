@@ -15,32 +15,30 @@
                 <div class="card-header">
                     Generar Sesión
                 </div>
-
+                {{-- }} @json($errors->all()) --}}
                 <div class="card-body">
                     <form action="{{ route('musculars.store') }}" method="POST">
                         @csrf
 
 
                         <div class="form-group row">
-                            <label for="user_id" class="col-sm-4 col-form-label">Instrumento de Medición</label>
+                            <label class="col-sm-4 col-form-label">Instrumento de Medición</label>
                         </div>
 
-                        <div x-show="isOpen">
-                            {{-- Usuario --}}
-                            <div class="form-group row">
-                                <label for="user_id" class="col-sm-4 col-form-label">Usuario</label>
-                                <div class="col-sm-8">
-                                    <x-select name="user_id">
-                                        <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> --
-                                            Seleccione -- </option>
-                                        @foreach ($users as $user)
-                                            <option {{ old('user_id') == $user->id ? 'selected' : '' }}
-                                                value="{{ $user->id }}">
-                                                {{ $user->identification . ' | ' . $user->name . ' ' . $user->last_name }}
-                                            </option>
-                                        @endforeach
-                                    </x-select>
-                                </div>
+                        {{-- Atleta --}}
+                        <div class="form-group row">
+                            <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
+                            <div class="col-sm-8">
+                                <x-select2 name="athlete_id">
+                                    <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> --
+                                        Seleccione -- </option>
+                                    @foreach ($athletes as $athlete)
+                                        <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }}
+                                            value="{{ $athlete->id }}">
+                                            {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
+                                        </option>
+                                    @endforeach
+                                </x-select2>
                             </div>
                         </div>
 
@@ -106,7 +104,7 @@
                         <div class="form-group row">
                             <label for="cint" class="col-sm-4 col-form-label">Relacion Cintura Cadera</label>
                             <div class="col-sm-8">
-                                <x-input name="cint" type="number" value="{{ old('cint') }}" />
+                                <x-input name="cint_code" type="number" value="{{ old('cint_code') }}" />
                             </div>
                         </div>
 
@@ -281,9 +279,9 @@
 
                         {{-- IMC Alto --}}
                         <div class="form-group row">
-                            <label for="BMI_high" class="col-sm-4 col-form-label">IMC Alto</label>
+                            <label for="bmi_high" class="col-sm-4 col-form-label">IMC Alto</label>
                             <div class="col-sm-8">
-                                <x-input name="BMI_high" type="number" value="{{ old('BMI_high') }}" />
+                                <x-input name="bmi_high" type="number" value="{{ old('bmi_high') }}" />
                             </div>
                         </div>
 
@@ -301,14 +299,14 @@
                         </div>
 
                         <div class="form-group row">
-                        <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
+                            <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
                             <div class="col-sm-8">
-                               <x-textarea name="get_better" value="{{ old('get_better') }}" />
+                                <x-textarea name="get_better" value="{{ old('get_better') }}" />
                             </div>
                         </div>
 
                         <div class="form-group row">
-                             <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
+                            <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
                             <div class="col-sm-8">
                                 <x-editor name="details" value="{!! old('details') !!}" />
                             </div>

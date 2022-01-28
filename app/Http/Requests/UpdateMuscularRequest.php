@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMuscularsRequest extends FormRequest
+class UpdateMuscularRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StoreMuscularsRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'user_id'          => ['required'],
+            'athlete_id'       => ['required'],
             'date'             => ['required'],
             'physiological_age'=> ['required', 'numeric'],
             'weight'           => ['required', 'numeric'],
@@ -32,7 +32,7 @@ class StoreMuscularsRequest extends FormRequest
             'bmi'              => ['required', 'numeric'],
             'waist'            => ['required', 'numeric'],
             'hip'              => ['required', 'numeric'],
-            'cint'             => ['required', 'numeric'],
+            'cint_code'        => ['required', 'numeric'],
             'tricipital'       => ['required', 'numeric'],
             'subscapular'      => ['required', 'numeric'],
             'abdominal'        => ['required', 'numeric'],
@@ -45,7 +45,7 @@ class StoreMuscularsRequest extends FormRequest
             'biceps'           => ['required', 'numeric'],
             'calf_cm'          => ['required', 'numeric'],
             'calories'         => ['required', 'numeric'],
-            'BMI_high'         => ['required', 'numeric'],
+            'bmi_high'         => ['required', 'numeric'],
             'icc_high'         => ['required', 'numeric'],
             'fat'              => ['required', 'numeric'],
             'residual'         => ['required', 'numeric'],
