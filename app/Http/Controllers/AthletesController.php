@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAthleteRequest;
+use App\Http\Requests\UpdateAthleteRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
@@ -102,7 +103,19 @@ class AthletesController extends Controller
     {
         $athlete->with('user');
 
-        return view('athletes.edit', compact('athlete'));
+        $sports = Sport::all();
+
+        $genders = config('general.genders');
+
+        $provinces = config('general.provinces');
+
+        $bloods = config('general.bloods');
+
+        $lateralities = config('general.lateralities');
+
+        $relationships = config('general.relationships');
+
+        return view('athletes.edit', compact('sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships'));
     }
 
     /**
@@ -112,8 +125,11 @@ class AthletesController extends Controller
      * @param  \App\Models\Athlete  $athlete
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Athlete $athlete)
+    public function update(UpdateAthleteRequest $request, Athlete $athlete)
     {
-        //
+
+        $athlete->update($request->validated());
+
+        return redirect()->route('athletes.index')->with('status', 'Atleta editado exitosamente!');
     }
 }
