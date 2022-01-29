@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Physio;
 use Illuminate\Http\Request;
+use App\Models\Athlete;
+use App\Models\Coach;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StorePhysioRequest;
+use App\Http\Requests\UpdatePhysioRequest;
+use PDF;
 
 class PhysiosController extends Controller
 {
@@ -24,7 +31,19 @@ class PhysiosController extends Controller
      */
     public function index()
     {
-        //
+
+        $role = Auth::user()->role->description;
+        $user = Auth::user()->id;
+
+
+        if ($role == "Admin") {
+            $physios = Physio::with('user')->get();
+            return view('physios.index', compact('physios'));
+        } else {
+
+            $physios = Physio::where('user_id', '=', $user)->get();
+            return view('physios.index', compact('physios'));
+        }
     }
 
     /**
@@ -34,7 +53,11 @@ class PhysiosController extends Controller
      */
     public function create()
     {
-        //
+        $athletes = Athlete::with('user')->get();
+
+        $severities = config("general.severities");
+
+        return view('physios.create', compact('athletes', 'severities'));
     }
 
     /**
@@ -43,9 +66,13 @@ class PhysiosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePhysioRequest $request)
     {
-        //
+        $user = $request->user();
+
+        $user->physios()->create($request->validated());
+
+        return redirect()->route('physios.index')->with('status', 'Documento creado exitosamente!');
     }
 
     /**
@@ -67,7 +94,10 @@ class PhysiosController extends Controller
      */
     public function edit(Physio $physio)
     {
-        //
+        $physio->with('athlete');
+        $severities = config("general.severities");
+
+        return view('physios.edit', compact('physio', 'severities'));
     }
 
     /**
@@ -77,9 +107,11 @@ class PhysiosController extends Controller
      * @param  \App\Models\Physio  $physio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Physio $physio)
+    public function update(UpdatePhysioRequest $request, Physio $physio)
     {
-        //
+        $physio->update($request->validated());
+
+        return redirect()->route('physios.index')->with('status', 'Documento editado exitosamente!');
     }
 
     /**
@@ -91,5 +123,20 @@ class PhysiosController extends Controller
     public function destroy(Physio $physio)
     {
         //
+    }
+
+    /**
+     * Generacion de pdf de fisioterapeutas.
+     *
+     * @param  \App\Models\Physio  $physio
+     */
+    public function generatePDF(Physio $physio)
+    {
+        $pdf = PDF::loadView('pdfs.physio', compact('physio'));
+
+        return $pdf->download('document.pdf');
+
+        return $pdf->download($physio->athlete->user->full_name . '.pdf');
+
     }
 }

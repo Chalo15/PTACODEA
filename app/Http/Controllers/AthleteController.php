@@ -153,7 +153,7 @@ class AthleteController extends Controller
         $persona = new User();
         $persona = User::where("identification", "=", $usuario)->first();
 
-        return view('users.athlete_profile', compact('persona'));
+        return view('athletes.profile', compact('persona'));
     }
     public function guardaPerfil(Request $request)
     {

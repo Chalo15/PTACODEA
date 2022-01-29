@@ -43,7 +43,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                <a href="#" class="dropdown-item">
+                                <a href="{{ route('perfil.atleta')}}" class="dropdown-item">
                                     <i class="fas fa-user-circle"></i> &nbsp;
                                     Perfil
                                 </a>

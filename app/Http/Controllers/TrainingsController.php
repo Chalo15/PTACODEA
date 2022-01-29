@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTrainingRequest;
+use App\Http\Requests\UpdateTrainingRequest;
+use App\Models\Athlete;
 use App\Models\Training;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TrainingsController extends Controller
 {
@@ -24,7 +28,18 @@ class TrainingsController extends Controller
      */
     public function index()
     {
-        //
+        $role = Auth::user()->role->description;
+        $user = Auth::user()->id;
+
+
+        if ($role == "Admin") {
+            $trainings = Training::with('user')->get();
+            return view('trainings.index', compact('trainings'));
+        } else {
+
+            $trainings = Training::where('user_id', '=', $user)->get();
+            return view('trainings.index', compact('trainings'));
+        }
     }
 
     /**
@@ -34,7 +49,9 @@ class TrainingsController extends Controller
      */
     public function create()
     {
-        //
+        $athletes = Athlete::with('user')->get();
+
+        return view('trainings.create', compact('athletes'));
     }
 
     /**
@@ -43,9 +60,12 @@ class TrainingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTrainingRequest $request)
     {
-        //
+        $user = $request->user();
+        $user->trainings()->create($request->validated());
+
+        return redirect()->route('trainings.index')->with('status', 'Documento creado exitosamente!');
     }
 
     /**
@@ -67,7 +87,9 @@ class TrainingsController extends Controller
      */
     public function edit(Training $training)
     {
-        //
+        $training->with('athlete');
+
+        return view('trainings.edit', compact('training'));
     }
 
     /**
@@ -77,9 +99,11 @@ class TrainingsController extends Controller
      * @param  \App\Models\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Training $training)
+    public function update(UpdateTrainingRequest $request, Training $training)
     {
-        //
+        $training->update($request->validated());
+
+        return redirect()->route('trainings.index')->with('status', 'Documento editado exitosamente!');
     }
 
     /**

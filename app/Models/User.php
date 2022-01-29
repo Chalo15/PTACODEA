@@ -105,4 +105,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(Functionary::class);
     }
+
+    public function musculars()
+    {
+        return $this->hasMany(Muscular::class);
+    }
+
+    public function physios()
+    {
+        return $this->hasMany(Physio::class);
+    }
+
+    public function trainings()
+    {
+        return $this->hasMany(Training::class);
+    }
+    protected $guarded = [];
 }

@@ -40,6 +40,19 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'relationships' => ['Madre', 'Padre', 'Abuelo(a)', 'Tío(a)', 'Hermano(a)', 'Encargado(a)']
+    'relationships' => ['Madre', 'Padre', 'Abuelo(a)', 'Tío(a)', 'Hermano(a)', 'Encargado(a)'],
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | tipo de gravedad de las lesiones
+    |--------------------------------------------------------------------------
+    */
+
+
+    'severities' => ['Leve', 'Grave', 'Muy grave']
+
+
 
 ];

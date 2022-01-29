@@ -3,9 +3,13 @@
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\AthletesController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PhysiosController;
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\MuscularsController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportsController;
+use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
 use App\Models\Athlete;
 use App\Models\Sport;
@@ -22,6 +26,11 @@ Auth::routes();
  * Ruta de Inicio
  */
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/**
+ * Ruta para imprimir PDF's
+ */
+//Route::get('{id}/download', [App\Http\Controllers\PDFController::class, 'download'])->name('pdf.download');
 
 /**
  * Rutas de Usuarios
@@ -55,6 +64,40 @@ Route::prefix('athletes')->group(function () {
     Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
 });
+
+Route::prefix('musculars')->group(function () {
+    Route::get('', [MuscularsController::class, 'index'])->name('musculars.index');
+    Route::get('create', [MuscularsController::class, 'create'])->name('musculars.create');
+    Route::post('', [MuscularsController::class, 'store'])->name('musculars.store');
+    Route::get('{muscular}', [MuscularsController::class, 'show'])->name('musculars.show');
+    Route::get('{muscular}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit');
+    Route::put('{muscular}', [MuscularsController::class, 'update'])->name('musculars.update');
+    Route::get('{muscular}/generate-pdf', [MuscularsController::class, 'generatePDF'])->name('musculars.generate-pdf');
+});
+
+
+Route::prefix('physios')->group(function () {
+    Route::get('', [PhysiosController::class, 'index'])->name('physios.index');
+    Route::get('create', [PhysiosController::class, 'create'])->name('physios.create');
+    Route::post('', [PhysiosController::class, 'store'])->name('physios.store');
+    Route::get('{physio}', [PhysiosController::class, 'show'])->name('physios.show');
+    Route::get('{physio}/edit', [PhysiosController::class, 'edit'])->name('physios.edit');
+    Route::put('{physio}', [PhysiosController::class, 'update'])->name('physios.update');
+    Route::get('{physio}/generate-pdf', [PhysiosController::class, 'generatePDF'])->name('physios.generate-pdf');
+});
+
+
+Route::prefix('trainings')->group(function () {
+    Route::get('', [TrainingsController::class, 'index'])->name('trainings.index');
+    Route::get('create', [TrainingsController::class, 'create'])->name('trainings.create');
+    Route::post('', [TrainingsController::class, 'store'])->name('trainings.store');
+    Route::get('{training}', [TrainingsController::class, 'show'])->name('trainings.show');
+    Route::get('{training}/edit', [TrainingsController::class, 'edit'])->name('trainings.edit');
+    Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
+});
+
+
+
 
 // LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
 
@@ -157,11 +200,23 @@ Route::get('/physiotherapy/listAthletes', [App\Http\Controllers\FunctionaryContr
 Route::get('/physiotherapy/appointment/{id}', [App\Http\Controllers\FunctionaryController::class, 'appointment'])->name('appointment')->middleware(['can:roles,"Fisioterapia"']);
 
 //Registrar datos de atleta por parte del encargado de musculacion
+
+Route::get('/musculation/catalogAthletes',[App\Http\Controllers\FunctionaryController::class,'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
+Route::get('/musculation/report/{id}',[App\Http\Controllers\FunctionaryController::class,'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
+
+Route::get('/coach/select_athlete', [App\Http\Controllers\SportController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
+Route::post('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
+
 Route::get('/musculation/catalogAthletes', [App\Http\Controllers\FunctionaryController::class, 'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
 Route::get('/musculation/report/{id}', [App\Http\Controllers\FunctionaryController::class, 'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
 
+
+Route::get('/coach/select_athlete', [App\Http\Controllers\SportsController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
+Route::put('/coach/select_athlete/{sport}', [App\Http\Controllers\SportsController::class, 'edit'])->name('ckeditor');
+
 Route::get('/coach/select_athlete', [App\Http\Controllers\SportController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
 Route::put('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');
+
 
 //Vista de Atletas Registrados
 Route::get('/athletes/viewathlete', [App\Http\Controllers\AthleteController::class, 'index_athleteview'])->name('athletesview')->middleware(['can:roles,"Admin"']);
