@@ -20,23 +20,25 @@ class AthleteController extends Controller
     }
 
 
-    function index(){
-        return view('users.athletes',[
-            'sports'=>Sport::all()
+    function index()
+    {
+        return view('users.athletes', [
+            'sports' => Sport::all()
         ]);
-        
     }
 
-    function Reserva_Form(){
+    function Reserva_Form()
+    {
 
         return view('Reservations.booking_form');
     }
-    
 
 
 
 
-    function a_p_d(){
+
+    function a_p_d()
+    {
         /*$data = User::select('users.name', 'users.lastname')
                 ->join('athletes', 'users.id', '=', 'athletes.user_id')
                 ->where("athletes.state", "=", 'a')
@@ -49,21 +51,23 @@ class AthleteController extends Controller
         $users = $verif->map->user->flatten();
         Auth::logout();
 
-        return view('users.athletesregis',['athletes'=>$users]);
+        return view('users.athletesregis', ['athletes' => $users]);
     }
 
-    function vistaAtleta(){
-        return view('users.athletes',[
-            'sports'=>Sport::all()
+    function vistaAtleta()
+    {
+        return view('users.athletes', [
+            'sports' => Sport::all()
         ]);
     }
 
-    function vistaDatos(Athlete $request){ /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
+    function vistaDatos(Athlete $request)
+    { /* Se le pasa el id del atleta para que realice la consulta solo a ese valor */
         $id = $request->user_id;
         $atleta = new Athlete;
-        $atleta = Athlete::where("user_id", "=", $id)->get(); 
+        $atleta = Athlete::where("user_id", "=", $id)->get();
         $user = $atleta->map->user->flatten();
-        return view('athletes.seedata', ['user'=>$user], ['atleta'=>$atleta]);
+        return view('athletes.seedata', ['user' => $user], ['atleta' => $atleta]);
     }
 
     public function guardado(Request $request)
@@ -89,7 +93,7 @@ class AthleteController extends Controller
             'cedula_encargado' => 'required|digits:9',
             'telefono_encargado' => 'required|digits:8',
             'parentesco' => 'required',
-            'poliza'=>'required'
+            'poliza' => 'required'
         ]);
 
         // Inserciones a la tabla Users.
@@ -122,32 +126,34 @@ class AthleteController extends Controller
             'policy' => $request->poliza
         ]);
 
-        if($request->hasFile("archivo")){
+        if ($request->hasFile("archivo")) {
 
-            $v_pdf=$request->file('archivo');
-            $v_nombre="pdf_".time().".".$v_pdf->guessExtension();
-            $url=public_path("storage/".$v_nombre);
+            $v_pdf = $request->file('archivo');
+            $v_nombre = "pdf_" . time() . "." . $v_pdf->guessExtension();
+            $url = public_path("storage/" . $v_nombre);
 
-            if($v_pdf->guessExtension()=="pdf"){
-                copy($v_pdf,$url);
-                $athlete->url=$v_nombre;
+            if ($v_pdf->guessExtension() == "pdf") {
+                copy($v_pdf, $url);
+                $athlete->url = $v_nombre;
             }
         }
         $athlete->save();
-    return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );//cambiar color
+        return redirect()->route('login')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/); //cambiar color
     }
 
-    public function vistaPerfil(){//retorna la vista de perfil de atleta con los datos ya presentes en la base tales como nombre, etc.
-        
+    public function vistaPerfil()
+    { //retorna la vista de perfil de atleta con los datos ya presentes en la base tales como nombre, etc.
+
 
 
         $usuario = Auth::user()->identification;
-        $persona= new User();
-        $persona=User::where("identification", "=", $usuario)->first();
-    
-       return view('athletes.profile', compact('persona'));
+        $persona = new User();
+        $persona = User::where("identification", "=", $usuario)->first();
+
+        return view('athletes.profile', compact('persona'));
     }
-    public function guardaPerfil(Request $request){
+    public function guardaPerfil(Request $request)
+    {
 
         $request->validate([
             'nombre' => 'required',
@@ -155,82 +161,83 @@ class AthleteController extends Controller
             'correo' => 'required|email',
             'telefono' => 'required|digits:8',
         ]);
-        $user=Auth::user()->user;
-            $user->name=$request->nombre;
-            $user->lastname=$request->apellidos;
-            $user->email=$request->correo;
-            $user->phone=$request->telefono;
+        $user = Auth::user()->user;
+        $user->name = $request->nombre;
+        $user->lastname = $request->apellidos;
+        $user->email = $request->correo;
+        $user->phone = $request->telefono;
 
 
-        if($request->hasFile("imagen")){
+        if ($request->hasFile("imagen")) {
 
-            if($user->photo!=null){
+            if ($user->photo != null) {
 
                 Storage::disk('storage/imagenes')->delete($user->photo);
                 $user->photo->delete();
             }
 
-            $v_photo=$request->imagen('imagen');
-            $v_nombre="photo_".time().".".$v_photo->guessExtension();
-            $url=public_path("storage/imagenes/".$v_nombre);
+            $v_photo = $request->imagen('imagen');
+            $v_nombre = "photo_" . time() . "." . $v_photo->guessExtension();
+            $url = public_path("storage/imagenes/" . $v_nombre);
 
-            if($v_photo->guessExtension()=="jpeg||png"){
-                copy($v_photo,$url);
-                $user->photo=$v_nombre;
+            if ($v_photo->guessExtension() == "jpeg||png") {
+                copy($v_photo, $url);
+                $user->photo = $v_nombre;
             }
         }
         $user->save();
-    return redirect()->route('athlete_profile')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/ );
+        return redirect()->route('athlete_profile')->with('status'/*,['mensaje'=>'El atleta se ha registrado correctamente','color'=>'done']*/);
     }
 
 
-    public function vistaSelectorFoto(){
-    return view('users.change_photo');
+    public function vistaSelectorFoto()
+    {
+        return view('users.change_photo');
     }
 
-    public function guardaFoto(Request $request){
+    public function guardaFoto(Request $request)
+    {
         $request->validate([
-            'imagen'=>'required|image|mimes:jpg,jpeg,png,svg|max:1024'
+            'imagen' => 'required|image|mimes:jpg,jpeg,png,svg|max:1024'
         ]);
-        $user=Auth::user()->identification;
-        $usuario= new User();
-        $usuario=User::where("identification", "=", $user)->first();
-     
+        $user = Auth::user()->identification;
+        $usuario = new User();
+        $usuario = User::where("identification", "=", $user)->first();
 
 
 
-        if($request->hasFile("imagen")){
 
-            $img=$request->file('imagen');
-            $imgseleccionada="prf_".time().".".$img->guessExtension();
-            $url=public_path("storage/imagenes/".$imgseleccionada);
+        if ($request->hasFile("imagen")) {
 
-           
-            if($img->guessExtension()=="jpeg"||$img->guessExtension()=="png"||$img->guessExtension()=="svg"||$img->guessExtension()=="jpg"){
-                copy($img,$url);
-                $usuario->photo=$imgseleccionada;
-            }   
+            $img = $request->file('imagen');
+            $imgseleccionada = "prf_" . time() . "." . $img->guessExtension();
+            $url = public_path("storage/imagenes/" . $imgseleccionada);
+
+
+            if ($img->guessExtension() == "jpeg" || $img->guessExtension() == "png" || $img->guessExtension() == "svg" || $img->guessExtension() == "jpg") {
+                copy($img, $url);
+                $usuario->photo = $imgseleccionada;
+            }
         }
-        
+
         $usuario->save();
         return redirect()->route('perfil.atleta')->with('status');
     }
 
-    public function index_athleteview(){
+    public function index_athleteview()
+    {
         $atletas = new Athlete;
-        $atletas = Athlete::where("state", "=", 'a')->get(); 
+        $atletas = Athlete::where("state", "=", 'a')->get();
         $users = $atletas->map->user->flatten();
-        return view('athletes.viewathlete', ['users'=>$users], ['atletas' =>$atletas]);        
+        return view('athletes.viewathlete', ['users' => $users], ['atletas' => $atletas]);
     }
-    public function athleteview_modify(Request $request){
-
+    public function athleteview_modify(Request $request)
+    {
     }
-    public function athleteview_delete(Athlete $atleta){
+    public function athleteview_delete(Athlete $atleta)
+    {
 
         $atleta->state = 'n';
         $atleta->save();
-        
     }
 }
-
-
