@@ -123,10 +123,13 @@ class MuscularsController extends Controller
         //
     }
 
-    
+
     public function generatePDF(Muscular $muscular)
     {
         $pdf = PDF::loadView('pdfs.muscular', compact('muscular'));
-        return $pdf->download('documento.pdf');
+
+        return $pdf->download('document.pdf');
+
+        return $pdf->download($muscular->athlete->user->full_name . '.pdf');
     }
 }

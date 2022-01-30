@@ -83,34 +83,14 @@
             <p><strong>Encargado de musculación:</strong> {{ $training->user->full_name }}</p><br>
             <p><strong>Nombre del Atleta:</strong> {{ $training->athlete->user->full_name }}</p><br>
             <p><strong>Fecha de Sesión:</strong> {{ $training->date }}</p><br>
-            <p><strong>Edad:</strong> {{ $training->physiological_age }}</p><br>
-            <p><strong>Peso Kg:</strong> {{ $training->weight }}</p><br>
-            <p><strong>Altura Cm:</strong> {{ $training->height }}</p><br>
-            <p><strong>IMC:</strong> {{ $training->bmi }}</p><br>
-            <p><strong>Circ. Cintura Cm:</strong> {{ $training->waist }}</p><br>
-            <p><strong>Circ. Cadera Cm:</strong> {{ $training->hip }}</p><br>
-            <p><strong>Relacion Cintura Cadera</strong> {{ $training->cint_code }}</p><br>
-            <p><strong>Tricipital</strong> {{ $training->tricipital }}</p><br>
-            <p><strong>Subescapular</strong> {{ $training->subscapular }}</p><br>
-            <p><strong>Abdominal:</strong> {{ $training->abdominal }}</p><br>
-            <p><strong>Suprailiaco:</strong> {{ $training->suprailiac }}</p><br>
-            <p><strong>Muslo:</strong> {{ $training->thigh }}</p><br>
-            <p><strong>Pantorrilla:</strong> {{ $training->calf }}</p><br>
-            <p><strong>Muñeca Cm:</strong> {{ $training->wrist }}</p><br>
-            <p><strong>Codo Cm:</strong> {{ $training->elbow }}</p><br>
-            <p><strong>Rodilla Cm:</strong> {{ $training->knee }}</p><br>
-            <p><strong>Biceps Cm:</strong> {{ $training->biceps }}</p><br>
-            <p><strong>Pantorrilla Cm:</strong> {{ $training->calf_cm }}</p><br>
-            <p><strong>Biceps Cm:</strong> {{ $training->calories }}</p><br>
-            <p><strong>IMC Alto:</strong> {{ $training->bmi_high }}</p><br>
-            <p><strong>ICC Alto:</strong> {{ $training->icc_high }}</p><br>
-            <p><strong>%Grasa:</strong> {{ $training->fat }}</p><br>
-            <p><strong>%Residual:</strong> {{ $training->residual }}</p><br>
-            <p><strong>%Óseo:</strong> {{ $training->bone }}</p><br>
-            <p><strong>%Musculo:</strong> {{ $training->muscle }}</p><br>
-            <p><strong>%Visceral:</strong> {{ $training->visceral }}</p><br>
-            <p><strong>Peso Ideal Kg:</strong> {{ $training->ideal_weight }}</p><br>
-            <p><strong>Aspectos por Mejorar:</strong> {{ $training->get_better }}</p><br>
+            <p><strong>Edad:</strong> {{ $training->type_training }}</p><br>
+            <p><strong>Peso Kg:</strong> {{ $training->calcification }}</p><br>
+            <p><strong>Altura Cm:</strong> {{ $training->time }}</p><br>
+            <p><strong>IMC:</strong> {{ $training->distance }}</p><br>
+            <p><strong>Circ. Cintura Cm:</strong> {{ $training->level }}</p><br>
+            <p><strong>Circ. Cadera Cm:</strong> {{ $training->get_better }}</p><br>
+            <p><strong>Relacion Cintura Cadera</strong> {{ $training->planification }}</p><br>
+            <p><strong>Tricipital</strong> {{ $training->lesion }}</p><br>
             <p><strong>Detalles:</strong> {!! $training->details !!}</p><br>
 
 

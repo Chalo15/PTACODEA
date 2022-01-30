@@ -73,7 +73,7 @@
                                                             </a>
                                                         @endcan
                                                         <a class="dropdown-item"
-                                                            href="#{{--{{ route('trainings.generate-pdf', $training->id) }}--}}">
+                                                            href="{{ route('trainings.generate-pdf', $training->id) }}">
                                                             <i class="fas fa-download"></i> &nbsp;
                                                             Descargar
                                                         </a>

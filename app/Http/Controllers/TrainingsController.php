@@ -8,6 +8,7 @@ use App\Models\Athlete;
 use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class TrainingsController extends Controller
 {
@@ -115,5 +116,20 @@ class TrainingsController extends Controller
     public function destroy(Training $training)
     {
         //
+    }
+
+    /**
+     * Generacion de pdf de Entrenadores.
+     *
+     * @param  \App\Models\Trainig  $physio
+     */
+    public function generatePDF(Training $training)
+    {
+        $pdf = PDF::loadView('pdfs.training', compact('training'));
+
+        return $pdf->download('document.pdf');
+
+        return $pdf->download($training->athlete->user->full_name . '.pdf');
+
     }
 }

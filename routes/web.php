@@ -94,6 +94,7 @@ Route::prefix('trainings')->group(function () {
     Route::get('{training}', [TrainingsController::class, 'show'])->name('trainings.show');
     Route::get('{training}/edit', [TrainingsController::class, 'edit'])->name('trainings.edit');
     Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
+    Route::get('{training}/generate-pdf', [TrainingsController::class, 'generatePDF'])->name('trainings.generate-pdf');
 });
 
 
