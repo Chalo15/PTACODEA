@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PhysiosController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\MuscularsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportsController;
@@ -28,11 +29,6 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /**
- * Ruta para imprimir PDF's
- */
-//Route::get('{id}/download', [App\Http\Controllers\PDFController::class, 'download'])->name('pdf.download');
-
-/**
  * Rutas de Usuarios
  */
 Route::prefix('users')->group(function () {
@@ -41,6 +37,16 @@ Route::prefix('users')->group(function () {
     Route::post('', [UsersController::class, 'store'])->name('users.store');
     Route::get('{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
     Route::put('{user}', [UsersController::class, 'update'])->name('users.update');
+});
+
+/**
+ * Rutas del Perfil
+ */
+Route::prefix('profile')->group(function () {
+    Route::get('', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('personal-information', [ProfileController::class, 'updatePersonalInformation'])->name('profile.update-personal-information');
+    Route::put('password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+    Route::put('update-picture', [ProfileController::class, 'updatePicture'])->name('profile.update-picture');
 });
 
 /**
@@ -65,6 +71,9 @@ Route::prefix('athletes')->group(function () {
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
 });
 
+/**
+ * Rutas de Musculaciones
+ */
 Route::prefix('musculars')->group(function () {
     Route::get('', [MuscularsController::class, 'index'])->name('musculars.index');
     Route::get('create', [MuscularsController::class, 'create'])->name('musculars.create');
@@ -75,7 +84,9 @@ Route::prefix('musculars')->group(function () {
     Route::get('{muscular}/generate-pdf', [MuscularsController::class, 'generatePDF'])->name('musculars.generate-pdf');
 });
 
-
+/**
+ * Rutas de Fisioterapias
+ */
 Route::prefix('physios')->group(function () {
     Route::get('', [PhysiosController::class, 'index'])->name('physios.index');
     Route::get('create', [PhysiosController::class, 'create'])->name('physios.create');
@@ -86,7 +97,9 @@ Route::prefix('physios')->group(function () {
     Route::get('{physio}/generate-pdf', [PhysiosController::class, 'generatePDF'])->name('physios.generate-pdf');
 });
 
-
+/**
+ * Rutas de Entrenamientos
+ */
 Route::prefix('trainings')->group(function () {
     Route::get('', [TrainingsController::class, 'index'])->name('trainings.index');
     Route::get('create', [TrainingsController::class, 'create'])->name('trainings.create');
@@ -201,8 +214,8 @@ Route::get('/physiotherapy/appointment/{id}', [App\Http\Controllers\FunctionaryC
 
 //Registrar datos de atleta por parte del encargado de musculacion
 
-Route::get('/musculation/catalogAthletes',[App\Http\Controllers\FunctionaryController::class,'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
-Route::get('/musculation/report/{id}',[App\Http\Controllers\FunctionaryController::class,'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
+Route::get('/musculation/catalogAthletes', [App\Http\Controllers\FunctionaryController::class, 'catalog'])->name('catalogAthletes')->middleware(['can:roles,"Musculacion"']);
+Route::get('/musculation/report/{id}', [App\Http\Controllers\FunctionaryController::class, 'report'])->name('report')->middleware(['can:roles,"Musculacion"']);
 
 Route::get('/coach/select_athlete', [App\Http\Controllers\SportController::class, 'view_athletes_sports'])->name('vista.athletes_sports')->middleware(['can:roles,"Admin","Instructor"']);
 Route::post('/coach/select_athlete/{sport}', [App\Http\Controllers\SportController::class, 'edit'])->name('ckeditor');

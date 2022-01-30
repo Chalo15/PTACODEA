@@ -127,7 +127,6 @@ class AthletesController extends Controller
      */
     public function update(UpdateAthleteRequest $request, Athlete $athlete)
     {
-
         $athlete->update($request->validated());
 
         return redirect()->route('athletes.index')->with('status', 'Atleta editado exitosamente!');

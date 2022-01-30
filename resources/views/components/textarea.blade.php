@@ -1,4 +1,4 @@
-@props(['name', 'value'=>null])
+@props(['name', 'value' => null])
 
 @php
 $invalid = $errors->has($name) ? 'is-invalid' : '';

@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
                 'province'        => 'Alajuela',
                 'city'            => 'Grecia',
                 'address'         => 'Grecia',
-                'gender'          => 'M',
+                'gender'          => 'Masculino',
                 'contract_number' => '200',
                 'contract_year'   => 2,
                 'experience'      => 2
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
                 'province'        => 'Alajuela',
                 'city'            => 'Alajuela',
                 'address'         => 'El Roble',
-                'gender'          => 'M',
+                'gender'          => 'Masculino',
                 'contract_number' => '200000',
                 'contract_year'   => 2,
                 'experience'      => 2

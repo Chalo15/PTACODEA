@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UpdatePersonalInformationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class StoreUserRequest extends FormRequest
      */
     public function rules()
     {
-        $array = [
+        return [
             'identification'  => ['required'],
             'name'            => ['required'],
             'last_name'       => ['required'],
@@ -31,23 +31,9 @@ class StoreUserRequest extends FormRequest
             'phone'           => ['required'],
             'province'        => ['required'],
             'city'            => ['required'],
-            'email'           => ['required', 'email', 'unique:users'],
-            'phone'           => ['required'],
+            'email'           => ['required', 'email'],
             'address'         => ['required'],
             'gender'          => ['required'],
-            'experience'      => ['required'],
-            'contract_number' => ['required'],
-            'contract_year'   => ['required'],
-            'role_id'         => ['required'],
-            'password'        => ['required', 'confirmed']
         ];
-
-        if ($this->role_id == 2) {
-            $array['sport_id'] = ['required'];
-
-            // Teléfono de habitación
-        }
-
-        return $array;
     }
 }

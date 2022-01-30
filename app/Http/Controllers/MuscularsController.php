@@ -9,7 +9,7 @@ use App\Models\Muscular;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 class MuscularsController extends Controller
@@ -36,11 +36,11 @@ class MuscularsController extends Controller
 
 
         if ($role == "Admin") {
-            $musculars = Muscular::with('user')->paginate(5);
+            $musculars = Muscular::with('user')->get();
             return view('musculars.index', compact('musculars'));
         } else {
 
-            $musculars = Muscular::where('user_id', '=', $user)->paginate(5);
+            $musculars = Muscular::where('user_id', '=', $user)->get();
             return view('musculars.index', compact('musculars'));
         }
     }
@@ -123,7 +123,7 @@ class MuscularsController extends Controller
         //
     }
 
-    
+
     public function generatePDF(Muscular $muscular)
     {
         $pdf = PDF::loadView('pdfs.muscular', compact('muscular'));

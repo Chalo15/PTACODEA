@@ -1,4 +1,4 @@
-<x-app-layout title="Documentos de Fisioterapia">
+<x-app-layout title="Fisioterapias">
 
     <div class="row">
         <div class="col mb-3">
@@ -15,7 +15,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col d-flex align-items-center">
-                            Documentos
+                            Fisioterapias
                         </div>
                         <div class="col d-flex justify-content-end">
                             <a href="{{ route('physios.create') }}" class="btn btn-primary">
@@ -55,13 +55,12 @@
                                         <td>{{ $physio->user->name . " " . $physio->user->last_name}}</td>
 
 
-                                            <td width="100px" class="text-center">
+                                        <td width="100px" class="text-center">
 
-                                                <div class="dropdown">
-                                                    <button class="btn" type="button" id="dropdownMenu2"
-                                                        data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                    </button>
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                     @can('roles', 'Fisioterapia')
@@ -76,8 +75,8 @@
                                                     </a>
                                                 </div>
 
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </x-slot>
 
