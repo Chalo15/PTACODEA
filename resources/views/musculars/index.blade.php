@@ -65,16 +65,17 @@
 
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                         @can('roles', 'Musculacion')
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('musculars.edit', $muscular->id) }}">
-                                                            <i class="fas fa-edit"></i> &nbsp;
-                                                            Editar
-                                                        </a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('musculars.edit', $muscular->id) }}">
+                                                                <i class="fas fa-edit"></i> &nbsp;
+                                                                Editar
+                                                            </a>
                                                         @endcan
-                                                        <a class="dropdown-item" href="{{ route('musculars.generate-pdf', $muscular->id) }}">
-                                                        <i class="fas fa-download"></i> &nbsp;
-                                                        Descargar
-                                                         </a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('musculars.generate-pdf', $muscular->id) }}">
+                                                            <i class="fas fa-download"></i> &nbsp;
+                                                            Descargar
+                                                        </a>
                                                     </div>
                                                 </div>
 

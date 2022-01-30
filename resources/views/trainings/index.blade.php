@@ -45,14 +45,15 @@
 
                                 <x-slot name="body">
                                     @foreach ($trainings as $training)
-                                    <tr>
-                                        <td>{{ $training->id }}</td>
-                                        <td>{{ $training->date }}</td>
-                                        <td>{{ $training->athlete->user->identification }}</td>
-                                        <td>{{ $training->athlete->user->name . " " . $training->athlete->user->last_name}}</td>
-                                        <td>{{ $training->athlete->sport->description }}</td>
-                                        <td>{{ $training->user->identification }}</td>
-                                        <td>{{ $training->user->name . " " . $training->user->last_name}}</td>
+                                        <tr>
+                                            <td>{{ $training->id }}</td>
+                                            <td>{{ $training->date }}</td>
+                                            <td>{{ $training->athlete->user->identification }}</td>
+                                            <td>{{ $training->athlete->user->name . ' ' . $training->athlete->user->last_name }}
+                                            </td>
+                                            <td>{{ $training->athlete->sport->description }}</td>
+                                            <td>{{ $training->user->identification }}</td>
+                                            <td>{{ $training->user->name . ' ' . $training->user->last_name }}</td>
 
 
                                             <td width="100px" class="text-center">
@@ -63,14 +64,21 @@
                                                         <i class="fas fa-ellipsis-v"></i>
                                                     </button>
 
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item" href="{{ route('trainings.edit', $training) }}">
-                                                        <i class="fas fa-edit"></i> &nbsp;
-                                                        Editar
-                                                    </a>
-
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        @can('roles', 'Instructor')
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('trainings.edit', $training) }}">
+                                                                <i class="fas fa-edit"></i> &nbsp;
+                                                                Editar
+                                                            </a>
+                                                        @endcan
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('trainings.generate-pdf', $training->id) }}">
+                                                            <i class="fas fa-download"></i> &nbsp;
+                                                            Descargar
+                                                        </a>
+                                                    </div>
                                                 </div>
-
                                             </td>
                                         </tr>
                                     @endforeach

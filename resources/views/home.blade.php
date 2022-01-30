@@ -71,7 +71,9 @@
                         <i class="fas fa-dumbbell fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -87,7 +89,9 @@
                         <i class="fas fa-dumbbell fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -103,7 +107,9 @@
                         <i class="fas fa-user-md fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -119,7 +125,9 @@
                         <i class="fas fa-user-md fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -135,7 +143,9 @@
                         <i class="fas fa-medal fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -151,7 +161,9 @@
                         <i class="fas fa-medal fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -177,7 +189,7 @@
 </x-app-layout>
 
 
-{{--<div class="bodyHomePaige">
+{{-- <div class="bodyHomePaige">
 
     <div class="homePaige container-fluid ">
 
@@ -412,4 +424,4 @@
         @endcan
 
     </div>
-</div>--}}
+</div> --}}
