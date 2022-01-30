@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePersonalInformationRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -24,24 +25,16 @@ class ProfileController extends Controller
     public function updatePicture(Request $request)
     {
         $request->validate([
-            'imagen' => 'required|image|mimes:jpg,jpeg,png,svg|max:1024'
+            'picture' => ['required', 'image', 'mimes:png,jpg']
         ]);
+
+        $path = $request->file('picture')->store('images');
 
         $user = $request->user();
 
-        if ($request->hasFile("imagen")) {
+        Storage::delete($user->photo);
 
-            $img = $request->file('imagen');
-            $imgseleccionada = "prf_" . time() . "." . $img->guessExtension();
-            $url = public_path("storage/imagenes/" . $imgseleccionada);
-
-            if ($img->guessExtension() == "jpeg" || $img->guessExtension() == "png" || $img->guessExtension() == "svg" || $img->guessExtension() == "jpg") {
-                copy($img, $url);
-                $user->photo = $imgseleccionada;
-            }
-        }
-
-        $user->save();
+        $user->update(['photo' => $path]);
 
         return redirect()->route('profile.index')->with('status', 'Foto actualizada exitosamente.');
     }

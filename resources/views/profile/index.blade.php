@@ -19,12 +19,12 @@
                         </div>
 
                         <div class="card-body">
-                            <div x-data="{ isOpen: {{ old('imagen') ? 'true' : 'false' }} }">
+                            <div x-data="{ isOpen: {{ old('picture') || $errors->has('picture') ? 'true' : 'false' }} }">
 
                                 <div x-show="!isOpen">
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <img src="{{ asset('storage/imagenes/'.$user->photo) }}" class="rounded mx-auto d-block" width="200" height="200">
+                                            <img src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}" class="rounded mx-auto d-block" width="200" height="200">
                                         </div>
                                     </div>
 
@@ -43,13 +43,13 @@
 
                                         <div class="row">
                                             <div class="col d-flex justify-content-center mb-3">
-                                                <img id="seleccionada" class="rounded" style="max-height: 200px; max-width: 200px;">
+                                                <img id="selected" class="rounded" style="max-height: 200px; max-width: 200px;">
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col mb-3">
-                                                <x-input type="file" name="imagen" value="{{ old('imagen') }}" />
+                                                <x-input type="file" name="picture" />
                                             </div>
                                         </div>
 
@@ -252,10 +252,10 @@
     @push('scripts')
     <script>
         $(document).ready(function(e) {
-            $('#imagen').change(function() {
+            $('#picture').change(function() {
                 let reader = new FileReader();
                 reader.onload = (e) => {
-                    $('#seleccionada').attr('src', e.target.result);
+                    $('#selected').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(this.files[0]);
             });

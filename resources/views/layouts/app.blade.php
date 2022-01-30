@@ -38,7 +38,11 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->full_name }}
+                                @php
+                                $user = Auth::user();
+                                @endphp
+                                <img class="rounded-circle" src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}" width="35" height="35"> &nbsp;
+                                {{ $user->full_name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
