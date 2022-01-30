@@ -1,22 +1,14 @@
 <?php
 
-use App\Http\Controllers\AthleteController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AthletesController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PhysiosController;
-use App\Http\Controllers\PDFController;
 use App\Http\Controllers\MuscularsController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RequestsController;
-use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportsController;
 use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
-use App\Models\Athlete;
-use App\Models\Sport;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 /**
  * Rutas de autenticación.
@@ -46,7 +38,7 @@ Route::prefix('profile')->group(function () {
     Route::get('', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('personal-information', [ProfileController::class, 'updatePersonalInformation'])->name('profile.update-personal-information');
     Route::put('password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
-    Route::put('update-picture', [ProfileController::class, 'updatePicture'])->name('profile.update-picture');
+    Route::put('picture', [ProfileController::class, 'updatePicture'])->name('profile.update-picture');
 });
 
 /**
@@ -112,7 +104,6 @@ Route::prefix('trainings')->group(function () {
 
 
 
-// LOS MIDDLEWARE SE USAN SOLO EN LAS RUTAS ****GET**** NO EN LOS ****POST****
 
 //Menu Principal de los Roles
 //menu principal de Atletas

@@ -49,7 +49,7 @@
 
                                         <div class="row">
                                             <div class="col mb-3">
-                                                <x-input type="file" name="picture" />
+                                                <x-input type="file" name="image" />
                                             </div>
                                         </div>
 
@@ -252,7 +252,7 @@
     @push('scripts')
     <script>
         $(document).ready(function(e) {
-            $('#picture').change(function() {
+            $('#image').change(function() {
                 let reader = new FileReader();
                 reader.onload = (e) => {
                     $('#selected').attr('src', e.target.result);

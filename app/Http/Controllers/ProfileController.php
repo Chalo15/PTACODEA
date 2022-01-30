@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdatePersonalInformationRequest;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+    /**
+     *
+     */
     public function index(Request $request)
     {
         $user = $request->user();
@@ -22,13 +24,16 @@ class ProfileController extends Controller
         return view('profile.index', compact('user', 'genders', 'provinces'));
     }
 
+    /**
+     *
+     */
     public function updatePicture(Request $request)
     {
         $request->validate([
-            'picture' => ['required', 'image', 'mimes:png,jpg']
+            'image' => ['required', 'image', 'mimes:png,jpg']
         ]);
 
-        $path = $request->file('picture')->store('images');
+        $path = $request->file('image')->store('images');
 
         $user = $request->user();
 
@@ -39,6 +44,9 @@ class ProfileController extends Controller
         return redirect()->route('profile.index')->with('status', 'Foto actualizada exitosamente.');
     }
 
+    /**
+     *
+     */
     public function updatePersonalInformation(UpdatePersonalInformationRequest $request)
     {
         $user = $request->user();
@@ -48,6 +56,9 @@ class ProfileController extends Controller
         return redirect()->route('profile.index')->with('status', 'Información personal actualizada exitosamente.');
     }
 
+    /**
+     *
+     */
     public function updatePassword(UpdatePasswordRequest $request)
     {
         $user = $request->user();

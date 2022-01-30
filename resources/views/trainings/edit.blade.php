@@ -1,4 +1,4 @@
-<x-app-layout title="Editar Documento">
+<x-app-layout title="Editar Entrenamiento">
 
     <div class="row">
         <div class="col mb-3">
@@ -13,7 +13,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Editar Documento
+                    Editar Entrenamiento
                 </div>
 
                 <div class="card-body">
@@ -32,22 +32,16 @@
 
 
                         @php
-
-                            $today = today()->toDateString();
-                            $lastWeek = today()
-                                ->subDays(7)
-                                ->toDateString();
-                            $nextWeek = today()
-                                ->addDay(7)
-                                ->toDateString();
-
+                        $today = today()->toDateString();
+                        $lastWeek = today()->subDays(7)->toDateString();
+                        $nextWeek = today()->addDay(7)->toDateString();
                         @endphp
+
                         <div class="form-group row">
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}"
-                                    value="{{ $training->date }}" />
+                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ $training->date }}" />
                             </div>
                         </div>
 
@@ -138,4 +132,3 @@
 
 
 </x-app-layout>
-
