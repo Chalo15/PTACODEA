@@ -24,31 +24,21 @@ class   UpdateAthleteRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'sport_id'   => ['required'],
-            'blood'      => ['required'],
-            'laterality' => ['required']
+            'identification'  => ['unique:users,identification,' . $this->athlete->user->id],
+            'name'            => ['required'],
+            'last_name'       => ['required'],
+            'birthdate'       => ['required'],
+            'province'        => ['required'],
+            'city'            => ['required'],
+            'email'           => ['required', 'email', 'unique:users,email,' . $this->athlete->user->id],
+            'phone'           => ['required', 'numeric', 'unique:users,phone,' . $this->athlete->user->id],
+            'address'         => ['required'],
+            'gender'          => ['required'],
+            'password'        => ['nullable', 'confirmed'],
+            'sport_id'        => ['required'],
+            'blood'           => ['required'],
+            'laterality'      => ['required']
         ];
-
-        if ($this->is_user) {
-            $rules += [
-                'user_id' => ['required']
-            ];
-        } else {
-            $rules += [
-                'identification'  => ['unique:users'],
-                'name'            => ['required'],
-                'last_name'       => ['required'],
-                'birthdate'       => ['required'],
-                'phone'           => ['required'],
-                'province'        => ['required'],
-                'city'            => ['required'],
-                'email'           => ['required', 'email'],
-                'phone'           => ['required', 'numeric'],
-                'address'         => ['required'],
-                'gender'          => ['required'],
-                'password'        => ['required', 'confirmed']
-            ];
-        }
 
         if ($this->is_younger) {
             $rules += [

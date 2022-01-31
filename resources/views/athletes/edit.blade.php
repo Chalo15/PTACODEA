@@ -116,7 +116,7 @@
                                     <div class="col-sm-8">
                                         @foreach ($genders as $gender)
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $athlete->user->gender }}">
+                                            <input {{ $athlete->user->gender && $athlete->user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $athlete->user->gender }}">
                                             <label class="custom-control-label" for="gender-{{ $loop->index }}">
                                                 {{ $gender }}
                                             </label>
@@ -165,9 +165,9 @@
                                 <label for="blood" class="col-sm-4 col-form-label">Tipo de Sangre</label>
                                 <div class="col-sm-8">
                                     <x-select name="blood">
-                                        <option disabled {{ old('blood') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                        <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($bloods as $blood)
-                                        <option {{ $athlete->blood == $blood ? 'selected' : '' }} value="{{ $athlete->blood }}">{{ $blood }}</option>
+                                        <option {{ $athlete->blood == $blood ? 'selected' : '' }} value="{{ $blood }}">{{ $blood }}</option>
                                         @endforeach
                                     </x-select>
                                 </div>
@@ -179,7 +179,7 @@
                                 <div class="col-sm-8">
                                     @foreach ($lateralities as $laterality)
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $athlete->laterality }}">
+                                        <input {{ $athlete->laterality == $laterality ? 'checked' : '' }} class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
                                         <label class="custom-control-label" for="laterality-{{ $loop->index }}">
                                             {{ $laterality }}
                                         </label>
@@ -189,6 +189,7 @@
                             </div>
 
                             <hr>
+
                             <div x-data="{ isOpen: {{$athlete->identification_manager ? 'true' : 'false' }} }">
 
                                 <div class="form-group form-check">

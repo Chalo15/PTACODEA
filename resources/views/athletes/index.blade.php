@@ -30,7 +30,7 @@
                     <x-table>
                         <x-slot name="head">
                             <tr>
-                                <th>ID</th>
+                                <th>Foto</th>
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
                                 <th>Telefono</th>
@@ -42,7 +42,9 @@
                         <x-slot name="body">
                             @foreach ($athletes as $athlete)
                             <tr>
-                                <td>{{ $athlete->id }}</td>
+                                <td class="text-center">
+                                    <img class="rounded" src="{{ $athlete->user->photo ? asset($athlete->user->photo) : asset('images/default.png') }}" width="30" height="30">
+                                </td>
                                 <td>{{ $athlete->user->identification }}</td>
                                 <td>{{ $athlete->user->name . " " . $athlete->user->lastname }}</td>
                                 <td>{{ $athlete->user->phone }}</td>
@@ -74,7 +76,7 @@
 
                         <x-slot name="foot">
                             <tr>
-                                <th>ID</th>
+                                <th>Foto</th>
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
                                 <th>Telefono</th>

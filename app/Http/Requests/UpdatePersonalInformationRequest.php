@@ -27,13 +27,13 @@ class UpdatePersonalInformationRequest extends FormRequest
             'identification'  => ['required'],
             'name'            => ['required'],
             'last_name'       => ['required'],
-            'birthdate'       => ['required'],
-            'phone'           => ['required'],
-            'province'        => ['required'],
-            'city'            => ['required'],
+            'birthdate'       => ['nullable'],
+            'province'        => ['nullable'],
+            'city'            => ['nullable'],
             'email'           => ['required', 'email'],
-            'address'         => ['required'],
-            'gender'          => ['required'],
+            'phone'           => ['required'],
+            'address'         => ['nullable'],
+            'gender'          => ['nullable'],
         ];
     }
 }

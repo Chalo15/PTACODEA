@@ -27,14 +27,15 @@ class AthletesController extends Controller
     /**
      * Mostrar una lista del recurso.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Determinar según por rol cuales atletas retornar.
         $rol = Auth::user()->role->description;
         if ($rol == "Admin") {
-            $athletes = Athlete::with('user')->paginate(5);
+            $athletes = Athlete::with('user')->get();
 
             return view('athletes.index', compact('athletes'));
         }
@@ -44,7 +45,7 @@ class AthletesController extends Controller
             $sport_id = Auth::user()->coach->sport_id;
 
             $athletes = new Athlete();
-            $athletes = Athlete::where("sport_id", "=", $sport_id)->paginate(5);
+            $athletes = Athlete::where("sport_id", "=", $sport_id)->get();
 
             return view('athletes.index', ['athletes' => $athletes]);
         }
@@ -96,6 +97,19 @@ class AthletesController extends Controller
     }
 
     /**
+     * Muestra el recurso especificado.
+     *
+     * @param  \App\Models\Athlete  $athlete
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Athlete $athlete)
+    {
+        $athlete->with('user', 'physios', 'trainings', 'musculars');
+
+        return view('athletes.show', compact('athlete'));
+    }
+
+    /**
      * Mostrar el formulario para editar el recurso especificado.
      *
      * @param  \App\Models\Athlete  $athlete
@@ -130,6 +144,8 @@ class AthletesController extends Controller
     public function update(UpdateAthleteRequest $request, Athlete $athlete)
     {
         $athlete->update($request->validated());
+
+        $athlete->user->update($request->validated());
 
         return redirect()->route('athletes.index')->with('status', 'Atleta editado exitosamente!');
     }

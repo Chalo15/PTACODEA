@@ -35,11 +35,11 @@ class TrainingsController extends Controller
 
 
         if ($role == "Admin") {
-            $trainings = Training::with('user')->get();
+            $trainings = Training::with('user', 'athlete')->orderBy('date', 'DESC')->get();
             return view('trainings.index', compact('trainings'));
         } else {
 
-            $trainings = Training::where('user_id', '=', $user)->get();
+            $trainings = Training::where('user_id', '=', $user)->orderBy('date', 'DESC')->get();
             return view('trainings.index', compact('trainings'));
         }
     }

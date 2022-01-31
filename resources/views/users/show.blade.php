@@ -1,8 +1,8 @@
-<x-app-layout title="Información del Atleta">
+<x-app-layout title="Información del Usuario">
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('athletes.index') }}" class="btn btn-primary">
+            <a href="{{ route('users.index') }}" class="btn btn-primary">
                 <i class="fas fa-reply"></i> &nbsp;
                 Atrás
             </a>
@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col mb-3">
-                                    <img src="{{ $athlete->user->photo ? asset($athlete->user->photo) : asset('images/default.png') }}" class="rounded mx-auto d-block" width="200" height="200">
+                                    <img src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}" class="rounded mx-auto d-block" width="200" height="200">
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            @if($athlete->user->role_id == 2)
+            @if($user->role_id == 2)
             <div class="row">
                 <div class="col">
                     <div class="card mb-3">
@@ -37,7 +37,7 @@
                             Copia de Cédula de Identidad
                         </div>
                         <div class="card-body text-center">
-                            <a target="_black" href="{{ route('users.get-identification-pdf', $athlete->user->id) }}" class="btn btn-primary">
+                            <a target="_black" href="{{ asset($user->coach->url) }}" class="btn btn-primary">
                                 <i class="fas fa-download"></i> &nbsp;
                                 Descargar
                             </a>
@@ -59,7 +59,7 @@
                             <div class="form-group row">
                                 <label for="identification" class="col-sm-4 col-lg-12 col-form-label">Cédula de Identidad o DIMEX</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="identification" value="{{ $athlete->user->identification }}" />
+                                    <x-input disabled name="identification" value="{{ $user->identification }}" />
                                 </div>
                             </div>
 
@@ -67,7 +67,7 @@
                             <div class="form-group row">
                                 <label for="name" class="col-sm-4 col-lg-12 col-form-label">Nombre</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="name" value="{{ $athlete->user->name }}" />
+                                    <x-input disabled name="name" value="{{ $user->name }}" />
                                 </div>
                             </div>
 
@@ -75,7 +75,7 @@
                             <div class="form-group row">
                                 <label for="last_name" class="col-sm-4 col-lg-12 col-form-label">Apellidos</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="last_name" value="{{ $athlete->user->last_name }}" />
+                                    <x-input disabled name="last_name" value="{{ $user->last_name }}" />
                                 </div>
                             </div>
 
@@ -83,7 +83,7 @@
                             <div class="form-group row">
                                 <label for="birthdate" class="col-sm-4 col-lg-12 col-form-label">Fecha de Nacimiento</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled type="date" name="birthdate" value="{{ $athlete->user->birthdate }}" />
+                                    <x-input disabled type="date" name="birthdate" value="{{ $user->birthdate }}" />
                                 </div>
                             </div>
 
@@ -91,7 +91,7 @@
                             <div class="form-group row">
                                 <label for="province" class="col-sm-4 col-lg-12 col-form-label">Provincia</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="province" value="{{ $athlete->user->province }}" />
+                                    <x-input disabled name="province" value="{{ $user->province }}" />
                                 </div>
                             </div>
 
@@ -99,7 +99,7 @@
                             <div class="form-group row">
                                 <label for="city" class="col-sm-4 col-lg-12 col-form-label">Ciudad</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="city" value="{{ $athlete->user->city }}" />
+                                    <x-input disabled name="city" value="{{ $user->city }}" />
                                 </div>
                             </div>
 
@@ -109,7 +109,7 @@
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-lg-12 col-form-label">Correo Electrónico</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled type="email" name="email" value="{{ $athlete->user->email }}" />
+                                    <x-input disabled type="email" name="email" value="{{ $user->email }}" />
                                 </div>
                             </div>
 
@@ -117,7 +117,7 @@
                             <div class="form-group row">
                                 <label for="phone" class="col-sm-4 col-lg-12 col-form-label">Teléfono</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="phone" type="number" value="{{ $athlete->user->phone }}" />
+                                    <x-input disabled name="phone" type="number" value="{{ $user->phone }}" />
                                 </div>
                             </div>
 
@@ -125,7 +125,7 @@
                             <div class="form-group row">
                                 <label for="address" class="col-sm-4 col-lg-12 col-form-label">Dirección</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-textarea disabled name="address">{{ $athlete->user->address }}</x-textarea>
+                                    <x-textarea disabled name="address">{{ $user->address }}</x-textarea>
                                 </div>
                             </div>
 
@@ -135,19 +135,45 @@
                             <div class="form-group row">
                                 <label for="gender" class="col-sm-4 col-lg-12 col-form-label">Género</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="gender" value="{{ $athlete->user->gender }}" />
+                                    <x-input disabled name="gender" value="{{ $user->gender }}" />
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            {{-- Años de Experiencia --}}
+                            <div class="form-group row">
+                                <label for="experience" class="col-sm-4 col-lg-12 col-form-label">Años de Experiencia</label>
+                                <div class="col-sm-8 col-lg-12">
+                                    <x-input disabled name="experience" type="number" value="{{ $user->experience }}" />
+                                </div>
+                            </div>
+
+                            {{-- Número de Contrato --}}
+                            <div class="form-group row">
+                                <label for="contract_number" class="col-sm-4 col-lg-12 col-form-label">Número de Contrato</label>
+                                <div class="col-sm-8 col-lg-12">
+                                    <x-input disabled name="contract_number" type="number" value="{{ $user->contract_number }}" />
+                                </div>
+                            </div>
+
+                            {{-- Año de Contrato --}}
+                            <div class="form-group row">
+                                <label for="contract_year" class="col-sm-4 col-lg-12 col-form-label">Año de Contrato</label>
+                                <div class="col-sm-8 col-lg-12">
+                                    <x-input disabled name="contract_year" type="number" value="{{ $user->contract_year }}" />
                                 </div>
                             </div>
 
                             <hr>
 
                             {{-- Role --}}
-                            <div x-data="{ role: '{{ $athlete->user->role_id }}' }">
+                            <div x-data="{ role: '{{ $user->role_id }}' }">
 
                                 <div class="form-group row">
                                     <label for="role_id" class="col-sm-4 col-lg-12 col-form-label">Rol</label>
                                     <div class="col-sm-8 col-lg-12">
-                                        <x-input disabled name="role_id" value="{{ $athlete->user->role->description }}" />
+                                        <x-input disabled name="role_id" value="{{ $user->role->description }}" />
                                     </div>
                                 </div>
 
@@ -158,7 +184,7 @@
                                     <div class="form-group row">
                                         <label for="sport" class="col-sm-4 col-lg-12 col-form-label">Deporte</label>
                                         <div class="col-sm-8 col-lg-12">
-                                            <x-input disabled name="sport_id" value="{{ $athlete->user->role_id == 2 ? $athlete->user->coach->sport->description : '' }}" />
+                                            <x-input disabled name="sport_id" value="{{ $user->role_id == 2 ? $user->coach->sport->description : '' }}" />
                                         </div>
                                     </div>
 
@@ -166,7 +192,7 @@
                                     <div class="form-group row">
                                         <label for="other_phone" class="col-sm-4 col-lg-12 col-form-label">Teléfono Celular</label>
                                         <div class="col-sm-8 col-lg-12">
-                                            <x-input disabled name="other_phone" type="number" value="{{ $athlete->user->role_id == 2 && $athlete->user->coach->phone }}" />
+                                            <x-input disabled name="other_phone" type="number" value="{{ $user->role_id == 2 && $user->coach->phone }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -208,19 +234,19 @@
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>Fecha</th>
-                                                        <th>Cédula del Instructor</th>
+                                                        <th>Cédula del Atleta</th>
                                                         <th>Nombre Completo</th>
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </x-slot>
 
                                                 <x-slot name="body">
-                                                    @foreach ($athlete->physios as $physio)
+                                                    @foreach ($user->physios as $physio)
                                                     <tr>
                                                         <td>{{ $physio->id }}</td>
                                                         <td>{{ $physio->date->isoFormat('LL') }}</td>
-                                                        <td>{{ $physio->user->identification }}</td>
-                                                        <td>{{ $physio->user->full_name }}</td>
+                                                        <td>{{ $physio->athlete->user->identification }}</td>
+                                                        <td>{{ $physio->athlete->user->full_name }}</td>
                                                         <td width="100px" class="text-center">
                                                             <div class="dropdown">
                                                                 <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
@@ -249,7 +275,7 @@
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>Fecha</th>
-                                                        <th>Cédula del Instructor</th>
+                                                        <th>Cédula del Atleta</th>
                                                         <th>Nombre Completo</th>
                                                         <th>Acciones</th>
                                                     </tr>
@@ -276,7 +302,7 @@
                                                 </x-slot>
 
                                                 <x-slot name="body">
-                                                    @foreach ($athlete->musculars as $muscular)
+                                                    @foreach ($user->musculars as $muscular)
                                                     <tr>
                                                         <td>{{ $muscular->id }}</td>
                                                         <td>{{ $muscular->date->isoFormat('LL') }}</td>
@@ -328,24 +354,19 @@
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>Fecha</th>
-                                                        <th>Cédula del Instructor</th>
+                                                        <th>Cédula del Atleta</th>
                                                         <th>Nombre Completo</th>
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </x-slot>
 
                                                 <x-slot name="body">
-                                                    @foreach ($athlete->trainings as $training)
+                                                    @foreach ($user->trainings as $training)
                                                     <tr>
                                                         <td>{{ $training->id }}</td>
                                                         <td>{{ $training->date->isoFormat('LL') }}</td>
-                                                        <td>{{ $training->user->identification }}</td>
-                                                        <td>
-                                                            <a target="_blank" href="{{ route('users.show', $training->user->id) }}" class="link">
-                                                                {{ $training->user->full_name }} &nbsp;
-                                                                <i class="fas fa-external-link-alt"></i>
-                                                            </a>
-                                                        </td>
+                                                        <td>{{ $training->athlete->user->identification }}</td>
+                                                        <td>{{ $training->athlete->user->full_name }}</td>
                                                         <td width="100px" class="text-center">
 
                                                             <div class="dropdown">
@@ -371,7 +392,7 @@
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>Fecha</th>
-                                                        <th>Cédula del Instructor</th>
+                                                        <th>Cédula del Atleta</th>
                                                         <th>Nombre Completo</th>
                                                         <th>Acciones</th>
                                                     </tr>
@@ -389,178 +410,3 @@
     </div>
 
 </x-app-layout>
-
-{{-- @extends('layouts.app')
-
-@section('content')
-<body class="seedata text-light">
-
-    <div class="container-fluid">
-        @foreach($athlete->user as $us)
-        @foreach($atleta as $athlete)
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-6 col-lg-6 p-1 m-3">
-                <h2 class="display-5 text-center"><u>Información de Contacto</u></h2>
-            </div>
-        </div>
-
-        <form class="form-horizontal row justify-content-center h5">
-            <div class="form-group ">
-                <label class="col-lg-5 control-label font-weight-bold">Nombre:</label>
-                <div class="col-lg-10">
-                    <p class="form-control-static">{{ $us->name }}</p>
-</div>
-<label class="col-lg-5 control-label font-weight-bold">Apellidos:</label>
-<div class="col-lg-10">
-    <p class="form-control-static">{{ $us->lastname}}</p>
-</div>
-</div>
-<div class="form-group ">
-    <label class="col-lg-5 control-label font-weight-bold">Cédula:</label>
-    <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->identification }}</p>
-    </div>
-    <label class="col-lg-5 control-label font-weight-bold">Identificación de Rol:</label>
-    <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->role_id }}</p>
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-5 control-label font-weight-bold">Teléfono:</label>
-    <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->phone}}</p>
-    </div>
-    <label class="col-lg-5 control-label font-weight-bold">Fecha de nacimiento:</label>
-    <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->birthdate}}</p>
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-5 control-label font-weight-bold">Email:</label>
-    <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->email}}</p>
-    </div>
-    <label class="col-lg-5 control-label font-weight-bold">Provincia:</label>
-    <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->province}}</p>
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-lg-5 control-label font-weight-bold">Ciudad:</label>
-    <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->city}}</p>
-    </div>
-    <label class="col-lg-5 control-label font-weight-bold">Dirección:</label>
-    <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->address}}</p>
-    </div>
-</div>
-</div>
-
-</form>
-
-
-<div class="row justify-content-center">
-    <div class="col-sm-12 col-md-6 col-lg-6 p-1 m-3">
-        <h2 class="display-5 text-center"><u>Información de Expediente</u></h2>
-    </div>
-</div>
-<form class="form-horizontal row justify-content-center h5">
-    <div class="form-group">
-        <label class="col-lg-5 control-label font-weight-bold">Género:</label>
-        <div class="col-lg-10">
-            <p class="form-control-static">{{ $us->gender }}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-5 control-label font-weight-bold">Tipo de Sangre:</label>
-        <div class="col-lg-10">
-            <p class="form-control-static">{{ $athlete->blood}}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-5 control-label font-weight-bold">Identificación de Disciplina:</label>
-        <div class="col-lg-10">
-            <p class="form-control-static">{{ $athlete->sport_id}}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-5 control-label font-weight-bold">Orientación de Juego:</label>
-        <div class="col-lg-10">
-            <p class="form-control-static">{{ $athlete->laterality }}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-5 control-label font-weight-bold">Cédula de Encargado(a):</label>
-        <div class="col-lg-10">
-            <p class="form-control-static">{{ $athlete->identification_manager }}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-5 control-label font-weight-bold">Nombre de Encargado(a):</label>
-        <div class="col-lg-10">
-            <p class="form-control-static">{{ $athlete->name_manager }}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-5 control-label font-weight-bold">Apellidos de Encargado(a):</label>
-        <div class="col-lg-10">
-            <p class="form-control-static">{{ $athlete->lastname_manager }}</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-5 control-label font-weight-bold">Contacto de Encargado(a):</label>
-        <div class="col-lg-10">
-            <p class="form-control-static">{{ $athlete->contact_manager }}</p>
-        </div>
-    </div>
-</form>
-</div>
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-6 col-lg-6 p-1 m-3">
-            <h2 class="display-5 text-center"><u>Información de Expediente Detallada</u></h2>
-
-        </div>
-        <div class="col-md-8 col-form-label text-md-center p-1 m-4">
-            <h3><b>Nota:</b> Acá podés visualizar los apuntes que registraste en los últimos dos meses, por conceptos de musculación, fisioterapia y tu perfil.</h3>
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-md-12 col-sm-12">
-            <x-row>
-                <label class="col-md-5 col-form-label text-md-right">Escoja una opcion: </label>
-                <div class="col-md-3 selectContainer justify-content-center text-center aligne-item-center">
-                    <select name="asunto" placeholder="Visualizar" class="form-control" type="text" value="{{ old('asunto') }}">
-                        <option value="0">Elegir</option>
-                        <option value="mus">Musculación</option>
-                        <option value="fis">Fisioterapia</option>
-                        <option value="per">Mi perfil</option>
-                    </select>
-                </div>
-            </x-row>
-
-            <x-row>
-                <label class="col-md-5 col-form-label text-md-right">Escoja una fecha: </label>
-                <div class="col-md-3 selectContainer justify-content-center text-center aligne-item-center">
-                    <select name="asunto" placeholder="Visualizar" class="form-control" type="text" value="{{ old('asunto') }}">
-                        <option value="0">Elegir</option>
-                    </select>
-                </div>
-            </x-row>
-
-            <x-row>
-                <div class="offset-md-6 col-md-6 p-3">
-                    <button class="btn btn-negro">Consultar</button>
-                </div>
-            </x-row>
-        </div>
-
-    </div>
-    @endforeach
-    @endforeach
-</div>
-
-</body>
-@endsection --}}
