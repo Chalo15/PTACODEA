@@ -1,8 +1,7 @@
 <x-app-layout title="Inicio">
-
+    {{-- --------------------PRIMER BLOQUE ADMIN------------------ --}}
     <div class="row">
-
-        @can('role', 'Admin')
+        @can('role', ['Admin'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -21,7 +20,7 @@
             </div>
         @endcan
 
-        @can('role', 'Admin')
+        @can('role', ['Admin', 'Fisioterapia', 'Musculacion'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -40,7 +39,7 @@
             </div>
         @endcan
 
-        @can('role', 'Admin')
+        @can('role', ['Admin'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -60,8 +59,10 @@
         @endcan
     </div>
 
+    {{-- --------------------SEGUNDO BLOQUE ADMIN------------------ --}}
+
     <div class="row">
-        @can('role', 'Admin')
+        @can('role', ['Admin', 'Musculacion'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -77,7 +78,7 @@
             </div>
         @endcan
 
-        @can('role', 'Admin', 'Fisioterapia')
+        @can('role', ['Admin', 'Fisioterapia'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -93,33 +94,33 @@
             </div>
         @endcan
 
+        @can('role', ['Admin', 'Instructor'])
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Entrenamientos
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-medal fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                    </div>
+                </div>
+            </div>
+        @endcan
     </div>
-
-    @push('scripts')
-        <script>
-            console.log();
-        </script>
-    @endpush
-
-    @push('stylesheet')
-        <style>
-            .test-js {
-                background: red;
-            }
-
-        </style>
-    @endpush
 
 </x-app-layout>
 
 
 {{-- <div class="bodyHomePaige">
 
-        <div class="homePaige container-fluid ">
+    <div class="homePaige container-fluid ">
 
-            <!-- Vista del menu principal del Usuario Administrador -->
+        <!-- Vista del menu principal del Usuario Administrador -->
 
-            @can('role', 'Admin')
+        @can('role', 'Admin')
 
             <div class="Admin">
 
@@ -150,7 +151,7 @@ Acceder
 
 <div class="col-12 col-sm-2 col-md-2 col-lg-2 text-center aligne-item-center">
     <div class="gimnasio">
-        <h4 class="">Musculación</h4>
+        <h4 class="">Gimnasio</h4>
         <i class=" d-block fas fa-dumbbell p-2"></i>
         <button class="btn btn-negro">Ingresar</button>
     </div>

@@ -47,8 +47,7 @@
                         <div class="form-group row">
                             <label for="physiological_age" class="col-sm-4 col-form-label">Edad</label>
                             <div class="col-sm-8">
-                                <x-input name="physiological_age" type="number"
-                                    value="{{ $muscular->physiological_age }}" />
+                                <x-input name="physiological_age" type="number" value="{{ $muscular->physiological_age }}" />
                             </div>
                         </div>
 
@@ -293,16 +292,14 @@
                         <div class="form-group row">
                             <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
                             <div class="col-sm-8">
-                                <x-textarea placeher="Aspectos por mejorar" name="get_better" cols="30" rows="5"
-                                    value="{{ $muscular->get_better }}" />
+                                <x-textarea placeher="Aspectos por mejorar" name="get_better" cols="30" rows="5" value="{{ $muscular->get_better }}" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
                             <div class="col-sm-8">
-                                <x-textarea placeher="Otros Detalles" name="details" cols="30" rows="5"
-                                    value="{{ $muscular->details }}" />
+                                <x-editor name="details" value="{!! $muscular->details !!}" />
                             </div>
                         </div>
 

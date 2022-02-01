@@ -80,17 +80,19 @@
     <main>
 
         <div>
-            <p><strong>Fisioterapeuta:</strong> {{ $physio->user->full_name }}</p><br>
-            <p><strong>Nombre del Atleta:</strong> {{ $physio->athlete->user->full_name }}</p><br>
-            <p><strong>Fecha de Sesión:</strong> {{ $physio->date->isoFormat('LL') }}</p><br>
-            <p><strong>SPH:</strong> {{ $physio->sph }}</p><br>
-            <p><strong>APP:</strong> {{ $physio->app }}</p><br>
-            <p><strong>Tratamiento:</strong> {{ $physio->treatment }}</p><br>
-            <p><strong>Sugerencias:</strong> {{ $physio->sugeries }}</p><br>
-            <p><strong>Fracturas:</strong> {{ $physio->fractures }}</p><br>
-            <p><strong>Numero de Sesion:</strong> {{ $physio->count_session }}</p><br>
-            <p><strong>Grado de Severidad:</strong> {{ $physio->severity }}</p><br>
-            <p><strong>Detalles:</strong> {!! $physio->details !!}</p><br>
+            <p><strong>Encargado de musculación:</strong> {{ $training->user->full_name }}</p><br>
+            <p><strong>Nombre del Atleta:</strong> {{ $training->athlete->user->full_name }}</p><br>
+            <p><strong>Fecha de Sesión:</strong> {{ $training->date }}</p><br>
+            <p><strong>Edad:</strong> {{ $training->type_training }}</p><br>
+            <p><strong>Peso Kg:</strong> {{ $training->calcification }}</p><br>
+            <p><strong>Altura Cm:</strong> {{ $training->time }}</p><br>
+            <p><strong>IMC:</strong> {{ $training->distance }}</p><br>
+            <p><strong>Circ. Cintura Cm:</strong> {{ $training->level }}</p><br>
+            <p><strong>Circ. Cadera Cm:</strong> {{ $training->get_better }}</p><br>
+            <p><strong>Relacion Cintura Cadera</strong> {{ $training->planification }}</p><br>
+            <p><strong>Tricipital</strong> {{ $training->lesion }}</p><br>
+            <p><strong>Detalles:</strong> {!! $training->details !!}</p><br>
+
 
         </div>
     </main>

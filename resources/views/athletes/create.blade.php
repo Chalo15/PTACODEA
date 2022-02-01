@@ -13,7 +13,7 @@
         <div class="col">
             <div class="card mb-5">
                 <div class="card-header">
-                    Crear Atleta
+                    Nuevo Atleta
                 </div>
 
                 <div class="card-body">
@@ -38,7 +38,7 @@
                                         <x-select2 name="user_id">
                                             <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                             @foreach ($users as $user)
-                                            <option {{ old('user_id') == $user->id ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->identification . ' | ' . $user->name . " " . $user->last_name }}</option>
+                                            <option {{ old('user_id') == $user->id ? 'selected' : '' }} value="{{ $user->id }}">{{ $user->identification . ' | ' . $user->full_name }}</option>
                                             @endforeach
                                         </x-select2>
                                     </div>
@@ -167,145 +167,158 @@
                         <hr>
 
                         {{-- Disciplina --}}
-                        <div class="form-group row">
-                            <label for="sport_id" class="col-sm-4 col-form-label">Deporte</label>
+                        {{-- <div class="form-group row">
+                            <label for="coach_id" class="col-sm-4 col-form-label">Deporte</label>
                             <div class="col-sm-8">
                                 <x-select2 name="sport_id">
                                     <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
-                                    @foreach ($sports as $sport)
-                                    <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
-                                    @endforeach
-                                </x-select2>
-                            </div>
-                        </div>
+                        @foreach ($sports as $sport)
+                        <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
+                        @endforeach
+                        </x-select2>
+                </div>
+            </div>--> --}}
 
-                        {{-- Tipo de Sangre --}}
-                        <div class="form-group row">
-                            <label for="blood" class="col-sm-4 col-form-label">Tipo de Sangre</label>
-                            <div class="col-sm-8">
-                                <x-select name="blood">
-                                    <option disabled {{ old('blood') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
-                                    @foreach ($bloods as $blood)
-                                    <option {{ old('blood') == $blood ? 'selected' : '' }} value="{{ $blood }}">{{ $blood }}</option>
-                                    @endforeach
-                                </x-select>
-                            </div>
-                        </div>
-
-                        {{-- Lateralidad --}}
-                        <div class="form-group row">
-                            <label for="laterality" class="col-sm-4 col-form-label">Lateralidad</label>
-                            <div class="col-sm-8">
-                                @foreach ($lateralities as $laterality)
-                                <div class="custom-control custom-radio">
-                                    <input {{ (old('laterality') && old('laterality') == $laterality ) || !old('laterality') && $loop->index == 0 ? 'checked' : '' }} class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
-                                    <label class="custom-control-label" for="laterality-{{ $loop->index }}">
-                                        {{ $laterality }}
-                                    </label>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <hr>
-
-                        <div x-data="{ isOpen: {{ old('is_younger') ? 'true' : 'false' }} }">
-
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" name="is_younger" id="is_younger" x-model="isOpen">
-                                <label class="form-check-label" for="is_younger">
-                                    ¿El atleta es menor de edad?
-                                </label>
-                            </div>
-
-                            <div x-show="isOpen">
-
-                                <div class="row">
-                                    <div class="col mb-3 d-flex justify-content-center">
-                                        Información del Responsable
-                                    </div>
-                                </div>
-
-                                {{-- Cédula de Identidad o DIMEX --}}
-                                <div class="form-group row">
-                                    <label for="identification_manager" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
-                                    <div class="col-sm-8">
-                                        <x-input name="identification_manager" value="{{ old('identification_manager') }}" />
-                                    </div>
-                                </div>
-
-                                {{-- Nombre --}}
-                                <div class="form-group row">
-                                    <label for="name_manager" class="col-sm-4 col-form-label">Nombre</label>
-                                    <div class="col-sm-8">
-                                        <x-input name="name_manager" value="{{ old('name_manager') }}" />
-                                    </div>
-                                </div>
-
-                                {{-- Apellidos --}}
-                                <div class="form-group row">
-                                    <label for="lastname_manager" class="col-sm-4 col-form-label">Apellidos</label>
-                                    <div class="col-sm-8">
-                                        <x-input name="lastname_manager" value="{{ old('lastname_manager') }}" />
-                                    </div>
-                                </div>
-
-                                {{-- Teléfono --}}
-                                <div class="form-group row">
-                                    <label for="contact_manager" class="col-sm-4 col-form-label">Teléfono</label>
-                                    <div class="col-sm-8">
-                                        <x-input name="contact_manager" type="number" value="{{ old('contact_manager') }}" />
-                                    </div>
-                                </div>
-
-                                {{-- Parentezco --}}
-                                <div class="form-group row">
-                                    <label for="manager" class="col-sm-4 col-form-label">Parentezco</label>
-                                    <div class="col-sm-8">
-                                        <x-select name="manager">
-                                            <option disabled {{ old('manager') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
-                                            @foreach ($relationships as $relationship)
-                                            <option {{ old('manager') == $relationship ? 'selected' : '' }} value="{{ $relationship }}">{{ $relationship }}</option>
-                                            @endforeach
-                                        </x-select>
-                                    </div>
-                                </div>
-
-                                {{-- Número de Póliza --}}
-                                <div class="form-group row">
-                                    <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
-                                    <div class="col-sm-8">
-                                        <x-input name="policy" type="number" value="{{ old('policy') }}" />
-                                    </div>
-                                </div>
-
-                                {{-- Fotocópia de Cédula --}}
-                                <div class="form-group row">
-                                    <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
-                                    <div class="col-sm-8">
-
-                                        <div class="input-group mb-3">
-                                            <div class="custom-file">
-                                                <input name="url" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01">
-                                                <label class="custom-file-label" for="identification_image">Elija el archivo </label>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary">
-                                <i class="fas fa-save"></i> &nbsp;
-                                Guardar
-                            </button>
-                        </div>
-                    </form>
+            {{-- Entrenadores --}}
+            <div class="form-group row">
+                <label for="coach_id" class="col-sm-4 col-form-label">Instructor</label>
+                <div class="col-sm-8">
+                    <x-select2 name="coach_id">
+                        <option disabled {{ old('coach_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                        @foreach ($coaches as $coach)
+                        <option {{ old('coach_id') == $coach->id ? 'selected' : '' }} value="{{ $coach->id }}">{{ $coach->user->identification . ' | ' . $coach->user->full_name }}</option>
+                        @endforeach
+                    </x-select2>
                 </div>
             </div>
+
+            {{-- Tipo de Sangre --}}
+            <div class="form-group row">
+                <label for="blood" class="col-sm-4 col-form-label">Tipo de Sangre</label>
+                <div class="col-sm-8">
+                    <x-select name="blood">
+                        <option disabled {{ old('blood') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                        @foreach ($bloods as $blood)
+                        <option {{ old('blood') == $blood ? 'selected' : '' }} value="{{ $blood }}">{{ $blood }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
+            </div>
+
+            {{-- Lateralidad --}}
+            <div class="form-group row">
+                <label for="laterality" class="col-sm-4 col-form-label">Lateralidad</label>
+                <div class="col-sm-8">
+                    @foreach ($lateralities as $laterality)
+                    <div class="custom-control custom-radio">
+                        <input {{ (old('laterality') && old('laterality') == $laterality ) || !old('laterality') && $loop->index == 0 ? 'checked' : '' }} class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
+                        <label class="custom-control-label" for="laterality-{{ $loop->index }}">
+                            {{ $laterality }}
+                        </label>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <hr>
+
+            <div x-data="{ isOpen: {{ old('is_younger') ? 'true' : 'false' }} }">
+
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" name="is_younger" id="is_younger" x-model="isOpen">
+                    <label class="form-check-label" for="is_younger">
+                        ¿El atleta es menor de edad?
+                    </label>
+                </div>
+
+                <div x-show="isOpen">
+
+                    <div class="row">
+                        <div class="col mb-3 d-flex justify-content-center">
+                            Información del Responsable
+                        </div>
+                    </div>
+
+                    {{-- Cédula de Identidad o DIMEX --}}
+                    <div class="form-group row">
+                        <label for="identification_manager" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
+                        <div class="col-sm-8">
+                            <x-input name="identification_manager" value="{{ old('identification_manager') }}" />
+                        </div>
+                    </div>
+
+                    {{-- Nombre --}}
+                    <div class="form-group row">
+                        <label for="name_manager" class="col-sm-4 col-form-label">Nombre</label>
+                        <div class="col-sm-8">
+                            <x-input name="name_manager" value="{{ old('name_manager') }}" />
+                        </div>
+                    </div>
+
+                    {{-- Apellidos --}}
+                    <div class="form-group row">
+                        <label for="lastname_manager" class="col-sm-4 col-form-label">Apellidos</label>
+                        <div class="col-sm-8">
+                            <x-input name="lastname_manager" value="{{ old('lastname_manager') }}" />
+                        </div>
+                    </div>
+
+                    {{-- Teléfono --}}
+                    <div class="form-group row">
+                        <label for="contact_manager" class="col-sm-4 col-form-label">Teléfono</label>
+                        <div class="col-sm-8">
+                            <x-input name="contact_manager" type="number" value="{{ old('contact_manager') }}" />
+                        </div>
+                    </div>
+
+                    {{-- Parentezco --}}
+                    <div class="form-group row">
+                        <label for="manager" class="col-sm-4 col-form-label">Parentezco</label>
+                        <div class="col-sm-8">
+                            <x-select name="manager">
+                                <option disabled {{ old('manager') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                @foreach ($relationships as $relationship)
+                                <option {{ old('manager') == $relationship ? 'selected' : '' }} value="{{ $relationship }}">{{ $relationship }}</option>
+                                @endforeach
+                            </x-select>
+                        </div>
+                    </div>
+
+                    {{-- Número de Póliza --}}
+                    <div class="form-group row">
+                        <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
+                        <div class="col-sm-8">
+                            <x-input name="policy" type="number" value="{{ old('policy') }}" />
+                        </div>
+                    </div>
+
+                    {{-- Fotocópia de Cédula --}}
+                    <div class="form-group row">
+                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                        <div class="col-sm-8">
+
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input name="url" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="identification_image">Elija el archivo </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary">
+                    <i class="fas fa-save"></i> &nbsp;
+                    Guardar
+                </button>
+            </div>
+            </form>
         </div>
+    </div>
+    </div>
     </div>
 
 </x-app-layout>

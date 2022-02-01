@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAthleteRequest;
+use App\Http\Requests\UpdateAthleteRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
+use App\Models\Coach;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -19,19 +21,22 @@ class AthletesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware("can:role,'Admin'");
     }
 
     /**
      * Mostrar una lista del recurso.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Determinar según por rol cuales atletas retornar.
         $rol = Auth::user()->role->description;
-        if ($rol == "Admin") {
-            $athletes = Athlete::with('user')->paginate(5);
+        if ($rol == "Admin" || $rol == "Musculacion" || $rol == "Fisioterapia") {
+            $athletes = Athlete::with('user')->get();
 
             return view('athletes.index', compact('athletes'));
         }
@@ -39,9 +44,7 @@ class AthletesController extends Controller
         if ($rol == "Instructor") {
 
             $sport_id = Auth::user()->coach->sport_id;
-
-            $athletes = new Athlete();
-            $athletes = Athlete::where("sport_id", "=", $sport_id)->paginate(5);
+            $athletes = Athlete::where("sport_id", "=", $sport_id)->get();
 
             return view('athletes.index', ['athletes' => $athletes]);
         }
@@ -56,6 +59,8 @@ class AthletesController extends Controller
     {
         $sports = Sport::all();
 
+        $coaches = Coach::with('user')->get();
+
         $users = User::where('role_id', '=', 7)->get();
 
         $genders = config('general.genders');
@@ -68,7 +73,7 @@ class AthletesController extends Controller
 
         $relationships = config('general.relationships');
 
-        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships'));
+        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
     }
 
     /**
@@ -81,7 +86,8 @@ class AthletesController extends Controller
     {
         $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated() + ['role_id' => 7]);
 
-        $user->athlete()->create($request->validated() + ['state' => 'A']);
+
+        $user->athlete()->create($request->validated() + ['state' => 'A', 'sport_id' => Coach::find($request->coach_id)->sport_id]);
 
         $user->update([
             'role_id' => 4
@@ -90,6 +96,19 @@ class AthletesController extends Controller
         // Almacenaje de la imagen.
 
         return redirect()->route('athletes.index')->with('status', '¡Atleta creado exitosamente!');
+    }
+
+    /**
+     * Muestra el recurso especificado.
+     *
+     * @param  \App\Models\Athlete  $athlete
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Athlete $athlete)
+    {
+        $athlete->with('user', 'physios', 'trainings', 'musculars');
+
+        return view('athletes.show', compact('athlete'));
     }
 
     /**
@@ -102,7 +121,21 @@ class AthletesController extends Controller
     {
         $athlete->with('user');
 
-        return view('athletes.edit', compact('athlete'));
+        $coaches = Coach::all();
+
+        $sports = Sport::all();
+
+        $genders = config('general.genders');
+
+        $provinces = config('general.provinces');
+
+        $bloods = config('general.bloods');
+
+        $lateralities = config('general.lateralities');
+
+        $relationships = config('general.relationships');
+
+        return view('athletes.edit', compact('sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
     }
 
     /**
@@ -112,8 +145,12 @@ class AthletesController extends Controller
      * @param  \App\Models\Athlete  $athlete
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Athlete $athlete)
+    public function update(UpdateAthleteRequest $request, Athlete $athlete)
     {
-        //
+        $athlete->update($request->validated() + ['sport_id' => Coach::find($request->coach_id)->sport_id]);
+
+        $athlete->user->update($request->validated());
+
+        return redirect()->route('athletes.index')->with('status', 'Atleta editado exitosamente!');
     }
 }

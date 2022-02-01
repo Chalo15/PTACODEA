@@ -1,4 +1,4 @@
-<x-app-layout title="Crear Usuario">
+<x-app-layout title="Editar Usuario">
 
     <div class="row">
         <div class="col mb-3">
@@ -12,10 +12,10 @@
     {{-- Fecha de registr --}}
     @php
 
-        $today = today()->toDateString();
-        $age = today()
-            ->subYears(18)
-            ->toDateString();
+    $today = today()->toDateString();
+    $age = today()
+    ->subYears(18)
+    ->toDateString();
 
     @endphp
 
@@ -25,7 +25,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Crear Usuario
+                    Editar Usuario
                 </div>
 
                 <div class="card-body">
@@ -61,8 +61,7 @@
                         <div class="form-group row">
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
-                                <x-input type="date" max="{{ $age }}" name="birthdate"
-                                    value="{{ $user->birthdate }}" />
+                                <x-input type="date" max="{{ $age }}" name="birthdate" value="{{ $user->birthdate }}" />
                             </div>
                         </div>
 
@@ -71,11 +70,9 @@
                             <label for="province" class="col-sm-4 col-form-label">Provincia</label>
                             <div class="col-sm-8">
                                 <x-select name="province">
-                                    <option {{ $user->province ? '' : 'selected' }} value=""> -- Seleccione --
-                                    </option>
+                                    <option {{ $user->province ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($provinces as $province)
-                                        <option {{ $user->province == $province ? 'selected' : '' }}
-                                            value="{{ $province }}">{{ $province }}</option>
+                                    <option {{ $user->province == $province ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
                                     @endforeach
                                 </x-select>
                             </div>
@@ -124,13 +121,12 @@
                             <label for="gender" class="col-sm-4 col-form-label">Género</label>
                             <div class="col-sm-8">
                                 @foreach ($genders as $gender)
-                                    <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" name="gender"
-                                            id="gender-{{ $loop->index }}" value="{{ $gender }}">
-                                        <label class="custom-control-label" for="gender-{{ $loop->index }}">
-                                            {{ $gender }}
-                                        </label>
-                                    </div>
+                                <div class="custom-control custom-radio">
+                                    <input {{ $user->gender && $user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                    <label class="custom-control-label" for="gender-{{ $loop->index }}">
+                                        {{ $gender }}
+                                    </label>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -173,11 +169,11 @@
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($roles as $role)
 
-                                            @if ($role->id == 4)
-                                                @continue
-                                            @endif
+                                        @if ($role->id == 4)
+                                        @continue
+                                        @endif
 
-                                            <option value="{{ $role->id }}">{{ $role->description }}</option>
+                                        <option value="{{ $role->id }}">{{ $role->description }}</option>
 
                                         @endforeach
                                     </x-select>
@@ -192,11 +188,9 @@
                                     <label for="sport" class="col-sm-4 col-form-label">Deporte</label>
                                     <div class="col-sm-8">
                                         <x-select name="sport_id">
-                                            <option disabled {{ $user->sport_id ? '' : 'selected' }} value=""> --
-                                                Seleccione -- </option>
+                                            <option disabled value=""> -- Seleccione -- </option>
                                             @foreach ($sports as $sport)
-                                                <option {{ $user->sport_id == $sport->id ? 'selected' : '' }}
-                                                    value="{{ $sport->id }}">{{ $sport->description }}</option>
+                                            <option {{ $user->role_id == 2 && $user->coach->sport == $sport ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
                                             @endforeach
                                         </x-select>
                                     </div>
@@ -204,29 +198,19 @@
 
                                 {{-- Teléfono Celular --}}
                                 <div class="form-group row">
-                                    <label for="cellphone" class="col-sm-4 col-form-label">Teléfono Celular</label>
+                                    <label for="other_phone" class="col-sm-4 col-form-label">Teléfono Celular</label>
                                     <div class="col-sm-8">
-                                        <x-input name="cellphone" type="number" value="{{ $user->cellphone }}" />
+                                        <x-input name="other_phone" type="number" value="{{ $user->role_id == 2 && $user->coach->phone }}" />
                                     </div>
                                 </div>
 
                                 {{-- Fotocópia de Cédula --}}
                                 <div class="form-group row">
-                                    <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                    <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                     <div class="col-sm-8">
-
-                                        <div class="input-group mb-3">
-                                            <div class="custom-file">
-                                                <input name="identification_image" type="file" class="custom-file-input"
-                                                    id="identification_image" aria-describedby="inputGroupFileAddon01">
-                                                <label class="custom-file-label" for="identification_image">Elija el
-                                                    archivo </label>
-                                            </div>
-                                        </div>
-
+                                        <x-input name="pdf" type="file" />
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
@@ -261,12 +245,4 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 </x-app-layout>
