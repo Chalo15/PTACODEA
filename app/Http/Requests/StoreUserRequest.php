@@ -23,31 +23,32 @@ class StoreUserRequest extends FormRequest
      */
     public function rules()
     {
-        $array = [
-            'identification'  => ['required'],
+        $rules = [
+            'identification'  => ['required', 'unique:users,identification'],
             'name'            => ['required'],
             'last_name'       => ['required'],
             'birthdate'       => ['required'],
-            'phone'           => ['required'],
             'province'        => ['required'],
             'city'            => ['required'],
-            'email'           => ['required', 'email'],
-            'phone'           => ['required'],
+            'email'           => ['required', 'email', 'unique:users,email'],
+            'phone'           => ['required', 'numeric', 'unique:users,phone'],
             'address'         => ['required'],
             'gender'          => ['required'],
             'experience'      => ['required'],
             'contract_number' => ['required'],
             'contract_year'   => ['required'],
-            'role_id'         => ['required'],
+            'role_id'         => ['required', 'numeric', 'exists:roles,id'],
             'password'        => ['required', 'confirmed']
         ];
 
         if ($this->role_id == 2) {
-            $array['sport_id'] = ['required'];
-
-            // Teléfono de habitación
+            $rules += [
+                'sport_id'    => ['required'],
+                'other_phone' => ['required'],
+                'pdf'         => ['required', 'file', 'mimes:pdf']
+            ];
         }
 
-        return $array;
+        return $rules;
     }
 }

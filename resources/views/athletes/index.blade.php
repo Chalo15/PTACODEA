@@ -32,7 +32,7 @@
                     <x-table>
                         <x-slot name="head">
                             <tr>
-                                <th>ID</th>
+                                <th>Foto</th>
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
                                 <th>Telefono</th>
@@ -43,13 +43,20 @@
 
                         <x-slot name="body">
                             @foreach ($athletes as $athlete)
-                                <tr>
-                                    <td>{{ $athlete->id }}</td>
-                                    <td>{{ $athlete->user->identification }}</td>
-                                    <td>{{ $athlete->user->name . ' ' . $athlete->user->lastname }}</td>
-                                    <td>{{ $athlete->user->phone }}</td>
-                                    <td>{{ $athlete->sport->description }}</td>
-                                    <td width="100px" class="text-center">
+                            <tr>
+                                <td class="text-center">
+                                    <img class="rounded" src="{{ $athlete->user->photo ? asset($athlete->user->photo) : asset('images/default.png') }}" width="30" height="30">
+                                </td>
+                                <td>{{ $athlete->user->identification }}</td>
+                                <td>{{ $athlete->user->name . " " . $athlete->user->lastname }}</td>
+                                <td>{{ $athlete->user->phone }}</td>
+                                <td>{{ $athlete->sport->description }}</td>
+                                <td width="100px" class="text-center">
+
+                                    <div class="dropdown">
+                                        <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
 
                                         <div class="dropdown">
                                             <button class="btn" type="button" id="dropdownMenu2"
@@ -80,7 +87,7 @@
 
                         <x-slot name="foot">
                             <tr>
-                                <th>ID</th>
+                                <th>Foto</th>
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
                                 <th>Telefono</th>

@@ -1,4 +1,4 @@
-<x-app-layout title="Crear Documento">
+<x-app-layout title="Nuevo Entrenamiento">
 
     <div class="row">
         <div class="col mb-3">
@@ -13,7 +13,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Crear Documento
+                    Nuevo Entrenamiento
                 </div>
 
                 <div class="card-body">
@@ -28,35 +28,26 @@
                                     <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> -- Seleccione
                                         -- </option>
                                     @foreach ($athletes as $athlete)
-                                        <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }}
-                                            value="{{ $athlete->id }}">
-                                            {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
-                                        </option>
+                                    <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">
+                                        {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
+                                    </option>
                                     @endforeach
                                 </x-select2>
                             </div>
                         </div>
 
-
-
                         {{-- Fecha de registro --}}
                         @php
-
-                            $today = today()->toDateString();
-                            $lastWeek = today()
-                                ->subDays(7)
-                                ->toDateString();
-                            $nextWeek = today()
-                                ->addDay(7)
-                                ->toDateString();
-
+                        $today = today()->toDateString();
+                        $lastWeek = today()->subDays(7)->toDateString();
+                        $nextWeek = today()->addDay(7)->toDateString();
                         @endphp
+
                         <div class="form-group row">
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}"
-                                    value="{{ $today }}" />
+                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ $today }}" />
                             </div>
                         </div>
 
@@ -129,7 +120,7 @@
                             <label for="details" class="col-sm-4 col-form-label">Datos extra</label>
                             <div class="col-sm-8">
                                 @foreach ($athletes as $athlete)
-                                    <x-editor name="details" value="{!! $athlete->sport->ckeditor !!}" />
+                                <x-editor name="details" value="{!! $athlete->sport->ckeditor !!}" />
                                 @endforeach
                             </div>
                         </div>

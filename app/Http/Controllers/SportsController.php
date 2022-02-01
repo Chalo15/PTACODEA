@@ -15,6 +15,8 @@ class SportsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware("can:role,'Admin'");
     }
 
     /**
@@ -37,6 +39,8 @@ class SportsController extends Controller
      */
     public function show(Sport $sport)
     {
+        $sport->load('athletes.user', 'coaches.user');
+
         return view('sports.show', compact('sport'));
     }
 

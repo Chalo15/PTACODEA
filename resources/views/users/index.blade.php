@@ -30,6 +30,7 @@
                     <x-table>
                         <x-slot name="head">
                             <tr>
+                                <th>Foto</th>
                                 <th>Cédula</th>
                                 <th>Nombre Completo</th>
                                 <th>Correo electrónico</th>
@@ -41,6 +42,9 @@
                         <x-slot name="body">
                             @foreach ($users as $user)
                             <tr>
+                                <td class="text-center">
+                                    <img class="rounded" src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}" width="30" height="30">
+                                </td>
                                 <td>{{ $user->identification }}</td>
                                 <td>{{ $user->full_name }}</td>
                                 <td>{{ $user->email }}</td>
@@ -53,6 +57,11 @@
                                         </button>
 
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <a class="dropdown-item" href="{{ route('users.show', $user->id) }}">
+                                                <i class="fas fa-info-circle"></i> &nbsp;
+                                                Información
+                                            </a>
+
                                             <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">
                                                 <i class="fas fa-edit"></i> &nbsp;
                                                 Editar
@@ -67,6 +76,7 @@
 
                         <x-slot name="foot">
                             <tr>
+                                <th>Foto</th>
                                 <th>Cédula</th>
                                 <th>Nombre Completo</th>
                                 <th>Correo electrónico</th>

@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Storage;
 class AthleteController extends Controller
 {
 
+    /**
+     * This is just a test. :)
+     */
     public function __construct()
     {
         $this->middleware('auth');

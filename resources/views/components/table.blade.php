@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-bordered table-hover" id="datatable">
+    <table class="table table-bordered table-hover datatable">
         <thead>
             {{ $head }}
         </thead>

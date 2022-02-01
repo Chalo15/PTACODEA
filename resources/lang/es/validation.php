@@ -214,7 +214,8 @@ return [
         'contract_number'        => 'número de contrato',
         'contract_year'          => 'año de contrato',
         'role_id'                => 'rol',
-        'athlete_id'                => 'atleta'
-
+        'athlete_id'                => 'atleta',
+        'picture'                => 'imagen',
+        'other_phone'            => 'otro teléfono'
     ],
 ];

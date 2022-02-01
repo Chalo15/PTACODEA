@@ -1,4 +1,4 @@
-<x-app-layout title="Crear Documento">
+<x-app-layout title="Nueva Musculación">
 
     <div class="row">
         <div class="col mb-3">
@@ -13,13 +13,12 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Generar Sesión
+                    Nueva Musculación
                 </div>
                 {{-- }} @json($errors->all()) --}}
                 <div class="card-body">
                     <form action="{{ route('musculars.store') }}" method="POST">
                         @csrf
-
 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Instrumento de Medición</label>
@@ -33,10 +32,9 @@
                                     <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> --
                                         Seleccione -- </option>
                                     @foreach ($athletes as $athlete)
-                                        <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }}
-                                            value="{{ $athlete->id }}">
-                                            {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
-                                        </option>
+                                    <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">
+                                        {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
+                                    </option>
                                     @endforeach
                                 </x-select2>
                             </div>
@@ -55,8 +53,7 @@
                         <div class="form-group row">
                             <label for="physiological_age" class="col-sm-4 col-form-label">Edad</label>
                             <div class="col-sm-8">
-                                <x-input name="physiological_age" type="number"
-                                    value="{{ old('physiological_age') }}" />
+                                <x-input name="physiological_age" type="number" value="{{ old('physiological_age') }}" />
                             </div>
                         </div>
 
@@ -323,7 +320,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </x-app-layout>

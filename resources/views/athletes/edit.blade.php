@@ -116,7 +116,7 @@
                                     <div class="col-sm-8">
                                         @foreach ($genders as $gender)
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $athlete->user->gender }}">
+                                            <input {{ $athlete->user->gender && $athlete->user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $athlete->user->gender }}">
                                             <label class="custom-control-label" for="gender-{{ $loop->index }}">
                                                 {{ $gender }}
                                             </label>
@@ -147,14 +147,15 @@
 
                             <hr>
 
-                            {{-- Disciplina --}}
+                            {{-- Instructor --}}
+
                             <div class="form-group row">
-                                <label for="sport_id" class="col-sm-4 col-form-label">Deporte</label>
+                                <label for="coach_id" class="col-sm-4 col-form-label">Instructor</label>
                                 <div class="col-sm-8">
-                                    <x-select2 name="sport_id">
-                                        <option disabled {{ $athlete->sport->description ? '' : 'selected' }} value=""> -- Seleccione -- </option>
-                                        @foreach ($sports as $sport)
-                                        <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
+                                    <x-select2 name="coach_id">
+                                        <option disabled value=""> -- Seleccione -- </option>
+                                        @foreach ($coaches as $coach)
+                                        <option {{ $athlete->coach->id == $coach->id ? 'selected' : '' }} value="{{ $coach->id }}">{{ $coach->user->identification . ' | ' . $coach->user->full_name }}</option>
                                         @endforeach
                                     </x-select2>
                                 </div>
@@ -165,9 +166,9 @@
                                 <label for="blood" class="col-sm-4 col-form-label">Tipo de Sangre</label>
                                 <div class="col-sm-8">
                                     <x-select name="blood">
-                                        <option disabled {{ old('blood') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                        <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($bloods as $blood)
-                                        <option {{ $athlete->blood == $blood ? 'selected' : '' }} value="{{ $athlete->blood }}">{{ $blood }}</option>
+                                        <option {{ $athlete->blood == $blood ? 'selected' : '' }} value="{{ $blood }}">{{ $blood }}</option>
                                         @endforeach
                                     </x-select>
                                 </div>
@@ -179,7 +180,7 @@
                                 <div class="col-sm-8">
                                     @foreach ($lateralities as $laterality)
                                     <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $athlete->laterality }}">
+                                        <input {{ $athlete->laterality == $laterality ? 'checked' : '' }} class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
                                         <label class="custom-control-label" for="laterality-{{ $loop->index }}">
                                             {{ $laterality }}
                                         </label>
@@ -189,6 +190,7 @@
                             </div>
 
                             <hr>
+
                             <div x-data="{ isOpen: {{$athlete->identification_manager ? 'true' : 'false' }} }">
 
                                 <div class="form-group form-check">
@@ -261,18 +263,11 @@
 
                                     {{-- Fotocópia de Cédula --}}
                                     <div class="form-group row">
-                                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                        <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                         <div class="col-sm-8">
-
-                                            <div class="input-group mb-3">
-                                                <div class="custom-file">
-                                                    <input name="url" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01">
-                                                    <label class="custom-file-label" for="identification_image">Elija el archivo </label>
-                                                </div>
-                                            </div>
-
+                                            <x-input name="pdf" type="file" />
                                         </div>
-                                    </div>v>
+                                    </div>
                                 </div>
                             </div>
                         </div>

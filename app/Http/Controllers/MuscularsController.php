@@ -9,7 +9,7 @@ use App\Models\Muscular;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 class MuscularsController extends Controller
@@ -22,6 +22,8 @@ class MuscularsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware("can:role,'Admin','Musculacion'");
     }
 
     /**
@@ -31,18 +33,13 @@ class MuscularsController extends Controller
      */
     public function index()
     {
-        $role = Auth::user()->role->description;
-        $user = Auth::user()->id;
+        $user = request()->user();
 
+        $musculars = $user->role->description == 'Admin' ?
+            Muscular::with('user', 'athlete.user', 'athlete.sport')->get() :
+            $user->musculars->load('user', 'athlete.user', 'athlete.sport');
 
-        if ($role == "Admin") {
-            $musculars = Muscular::with('user')->paginate(5);
-            return view('musculars.index', compact('musculars'));
-        } else {
-
-            $musculars = Muscular::where('user_id', '=', $user)->paginate(5);
-            return view('musculars.index', compact('musculars'));
-        }
+        return view('musculars.index', compact('musculars'));
     }
 
     /**
