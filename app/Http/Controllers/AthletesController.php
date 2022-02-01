@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateAthleteRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
+use App\Models\Coach;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -57,6 +58,8 @@ class AthletesController extends Controller
     {
         $sports = Sport::all();
 
+        $coaches = Coach::all();
+
         $users = User::where('role_id', '=', 7)->get();
 
         $genders = config('general.genders');
@@ -69,7 +72,7 @@ class AthletesController extends Controller
 
         $relationships = config('general.relationships');
 
-        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships'));
+        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
     }
 
     /**
@@ -83,6 +86,8 @@ class AthletesController extends Controller
         $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated() + ['role_id' => 7]);
 
         $user->athlete()->create($request->validated() + ['state' => 'A']);
+
+
 
         $user->update([
             'role_id' => 4
@@ -103,6 +108,8 @@ class AthletesController extends Controller
     {
         $athlete->with('user');
 
+        $coaches = Coach::all();
+
         $sports = Sport::all();
 
         $genders = config('general.genders');
@@ -115,7 +122,7 @@ class AthletesController extends Controller
 
         $relationships = config('general.relationships');
 
-        return view('athletes.edit', compact('sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships'));
+        return view('athletes.edit', compact('sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
     }
 
     /**

@@ -26,7 +26,8 @@ class   UpdateAthleteRequest extends FormRequest
         $rules = [
             'sport_id'   => ['required'],
             'blood'      => ['required'],
-            'laterality' => ['required']
+            'laterality' => ['required'],
+            'coach_id'   => ['required']
         ];
 
         if ($this->is_user) {

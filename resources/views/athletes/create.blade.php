@@ -168,12 +168,25 @@
 
                         {{-- Disciplina --}}
                         <div class="form-group row">
-                            <label for="sport_id" class="col-sm-4 col-form-label">Deporte</label>
+                            <label for="coach_id" class="col-sm-4 col-form-label">Deporte</label>
                             <div class="col-sm-8">
                                 <x-select2 name="sport_id">
                                     <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($sports as $sport)
                                     <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
+                                    @endforeach
+                                </x-select2>
+                            </div>
+                        </div>
+
+                        {{-- Entrenadores --}}
+                        <div class="form-group row">
+                            <label for="coach_id" class="col-sm-4 col-form-label">Instructor</label>
+                            <div class="col-sm-8">
+                                <x-select2 name="coach_id">
+                                    <option disabled {{ old('coach_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                    @foreach ($coaches as $coach)
+                                    <option {{ old('coach_id') == $coach->id ? 'selected' : '' }} value="{{ $coach->id }}">{{ $coach->user->full_name }}</option>
                                     @endforeach
                                 </x-select2>
                             </div>
