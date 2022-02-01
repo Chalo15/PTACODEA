@@ -8,18 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Training extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+
+    protected $casts = [
+        'date' => 'date'
+    ];
 
     protected $fillable = [
         'athlete_id',
-        'date'      ,
+        'date',
         'type_training',
         'calcification',
-        'time'      ,
-        'distance'  ,
-        'level'     ,
+        'time',
+        'distance',
+        'level',
         'planification',
-        'lesion'    ,
+        'lesion',
         'get_better',
         'details'
     ];

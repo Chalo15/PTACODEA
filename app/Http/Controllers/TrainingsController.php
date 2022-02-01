@@ -19,27 +19,25 @@ class TrainingsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware("can:role,'Admin','Instructor'");
     }
 
     /**
      * Mostrar una lista del recurso.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $role = Auth::user()->role->description;
-        $user = Auth::user()->id;
+        $user = $request->user();
 
+        $trainings = $user->role->description == 'Admin' ?
+            Training::with('user', 'athlete.user', 'athlete.sport')->get() :
+            $user->trainings->load('user', 'athlete.user', 'athlete.sport');
 
-        if ($role == "Admin") {
-            $trainings = Training::with('user')->get();
-            return view('trainings.index', compact('trainings'));
-        } else {
-
-            $trainings = Training::where('user_id', '=', $user)->get();
-            return view('trainings.index', compact('trainings'));
-        }
+        return view('trainings.index', compact('trainings'));
     }
 
     /**
@@ -63,6 +61,7 @@ class TrainingsController extends Controller
     public function store(StoreTrainingRequest $request)
     {
         $user = $request->user();
+
         $user->trainings()->create($request->validated());
 
         return redirect()->route('trainings.index')->with('status', 'Documento creado exitosamente!');

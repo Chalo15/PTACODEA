@@ -1,4 +1,4 @@
-<x-app-layout title="Documentos de Entrenamientos">
+<x-app-layout title="Entrenamientos">
 
     <div class="row">
         <div class="col mb-3">
@@ -15,8 +15,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col d-flex align-items-center">
-                            Documentos
+                            Entrenamientos
                         </div>
+
                         <div class="col d-flex justify-content-end">
                             <a href="{{ route('trainings.create') }}" class="btn btn-primary">
                                 <i class="fas fa-plus"></i> &nbsp;
@@ -32,7 +33,7 @@
                             <x-table>
                                 <x-slot name="head">
                                     <tr>
-                                        <th>Documento</th>
+                                        <th>ID</th>
                                         <th>Fecha</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
@@ -47,21 +48,28 @@
                                     @foreach ($trainings as $training)
                                     <tr>
                                         <td>{{ $training->id }}</td>
-                                        <td>{{ $training->date }}</td>
+                                        <td>{{ $training->date->isoFormat('LL') }}</td>
                                         <td>{{ $training->athlete->user->identification }}</td>
-                                        <td>{{ $training->athlete->user->name . " " . $training->athlete->user->last_name}}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('athletes.show', $training->athlete->id) }}">
+                                                {{ $training->athlete->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
                                         <td>{{ $training->athlete->sport->description }}</td>
                                         <td>{{ $training->user->identification }}</td>
-                                        <td>{{ $training->user->name . " " . $training->user->last_name}}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('users.show', $training->user->id) }}">
+                                                {{ $training->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td width="100px" class="text-center">
 
-
-                                            <td width="100px" class="text-center">
-
-                                                <div class="dropdown">
-                                                    <button class="btn" type="button" id="dropdownMenu2"
-                                                        data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                    </button>
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                     <a class="dropdown-item" href="{{ route('trainings.edit', $training) }}">
@@ -71,14 +79,14 @@
 
                                                 </div>
 
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </x-slot>
 
                                 <x-slot name="foot">
                                     <tr>
-                                        <th>Documento</th>
+                                        <th>ID</th>
                                         <th>Fecha</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>

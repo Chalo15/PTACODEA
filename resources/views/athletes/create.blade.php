@@ -13,7 +13,7 @@
         <div class="col">
             <div class="card mb-5">
                 <div class="card-header">
-                    Crear Atleta
+                    Nuevo Atleta
                 </div>
 
                 <div class="card-body">

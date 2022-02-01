@@ -24,22 +24,22 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         $array = [
-            'identification'  => ['required'],
+            'identification'  => ['required', 'unique:users,identification,' . $this->user->id],
             'name'            => ['required'],
             'last_name'       => ['required'],
             'birthdate'       => ['required'],
-            'phone'           => ['required'],
+            'phone'           => ['required', 'unique:users,phone,' . $this->user->id],
             'province'        => ['required'],
             'city'            => ['required'],
-            'email'           => ['required', 'email'],
+            'email'           => ['required', 'email', 'unique:users,email,' . $this->user->id],
             'phone'           => ['required'],
             'address'         => ['required'],
             'gender'          => ['required'],
             'experience'      => ['required'],
             'contract_number' => ['required'],
             'contract_year'   => ['required'],
-            'role_id'         => ['required'],
-            'password'        => ['required', 'confirmed']
+            'role_id'         => ['required', 'numeric', 'exists:roles,id'],
+            'password'        => ['nullable', 'confirmed']
         ];
 
         if ($this->role_id == 2) {
