@@ -38,7 +38,7 @@ class StoreUserRequest extends FormRequest
             'contract_number' => ['required'],
             'contract_year'   => ['required'],
             'role_id'         => ['required', 'numeric', 'exists:roles,id'],
-            'password'        => ['required', 'confirmed']
+            'password'        => ['nullable', 'confirmed']
         ];
 
         if ($this->role_id == 2) {

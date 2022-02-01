@@ -41,7 +41,7 @@
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ $training->date }}" />
+                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{old('date') ?? $training->date }}" />
                             </div>
                         </div>
 
@@ -49,39 +49,30 @@
                         <div class="form-group row">
                             <label for="type_training" class="col-sm-4 col-form-label">Tipo de Entrenamiento</label>
                             <div class="col-sm-8">
-                                <x-input name="type_training" value="{{ $training->type_training }}" />
+                                <x-input name="type_training" value="{{old('type_training') ?? $training->type_training }}" />
                             </div>
                         </div>
 
-                        {{-- calcification --}}
+                        {{-- calification --}}
                         <div class="form-group row">
-                            <label for="calcification" class="col-sm-4 col-form-label">Calcificación</label>
+                            <label for="calification" class="col-sm-4 col-form-label">Calificación</label>
                             <div class="col-sm-8">
-                                <x-input name="calcification" value="{{ $training->calcification }}" />
+                                <x-input name="calification" value="{{old('calification') ?? $training->calification }}" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="time" class="col-sm-4 col-form-label">Duración del Entrenamiento</label>
                             <div class="col-sm-8">
-                                <x-textarea name="time" value="{{ $training->time }}" />
+                                <x-textarea name="time" value="{{ old('time') ??$training->time }}" />
                             </div>
                         </div>
-
-                        {{--Distancia --}}
-                        <div class="form-group row">
-                            <label for="distance" class="col-sm-4 col-form-label">Distancia</label>
-                            <div class="col-sm-8">
-                                <x-input name="distance" value="{{ $training->distance }}" />
-                            </div>
-                        </div>
-
 
                         {{-- Nivel --}}
                         <div class="form-group row">
                             <label for="level" class="col-sm-4 col-form-label">Nivel</label>
                             <div class="col-sm-8">
-                                <x-input name="level" value="{{ $training->level }}" />
+                                <x-input name="level" value="{{old('level') ?? $training->level }}" />
                             </div>
                         </div>
 
@@ -89,7 +80,7 @@
                         <div class="form-group row">
                             <label for="get_better" class="col-sm-4 col-form-label">Aspectos a Mejorar</label>
                             <div class="col-sm-8">
-                                <x-input name="get_better" value="{{ $training->get_better }}" />
+                                <x-input name="get_better" value="{{old('get_better') ?? $training->get_better }}" />
                             </div>
                         </div>
 
@@ -97,7 +88,7 @@
                         <div class="form-group row">
                             <label for="planification" class="col-sm-4 col-form-label">Planificación</label>
                             <div class="col-sm-8">
-                                <x-input name="planification" value="{{ $training->planification }}" />
+                                <x-input name="planification" value="{{old('planification') ?? $training->planification }}" />
                             </div>
                         </div>
 
@@ -106,7 +97,7 @@
                         <div class="form-group row">
                             <label for="lesion" class="col-sm-4 col-form-label">Lesión</label>
                             <div class="col-sm-8">
-                                <x-input name="lesion" value="{{ $training->lesion }}" />
+                                <x-input name="lesion" value="{{old('lesion') ?? $training->lesion }}" />
                             </div>
                         </div>
 
