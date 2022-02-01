@@ -47,7 +47,6 @@
         opacity: 0.1;
       }
       p {
-
         font-size: 120%;
         margin-left: 30px; 
       }
