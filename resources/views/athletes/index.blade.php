@@ -18,7 +18,7 @@
                             Atletas
                         </div>
                         <div class="col d-flex justify-content-end">
-                            @can('roles', 'Admin')
+                            @can('role', 'Admin')
                                 <a href="{{ route('athletes.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo

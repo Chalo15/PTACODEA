@@ -20,7 +20,7 @@
 
                         @can('role', ['Fisioterapia'])
                         <div class="col d-flex justify-content-end">
-                            @can('roles', 'Fisioterapia')
+                            @can('role', 'Fisioterapia')
                                 <a href="{{ route('physios.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo
