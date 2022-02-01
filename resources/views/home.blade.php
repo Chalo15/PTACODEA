@@ -65,7 +65,7 @@
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
-                        Gimnasio
+                        Musculación
                     </div>
                     <div class="card-body">
                         <i class="fas fa-dumbbell fa-5x"></i>
@@ -150,7 +150,7 @@ Acceder
 
 <div class="col-12 col-sm-2 col-md-2 col-lg-2 text-center aligne-item-center">
     <div class="gimnasio">
-        <h4 class="">Gimnasio</h4>
+        <h4 class="">Musculación</h4>
         <i class=" d-block fas fa-dumbbell p-2"></i>
         <button class="btn btn-negro">Ingresar</button>
     </div>

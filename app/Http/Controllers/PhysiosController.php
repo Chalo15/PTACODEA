@@ -133,6 +133,10 @@ class PhysiosController extends Controller
     public function generatePDF(Physio $physio)
     {
         $pdf = PDF::loadView('pdfs.physio', compact('physio'));
+
+        return $pdf->download('document.pdf');
+
         return $pdf->download($physio->athlete->user->full_name . '.pdf');
+
     }
 }
