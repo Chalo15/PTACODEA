@@ -17,12 +17,15 @@
                         <div class="col d-flex align-items-center">
                             Fisioterapias
                         </div>
+
+                        @can('role', ['Fisioterapia'])
                         <div class="col d-flex justify-content-end">
                             <a href="{{ route('physios.create') }}" class="btn btn-primary">
                                 <i class="fas fa-plus"></i> &nbsp;
                                 Nuevo
                             </a>
                         </div>
+                        @endcan
                     </div>
                 </div>
 
@@ -71,7 +74,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    @can('roles', 'Fisioterapia')
+                                                    @can('role', ['Fisioterapia'])
                                                     <a class="dropdown-item" href="{{ route('physios.edit', $physio) }}">
                                                         <i class="fas fa-edit"></i> &nbsp;
                                                         Editar

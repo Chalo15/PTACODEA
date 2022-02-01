@@ -70,8 +70,7 @@
                             <label for="province" class="col-sm-4 col-form-label">Provincia</label>
                             <div class="col-sm-8">
                                 <x-select name="province">
-                                    <option {{ $user->province ? '' : 'selected' }} value=""> -- Seleccione --
-                                    </option>
+                                    <option {{ $user->province ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($provinces as $province)
                                     <option {{ $user->province == $province ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
                                     @endforeach

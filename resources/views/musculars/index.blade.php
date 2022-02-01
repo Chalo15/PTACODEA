@@ -71,7 +71,7 @@
                                                 </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    @can('roles', 'Musculacion')
+                                                    @can('role', ['Musculacion'])
                                                     <a class="dropdown-item" href="{{ route('musculars.edit', $muscular->id) }}">
                                                         <i class="fas fa-edit"></i> &nbsp;
                                                         Editar

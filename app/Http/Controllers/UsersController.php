@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\Sport;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
