@@ -58,7 +58,7 @@ class AthletesController extends Controller
     {
         $sports = Sport::all();
 
-        $coaches = Coach::all();
+        $coaches = Coach::with('user')->get();
 
         $users = User::where('role_id', '=', 7)->get();
 
@@ -85,9 +85,8 @@ class AthletesController extends Controller
     {
         $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated() + ['role_id' => 7]);
 
-        $user->athlete()->create($request->validated() + ['state' => 'A']);
 
-
+        $user->athlete()->create($request->validated() + ['state' => 'A', 'sport_id' => Coach::find($request->coach_id)->sport_id]);
 
         $user->update([
             'role_id' => 4
@@ -134,8 +133,7 @@ class AthletesController extends Controller
      */
     public function update(UpdateAthleteRequest $request, Athlete $athlete)
     {
-
-        $athlete->update($request->validated());
+        $athlete->update($request->validated() + ['sport_id' => Coach::find($request->coach_id)->sport_id]);
 
         return redirect()->route('athletes.index')->with('status', 'Atleta editado exitosamente!');
     }
