@@ -17,6 +17,7 @@ class Athlete extends Model
     protected $fillable = [
         'user_id',
         'sport_id',
+        'coach_id',
         'state',
         'blood',
         'laterality',
@@ -64,4 +65,10 @@ class Athlete extends Model
     {
         return $this->hasMany(Muscular::class);
     }
+
+    public function coach()
+    {
+        return $this->belongsTo(Coach::class);
+    }
+    protected $guarded = [];
 }

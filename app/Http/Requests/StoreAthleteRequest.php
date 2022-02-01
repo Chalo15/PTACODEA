@@ -24,9 +24,10 @@ class StoreAthleteRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'sport_id'   => ['required'],
+            #'sport_id'   => ['required'],
             'blood'      => ['required'],
-            'laterality' => ['required']
+            'laterality' => ['required'],
+            'coach_id'   => ['required'],
         ];
 
         if ($this->is_user) {
@@ -39,11 +40,10 @@ class StoreAthleteRequest extends FormRequest
                 'name'            => ['required'],
                 'last_name'       => ['required'],
                 'birthdate'       => ['required'],
-                'phone'           => ['required'],
+                'phone'           => ['required', 'numeric', 'unique:users,phone'],
                 'province'        => ['required'],
                 'city'            => ['required'],
                 'email'           => ['required', 'email', 'unique:users'],
-                'phone'           => ['required', 'numeric'],
                 'address'         => ['required'],
                 'gender'          => ['required'],
                 'password'        => ['required', 'confirmed']

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Sport;
 use App\Models\Role;
 use App\Models\User;
@@ -18,6 +19,8 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware("can:role,'Admin'");
     }
 
     /**
@@ -27,7 +30,7 @@ class UsersController extends Controller
      */
     function index()
     {
-        $users = User::with('role')->get();
+        $users = User::where('role_id', '!=', 4)->with('role')->get();
 
         return view('users.index', compact('users'));
     }
@@ -61,39 +64,29 @@ class UsersController extends Controller
         $user = User::create($request->validated());
 
         if ($request->role_id == 2) {
-            /**
-             * Almacenaje de la imagen porque es un Coach
-             *
-             * Revisar código.
-             */
+            $path = $request->file('pdf')->store('pdfs');
 
-            // if ($request->hasFile("archivo")) {
-            //     $v_pdf = $request->file('archivo');
-            //     $v_nombre = "pdf_" . time() . "." . $v_pdf->guessExtension();
-            //     $url = public_path("storage/" . $v_nombre);
-            //     if ($v_pdf->guessExtension() == "pdf") {
-            //         copy($v_pdf, $url);
-            //         $coach->url = $v_nombre;
-            //     }
-            // }
-
-        } else if ($request->role_id == 3) {
-            /**
-             * Almacenaje en caso que sea funcionario.
-             *
-             * Revisar el código.
-             */
-
-            // $img=$request->file('imagen');
-            // $imgseleccionada="prf_".time().".".$img->guessExtension();
-            // $url=public_path("storage/imagenes/".$imgseleccionada);
-            // if($img->guessExtension()=="jpeg"||$img->guessExtension()=="png"||$img->guessExtension()=="svg"||$img->guessExtension()=="jpg"){
-            //     copy($img,$url);
-            //     $usuario->photo=$imgseleccionada;
-            // }
+            $user->coach()->create([
+                'sport_id' => $request->sport_id,
+                'phone' => $request->other_phone,
+                'url' => $path
+            ]);
         }
 
         return redirect()->route('users.index');
+    }
+
+    /**
+     * Muestra el recurso especificado.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        $user->load(['role', 'physios.athlete.user', 'musculars.athlete.user', 'trainings.athlete.user']);
+
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -104,7 +97,17 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $user->with('user');
+
+        $roles = Role::all();
+
+        $sports = Sport::all();
+
+        $genders = config('general.genders');
+
+        $provinces = config('general.provinces');
+
+        return view('users.edit', compact('user', 'roles', 'sports', 'genders', 'provinces'));
     }
 
     /**
@@ -114,8 +117,10 @@ class UsersController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+
+        return redirect()->route('users.index')->with('status', 'Usuario editado exitosamente!');
     }
 }

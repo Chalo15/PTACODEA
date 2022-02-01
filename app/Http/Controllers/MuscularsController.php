@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMuscularRequest;
+use App\Http\Requests\UpdateMuscularRequest;
 use App\Models\Athlete;
 use App\Models\Muscular;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class MuscularsController extends Controller
 {
@@ -19,6 +22,8 @@ class MuscularsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware("can:role,'Admin','Musculacion'");
     }
 
     /**
@@ -28,18 +33,13 @@ class MuscularsController extends Controller
      */
     public function index()
     {
-        $role = Auth::user()->role->description;
-        $user = Auth::user()->id;
+        $user = request()->user();
 
+        $musculars = $user->role->description == 'Admin' ?
+            Muscular::with('user', 'athlete.user', 'athlete.sport')->get() :
+            $user->musculars->load('user', 'athlete.user', 'athlete.sport');
 
-        if ($role == "Admin") {
-            $musculars = Muscular::with('user')->paginate(5);
-            return view('musculars.index', compact('musculars'));
-        } else {
-
-            $musculars = Muscular::where('user_id', '=', $user)->paginate(5);
-            return view('musculars.index', compact('musculars'));
-        }
+        return view('musculars.index', compact('musculars'));
     }
 
     /**
@@ -90,19 +90,23 @@ class MuscularsController extends Controller
      */
     public function edit(Muscular $muscular)
     {
-        //
+        $muscular->with('athlete');
+
+        return view('musculars.edit', compact('muscular'));
     }
 
     /**
      * Actualice el recurso especificado en el almacenamiento.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\UpdateMuscularRequest  $request
      * @param  \App\Models\Muscular $muscular
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Muscular $muscular)
+    public function update(UpdateMuscularRequest $request, Muscular $muscular)
     {
-        //
+        $muscular->update($request->validated());
+
+        return redirect()->route('musculars.index')->with('status', 'Documento editado exitosamente!');
     }
 
     /**
@@ -114,5 +118,15 @@ class MuscularsController extends Controller
     public function destroy(Muscular $muscular)
     {
         //
+    }
+
+
+    public function generatePDF(Muscular $muscular)
+    {
+        $pdf = PDF::loadView('pdfs.muscular', compact('muscular'));
+
+        return $pdf->download('document.pdf');
+
+        return $pdf->download($muscular->athlete->user->full_name . '.pdf');
     }
 }

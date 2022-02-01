@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Coach;
+use App\Models\Sport;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,9 +24,10 @@ class CoachFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory()->create(),
-            'sport_id' => 1,
-            'phone' => User::factory()->create(),
+            'user_id' => User::factory()->create(['role_id' => 2]),
+            'sport_id' => Sport::all()->random(),
+            'phone' => $this->faker->randomNumber(8),
+            'url' => 'test'
         ];
     }
 }

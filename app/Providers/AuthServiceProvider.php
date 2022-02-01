@@ -26,20 +26,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('role', function (User $user, $tipoRole) {
-            return $user->role->description == $tipoRole;
-        });
-
-        Gate::define('roles', function (User $user, ...$tipoRole) {
-            $respuesta = false;
-
-            foreach ($tipoRole as $role) {
-                if ($user->role->description == $role) {
-                    $respuesta = true;
-                }
-            }
-
-            return $respuesta;
-        });
+        Gate::define('role', fn (User $user, ...$roles) => in_array($user->role->description, $roles));
     }
 }

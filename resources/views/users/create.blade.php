@@ -1,4 +1,4 @@
-<x-app-layout title="Crear Usuario">
+<x-app-layout title="Nuevo Usuario">
 
     <div class="row">
         <div class="col mb-3">
@@ -9,25 +9,15 @@
         </div>
     </div>
 
-    {{-- Fecha de registr --}}
-    @php
-
-    $today = today()->toDateString();
-    $age = today()->subYears(18)->toDateString();
-
-    @endphp
-
-
-
     <div class="row">
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Crear Usuario
+                    Nuevo Usuario
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('users.store') }}" method="POST">
+                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         {{-- Cédula de Identidad o DIMEX --}}
@@ -55,10 +45,16 @@
                         </div>
 
                         {{-- Fecha de Nacimiento --}}
+
+                        @php
+                        $today = today()->toDateString();
+                        $age = today()->subYears(18)->toDateString();
+                        @endphp
+
                         <div class="form-group row">
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
-                                <x-input type="date" max="{{$age}}" name="birthdate" value="{{ old('birthdate') }}" />
+                                <x-input type="date" max="{{ $age }}" name="birthdate" value="{{ old('birthdate') }}" />
                             </div>
                         </div>
 
@@ -195,27 +191,19 @@
 
                                 {{-- Teléfono Celular --}}
                                 <div class="form-group row">
-                                    <label for="cellphone" class="col-sm-4 col-form-label">Teléfono Celular</label>
+                                    <label for="other_phone" class="col-sm-4 col-form-label">Teléfono Celular</label>
                                     <div class="col-sm-8">
-                                        <x-input name="cellphone" type="number" value="{{ old('cellphone') }}" />
+                                        <x-input name="other_phone" type="number" value="{{ old('other_phone') }}" />
                                     </div>
                                 </div>
 
                                 {{-- Fotocópia de Cédula --}}
                                 <div class="form-group row">
-                                    <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                    <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                     <div class="col-sm-8">
-
-                                        <div class="input-group mb-3">
-                                            <div class="custom-file">
-                                                <input name="identification_image" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01">
-                                                <label class="custom-file-label" for="identification_image">Elija el archivo </label>
-                                            </div>
-                                        </div>
-
+                                        <x-input name="pdf" type="file" />
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
