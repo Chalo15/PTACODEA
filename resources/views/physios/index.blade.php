@@ -18,10 +18,12 @@
                             Documentos
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <a href="{{ route('physios.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> &nbsp;
-                                Nuevo
-                            </a>
+                            @can('roles', 'Fisioterapia')
+                                <a href="{{ route('physios.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> &nbsp;
+                                    Nuevo
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>

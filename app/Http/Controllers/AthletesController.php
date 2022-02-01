@@ -32,7 +32,7 @@ class AthletesController extends Controller
     {
         // Determinar según por rol cuales atletas retornar.
         $rol = Auth::user()->role->description;
-        if ($rol == "Admin") {
+        if ($rol == "Admin" || $rol == "Musculacion" || $rol == "Fisioterapia") {
             $athletes = Athlete::with('user')->paginate(5);
 
             return view('athletes.index', compact('athletes'));
@@ -41,8 +41,6 @@ class AthletesController extends Controller
         if ($rol == "Instructor") {
 
             $sport_id = Auth::user()->coach->sport_id;
-
-            $athletes = new Athlete();
             $athletes = Athlete::where("sport_id", "=", $sport_id)->paginate(5);
 
             return view('athletes.index', ['athletes' => $athletes]);

@@ -18,10 +18,12 @@
                             Documentos
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <a href="{{ route('trainings.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> &nbsp;
-                                Nuevo
-                            </a>
+                            @can('roles', 'Instructor')
+                                <a href="{{ route('trainings.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> &nbsp;
+                                    Nuevo
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
