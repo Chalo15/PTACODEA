@@ -39,6 +39,8 @@ class SportsController extends Controller
      */
     public function show(Sport $sport)
     {
+        $sport->load('athletes.user', 'coaches.user');
+
         return view('sports.show', compact('sport'));
     }
 

@@ -262,18 +262,11 @@
 
                                     {{-- Fotocópia de Cédula --}}
                                     <div class="form-group row">
-                                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                        <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                         <div class="col-sm-8">
-
-                                            <div class="input-group mb-3">
-                                                <div class="custom-file">
-                                                    <input name="url" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01">
-                                                    <label class="custom-file-label" for="identification_image">Elija el archivo </label>
-                                                </div>
-                                            </div>
-
+                                            <x-input name="pdf" type="file" />
                                         </div>
-                                    </div>v>
+                                    </div>
                                 </div>
                             </div>
                         </div>

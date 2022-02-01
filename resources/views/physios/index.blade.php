@@ -32,7 +32,7 @@
                             <x-table>
                                 <x-slot name="head">
                                     <tr>
-                                        <th>Documento</th>
+                                        <th>ID</th>
                                         <th>Fecha</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
@@ -49,12 +49,20 @@
                                         <td>{{ $physio->id }}</td>
                                         <td>{{ $physio->date->isoFormat('LL') }}</td>
                                         <td>{{ $physio->athlete->user->identification }}</td>
-                                        <td>{{ $physio->athlete->user->name . " " . $physio->athlete->user->last_name}}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('athletes.show', $physio->athlete->id) }}">
+                                                {{ $physio->athlete->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
                                         <td>{{ $physio->athlete->sport->description }}</td>
                                         <td>{{ $physio->user->identification }}</td>
-                                        <td>{{ $physio->user->name . " " . $physio->user->last_name}}</td>
-
-
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('users.show', $physio->user->id) }}">
+                                                {{ $physio->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
                                         <td width="100px" class="text-center">
 
                                             <div class="dropdown">
@@ -74,7 +82,7 @@
                                                         Descargar
                                                     </a>
                                                 </div>
-
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -82,7 +90,7 @@
 
                                 <x-slot name="foot">
                                     <tr>
-                                        <th>Documento</th>
+                                        <th>ID</th>
                                         <th>Fecha</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>

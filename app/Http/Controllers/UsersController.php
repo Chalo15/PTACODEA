@@ -85,7 +85,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        $user->with('role', 'physios', 'trainings', 'musculars');
+        $user->load(['role', 'physios.athlete.user', 'musculars.athlete.user', 'trainings.athlete.user']);
 
         return view('users.show', compact('user'));
     }

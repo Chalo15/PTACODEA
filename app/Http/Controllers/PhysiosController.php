@@ -33,19 +33,13 @@ class PhysiosController extends Controller
      */
     public function index()
     {
+        $user = request()->user();
 
-        $role = Auth::user()->role->description;
-        $user = Auth::user()->id;
+        $physios = $user->role->description == 'Admin' ?
+            Physio::with('user', 'athlete.user', 'athlete.sport')->get() :
+            $user->physios->load('user', 'athlete.user', 'athlete.sport');
 
-
-        if ($role == "Admin") {
-            $physios = Physio::with('user')->get();
-            return view('physios.index', compact('physios'));
-        } else {
-
-            $physios = Physio::where('user_id', '=', $user)->get();
-            return view('physios.index', compact('physios'));
-        }
+        return view('physios.index', compact('physios'));
     }
 
     /**

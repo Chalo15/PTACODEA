@@ -2,10 +2,21 @@
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('users.index') }}" class="btn btn-primary">
-                <i class="fas fa-reply"></i> &nbsp;
-                Atrás
-            </a>
+            <div class="row">
+                <div class="col">
+                    <a href="{{ route('users.index') }}" class="btn btn-primary">
+                        <i class="fas fa-reply"></i> &nbsp;
+                        Atrás
+                    </a>
+                </div>
+
+                <div class="col d-flex justify-content-end">
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-gray-codea">
+                        <i class="fas fa-edit"></i> &nbsp;
+                        Editar
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -246,7 +257,12 @@
                                                         <td>{{ $physio->id }}</td>
                                                         <td>{{ $physio->date->isoFormat('LL') }}</td>
                                                         <td>{{ $physio->athlete->user->identification }}</td>
-                                                        <td>{{ $physio->athlete->user->full_name }}</td>
+                                                        <td>
+                                                            <a target="_blank" href="{{ route('athletes.show', $physio->athlete->id) }}" class="link">
+                                                                {{ $physio->athlete->user->full_name }} &nbsp;
+                                                                <i class="fas fa-external-link-alt"></i>
+                                                            </a>
+                                                        </td>
                                                         <td width="100px" class="text-center">
                                                             <div class="dropdown">
                                                                 <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
@@ -307,7 +323,12 @@
                                                         <td>{{ $muscular->id }}</td>
                                                         <td>{{ $muscular->date->isoFormat('LL') }}</td>
                                                         <td>{{ $muscular->athlete->user->identification }}</td>
-                                                        <td>{{ $muscular->athlete->user->full_name }}</td>
+                                                        <td>
+                                                            <a target="_blank" href="{{ route('athletes.show', $muscular->athlete->id) }}" class="link">
+                                                                {{ $muscular->athlete->user->full_name }} &nbsp;
+                                                                <i class="fas fa-external-link-alt"></i>
+                                                            </a>
+                                                        </td>
                                                         <td width="100px" class="text-center">
                                                             <div class="dropdown">
                                                                 <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
@@ -366,9 +387,13 @@
                                                         <td>{{ $training->id }}</td>
                                                         <td>{{ $training->date->isoFormat('LL') }}</td>
                                                         <td>{{ $training->athlete->user->identification }}</td>
-                                                        <td>{{ $training->athlete->user->full_name }}</td>
+                                                        <td>
+                                                            <a target="_blank" href="{{ route('athletes.show', $training->athlete->id) }}" class="link">
+                                                                {{ $training->athlete->user->full_name }} &nbsp;
+                                                                <i class="fas fa-external-link-alt"></i>
+                                                            </a>
+                                                        </td>
                                                         <td width="100px" class="text-center">
-
                                                             <div class="dropdown">
                                                                 <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
                                                                     <i class="fas fa-ellipsis-v"></i>
@@ -379,10 +404,8 @@
                                                                         <i class="fas fa-edit"></i> &nbsp;
                                                                         Editar
                                                                     </a>
-
                                                                 </div>
                                                             </div>
-
                                                         </td>
                                                     </tr>
                                                     @endforeach

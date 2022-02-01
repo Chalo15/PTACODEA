@@ -48,7 +48,7 @@ class   UpdateAthleteRequest extends FormRequest
                 'identification_manager' => ['required'],
                 'contact_manager'        => ['required'],
                 'policy'                 => ['required'],
-                'url'                    => ['required']
+                'pdf'                    => ['nullable']
             ];
         }
 

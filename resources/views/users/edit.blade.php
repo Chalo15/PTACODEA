@@ -1,4 +1,4 @@
-<x-app-layout title="Crear Usuario">
+<x-app-layout title="Editar Usuario">
 
     <div class="row">
         <div class="col mb-3">
@@ -25,7 +25,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Crear Usuario
+                    Editar Usuario
                 </div>
 
                 <div class="card-body">

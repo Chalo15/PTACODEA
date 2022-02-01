@@ -33,18 +33,13 @@ class MuscularsController extends Controller
      */
     public function index()
     {
-        $role = Auth::user()->role->description;
-        $user = Auth::user()->id;
+        $user = request()->user();
 
+        $musculars = $user->role->description == 'Admin' ?
+            Muscular::with('user', 'athlete.user', 'athlete.sport')->get() :
+            $user->musculars->load('user', 'athlete.user', 'athlete.sport');
 
-        if ($role == "Admin") {
-            $musculars = Muscular::with('user')->get();
-            return view('musculars.index', compact('musculars'));
-        } else {
-
-            $musculars = Muscular::where('user_id', '=', $user)->get();
-            return view('musculars.index', compact('musculars'));
-        }
+        return view('musculars.index', compact('musculars'));
     }
 
     /**

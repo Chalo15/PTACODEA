@@ -33,7 +33,7 @@
                             <x-table>
                                 <x-slot name="head">
                                     <tr>
-                                        <th>Documento</th>
+                                        <th>ID</th>
                                         <th>Fecha</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
@@ -50,11 +50,20 @@
                                         <td>{{ $muscular->id }}</td>
                                         <td>{{ $muscular->date->isoFormat('LL') }}</td>
                                         <td>{{ $muscular->athlete->user->identification }}</td>
-                                        <td>{{ $muscular->athlete->user->full_name }}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('athletes.show', $muscular->athlete->id) }}">
+                                                {{ $muscular->athlete->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
                                         <td>{{ $muscular->athlete->sport->description }}</td>
                                         <td>{{ $muscular->user->identification }}</td>
-                                        <td>{{ $muscular->user->full_name }}</td>
-
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('users.show', $muscular->user->id) }}">
+                                                {{ $muscular->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
                                         <td width="100px" class="text-center">
                                             <div class="dropdown">
                                                 <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
@@ -80,7 +89,7 @@
                                 </x-slot>
                                 <x-slot name="foot">
                                     <tr>
-                                        <th>Documento</th>
+                                        <th>ID</th>
                                         <th>Fecha</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
