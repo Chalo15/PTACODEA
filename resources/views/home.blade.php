@@ -20,7 +20,7 @@
             </div>
         @endcan
 
-        @can('role', ['Admin', 'Fisioterapia', 'Musculacion'])
+        @can('role', ['Admin'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -114,7 +114,7 @@
     {{-- --------------------TERCER BLOQUE------------------ --}}
 
     <div class="row">
-        @can('role', ['Admin', 'Instructor', 'Fisioterapia'])
+        @can('role', ['Admin', 'Fisioterapia'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -130,7 +130,7 @@
             </div>
         @endcan
 
-        @can('role', ['Admin', 'Instructor', 'Musculacion'])
+        @can('role', ['Admin', 'Musculacion'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">

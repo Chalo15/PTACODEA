@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="col d-flex justify-content-end">
-                            @can('roles', 'Musculacion')
+                            @can('role', ['Musculacion'])
                                 <a href="{{ route('musculars.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo

@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="col d-flex justify-content-end">
-                            @can('roles', 'Instructor')
+                            @can('role', ['Instructor'])
                                 <a href="{{ route('trainings.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo
@@ -74,7 +74,7 @@
                                                 </button>
 
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                        @can('roles', 'Instructor')
+                                                        @can('role', ['Instructor'])
                                                             <a class="dropdown-item"
                                                                 href="{{ route('trainings.edit', $training) }}">
                                                                 <i class="fas fa-edit"></i> &nbsp;
