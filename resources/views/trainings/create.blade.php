@@ -59,11 +59,11 @@
                             </div>
                         </div>
 
-                        {{-- calcification --}}
+                        {{-- calification --}}
                         <div class="form-group row">
-                            <label for="calcification" class="col-sm-4 col-form-label">Calcificacion</label>
+                            <label for="calification" class="col-sm-4 col-form-label">Calcificacion</label>
                             <div class="col-sm-8">
-                                <x-input name="calcification" value="{{ old('calcification') }}" />
+                                <x-input name="calification" value="{{ old('calification') }}" />
                             </div>
                         </div>
 
@@ -73,15 +73,6 @@
                                 <x-input name="time" value="{{ old('time') }}" />
                             </div>
                         </div>
-
-                        {{-- Distancia --}}
-                        <div class="form-group row">
-                            <label for="distance" class="col-sm-4 col-form-label">Distancia</label>
-                            <div class="col-sm-8">
-                                <x-input name="distance" value="{{ old('distance') }}" />
-                            </div>
-                        </div>
-
 
                         {{-- Nivel --}}
                         <div class="form-group row">

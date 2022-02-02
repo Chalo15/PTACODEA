@@ -15,19 +15,20 @@ class CreateTrainingsTable extends Migration
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('coach_id')->constrained('coaches');
             $table->foreignId('athlete_id')->constrained('athletes');
             $table->date('date');
             $table->string('type_training');
-            $table->string('calcification');
+            $table->string('calification');
             $table->string('time');
-            $table->float('distance')->nullable();
             $table->string('level');
+            $table->string('discipline');
             $table->text('get_better');
             $table->text('planification');
             $table->string('lesion');
             $table->longText('details');
             $table->timestamps();
+
         });
     }
 

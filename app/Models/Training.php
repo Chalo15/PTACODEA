@@ -17,7 +17,7 @@ class Training extends Model
         'athlete_id',
         'date',
         'type_training',
-        'calcification',
+        'calification',
         'time',
         'distance',
         'level',

@@ -28,7 +28,7 @@ class TrainingFactory extends Factory
             'athlete_id' => Athlete::all()->random(),
             'date' => $this->faker->date(),
             'type_training' => $this->faker->sentence(),
-            'calcification' => $this->faker->sentence(),
+            'calification' => $this->faker->sentence(),
             'time' => $this->faker->sentence(),
             'distance' => $this->faker->randomNumber(2),
             'level' => $this->faker->sentence(),
