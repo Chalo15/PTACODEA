@@ -158,11 +158,14 @@
       </div>
       <h1>INFORME DE SESION</h1>
       <div id="company">
+
         @php
-            $today = today()->toDateString();
+          setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
+          $today = strftime("%d de %B del %Y"); 
         @endphp
+        
         <div>CODEA ALAJUELA</div>
-        <div>MONSERRAT, ALAJUELA, COSTA RICA<br /> 20104, CR</div>
+        <div>MONSERRAT, ALAJUELA, CR<br /> 20104</div>
         <div>(+506) 2442-1757</div>
         <div><a href="info@codea.go.cr">info@codea.go.cr</a></div>
         <div>{{ $today }}</div>
