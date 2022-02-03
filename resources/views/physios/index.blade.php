@@ -20,12 +20,10 @@
 
                         @can('role', ['Fisioterapia'])
                         <div class="col d-flex justify-content-end">
-                            @can('roles', 'Fisioterapia')
-                                <a href="{{ route('physios.create') }}" class="btn btn-primary">
-                                    <i class="fas fa-plus"></i> &nbsp;
-                                    Nuevo
-                                </a>
-                            @endcan
+                            <a href="{{ route('physios.create') }}" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> &nbsp;
+                                Nuevo
+                            </a>
                         </div>
                         @endcan
                     </div>
@@ -82,7 +80,7 @@
                                                         Editar
                                                     </a>
                                                     @endcan
-                                                    <a class="dropdown-item" href="{{ route('physios.generate-pdf', $physio->id) }}">
+                                                    <a class="dropdown-item" href="{{ route('physios.generate-pdf', $physio->id) }}" target="_blank">
                                                         <i class="fas fa-download"></i> &nbsp;
                                                         Descargar
                                                     </a>

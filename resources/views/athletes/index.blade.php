@@ -17,15 +17,15 @@
                         <div class="col d-flex align-items-center">
                             Atletas
                         </div>
+                        @can('role','Admin')
                         <div class="col d-flex justify-content-end">
-                            @can('roles', 'Admin')
                                 <a href="{{ route('athletes.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo
                                 </a>
-                            @endcan
+                            </div>
                         </div>
-                    </div>
+                        @endcan
                 </div>
 
                 <div class="card-body">
@@ -54,9 +54,6 @@
                                 <td width="100px" class="text-center">
 
                                     <div class="dropdown">
-                                        <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </button>
 
                                         <div class="dropdown">
                                             <button class="btn" type="button" id="dropdownMenu2"
@@ -70,7 +67,7 @@
                                                     <i class="fas fa-info-circle"></i> &nbsp;
                                                     Información
                                                 </a>
-                                                @can('roles', 'Admin')
+                                                @can('role', 'Admin')
                                                     <a class="dropdown-item"
                                                         href="{{ route('athletes.edit', $athlete->id) }}">
                                                         <i class="fas fa-edit"></i> &nbsp;
