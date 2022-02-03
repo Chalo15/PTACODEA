@@ -17,20 +17,22 @@
                         <div class="col d-flex align-items-center">
                             Atletas
                         </div>
+                        @can('role','Admin')
                         <div class="col d-flex justify-content-end">
-                            <a href="{{ route('athletes.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> &nbsp;
-                                Nuevo
-                            </a>
+                                <a href="{{ route('athletes.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> &nbsp;
+                                    Nuevo
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                        @endcan
                 </div>
 
                 <div class="card-body">
                     <x-table>
                         <x-slot name="head">
                             <tr>
-                                <th>ID</th>
+                                <th>Foto</th>
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
                                 <th>Telefono</th>
@@ -42,7 +44,9 @@
                         <x-slot name="body">
                             @foreach ($athletes as $athlete)
                             <tr>
-                                <td>{{ $athlete->id }}</td>
+                                <td class="text-center">
+                                    <img class="rounded" src="{{ $athlete->user->photo ? asset($athlete->user->photo) : asset('images/default.png') }}" width="30" height="30">
+                                </td>
                                 <td>{{ $athlete->user->identification }}</td>
                                 <td>{{ $athlete->user->name . " " . $athlete->user->lastname }}</td>
                                 <td>{{ $athlete->user->phone }}</td>
@@ -50,31 +54,37 @@
                                 <td width="100px" class="text-center">
 
                                     <div class="dropdown">
-                                        <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </button>
 
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <a class="dropdown-item" href="{{ route('athletes.show', $athlete->id) }}">
-                                                <i class="fas fa-info-circle"></i> &nbsp;
-                                                Información
-                                            </a>
+                                        <div class="dropdown">
+                                            <button class="btn" type="button" id="dropdownMenu2"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
 
-                                            <a class="dropdown-item" href="{{ route('athletes.edit', $athlete->id) }}">
-                                                <i class="fas fa-edit"></i> &nbsp;
-                                                Editar
-                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('athletes.show', $athlete->id) }}">
+                                                    <i class="fas fa-info-circle"></i> &nbsp;
+                                                    Información
+                                                </a>
+                                                @can('role', 'Admin')
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('athletes.edit', $athlete->id) }}">
+                                                        <i class="fas fa-edit"></i> &nbsp;
+                                                        Editar
+                                                    </a>
+                                                @endcan
+                                            </div>
                                         </div>
-                                    </div>
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             @endforeach
                         </x-slot>
 
                         <x-slot name="foot">
                             <tr>
-                                <th>ID</th>
+                                <th>Foto</th>
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
                                 <th>Telefono</th>

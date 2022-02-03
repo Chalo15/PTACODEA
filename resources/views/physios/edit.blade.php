@@ -1,4 +1,4 @@
-<x-app-layout title="Editar Documento">
+<x-app-layout title="Editar Fisioterapia">
 
     <div class="row">
         <div class="col mb-3">
@@ -32,22 +32,15 @@
 
 
                         @php
-
-                            $today = today()->toDateString();
-                            $lastWeek = today()
-                                ->subDays(7)
-                                ->toDateString();
-                            $nextWeek = today()
-                                ->addDay(7)
-                                ->toDateString();
-
+                        $today = today()->toDateString();
+                        $lastWeek = today()->subDays(7)->toDateString();
+                        $nextWeek = today()->addDay(7)->toDateString();
                         @endphp
                         <div class="form-group row">
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}"
-                                    value="{{ $physio->date }}" />
+                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ $physio->date }}" />
                             </div>
                         </div>
 
@@ -77,8 +70,7 @@
                         <div x-data="{ isOpen: {{ $physio->surgeries ? 'true' : 'false' }} }">
 
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" name="is_surgeries" id="is_surgeries"
-                                    x-model="isOpen">
+                                <input type="checkbox" class="form-check-input" name="is_surgeries" id="is_surgeries" x-model="isOpen">
                                 <label class="form-check-label" for="is_surgeries">
                                     ¿El atleta tiene alguna cirugía?
                                 </label>
@@ -101,8 +93,7 @@
                         <div x-data="{ isOpen: {{ $physio->fractures ? 'true' : 'false' }} }">
 
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" name="is_fractures" id="is_fractures"
-                                    x-model="isOpen">
+                                <input type="checkbox" class="form-check-input" name="is_fractures" id="is_fractures" x-model="isOpen">
                                 <label class="form-check-label" for="is_fractures">
                                     ¿El atleta tiene alguna fractura?
                                 </label>
@@ -142,8 +133,7 @@
                         <div class="form-group row">
                             <label for="inability" class="col-sm-4 col-form-label">Fecha de inactividad</label>
                             <div class="col-sm-8">
-                                <x-input name="inability" type="date" min="{{ date('Y-m-d') }}"
-                                    value="{{ $physio->inability }}" />
+                                <x-input name="inability" type="date" min="{{ date('Y-m-d') }}" value="{{ $physio->inability }}" />
                             </div>
                         </div>
 
@@ -151,8 +141,7 @@
                         <div class="form-group row">
                             <label for="count_session" class="col-sm-4 col-form-label">Cantidad de sesiones</label>
                             <div class="col-sm-8">
-                                <x-input name="count_session" type="number" min="1"
-                                    value="{{ $physio->count_session }}" />
+                                <x-input name="count_session" type="number" min="1" value="{{ $physio->count_session }}" />
                             </div>
                         </div>
 
@@ -166,8 +155,7 @@
                                         Seleccione
                                         -- </option>
                                     @foreach ($severities as $severity)
-                                        <option {{ old('severity') == $severity ? 'selected' : '' }}
-                                            value="{{ $severity }}">{{ $severity }}</option>
+                                    <option {{ old('severity') == $severity ? 'selected' : '' }} value="{{ $severity }}">{{ $severity }}</option>
                                     @endforeach
                                 </x-select>
                             </div>

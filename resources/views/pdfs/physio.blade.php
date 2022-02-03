@@ -1,100 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Documento Rutinario</title>
-    
+  <head>
+    <meta charset="utf-8">
+    <title>Informe de Sesion</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+
     <style>
-      /** Define the margins of your page **/
-      @page {
-        margin: 100px 25px;
-      }
+        .clearfix:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
 
-      header {
-        position: fixed;
-        top: -80px;
-        left: -40px;
-        right: -40px;
-        height: 60px;
+        a {
+          color: #5D6975;
+          text-decoration: underline;
+        }
 
-        /** Extra personal styles **/
-        background-color: #212529;
-        color: white;
-        text-align: center;
-        line-height: 35px;
-      }
+        body {
+          position: relative;
+          width: 19cm;  
+          height: 29.7cm; 
+          margin: 0 auto; 
+          color: #001028;
+          background: #FFFFFF; 
+          font-family: Arial, sans-serif; 
+          font-size: 12px; 
+          font-family: Arial;
+        }
 
-      footer {
-        position: fixed; 
-        bottom: -60px; 
-        left: 0px; 
-        right: 0px;
-        height: 50px; 
+        header {
+          padding: 10px 0;
+          margin-bottom: 30px;
+        }
 
-        /** Extra personal styles **/
-        background-color: #212529;
-        color: white;
-        text-align: center;
-        line-height: 35px;
-      }
+        #logo {
+          text-align: center;
+          margin-bottom: 10px;
+        }
 
-      #image {
-        position: fixed;
-        right: 20px;
-        top: 20px;
-        opacity: 0.1;
-      }
-      p {
+        #logo img {
+          width: 90px;
+        }
 
-        font-size: 120%;
-        margin-left: 30px; 
-      }
+        h1 {
+          border-top: 1px solid  #5D6975;
+          border-bottom: 1px solid  #5D6975;
+          color: #5D6975;
+          font-size: 2.4em;
+          line-height: 1.4em;
+          font-weight: normal;
+          text-align: center;
+          margin: 0 0 20px 0;
+          background: url(dimension.png);
+        }
+
+        #project {
+          float: left;
+        }
+
+        #project span {
+          color: #5D6975;
+          text-align: left;
+          width: 55px;
+          margin-right: 60px;
+          display: inline-block;
+        }
+
+        #company {
+          float: right;
+        }
+        
+        #company span {
+          color: #5D6975;
+          text-align: right;
+          width: 52px;
+          margin-right: 10px;
+          display: inline-block;
+        }
+
+        #project div,
+        #company div {
+          white-space: nowrap;
+          font-size: 1.3em;  
+          margin-top: 4px;    
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          border-spacing: 0;
+          margin-bottom: 20px;
+          font-size: 1.2em;
+        }
+
+        table tr:nth-child(2n-1) td {
+          background: #F5F5F5;
+        }
+
+        table th,
+        table td {
+          text-align: center;
+        }
+
+        table th {
+          padding: 5px 20px;
+          color: #5D6975;
+          border-bottom: 1px solid #C1CED9;
+          white-space: nowrap;        
+          font-weight: normal;
+        }
+
+        table .service,
+        table .desc {
+          text-align: left;
+        }
+
+        table td {
+          padding: 20px;
+          text-align: right;
+        }
+
+        table td.service,
+        table td.desc {
+          vertical-align: top;
+        }
+
+        table td.grand {
+          border-top: 1px solid #5D6975;;
+        }
+
+        #notices {
+          font-size: 1.3em;
+
+        }
+        #notices .notice {
+          color: #5D6975;
+        }
+
+        footer {
+          color: #5D6975;
+          width: 100%;
+          height: 30px;
+          position: absolute;
+          bottom: 0;
+          border-top: 1px solid #EC7063;
+          padding: 8px 0;
+          text-align: center;
+          font-size: 1.2em;
+        }
     </style>
   </head>
-<body>
-  <header>
-    <div id="image">
-      <img src="./img/1.png" >
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="./img/1.png">
+      </div>
+      <h1>INFORME DE SESION</h1>
+      <div id="company">
+        @php
+            $today = today()->toDateString();
+        @endphp
+        <div>CODEA ALAJUELA</div>
+        <div>MONSERRAT, ALAJUELA, COSTA RICA<br /> 20104, CR</div>
+        <div>(+506) 2442-1757</div>
+        <div><a href="info@codea.go.cr">info@codea.go.cr</a></div>
+        <div>{{ $today }}</div>
+      </div>
+      <div id="project">
 
-    </div>
-    <div id="text">
-      <h3>Polideportivo Monserrat</h3>
-      <h5>2442 1757</h5>
-
-    </div>
-    <div>
-      @php
-        $today = today()->toDateString();  
-      @endphp
-
-      <p>{{ $today }}</p>
-    </div>
-  </header>
-  
-  <main>
-
-    <div >
-      <p><strong>Fisioterapeuta:</strong> {{ $physio->user->full_name }}</p><br>
-      <p><strong>Nombre del Atleta:</strong> {{ $physio->athlete->user->full_name }}</p><br>
-      <p><strong>Fecha de Sesión:</strong> {{ $physio->date->isoFormat('LL') }}</p><br>
-      <p><strong>SPH:</strong> {{ $physio->sph }}</p><br>
-      <p><strong>APP:</strong> {{ $physio->app }}</p><br>
-      <p><strong>Tratamiento:</strong> {{ $physio->treatment }}</p><br>
-      <p><strong>Sugerencias:</strong> {{ $physio->sugeries }}</p><br>
-      <p><strong>Fracturas:</strong> {{ $physio->fractures }}</p><br>
-      <p><strong>Numero de Sesion:</strong> {{ $physio->count_session }}</p><br>
-      <p><strong>Grado de Severidad:</strong> {{ $physio->severity }}</p><br>
-      <p><strong>Detalles:</strong> {!! $physio->details !!}</p><br>
-      
-    </div>
-  </main>
-
-  <footer>
-    Copyright &copy; <?php echo date("Y");?> 
-  </footer>
-
-    
-</body>
+        <div><span>Fecha Sesion</span> {{ $physio->date->isoFormat('LL') }}</div>
+        <div><span>Fisioterapeuta</span> {{ $physio->user->full_name }}</div>
+        <div><span>Correo</span> <a href="{{ $physio->user->email }}">{{ $physio->user->email }}</a></div>
+        <div><span>Atleta</span> {{ $physio->athlete->user->full_name }}</div>
+      </div>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th class="service">RUBRO</th>
+            <th class="desc">COMENTARIO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="service">SPH</td>
+            <td class="desc">{{ $physio->sph }}</td>
+          </tr>
+          <tr>
+            <td class="service">APP</td>
+            <td class="desc">{{ $physio->app }}</td>
+          </tr>
+          <tr>
+            <td class="service">TRATAMIENTO</td>
+            <td class="desc">{{ $physio->treatment }}</td>
+          </tr>
+          <tr>
+            <td class="service">SUGERENCIAS</td>
+            <td class="desc">{{ $physio->sugeries }}</td>
+          </tr>
+          <tr>
+            <td class="service">FRACTURAS</td>
+            <td class="desc">{{ $physio->fractures }}</td>
+          </tr>
+          <tr>
+            <td class="service">GRADO DE SEVERIDAD</td>
+            <td class="desc">{{ $physio->severity }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="notices">
+        <div>Detalles adicionales:</div>
+        <div class="notice">{!! $physio->details !!}</div>
+      </div>
+    </main>
+    <footer>
+      Siguenos en nuestras redes sociales y/o buscanos en www.codea.go.cr
+    </footer>
+  </body>
 </html>

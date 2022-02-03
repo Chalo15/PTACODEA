@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Athlete;
+use App\Models\Sport;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AthleteFactory extends Factory
@@ -22,17 +24,20 @@ class AthleteFactory extends Factory
      */
     public function definition()
     {
+        $bloods = config('general.bloods');
+        $lateralities = config('general.lateralities');
+
         return [
-            'user_id' => $this->faker->unique()->randomElement(['15', '16', '17']),
-            'sport_id' => $this->faker->randomElement(['1', '2', '3', '4']),
+            'user_id' => User::factory()->create(['role_id' => 4]),
+            'sport_id' => Sport::all()->random(),
             'state' => $this->faker->randomElement(['A', 'A', 'a']),
-            'blood' => $this->faker->randomElement(['A+', 'B+', 'AB+', 'O-']),
-            'laterality' => $this->faker->randomElement(['D', 'I', 'A']),
-            'name_manager' => $this->faker->sentence(),
-            'lastname_manager' => $this->faker->sentence(),
-            'identification_manager' => $this->faker->randomNumber(),
-            'contact_manager' => $this->faker->randomNumber(),
-            'policy' => $this->faker->randomNumber(),
+            'blood' => $bloods[array_rand($bloods)],
+            'laterality' => $lateralities[array_rand($lateralities)],
+            'name_manager' => $this->faker->name(),
+            'lastname_manager' => $this->faker->lastName(),
+            'identification_manager' => $this->faker->randomNumber(9),
+            'contact_manager' => $this->faker->randomNumber(8),
+            'policy' => $this->faker->unique()->randomNumber(8),
             'manager' => "207910178",
         ];
     }

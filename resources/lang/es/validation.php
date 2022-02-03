@@ -213,6 +213,9 @@ return [
         'experience'             => 'años de experiencia',
         'contract_number'        => 'número de contrato',
         'contract_year'          => 'año de contrato',
-        'role_id'                => 'rol'
+        'role_id'                => 'rol',
+        'athlete_id'                => 'atleta',
+        'picture'                => 'imagen',
+        'other_phone'            => 'otro teléfono'
     ],
 ];

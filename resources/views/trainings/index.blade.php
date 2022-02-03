@@ -1,8 +1,11 @@
-<x-app-layout title="Usuarios">
+<x-app-layout title="Entrenamientos">
 
     <div class="row">
         <div class="col mb-3">
-            <a href="{{ route('home') }}" class="btn btn-success">Atrás</a>
+            <a href="{{ route('home') }}" class="btn btn-primary">
+                <i class="fas fa-reply"></i> &nbsp;
+                Atrás
+            </a>
         </div>
     </div>
 
@@ -10,10 +13,20 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Usuarios
-                    <a href="{{ route('users.create') }}" class="btn btn-success">
-                        Nuevo
-                    </a>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            Entrenamientos
+                        </div>
+
+                        <div class="col d-flex justify-content-end">
+                            @can('roles', 'Instructor')
+                                <a href="{{ route('trainings.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> &nbsp;
+                                    Nuevo
+                                </a>
+                            @endcan
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -22,21 +35,37 @@
                             <x-table>
                                 <x-slot name="head">
                                     <tr>
-                                        <th>Cédula</th>
+                                        <th>ID</th>
+                                        <th>Fecha</th>
+                                        <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
-                                        <th>Correo electrónico</th>
-                                        <th>Rol</th>
+                                        <th>Disciplina</th>
+                                        <th>Cédula del Instructor</th>
+                                        <th>Nombre Completo</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </x-slot>
 
                                 <x-slot name="body">
-                                    @foreach ($users as $user)
+                                    @foreach ($trainings as $training)
                                     <tr>
-                                        <td>{{ $user->identification }}</td>
-                                        <td>{{ $user->name . " " .  $user->last_name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role->description }}</td>
+                                        <td>{{ $training->id }}</td>
+                                        <td>{{ $training->date->isoFormat('LL') }}</td>
+                                        <td>{{ $training->athlete->user->identification }}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('athletes.show', $training->athlete->id) }}">
+                                                {{ $training->athlete->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td>{{ $training->athlete->sport->description }}</td>
+                                        <td>{{ $training->user->identification }}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('users.show', $training->user->id) }}">
+                                                {{ $training->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
                                         <td width="100px" class="text-center">
 
                                             <div class="dropdown">
@@ -44,13 +73,21 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </button>
 
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">
-                                                        <i class="fas fa-edit"></i> &nbsp;
-                                                        Editar
-                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        @can('roles', 'Instructor')
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('trainings.edit', $training) }}">
+                                                                <i class="fas fa-edit"></i> &nbsp;
+                                                                Editar
+                                                            </a>
+                                                        @endcan
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('trainings.generate-pdf', $training->id) }}">
+                                                            <i class="fas fa-download"></i> &nbsp;
+                                                            Descargar
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
 
                                         </td>
                                     </tr>
@@ -59,10 +96,13 @@
 
                                 <x-slot name="foot">
                                     <tr>
-                                        <th>Cédula</th>
+                                        <th>ID</th>
+                                        <th>Fecha</th>
+                                        <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
-                                        <th>Correo electrónico</th>
-                                        <th>Rol</th>
+                                        <th>Disciplina</th>
+                                        <th>Cédula del Instructor</th>
+                                        <th>Nombre Completo</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </x-slot>
@@ -70,11 +110,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col d-flex justify-content-end">
-                            {{ $users->links() }}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
