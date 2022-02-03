@@ -26,6 +26,7 @@
                             @endcan
                         </div>
                     </div>
+
                 </div>
 
                 <div class="card-body">
@@ -43,59 +44,63 @@
 
                         <x-slot name="body">
                             @foreach ($athletes as $athlete)
-                            <tr>
-                                <td class="text-center">
-                                    <img class="rounded" src="{{ $athlete->user->photo ? asset($athlete->user->photo) : asset('images/default.png') }}" width="30" height="30">
-                                </td>
-                                <td>{{ $athlete->user->identification }}</td>
-                                <td>{{ $athlete->user->name . " " . $athlete->user->lastname }}</td>
-                                <td>{{ $athlete->user->phone }}</td>
-                                <td>{{ $athlete->sport->description }}</td>
-                                <td width="100px" class="text-center">
-
-                                    <div class="dropdown">
-                                        <div class="dropdown">
-                                            <button class="btn" type="button" id="dropdownMenu2"
-                                                data-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
-
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('athletes.show', $athlete->id) }}">
-                                                    <i class="fas fa-info-circle"></i> &nbsp;
-                                                    Información
-                                                </a>
-                                                @can('role', ['Admin'])
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('athletes.edit', $athlete->id) }}">
-                                                        <i class="fas fa-edit"></i> &nbsp;
-                                                        Editar
-                                                    </a>
-                                                @endcan
-                                            </div>
-                                        </div>
-
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="rounded"
+                                            src="{{ $athlete->user->photo ? asset($athlete->user->photo) : asset('images/default.png') }}"
+                                            width="30" height="30">
                                     </td>
-                                </tr>
-                            @endforeach
-                        </x-slot>
+                                    <td>{{ $athlete->user->identification }}</td>
+                                    <td>{{ $athlete->user->name . ' ' . $athlete->user->lastname }}</td>
+                                    <td>{{ $athlete->user->phone }}</td>
+                                    <td>{{ $athlete->sport->description }}</td>
+                                    <td width="100px" class="text-center">
 
-                        <x-slot name="foot">
-                            <tr>
-                                <th>Foto</th>
-                                <th>Identificación</th>
-                                <th>Nombre Completo</th>
-                                <th>Telefono</th>
-                                <th>Disciplina</th>
-                                <th>Acciones</th>
+                                        <div class="dropdown">
+                                            <<<<<<< HEAD=======>>>>>>> origin/Pablo
+                                                <div class="dropdown">
+                                                    <button class="btn" type="button" id="dropdownMenu2"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('athletes.show', $athlete->id) }}">
+                                                            <i class="fas fa-info-circle"></i> &nbsp;
+                                                            Información
+                                                        </a>
+                                                        <<<<<<< HEAD @can('role', ['Admin'])=======@can('role', 'Admin'
+                                                            )>>>>>>> origin/Pablo
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('athletes.edit', $athlete->id) }}">
+                                                                <i class="fas fa-edit"></i> &nbsp;
+                                                                Editar
+                                                            </a>
+                                                        @endcan
+                                                </div>
+                                            </div>
+
+                                </td>
                             </tr>
-                        </x-slot>
-                    </x-table>
+                        @endforeach
+                    </x-slot>
 
-                </div>
+                    <x-slot name="foot">
+                        <tr>
+                            <th>Foto</th>
+                            <th>Identificación</th>
+                            <th>Nombre Completo</th>
+                            <th>Telefono</th>
+                            <th>Disciplina</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </x-slot>
+                </x-table>
+
             </div>
         </div>
     </div>
+</div>
 
 </x-app-layout>

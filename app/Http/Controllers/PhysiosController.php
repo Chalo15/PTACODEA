@@ -128,8 +128,6 @@ class PhysiosController extends Controller
     {
         $pdf = PDF::loadView('pdfs.physio', compact('physio'));
 
-        return $pdf->download('document.pdf');
-
-        return $pdf->download($physio->athlete->user->full_name . '.pdf');
+        return $pdf->stream($physio->athlete->user->full_name . '.pdf');
     }
 }

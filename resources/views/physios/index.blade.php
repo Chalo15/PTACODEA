@@ -82,7 +82,7 @@
                                                         Editar
                                                     </a>
                                                     @endcan
-                                                    <a class="dropdown-item" href="{{ route('physios.generate-pdf', $physio->id) }}">
+                                                    <a class="dropdown-item" href="{{ route('physios.generate-pdf', $physio->id) }}" target="_blank">
                                                         <i class="fas fa-download"></i> &nbsp;
                                                         Descargar
                                                     </a>
