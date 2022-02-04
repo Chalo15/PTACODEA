@@ -21,7 +21,6 @@ class Training extends Model
         'type_training',
         'calification',
         'time',
-        'distance',
         'level',
         'planification',
         'lesion',
