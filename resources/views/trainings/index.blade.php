@@ -86,7 +86,7 @@
                                                         @endcan
                                                         <a class="dropdown-item"
                                                             href="{{ route('trainings.generate-pdf', $training->id) }}"
-                                                            target="_blank">>
+                                                            target="_blank">
                                                             <i class="fas fa-download"></i> &nbsp;
                                                             Descargar
                                                         </a>
