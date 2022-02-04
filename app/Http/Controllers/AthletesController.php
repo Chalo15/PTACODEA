@@ -22,7 +22,7 @@ class AthletesController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware("can:role,'Admin'");
+        $this->middleware("can:role,'Admin', 'Musculacion', 'Fisioterapia', 'Instructor'");
     }
 
     /**

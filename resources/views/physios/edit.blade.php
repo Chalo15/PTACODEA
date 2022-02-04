@@ -40,7 +40,7 @@
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ $physio->date }}" />
+                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{old('date') ?? $physio->date }}" />
                             </div>
                         </div>
 
@@ -48,7 +48,7 @@
                         <div class="form-group row">
                             <label for="sph" class="col-sm-4 col-form-label">SPH</label>
                             <div class="col-sm-8">
-                                <x-textarea name="sph" value="{{ $physio->sph }}" />
+                                <x-textarea name="sph" value="{{old('sph') ?? $physio->sph }}" />
                             </div>
                         </div>
 
@@ -56,14 +56,14 @@
                         <div class="form-group row">
                             <label for="app" class="col-sm-4 col-form-label">APP</label>
                             <div class="col-sm-8">
-                                <x-textarea name="app" value="{{ $physio->app }}" />
+                                <x-textarea name="app" value="{{ old('app') ??$physio->app }}" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="treatment" class="col-sm-4 col-form-label">Tratamiento</label>
                             <div class="col-sm-8">
-                                <x-textarea name="treatment" value="{{ $physio->treatment }}" />
+                                <x-textarea name="treatment" value="{{old('treatment') ?? $physio->treatment }}" />
                             </div>
                         </div>
 
@@ -82,7 +82,7 @@
                                     <label for="surgeries" class="col-sm-4 col-form-label">Detalle del
                                         tratamiento</label>
                                     <div class="col-sm-8">
-                                        <x-textarea name="surgeries" value="{{ $physio->surgeries }}" />
+                                        <x-textarea name="surgeries" value="{{old('surgeries') ?? $physio->surgeries }}" />
                                     </div>
                                 </div>
 
@@ -105,7 +105,7 @@
                                     <label for="fractures" class="col-sm-4 col-form-label">Detalle de la
                                         fractura</label>
                                     <div class="col-sm-8">
-                                        <x-textarea name="fractures" value="{{ $physio->fractures }}" />
+                                        <x-textarea name="fractures" value="{{old('fractures') ?? $physio->fractures }}" />
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                         <div class="form-group row">
                             <label for="session_start" class="col-sm-4 col-form-label">Hora de inicio</label>
                             <div class="col-sm-8">
-                                <x-input name="session_start" type="time" value="{{ $physio->session_start }}" />
+                                <x-input name="session_start" type="time" value="{{old('session_start') ?? $physio->session_start }}" />
                             </div>
                         </div>
 
@@ -125,7 +125,7 @@
                         <div class="form-group row">
                             <label for="session_end" class="col-sm-4 col-form-label">Hora de fin</label>
                             <div class="col-sm-8">
-                                <x-input name="session_end" type="time" value="{{ $physio->session_end }}" />
+                                <x-input name="session_end" type="time" value="{{old('session_end') ?? $physio->session_end }}" />
                             </div>
                         </div>
 
@@ -133,7 +133,7 @@
                         <div class="form-group row">
                             <label for="inability" class="col-sm-4 col-form-label">Fecha de inactividad</label>
                             <div class="col-sm-8">
-                                <x-input name="inability" type="date" min="{{ date('Y-m-d') }}" value="{{ $physio->inability }}" />
+                                <x-input name="inability" type="date" min="{{ date('Y-m-d') }}" value="{{old('inability') ?? $physio->inability }}" />
                             </div>
                         </div>
 
@@ -141,7 +141,7 @@
                         <div class="form-group row">
                             <label for="count_session" class="col-sm-4 col-form-label">Cantidad de sesiones</label>
                             <div class="col-sm-8">
-                                <x-input name="count_session" type="number" min="1" value="{{ $physio->count_session }}" />
+                                <x-input name="count_session" type="number" min="1" value="{{old('count_session') ?? $physio->count_session }}" />
                             </div>
                         </div>
 
@@ -155,7 +155,7 @@
                                         Seleccione
                                         -- </option>
                                     @foreach ($severities as $severity)
-                                    <option {{ old('severity') == $severity ? 'selected' : '' }} value="{{ $severity }}">{{ $severity }}</option>
+                                    <option {{ old('severity') == $severity ? 'selected' : '' }} value="{{old('severity') ?? $severity }}">{{ $severity }}</option>
                                     @endforeach
                                 </x-select>
                             </div>
