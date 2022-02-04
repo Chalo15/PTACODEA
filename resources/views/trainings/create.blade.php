@@ -61,7 +61,7 @@
 
                         {{-- calification --}}
                         <div class="form-group row">
-                            <label for="calification" class="col-sm-4 col-form-label">Calcificacion</label>
+                            <label for="calification" class="col-sm-4 col-form-label">Calificacion</label>
                             <div class="col-sm-8">
                                 <x-input name="calification" value="{{ old('calification') }}" />
                             </div>
