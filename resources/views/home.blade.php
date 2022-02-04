@@ -1,5 +1,5 @@
 <x-app-layout title="Inicio">
-    {{-- --------------------PRIMER BLOQUE ADMIN------------------ --}}
+    {{-- --------------------PRIMER BLOQUE------------------ --}}
     <div class="row">
         @can('role', ['Admin'])
             <div class="col-md mb-3">
@@ -20,7 +20,7 @@
             </div>
         @endcan
 
-        @can('role', ['Admin', 'Fisioterapia', 'Musculacion'])
+        @can('role', ['Admin', 'Musculacion', 'Fisioterapia', 'Instructor'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -59,7 +59,7 @@
         @endcan
     </div>
 
-    {{-- --------------------SEGUNDO BLOQUE ADMIN------------------ --}}
+    {{-- --------------------SEGUNDO BLOQUE------------------ --}}
 
     <div class="row">
         @can('role', ['Admin', 'Musculacion'])
@@ -72,7 +72,8 @@
                         <i class="fas fa-dumbbell fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
                     </div>
                 </div>
             </div>
@@ -88,7 +89,8 @@
                         <i class="fas fa-user-md fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
                     </div>
                 </div>
             </div>
@@ -104,7 +106,46 @@
                         <i class="fas fa-medal fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
+                    </div>
+                </div>
+            </div>
+        @endcan
+    </div>
+
+    {{-- --------------------TERCER BLOQUE------------------ --}}
+
+    <div class="row">
+        @can('role', ['Admin', 'Fisioterapia'])
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Citas Fisioterapia
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-calendar-alt fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
+                    </div>
+                </div>
+            </div>
+        @endcan
+
+        @can('role', ['Admin', 'Musculacion'])
+            <div class="col-md mb-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Citas Musculacion
+                    </div>
+                    <div class="card-body">
+                        <i class="fas fa-calendar-week fa-5x"></i>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
                     </div>
                 </div>
             </div>

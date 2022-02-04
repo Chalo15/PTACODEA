@@ -9,6 +9,8 @@ class Training extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $casts = [
         'date' => 'date'
     ];
@@ -17,9 +19,8 @@ class Training extends Model
         'athlete_id',
         'date',
         'type_training',
-        'calcification',
+        'calification',
         'time',
-        'distance',
         'level',
         'planification',
         'lesion',

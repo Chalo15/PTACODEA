@@ -27,7 +27,7 @@
                                 <div class="form-group row">
                                     <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
                                     <div class="col-sm-8">
-                                        <x-input name="identification" value="{{  $athlete->user->identification }}" />
+                                        <x-input name="identification" value="{{ old('identification') ?? $athlete->user->identification }}" />
                                     </div>
                                 </div>
 
@@ -35,7 +35,7 @@
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
                                     <div class="col-sm-8">
-                                        <x-input name="name" value="{{ $athlete->user->name }}" />
+                                        <x-input name="name" value="{{ old('name') ?? $athlete->user->name }}" />
                                     </div>
                                 </div>
 
@@ -43,7 +43,7 @@
                                 <div class="form-group row">
                                     <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                                     <div class="col-sm-8">
-                                        <x-input name="last_name" value="{{ $athlete->user->last_name }}" />
+                                        <x-input name="last_name" value="{{ old('last_name') ?? $athlete->user->last_name }}" />
                                     </div>
                                 </div>
 
@@ -51,7 +51,7 @@
                                 <div class="form-group row">
                                     <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                                     <div class="col-sm-8">
-                                        <x-input type="date" name="birthdate" value="{{ $athlete->user->birthdate }}" />
+                                        <x-input type="date" name="birthdate" value="{{old('birthdate') ?? $athlete->user->birthdate }}" />
                                     </div>
                                 </div>
 
@@ -64,7 +64,7 @@
                                             <option {{ $athlete->user->province ? '' : 'selected' }} value=""> -- Seleccione --
                                             </option>
                                             @foreach ($provinces as $province)
-                                            <option {{ $athlete->user->province == $province ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
+                                            <option {{ $athlete->user->province == $province ? 'selected' : '' }} value="{{old('province') ?? $province }}">{{ $province }}</option>
                                             @endforeach
                                         </x-select>
                                     </div>
@@ -74,7 +74,7 @@
                                 <div class="form-group row">
                                     <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
                                     <div class="col-sm-8">
-                                        <x-input name="city" value="{{ $athlete->user->city }}" />
+                                        <x-input name="city" value="{{ old('city') ?? $athlete->user->city }}" />
                                     </div>
                                 </div>
 
@@ -85,7 +85,7 @@
                                 <div class="form-group row">
                                     <label for="email" class="col-sm-4 col-form-label">Correo Electrónico</label>
                                     <div class="col-sm-8">
-                                        <x-input type="email" name="email" value="{{ $athlete->user->email }}" />
+                                        <x-input type="email" name="email" value="{{old('email') ?? $athlete->user->email }}" />
                                     </div>
                                 </div>
 
@@ -94,7 +94,7 @@
                                 <div class="form-group row">
                                     <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                                     <div class="col-sm-8">
-                                        <x-input name="phone" type="number" value="{{ $athlete->user->phone }}" />
+                                        <x-input name="phone" type="number" value="{{ old('phone') ?? $athlete->user->phone }}" />
                                     </div>
                                 </div>
 
@@ -103,7 +103,7 @@
                                     <label for="address" class="col-sm-4 col-form-label">Dirección</label>
                                     <div class="col-sm-8">
                                         <x-textarea name="address">
-                                            {{ $athlete->user->address }}
+                                            {{old('address') ?? $athlete->user->address }}
                                         </x-textarea>
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@
                                     <div class="col-sm-8">
                                         @foreach ($genders as $gender)
                                         <div class="custom-control custom-radio">
-                                            <input {{ $athlete->user->gender && $athlete->user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $athlete->user->gender }}">
+                                            <input {{ $athlete->user->gender && $athlete->user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{old('gender') ?? $athlete->user->gender }}">
                                             <label class="custom-control-label" for="gender-{{ $loop->index }}">
                                                 {{ $gender }}
                                             </label>
@@ -155,7 +155,7 @@
                                     <x-select2 name="coach_id">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($coaches as $coach)
-                                        <option {{ $athlete->coach->id == $coach->id ? 'selected' : '' }} value="{{ $coach->id }}">{{ $coach->user->identification . ' | ' . $coach->user->full_name }}</option>
+                                        <option {{ $athlete->coach->id == $coach->id ? 'selected' : '' }} value="{{ old('coach_id') ?? $coach->id }}">{{ $coach->user->identification . ' | ' . $coach->user->full_name }}</option>
                                         @endforeach
                                     </x-select2>
                                 </div>
@@ -168,7 +168,7 @@
                                     <x-select name="blood">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($bloods as $blood)
-                                        <option {{ $athlete->blood == $blood ? 'selected' : '' }} value="{{ $blood }}">{{ $blood }}</option>
+                                        <option {{ $athlete->blood == $blood ? 'selected' : '' }} value="{{ old('blood') ?? $blood }}">{{ $blood }}</option>
                                         @endforeach
                                     </x-select>
                                 </div>
@@ -180,7 +180,7 @@
                                 <div class="col-sm-8">
                                     @foreach ($lateralities as $laterality)
                                     <div class="custom-control custom-radio">
-                                        <input {{ $athlete->laterality == $laterality ? 'checked' : '' }} class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
+                                        <input {{ $athlete->laterality == $laterality ? 'checked' : '' }} class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ old('laterality') ?? $laterality }}">
                                         <label class="custom-control-label" for="laterality-{{ $loop->index }}">
                                             {{ $laterality }}
                                         </label>
@@ -212,7 +212,7 @@
                                     <div class="form-group row">
                                         <label for="identification_manager" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
                                         <div class="col-sm-8">
-                                            <x-input name="identification_manager" value="{{ $athlete->identification_manager }}" />
+                                            <x-input name="identification_manager" value="{{old('identification_manager') ?? $athlete->identification_manager }}" />
                                         </div>
                                     </div>
 
@@ -220,7 +220,7 @@
                                     <div class="form-group row">
                                         <label for="name_manager" class="col-sm-4 col-form-label">Nombre</label>
                                         <div class="col-sm-8">
-                                            <x-input name="name_manager" value="{{ $athlete->name_manager }}" />
+                                            <x-input name="name_manager" value="{{old('name_manager') ?? $athlete->name_manager }}" />
                                         </div>
                                     </div>
 
@@ -228,7 +228,7 @@
                                     <div class="form-group row">
                                         <label for="lastname_manager" class="col-sm-4 col-form-label">Apellidos</label>
                                         <div class="col-sm-8">
-                                            <x-input name="lastname_manager" value="{{ $athlete->lastname_manager }}" />
+                                            <x-input name="lastname_manager" value="{{old('lastname_manager') ?? $athlete->lastname_manager }}" />
                                         </div>
                                     </div>
 
@@ -236,7 +236,7 @@
                                     <div class="form-group row">
                                         <label for="contact_manager" class="col-sm-4 col-form-label">Teléfono</label>
                                         <div class="col-sm-8">
-                                            <x-input name="contact_manager" type="number" value="{{ $athlete->contact_manager }}" />
+                                            <x-input name="contact_manager" type="number" value="{{old('contact_manager') ?? $athlete->contact_manager }}" />
                                         </div>
                                     </div>
 
@@ -247,7 +247,7 @@
                                             <x-select name="manager">
                                                 <option disabled {{ $athlete->manager ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                                 @foreach ($relationships as $relationship)
-                                                <option {{ $athlete->manager == $relationship ? 'selected' : '' }} value="{{ $relationship }}">{{ $relationship }}</option>
+                                                <option {{ $athlete->manager == $relationship ? 'selected' : '' }} value="{{old('relationship') ??  $relationship }}">{{ $relationship }}</option>
                                                 @endforeach
                                             </x-select>
                                         </div>
@@ -257,7 +257,7 @@
                                     <div class="form-group row">
                                         <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
                                         <div class="col-sm-8">
-                                            <x-input name="policy" type="number" value="{{ $athlete->policy }}" />
+                                            <x-input name="policy" type="number" value="{{old('policy') ?? $athlete->policy }}" />
                                         </div>
                                     </div>
 

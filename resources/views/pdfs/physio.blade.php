@@ -4,145 +4,151 @@
   <head>
     <meta charset="utf-8">
     <title>Informe de Sesion</title>
-    <link href="{{ public_path('css/app.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="style.css" media="all" />
 
     <style>
         .clearfix:after {
-            content: "";
-            display: table;
-            clear: both;
+          content: "";
+          display: table;
+          clear: both;
         }
 
         a {
-            color: #5D6975;
-            text-decoration: underline;
+          color: #5D6975;
+          text-decoration: underline;
         }
 
         body {
-            position: relative;
-            width: 19cm;  
-            height: 29.7cm; 
-            margin: 0 auto; 
-            color: #001028;
-            background: #FFFFFF; 
-            font-family: Arial, sans-serif; 
-            font-size: 12px; 
-            font-family: Arial;
+          position: relative;
+          width: 19cm;  
+          height: 29.7cm; 
+          margin: 0 auto; 
+          color: #001028;
+          background: #FFFFFF; 
+          font-family: Arial, sans-serif; 
+          font-size: 12px; 
+          font-family: Arial;
         }
 
         header {
-            padding: 10px 0;
-            margin-bottom: 30px;
+          padding: 10px 0;
+          margin-bottom: 30px;
         }
 
         #logo {
-            text-align: center;
-            margin-bottom: 10px;
+          text-align: center;
+          margin-bottom: 10px;
         }
 
         #logo img {
-            width: 90px;
+          width: 90px;
         }
 
         h1 {
-            border-top: 1px solid  #5D6975;
-            border-bottom: 1px solid  #5D6975;
-            color: #5D6975;
-            font-size: 2.4em;
-            line-height: 1.4em;
-            font-weight: normal;
-            text-align: center;
-            margin: 0 0 20px 0;
-            background: url(dimension.png);
+          border-top: 1px solid  #5D6975;
+          border-bottom: 1px solid  #5D6975;
+          color: #5D6975;
+          font-size: 2.4em;
+          line-height: 1.4em;
+          font-weight: normal;
+          text-align: center;
+          margin: 0 0 20px 0;
+          background: url(dimension.png);
         }
 
         #project {
-            float: left;
+          float: left;
         }
 
         #project span {
-            color: #5D6975;
-            text-align: right;
-            width: 52px;
-            margin-right: 10px;
-            display: inline-block;
-            font-size: 0.8em;
+          color: #5D6975;
+          text-align: left;
+          width: 55px;
+          margin-right: 60px;
+          display: inline-block;
         }
 
         #company {
-            float: right;
-            text-align: right;
+          float: right;
+        }
+        
+        #company span {
+          color: #5D6975;
+          text-align: right;
+          width: 52px;
+          margin-right: 10px;
+          display: inline-block;
         }
 
         #project div,
         #company div {
-            white-space: nowrap;        
+          white-space: nowrap;
+          font-size: 1.3em;  
+          margin-top: 4px;    
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            border-spacing: 0;
-            margin-bottom: 20px;
+          width: 100%;
+          border-collapse: collapse;
+          border-spacing: 0;
+          margin-bottom: 20px;
+          font-size: 1.2em;
         }
 
         table tr:nth-child(2n-1) td {
-            background: #F5F5F5;
+          background: #F5F5F5;
         }
 
         table th,
         table td {
-            text-align: center;
+          text-align: center;
         }
 
         table th {
-            padding: 5px 20px;
-            color: #5D6975;
-            border-bottom: 1px solid #C1CED9;
-            white-space: nowrap;        
-            font-weight: normal;
+          padding: 5px 20px;
+          color: #5D6975;
+          border-bottom: 1px solid #C1CED9;
+          white-space: nowrap;        
+          font-weight: normal;
         }
 
         table .service,
         table .desc {
-            text-align: left;
+          text-align: left;
         }
 
         table td {
-            padding: 20px;
-            text-align: right;
+          padding: 20px;
+          text-align: right;
         }
 
         table td.service,
         table td.desc {
-            vertical-align: top;
-        }
-
-        table td.unit,
-        table td.qty,
-        table td.total {
-            font-size: 1.2em;
+          vertical-align: top;
         }
 
         table td.grand {
-            border-top: 1px solid #5D6975;;
+          border-top: 1px solid #5D6975;;
         }
 
+        #notices {
+          font-size: 1.3em;
+
+        }
         #notices .notice {
-            color: #5D6975;
-            font-size: 1.2em;
+          color: #5D6975;
         }
 
         footer {
-            color: #5D6975;
-            width: 100%;
-            height: 30px;
-            position: absolute;
-            bottom: 0;
-            border-top: 1px solid #C1CED9;
-            padding: 8px 0;
-            text-align: center;
+          color: #5D6975;
+          width: 100%;
+          height: 30px;
+          position: absolute;
+          bottom: 0;
+          border-top: 1px solid #EC7063;
+          padding: 8px 0;
+          text-align: center;
+          font-size: 1.2em;
         }
     </style>
   </head>
@@ -151,83 +157,70 @@
       <div id="logo">
         <img src="./img/1.png">
       </div>
-      <h1>Informe de sesion de fisioterapia</h1>
-      <div id="company" class="clearfix">
-        <div>Company Name</div>
-        <div>455 Foggy Heights,<br /> AZ 85004, US</div>
-        <div>(602) 519-0450</div>
-        <div><a href="mailto:company@example.com">company@example.com</a></div>
+      <h1>INFORME DE SESION</h1>
+      <div id="company">
+
+        @php
+          setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
+          $today = strftime("%d de %B del %Y"); 
+        @endphp
+        
+        <div>CODEA ALAJUELA</div>
+        <div>MONSERRAT, ALAJUELA, CR<br /> 20104</div>
+        <div>(+506) 2442-1757</div>
+        <div><a href="info@codea.go.cr">info@codea.go.cr</a></div>
+        <div>{{ $today }}</div>
       </div>
       <div id="project">
-        <div><span>Institucion:</span>CODEA ALAJUELA</div>
-        <div><span>Direccion</span> Alajuela,Codea, 200 norte del City Mall</div>
-        <div><span>Correo:</span> <a href="codea@gmail.com">codea@gmail.com</a></div>
-        <div><span>Fecha:</span> August 17, 2015</div>
-        <div><span>DUE DATE</span> September 17, 2015</div>
+
+        <div><span>Fecha Sesion</span> {{ $physio->date->isoFormat('LL') }}</div>
+        <div><span>Fisioterapeuta</span> {{ $physio->user->full_name }}</div>
+        <div><span>Correo</span> <a href="{{ $physio->user->email }}">{{ $physio->user->email }}</a></div>
+        <div><span>Atleta</span> {{ $physio->athlete->user->full_name }}</div>
       </div>
     </header>
-    
     <main>
       <table>
         <thead>
           <tr>
-            <th class="service">SERVICE</th>
-            <th class="desc">DESCRIPTION</th>
-            <th>PRICE</th>
-            <th>QTY</th>
-            <th>TOTAL</th>
+            <th class="service">RUBRO</th>
+            <th class="desc">COMENTARIO</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="service">Design</td>
-            <td class="desc">Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">26</td>
-            <td class="total">$1,040.00</td>
+            <td class="service">SPH</td>
+            <td class="desc">{{ $physio->sph }}</td>
           </tr>
           <tr>
-            <td class="service">Development</td>
-            <td class="desc">Developing a Content Management System-based Website</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">80</td>
-            <td class="total">$3,200.00</td>
+            <td class="service">APP</td>
+            <td class="desc">{{ $physio->app }}</td>
           </tr>
           <tr>
-            <td class="service">SEO</td>
-            <td class="desc">Optimize the site for search engines (SEO)</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">20</td>
-            <td class="total">$800.00</td>
+            <td class="service">TRATAMIENTO</td>
+            <td class="desc">{{ $physio->treatment }}</td>
           </tr>
           <tr>
-            <td class="service">Training</td>
-            <td class="desc">Initial training sessions for staff responsible for uploading web content</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">4</td>
-            <td class="total">$160.00</td>
+            <td class="service">SUGERENCIAS</td>
+            <td class="desc">{{ $physio->sugeries }}</td>
           </tr>
           <tr>
-            <td colspan="4">SUBTOTAL</td>
-            <td class="total">$5,200.00</td>
+            <td class="service">FRACTURAS</td>
+            <td class="desc">{{ $physio->fractures }}</td>
           </tr>
           <tr>
-            <td colspan="4">TAX 25%</td>
-            <td class="total">$1,300.00</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="grand total">GRAND TOTAL</td>
-            <td class="grand total">$6,500.00</td>
+            <td class="service">GRADO DE SEVERIDAD</td>
+            <td class="desc">{{ $physio->severity }}</td>
           </tr>
         </tbody>
       </table>
       <div id="notices">
-        <div>NOTICE:</div>
-        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+        <div>Detalles adicionales:</div>
+        <div class="notice">{!! $physio->details !!}</div>
       </div>
     </main>
     <footer>
-      Invoice was created on a computer and is valid without the signature and seal.
+      Siguenos en nuestras redes sociales y/o buscanos en www.codea.go.cr
     </footer>
   </body>
 </html>

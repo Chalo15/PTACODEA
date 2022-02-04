@@ -19,15 +19,16 @@ class CreateTrainingsTable extends Migration
             $table->foreignId('athlete_id')->constrained('athletes');
             $table->date('date');
             $table->string('type_training');
-            $table->string('calcification');
+            $table->string('calification');
             $table->string('time');
-            $table->float('distance')->nullable();
             $table->string('level');
+            $table->string('discipline');
             $table->text('get_better');
             $table->text('planification');
             $table->string('lesion');
             $table->longText('details');
             $table->timestamps();
+
         });
     }
 

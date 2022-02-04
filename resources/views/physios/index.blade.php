@@ -18,16 +18,14 @@
                             Fisioterapias
                         </div>
 
-                        @can('role', ['Fisioterapia'])
                         <div class="col d-flex justify-content-end">
-                            @can('role', 'Fisioterapia')
+                            @can('role', ['Fisioterapia'])
                                 <a href="{{ route('physios.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo
                                 </a>
                             @endcan
                         </div>
-                        @endcan
                     </div>
                 </div>
 
@@ -50,46 +48,52 @@
 
                                 <x-slot name="body">
                                     @foreach ($physios as $physio)
-                                    <tr>
-                                        <td>{{ $physio->id }}</td>
-                                        <td>{{ $physio->date->isoFormat('LL') }}</td>
-                                        <td>{{ $physio->athlete->user->identification }}</td>
-                                        <td>
-                                            <a target="_blank" class="link" href="{{ route('athletes.show', $physio->athlete->id) }}">
-                                                {{ $physio->athlete->user->full_name }}
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </a>
-                                        </td>
-                                        <td>{{ $physio->athlete->sport->description }}</td>
-                                        <td>{{ $physio->user->identification }}</td>
-                                        <td>
-                                            <a target="_blank" class="link" href="{{ route('users.show', $physio->user->id) }}">
-                                                {{ $physio->user->full_name }}
-                                                <i class="fas fa-external-link-alt"></i>
-                                            </a>
-                                        </td>
-                                        <td width="100px" class="text-center">
+                                        <tr>
+                                            <td>{{ $physio->id }}</td>
+                                            <td>{{ $physio->date->isoFormat('LL') }}</td>
+                                            <td>{{ $physio->athlete->user->identification }}</td>
+                                            <td>
+                                                <a target="_blank" class="link"
+                                                    href="{{ route('athletes.show', $physio->athlete->id) }}">
+                                                    {{ $physio->athlete->user->full_name }}
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                            </td>
+                                            <td>{{ $physio->athlete->sport->description }}</td>
+                                            <td>{{ $physio->user->identification }}</td>
+                                            <td>
+                                                <a target="_blank" class="link"
+                                                    href="{{ route('users.show', $physio->user->id) }}">
+                                                    {{ $physio->user->full_name }}
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                            </td>
+                                            <td width="100px" class="text-center">
 
-                                            <div class="dropdown">
-                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </button>
+                                                <div class="dropdown">
+                                                    <button class="btn" type="button" id="dropdownMenu2"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
 
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    @can('role', ['Fisioterapia'])
-                                                    <a class="dropdown-item" href="{{ route('physios.edit', $physio) }}">
-                                                        <i class="fas fa-edit"></i> &nbsp;
-                                                        Editar
-                                                    </a>
-                                                    @endcan
-                                                    <a target="_blank" class="dropdown-item" href="{{ route('physios.generate-pdf', $physio->id) }}">
-                                                        <i class="fas fa-download"></i> &nbsp;
-                                                        Descargar
-                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        @can('role', ['Fisioterapia'])
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('physios.edit', $physio) }}">
+                                                                <i class="fas fa-edit"></i> &nbsp;
+                                                                Editar
+                                                            </a>
+                                                        @endcan
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('physios.generate-pdf', $physio->id) }}"
+                                                            target="_blank">
+                                                            <i class="fas fa-download"></i> &nbsp;
+                                                            Descargar
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </x-slot>
 
