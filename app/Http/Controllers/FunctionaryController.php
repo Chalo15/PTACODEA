@@ -21,6 +21,8 @@ class FunctionaryController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware("can:role,'Admin'");
     }
 
     public function guardarFuncionario(Request $request)
@@ -86,7 +88,7 @@ class FunctionaryController extends Controller
 
     function list(){
         $athlete = new Athlete;
-        $athlete = Athlete::where("state", "=", 'a')->get(); 
+        $athlete = Athlete::where("state", "=", 'a')->get();
         $user = $athlete->map->user->flatten();
 
         return view('physiotherapy.listAthletes', compact('user'));
@@ -94,7 +96,7 @@ class FunctionaryController extends Controller
     function appointment($id){
 
         $users = new User;
-        $users = User::where("id", "=", $id)->first(); 
+        $users = User::where("id", "=", $id)->first();
 
         $athletes = new Athlete;
         $athletes = Athlete::where("user_id","=",$users->id)->first();
@@ -103,12 +105,12 @@ class FunctionaryController extends Controller
         $sports = Sport::where("id","=",$athletes->sport_id)->first();
 
 
-        return view('physiotherapy.appointment', compact('users'), compact('sports')); 
+        return view('physiotherapy.appointment', compact('users'), compact('sports'));
     }
 
     function catalog(){
         $athlete = new Athlete;
-        $athlete = Athlete::where("state", "=", 'a')->get(); 
+        $athlete = Athlete::where("state", "=", 'a')->get();
         $user = $athlete->map->user->flatten();
 
         return view('musculation.catalogAthletes', compact('user'));
@@ -116,7 +118,7 @@ class FunctionaryController extends Controller
 
     function report($id){
         $users = new User;
-        $users = User::where("id", "=", $id)->first(); 
+        $users = User::where("id", "=", $id)->first();
 
         return view('musculation.report', compact('users'));
     }

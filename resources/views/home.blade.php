@@ -20,7 +20,7 @@
             </div>
         @endcan
 
-        @can('role', ['Admin'])
+        @can('role', ['Admin', 'Musculacion', 'Fisioterapia', 'Instructor'])
             <div class="col-md mb-3">
                 <div class="card text-center">
                     <div class="card-header">
@@ -72,7 +72,8 @@
                         <i class="fas fa-dumbbell fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('musculars.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
                     </div>
                 </div>
             </div>
@@ -88,7 +89,8 @@
                         <i class="fas fa-user-md fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('physios.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
                     </div>
                 </div>
             </div>
@@ -104,7 +106,8 @@
                         <i class="fas fa-medal fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="{{ route('trainings.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
                     </div>
                 </div>
             </div>
@@ -124,7 +127,8 @@
                         <i class="fas fa-calendar-alt fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="#" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
                     </div>
                 </div>
             </div>
@@ -140,7 +144,8 @@
                         <i class="fas fa-calendar-week fa-5x"></i>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary btn-block">Acceder</a>
+                        <a href="#" class="btn btn-primary btn-block">Acceder &nbsp;
+                            <i class="fas fa-share"></i></a>
                     </div>
                 </div>
             </div>

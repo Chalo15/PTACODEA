@@ -57,34 +57,31 @@
                                     <td width="100px" class="text-center">
 
                                         <div class="dropdown">
-                                            <<<<<<< HEAD=======>>>>>>> origin/Pablo
-                                                <div class="dropdown">
-                                                    <button class="btn" type="button" id="dropdownMenu2"
-                                                        data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                    </button>
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" id="dropdownMenu2"
+                                                    data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
 
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('athletes.show', $athlete->id) }}">
-                                                            <i class="fas fa-info-circle"></i> &nbsp;
-                                                            Información
-                                                        </a>
-                                                        <<<<<<< HEAD @can('role', ['Admin'])=======@can('role', 'Admin'
-                                                            )>>>>>>> origin/Pablo
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('athletes.edit', $athlete->id) }}">
-                                                                <i class="fas fa-edit"></i> &nbsp;
-                                                                Editar
-                                                            </a>
-                                                        @endcan
-                                                </div>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('athletes.show', $athlete->id) }}">
+                                                        <i class="fas fa-info-circle"></i> &nbsp;
+                                                        Información
+                                                    </a>
+                                                    @can('role', ['Admin'])
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('athletes.edit', $athlete->id) }}">
+                                                        <i class="fas fa-edit"></i> &nbsp;
+                                                        Editar
+                                                    </a>
+                                                @endcan
                                             </div>
-
-                                </td>
-                            </tr>
-                        @endforeach
-                    </x-slot>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </x-slot>
 
                     <x-slot name="foot">
                         <tr>

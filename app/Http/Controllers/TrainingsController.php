@@ -8,7 +8,7 @@ use App\Models\Athlete;
 use App\Models\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class TrainingsController extends Controller
 {
@@ -27,12 +27,11 @@ class TrainingsController extends Controller
     /**
      * Mostrar una lista del recurso.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $user = $request->user();
+        $user = request()->user();
 
         $trainings = $user->role->description == 'Admin' ?
             Training::with('user', 'athlete.user', 'athlete.sport')->get() :
