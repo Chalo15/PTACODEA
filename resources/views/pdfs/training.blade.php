@@ -230,7 +230,7 @@
     </main>
 
     <footer>
-        Siguenos en nuestras redes sociales y/o buscanos en www.codea.go.cr
+        Síguenos en nuestras redes sociales y/o buscanos en www.codea.go.cr
     </footer>
 </body>
 
