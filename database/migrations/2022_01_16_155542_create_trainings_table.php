@@ -22,7 +22,6 @@ class CreateTrainingsTable extends Migration
             $table->string('calification');
             $table->string('time');
             $table->string('level');
-            $table->string('discipline');
             $table->text('get_better');
             $table->text('planification');
             $table->string('lesion');

@@ -30,7 +30,7 @@ class UsersController extends Controller
      */
     function index()
     {
-        $users = User::where('role_id', '!=', 4)->with('role')->get();
+        $users = User::where('role_id', '!=', 4)->where('role_id', '!=', 7)->with('role')->get();
 
         return view('users.index', compact('users'));
     }

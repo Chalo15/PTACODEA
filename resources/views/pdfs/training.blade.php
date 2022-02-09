@@ -2,106 +2,236 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Documento Rutinario</title>
+    <meta charset="utf-8">
+    <title>Informe de Sesion</title>
+    <link rel="stylesheet" href="style.css" media="all" />
 
     <style>
-        /** Define the margins of your page **/
-        @page {
-            margin: 100px 25px;
+        .clearfix:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        a {
+            color: #5D6975;
+            text-decoration: underline;
+        }
+
+        body {
+            position: relative;
+            width: 19cm;
+            height: 29.7cm;
+            margin: 0 auto;
+            color: #001028;
+            background: #FFFFFF;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-family: Arial;
         }
 
         header {
-            position: fixed;
-            top: -80px;
-            left: -40px;
-            right: -40px;
-            height: 60px;
+            padding: 10px 0;
+            margin-bottom: 30px;
+        }
 
-            /** Extra personal styles **/
-            background-color: #212529;
-            color: white;
+        #logo {
             text-align: center;
-            line-height: 35px;
+            margin-bottom: 10px;
+        }
+
+        #logo img {
+            width: 90px;
+        }
+
+        h1 {
+            border-top: 1px solid #5D6975;
+            border-bottom: 1px solid #5D6975;
+            color: #5D6975;
+            font-size: 2.4em;
+            line-height: 1.4em;
+            font-weight: normal;
+            text-align: center;
+            margin: 0 0 20px 0;
+            background: url(dimension.png);
+        }
+
+        #project {
+            float: left;
+        }
+
+        #project span {
+            color: #5D6975;
+            text-align: left;
+            width: 55px;
+            margin-right: 60px;
+            display: inline-block;
+        }
+
+        #company {
+            float: right;
+        }
+
+        #company span {
+            color: #5D6975;
+            text-align: right;
+            width: 52px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        #project div,
+        #company div {
+            white-space: nowrap;
+            font-size: 1.3em;
+            margin-top: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        table tr:nth-child(2n-1) td {
+            background: #F5F5F5;
+        }
+
+        table th,
+        table td {
+            text-align: center;
+        }
+
+        table th {
+            padding: 5px 20px;
+            color: #5D6975;
+            border-bottom: 1px solid #C1CED9;
+            white-space: nowrap;
+            font-weight: normal;
+        }
+
+        table .service,
+        table .desc {
+            text-align: left;
+        }
+
+        table td {
+            padding: 20px;
+            text-align: right;
+        }
+
+        table td.service,
+        table td.desc {
+            vertical-align: top;
+        }
+
+        table td.grand {
+            border-top: 1px solid #5D6975;
+            ;
+        }
+
+        #notices {
+            font-size: 1.3em;
+
+        }
+
+        #notices .notice {
+            color: #5D6975;
         }
 
         footer {
-            position: fixed;
-            bottom: -60px;
-            left: 0px;
-            right: 0px;
-            height: 50px;
-
-            /** Extra personal styles **/
-            background-color: #212529;
-            color: white;
+            color: #5D6975;
+            width: 100%;
+            height: 30px;
+            position: absolute;
+            bottom: 0;
+            border-top: 1px solid #EC7063;
+            padding: 8px 0;
             text-align: center;
-            line-height: 35px;
-        }
-
-        #image {
-            position: fixed;
-            right: 20px;
-            top: 20px;
-            opacity: 0.1;
-        }
-
-        p {
-
-            font-size: 120%;
-            margin-left: 30px;
+            font-size: 1.2em;
         }
 
     </style>
 </head>
 
 <body>
-    <header>
-        <div id="image">
+    <header class="clearfix">
+        <div id="logo">
             <img src="./img/1.png">
-
         </div>
-        <div id="text">
-            <h3>CODEA</h3>
-            <h5>2442 1757</h5>
+        <h1>INFORME DE SESION</h1>
+        <div id="company">
 
-        </div>
-        <div>
             @php
-                $today = today()->toDateString();
+                setlocale(LC_ALL, 'es_ES@euro', 'es_ES', 'esp');
+                $today = strftime('%d de %B del %Y');
             @endphp
 
-            <p>{{ $today }}</p>
+            <div>CODEA ALAJUELA</div>
+            <div>MONSERRAT, ALAJUELA, CR<br /> 20104</div>
+            <div>(+506) 2442-1757</div>
+            <div><a href="info@codea.go.cr">info@codea.go.cr</a></div>
+            <div>{{ $today }}</div>
+        </div>
+        <div id="project">
+
+            <div><span>Fecha de Sesión:</span> {{ $training->date->isoFormat('LL') }}</div>
+            <div><span>Encargado:</span> {{ $training->user->full_name }}</div>
+            <div><span>Correo</span> <a href="{{ $training->user->email }}">{{ $training->user->email }}</a></div>
+            <div><span>Atleta:</span> {{ $training->athlete->user->full_name }}</div>
         </div>
     </header>
 
     <main>
-
-        <div>
-            <p><strong>Encargado de musculación:</strong> {{ $training->user->full_name }}</p><br>
-            <p><strong>Nombre del Atleta:</strong> {{ $training->athlete->user->full_name }}</p><br>
-            <p><strong>Fecha de Sesión:</strong> {{ $training->date }}</p><br>
-            <p><strong>Edad:</strong> {{ $training->type_training }}</p><br>
-            <p><strong>Peso Kg:</strong> {{ $training->calcification }}</p><br>
-            <p><strong>Altura Cm:</strong> {{ $training->time }}</p><br>
-            <p><strong>IMC:</strong> {{ $training->distance }}</p><br>
-            <p><strong>Circ. Cintura Cm:</strong> {{ $training->level }}</p><br>
-            <p><strong>Circ. Cadera Cm:</strong> {{ $training->get_better }}</p><br>
-            <p><strong>Relacion Cintura Cadera</strong> {{ $training->planification }}</p><br>
-            <p><strong>Tricipital</strong> {{ $training->lesion }}</p><br>
-            <p><strong>Detalles:</strong> {!! $training->details !!}</p><br>
-
-
+        <table>
+            <thead>
+                <tr>
+                    <th class="service">RUBRO</th>
+                    <th class="desc">COMENTARIO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="service">TIPO DE ENTRENAMIENTO</td>
+                    <td class="desc">{{ $training->type_training }}</td>
+                </tr>
+                <tr>
+                    <td class="service">CALIFICACION</td>
+                    <td class="desc">{{ $training->calification }}</td>
+                </tr>
+                <tr>
+                    <td class="service">DURACION DEL ENTRENAMIENTO</td>
+                    <td class="desc">{{ $training->time }}</td>
+                </tr>
+                <tr>
+                    <td class="service">NIVEL</td>
+                    <td class="desc">{{ $training->level }}</td>
+                </tr>
+                <tr>
+                    <td class="service">ASPECTOS POR MEJORAR</td>
+                    <td class="desc">{{ $training->get_better }}</td>
+                </tr>
+                <tr>
+                    <td class="service">PLANIFICACIÓN</td>
+                    <td class="desc">{{ $training->planification }}</td>
+                </tr>
+                <tr>
+                    <td class="service">LESIONES DURANTE EL ENTRENAMIENTO</td>
+                    <td class="desc">{{ $training->lesion }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="notices">
+            <div>Detalles adicionales:</div>
+            <div class="notice">{!! $training->details !!}</div>
         </div>
     </main>
 
     <footer>
-        Copyright &copy; <?php echo date('Y'); ?>
+        Siguenos en nuestras redes sociales y/o buscanos en www.codea.go.cr
     </footer>
-
-
 </body>
 
 </html>

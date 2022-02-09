@@ -30,7 +30,6 @@ class TrainingFactory extends Factory
             'type_training' => $this->faker->sentence(),
             'calification' => $this->faker->sentence(),
             'time' => $this->faker->sentence(),
-            'discipline' => $this->faker->randomNumber(2),
             'level' => $this->faker->sentence(),
             'get_better' => $this->faker->sentence(),
             'planification' => $this->faker->sentence(),

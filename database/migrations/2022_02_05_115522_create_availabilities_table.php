@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExtraDatasTable extends Migration
+class CreateAvailabilitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateExtraDatasTable extends Migration
      */
     public function up()
     {
-        Schema::create('extra_datas', function (Blueprint $table) {
+        Schema::create('availabilities', function (Blueprint $table) {
             $table->id();
-            $table->string('start_date');
-            $table->string('achievements');
-            $table->string('other_organization');
-            $table->string('other_data');
-            $table->string('url')->nullable();
             $table->timestamps();
+            $table->foreignId('user_id')->constrained('users');
+            $table->date('date');
+            $table->time('start_time');
+            $table->time('end_time');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateExtraDatasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('extra_datas');
+        Schema::dropIfExists('availabilities');
     }
 }

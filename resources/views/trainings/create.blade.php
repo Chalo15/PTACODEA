@@ -61,7 +61,7 @@
 
                         {{-- calification --}}
                         <div class="form-group row">
-                            <label for="calification" class="col-sm-4 col-form-label">Calcificacion</label>
+                            <label for="calification" class="col-sm-4 col-form-label">Calificacion</label>
                             <div class="col-sm-8">
                                 <x-input name="calification" value="{{ old('calification') }}" />
                             </div>
@@ -110,9 +110,7 @@
                         <div class="form-group row">
                             <label for="details" class="col-sm-4 col-form-label">Datos extra</label>
                             <div class="col-sm-8">
-                                @foreach ($athletes as $athlete)
                                 <x-editor name="details" value="{!! $athlete->sport->ckeditor !!}" />
-                                @endforeach
                             </div>
                         </div>
 

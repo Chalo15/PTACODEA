@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFunctionariesTable extends Migration
+class CreateAppointmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateFunctionariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('functionaries', function (Blueprint $table) {
+        Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->integer('phone');
-            $table->string('url')->nullable();
+            $table->foreignId('availabilities_id')->constrained('availabilities');
+            $table->string('status');
+            $table->foreignId('athlete_id')->constrained('athletes');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateFunctionariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('functionaries');
+        Schema::dropIfExists('appointments');
     }
 }
