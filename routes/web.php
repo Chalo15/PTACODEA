@@ -62,6 +62,7 @@ Route::prefix('athletes')->group(function () {
     Route::get('{athlete}', [AthletesController::class, 'show'])->name('athletes.show');
     Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
+    Route::post('', [AthletesController::class, 'destroy'])->name('athletes.destroy');
 });
 
 /**

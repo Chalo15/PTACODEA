@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAthleteRequest;
 use App\Http\Requests\UpdateAthleteRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
@@ -131,6 +132,8 @@ class AthletesController extends Controller
 
         $sports = Sport::all();
 
+        $states = config('general.states');
+
         $genders = config('general.genders');
 
         $provinces = config('general.provinces');
@@ -141,7 +144,7 @@ class AthletesController extends Controller
 
         $relationships = config('general.relationships');
 
-        return view('athletes.edit', compact('sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
+        return view('athletes.edit', compact('states','sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
     }
 
     /**
@@ -158,5 +161,18 @@ class AthletesController extends Controller
         $athlete->user->update($request->validated());
 
         return redirect()->route('athletes.index')->with('status', 'Atleta editado exitosamente!');
+    }
+
+    /**
+     * Elimina el recurso especificado del almacenamiento.
+     *
+     * @param  \App\Models\Athlete  $athlete
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(UpdateUserRequest $request)
+    {
+        $user = $request->id;
+        $user->athlete()->update($request->validated() + ['state' => 'R']);
+        return redirect()->route('athletes.index')->with('status', '¡Atleta deshabilitado exitosamente!');
     }
 }
