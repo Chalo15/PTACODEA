@@ -41,10 +41,16 @@ class AthletesController extends Controller
             return view('athletes.index', compact('athletes'));
         }
 
+        if ($rol == "Musculacion" || $rol == "Fisioterapia") {
+            $athletes = Athlete::where("state", "=", 'A')->with('user')->get();
+
+            return view('athletes.index', compact('athletes'));
+        }
+
         if ($rol == "Instructor") {
 
             $sport_id = Auth::user()->coach->sport_id;
-            $athletes = Athlete::where("sport_id", "=", $sport_id)->get();
+            $athletes = Athlete::where("sport_id", "=", $sport_id)->where("state", "=", 'A')->with('user')->get();
 
             return view('athletes.index', ['athletes' => $athletes]);
         }

@@ -37,8 +37,8 @@
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
                                 <th>Telefono</th>
-                                <th>Disciplina</th>
                                 <th>Estado</th>
+                                <th>Disciplina</th>
                                 <th>Acciones</th>
                             </tr>
                         </x-slot>
@@ -91,8 +91,8 @@
                             <th>Identificación</th>
                             <th>Nombre Completo</th>
                             <th>Telefono</th>
-                            <th>Disciplina</th>
                             <th>Estado</th>
+                            <th>Disciplina</th>
                             <th>Acciones</th>
                         </tr>
                     </x-slot>

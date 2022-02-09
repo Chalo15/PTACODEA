@@ -47,7 +47,7 @@ class TrainingsController extends Controller
      */
     public function create()
     {
-        $athletes = Athlete::with('user')->get();
+        $athletes = Athlete::where("state", "=", 'A')->with('user')->get();
 
         return view('trainings.create', compact('athletes'));
     }
