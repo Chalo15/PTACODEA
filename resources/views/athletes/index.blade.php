@@ -38,6 +38,7 @@
                                 <th>Nombre Completo</th>
                                 <th>Telefono</th>
                                 <th>Disciplina</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </x-slot>
@@ -53,6 +54,7 @@
                                     <td>{{ $athlete->user->identification }}</td>
                                     <td>{{ $athlete->user->name . ' ' . $athlete->user->lastname }}</td>
                                     <td>{{ $athlete->user->phone }}</td>
+                                    <td>{{ $athlete->state }}</td>
                                     <td>{{ $athlete->sport->description }}</td>
                                     <td width="100px" class="text-center">
 
@@ -90,6 +92,7 @@
                             <th>Nombre Completo</th>
                             <th>Telefono</th>
                             <th>Disciplina</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </x-slot>
