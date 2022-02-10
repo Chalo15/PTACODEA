@@ -171,9 +171,19 @@ class AthletesController extends Controller
      */
     public function destroy(Athlete $athlete)
     {
-        $athlete->update([
-            'role_id' => 4
-        ]);
-        return redirect()->route('athletes.index')->with('status', '¡Atleta deshabilitado exitosamente!');
+        $athletes = Athlete::with('user')->get();
+
+        if($athlete->state == 'A'){
+            $athlete->update([
+                'state' => 'R'
+            ]);
+        } else {
+            $athlete->update([
+                'state' => 'A'
+            ]);
+
+        }
+
+        return redirect()->route('athletes.index', ['athletes' => $athletes])->with('status', '¡Estado del Atleta Actualizado exitosamente!');
     }
 }
