@@ -32,7 +32,6 @@ class EventFactory extends Factory
             'start' => $this->faker->time(),
             'end' => $this->faker->time(),
             'state' => $this->faker->randomElement(['A', 'A', 'a']),
-
         ];
     }
 }

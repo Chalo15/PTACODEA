@@ -16,11 +16,13 @@ class Event extends Model
     ];
 
     protected $fillable = [
+        'athlete_id',
         'title',
         'description',
         'date',
         'start',
-        'end'
+        'end',
+        'state'
     ];
 
     public function athlete()
