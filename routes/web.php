@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SportsController;
 use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CitaController;
 
 /**
  * Rutas de autenticación.
@@ -102,3 +103,9 @@ Route::prefix('trainings')->group(function () {
     Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
     Route::get('{training}/generate-pdf', [TrainingsController::class, 'generatePDF'])->name('trainings.generate-pdf');
 });
+
+/**
+ * Rutas Calendario Citas Fisioterapia
+ */
+Route::get('checks', [CitaController::class, 'index'])->name('checks.physios');
+Route::post('checks/crear', [CitaController::class, 'store'])->name('checks.store');
