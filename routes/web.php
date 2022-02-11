@@ -110,4 +110,6 @@ Route::prefix('trainings')->group(function () {
  */
 Route::prefix('events')->group(function () {
     Route::get('', [EventsController::class, 'index'])->name('events.index');
+    Route::get('create', [EventsController::class, 'create'])->name('events.create');
+    Route::post('', [EventsController::class, 'store'])->name('events.store');
 });

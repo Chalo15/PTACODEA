@@ -1,102 +1,121 @@
-<x-app-layout title="Eventos">
+<x-app-layout title="Citas Generadas">
 
-    <head>
-        <meta charset='utf-8' />
-        <link href='fullcalendar/main.css' rel='stylesheet' />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css">
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js"></script>
-        <script src='fullcalendar/main.js'></script>
+    <div class="row">
+        <div class="col mb-3">
+            <a href="{{ route('home') }}" class="btn btn-primary">
+                <i class="fas fa-reply"></i> &nbsp;
+                Atrás
+            </a>
+        </div>
+    </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                let form = document.querySelector("form");
-                var calendarEl = document.getElementById('calendar');
-                var calendar = new FullCalendar.Calendar(calendarEl, {
-                    initialView: 'dayGridMonth',
-                    locale: "es",
-                    headerToolbar: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        rigth: 'dayGridMonth,timeGridWeek,listWeek'
-                    },
-                    dateClick: function(info) {
-                        $("#reservation").modal("show");
-                    }
-                });
-                calendar.render();
-                document.getElementById("btnSave").addEventListener("click", function(){
-                    const data = new FormData(form)
-                    console.log(data);
-                });
-            });
-        </script>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            Citas Generadas
+                        </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
-    </head>
-
-    <body>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div id='calendar'></div>
-                </div>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#reservation">
-                    Launch
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="reservation" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="">
-                                    <div class="form-group">
-                                        <label for="id">ID</label>
-                                        <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
-                                      </div>
-
-                                    <div class="form-group">
-                                      <label for="title">Titulo</label>
-                                      <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="">
-                                    </div>
-
-                                    <div class="form-group">
-                                      <label for="description">Descripcion</label>
-                                      <textarea class="form-control" name="description" id="description" rows="3"></textarea>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="start">Inicio</label>
-                                        <input type="text" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
-                                      </div>
-
-                                      <div class="form-group">
-                                        <label for="end">Fin</label>
-                                        <input type="text" class="form-control" name="end" id="end" aria-describedby="helpId" placeholder="">
-                                      </div>
-                                </form>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" id="btnSave">Guardar</button>
-                                <button type="button" class="btn btn-warning" id="btnEdit">Modificar</button>
-                                <button type="button" class="btn btn-danger" id="btnDelete">Eliminar</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
-                            </div>
+                        <div class="col d-flex justify-content-end">
+                            @can('role', ['Musculacion', 'Admin', 'Fisioterapia'])
+                                <a href="{{ route('events.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> &nbsp;
+                                    Nuevo
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <x-table>
+                                <x-slot name="head">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Fecha de la cita</th>
+                                        <th>Hora de Inicio</th>
+                                        <th>Hora de Finalizacion</th>
+                                        <th>Cédula del Atleta</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Disciplina</th>
+                                        <th>Cédula del Especialista</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </x-slot>
+
+                                <x-slot name="body">
+                                    @foreach ($events as $event)
+                                        <tr>
+                                            <td>{{ $event->id }}</td>
+                                            <td>{{ $event->date->isoFormat('LL') }}</td>
+                                            <td>{{ $event->start }}</td>
+                                            <td>{{ $event->end }}</td>
+                                            <td>{{ $event->athlete->user->identification }}</td>
+                                            <td>
+                                                <a target="_blank" class="link"
+                                                    href="{{ route('athletes.show', $event->athlete->id) }}">
+                                                    {{ $event->athlete->user->full_name }}
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                            </td>
+                                            <td>{{ $event->athlete->sport->description }}</td>
+                                            <td>{{ $event->user->identification }}</td>
+                                            <td>
+                                                <a target="_blank" class="link"
+                                                    href="{{ route('users.show', $event->user->id) }}">
+                                                    {{ $event->user->full_name }}
+                                                    <i class="fas fa-external-link-alt"></i>
+                                                </a>
+                                            </td>
+                                            <td width="100px" class="text-center">
+
+                                                <div class="dropdown">
+                                                    <button class="btn" type="button" id="dropdownMenu2"
+                                                        data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </button>
+
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        @can('role', ['Musculacion', 'Fisioterapia'])
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('events.edit', $event) }}">
+                                                                <i class="fas fa-edit"></i> &nbsp;
+                                                                Editar
+                                                            </a>
+                                                        @endcan
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </x-slot>
+
+                                <x-slot name="foot">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Fecha de la cita</th>
+                                        <th>Hora de Inicio</th>
+                                        <th>Hora de Finalizacion</th>
+                                        <th>Cédula del Atleta</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Disciplina</th>
+                                        <th>Cédula del Especialista</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </x-slot>
+                            </x-table>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </body>
+    </div>
+
 </x-app-layout>

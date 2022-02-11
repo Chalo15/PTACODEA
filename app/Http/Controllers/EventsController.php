@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEventRequest;
+use App\Models\Athlete;
 use App\Models\Event;
 use Illuminate\Http\Request;
+
+use function GuzzleHttp\Promise\all;
 
 class EventsController extends Controller
 {
@@ -14,7 +18,13 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('events.index');
+        $user = request()->user();
+
+        $events = $user->role->description == 'Admin' ?
+            Event::with('user', 'athlete.user', 'athlete.sport')->get() :
+            $user->events->load('user', 'athlete.user', 'athlete.sport');
+
+        return view('events.index', compact('events'));
     }
 
     /**
@@ -24,7 +34,9 @@ class EventsController extends Controller
      */
     public function create()
     {
-        //
+        $athletes = Athlete::where("state", "=", 'A')->with('user')->get();
+
+        return view('events.create', compact('athletes'));
     }
 
     /**
@@ -33,11 +45,15 @@ class EventsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
-        //
-    }
+        //dd($request->all());
+        $user = $request->user();
 
+        $user->events()->create($request->validated() + ['state' => 'A']);
+
+        return redirect()->route('events.index')->with('status', 'Cita generada exitosamente!');
+    }
     /**
      * Display the specified resource.
      *

@@ -120,4 +120,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Availability::class);
     }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

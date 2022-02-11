@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTrainingRequest extends FormRequest
+class StoreEventRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,12 @@ class UpdateTrainingRequest extends FormRequest
     public function rules()
     {
         $rules = [
+            'athlete_id'       => ['required'],
+            'title'            => ['required'],
+            'description'      => ['required'],
             'date'             => ['required'],
-            'type_training'    => ['required'],
-            'calification'     => ['required'],
-            'time'             => ['required'],
-            'level'            => ['required'],
-            'planification'    => ['required'],
-            'lesion'           => ['required'],
-            'get_better'       => ['required'],
-            'details'          => ['required']
+            'start'            => ['required'],
+            'end'              => ['required']
         ];
 
         return $rules;
