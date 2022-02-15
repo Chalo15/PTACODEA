@@ -80,8 +80,8 @@
 
                                                         <a class="dropdown-item"
                                                             href="{{ route('athletes.destroy', $athlete->id) }}">
-                                                            <i class="fas fa-ban"></i></i> &nbsp;
-                                                            Deshabilitar Usuario
+                                                            <i class="fas fa-exclamation-triangle"></i> &nbsp;
+                                                            Habilitar/Deshabilitar Atletas
                                                         </a>
 
                                                     @endcan

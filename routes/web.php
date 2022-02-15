@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SportsController;
 use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\EventsController;
 
 /**
  * Rutas de autenticación.
@@ -62,7 +63,7 @@ Route::prefix('athletes')->group(function () {
     Route::get('{athlete}', [AthletesController::class, 'show'])->name('athletes.show');
     Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
-    Route::post('', [AthletesController::class, 'destroy'])->name('athletes.destroy');
+    Route::get('delete/{athlete}', [AthletesController::class, 'destroy'])->name('athletes.destroy');
 });
 
 /**
@@ -102,4 +103,11 @@ Route::prefix('trainings')->group(function () {
     Route::get('{training}/edit', [TrainingsController::class, 'edit'])->name('trainings.edit')->middleware("can:role,'Instructor'");
     Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
     Route::get('{training}/generate-pdf', [TrainingsController::class, 'generatePDF'])->name('trainings.generate-pdf');
+});
+
+/**
+ * Rutas de Eventos Calendario
+ */
+Route::prefix('events')->group(function () {
+    Route::get('', [EventsController::class, 'index'])->name('events.index');
 });

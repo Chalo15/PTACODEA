@@ -169,10 +169,21 @@ class AthletesController extends Controller
      * @param  \App\Models\Athlete  $athlete
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UpdateUserRequest $request)
+    public function destroy(Athlete $athlete)
     {
-        $user = $request->id;
-        $user->athlete()->update($request->validated() + ['state' => 'R']);
-        return redirect()->route('athletes.index')->with('status', '¡Atleta deshabilitado exitosamente!');
+        $athletes = Athlete::with('user')->get();
+
+        if($athlete->state == 'A'){
+            $athlete->update([
+                'state' => 'R'
+            ]);
+        } else {
+            $athlete->update([
+                'state' => 'A'
+            ]);
+
+        }
+
+        return redirect()->route('athletes.index', ['athletes' => $athletes])->with('status', '¡Estado del Atleta Actualizado exitosamente!');
     }
 }
