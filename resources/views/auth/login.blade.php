@@ -131,6 +131,10 @@
             @endif
         </div>
     </div>
-</div>
-
-@endsection
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div> --}}
+</x-guest-layout>
