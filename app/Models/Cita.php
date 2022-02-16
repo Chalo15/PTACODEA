@@ -9,10 +9,10 @@ class Cita extends Model
 {
     use HasFactory;
 
-    static $rules = [
-        'title'=>'required',
-        'start'=>'required'
-    ];
+    /*static $rules = [
+        'title'=> ['required'],
+        'start'=> ['required']
+    ];*/
 
     protected $fillable = ['title','start'];
 }

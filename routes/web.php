@@ -108,4 +108,4 @@ Route::prefix('trainings')->group(function () {
  * Rutas Calendario Citas Fisioterapia
  */
 Route::get('checks', [CitaController::class, 'index'])->name('checks.physios');
-Route::post('checks/crear', [CitaController::class, 'store'])->name('checks.store');
+Route::post('checks/crear', [CitaController::class, 'store'])->name('checks.physios-store');

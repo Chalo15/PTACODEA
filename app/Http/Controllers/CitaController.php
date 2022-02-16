@@ -37,7 +37,14 @@ class CitaController extends Controller
     public function store(Request $request)
     {
         //
-        request()->validate(Cita::$rules);
+        //request()->validate(Cita::$rules);
+
+        $request->validate(
+            [
+            'title'=>'required',
+            'start'=>'required',
+            ]
+        );
     
         $cita = Cita::create($request->all());
     }

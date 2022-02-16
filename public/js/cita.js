@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    let formulario = document.querySelector("form")
+    let formulario = document.getElementById("form");
   
     var calendarEl = document.getElementById('calendario');
   
@@ -27,10 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
   
       console.log(datos);
 
-      axios.post("http://127.0.0.1:8000/checks/crear", datos).
+      axios.post("/checks/crear", datos).
       then(
           (respuesta)=>{
             $("#cita").modal("hide");
+          }
+        ).catch(
+          error=>{
+            if(error.response){
+              console.log(error.response.data);
+            }
           }
         )
     });

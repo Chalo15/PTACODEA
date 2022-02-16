@@ -38,8 +38,14 @@
                         </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                        {!! csrf_field() !!}
+                    <form action="" id="form">
+                        @csrf
+
+                        <div class="form-group">
+                          <label for="id">ID:</label>
+                          <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
+                          <small id="helpId" class="form-text text-muted">Help text</small>
+                        </div>
 
                         <div class="form-group">
                           <label for="title">Motivo</label>
@@ -49,7 +55,7 @@
 
                         <div class="form-group">
                           <label for="start">Inicio</label>
-                          <input type="date" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="Elige una hora">
+                          <input type="time" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="Elige una hora">
                           <small id="helpId" class="form-text text-muted">Campo Obligatorio</small>
                         </div>
 
