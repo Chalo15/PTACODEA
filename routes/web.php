@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SportsController;
 use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AvailabilityController;
 
 /**
  * Rutas de autenticación.
@@ -101,4 +102,14 @@ Route::prefix('trainings')->group(function () {
     Route::get('{training}/edit', [TrainingsController::class, 'edit'])->name('trainings.edit')->middleware("can:role,'Instructor'");
     Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
     Route::get('{training}/generate-pdf', [TrainingsController::class, 'generatePDF'])->name('trainings.generate-pdf');
+});
+
+
+/**
+ * Rutas de Disponibilidades
+ */
+Route::prefix('availabilities')->group(function () {
+    Route::get('', [AvailabilityController::class, 'index'])->name('availabilities.index');
+    Route::get('create', [AvailabilityController::class, 'create'])->name('availabilities.create');
+    Route::post('', [AvailabilityController::class, 'store'])->name('availabilities.store');
 });
