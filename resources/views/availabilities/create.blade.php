@@ -20,17 +20,6 @@
                     <form action="{{ route('availabilities.store') }}" method="POST">
                         @csrf
 
-                        {{-- Encargado --}}
-                        <div class="form-group row">
-                            <label for="manager" class="col-sm-4 col-form-label">Encargado</label>
-                            <div class="col-sm-8">
-                                @php
-                                $user = Auth::user();
-                                @endphp
-                                <x-input name="manager" value="{{ $user->full_name }}" readonly="readonly"/>
-                            </div>
-                        </div>
-
                         {{-- Fecha de disponibilidad --}}
                         @php
                         $today = today()->toDateString();

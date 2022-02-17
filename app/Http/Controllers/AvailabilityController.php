@@ -15,9 +15,14 @@ class AvailabilityController extends Controller
      */
     public function index()
     {
-        //
-        $availabilities = Availability::all();
-        
+        $user = request()->user();
+
+        if ($user->hasRole(['Admin'])) {
+            $availabilities = Availability::all();
+        } else {
+            $availabilities = $user->availabilities;
+        }
+
         return view('availabilities.index', compact('availabilities'));
     }
 
@@ -44,7 +49,7 @@ class AvailabilityController extends Controller
     {
         $user = $request->user();
 
-        $user->availability()->create($request->validated());
+        $user->availabilities()->create($request->validated());
 
         return redirect()->route('availabilities.index')->with('status', 'Disponibilidad creada exitosamente!');
     }
@@ -91,6 +96,8 @@ class AvailabilityController extends Controller
      */
     public function destroy(Availability $availability)
     {
-        //
+        $availability->delete();
+
+        return redirect()->route('availabilities.index')->with('status', 'Disponibilidad eliminada exitosamente!');
     }
 }

@@ -24,7 +24,6 @@ class StoreAvailabilityRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'manager' => ['required'],
             'date' => ['required'],
             'start' => ['required'],
             'end' => ['required']

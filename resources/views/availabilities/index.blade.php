@@ -20,10 +20,10 @@
 
                         <div class="col d-flex justify-content-end">
                             @can('role', ['Musculacion'])
-                                <a href="{{ route('availabilities.create') }}" class="btn btn-primary">
-                                    <i class="fas fa-plus"></i> &nbsp;
-                                    Nuevo
-                                </a>
+                            <a href="{{ route('availabilities.create') }}" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> &nbsp;
+                                Nuevo
+                            </a>
                             @endcan
                         </div>
                     </div>
@@ -36,33 +36,65 @@
                                 <x-slot name="head">
                                     <tr>
                                         <th>ID</th>
+                                        @can('role', ['Admin'])
                                         <th>Encargado</th>
+                                        @endcan
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
-                                        
+                                        <th>Acciones</th>
+
                                     </tr>
                                 </x-slot>
 
                                 <x-slot name="body">
                                     @foreach ($availabilities as $availability)
-                                        <tr>
-                                            <td>{{ $availability->id }}</td>
-                                            <td>{{ $availability->user->full_name }}</td>
-                                            <td>{{ $availability->date->isoFormat('LL') }}</td>
-                                            <td>{{ $availability->start->format('g:i A') }}</td>
-                                            <td>{{ $availability->end->format('g:i A') }}</td>
+                                    <tr>
+                                        <td>{{ $availability->id }}</td>
+                                        @can('role', ['Admin'])
+                                        <td>{{ $availability->user->full_name }}</td>
+                                        @endcan
+                                        <td>{{ $availability->date->isoFormat('LL') }}</td>
+                                        <td>{{ $availability->start->format('g:i A') }}</td>
+                                        <td>{{ $availability->end->format('g:i A') }}</td>
+                                        <td width="50px" class="text-center">
 
-                                        </tr>
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                                                    <form action="{{ route('availabilities.destroy', $availability) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+
+                                                        <button class="dropdown-item" type="submit">
+                                                            <i class="fas fa-trash"></i> &nbsp;
+                                                            Eliminar
+                                                        </button>
+
+                                                    </form>
+
+                                                </div>
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
                                     @endforeach
                                 </x-slot>
                                 <x-slot name="foot">
                                     <tr>
                                         <th>ID</th>
+                                        @can('role', ['Admin'])
                                         <th>Encargado</th>
+                                        @endcan
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </x-slot>
                             </x-table>
