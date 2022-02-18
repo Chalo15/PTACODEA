@@ -24,7 +24,7 @@
 <body class="d-flex flex-column h-100">
 
     <header>
-        <nav class="navbar navbar-expand-md navbar-black-codea fixed-top bg-black-codea">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-black-codea">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('img/logo-codea.gif') }}" alt="" width="25%" height="25%">
