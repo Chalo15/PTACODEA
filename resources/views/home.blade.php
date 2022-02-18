@@ -127,7 +127,7 @@
                     <i class="fas fa-calendar-week fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('events.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                    <a href="#" class="btn btn-primary btn-block">Acceder &nbsp;
                         <i class="fas fa-share"></i></a>
                 </div>
             </div>
