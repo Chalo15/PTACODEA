@@ -23,13 +23,14 @@
                         {{-- Fecha de disponibilidad --}}
                         @php
                         $today = today()->toDateString();
-                        $nextWeek = today()->addDay(7)->toDateString();
+                        $thisWeek = date( 'Y-m-d', strtotime( 'sunday this week' ) );
+                        //$nextWeek = today()->addDay(7)->toDateString();
                         @endphp
                         <div class="form-group row">
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $today }}" max="{{ $nextWeek }}" value="{{ $today }}" />
+                                <x-input name="date" type="date" min="{{ $today }}" max="{{ $thisWeek }}" value="{{ $today }}" />
                             </div>
                         </div>
 
@@ -38,7 +39,7 @@
                         <div class="form-group row">
                             <label for="start" class="col-sm-4 col-form-label">Hora Inicio</label>
                             <div class="col-sm-8">
-                                <x-select2 name="start">
+                                <x-select2 name="start" id="inicio">
                                     <option disabled {{ old('start') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($schedules as $schedule)
                                     <option {{ old('start') == $schedule ? 'selected' : '' }} value="{{ $schedule }}">

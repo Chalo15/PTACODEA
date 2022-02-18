@@ -43,7 +43,9 @@
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
                                         <th>Estado</th>
+                                        @can('role',['Musculacion'])
                                         <th>Acciones</th>
+                                        @endcan
 
                                     </tr>
                                 </x-slot>
@@ -60,12 +62,14 @@
                                         <td>{{ $availability->end->format('g:i A') }}</td>
 
                                         <?php
-                                        if ($availability->state=="PENDIENTE"){$text_state="PENDIENTE";$label_class='badge badge-pill badge-warning m-1';}
-                                        else if ($availability->state=="DISPONIBLE"){$text_state="DISPONIBLE";$label_class='badge badge-pill badge-success m-1';}
-                                        else{$text_state="RESERVADA";$label_class='badge badge-pill badge-danger m-1';}
+                                            if ($availability->state=="PENDIENTE"){$text_state="PENDIENTE";$label_class='badge badge-pill badge-secondary m-1';}
+                                            else if ($availability->state=="DISPONIBLE"){$text_state="DISPONIBLE";$label_class='badge badge-pill badge-success m-1';}
+                                            else{$text_state="RESERVADA";$label_class='badge badge-pill badge-danger m-1';}
                                         ?>
 
                                         <td class="{{ $label_class }}">{{ $text_state }}</td>
+
+                                        @can('role',['Musculacion'])
                                         <td width="50px" class="text-center">
 
                                             <div class="dropdown">
@@ -75,14 +79,15 @@
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                     <?php
-                                                    if($availability->state=='DISPONIBLE'){$hidden='disabled';}
-                                                    else{$hidden='';}
+                                                        if($availability->state=='DISPONIBLE'){$hidden='disabled';}
+                                                        else if ($availability->date->format('d') < now()->format('d')){$hidden='disabled';}                                             
+                                                        else{$hidden='';}
                                                     ?>
                                                     <form action="{{ route('availabilities.update', $availability) }}" method="POST">
                                                         @method('PUT')
                                                         @csrf
 
-                                                        <button class="dropdown-item" type="hidden" {{ $hidden }}>
+                                                        <button class="dropdown-item" type="submit" {{ $hidden }}>
                                                             <i class="fas fa-check"></i> &nbsp;
                                                             Aprobar
                                                         </button>
@@ -100,11 +105,11 @@
 
                                                     </form>
 
-
                                                 </div>
                                             </div>
 
                                         </td>
+                                        @endcan
 
                                     </tr>
                                     @endforeach
@@ -119,7 +124,9 @@
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
                                         <th>Estado</th>
+                                        @can('role',['Musculacion'])
                                         <th>Acciones</th>
+                                        @endcan
                                     </tr>
                                 </x-slot>
                             </x-table>
