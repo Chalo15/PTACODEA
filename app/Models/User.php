@@ -121,8 +121,9 @@ class User extends Authenticatable
         return $this->hasMany(Availability::class);
     }
 
-    public function events()
+    public function hasRole(array $roles)
     {
-        return $this->hasMany(Event::class);
+        return in_array($this->role->description, $roles);
     }
+    protected $guarded = [];
 }
