@@ -112,5 +112,6 @@ Route::prefix('availabilities')->group(function () {
     Route::get('', [AvailabilityController::class, 'index'])->name('availabilities.index');
     Route::get('create', [AvailabilityController::class, 'create'])->name('availabilities.create');
     Route::post('', [AvailabilityController::class, 'store'])->name('availabilities.store');
-    Route::delete('{availability}',[AvailabilityController::class, 'destroy'])->name('availabilities.destroy');
+    Route::put('{availability}', [AvailabilityController::class, 'update'])->name('availabilities.update');
+    Route::delete('{availability}', [AvailabilityController::class, 'destroy'])->name('availabilities.destroy');
 });

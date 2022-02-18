@@ -26,7 +26,8 @@ class StoreAvailabilityRequest extends FormRequest
         $rules = [
             'date' => ['required'],
             'start' => ['required'],
-            'end' => ['required']
+            'end' => ['required'],
+            'state' => ['required']
         ];
 
         return $rules;

@@ -42,6 +42,7 @@
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
+                                        <th>Estado</th>
                                         <th>Acciones</th>
 
                                     </tr>
@@ -49,7 +50,7 @@
 
                                 <x-slot name="body">
                                     @foreach ($availabilities as $availability)
-                                    <tr>
+                                    <tr class="text-center">
                                         <td>{{ $availability->id }}</td>
                                         @can('role', ['Admin'])
                                         <td>{{ $availability->user->full_name }}</td>
@@ -57,6 +58,14 @@
                                         <td>{{ $availability->date->isoFormat('LL') }}</td>
                                         <td>{{ $availability->start->format('g:i A') }}</td>
                                         <td>{{ $availability->end->format('g:i A') }}</td>
+
+                                        <?php
+                                        if ($availability->state=="PENDIENTE"){$text_state="PENDIENTE";$label_class='badge badge-pill badge-warning m-1';}
+                                        else if ($availability->state=="DISPONIBLE"){$text_state="DISPONIBLE";$label_class='badge badge-pill badge-success m-1';}
+                                        else{$text_state="RESERVADA";$label_class='badge badge-pill badge-danger m-1';}
+                                        ?>
+
+                                        <td class="{{ $label_class }}">{{ $text_state }}</td>
                                         <td width="50px" class="text-center">
 
                                             <div class="dropdown">
@@ -65,6 +74,20 @@
                                                 </button>
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    <?php
+                                                    if($availability->state=='DISPONIBLE'){$hidden='disabled';}
+                                                    else{$hidden='';}
+                                                    ?>
+                                                    <form action="{{ route('availabilities.update', $availability) }}" method="POST">
+                                                        @method('PUT')
+                                                        @csrf
+
+                                                        <button class="dropdown-item" type="hidden" {{ $hidden }}>
+                                                            <i class="fas fa-check"></i> &nbsp;
+                                                            Aprobar
+                                                        </button>
+
+                                                    </form>
 
                                                     <form action="{{ route('availabilities.destroy', $availability) }}" method="POST">
                                                         @method('DELETE')
@@ -76,6 +99,7 @@
                                                         </button>
 
                                                     </form>
+
 
                                                 </div>
                                             </div>
@@ -94,6 +118,7 @@
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
+                                        <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </x-slot>

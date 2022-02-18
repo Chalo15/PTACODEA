@@ -15,7 +15,7 @@
                 <div class="card-header">
                     Nueva Disponibilidad
                 </div>
-                
+
                 <div class="card-body">
                     <form action="{{ route('availabilities.store') }}" method="POST">
                         @csrf
@@ -41,9 +41,9 @@
                                 <x-select2 name="start">
                                     <option disabled {{ old('start') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($schedules as $schedule)
-                                        <option {{ old('start') == $schedule ? 'selected' : '' }} value="{{ $schedule }}">
-                                            {{ $schedule }}
-                                        </option>
+                                    <option {{ old('start') == $schedule ? 'selected' : '' }} value="{{ $schedule }}">
+                                        {{ $schedule }}
+                                    </option>
                                     @endforeach
                                 </x-select2>
                             </div>
@@ -56,11 +56,18 @@
                                 <x-select2 name="end">
                                     <option disabled {{ old('end') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
                                     @foreach ($schedules as $schedule)
-                                        <option {{ old('end') == $schedule ? 'selected' : '' }} value="{{ $schedule }}">
-                                            {{ $schedule }}
-                                        </option>
+                                    <option {{ old('end') == $schedule ? 'selected' : '' }} value="{{ $schedule }}">
+                                        {{ $schedule }}
+                                    </option>
                                     @endforeach
                                 </x-select2>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="col-sm-8">
+                                <x-input name="state" type="hidden" value="PENDIENTE" />
                             </div>
                         </div>
 

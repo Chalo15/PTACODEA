@@ -13,7 +13,8 @@ class Availability extends Model
         'user_id',
         'date',
         'start',
-        'end'
+        'end',
+        'state'
     ];
 
     public function user()

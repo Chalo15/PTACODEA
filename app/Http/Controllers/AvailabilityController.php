@@ -86,6 +86,9 @@ class AvailabilityController extends Controller
     public function update(Request $request, Availability $availability)
     {
         //
+        $availability->update(['state' => 'DISPONIBLE']);
+
+        return redirect()->route('availabilities.index')->with('status', 'Disponibilidad aprobada exitosamente!');
     }
 
     /**

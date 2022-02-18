@@ -19,6 +19,7 @@ class CreateAvailabilitiesTable extends Migration
             $table->date('date');
             $table->time('start');
             $table->time('end');
+            $table->text('state', 50);
             $table->timestamps();
         });
     }

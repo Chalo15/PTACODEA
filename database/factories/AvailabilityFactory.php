@@ -27,6 +27,7 @@ class AvailabilityFactory extends Factory
             'date' => now(),
             'start' => $this->faker->time(),
             'end' => $this->faker->time(),
+            'state' => 'PENDIENTE'
         ];
     }
 }
