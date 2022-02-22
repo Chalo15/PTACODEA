@@ -24,10 +24,9 @@ class UpdateTrainingRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'athlete_id'       => ['required'],
             'date'             => ['required'],
             'type_training'    => ['required'],
-            'calification'    => ['required'],
+            'calification'     => ['required'],
             'time'             => ['required'],
             'level'            => ['required'],
             'planification'    => ['required'],
