@@ -66,7 +66,7 @@
         <div class="col-md mb-3">
             <div class="card text-center">
                 <div class="card-header">
-                    Musculación
+                    Documentos Musculación
                 </div>
                 <div class="card-body">
                     <i class="fas fa-dumbbell fa-5x"></i>
@@ -83,7 +83,7 @@
         <div class="col-md mb-3">
             <div class="card text-center">
                 <div class="card-header">
-                    Fisioterápia
+                    Documentos Fisioterápia
                 </div>
                 <div class="card-body">
                     <i class="fas fa-user-md fa-5x"></i>
@@ -141,7 +141,7 @@
         <div class="col-md mb-3">
             <div class="card text-center">
                 <div class="card-header">
-                    Citas Fisioterapia
+                    Disponibilidad Citas Fisioterapia
                 </div>
                 <div class="card-body">
                     <i class="fas fa-calendar-alt fa-5x"></i>
@@ -155,18 +155,51 @@
         @endcan
 
         @can('role', ['Admin', 'Musculacion'])
-            <div class="col-md mb-3">
-                <div class="card text-center">
-                    <div class="card-header">
-                        Disponibilidad de Citas
-                    </div>
-                    <div class="card-body">
-                        <i class="fas fa-calendar-week fa-5x"></i>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{ route('availabilities.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
-                            <i class="fas fa-share"></i></a>
-                    </div>
+        <div class="col-md mb-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    Disponibilidad Citas Musculacion
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-calendar-week fa-5x"></i>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ route('availabilities.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                        <i class="fas fa-share"></i></a>
+                </div>
+            </div>
+        </div>
+        @endcan
+
+        @can('role', ['Musculacion'])
+        <div class="col-md mb-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    Confirmacion Citas Musculacion
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-calendar-week fa-5x"></i>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ route('appointments.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                        <i class="fas fa-share"></i></a>
+                </div>
+            </div>
+        </div>
+        @endcan
+
+        @can('role', ['Atleta'])
+        <div class="col-md mb-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    Reservar Citas
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-calendar-week fa-5x"></i>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ route('availabilities.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                        <i class="fas fa-share"></i></a>
                 </div>
             </div>
         </div>

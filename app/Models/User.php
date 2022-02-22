@@ -121,6 +121,11 @@ class User extends Authenticatable
         return $this->hasMany(Availability::class);
     }
 
+    public function appointments()
+    {
+        return $this->hasManyThrough(Appointment::class, Availability::class);
+    }
+
     public function hasRole(array $roles)
     {
         return in_array($this->role->description, $roles);

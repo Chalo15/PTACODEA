@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Availability;
+use App\Models\Athlete;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

@@ -19,8 +19,10 @@ class AvailabilityController extends Controller
 
         if ($user->hasRole(['Admin'])) {
             $availabilities = Availability::all();
+        } else if ($user->hasRole(['Atleta'])) {
+            $availabilities = Availability::where([['state', '=', 'DISPONIBLE'], ['date', '>=', date('Y.m.d', strtotime("-1 days"))]])->get();
         } else {
-            $availabilities = $user->availabilities;
+            $availabilities = Availability::where('state', '=', 'PENDIENTE')->orWhere('state', '=', 'DISPONIBLE')->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])->get();
         }
 
         return view('availabilities.index', compact('availabilities'));

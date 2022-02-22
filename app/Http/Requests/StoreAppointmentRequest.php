@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAvailabilityRequest extends FormRequest
+class StoreAppointmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,7 @@ class StoreAvailabilityRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'date' => ['required'],
-            'start' => ['required'],
-            'end' => ['required'],
-            'array' => ['unique'],
-            'state' => ['required']
+            'availability_id' => ['required']
         ];
 
         return $rules;

@@ -10,11 +10,9 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'availabilities_id',
-        'status',
-        'athlete_id'
+        'athlete_id',
+        'availability_id'
     ];
-
 
     public function athlete()
     {
@@ -23,6 +21,6 @@ class Appointment extends Model
 
     public function availability()
     {
-        return $this->belongsTo(Athlete::class);
+        return $this->belongsTo(Availability::class);
     }
 }
