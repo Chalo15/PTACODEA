@@ -50,9 +50,10 @@ class AvailabilityController extends Controller
     public function store(StoreAvailabilityRequest $request)
     {
         $user = $request->user();
-
         $user->availabilities()->create($request->validated());
 
+        $prue = $request->user()->id . ' ' . $request->date . ' ' . $request->start . ' ' . $request->end;
+        dd($prue);
         return redirect()->route('availabilities.index')->with('status', 'Disponibilidad creada exitosamente!');
     }
 
