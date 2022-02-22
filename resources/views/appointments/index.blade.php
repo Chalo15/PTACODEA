@@ -1,4 +1,4 @@
-<x-app-layout title="Disponibilidades">
+<x-app-layout title="Citas">
 
     <div class="row">
         <div class="col mb-3">
@@ -15,17 +15,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col d-flex align-items-center">
-                            Disponibilidades
+                            Citas
                         </div>
 
-                        <div class="col d-flex justify-content-end">
-                            @can('role', ['Musculacion'])
-                            <a href="{{ route('availabilities.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> &nbsp;
-                                Nuevo
-                            </a>
-                            @endcan
-                        </div>
                     </div>
                 </div>
 
@@ -36,6 +28,9 @@
                                 <x-slot name="head">
                                     <tr>
                                         <th>ID</th>
+                                        @can('role', ['Admin', 'Musculacion'])
+                                        <th>Atleta</th>
+                                        @endcan
                                         @can('role', ['Admin', 'Atleta'])
                                         <th>Encargado</th>
                                         @endcan
@@ -43,7 +38,7 @@
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
                                         <th>Estado</th>
-                                        @can('role',['Musculacion', 'Atleta'])
+                                        @can('role', ['Musculacion'])
                                         <th>Acciones</th>
                                         @endcan
 
@@ -51,29 +46,30 @@
                                 </x-slot>
 
                                 <x-slot name="body">
-                                    @foreach ($availabilities as $availability)
+                                    @foreach ($appointments as $appointment)
                                     <tr class="text-center">
-                                        <td>{{ $availability->id }}</td>
-                                        @can('role', ['Admin', 'Atleta'])
-                                        <td>{{ $availability->user->full_name }}</td>
+                                        <td>{{ $appointment->id }}</td>
+                                        @can('role', ['Admin', 'Musculacion'])
+                                        <td>{{ $appointment->athlete->user->full_name }}</td>
                                         @endcan
-                                        <td>{{ $availability->date->isoFormat('LL') }}</td>
-                                        <td>{{ $availability->start->format('g:i A') }}</td>
-                                        <td>{{ $availability->end->format('g:i A') }}</td>
+                                        @can('role', ['Admin', 'Atleta'])
+                                        <td>{{ $appointment->availability->user->full_name }}</td>
+                                        @endcan
+                                        <td>{{ $appointment->availability->date->isoFormat('LL') }}</td>
+                                        <td>{{ $appointment->availability->start->format('h:i A') }}</td>
+                                        <td>{{ $appointment->availability->end->format('h:i A')}}</td>
 
                                         <?php
-                                            if ($availability->state=="PENDIENTE"){$text_state="PENDIENTE";$label_class='badge badge-pill badge-info m-1';}
-                                            else if ($availability->state=="DISPONIBLE"){$text_state="DISPONIBLE";$label_class='badge badge-pill badge-success m-1';}
-                                            else if ($availability->state=="SOLICITADA"){$text_state="SOLICITADA";$label_class='badge badge-pill badge-warning m-1';}
-                                            else if ($availability->state=="CANCELADA"){$text_state="CANCELADA";$label_class='badge badge-pill badge-danger m-1';}            
-                                            else{$text_state="CONFIRMADA";$label_class='badge badge-pill badge-primary m-1';}
+                                            if ($appointment->availability->state=="SOLICITADA"){$label_class='badge badge-pill badge-warning m-1';}
+                                            else if ($appointment->availability->state=="CANCELADA"){$label_class='badge badge-pill badge-danger m-1';}
+                                            else{$label_class='badge badge-pill badge-success m-1';}
                                         ?>
 
                                         <td>
-                                            <span class="{{ $label_class }}">{{ $text_state }}</span>
+                                            <span class="{{ $label_class }}">{{ $appointment->availability->state }}</span>
                                         </td>
 
-                                        @can('role', ['Atleta', 'Musculacion'])
+                                        @can('role', ['Musculacion'])
                                         <td width="50px" class="text-center">
 
                                             <div class="dropdown">
@@ -83,47 +79,31 @@
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                     <?php
-                                                        if($availability->state=='DISPONIBLE'){$hidden='disabled';}
-                                                        else if ($availability->date->format('d') < now()->format('d')){$hidden='disabled';}                                             
+                                                        if($appointment->availability->state=='CANCELADA'){$hidden='disabled';}
+                                                        else if($appointment->availability->state=='CONFIRMADA'){$hidden='disabled';}                                                                            
                                                         else{$hidden='';}
                                                     ?>
-                                                    @can('role',['Musculacion'])
-                                                    <form action="{{ route('availabilities.update', $availability) }}" method="POST">
+                                                    <form action="{{ route('appointments.update', $appointment) }}" method="POST">
                                                         @method('PUT')
                                                         @csrf
 
-                                                        <button class="dropdown-item" type="submit" {{ $hidden }}>
+                                                        <button class="dropdown-item" type="submit" name="btnAgree" {{ $hidden }}>
                                                             <i class="fas fa-check-circle"></i> &nbsp;
-                                                            Aprobar
+                                                            Aceptar
                                                         </button>
 
                                                     </form>
 
-                                                    <form action="{{ route('availabilities.destroy', $availability) }}" method="POST">
-                                                        @method('DELETE')
+                                                    <form action="#" method="POST">
+                                                        @method('PUT')
                                                         @csrf
 
                                                         <button class="dropdown-item" type="submit">
-                                                            <i class="fas fa-trash"></i> &nbsp;
-                                                            Eliminar
+                                                            <i class="fas fa-ban"></i> &nbsp;
+                                                            Denegar
                                                         </button>
 
                                                     </form>
-                                                    @endcan
-
-                                                    @can('role', ['Atleta'])
-                                                    <form action="{{ route('appointments.store') }}" method="POST">
-                                                        @csrf
-
-                                                        <x-input name="availability_id" type="hidden" value="{{ $availability->id }}" />
-
-                                                        <button class="dropdown-item" type="submit">
-                                                            <i class="fas fa-calendar-check"></i> &nbsp;
-                                                            Reservar
-                                                        </button>
-
-                                                    </form>
-                                                    @endcan
 
                                                 </div>
                                             </div>
@@ -133,18 +113,22 @@
 
                                     </tr>
                                     @endforeach
+
                                 </x-slot>
                                 <x-slot name="foot">
                                     <tr>
                                         <th>ID</th>
-                                        @can('role', ['Admin', 'Atleta'])
+                                        @can('role', ['Admin', 'Musculacion'])
+                                        <th>Atleta</th>
+                                        @endcan
+                                        @can('role', ['Admin','Atleta'])
                                         <th>Encargado</th>
                                         @endcan
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
                                         <th>Estado</th>
-                                        @can('role',['Musculacion', 'Atleta'])
+                                        @can('role', ['Musculacion'])
                                         <th>Acciones</th>
                                         @endcan
                                     </tr>

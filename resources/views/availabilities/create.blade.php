@@ -24,7 +24,6 @@
                         @php
                         $today = today()->toDateString();
                         $thisWeek = date( 'Y-m-d', strtotime( 'sunday this week' ) );
-                        //$nextWeek = today()->addDay(7)->toDateString();
                         @endphp
                         <div class="form-group row">
 
