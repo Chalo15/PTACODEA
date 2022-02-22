@@ -12,13 +12,19 @@ class Availability extends Model
     protected $fillable = [
         'user_id',
         'date',
-        'start_time',
-        'end_time'
+        'start',
+        'end',
+        'state'
     ];
-
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'date' => 'date',
+        'start' => 'datetime',
+        'end' => 'datetime'
+    ];
 }
