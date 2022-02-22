@@ -63,12 +63,6 @@ class UsersController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->validated());
-        $user->notify(new AppointmentNotification($user));
-
-        /*User::all()->except($user->identification)
-        ->each(function(User $us)use($user){
-            $us->notify(new AppointmentNotification($user));
-        });*/
 
 
 

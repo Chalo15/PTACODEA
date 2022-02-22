@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Availability;
 use App\Http\Requests\StoreAvailabilityRequest;
 use Illuminate\Http\Request;
+use App\Notifications\AppointmentNotification;
 
 class AvailabilityController extends Controller
 {
@@ -52,6 +53,13 @@ class AvailabilityController extends Controller
         $user = $request->user();
 
         $user->availabilities()->create($request->validated());
+
+        $user->notify(new AppointmentNotification($user));
+
+        /*User::all()->except($user->identification)
+        ->each(function(User $us)use($user){
+            $us->notify(new AppointmentNotification($user));
+        });*/
 
         return redirect()->route('availabilities.index')->with('status', 'Disponibilidad creada exitosamente!');
     }
