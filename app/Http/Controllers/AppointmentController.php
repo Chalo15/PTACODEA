@@ -6,8 +6,6 @@ use App\Http\Requests\StoreAppointmentRequest;
 use App\Models\Appointment;
 use App\Models\Availability;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Input;
 
 class AppointmentController extends Controller
 {
@@ -19,7 +17,13 @@ class AppointmentController extends Controller
     public function index()
     {
         //
-        $appointments = Appointment::with('availability')->get();
+        $user = request()->user();
+
+        if ($user->hasRole(['Musculacion'])) {
+            $appointments = Appointment::with('availability')->get();
+        } else {
+            $appointments = Appointment::where('athlete_id', '=', $user->athlete->id)->get();
+        }
 
         return view('appointments.index', compact('appointments'));
     }
@@ -86,10 +90,16 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
+        if ($request->action == 'A') {
+            $appointment->availability->update(['state' => 'CONFIRMADA']);
 
-        $appointment->availability->update(['state' => 'CONFIRMADA']);
+            return redirect()->route('appointments.index')->with('status', 'Solicitud confirmada exitosamente!');
+        } else {
+            $appointment->availability->update(['state' => 'PENDIENTE']);
+            $appointment->delete();
 
-        return redirect()->route('appointments.index')->with('status', 'Cita confirmada exitosamente!');
+            return redirect()->route('appointments.index')->with('status', 'Solicitud cancelada exitosamente. Se ha cambiado su estado a PENDIENTE.');
+        }
     }
 
     /**
