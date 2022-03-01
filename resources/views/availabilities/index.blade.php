@@ -84,7 +84,7 @@
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                     <?php
                                                         if($availability->state=='DISPONIBLE'){$hidden='disabled';}
-                                                        else if ($availability->date->format('d') < now()->format('d')){$hidden='disabled';}                                             
+                                                        //else if ($availability->date->format('d') < now()->format('d')){$hidden='disabled';}                                             
                                                         else{$hidden='';}
                                                     ?>
                                                     @can('role',['Musculacion'])
