@@ -11,6 +11,7 @@ use App\Http\Controllers\SportsController;
 use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AvailabilityController;
+use App\Http\Controllers\NotificationController;
 use App\Models\Appointment;
 
 /**
@@ -128,4 +129,12 @@ Route::prefix('appointments')->group(function () {
     Route::put('{appointment}', [AppointmentController::class, 'update'])->name('appointments.update');
     /*Route::get('create', [AvailabilityController::class, 'create'])->name('availabilities.create');
     Route::delete('{availability}', [AvailabilityController::class, 'destroy'])->name('availabilities.destroy');*/
+});
+
+/*Rutas de Notificaciones*/
+Route::prefix('notifications')->group(function () {
+    Route::get('', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::get('api', [NotificationController::class, 'indexApi'])->name('notifications.index-api');
+    Route::put('markAll', [NotificationController::class, 'markAll'])->name('notifications.markAll');
+    Route::put('{id}/markNotification', [NotificationController::class, 'markNotification'])->name('notifications.markNotification');
 });

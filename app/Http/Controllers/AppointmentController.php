@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAppointmentRequest;
 use App\Models\Appointment;
 use App\Models\Availability;
+use App\Notifications\AppointmentNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use App\Models\User;
+use App\Models\Role;
+use App\Mail\ConfirmMail;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -48,9 +53,16 @@ class AppointmentController extends Controller
 
         $user = $request->user();
 
-        Appointment::create($request->validated() + [
+        $appoint = Appointment::create($request->validated() + [
             'athlete_id' => $user->athlete->id
         ]);
+        
+        //Envio de notificacion al encargado de musculacion;
+        User::where('identification',$appoint->availability->user->identification)
+        ->each(function(User $user)use ($appoint){
+            $user->notify(new AppointmentNotification($appoint));
+        });
+
 
         return redirect()->route('availabilities.index')->with('status', 'Cita reservada exitosamente!');
     }
@@ -88,6 +100,16 @@ class AppointmentController extends Controller
     {
 
         $appointment->availability->update(['state' => 'CONFIRMADA']);
+
+        
+        //Envio de notificacion al Atleta;
+        User::where('identification',$appointment->athlete->user->identification)
+        ->each(function(User $user)use ($appointment){
+            $user->notify(new AppointmentNotification($appointment));
+            //Envio de mail
+        });
+        Mail::to($appointment->athlete->user->email)->send(new ConfirmMail());
+
 
         return redirect()->route('appointments.index')->with('status', 'Cita confirmada exitosamente!');
     }

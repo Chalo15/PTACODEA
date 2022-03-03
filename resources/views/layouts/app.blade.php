@@ -23,6 +23,7 @@
 
 <body class="d-flex flex-column h-100">
 
+
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-black-codea">
             <div class="container">
@@ -33,9 +34,104 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav  navbar-right ml-auto">
+
+                        @can('role',['Musculacion','Atleta'])
+                        <div x-data="{
+                            count:'',
+                            notifications: [''],
+                            refresh() {
+                                axios.get('/notifications/api').then((respuesta) => {
+                                this.notifications = respuesta.data;
+                                });
+                            },
+                            read(id) {
+                                console.log('Llega a read',id)
+                                axios.put('/notifications/${id}/markNotificacion').then((respuesta) => {
+                                this.refresh();
+                            }).catch((error)=>
+                                console.log(error)
+                                );
+                            },
+                            readAll() {
+                                axios.put('/notifications/markAll').then((respuesta) => {
+                                this.refresh();
+                            }).catch((error)=>
+                                console.log(error)
+                                );
+                            },
+                            init() {
+                                this.refresh();
+                            }
+                            }" x-init="init()">
+                            <li class="nav-item dropdown" x-on:click="refresh()">
+
+                                <a id="navbarDropdown" class="mt-1 ml-2 nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fas fa-solid fa-bell"></i> Notificaciones 
+                                    <span id="notifyCount" class="badge badge-pill badge-info"></span>
+                                </a>
+                                
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <h4 class="d-inline text-left mr-2">Notificaciones</h4>
+                                    <button class="btn d-inline" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                                        <button class="dropdown-item" >
+                                            <i class="fas fa-check-circle"></i> &nbsp;
+                                            Marcar todas como leidas
+                                        </button>
+                                        <button class="dropdown-item">
+                                            <i class="fas fa-trash"></i> &nbsp;
+                                            Abrir notificaciones
+                                        </button>
+                                    </div>
+                                    <div class="p-2 text-right d-block">
+                                        <button x-on:click="readAll()" class="d-inline mr-3 text-left btn btn-black-codea">MarkAll</button>
+                                        <a href="{{route('notifications.index')}}" class="d-inline text-right m-2">Ver todo</a>
+                                    </div>
+                                    <div class="text-center">
+
+                                        <span id="notifys" class="dropdown-item" ></span>
+                                    </div>
+                                    @if(auth()->user()->role_id == 6)
+                                        <template x-for="notification in notifications" x-bind:key="notification.id">
+                                            <li class="dropdown-item">
+                                                El atleta 
+                                                <span x-text="notification.data.Athlete_name"></span>
+                                                <span x-text="notification.data.Athlete_last_name"></span>
+                                                reservó una cita
+                                                <div class="d-inline">
+                                                    <button class="btn" x-on:click="read(notification.id)"><i class="fas fa-check-circle"></i></button>
+                                                </div>
+                                                <div class="dropdown-divider"></div>
+                                            </li>
+                                        </template>
+                                    @elseif(auth()->user()->role_id == 4)
+                                        <template x-for="notification in notifications" x-bind:key="notification.id">
+                                            <li class="dropdown-item">
+                                                <span x-text="notification.data.Muscular_name"></span> aceptó la reserva
+                                                <div class="d-inline">
+                                                    <button class="btn" x-on:click="read(notification.id)"><i class="fas fa-check-circle"></i></button>
+                                                </div>
+                                                <div class="dropdown-divider"></div>
+                                            </li>
+                                        </template>
+                                    @endif
+                                    
+                                    
+                                </div>
+
+                                    
+                                
+                            </li>
+                        </div>
+                        
+
+                        @endcan
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @php
@@ -103,7 +199,27 @@
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 
     @stack('scripts')
-
 </body>
+
+<script>
+    let notifications = ['']
+    let count = 0
+    setInterval('refresh()',500);
+
+
+    function refresh() {
+        axios.get('/notifications/api').then((respuesta) => {
+        notifications = respuesta.data;
+        count = Object.keys(respuesta.data).length;
+        document.getElementById('notifyCount').innerHTML = count
+        if(count == 0){
+            document.getElementById('notifys').innerHTML = 'No hay notificaciones disponibles'
+        }
+        });
+    }
+
+
+
+</script>
 
 </html>
