@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\AppointmentNotification;
 use App\Models\Appointment;
-use Carbon\Carbon;
 
 
 class NotificationController extends Controller
@@ -29,6 +28,7 @@ class NotificationController extends Controller
         return view('notifications.index', compact('notifications'));
 
     }
+    //muestra las notificaciones no leidas
     public function indexApi(Request $request)
     {
         return $request->user()->unreadNotifications;
@@ -60,6 +60,12 @@ class NotificationController extends Controller
 
         auth()->user()->unreadNotifications->markAsRead();
         return response()->noContent();
+
+    }
+    //muestra las notificaciones leidas
+    public function readNotifications(Request $request){
+
+        return $request->user()->readNotifications;
 
     }
 }

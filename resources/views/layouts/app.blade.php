@@ -204,7 +204,7 @@
 <script>
     let notifications = ['']
     let count = 0
-    setInterval('refresh()',500);
+    //setInterval('refresh()',1000);
 
 
     function refresh() {
