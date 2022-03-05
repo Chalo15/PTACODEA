@@ -16,18 +16,28 @@
             this.refresh();
         });
     },
+    deny() {
+        axios.put('/notifications/markAll').then((respuesta) => {
+            this.refresh();
+        });
+    },
+    accept() {
+        axios.put('/notifications/markAll').then((respuesta) => {
+            this.refresh();
+        });
+    },
     init() {
         this.refresh();
     }
 }" x-init="init()">
     <a id="navbarDropdown" class="mt-1 ml-2 nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        <i class="fas fa-solid fa-bell"></i> Notificaciones
+        <i class="far fa-envelope"></i> Notificaciones
         <span x-text="notifications.length" class="badge badge-pill badge-info"></span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
         <div class="py-1 text-center d-block">
-            <button x-on:click="readAll()" class=" btn btn-black-codea">MarkAll</button>
+            <button x-on:click="readAll()" class=" btn btn-black-codea">Leer Notificaciones</button>
         </div>
 
         <span x-show="notifications.length == 0" class="dropdown-item">No hay notificaciones disponibles</span>
@@ -39,12 +49,12 @@
 
                 <span class="d-inline">
                     El atleta
-                    <span x-text="notification.data.Athlete_name"></span>
-                    <span x-text="notification.data.Athlete_last_name"></span>
+                    <span x-text="notification.data.Nombre_Atleta"></span>
+                    <span x-text="notification.data.Apellidos_Atleta"></span>
                     reservó una cita
 
                     <button type="button" class="btn" x-on:click="read(notification.id)">
-                        <i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="Marcar como leido"></i>
+                        <i class="far fa-envelope-open" data-toggle="tooltip" data-placement="top" title="Marcar como leido"></i>
                     </button>
                 </span>
 
@@ -53,7 +63,7 @@
                 @elseif(auth()->user()->role_id == 4)
 
                 <span x-text="notification.data.Muscular_name"></span> aceptó la reserva
-                <button type="button" class="d-inline btn" x-on:click="read(notification.id)"><i class="fas fa-check-circle"></i></button>
+                <button type="button" class="d-inline btn" x-on:click="read(notification.id)"><i data-toggle="tooltip" data-placement="top" title="Marcar como leido" class="fas fa-check-circle"></i></button>
 
                 @endif
 

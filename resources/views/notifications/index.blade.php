@@ -14,9 +14,21 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
+                        @can('role',['Musculacion'])
                         <div class="justify-content-center col d-flex align-items-center text-center">
-                            <h3 class="text-center">Notificaciones</h3>
+                            <h3 class="text-right">Notificaciones de musculación</h3>
                         </div>
+                        @endcan
+                        @can('role',['Fisioterapia'])
+                        <div class="justify-content-center col d-flex align-items-center text-center">
+                            <h3 class="text-right">Notificaciones de Fisioterapia</h3>
+                        </div>
+                        @endcan
+                        @can('role',['Atleta'])
+                        <div class=" col d-flex align-items-left text-left">
+                            <h3 class="text-right">Notificaciones</h3>
+                        </div>
+                        @endcan
                     </div>
                 </div>
 
@@ -26,9 +38,9 @@
                             <x-table>
                                 <x-slot name="head">
                                     <tr>
-                                        <th>ID</th>
+                                        <th>Tipo</th>
                                         @can('role', ['Admin', 'Atleta'])
-                                        <th>Encargado</th>
+                                        <th>Id </th>
                                         @endcan
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
@@ -44,7 +56,7 @@
                                 <x-slot name="body">
                                     <tr class="text-center">
                                         <td>70222/td>
-                                        @can('role', ['Admin', 'Atleta'])
+                                            @can('role', ['Admin', 'Atleta'])
                                         <td>Billy</td>
                                         @endcan
                                         <td>5</td>
@@ -59,7 +71,7 @@
                                                 <i class="fas fa-check-circle"></i> &nbsp;
                                                 Leer
                                             </button>
-                                            
+
                                         </td>
                                         @endcan
 

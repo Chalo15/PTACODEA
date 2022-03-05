@@ -14,7 +14,7 @@ use App\Models\User;
 class AppointmentNotification extends Notification
 {
     use Queueable;
-
+    private $role;
     /**
      * Create a new notification instance.
      *
@@ -22,7 +22,8 @@ class AppointmentNotification extends Notification
      */
     public function __construct(Appointment $appointment)
     {
-        $this->appointment=$appointment;
+        $this->appointment = $appointment;
+        $this->role = $appointment->availability->user->role_id;
     }
 
     /**
@@ -45,27 +46,50 @@ class AppointmentNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('PTA CODEA')
-                    ->line($this->appoitment->user->name)
-                    ->action($this->appoitment['AppoitmentText'], $this->appoitment['actionurl'])
-                    ->line('Thank you for using our application!');
+            ->greeting('PTA CODEA')
+            ->line($this->appoitment->user->name)
+            ->action($this->appoitment['AppoitmentText'], $this->appoitment['actionurl'])
+            ->line('Thank you for using our application!');
     }
     public function toDatabase($notifiable)
     {
         //retorno de un array(Json) con los datos de la notificacion
+
+        //Si la reserva es para musculacion
+        if ($this->role == 6) {
             return [
-                'Athlete_identification'=>$this->appointment->athlete->user->identification,
-                'Athlete_name'=>$this->appointment->athlete->user->name,
-                'Athlete_last_name'=>$this->appointment->athlete->user->last_name,
-                'Muscular_identification'=>$this->appointment->availability->user->identification,
-                'Muscular_name'=>$this->appointment->availability->user->name,
-                'Muscular_last_name'=>$this->appointment->availability->user->last_name,
-                'Date'=>$this->appointment->availability->date,
-                'Start'=>$this->appointment->availability->start,
-                'End'=>$this->appointment->availability->end,
-                'State'=>$this->appointment->availability->state,
+                'Id_Atleta' => $this->appointment->athlete->user->identification,
+                'Nombre_Atleta' => $this->appointment->athlete->user->name,
+                'Apellidos_Atleta' => $this->appointment->athlete->user->last_name,
+                'Id_Musculacion' => $this->appointment->availability->user->identification,
+                'Nombre_Musculacion' => $this->appointment->availability->user->name,
+                'Apellidos_Musculacion' => $this->appointment->availability->user->last_name,
+                'Date' => $this->appointment->availability->date,
+                'Start' => $this->appointment->availability->start,
+                'End' => $this->appointment->availability->end,
+                'State' => $this->appointment->availability->state,
+                'Role' => $this->appointment->availability->user->role_id
             ];
-            //Si la solicitud procede de un usuario Atleta
+        }
+        //Si la reserva es para fisioterapia
+        elseif ($this->role == 5) {
+            return [
+                'Id_Atleta' => $this->appointment->athlete->user->identification,
+                'Nombre_Atleta' => $this->appointment->athlete->user->name,
+                'Apellidos_Atleta' => $this->appointment->athlete->user->last_name,
+                'Id_Fisioterapeuta' => $this->appointment->availability->user->identification,
+                'Nombre_Fisioterapeuta' => $this->appointment->availability->user->name,
+                'Apellidos_Fisioterapeuta' => $this->appointment->availability->user->last_name,
+                'Date' => $this->appointment->availability->date,
+                'Start' => $this->appointment->availability->start,
+                'End' => $this->appointment->availability->end,
+                'State' => $this->appointment->availability->state,
+                'Role' => $this->appointment->availability->user->role_id
+            ];
+        }
+
+
+        //Si la solicitud procede de un usuario Atleta
     }
     /**
      * Get the array representation of the notification.
@@ -73,5 +97,4 @@ class AppointmentNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-
 }
