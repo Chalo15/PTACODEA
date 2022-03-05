@@ -11,4 +11,8 @@ $(function () {
     // Datatables
     $('.datatable').DataTable(/** Datatables Configuration */ require('./config/_datatables.config').default);
 
+    // Tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
 })
