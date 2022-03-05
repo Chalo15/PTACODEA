@@ -19,6 +19,8 @@
 
     @stack('stylesheet')
 
+    {{-- Header:Scripts --}}
+    @stack('header-script')
 </head>
 
 <body class="d-flex flex-column h-100">
