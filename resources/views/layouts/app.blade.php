@@ -38,9 +38,9 @@
                     <ul class="navbar-nav  navbar-right ml-auto">
 
                         @can('role',['Musculacion','Atleta'])
-
-                        @include('layouts.partials._notifications')
-
+                        <li class="nav-item dropdown">
+                            @include('layouts.partials._notifications')
+                        </li>
                         @endcan
 
                         <li class="nav-item dropdown">
