@@ -1,13 +1,12 @@
 <div x-data="{
     notifications: [],
     refresh() {
-        console.log('');
         axios.get('/notifications/api').then((respuesta) => {
             this.notifications = respuesta.data;
+            reloadPlugins();
         });
     },
     read(id) {
-        console.log('Llega a read', id);
         axios.put(`/notifications/${id}/markNotification`).then((respuesta) => {
             this.refresh();
         });
@@ -38,12 +37,16 @@
 
                 @if(auth()->user()->role_id == 6)
 
-                El atleta
-                <span x-text="notification.data.Athlete_name"></span>
-                <span x-text="notification.data.Athlete_last_name"></span>
-                reservó una cita
+                <span class="d-inline">
+                    El atleta
+                    <span x-text="notification.data.Athlete_name"></span>
+                    <span x-text="notification.data.Athlete_last_name"></span>
+                    reservó una cita
 
-                <button type="button" class="d-inline btn" x-on:click="read(notification.id)" data-toggle="tooltip" data-placement="top" title="Marcar como leido"><i class="fas fa-check-circle"></i></button>
+                    <button type="button" class="btn" x-on:click="read(notification.id)">
+                        <i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="Marcar como leido"></i>
+                    </button>
+                </span>
 
                 <div class="dropdown-divider"></div>
 

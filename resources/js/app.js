@@ -3,6 +3,13 @@ require("./_bootstrap");
 /**
  * Plugins
  */
+window.reloadPlugins = () => {
+
+    // Tooltips
+    $('[data-toggle="tooltip"]').tooltip();
+
+}
+
 $(function () {
 
     // Select2
@@ -11,8 +18,6 @@ $(function () {
     // Datatables
     $('.datatable').DataTable(/** Datatables Configuration */ require('./config/_datatables.config').default);
 
-    // Tooltips
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    })
+    reloadPlugins();
+
 })
