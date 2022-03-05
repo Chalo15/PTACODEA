@@ -1,68 +1,69 @@
 <div x-data="{
     notifications: [],
+    role: {{ auth()->user()->role_id }},
     refresh() {
-        axios.get('/notifications/api').then((respuesta) => {
-            this.notifications = respuesta.data;
+        axios.get('/notifications/api').then(({ data }) => {
+            this.notifications = data;
             reloadPlugins();
         });
     },
     read(id) {
-        axios.put(`/notifications/${id}/markNotification`).then((respuesta) => {
-            this.refresh();
-        });
+        axios.put(`/notifications/${id}/markNotification`).then(() => this.refresh());
     },
     readAll() {
-        axios.put('/notifications/markAll').then((respuesta) => {
-            this.refresh();
-        });
+        axios.put('/notifications/markAll').then(() => this.refresh());
+    },
+    message(notification) {
+        if (this.role == 6) {
+            return `El atleta ${notification.data.Athlete_name} ${notification.data.Athlete_last_name} reservó una cita.`;
+
+        } else if (this.role == 4) {
+            return `${notification.data.Muscular_name} aceptó la reserva.`;
+        }
     },
     init() {
         this.refresh();
     }
 }" x-init="init()">
-    <a id="navbarDropdown" class="mt-1 ml-2 nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+    <a id="notifications-dropdown" class="mt-1 ml-2 nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
         <i class="fas fa-solid fa-bell"></i> Notificaciones
-        <span x-text="notifications.length" class="badge badge-pill badge-info"></span>
+        <span x-show="notifications.length > 0" x-text="notifications.length" class="badge badge-pill badge-info"></span>
     </a>
 
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <div class="py-1 text-center d-block">
-            <button x-on:click="readAll()" class=" btn btn-black-codea">MarkAll</button>
-        </div>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notifications-dropdown">
 
-        <span x-show="notifications.length == 0" class="dropdown-item">No hay notificaciones disponibles</span>
+        <span x-show="notifications.length > 0">
+            <button class="dropdown-item text-center" type="button" x-on:click="readAll()">
+                Marcar todo como leido
+            </button>
+
+            <div class="dropdown-divider"></div>
+        </span>
+
+        <div x-show="notifications.length == 0" class="dropdown-item text-muted">
+            No hay notificaciones disponibles
+        </div>
 
         <template x-for="notification in notifications" x-bind:key="notification.id">
-            <li class="dropdown-item">
-
-                @if(auth()->user()->role_id == 6)
+            <div class="dropdown-item">
 
                 <span class="d-inline">
-                    El atleta
-                    <span x-text="notification.data.Athlete_name"></span>
-                    <span x-text="notification.data.Athlete_last_name"></span>
-                    reservó una cita
+                    <span x-text="message(notification)"></span> &nbsp;
 
-                    <button type="button" class="btn" x-on:click="read(notification.id)">
+                    <span role="button" x-on:click="read(notification.id)">
                         <i class="fas fa-check-circle" data-toggle="tooltip" data-placement="top" title="Marcar como leido"></i>
-                    </button>
+                    </span>
                 </span>
 
-                <div class="dropdown-divider"></div>
-
-                @elseif(auth()->user()->role_id == 4)
-
-                <span x-text="notification.data.Muscular_name"></span> aceptó la reserva
-                <button type="button" class="d-inline btn" x-on:click="read(notification.id)"><i class="fas fa-check-circle"></i></button>
-
-                @endif
-
-            </li>
+            </div>
         </template>
 
-        <div class="text-center dropdown-item">
-            <a href="{{route('notifications.index')}}" class=" dropdown-item d-inline text-right m-2">Ver todo</a>
-        </div>
+        <div class="dropdown-divider"></div>
+
+        <a href="{{ route('notifications.index') }}" class="dropdown-item text-center">
+            Ver todo
+        </a>
 
     </div>
 </div>
