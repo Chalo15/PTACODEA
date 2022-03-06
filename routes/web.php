@@ -11,7 +11,6 @@ use App\Http\Controllers\SportsController;
 use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AvailabilityController;
-use App\Models\Appointment;
 
 /**
  * Rutas de autenticación.
@@ -125,6 +124,4 @@ Route::prefix('appointments')->group(function () {
     Route::get('', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::post('', [AppointmentController::class, 'store'])->name('appointments.store');
     Route::put('{appointment}', [AppointmentController::class, 'update'])->name('appointments.update');
-    /*Route::get('create', [AvailabilityController::class, 'create'])->name('availabilities.create');
-    Route::delete('{availability}', [AvailabilityController::class, 'destroy'])->name('availabilities.destroy');*/
 });
