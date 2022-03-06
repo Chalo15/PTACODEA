@@ -135,7 +135,9 @@ Route::prefix('appointments')->group(function () {
 Route::prefix('notifications')->group(function () {
     Route::get('', [NotificationController::class, 'index'])->name('notifications.index');
     Route::get('api', [NotificationController::class, 'indexApi'])->name('notifications.index-api');
-    Route::get('unread', [NotificationController::class, 'readNotifications'])->name('notifications.readNotifications');
+    //Route::get('unread', [NotificationController::class, 'readNotifications'])->name('notifications.readNotifications');
     Route::put('markAll', [NotificationController::class, 'markAll'])->name('notifications.markAll');
     Route::put('{id}/markNotification', [NotificationController::class, 'markNotification'])->name('notifications.markNotification');
+    Route::put('{appointment}/accept', [NotificationController::class, 'accept'])->name('notifications.accept');
+    //Route::put('{id}/markNotification', [NotificationController::class, 'markNotification'])->name('notifications.markNotification');
 });
