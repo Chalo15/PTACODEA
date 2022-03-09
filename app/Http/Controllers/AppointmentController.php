@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Mail\ConfirmMail;
 use App\Mail\PhysioConfirmMail;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
@@ -64,7 +65,7 @@ class AppointmentController extends Controller
             'athlete_id' => $user->athlete->id
         ]);
 
-        //Envio de notificacion al encargado de musculacion;
+        //Envio de notificacion al encargado de musculacion o al fisioterapeuta;
         User::where('identification', $appoint->availability->user->identification)
             ->each(function (User $user) use ($appoint) {
                 $user->notify(new AppointmentNotification($appoint));
@@ -114,53 +115,50 @@ class AppointmentController extends Controller
             User::where('identification', $appointment->athlete->user->identification)
                 ->each(function (User $user) use ($appointment) {
                     $user->notify(new AppointmentNotification($appointment));
+
+                    //Rol del usuario, ya sea de musculacion o fisioterapeuta
+                    $role = $appointment->availability->user->role_id;
+                    //Email de confirmacion del usuario a notificar
+                    $email = $appointment->athlete->user->email;
+
+                    //Envio de email al usuario que pidio una reserva para musculacion
+                    if ($role == 6) {
+                        Mail::to($email)->send(new ConfirmMail($appointment));
+                    }
+                    //Envio de email al usuario que pidio una reserva para fisioterapia
+                    elseif ($role == 5) {
+                        Mail::to($email)->send(new PhysioConfirmMail($appointment));
+                    }
                 });
-
-            //Rol del usuario, ya sea de musculacion o fisioterapeuta
-            $role = $appointment->availability->user->role_id;
-
-            //Email de confirmacion del usuario a notificar, en este caso seria al 
-            //usuario que pidio la reserva
-            $email = $appointment->athlete->user->email;
-
-
-            //Envio de email al usuario que pidio una reserva para musculacion
-            if ($role == 6) {
-                Mail::to($email)->send(new ConfirmMail());
-            }
-            //Envio de email al usuario que pidio una reserva para fisioterapia
-            elseif ($role == 5) {
-                Mail::to($email)->send(new PhysioConfirmMail());
-            }
-
 
 
             return redirect()->route('appointments.index')->with('status', 'Solicitud confirmada exitosamente!');
         } else {
 
+
+
+            $appointment->availability->update(['state' => 'PENDIENTE']);
             //Envio de notificacion al Atleta;
             User::where('identification', $appointment->athlete->user->identification)
                 ->each(function (User $user) use ($appointment) {
                     $user->notify(new AppointmentNotification($appointment));
+                    //Rol del usuario, ya sea de musculacion o fisioterapeuta
+                    $role = $appointment->availability->user->role_id;
+
+                    //Email de confirmacion del usuario a notificar, en este caso seria al 
+                    //usuario que pidio la reserva
+                    $email = $appointment->athlete->user->email;
+
+                    //Envio de email al usuario que pidio una reserva para musculacion
+                    if ($role == 6) {
+                        Mail::to($email)->send(new ConfirmMail($appointment));
+                    }
+                    //Envio de email al usuario que pidio una reserva para fisioterapia
+                    elseif ($role == 5) {
+                        Mail::to($email)->send(new PhysioConfirmMail($appointment));
+                    }
                 });
 
-            //Rol del usuario, ya sea de musculacion o fisioterapeuta
-            $role = $appointment->availability->user->role_id;
-
-            //Email de confirmacion del usuario a notificar, en este caso seria al 
-            //usuario que pidio la reserva
-            $email = $appointment->athlete->user->email;
-
-            //Envio de email al usuario que pidio una reserva para musculacion
-            if ($role == 6) {
-                Mail::to($email)->send(new ConfirmMail());
-            }
-            //Envio de email al usuario que pidio una reserva para fisioterapia
-            elseif ($role == 5) {
-                Mail::to($email)->send(new PhysioConfirmMail());
-            }
-
-            $appointment->availability->update(['state' => 'PENDIENTE']);
             $appointment->delete();
 
             return redirect()->route('appointments.index')->with('status', 'Solicitud cancelada exitosamente. Se ha cambiado su estado a PENDIENTE.');

@@ -53,40 +53,20 @@ class AppointmentNotification extends Notification
     }
     public function toDatabase($notifiable)
     {
-        //retorno de un array(Json) con los datos de la notificacion
 
-        //Si la reserva es para musculacion
-        if ($this->role == 6) {
-            return [
-                'Id_Atleta' => $this->appointment->athlete->user->identification,
-                'Nombre_Atleta' => $this->appointment->athlete->user->name,
-                'Apellidos_Atleta' => $this->appointment->athlete->user->last_name,
-                'Id_Musculacion' => $this->appointment->availability->user->identification,
-                'Nombre_Musculacion' => $this->appointment->availability->user->name,
-                'Apellidos_Musculacion' => $this->appointment->availability->user->last_name,
-                'Date' => $this->appointment->availability->date,
-                'Start' => $this->appointment->availability->start,
-                'End' => $this->appointment->availability->end,
-                'State' => $this->appointment->availability->state,
-                'Role' => $this->appointment->availability->user->role_id
-            ];
-        }
-        //Si la reserva es para fisioterapia
-        elseif ($this->role == 5) {
-            return [
-                'Id_Atleta' => $this->appointment->athlete->user->identification,
-                'Nombre_Atleta' => $this->appointment->athlete->user->name,
-                'Apellidos_Atleta' => $this->appointment->athlete->user->last_name,
-                'Id_Fisioterapeuta' => $this->appointment->availability->user->identification,
-                'Nombre_Fisioterapeuta' => $this->appointment->availability->user->name,
-                'Apellidos_Fisioterapeuta' => $this->appointment->availability->user->last_name,
-                'Date' => $this->appointment->availability->date,
-                'Start' => $this->appointment->availability->start,
-                'End' => $this->appointment->availability->end,
-                'State' => $this->appointment->availability->state,
-                'Role' => $this->appointment->availability->user->role_id
-            ];
-        }
+        return [
+            'Id_Atleta' => $this->appointment->athlete->user->identification,
+            'Nombre_Atleta' => $this->appointment->athlete->user->name,
+            'Apellidos_Atleta' => $this->appointment->athlete->user->last_name,
+            'Id_Encargado' => $this->appointment->availability->user->identification,
+            'Nombre_Encargado' => $this->appointment->availability->user->name,
+            'Role_Encargado' => $this->appointment->availability->user->role->description,
+            'Apellidos_Encargado' => $this->appointment->availability->user->last_name,
+            'Date' => $this->appointment->availability->date,
+            'Start' => $this->appointment->availability->start,
+            'End' => $this->appointment->availability->end,
+            'State' => $this->appointment->availability->state
+        ];
 
 
         //Si la solicitud procede de un usuario Atleta

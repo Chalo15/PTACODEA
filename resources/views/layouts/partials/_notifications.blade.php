@@ -15,13 +15,13 @@
     },
     message(notification) {
         if (this.role == 6 || this.role == 5) {
-            return `El atleta ${notification.data.Nombre_Atleta} ${notification.data.Apellidos_Atleta}, cédula ${notification.data.Id_Atleta} reservó una cita   `;
+            return `El atleta ${notification.data.Nombre_Atleta} ${notification.data.Apellidos_Atleta}, cédula ${notification.data.Id_Atleta} reservó una cita`;
 
         } else if (this.role == 4) {
             if(notification.data.State == 'CONFIRMADA'){
-                return `${notification.data.Nombre_Musculacion} aceptó la reserva.`;
-            }else if(notificationdata.State == 'PENDIENTE'){
-                return `${notification.data.Nombre_Musculacion} rechazó la reserva.`;
+                return `${notification.data.Nombre_Encargado} aceptó la reserva de ${notification.data.Role_Encargado}.`;
+            }else if(notification.data.State == 'PENDIENTE'){
+                return `${notification.data.Nombre_Encargado} rechazó la reserva de ${notification.data.Role_Encargado}.`;
             }
         }
     },
@@ -49,7 +49,7 @@
 
         <span x-show="notifications.length > 0">
             <button class="dropdown-item text-center" type="button" x-on:click="readAll()">
-                <i class="fas fa-envelope-open"></i> Marcar todo como leido
+                <i class="fas fa-envelope-open"></i> Marcar notificaciones como leidas
             </button>
 
             <div class="dropdown-divider"></div>
@@ -90,14 +90,17 @@
         </template>
 
         <div class="dropdown-divider"></div>
-
-        <a href="{{ route('notifications.index') }}" class="my-1 dropdown-item text-center">
-            Ver todo
-        </a>
+        @can('role',['Atleta'])
+        <div class="text-center">
+            <a href="{{ route('appointments.index') }}" class="btn btn-primary my-1">
+                Mis citas
+            </a>
+        </div>
+        @endcan
         @can('role',['Musculacion','Fisioterapia'])
         <div class="text-center">
             <a href="{{ route('appointments.index') }}" class=" btn btn-primary">
-                <i class="mr-1 fas fa-calendar-check"></i> Ir a citas
+                <i class="mr-1 fas fa-calendar-check"></i> Ir a confirmación de citas
             </a>
         </div>
         @endcan
