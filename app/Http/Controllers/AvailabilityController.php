@@ -6,6 +6,7 @@ use App\Models\Availability;
 use App\Http\Requests\StoreAvailabilityRequest;
 use Exception;
 use Illuminate\Http\Request;
+use App\Notifications\AppointmentNotification;
 
 class AvailabilityController extends Controller
 {
