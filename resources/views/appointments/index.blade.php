@@ -87,6 +87,8 @@
                                                         @method('PUT')
                                                         @csrf
 
+                                                        <input type="hidden" name="action" value="A">
+
                                                         <button class="dropdown-item" type="submit" name="btnAgree" {{ $hidden }}>
                                                             <i class="fas fa-check-circle"></i> &nbsp;
                                                             Aceptar
@@ -94,9 +96,11 @@
 
                                                     </form>
 
-                                                    <form action="#" method="POST">
+                                                    <form action="{{ route('appointments.update', $appointment) }}" method="POST">
                                                         @method('PUT')
                                                         @csrf
+
+                                                        <input type="hidden" name="action" value="D">
 
                                                         <button class="dropdown-item" type="submit">
                                                             <i class="fas fa-ban"></i> &nbsp;
