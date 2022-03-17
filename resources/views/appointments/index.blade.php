@@ -80,7 +80,7 @@
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                     <?php
                                                         if($appointment->availability->state=='CANCELADA'){$hidden='disabled';}
-                                                        else if($appointment->availability->state=='CONFIRMADA'){$hidden='disabled';}                                                                            
+                                                        else if($appointment->availability->state=='CONFIRMADA'){$hidden='disabled';}
                                                         else{$hidden='';}
                                                     ?>
                                                     <form action="{{ route('appointments.update', $appointment) }}" method="POST">
