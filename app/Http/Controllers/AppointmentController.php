@@ -145,7 +145,7 @@ class AppointmentController extends Controller
                     //Rol del usuario, ya sea de musculacion o fisioterapeuta
                     $role = $appointment->availability->user->role_id;
 
-                    //Email de confirmacion del usuario a notificar, en este caso seria al 
+                    //Email de confirmacion del usuario a notificar, en este caso seria al
                     //usuario que pidio la reserva
                     $email = $appointment->athlete->user->email;
 

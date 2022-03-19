@@ -24,7 +24,8 @@ class AvailabilityController extends Controller
         } else if ($user->hasRole(['Atleta'])) {
             $availabilities = Availability::where([['state', '=', 'DISPONIBLE'], ['date', '>=', date('Y.m.d', strtotime("-1 days"))]])->get();
         } else {
-            $availabilities = Availability::where('state', '=', 'PENDIENTE')->orWhere('state', '=', 'DISPONIBLE')->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])->get();
+            $availabilities = Availability::where('state', '=', 'PENDIENTE')->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])
+            ->orWhere('state', '=', 'DISPONIBLE')->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])->get();
         }
 
         return view('availabilities.index', compact('availabilities'));

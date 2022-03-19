@@ -31,9 +31,7 @@
                                         @can('role', ['Admin', 'Musculacion'])
                                         <th>Atleta</th>
                                         @endcan
-                                        @can('role', ['Admin', 'Atleta'])
                                         <th>Encargado</th>
-                                        @endcan
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
@@ -52,9 +50,7 @@
                                         @can('role', ['Admin', 'Musculacion'])
                                         <td>{{ $appointment->athlete->user->full_name }}</td>
                                         @endcan
-                                        @can('role', ['Admin', 'Atleta'])
                                         <td>{{ $appointment->availability->user->full_name }}</td>
-                                        @endcan
                                         <td>{{ $appointment->availability->date->isoFormat('LL') }}</td>
                                         <td>{{ $appointment->availability->start->format('h:i A') }}</td>
                                         <td>{{ $appointment->availability->end->format('h:i A')}}</td>
@@ -125,9 +121,7 @@
                                         @can('role', ['Admin', 'Musculacion'])
                                         <th>Atleta</th>
                                         @endcan
-                                        @can('role', ['Admin','Atleta'])
                                         <th>Encargado</th>
-                                        @endcan
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
