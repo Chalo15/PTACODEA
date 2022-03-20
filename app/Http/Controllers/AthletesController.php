@@ -35,20 +35,21 @@ class AthletesController extends Controller
     public function index(Request $request)
     {
         // Determinar según por rol cuales atletas retornar.
-        $rol = Auth::user()->role->description;
-        if ($rol == "Admin") {
+        $user = request()->user();
+
+        if ($user->hasRole(['Admin'])) {
             $athletes = Athlete::with('user')->get();
 
             return view('athletes.index', compact('athletes'));
         }
 
-        if ($rol == "Musculacion" || $rol == "Fisioterapia") {
+        if ($user->hasRole(['Musculacion']) || $user->hasRole(['Fisioterapia'])) {
             $athletes = Athlete::where("state", "=", 'A')->with('user')->get();
 
             return view('athletes.index', compact('athletes'));
         }
 
-        if ($rol == "Instructor") {
+        if ($user->hasRole(['Instructor'])) {
 
             $sport_id = Auth::user()->coach->sport_id;
             $athletes = Athlete::where("sport_id", "=", $sport_id)->where("state", "=", 'A')->with('user')->get();
