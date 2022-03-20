@@ -55,7 +55,7 @@ class AppointmentNotification extends Notification
     {
 
         return [
-            'Id_Atleta' => $this->appointment->athlete->user->identification,
+            'Nombre_Atleta' => $this->appointment->athlete->user->identification,
             'Nombre_Atleta' => $this->appointment->athlete->user->name,
             'Apellidos_Atleta' => $this->appointment->athlete->user->last_name,
             'Id_Encargado' => $this->appointment->availability->user->identification,
@@ -67,9 +67,6 @@ class AppointmentNotification extends Notification
             'End' => $this->appointment->availability->end,
             'State' => $this->appointment->availability->state
         ];
-
-
-        //Si la solicitud procede de un usuario Atleta
     }
     /**
      * Get the array representation of the notification.

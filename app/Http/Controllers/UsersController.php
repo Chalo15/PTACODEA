@@ -65,7 +65,6 @@ class UsersController extends Controller
         $user = User::create($request->validated());
 
 
-
         if ($request->role_id == 2) {
             $path = $request->file('pdf')->store('pdfs');
 

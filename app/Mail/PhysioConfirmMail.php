@@ -18,9 +18,8 @@ class PhysioConfirmMail extends Mailable
      *
      * @return void
      */
-    public function __construct(Appointment $appointment)
+    public function __construct()
     {
-        $this->appointment = $appointment;
     }
 
     /**
@@ -30,23 +29,9 @@ class PhysioConfirmMail extends Mailable
      */
     public function data()
     {
-        return [
-            'Id_Atleta' => $this->appointment->athlete->user->identification,
-            'Nombre_Atleta' => $this->appointment->athlete->user->name,
-            'Apellidos_Atleta' => $this->appointment->athlete->user->last_name,
-            'Id_Fisioterapeuta' => $this->appointment->availability->user->identification,
-            'Nombre_Fisioterapeuta' => $this->appointment->availability->user->name,
-            'Apellidos_Fisioterapeuta' => $this->appointment->availability->user->last_name,
-            'Date' => $this->appointment->availability->date,
-            'Start' => $this->appointment->availability->start,
-            'End' => $this->appointment->availability->end,
-            'State' => $this->appointment->availability->state,
-            'Role' => $this->appointment->availability->user->role_id
-        ];
     }
     public function build()
     {
-        $datos = $this->data();
-        return $this->markdown('emails.physioMail', compact($datos));
+        return $this->markdown('emails.physioMail');
     }
 }

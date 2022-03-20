@@ -3,7 +3,15 @@
 
 Su cita para fisio terapia ha sido confirmada
 
-@component('mail::button', ['url' => 'wwww.google.com'])
+# Table component:
+@component('mail::table')
+| Laravel | Table | Example |
+| ------------- |:-------------:| --------:|
+| Col 2 is | Centered | $10 |
+| Col 3 is | Right-Aligned | $20 |
+@endcomponent
+
+@component('mail::button', ['url' => 'www.google.com'])
 Ir al Portal de PTACODEA
 @endcomponent
 

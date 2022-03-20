@@ -114,7 +114,9 @@ class AppointmentController extends Controller
             //Envio de notificacion al Atleta;
             User::where('identification', $appointment->athlete->user->identification)
                 ->each(function (User $user) use ($appointment) {
-                    $user->notify(new AppointmentNotification($appointment));
+                    //Se guarda en una variable las notificaciones
+                    $AppoitmentNotification = new AppointmentNotification($appointment);
+                    $user->notify($AppoitmentNotification);
 
                     //Rol del usuario, ya sea de musculacion o fisioterapeuta
                     $role = $appointment->availability->user->role_id;
@@ -127,7 +129,7 @@ class AppointmentController extends Controller
                     }
                     //Envio de email al usuario que pidio una reserva para fisioterapia
                     elseif ($role == 5) {
-                        Mail::to($email)->send(new PhysioConfirmMail($appointment));
+                        Mail::to($email)->send(new PhysioConfirmMail());
                     }
                 });
 
@@ -141,7 +143,9 @@ class AppointmentController extends Controller
             //Envio de notificacion al Atleta;
             User::where('identification', $appointment->athlete->user->identification)
                 ->each(function (User $user) use ($appointment) {
-                    $user->notify(new AppointmentNotification($appointment));
+                    //Se crea una variable con la informacion de las notificaciones
+                    $AppoitmentNotification = new AppointmentNotification($appointment);
+                    $user->notify($AppoitmentNotification);
                     //Rol del usuario, ya sea de musculacion o fisioterapeuta
                     $role = $appointment->availability->user->role_id;
 
@@ -155,7 +159,7 @@ class AppointmentController extends Controller
                     }
                     //Envio de email al usuario que pidio una reserva para fisioterapia
                     elseif ($role == 5) {
-                        Mail::to($email)->send(new PhysioConfirmMail($appointment));
+                        Mail::to($email)->send(new PhysioConfirmMail());
                     }
                 });
 
