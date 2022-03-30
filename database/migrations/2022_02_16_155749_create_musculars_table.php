@@ -19,7 +19,6 @@ class CreateMuscularsTable extends Migration
             $table->foreignId('athlete_id')->constrained('athletes');
             $table->foreignId('appointment_id')->nullable()->constrained('appointments');
             $table->date('date');
-            $table->string('calcification');
             $table->float('physiological_age');
             $table->float('weight');
             $table->float('height');
@@ -37,13 +36,16 @@ class CreateMuscularsTable extends Migration
             $table->float('elbow');
             $table->float('knee');
             $table->float('biceps');
+            $table->float('calf_cm');
             $table->float('calories');
             $table->float('bmi_high');
             $table->float('icc_high');
             $table->float('fat');
             $table->float('residual');
             $table->float('bone');
+            $table->float('muscle');
             $table->float('visceral');
+            $table->float('ideal_weight');
             $table->text('get_better');
             $table->longText('details');
             $table->timestamps();
