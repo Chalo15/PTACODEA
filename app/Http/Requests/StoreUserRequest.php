@@ -31,12 +31,12 @@ class StoreUserRequest extends FormRequest
             'province'        => ['required'],
             'city'            => ['required'],
             'email'           => ['required', 'email', 'unique:users,email'],
-            'phone'           => ['required', 'numeric', 'unique:users,phone'],
+            'phone'           => ['required', 'numeric', 'min:10000000', 'max:99999999', 'unique:users,phone'],
             'address'         => ['required'],
             'gender'          => ['required'],
             'experience'      => ['required'],
-            'contract_number' => ['required'],
-            'contract_year'   => ['required'],
+            'contract_number' => ['required','numeric', 'max:3'],
+            'contract_year'   => ['required','numeric', 'max:3'],
             'role_id'         => ['required', 'numeric', 'exists:roles,id'],
             'password'        => ['nullable', 'confirmed']
         ];

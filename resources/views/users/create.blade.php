@@ -1,4 +1,5 @@
 <x-app-layout title="Nuevo Usuario">
+
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('home') }}" class="btn btn-primary">
@@ -16,7 +17,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data" id="form">
+                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         {{-- Cédula de Identidad o DIMEX --}}
@@ -246,5 +247,4 @@
             </div>
         </div>
     </div>
-
 </x-app-layout>
