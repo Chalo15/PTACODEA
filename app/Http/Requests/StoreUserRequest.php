@@ -24,7 +24,7 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'identification'  => ['required', 'unique:users,identification'],
+            'identification'  => ['required', 'min:9', 'max:15', 'unique:users,identification'],
             'name'            => ['required'],
             'last_name'       => ['required'],
             'birthdate'       => ['required'],

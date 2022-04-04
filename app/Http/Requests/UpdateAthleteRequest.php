@@ -45,7 +45,7 @@ class   UpdateAthleteRequest extends FormRequest
                 'name_manager'           => ['required'],
                 'lastname_manager'       => ['required'],
                 'manager'                => ['required'],
-                'identification_manager' => ['required'],
+                'identification_manager' => ['required', 'min:9', 'max:15'],
                 'contact_manager'        => ['required'],
                 'policy'                 => ['required'],
                 'pdf'                    => ['nullable']

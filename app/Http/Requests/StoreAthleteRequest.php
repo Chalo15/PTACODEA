@@ -36,7 +36,7 @@ class StoreAthleteRequest extends FormRequest
             ];
         } else {
             $rules += [
-                'identification'  => ['required', 'unique:users'],
+                'identification'  => ['required', 'min:9', 'max:15', 'unique:users'],
                 'name'            => ['required'],
                 'last_name'       => ['required'],
                 'birthdate'       => ['required'],
@@ -55,7 +55,7 @@ class StoreAthleteRequest extends FormRequest
                 'name_manager'           => ['required'],
                 'lastname_manager'       => ['required'],
                 'manager'                => ['required'],
-                'identification_manager' => ['required'],
+                'identification_manager' => ['required', 'min:9', 'max:15'],
                 'contact_manager'        => ['required'],
                 'policy'                 => ['required'],
                 'url'                    => ['required']

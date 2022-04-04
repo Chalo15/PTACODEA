@@ -1,5 +1,4 @@
 <x-app-layout title="Nuevo Usuario">
-
     <div class="row">
         <div class="col mb-3">
             <a href="{{ route('home') }}" class="btn btn-primary">
@@ -17,12 +16,13 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data" id="form">
                         @csrf
 
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
-                            <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
+                            <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
+                                DIMEX</label>
                             <div class="col-sm-8">
                                 <x-input name="identification" value="{{ old('identification') }}" />
                             </div>
@@ -47,14 +47,17 @@
                         {{-- Fecha de Nacimiento --}}
 
                         @php
-                        $today = today()->toDateString();
-                        $age = today()->subYears(18)->toDateString();
+                            $today = today()->toDateString();
+                            $age = today()
+                                ->subYears(18)
+                                ->toDateString();
                         @endphp
 
                         <div class="form-group row">
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
-                                <x-input type="date" max="{{ $age }}" name="birthdate" value="{{ old('birthdate') }}" />
+                                <x-input type="date" max="{{ $age }}" name="birthdate"
+                                    value="{{ old('birthdate') }}" />
                             </div>
                         </div>
 
@@ -63,9 +66,11 @@
                             <label for="province" class="col-sm-4 col-form-label">Provincia</label>
                             <div class="col-sm-8">
                                 <x-select name="province">
-                                    <option {{ old('province') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                    <option {{ old('province') ? '' : 'selected' }} value=""> -- Seleccione --
+                                    </option>
                                     @foreach ($provinces as $province)
-                                    <option {{ old('province') == $province ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
+                                        <option {{ old('province') == $province ? 'selected' : '' }}
+                                            value="{{ $province }}">{{ $province }}</option>
                                     @endforeach
                                 </x-select>
                             </div>
@@ -114,12 +119,15 @@
                             <label for="gender" class="col-sm-4 col-form-label">Género</label>
                             <div class="col-sm-8">
                                 @foreach ($genders as $gender)
-                                <div class="custom-control custom-radio">
-                                    <input {{ (old('gender') && old('gender') == $gender ) || !old('gender') && $loop->index == 0 ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
-                                    <label class="custom-control-label" for="gender-{{ $loop->index }}">
-                                        {{ $gender }}
-                                    </label>
-                                </div>
+                                    <div class="custom-control custom-radio">
+                                        <input
+                                            {{ (old('gender') && old('gender') == $gender) || (!old('gender') && $loop->index == 0) ? 'checked' : '' }}
+                                            class="custom-control-input" type="radio" name="gender"
+                                            id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                        <label class="custom-control-label" for="gender-{{ $loop->index }}">
+                                            {{ $gender }}
+                                        </label>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -161,13 +169,11 @@
                                     <x-select name="role_id" x-model="role">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($roles as $role)
+                                            @if ($role->id == 4)
+                                                @continue
+                                            @endif
 
-                                        @if($role->id == 4)
-                                        @continue
-                                        @endif
-
-                                        <option value="{{ $role->id }}">{{ $role->description }}</option>
-
+                                            <option value="{{ $role->id }}">{{ $role->description }}</option>
                                         @endforeach
                                     </x-select>
                                 </div>
@@ -181,9 +187,11 @@
                                     <label for="sport" class="col-sm-4 col-form-label">Deporte</label>
                                     <div class="col-sm-8">
                                         <x-select name="sport_id">
-                                            <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                            <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> --
+                                                Seleccione -- </option>
                                             @foreach ($sports as $sport)
-                                            <option {{ old('sport_id') == $sport->id ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
+                                                <option {{ old('sport_id') == $sport->id ? 'selected' : '' }}
+                                                    value="{{ $sport->id }}">{{ $sport->description }}</option>
                                             @endforeach
                                         </x-select>
                                     </div>
@@ -219,7 +227,8 @@
 
                         {{-- Confirmación de contraseña --}}
                         <div class="form-group row">
-                            <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de contraseña</label>
+                            <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
+                                contraseña</label>
                             <div class="col-sm-8">
                                 <x-input name="password_confirmation" type="password" />
                             </div>
@@ -235,155 +244,7 @@
                     </form>
                 </div>
             </div>
-
-            {{-- <x-card title="Crear Usuario" color="primary">
-
-
-                <x-slot name="body">
-
-                    <div x-data="{ role: {{ old('tipo') ?? '1' }} }">
-            <form class="well form-horizontal" action="{{route('funcionarios.guardarFuncionario')}} " method="post" id="formulario_registro" enctype="multipart/form-data">
-                @csrf
-
-                <!--Nombre-->
-                <x-row>
-                    <x-input name="nombre" placeholder="Nombre" label="Nombre" />
-                </x-row>
-
-                <!--Apellidos-->
-                <x-row>
-                    <x-input name="apellidos" placeholder="Apellidos" label="Apellidos" />
-                </x-row>
-
-                <!--Cedula--->
-                <x-row>
-                    <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cedula" type="number" />
-                </x-row>
-
-                <!--Genero-->
-                <x-row>
-                    <label class="col-md-4 col-form-label text-md-right">Género</label>
-                    <div class="col-md-7">
-                        <div class="checkbox"><label><input type="radio" name="genero" value="f" /> Femenino</label></div>
-                        <div class="checkbox"><label><input type="radio" name="genero" value="m" /> Masculino</label></div>
-                        <div class="checkbox"><label><input type="radio" name="genero" value="n" /> Otro</label></div>
-                    </div>
-                </x-row>
-
-                <!--Password-->
-                <x-row>
-                    <x-input name="password" placeholder="Contraseña" label="Contraseña" type="password" />
-                </x-row>
-
-                <!-- Comfirmar password-->
-                <x-row>
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
-                    <div class="col-md-7">
-                        <input placeholder="Confirmar Contraseña" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                    </div>
-                </x-row>
-
-                <!--Rol del Funcionario-->
-                <x-row>
-                    <label class="col-md-4 col-form-label text-md-right ">Permisos del Funcionario</label>
-                    <div class="col-md-5">
-                        <select name="tipo" class="form-control selectpicker" value="{{ old('tipo') }}" x-model="role">
-                            @foreach ($roles as $role)
-                            <option value="{{$role->id}}">
-                                {{$role->description}}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                </x-row>
-
-                <span x-show="role == 1">
-                    <input type="text" id="pepe">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                </span>
-
-                <!--Telefono de habitacion-->
-                <x-row>
-                    <x-input name="teleHabitacion" placeholder="Teléfono de habitación Formato 8 Digitos" label="Tel. Habitacion" type="number" />
-                </x-row>
-
-                <!--Correo -->
-                <x-row>
-                    <x-input name="correo" placeholder="Correo" label="Correo" type="email" />
-                </x-row>
-
-                <!--Telefono Celular -->
-                <x-row>
-                    <x-input name="telCelular" placeholder="Telefono Celular Formato 8 Digitos" label="Tel. Celular" type="number" />
-                </x-row>
-
-                <!--Direccion (text-area) -->
-                <x-row>
-                    <label class="col-md-4 col-sm-12 col-form-label text-md-right">Dirección exacta</label>
-                    <div class="col-md-7 col-sm-12">
-                        <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" style="width:100%; height:100px;" value="{{ old('direccion') }}"></textarea>
-                    </div>
-                </x-row>
-
-                <!--Años de experiencia -->
-                <x-row>
-                    <x-input name="experiencia" placeholder="Años de experiencia" label="Años de experiencia" type="number" />
-                </x-row>
-
-                <!--Numero de contrato -->
-                <x-row>
-                    <x-input name="numContrato" placeholder="Numero de contrato" label="Numero de Contrato" type="number" />
-                </x-row>
-
-                <!--Periodo de ligamen con la institucion (meses de contrato) -->
-                <x-row>
-                    <x-input name="periodoContrato" placeholder="Periodo de ligamen con la institución" type="number" label="Periodo" />
-                </x-row>
-
-                <!--Fotocopia de la cedula (boton para adjuntar pdf) -->
-                <!--Insercion de pdfs -->
-                <div class="card">
-                    <p class="text-center">En esta seccion debe adjuntar la fotocopia de su cedula en forma de pdf</p>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                                <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value="{{ old('archivo') }}">
-                                <small id="pfd" class="offset-md-1 text-center text-muted">
-                                    En esta sección introduzca el archivo pdf solicitado.
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Boton para registrar funcionario -->
-                <x-row>
-                    <div class="offset-md-4 col-md-6 p-2">
-                        <button type="submit" class="btn btn-negro">Registrar</button>
-                    </div>
-                </x-row>
-
-            </form>
         </div>
-
-        </x-slot>
-
-        </x-card> --}}
     </div>
-    </div>
-
-
-
-
-
-
-
 
 </x-app-layout>
