@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data" id="user-form">
                         @csrf
 
                         {{-- Cédula de Identidad o DIMEX --}}
@@ -236,7 +236,7 @@
                         </div>
 
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" id="guardarBtn">
                                 <i class="fas fa-save"></i> &nbsp;
                                 Guardar
                             </button>
@@ -247,4 +247,10 @@
             </div>
         </div>
     </div>
+    <script defer>
+        const form = document.getElementById('user-form');
+        const sendBtn = document.getElementById('guardarBtn');
+        console.log('form', form);
+    </script>
 </x-app-layout>
+
