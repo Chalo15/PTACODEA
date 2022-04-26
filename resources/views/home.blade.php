@@ -116,7 +116,7 @@
 
 
     {{-- --------------------TERCER BLOQUE------------------ --}}
-    <div class="row">
+   {{-- <div class="row">
         @can('role', ['Admin', 'Musculacion'])
         <div class="col-md mb-3">
             <div class="card text-center">
@@ -133,7 +133,7 @@
             </div>
         </div>
         @endcan
-    </div>
+    </div>--}}
 
 
     <div class="row">
@@ -223,4 +223,29 @@
         @endcan
     </div>
 
+    <div class="row">
+        @can('role', ['Usuario Externo'])
+        <div class="col-md mb-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    Procesando...
+                </div>
+            <h3>Tu perfil se encuentra en proceso de aceptación, por favor se paciente mientras se realiza este proceso.
+            </h3>
+            </div>
+            <div class="card text-center">
+                <div class="card-header">
+                    Salir
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-sign-out-alt fa-5x"></i>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary btn-block" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Cerrar Sesión &nbsp;
+                        <i class="fa fa-times"></i></a>
+                </div>
+            </div>
+        </div>
+        @endcan
 </x-app-layout>

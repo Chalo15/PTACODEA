@@ -79,7 +79,7 @@
                                                         </a>
 
                                                         <a class="dropdown-item"
-                                                            href="{{ route('athletes.destroy', $athlete->id) }}">
+                                                            href="{{ route('athletes.destroy', $athlete->id) }}" onclick="return confirm('¿Desea cambiar el estado de este registro?')">
                                                             <i class="fas fa-exclamation-triangle"></i> &nbsp;
                                                             Habilitar/Deshabilitar Atletas
                                                         </a>

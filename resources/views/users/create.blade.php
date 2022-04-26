@@ -188,7 +188,7 @@
                                     <x-select name="role_id" id="role_id" x-model="role">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($roles as $role)
-                                            @if ($role->id == 4)
+                                            @if ($role->id == 4 ||$role->id == 7)
                                                 @continue
                                             @endif
 

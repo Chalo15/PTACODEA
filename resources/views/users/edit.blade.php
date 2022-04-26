@@ -37,7 +37,7 @@
                             <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
                                 DIMEX</label>
                             <div class="col-sm-8">
-                                <x-input name="identification" value="{{ $user->identification }}" />
+                                <x-input  disabled name="identification" value="{{ $user->identification }}" />
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label">Nombre</label>
                             <div class="col-sm-8">
-                                <x-input name="name" value="{{ $user->name }}" />
+                                <x-input  disabled name="name" value="{{ $user->name }}" />
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                             <div class="col-sm-8">
-                                <x-input name="last_name" value="{{ $user->last_name }}" />
+                                <x-input  disabled name="last_name" value="{{ $user->last_name }}" />
                             </div>
                         </div>
 
