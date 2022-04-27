@@ -37,6 +37,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha</th>
+                                        <th>Hora</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
                                         <th>Disciplina</th>
@@ -51,6 +52,7 @@
                                         <tr>
                                             <td>{{ $physio->id }}</td>
                                             <td>{{ $physio->date->isoFormat('LL') }}</td>
+                                            <td>{{ $physio->time }}</td>
                                             <td>{{ $physio->athlete->user->identification }}</td>
                                             <td>
                                                 <a target="_blank" class="link"
@@ -101,6 +103,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha</th>
+                                        <th>Hora</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
                                         <th>Disciplina</th>

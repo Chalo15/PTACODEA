@@ -25,18 +25,18 @@ class StoreUserRequest extends FormRequest
     {
         $rules = [
             'identification'  => ['required', 'min:9', 'max:15', 'unique:users,identification'],
-            'name'            => ['required'],
-            'last_name'       => ['required'],
+            'name'            => ['required','min:3', 'max:30'],
+            'last_name'       => ['required','min:3', 'max:30'],
             'birthdate'       => ['required'],
             'province'        => ['required'],
-            'city'            => ['required'],
+            'city'            => ['required', 'min:3', 'max:30'],
             'email'           => ['required', 'email', 'unique:users,email'],
-            'phone'           => ['required', 'numeric', 'min:10000000', 'max:99999999', 'unique:users,phone'],
-            'address'         => ['required'],
+            'phone'           => ['required', 'digits:8','numeric', 'unique:users,phone'],
+            'address'         => ['required', 'min:3', 'max:100'],
             'gender'          => ['required'],
-            'experience'      => ['required'],
-            'contract_number' => ['required','numeric', 'max:3'],
-            'contract_year'   => ['required','numeric', 'max:3'],
+            'experience'      => ['required', 'min:1', 'max:2'],
+            'contract_number' => ['required', 'min:1', 'max:2'],
+            'contract_year'   => ['required', 'min:1', 'max:2'],
             'role_id'         => ['required', 'numeric', 'exists:roles,id'],
             'password'        => ['nullable', 'confirmed']
         ];
@@ -44,7 +44,7 @@ class StoreUserRequest extends FormRequest
         if ($this->role_id == 2) {
             $rules += [
                 'sport_id'    => ['required'],
-                'other_phone' => ['required'],
+                'other_phone' => ['required', 'digits:8'],
                 'pdf'         => ['required', 'file', 'mimes:pdf']
             ];
         }

@@ -25,18 +25,18 @@ class UpdateUserRequest extends FormRequest
     {
         $array = [
             'identification'  => ['min:9', 'max:15','required', 'unique:users,identification,' . $this->user->id],
-            'name'            => ['required'],
-            'last_name'       => ['required'],
+            'name'            => ['required','min:3', 'max:30'],
+            'last_name'       => ['required','min:3', 'max:30'],
             'birthdate'       => ['required'],
             'province'        => ['required'],
-            'city'            => ['required'],
+            'city'            => ['required', 'min:3', 'max:30'],
             'email'           => ['required', 'email', 'unique:users,email,' . $this->user->id],
-            'phone'           => ['required', 'numeric', 'min:11111111', 'max:99999999', 'unique:users,phone,' . $this->user->id],
-            'address'         => ['required'],
+            'phone'           => ['required', 'digits:8', 'numeric', 'unique:users,phone,' . $this->user->id],
+            'address'         => ['required', 'min:3', 'max:100'],
             'gender'          => ['required'],
-            'experience'      => ['required'],
-            'contract_number' => ['required','numeric', 'max:3'],
-            'contract_year'   => ['required','numeric', 'max:3'],
+            'experience'      => ['required', 'min:1', 'max:2'],
+            'contract_number' => ['required', 'min:1', 'max:2'],
+            'contract_year'   => ['required', 'min:1', 'max:2'],
             'role_id'         => ['required', 'numeric', 'exists:roles,id'],
             'password'        => ['nullable', 'confirmed']
         ];

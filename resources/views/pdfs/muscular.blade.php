@@ -178,6 +178,7 @@
         <div id="project">
 
             <div><span>Fecha de Sesión:</span> {{ $muscular->date->isoFormat('LL') }}</div>
+            <div><span>Hora de Sesión:</span> {{ $muscular->time }}</div>
             <div><span>Encargado:</span> {{ $muscular->user->full_name }}</div>
             <div><span>Correo</span> <a href="{{ $muscular->user->email }}">{{ $muscular->user->email }}</a></div>
             <div><span>Atleta:</span> {{ $muscular->athlete->user->full_name }}</div>
