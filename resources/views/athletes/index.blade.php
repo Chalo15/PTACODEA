@@ -36,7 +36,7 @@
                                 <th>Foto</th>
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
-                                <th>Telefono</th>
+                                <th>Teléfono</th>
                                 <th>Estado</th>
                                 <th>Disciplina</th>
                                 <th>Acciones</th>
@@ -97,7 +97,7 @@
                                 <th>Foto</th>
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
-                                <th>Telefono</th>
+                                <th>Teléfono</th>
                                 <th>Estado</th>
                                 <th>Disciplina</th>
                                 <th>Acciones</th>
