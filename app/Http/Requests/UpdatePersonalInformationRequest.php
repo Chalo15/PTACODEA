@@ -24,7 +24,7 @@ class UpdatePersonalInformationRequest extends FormRequest
     public function rules()
     {
         return [
-            'identification'  => ['required'],
+            'identification'  => ['required', 'min:9', 'max:15'],
             'name'            => ['required'],
             'last_name'       => ['required'],
             'birthdate'       => ['nullable'],

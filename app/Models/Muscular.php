@@ -27,6 +27,7 @@ class Muscular extends Model
     protected $fillable = [
         'athlete_id',
         'date',
+        'time',
         'physiological_age',
         'weight',
         'height',

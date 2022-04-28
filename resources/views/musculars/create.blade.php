@@ -24,6 +24,28 @@
                             <label class="col-sm-4 col-form-label">Instrumento de Medición</label>
                         </div>
 
+                        {{-- Fecha de Toma Datos --}}
+                        @php
+                        $today = today()->toDateString();
+                        @endphp
+                        <div class="form-group row">
+                            <label for="date" class="col-sm-4 col-form-label">Fecha de Cita</label>
+                            <div class="col-sm-8">
+                                <x-input readonly type="date" name="date" value="{{ $today }}" />
+                            </div>
+                        </div>
+
+                        {{-- Hora de Toma Datos --}}
+                        @php
+                        $hour = now()->toTimeString();
+                        @endphp
+                        <div class="form-group row">
+                            <label for="time" class="col-sm-4 col-form-label">Hora de Cita</label>
+                            <div class="col-sm-8">
+                                <x-input readonly type="time" name="time" value="{{ $hour }}" />
+                            </div>
+                        </div>
+
                         {{-- Atleta --}}
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
@@ -39,15 +61,6 @@
                                 </x-select2>
                             </div>
                         </div>
-
-                        {{-- Fecha de Toma Datos --}}
-                        <div class="form-group row">
-                            <label for="date" class="col-sm-4 col-form-label">Fecha de Cita</label>
-                            <div class="col-sm-8">
-                                <x-input type="date" name="date" value="{{ old('date') }}" />
-                            </div>
-                        </div>
-
 
                         {{-- Edad Fisiologica --}}
                         <div class="form-group row">
@@ -99,7 +112,7 @@
 
                         {{-- Relacion Cintura Cadera --}}
                         <div class="form-group row">
-                            <label for="cint" class="col-sm-4 col-form-label">Relacion Cintura Cadera</label>
+                            <label for="cint" class="col-sm-4 col-form-label">Relación Cintura Cadera</label>
                             <div class="col-sm-8">
                                 <x-input name="cint_code" type="number" value="{{ old('cint_code') }}" />
                             </div>
@@ -136,7 +149,7 @@
 
                         {{-- Suprailiaco --}}
                         <div class="form-group row">
-                            <label for="suprailiac" class="col-sm-4 col-form-label">Suprailiaco</label>
+                            <label for="suprailiac" class="col-sm-4 col-form-label">Suprailíaco</label>
                             <div class="col-sm-8">
                                 <x-input name="suprailiac" type="number" value="{{ old('suprailiac') }}" />
                             </div>
@@ -160,7 +173,7 @@
 
                         <hr>
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Diametros</label>
+                            <label class="col-sm-4 col-form-label">Diámetros</label>
                         </div>
                         <br>
                         {{-- Muñeca Cm --}}
@@ -194,7 +207,7 @@
                         <br>
                         {{-- Biceps Cm --}}
                         <div class="form-group row">
-                            <label for="biceps" class="col-sm-4 col-form-label">Biceps Cm</label>
+                            <label for="biceps" class="col-sm-4 col-form-label">Bíceps Cm</label>
                             <div class="col-sm-8">
                                 <x-input name="biceps" type="number" value="{{ old('biceps') }}" />
                             </div>
@@ -268,7 +281,7 @@
 
                         {{-- Requerimiento Calorico --}}
                         <div class="form-group row">
-                            <label for="calories" class="col-sm-4 col-form-label">Requerimiento Calorico</label>
+                            <label for="calories" class="col-sm-4 col-form-label">Requerimiento Cal{orico</label>
                             <div class="col-sm-8">
                                 <x-input name="calories" type="number" value="{{ old('calories') }}" />
                             </div>
@@ -292,7 +305,7 @@
 
                         <hr>
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Acotacciones Extras</label>
+                            <label class="col-sm-4 col-form-label">Acotaciones Extras</label>
                         </div>
 
                         <div class="form-group row">
