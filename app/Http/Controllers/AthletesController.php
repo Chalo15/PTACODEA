@@ -12,6 +12,10 @@ use App\Models\Coach;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+use App\Mail\CredentialsMail;
+
+use Illuminate\Support\Facades\Mail;
+
 class AthletesController extends Controller
 {
     /**
@@ -92,6 +96,13 @@ class AthletesController extends Controller
      */
     public function store(StoreAthleteRequest $request)
     {
+        $id = $request->identification;
+        $password = $request->password;
+        $email = $request->email;
+        //Sending an email with the password and the identification
+        Mail::to($email)->send(new CredentialsMail($id, $password));
+
+
         $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated() + ['role_id' => 7]);
 
 
@@ -145,7 +156,7 @@ class AthletesController extends Controller
 
         $relationships = config('general.relationships');
 
-        return view('athletes.edit', compact('states','sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
+        return view('athletes.edit', compact('states', 'sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
     }
 
     /**
@@ -174,7 +185,7 @@ class AthletesController extends Controller
     {
         $athletes = Athlete::with('user')->get();
 
-        if($athlete->state == 'A'){
+        if ($athlete->state == 'A') {
             $athlete->update([
                 'state' => 'R'
             ]);
@@ -182,7 +193,6 @@ class AthletesController extends Controller
             $athlete->update([
                 'state' => 'A'
             ]);
-
         }
 
         return redirect()->route('athletes.index', ['athletes' => $athletes])->with('status', '¡Estado del Atleta Actualizado exitosamente!');

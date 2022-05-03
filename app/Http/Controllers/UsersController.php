@@ -10,6 +10,10 @@ use App\Models\Role;
 use App\Models\User;
 use App\Notifications\AppointmentNotification;
 
+use App\Mail\CredentialsMail;
+use App\Models\Notification;
+use Illuminate\Support\Facades\Mail;
+
 class UsersController extends Controller
 {
     /**
@@ -62,6 +66,13 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        $password = $request->password;
+        $id = $request->identification;
+        $email = $request->email;
+        //Sending an email with the password and the identification
+        Mail::to($email)->send(new CredentialsMail($id, $password));
+
+
         $user = User::create($request->validated());
 
 
@@ -74,6 +85,11 @@ class UsersController extends Controller
                 'url' => $path
             ]);
         }
+
+
+
+
+
 
         return redirect()->route('users.index');
     }

@@ -8,18 +8,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Appointment;
 use App\Notifications\AppointmentNotification;
+use App\Models\User;
 
-class PhysioConfirmMail extends Mailable
+class CredentialsMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    private $id;
+    private $password;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id, $password)
     {
+        $this->id = $id;
+        $this->password = $password;
     }
 
     /**
@@ -29,9 +33,14 @@ class PhysioConfirmMail extends Mailable
      */
     public function data()
     {
+        return [
+            'Id' => $this->id,
+            'Password' => $this->password
+        ];
     }
     public function build()
     {
-        return $this->markdown('emails.physioMail');
+        $datos = $this->data();
+        return $this->markdown('emails.credentialsMail', compact('datos'));
     }
 }

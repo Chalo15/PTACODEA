@@ -129,7 +129,7 @@ class AppointmentController extends Controller
                     }
                     //Envio de email al usuario que pidio una reserva para fisioterapia
                     elseif ($role == 5) {
-                        Mail::to($email)->send(new PhysioConfirmMail());
+                        //Mail::to($email)->send(new PhysioConfirmMail());
                     }
                 });
 
@@ -159,7 +159,7 @@ class AppointmentController extends Controller
                     }
                     //Envio de email al usuario que pidio una reserva para fisioterapia
                     elseif ($role == 5) {
-                        Mail::to($email)->send(new PhysioConfirmMail());
+                        //Mail::to($email)->send(new PhysioConfirmMail());
                     }
                 });
 
