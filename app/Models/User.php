@@ -101,11 +101,6 @@ class User extends Authenticatable
         return $this->hasOne(Coach::class);
     }
 
-    public function functionary()
-    {
-        return $this->hasOne(Functionary::class);
-    }
-
     public function musculars()
     {
         return $this->hasMany(Muscular::class);

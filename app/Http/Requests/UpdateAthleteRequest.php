@@ -26,14 +26,14 @@ class   UpdateAthleteRequest extends FormRequest
         $rules = [
             'coach_id'   => ['required'],
             'identification'  => ['unique:users,identification,' . $this->athlete->user->id],
-            'name'            => ['required'],
-            'last_name'       => ['required'],
+            'name'            => ['required','min:3', 'max:30'],
+            'last_name'       => ['required','min:3', 'max:30'],
             'birthdate'       => ['required'],
             'province'        => ['required'],
-            'city'            => ['required'],
+            'city'            => ['required','min:3', 'max:30'],
             'email'           => ['required', 'email', 'unique:users,email,' . $this->athlete->user->id],
             'phone'           => ['required', 'numeric', 'unique:users,phone,' . $this->athlete->user->id],
-            'address'         => ['required'],
+            'address'         => ['required','min:3', 'max:100'],
             'gender'          => ['required'],
             'password'        => ['nullable', 'confirmed'],
             'blood'           => ['required'],
@@ -42,13 +42,13 @@ class   UpdateAthleteRequest extends FormRequest
 
         if ($this->is_younger) {
             $rules += [
-                'name_manager'           => ['required'],
-                'lastname_manager'       => ['required'],
+                'name_manager'           => ['required', 'min:3', 'max:15'],
+                'lastname_manager'       => ['required','min:3', 'max:15'],
                 'manager'                => ['required'],
-                'identification_manager' => ['required'],
-                'contact_manager'        => ['required'],
-                'policy'                 => ['required'],
-                'pdf'                    => ['nullable']
+                'identification_manager' => ['required', 'min:9', 'max:15'],
+                'contact_manager'        => ['required','digits:8'],
+                'policy'                 => ['required','min:3', 'max:10'],
+                'pdf'                    => ['required']
             ];
         }
 

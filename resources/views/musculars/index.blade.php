@@ -37,6 +37,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha</th>
+                                        <th>Hora</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
                                         <th>Disciplina</th>
@@ -51,6 +52,7 @@
                                         <tr>
                                             <td>{{ $muscular->id }}</td>
                                             <td>{{ $muscular->date->isoFormat('LL') }}</td>
+                                            <td>{{ $muscular->time }}</td>
                                             <td>{{ $muscular->athlete->user->identification }}</td>
                                             <td>
                                                 <a target="_blank" class="link"
@@ -99,6 +101,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Fecha</th>
+                                        <th>Hora</th>
                                         <th>Cédula del Atleta</th>
                                         <th>Nombre Completo</th>
                                         <th>Disciplina</th>

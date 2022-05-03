@@ -14,6 +14,7 @@ class Physio extends Model
 
         'athlete_id',
         'date',
+        'time',
         'sph',
         'app',
         'treatment',
@@ -40,5 +41,9 @@ class Physio extends Model
     {
         return $this->belongsTo(User::class);
     }
-    protected $guarded = [];
+
+    public function appointment()
+    {
+        return $this->belongsTo(Appointment::class);
+    }
 }

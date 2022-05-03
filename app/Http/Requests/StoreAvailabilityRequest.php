@@ -27,7 +27,6 @@ class StoreAvailabilityRequest extends FormRequest
             'date' => ['required'],
             'start' => ['required'],
             'end' => ['required'],
-            'array' => ['unique'],
             'state' => ['required']
         ];
 

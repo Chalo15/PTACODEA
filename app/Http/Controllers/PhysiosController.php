@@ -49,7 +49,7 @@ class PhysiosController extends Controller
      */
     public function create()
     {
-        $athletes = Athlete::with('user')->get();
+        $athletes = Athlete::where("state", "=", 'A')->with('user')->get();
 
         $severities = config("general.severities");
 

@@ -5,14 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SessionData extends Model
+class Notification extends Model
 {
-    public function user()
-    {
-
-        return $this->belongsTo(User::class);
-    }
-
-    protected $guarded = [];
     use HasFactory;
 }

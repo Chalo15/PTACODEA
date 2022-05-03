@@ -46,11 +46,6 @@ class Athlete extends Model
         return $this->belongsTo(Sport::class);
     }
 
-    public function sessionData()
-    {
-        return $this->hasOne(SessionData::class);
-    }
-
     public function trainings()
     {
         return $this->hasMany(Training::class);
@@ -70,5 +65,9 @@ class Athlete extends Model
     {
         return $this->belongsTo(Coach::class);
     }
-    protected $guarded = [];
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }

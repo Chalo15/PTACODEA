@@ -20,6 +20,35 @@
                     <form action="{{ route('physios.store') }}" method="POST">
                         @csrf
 
+                        {{-- Fecha de registro --}}
+                        @php
+                        $today = today()->toDateString();
+                        /*$lastWeek = today()->subDays(7)->toDateString();
+                        $nextWeek = today()->addDay(7)->toDateString();*/
+                        @endphp
+                        <div class="form-group row">
+
+                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
+                            <div class="col-sm-8">
+                                <x-input readonly name="date" type="date" {{--min="{{ $lastWeek }}" max="{{ $nextWeek }}"--}} value="{{ $today }}" />
+                            </div>
+                        </div>
+
+                        {{-- Hora de registro --}}
+                        @php
+                        $hour = now()->toTimeString();
+                        /*$today = today()->toDateString();
+                        $lastWeek = today()->subDays(7)->toDateString();
+                        $nextWeek = today()->addDay(7)->toDateString();*/
+                        @endphp
+                        <div class="form-group row">
+
+                            <label for="date" class="col-sm-4 col-form-label">Hora</label>
+                            <div class="col-sm-8">
+                                <x-input readonly name="time" type="time" {{--min="{{ $lastWeek }}" max="{{ $nextWeek }}"--}} value="{{ $hour }}" />
+                            </div>
+                        </div>
+
                         {{-- Atleta --}}
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
@@ -33,21 +62,6 @@
                                     </option>
                                     @endforeach
                                 </x-select2>
-                            </div>
-                        </div>
-
-
-                        {{-- Fecha de registro --}}
-                        @php
-                        $today = today()->toDateString();
-                        $lastWeek = today()->subDays(7)->toDateString();
-                        $nextWeek = today()->addDay(7)->toDateString();
-                        @endphp
-                        <div class="form-group row">
-
-                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
-                            <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ $today }}" />
                             </div>
                         </div>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAthleteRequest;
 use App\Http\Requests\UpdateAthleteRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
@@ -34,17 +35,24 @@ class AthletesController extends Controller
     public function index(Request $request)
     {
         // Determinar según por rol cuales atletas retornar.
-        $rol = Auth::user()->role->description;
-        if ($rol == "Admin" || $rol == "Musculacion" || $rol == "Fisioterapia") {
+        $user = request()->user();
+
+        if ($user->hasRole(['Admin'])) {
             $athletes = Athlete::with('user')->get();
 
             return view('athletes.index', compact('athletes'));
         }
 
-        if ($rol == "Instructor") {
+        if ($user->hasRole(['Musculacion']) || $user->hasRole(['Fisioterapia'])) {
+            $athletes = Athlete::where("state", "=", 'A')->with('user')->get();
+
+            return view('athletes.index', compact('athletes'));
+        }
+
+        if ($user->hasRole(['Instructor'])) {
 
             $sport_id = Auth::user()->coach->sport_id;
-            $athletes = Athlete::where("sport_id", "=", $sport_id)->get();
+            $athletes = Athlete::where("sport_id", "=", $sport_id)->where("state", "=", 'A')->with('user')->get();
 
             return view('athletes.index', ['athletes' => $athletes]);
         }
@@ -125,6 +133,8 @@ class AthletesController extends Controller
 
         $sports = Sport::all();
 
+        $states = config('general.states');
+
         $genders = config('general.genders');
 
         $provinces = config('general.provinces');
@@ -135,7 +145,7 @@ class AthletesController extends Controller
 
         $relationships = config('general.relationships');
 
-        return view('athletes.edit', compact('sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
+        return view('athletes.edit', compact('states','sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
     }
 
     /**
@@ -152,5 +162,29 @@ class AthletesController extends Controller
         $athlete->user->update($request->validated());
 
         return redirect()->route('athletes.index')->with('status', 'Atleta editado exitosamente!');
+    }
+
+    /**
+     * Elimina el recurso especificado del almacenamiento.
+     *
+     * @param  \App\Models\Athlete  $athlete
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Athlete $athlete)
+    {
+        $athletes = Athlete::with('user')->get();
+
+        if($athlete->state == 'A'){
+            $athlete->update([
+                'state' => 'R'
+            ]);
+        } else {
+            $athlete->update([
+                'state' => 'A'
+            ]);
+
+        }
+
+        return redirect()->route('athletes.index', ['athletes' => $athletes])->with('status', '¡Estado del Atleta Actualizado exitosamente!');
     }
 }

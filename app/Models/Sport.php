@@ -12,6 +12,11 @@ class Sport extends Model
     /**
      * Obtenga los atletas para el deporte.
      */
+    protected $fillable = [
+        'ckeditor'
+    ];
+
+
     public function athletes()
     {
         return $this->hasMany(Athlete::class);

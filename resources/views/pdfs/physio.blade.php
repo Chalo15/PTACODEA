@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,13 +20,13 @@
 
       body {
         position: relative;
-        width: 19cm;  
-        height: 29.7cm; 
-        margin: 0 auto; 
+        width: 19cm;
+        height: 29.7cm;
+        margin: 0 auto;
         color: #001028;
-        background: #FFFFFF; 
-        font-family: Arial, sans-serif; 
-        font-size: 12px; 
+        background: #FFFFFF;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
         font-family: Arial;
       }
 
@@ -70,7 +71,7 @@
       #company {
         float: right;
       }
-      
+
       #company span {
         color: #5D6975;
         text-align: right;
@@ -82,8 +83,8 @@
       #project div,
       #company div {
         white-space: nowrap;
-        font-size: 1.3em;  
-        margin-top: 4px;    
+        font-size: 1.3em;
+        margin-top: 4px;
       }
 
       table {
@@ -107,7 +108,7 @@
         padding: 5px 20px;
         color: #5D6975;
         border-bottom: 1px solid #C1CED9;
-        white-space: nowrap;        
+        white-space: nowrap;
         font-weight: normal;
       }
 
@@ -161,9 +162,9 @@
 
         @php
           setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
-          $today = strftime("%d de %B del %Y"); 
+          $today = strftime("%d de %B del %Y");
         @endphp
-        
+
         <div>CODEA ALAJUELA</div>
         <div>MONSERRAT, ALAJUELA, CR<br /> 20104</div>
         <div>(+506) 2442-1757</div>
@@ -172,7 +173,8 @@
       </div>
       <div id="project">
 
-        <div><span>Fecha Sesion</span> {{ $physio->date->isoFormat('LL') }}</div>
+        <div><span>Fecha de Sesion</span> {{ $physio->date->isoFormat('LL') }}</div>
+        <div><span>Hora de Sesión:</span> {{ $physio->time }}</div>
         <div><span>Fisioterapeuta</span> {{ $physio->user->full_name }}</div>
         <div><span>Correo</span> <a href="{{ $physio->user->email }}">{{ $physio->user->email }}</a></div>
         <div><span>Atleta</span> {{ $physio->athlete->user->full_name }}</div>
