@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\Sport;
 use App\Models\Role;
 use App\Models\User;
+use App\Notifications\AppointmentNotification;
 
 class UsersController extends Controller
 {
@@ -30,7 +31,7 @@ class UsersController extends Controller
      */
     function index()
     {
-        $users = User::where('role_id', '!=', 4)->with('role')->get();
+        $users = User::where('role_id', '!=', 4)->where('role_id', '!=', 7)->with('role')->get();
 
         return view('users.index', compact('users'));
     }
@@ -62,6 +63,8 @@ class UsersController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->validated());
+
+
 
         if ($request->role_id == 2) {
             $path = $request->file('pdf')->store('pdfs');

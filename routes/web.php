@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AthletesController;
@@ -9,6 +10,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SportsController;
 use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AvailabilityController;
+use App\Http\Controllers\NotificationController;
+use App\Models\Appointment;
 
 /**
  * Rutas de autenticación.
@@ -62,6 +66,7 @@ Route::prefix('athletes')->group(function () {
     Route::get('{athlete}', [AthletesController::class, 'show'])->name('athletes.show');
     Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
+    Route::get('delete/{athlete}', [AthletesController::class, 'destroy'])->name('athletes.destroy');
 });
 
 /**
@@ -101,4 +106,38 @@ Route::prefix('trainings')->group(function () {
     Route::get('{training}/edit', [TrainingsController::class, 'edit'])->name('trainings.edit')->middleware("can:role,'Instructor'");
     Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
     Route::get('{training}/generate-pdf', [TrainingsController::class, 'generatePDF'])->name('trainings.generate-pdf');
+});
+
+
+/**
+ * Rutas de Disponibilidades
+ */
+Route::prefix('availabilities')->group(function () {
+    Route::get('', [AvailabilityController::class, 'index'])->name('availabilities.index');
+    Route::get('create', [AvailabilityController::class, 'create'])->name('availabilities.create');
+    Route::post('', [AvailabilityController::class, 'store'])->name('availabilities.store');
+    Route::put('{availability}', [AvailabilityController::class, 'update'])->name('availabilities.update');
+    Route::delete('{availability}', [AvailabilityController::class, 'destroy'])->name('availabilities.destroy');
+});
+
+/**
+ * Rutas de Disponibilidades
+ */
+Route::prefix('appointments')->group(function () {
+    Route::get('', [AppointmentController::class, 'index'])->name('appointments.index');
+    Route::post('', [AppointmentController::class, 'store'])->name('appointments.store');
+    Route::put('{appointment}', [AppointmentController::class, 'update'])->name('appointments.update');
+    /*Route::get('create', [AvailabilityController::class, 'create'])->name('availabilities.create');
+    Route::delete('{availability}', [AvailabilityController::class, 'destroy'])->name('availabilities.destroy');*/
+});
+
+/*Rutas de Notificaciones*/
+Route::prefix('notifications')->group(function () {
+    Route::get('', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::get('api', [NotificationController::class, 'indexApi'])->name('notifications.index-api');
+    //Route::get('unread', [NotificationController::class, 'readNotifications'])->name('notifications.readNotifications');
+    Route::put('markAll', [NotificationController::class, 'markAll'])->name('notifications.markAll');
+    Route::put('{id}/markNotification', [NotificationController::class, 'markNotification'])->name('notifications.markNotification');
+    Route::put('{appointment}/accept', [NotificationController::class, 'accept'])->name('notifications.accept');
+    //Route::put('{id}/markNotification', [NotificationController::class, 'markNotification'])->name('notifications.markNotification');
 });

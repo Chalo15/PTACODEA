@@ -101,11 +101,6 @@ class User extends Authenticatable
         return $this->hasOne(Coach::class);
     }
 
-    public function functionary()
-    {
-        return $this->hasOne(Functionary::class);
-    }
-
     public function musculars()
     {
         return $this->hasMany(Muscular::class);
@@ -119,6 +114,21 @@ class User extends Authenticatable
     public function trainings()
     {
         return $this->hasMany(Training::class);
+    }
+
+    public function availabilities()
+    {
+        return $this->hasMany(Availability::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasManyThrough(Appointment::class, Availability::class);
+    }
+
+    public function hasRole(array $roles)
+    {
+        return in_array($this->role->description, $roles);
     }
     protected $guarded = [];
 }

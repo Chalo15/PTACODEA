@@ -36,7 +36,8 @@
                                 <th>Foto</th>
                                 <th>Identificación</th>
                                 <th>Nombre Completo</th>
-                                <th>Telefono</th>
+                                <th>Teléfono</th>
+                                <th>Estado</th>
                                 <th>Disciplina</th>
                                 <th>Acciones</th>
                             </tr>
@@ -53,6 +54,7 @@
                                     <td>{{ $athlete->user->identification }}</td>
                                     <td>{{ $athlete->user->name . ' ' . $athlete->user->lastname }}</td>
                                     <td>{{ $athlete->user->phone }}</td>
+                                    <td>{{ $athlete->state }}</td>
                                     <td>{{ $athlete->sport->description }}</td>
                                     <td width="100px" class="text-center">
 
@@ -70,34 +72,42 @@
                                                         Información
                                                     </a>
                                                     @can('role', ['Admin'])
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('athletes.edit', $athlete->id) }}">
-                                                        <i class="fas fa-edit"></i> &nbsp;
-                                                        Editar
-                                                    </a>
-                                                @endcan
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('athletes.edit', $athlete->id) }}">
+                                                            <i class="fas fa-edit"></i> &nbsp;
+                                                            Editar
+                                                        </a>
+
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('athletes.destroy', $athlete->id) }}" onclick="return confirm('¿Desea cambiar el estado de este registro?')">
+                                                            <i class="fas fa-exclamation-triangle"></i> &nbsp;
+                                                            Habilitar/Deshabilitar Atletas
+                                                        </a>
+
+                                                    @endcan
+                                                </div>
                                             </div>
-                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </x-slot>
 
-                    <x-slot name="foot">
-                        <tr>
-                            <th>Foto</th>
-                            <th>Identificación</th>
-                            <th>Nombre Completo</th>
-                            <th>Telefono</th>
-                            <th>Disciplina</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </x-slot>
-                </x-table>
+                        <x-slot name="foot">
+                            <tr>
+                                <th>Foto</th>
+                                <th>Identificación</th>
+                                <th>Nombre Completo</th>
+                                <th>Teléfono</th>
+                                <th>Estado</th>
+                                <th>Disciplina</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </x-slot>
+                    </x-table>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 </x-app-layout>

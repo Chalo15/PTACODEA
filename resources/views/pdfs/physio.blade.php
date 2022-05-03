@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,149 +7,149 @@
     <link rel="stylesheet" href="style.css" media="all" />
 
     <style>
-        .clearfix:after {
-          content: "";
-          display: table;
-          clear: both;
-        }
+      .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
 
-        a {
-          color: #5D6975;
-          text-decoration: underline;
-        }
+      a {
+        color: #5D6975;
+        text-decoration: underline;
+      }
 
-        body {
-          position: relative;
-          width: 19cm;  
-          height: 29.7cm; 
-          margin: 0 auto; 
-          color: #001028;
-          background: #FFFFFF; 
-          font-family: Arial, sans-serif; 
-          font-size: 12px; 
-          font-family: Arial;
-        }
+      body {
+        position: relative;
+        width: 19cm;
+        height: 29.7cm;
+        margin: 0 auto;
+        color: #001028;
+        background: #FFFFFF;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        font-family: Arial;
+      }
 
-        header {
-          padding: 10px 0;
-          margin-bottom: 30px;
-        }
+      header {
+        padding: 10px 0;
+        margin-bottom: 30px;
+      }
 
-        #logo {
-          text-align: center;
-          margin-bottom: 10px;
-        }
+      #logo {
+        text-align: center;
+        margin-bottom: 10px;
+      }
 
-        #logo img {
-          width: 90px;
-        }
+      #logo img {
+        width: 90px;
+      }
 
-        h1 {
-          border-top: 1px solid  #5D6975;
-          border-bottom: 1px solid  #5D6975;
-          color: #5D6975;
-          font-size: 2.4em;
-          line-height: 1.4em;
-          font-weight: normal;
-          text-align: center;
-          margin: 0 0 20px 0;
-          background: url(dimension.png);
-        }
+      h1 {
+        border-top: 1px solid  #5D6975;
+        border-bottom: 1px solid  #5D6975;
+        color: #5D6975;
+        font-size: 2.4em;
+        line-height: 1.4em;
+        font-weight: normal;
+        text-align: center;
+        margin: 0 0 20px 0;
+        background: url(dimension.png);
+      }
 
-        #project {
-          float: left;
-        }
+      #project {
+        float: left;
+      }
 
-        #project span {
-          color: #5D6975;
-          text-align: left;
-          width: 55px;
-          margin-right: 60px;
-          display: inline-block;
-        }
+      #project span {
+        color: #5D6975;
+        text-align: left;
+        width: 55px;
+        margin-right: 60px;
+        display: inline-block;
+      }
 
-        #company {
-          float: right;
-        }
-        
-        #company span {
-          color: #5D6975;
-          text-align: right;
-          width: 52px;
-          margin-right: 10px;
-          display: inline-block;
-        }
+      #company {
+        float: right;
+      }
 
-        #project div,
-        #company div {
-          white-space: nowrap;
-          font-size: 1.3em;  
-          margin-top: 4px;    
-        }
+      #company span {
+        color: #5D6975;
+        text-align: right;
+        width: 52px;
+        margin-right: 10px;
+        display: inline-block;
+      }
 
-        table {
-          width: 100%;
-          border-collapse: collapse;
-          border-spacing: 0;
-          margin-bottom: 20px;
-          font-size: 1.2em;
-        }
+      #project div,
+      #company div {
+        white-space: nowrap;
+        font-size: 1.3em;
+        margin-top: 4px;
+      }
 
-        table tr:nth-child(2n-1) td {
-          background: #F5F5F5;
-        }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin-bottom: 20px;
+        font-size: 1.2em;
+      }
 
-        table th,
-        table td {
-          text-align: center;
-        }
+      table tr:nth-child(2n-1) td {
+        background: #F5F5F5;
+      }
 
-        table th {
-          padding: 5px 20px;
-          color: #5D6975;
-          border-bottom: 1px solid #C1CED9;
-          white-space: nowrap;        
-          font-weight: normal;
-        }
+      table th,
+      table td {
+        text-align: center;
+      }
 
-        table .service,
-        table .desc {
-          text-align: left;
-        }
+      table th {
+        padding: 5px 20px;
+        color: #5D6975;
+        border-bottom: 1px solid #C1CED9;
+        white-space: nowrap;
+        font-weight: normal;
+      }
 
-        table td {
-          padding: 20px;
-          text-align: right;
-        }
+      table .service,
+      table .desc {
+        text-align: left;
+      }
 
-        table td.service,
-        table td.desc {
-          vertical-align: top;
-        }
+      table td {
+        padding: 20px;
+        text-align: right;
+      }
 
-        table td.grand {
-          border-top: 1px solid #5D6975;;
-        }
+      table td.service,
+      table td.desc {
+        vertical-align: top;
+      }
 
-        #notices {
-          font-size: 1.3em;
+      table td.grand {
+        border-top: 1px solid #5D6975;;
+      }
 
-        }
-        #notices .notice {
-          color: #5D6975;
-        }
+      #notices {
+        font-size: 1.3em;
 
-        footer {
-          color: #5D6975;
-          width: 100%;
-          height: 30px;
-          position: absolute;
-          bottom: 0;
-          border-top: 1px solid #EC7063;
-          padding: 8px 0;
-          text-align: center;
-          font-size: 1.2em;
-        }
+      }
+      #notices .notice {
+        color: #5D6975;
+      }
+
+      footer {
+        color: #5D6975;
+        width: 100%;
+        height: 30px;
+        position: absolute;
+        bottom: 0;
+        border-top: 1px solid #EC7063;
+        padding: 8px 0;
+        text-align: center;
+        font-size: 1.2em;
+      }
     </style>
   </head>
   <body>
@@ -161,9 +162,9 @@
 
         @php
           setlocale(LC_ALL,"es_ES@euro","es_ES","esp");
-          $today = strftime("%d de %B del %Y"); 
+          $today = strftime("%d de %B del %Y");
         @endphp
-        
+
         <div>CODEA ALAJUELA</div>
         <div>MONSERRAT, ALAJUELA, CR<br /> 20104</div>
         <div>(+506) 2442-1757</div>
@@ -172,7 +173,8 @@
       </div>
       <div id="project">
 
-        <div><span>Fecha Sesion</span> {{ $physio->date->isoFormat('LL') }}</div>
+        <div><span>Fecha de Sesion</span> {{ $physio->date->isoFormat('LL') }}</div>
+        <div><span>Hora de Sesión:</span> {{ $physio->time }}</div>
         <div><span>Fisioterapeuta</span> {{ $physio->user->full_name }}</div>
         <div><span>Correo</span> <a href="{{ $physio->user->email }}">{{ $physio->user->email }}</a></div>
         <div><span>Atleta</span> {{ $physio->athlete->user->full_name }}</div>
@@ -219,7 +221,7 @@
       </div>
     </main>
     <footer>
-      Siguenos en nuestras redes sociales y/o buscanos en www.codea.go.cr
+      Síguenos en nuestras redes sociales y/o buscanos en www.codea.go.cr
     </footer>
   </body>
 </html>

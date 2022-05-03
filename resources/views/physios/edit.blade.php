@@ -21,26 +21,41 @@
                         @csrf
                         @method('PUT')
 
+                        {{-- Fecha de registro --}}
+                        @php
+                        $today = today()->toDateString();
+                        /*$lastWeek = today()->subDays(7)->toDateString();
+                        $nextWeek = today()->addDay(7)->toDateString();*/
+                        @endphp
+                        <div class="form-group row">
+
+                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
+                            <div class="col-sm-8">
+                                <x-input readonly name="date" type="date"{{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}"--}} value="{{old('date') ?? $physio->date }}" />
+                            </div>
+                        </div>
+
+                        {{-- Hora de registro --}}
+                        @php
+                        $hour = now()->toTimeString();
+                        /*$today = today()->toDateString();
+                        $lastWeek = today()->subDays(7)->toDateString();
+                        $nextWeek = today()->addDay(7)->toDateString();*/
+                        @endphp
+                        <div class="form-group row">
+
+                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
+                            <div class="col-sm-8">
+                                <x-input readonly name="time" type="time" {{--min="{{ $lastWeek }}" max="{{ $nextWeek }}"--}} value="{{old('timr') ?? $physio->time }}" />
+                            </div>
+                        </div>
+
                         {{-- Atleta --}}
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
                             <div class="col-sm-8">
                                 <x-input name="athlete_id" readonly value="{{ $physio->athlete->user->full_name }}">
                                 </x-input>
-                            </div>
-                        </div>
-
-
-                        @php
-                        $today = today()->toDateString();
-                        $lastWeek = today()->subDays(7)->toDateString();
-                        $nextWeek = today()->addDay(7)->toDateString();
-                        @endphp
-                        <div class="form-group row">
-
-                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
-                            <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{old('date') ?? $physio->date }}" />
                             </div>
                         </div>
 

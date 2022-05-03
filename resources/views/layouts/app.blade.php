@@ -19,12 +19,15 @@
 
     @stack('stylesheet')
 
+    {{-- Header:Scripts --}}
+    @stack('header-script')
 </head>
 
 <body class="d-flex flex-column h-100">
 
+
     <header>
-        <nav class="navbar navbar-expand-md navbar-black-codea fixed-top bg-black-codea">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-black-codea">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('img/logo-codea.gif') }}" alt="" width="25%" height="25%">
@@ -33,9 +36,15 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav  navbar-right ml-auto">
+
+                        @can('role',['Musculacion','Atleta'])
+                        <li class="nav-item dropdown">
+                            @include('layouts.partials._notifications')
+                        </li>
+                        @endcan
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @php
@@ -103,7 +112,6 @@
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 
     @stack('scripts')
-
 </body>
 
 </html>
