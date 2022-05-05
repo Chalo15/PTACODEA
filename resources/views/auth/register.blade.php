@@ -101,12 +101,12 @@
 
 //Metodo para validar la cédula
 jQuery.validator.addMethod("idnumber", function (value, element) {
-        if ( /^\d{3}-?\d{3}-?\d{3}$/g.test(value) ) {
+        if ( /^\d{2}-?\d{1}-?\d{1}$/g.test(value) ) {
             return true;
         } else {
             return false;
         };
-    }, "La cédula debe tener 9 dígitos ");
+    }, "La cédula debe tener 4 dígitos ");
 
 //Metodo para validar número telefónico
 jQuery.validator.addMethod("phonenumber", function (value, element) {
@@ -152,12 +152,15 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             identification : {
             required : true,
             numbersonly:true,
-            idnumber: true         
+            maxlength : 15,
+            minlength: 9    
+            //idnumber: true         
             },
             name : {
             required : true,
             lettersonly: true,
-            maxlength : 50    
+            maxlength : 50,    
+            minlength: 3
             },
             last_name : {
             required : true,
@@ -167,6 +170,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             email : {
             required : true,
             maxlength : 50, 
+            minlength: 5,
             email : true
             },
             phone : {
@@ -182,7 +186,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             },
             password_confirmation : {
             required : true,
-            equalTo: "#password",
+            equalTo: "#password"
             },
           /*  message : {
             required : true,
@@ -193,11 +197,14 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 
         messages : {
             identification : { 
-            required : 'Por favor ingrese su cédula *'
+            required : 'Por favor ingrese su cédula *',
+            maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres *',
+            minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres *'
             },
             name : {
             required : 'Por favor ingrese su nombre *',
-            maxlength : 'Su nombre no puede ser mayor a 50 caracteres *'
+            maxlength : 'Su nombre no puede ser mayor a 50 caracteres *',
+            minlength : 'Su nombre no puede ser menor a 3 caracteres *'
             },
             last_name : {
             required : 'Por favor ingrese sus apellidos *',
@@ -206,7 +213,8 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             email : {
             required : 'Por favor ingrese su email *',
             email : 'Por favor ingrese una dirección de correo válida *',
-            maxlength : 'El email no debe ser de más de 50 caracteres *'
+            maxlength : 'Su correo electrónico no debe ser de más de 50 caracteres *',
+            minlength : 'Su correo electrónico no debe ser de menos de 5 caracteres*'
             },
             phone : {
             required : 'Por favor ingrese su número telefónico *',

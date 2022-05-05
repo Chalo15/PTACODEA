@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="{{ route('profile.update-password') }}" method="POST">
+                            <form id="form_personal_information" action="{{ route('profile.update-password') }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
@@ -136,7 +136,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('profile.update-personal-information') }}" method="POST">
+                    <form id='form_personal_information' action="{{ route('profile.update-personal-information') }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -144,7 +144,7 @@
                         <div class="form-group row">
                             <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
                             <div class="col-sm-8">
-                                <x-input disabled name="identification" value="{{ $user->identification }}" />
+                                <x-input readonly name="identification" value="{{ $user->identification }}" />
                             </div>
                         </div>
 
@@ -152,7 +152,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label">Nombre</label>
                             <div class="col-sm-8">
-                                <x-input  disabled name="name" value="{{ $user->name }}" />
+                                <x-input  readonly name="name" value="{{ $user->name }}" />
                             </div>
                         </div>
 
@@ -160,7 +160,7 @@
                         <div class="form-group row">
                             <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                             <div class="col-sm-8">
-                                <x-input  disabled name="last_name" value="{{ $user->last_name }}" />
+                                <x-input  readonly name="last_name" value="{{ $user->last_name }}" />
                             </div>
                         </div>
 
@@ -189,7 +189,7 @@
                         <div class="form-group row">
                             <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
                             <div class="col-sm-8">
-                                <x-input name="city" value="{{ $user->city }}" />
+                                <x-input id='city' name="city" value="{{ $user->city }}" />
                             </div>
                         </div>
 
@@ -207,7 +207,7 @@
                         <div class="form-group row">
                             <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                             <div class="col-sm-8">
-                                <x-input name="phone" type="number" value="{{ $user->phone }}" />
+                                <x-input id='phone' name="phone" value="{{ $user->phone }}" />
                             </div>
                         </div>
 
@@ -259,100 +259,11 @@
                 }
                 reader.readAsDataURL(this.files[0]);
             });
-        });
 
+        });
+ 
     </script>
     @endpush
+    
 
 </x-app-layout>
-
-{{-- <x-app-layout title="Perfil">
-
-    <div class="py-3 row justify-content-center">
-
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="d-5 text-center">Perfil Personal</h3>
-                </div>
-
-                <div class="card-body">
-
-
-                    <form class="well form-horizontal" action="{{route('saveProfile')}} " method="post" id="formulario_perfil" enctype="multipart/form-data">
-
-@csrf
-@method('put')
-
-
-<!--foto de perfil-->
-<div class="form-group">
-
-    <div class="col-md-12 col-12 justify-content-center text-center">
-        <img src="{{ asset('storage/imagenes/'.$user->photo)}}" width="50%">
-    </div>
-
-</div>
-
-<div class="form-group">
-    <div class="col-12 col-sm-12 col-12 justify-content-center text-center">
-        <a href="{{ route('changePhoto') }}" type="button" class="btn btn-primary btn-block">{{ __('Seleccionar foto de perfil') }}</a>
-    </div>
-</div>
-
-
-<div class="form-group row">
-
-    <div class="col-12 col-sm-6 col-md-6">
-        <label>Nombre</label>
-        <input value="{{$user->name}}" type="text" name="name" class="form-control form-control-sm ">
-    </div>
-
-    <div class="col-12 col-sm-6 col-md-6">
-        <label>Apellidos</label>
-        <input value="{{$user->lastname}}" type="text" name="lastname" class="form-control form-control-sm ">
-    </div>
-
-</div>
-
-<div class="form-group row">
-
-    <div class="col-md-6">
-        <label>Correo</label>
-        <input value="{{$user->email}}" type="text" name="email" class="form-control form-control-sm ">
-    </div>
-    <div class="col-md-6">
-        <label>Fecha de nacimiento</label>
-        <input value="{{$user->birthdate}}" type="text" name="birthdate" class="form-control form-control-sm ">
-    </div>
-
-</div>
-
-<div class="form-group row">
-    <div class="col-md-6">
-        <label>Teléfono</label>
-        <input value="{{$user->phone}}" type="text" name="phone" class="form-control form-control-sm ">
-    </div>
-</div>
-
-<div class="form-group row pt-2">
-    <div class="col-md-12 justify-content-center text-center">
-        <button type="submit" class="btn btn-primary btn-block">
-            Actualizar datos
-        </button>
-        @can('role',"Atleta")
-        <a href="{{ route('datos_extra') }}" type="button" class="btn btn-primary btn-block">{{ __('Datos extra del atleta') }}</a>
-        @endcan
-    </div>
-</div>
-
-
-</form>
-
-</div>
-
-</div>
-</div>
-
-</div>
-</x-app-layout> --}}

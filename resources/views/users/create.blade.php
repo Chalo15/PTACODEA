@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data"
+                    <form id='form_users_create' action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data"
                         id="user-form">
                         @csrf
 
@@ -108,7 +108,7 @@
                         <div class="form-group row">
                             <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                             <div class="col-sm-8">
-                                <x-input name="phone" id="phone" type="number" value="{{ old('phone') }}" />
+                                <x-input name="phone" id="phone"  value="{{ old('phone') }}" />
                                 <span class="badge text-danger errors-phone"></span>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                         <div class="form-group row">
                             <label for="experience" class="col-sm-4 col-form-label">Años de Experiencia</label>
                             <div class="col-sm-8">
-                                <x-input name="experience" id="experience" type="number"
+                                <x-input name="experience" id="experience" 
                                     value="{{ old('experience') }}" />
                                     <span class="badge text-danger errors-experience"></span>
                             </div>
@@ -161,17 +161,17 @@
                         <div class="form-group row">
                             <label for="contract_number" class="col-sm-4 col-form-label">Número de Contrato</label>
                             <div class="col-sm-8">
-                                <x-input name="contract_number" id="contract_number" type="number"
+                                <x-input name="contract_number" id="contract_number" 
                                     value="{{ old('contract_number') }}" />
                                     <span class="badge text-danger errors-contract_number"></span>
                             </div>
                         </div>
 
-                        {{-- Año de Contrato --}}
+                        {{-- Años de Contrato --}}
                         <div class="form-group row">
                             <label for="contract_year" class="col-sm-4 col-form-label">Año de Contrato</label>
                             <div class="col-sm-8">
-                                <x-input name="contract_year" id="contract_year" type="number"
+                                <x-input name="contract_year" id="contract_year" 
                                     value="{{ old('contract_year') }}" />
                                     <span class="badge text-danger errors-contract_year"></span>
                             </div>
@@ -253,7 +253,7 @@
                         {{-- Confirmación de contraseña --}}
                         <div class="form-group row">
                             <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
-                                contraseña</label>
+                                Contraseña</label>
                             <div class="col-sm-8">
                                 <x-input name="password_confirmation" id="password_confirmation" type="password" />
                                 <span class="badge text-danger errors-password_confirmation"></span>
@@ -272,4 +272,240 @@
             </div>
         </div>
     </div>
+
+
+    
+
+@push('scripts')
+    <script>
+
+
+ $(document).ready(function(){
+
+
+    //Metodo para validar la cédula
+/*jQuery.validator.addMethod("idnumber", function (value, element) {
+        if ( /^\d{3}-?\d{3}-?\d{3}$/g.test(value) ) {
+            return true;
+        } else {
+            return false;
+        };
+    }, "La cédula debe tener 9 dígitos ");
+*/
+//Metodo para validar la cédula
+jQuery.validator.addMethod("idnumber", function (value, element) {
+        if ( /^\d{2}-?\d{1}-?\d{1}$/g.test(value) ) {
+            return true;
+        } else {
+            return false;
+        };
+    }, "La cédula debe tener 9 dígitos ");
+
+//Metodo para validar número telefónico
+jQuery.validator.addMethod("phonenumber", function (value, element) {
+        if ( /^\d{3}-?\d{3}-?\d{2}$/g.test(value) ) {
+            return true;
+        } else {
+            return false;
+        };
+    }, "El número telefónico debe tener 8 dígitos ");
+
+//Método que valida solo numeros
+    jQuery.validator.addMethod("numbersonly", function(value, element) {
+    return this.optional(element) || /^[0-9]+$/i.test(value);
+    }, 'Por favor digite solo valores numéricos *',);  
+
+
+//Método que valida solo letras
+    jQuery.validator.addMethod("lettersonly", function(value, element) {
+    return this.optional(element) || /^[a-z," "]+$/i.test(value);
+    }, 'Por favor digite solo valores alfanuméricos *',);  
+
+//Método que valida la contraseña
+    jQuery.validator.addMethod("passwordCheck",
+        function(value, element, param) {
+            if (this.optional(element)) {
+                return true;
+            } else if (!/[A-Z]/.test(value)) {
+                return false;
+            } else if (!/[a-z]/.test(value)) {
+                return false;
+            } else if (!/[0-9]/.test(value)) {
+                return false;
+            }
+            return true;
+        },
+        "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *");
+
+//Metodo que valida la fecha de nacimiento
+$.validator.addMethod("CheckDOB", function (value, element) {
+       var  minDate = Date.parse("01/01/1990");  
+        var today=new Date();
+        var DOB = Date.parse(value);  
+        if((DOB <= today && DOB >= minDate)) {  
+            return true;  
+        }  
+        return false;  
+    }, "La fecha de nacimiento es invalida");
+
+//Validaciones del formulario
+    if($("#form_users_create").length > 0)
+    {
+        $('#form_users_create').validate({
+        rules:{
+            identification : {
+            required : true,
+            maxlength : 15,
+            minlength: 9    
+            },
+            name : {
+            required : true,
+            lettersonly: true,
+            maxlength : 30,
+            minlength: 3    
+            },
+            last_name : {
+            required : true,
+            lettersonly: true,
+            minlength: 3, 
+            maxlength : 30          
+            },
+            city : {
+            required : true,
+            lettersonly: true,
+            minlength: 3, 
+            maxlength : 30    
+            },
+            email : {
+            required : true,
+            maxlength : 30, 
+            minlength: 3,
+            email : true
+            },
+            phone : {
+            required : true,        
+            numbersonly: true,
+            phonenumber: true
+            },
+            address : {
+            required : true,
+            minlength : 20,
+            maxlength : 120
+            },
+            experience:{
+            required : true,
+            numbersonly: true,
+            min : 1,
+            max : 2
+            },
+            contract_number:{
+            required : true,
+            numbersonly: true,
+            min : 1,
+            max : 5
+            },
+            contract_year:{
+            required : true,
+            numbersonly: true,
+            max : 2,
+            min : 1
+            },
+            password : {
+            required : true,
+            passwordCheck:true,
+            minlength : 8,
+            maxlength : 60
+            },
+            password_confirmation : {
+            required : true,
+            equalTo: "#password"
+            },
+          /*  message : {
+            required : true,
+            minlength : 50,
+            maxlength : 500
+            }*/
+        },
+
+        messages : {
+            identification : { 
+            required : 'Por favor ingrese su cédula *',
+            maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+            minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+            },
+            name : {
+            required : 'Por favor ingrese su nombre *',
+            maxlength : 'Su nombre no puede ser mayor a 30 caracteres *',
+            minlength : 'Su nombre no puede ser menor a 3 caracteres *'
+            },
+            last_name : {
+            required : 'Por favor ingrese sus apellidos *',
+            maxlength : 'Sus apellidos no pueden ser mayores a 30 caracteres *',
+            minlength : 'Sus apellidos no pueden ser menores a 3 caracteres *'
+            },
+            city : {
+            required : 'Por favor ingrese la ciudad donde vive *',
+            maxlength : 'La ciudad no puede ser mayor a 30 caracteres *',
+            minlength : 'La ciudad no puede ser menor a 3 caracteres *'
+            },
+            email : {
+            required : 'Por favor ingrese su email *',
+            email : 'Por favor ingrese una dirección de correo electrónico válida *',
+            maxlength : 'Su correo electrónico no puede ser de más de 30 caracteres *',
+            minlength : 'Su correo electrónico no puede ser de menos de 3 caracteres *'
+            },
+            phone : {
+            required : 'Por favor ingrese su número telefónico *'
+            },
+            address : {
+            required : 'Por favor ingrese su dirección completa *',
+            maxlength : 'Su dirección no puede ser de más de 20 caracteres *',
+            minlength : 'Su dirección no puede ser de menos de 120 caracteres *'
+            }
+            experience : {
+            required : 'Por favor ingrese sus años de experiencia *',
+            max : 'Sus años de experiencia no pueden ser de más de 30 *',
+            min : 'Su correo electrónico no puede ser de menos de 3 caracteres *'         
+            },
+            contract_number : {
+            required : 'Por favor ingrese su número de contacto *',
+            max : 'Sus años de experiencia no pueden ser de más de 30 *',
+            min : 'Su correo electrónico no puede ser de menos de 3 caracteres *'   
+            },
+            contract_year : {
+            required : 'Por favor ingrese su años de contacto *',
+            max : 'Sus años de experiencia no pueden ser de más de 30 *',
+            min : 'Su correo electrónico no puede ser de menos de 3 caracteres *'  
+            },
+            address : {
+            required : 'Por favor ingrese su dirección exacta *',
+            minlength : 'La dirección no puede ser menor a 20 caracteres *',
+            maxlength : 'La dirección no puede ser mayor a 120 caracteres *'
+            },
+            password : {
+            required : 'Por favor ingrese su contraseña *',
+            minlength : 'La contraseña no puede ser menor a 8 caracteres *',
+            maxlength : 'La contraseña no puede ser mayor a 60 caracteres *'
+            },
+            password_confirmation : {
+            required : 'Por favor ingrese de nuevo su contraseña *',
+            equalTo: 'Por favor introduzca la misma contraseña *'
+            },
+
+
+         /*   message : {
+            required : 'Enter Message Detail',
+            minlength : 'Message Details must be minimum 50 character long',
+            maxlength : 'Message Details must be maximum 500 character long'
+            }*/
+        }
+        });
+    }
+});
+
+    </script>
+    
+@endpush
+
+
 </x-app-layout>
