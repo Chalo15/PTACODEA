@@ -167,9 +167,9 @@
                             </div>
                         </div>
 
-                        {{-- Años de Contrato --}}
+                        {{-- Año de Contrato --}}
                         <div class="form-group row">
-                            <label for="contract_year" class="col-sm-4 col-form-label">Año de Contrato</label>
+                            <label for="contract_year" class="col-sm-4 col-form-label">Años de Contrato</label>
                             <div class="col-sm-8">
                                 <x-input name="contract_year" id="contract_year" 
                                     value="{{ old('contract_year') }}" />
@@ -222,7 +222,7 @@
                                 <div class="form-group row">
                                     <label for="other_phone" class="col-sm-4 col-form-label">Teléfono Celular</label>
                                     <div class="col-sm-8">
-                                        <x-input name="other_phone" id="other_phone" type="number"
+                                        <x-input name="other_phone" id="other_phone"
                                             value="{{ old('other_phone') }}" />
                                             <span class="badge text-danger errors-other_phone"></span>
                                     </div>
@@ -299,7 +299,7 @@ jQuery.validator.addMethod("idnumber", function (value, element) {
         } else {
             return false;
         };
-    }, "La cédula debe tener 9 dígitos ");
+    }, "La cédula debe tener 9 dígitos *");
 
 //Metodo para validar número telefónico
 jQuery.validator.addMethod("phonenumber", function (value, element) {
@@ -308,12 +308,13 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         } else {
             return false;
         };
-    }, "El número telefónico debe tener 8 dígitos ");
+    }, "El número telefónico debe tener 8 dígitos *");
+    
 
 //Método que valida solo numeros
     jQuery.validator.addMethod("numbersonly", function(value, element) {
     return this.optional(element) || /^[0-9]+$/i.test(value);
-    }, 'Por favor digite solo valores numéricos *',);  
+    }, 'Por favor digite solo valores numéricos y números naturales *',);  
 
 
 //Método que valida solo letras
@@ -338,7 +339,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *");
 
 //Metodo que valida la fecha de nacimiento
-$.validator.addMethod("CheckDOB", function (value, element) {
+/*$.validator.addMethod("CheckDOB", function (value, element) {
        var  minDate = Date.parse("01/01/1990");  
         var today=new Date();
         var DOB = Date.parse(value);  
@@ -346,7 +347,7 @@ $.validator.addMethod("CheckDOB", function (value, element) {
             return true;  
         }  
         return false;  
-    }, "La fecha de nacimiento es invalida");
+    }, "La fecha de nacimiento es invalida");*/
 
 //Validaciones del formulario
     if($("#form_users_create").length > 0)
@@ -369,6 +370,12 @@ $.validator.addMethod("CheckDOB", function (value, element) {
             lettersonly: true,
             minlength: 3, 
             maxlength : 30          
+            },
+            birthdate:{
+            required : true
+            },
+            province:{
+            required : true
             },
             city : {
             required : true,
@@ -395,20 +402,28 @@ $.validator.addMethod("CheckDOB", function (value, element) {
             experience:{
             required : true,
             numbersonly: true,
-            min : 1,
-            max : 2
+//            min : 1,
+            max : 50
             },
             contract_number:{
             required : true,
             numbersonly: true,
-            min : 1,
-            max : 5
+            minlength : 1,
+            maxlength : 5
             },
             contract_year:{
             required : true,
             numbersonly: true,
-            max : 2,
+            max : 50,
             min : 1
+            },
+            other_phone:{
+            required : true,        
+            numbersonly: true,
+            phonenumber: true
+            },
+            role_id:{
+            required : true
             },
             password : {
             required : true,
@@ -419,6 +434,12 @@ $.validator.addMethod("CheckDOB", function (value, element) {
             password_confirmation : {
             required : true,
             equalTo: "#password"
+            },
+            pdf:{
+            required : true
+            },
+            sport_id:{
+            required : true
             },
           /*  message : {
             required : true,
@@ -443,6 +464,12 @@ $.validator.addMethod("CheckDOB", function (value, element) {
             maxlength : 'Sus apellidos no pueden ser mayores a 30 caracteres *',
             minlength : 'Sus apellidos no pueden ser menores a 3 caracteres *'
             },
+            birthdate:{
+            required : 'Por favor ingrese su fecha de nacimiento *'
+            },
+            province:{
+            required : 'Por favor ingrese su provincia *'
+            },
             city : {
             required : 'Por favor ingrese la ciudad donde vive *',
             maxlength : 'La ciudad no puede ser mayor a 30 caracteres *',
@@ -461,26 +488,31 @@ $.validator.addMethod("CheckDOB", function (value, element) {
             required : 'Por favor ingrese su dirección completa *',
             maxlength : 'Su dirección no puede ser de más de 20 caracteres *',
             minlength : 'Su dirección no puede ser de menos de 120 caracteres *'
-            }
+            },
             experience : {
             required : 'Por favor ingrese sus años de experiencia *',
-            max : 'Sus años de experiencia no pueden ser de más de 30 *',
-            min : 'Su correo electrónico no puede ser de menos de 3 caracteres *'         
+            max : 'Sus años de experiencia no pueden ser de más de 50 *'       
             },
             contract_number : {
             required : 'Por favor ingrese su número de contacto *',
-            max : 'Sus años de experiencia no pueden ser de más de 30 *',
-            min : 'Su correo electrónico no puede ser de menos de 3 caracteres *'   
+            maxlength : 'Su número de contrato no puede ser de más de 5 caracteres *',
+            minlength : 'Su número de contrato no puede ser de menos de 1 caracter *'   
             },
             contract_year : {
             required : 'Por favor ingrese su años de contacto *',
-            max : 'Sus años de experiencia no pueden ser de más de 30 *',
-            min : 'Su correo electrónico no puede ser de menos de 3 caracteres *'  
+            max : 'Sus años de contrato no pueden ser de más de 50 *',
+            min : 'Sus años de contrato no pueden ser de menos de 1 *'  
             },
             address : {
             required : 'Por favor ingrese su dirección exacta *',
             minlength : 'La dirección no puede ser menor a 20 caracteres *',
             maxlength : 'La dirección no puede ser mayor a 120 caracteres *'
+            },
+            other_phone : {
+            required : 'Por favor ingrese su número telefónico *'
+            },
+            role_id:{
+            required : 'Por favor ingrese su rol *'
             },
             password : {
             required : 'Por favor ingrese su contraseña *',
@@ -490,6 +522,12 @@ $.validator.addMethod("CheckDOB", function (value, element) {
             password_confirmation : {
             required : 'Por favor ingrese de nuevo su contraseña *',
             equalTo: 'Por favor introduzca la misma contraseña *'
+            },
+            pdf:{
+            required : 'Por favor ingrese la copia de su cédula de identidad *'
+            },
+            sport_id:{
+            required : 'Por favor ingrese su disciplina *'
             },
 
 
