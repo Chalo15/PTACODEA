@@ -24,7 +24,8 @@
                                 <div x-show="!isOpen">
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <img src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}" class="rounded mx-auto d-block" width="200" height="200">
+                                            <img src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}"
+                                                class="rounded mx-auto d-block" width="200" height="200">
                                         </div>
                                     </div>
 
@@ -37,13 +38,15 @@
                                 </div>
 
                                 <div x-show="isOpen">
-                                    <form action="{{ route('profile.update-picture') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('profile.update-picture') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
 
                                         <div class="row">
                                             <div class="col d-flex justify-content-center mb-3">
-                                                <img id="selected" class="rounded" style="max-height: 200px; max-width: 200px;">
+                                                <img id="selected" class="rounded"
+                                                    style="max-height: 200px; max-width: 200px;">
                                             </div>
                                         </div>
 
@@ -55,7 +58,8 @@
 
                                         <div class="row">
                                             <div class="col d-flex justify-content-end">
-                                                <button @click="isOpen = !isOpen" type="button" class="btn btn-secondary mr-3">
+                                                <button @click="isOpen = !isOpen" type="button"
+                                                    class="btn btn-secondary mr-3">
                                                     <i class="fas fa-times"></i> &nbsp;
                                                     Cancelar
                                                 </button>
@@ -107,7 +111,8 @@
 
                                 {{-- Confirmación de contraseña --}}
                                 <div class="form-group row">
-                                    <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de contraseña</label>
+                                    <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
+                                        contraseña</label>
                                     <div class="col-sm-8">
                                         <x-input name="password_confirmation" type="password" />
                                     </div>
@@ -142,9 +147,10 @@
 
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
-                            <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
+                            <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
+                                DIMEX</label>
                             <div class="col-sm-8">
-                                <x-input disabled name="identification" value="{{ $user->identification }}" />
+                                <x-input readonly name="identification" value="{{ $user->identification }}" />
                             </div>
                         </div>
 
@@ -152,7 +158,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label">Nombre</label>
                             <div class="col-sm-8">
-                                <x-input  disabled name="name" value="{{ $user->name }}" />
+                                <x-input readonly name="name" value="{{ $user->name }}" />
                             </div>
                         </div>
 
@@ -160,7 +166,7 @@
                         <div class="form-group row">
                             <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                             <div class="col-sm-8">
-                                <x-input  disabled name="last_name" value="{{ $user->last_name }}" />
+                                <x-input readonly name="last_name" value="{{ $user->last_name }}" />
                             </div>
                         </div>
 
@@ -177,9 +183,12 @@
                             <label for="province" class="col-sm-4 col-form-label">Provincia</label>
                             <div class="col-sm-8">
                                 <x-select name="province">
-                                    <option {{ !$user->province ? 'selected' : '' }} disabled value=""> -- Seleccione -- </option>
+                                    <option {{ !$user->province ? 'selected' : '' }} readonly value=""> -- Seleccione
+                                        -- </option>
                                     @foreach ($provinces as $province)
-                                    <option {{ $user->province && $user->province == $province  ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
+                                        <option
+                                            {{ $user->province && $user->province == $province ? 'selected' : '' }}
+                                            value="{{ $province }}">{{ $province }}</option>
                                     @endforeach
                                 </x-select>
                             </div>
@@ -226,12 +235,14 @@
                             <label for="gender" class="col-sm-4 col-form-label">Género</label>
                             <div class="col-sm-8">
                                 @foreach ($genders as $gender)
-                                <div class="custom-control custom-radio">
-                                    <input {{ $user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
-                                    <label class="custom-control-label" for="gender-{{ $loop->index }}">
-                                        {{ $gender }}
-                                    </label>
-                                </div>
+                                    <div class="custom-control custom-radio">
+                                        <input {{ $user->gender == $gender ? 'checked' : '' }}
+                                            class="custom-control-input" type="radio" name="gender"
+                                            id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                        <label class="custom-control-label" for="gender-{{ $loop->index }}">
+                                            {{ $gender }}
+                                        </label>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -250,18 +261,17 @@
     </div>
 
     @push('scripts')
-    <script>
-        $(document).ready(function(e) {
-            $('#image').change(function() {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    $('#selected').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
+        <script>
+            $(document).ready(function(e) {
+                $('#image').change(function() {
+                    let reader = new FileReader();
+                    reader.onload = (e) => {
+                        $('#selected').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                });
             });
-        });
-
-    </script>
+        </script>
     @endpush
 
 </x-app-layout>
@@ -340,7 +350,7 @@
         <button type="submit" class="btn btn-primary btn-block">
             Actualizar datos
         </button>
-        @can('role',"Atleta")
+        @can('role', 'Atleta')
         <a href="{{ route('datos_extra') }}" type="button" class="btn btn-primary btn-block">{{ __('Datos extra del atleta') }}</a>
         @endcan
     </div>
