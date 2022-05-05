@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTrainingRequest;
 use App\Http\Requests\UpdateTrainingRequest;
 use App\Models\Athlete;
 use App\Models\Training;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -125,9 +126,21 @@ class TrainingsController extends Controller
     {
         $pdf = PDF::loadView('pdfs.training', compact('training'));
 
-        return $pdf->download('document.pdf');
+        //return $pdf->download('document.pdf');
 
         return $pdf->download($training->athlete->user->full_name . '.pdf');
+
+    }
+    public function generateReport(User $user)
+    {
+
+
+        
+        $data=Training::where("user_id", "=", '30')->get();
+
+
+        $pdf=PDF::loadView('pdfs.reportTraining',compact('data'));
+        return $pdf->download('Reporte.pdf');
 
     }
 }

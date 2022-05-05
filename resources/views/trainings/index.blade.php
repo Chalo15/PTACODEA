@@ -20,11 +20,19 @@
 
                         <div class="col d-flex justify-content-end">
                             @can('role', ['Instructor'])
-                                <a href="{{ route('trainings.create') }}" class="btn btn-primary">
+                                <a href="{{ route('trainings.create') }}" class="btn btn-primary mx-1">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo
                                 </a>
                             @endcan
+                            @php
+                            $user = Auth::user();
+                            @endphp
+                            
+                            <a href="{{ route('trainings.generate-ReportPdf',$user->identification) }}" class="btn btn-primary mx-3">
+                                <i class="fas fa-plus"></i> &nbsp;
+                                Reporte de asistencia y lesiones
+                            </a>
                         </div>
                     </div>
                 </div>
