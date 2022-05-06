@@ -17,7 +17,7 @@
                 </div>
                 {{-- }} @json($errors->all()) --}}
                 <div class="card-body">
-                    <form action="{{ route('musculars.store') }}" method="POST">
+                    <form id='form_musculars_create' action="{{ route('musculars.store') }}" method="POST">
                         @csrf
 
                         <div class="form-group row">
@@ -66,7 +66,7 @@
                         <div class="form-group row">
                             <label for="physiological_age" class="col-sm-4 col-form-label">Edad</label>
                             <div class="col-sm-8">
-                                <x-input name="physiological_age" type="number" value="{{ old('physiological_age') }}" />
+                                <x-input name="physiological_age" value="{{ old('physiological_age') }}" />
                             </div>
                         </div>
 
@@ -74,7 +74,7 @@
                         <div class="form-group row">
                             <label for="weight" class="col-sm-4 col-form-label">Peso Kg</label>
                             <div class="col-sm-8">
-                                <x-input name="weight" type="number" value="{{ old('weight') }}" />
+                                <x-input name="weight" value="{{ old('weight') }}" />
                             </div>
                         </div>
 
@@ -82,7 +82,7 @@
                         <div class="form-group row">
                             <label for="height" class="col-sm-4 col-form-label">Altura Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="height" type="number" value="{{ old('height') }}" />
+                                <x-input name="height" value="{{ old('height') }}" />
                             </div>
                         </div>
 
@@ -90,7 +90,7 @@
                         <div class="form-group row">
                             <label for="bmi" class="col-sm-4 col-form-label">IMC</label>
                             <div class="col-sm-8">
-                                <x-input name="bmi" type="number" value="{{ old('bmi') }}" />
+                                <x-input name="bmi" value="{{ old('bmi') }}" />
                             </div>
                         </div>
 
@@ -98,7 +98,7 @@
                         <div class="form-group row">
                             <label for="waist" class="col-sm-4 col-form-label">Circ. Cintura Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="waist" type="number" value="{{ old('waist') }}" />
+                                <x-input name="waist" value="{{ old('waist') }}" />
                             </div>
                         </div>
 
@@ -106,7 +106,7 @@
                         <div class="form-group row">
                             <label for="hip" class="col-sm-4 col-form-label">Circ. Cadera Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="hip" type="number" value="{{ old('hip') }}" />
+                                <x-input name="hip" value="{{ old('hip') }}" />
                             </div>
                         </div>
 
@@ -114,7 +114,7 @@
                         <div class="form-group row">
                             <label for="cint" class="col-sm-4 col-form-label">Relación Cintura Cadera</label>
                             <div class="col-sm-8">
-                                <x-input name="cint_code" type="number" value="{{ old('cint_code') }}" />
+                                <x-input name="cint_code" value="{{ old('cint_code') }}" />
                             </div>
                         </div>
 
@@ -127,7 +127,7 @@
                         <div class="form-group row">
                             <label for="tricipital" class="col-sm-4 col-form-label">Tricipital</label>
                             <div class="col-sm-8">
-                                <x-input name="tricipital" type="number" value="{{ old('tricipital') }}" />
+                                <x-input name="tricipital" value="{{ old('tricipital') }}" />
                             </div>
                         </div>
 
@@ -135,7 +135,7 @@
                         <div class="form-group row">
                             <label for="subscapular" class="col-sm-4 col-form-label">Subescapular</label>
                             <div class="col-sm-8">
-                                <x-input name="subscapular" type="number" value="{{ old('subscapular') }}" />
+                                <x-input name="subscapular" value="{{ old('subscapular') }}" />
                             </div>
                         </div>
 
@@ -143,7 +143,7 @@
                         <div class="form-group row">
                             <label for="abdominal" class="col-sm-4 col-form-label">Abdominal</label>
                             <div class="col-sm-8">
-                                <x-input name="abdominal" type="number" value="{{ old('abdominal') }}" />
+                                <x-input name="abdominal" value="{{ old('abdominal') }}" />
                             </div>
                         </div>
 
@@ -151,7 +151,7 @@
                         <div class="form-group row">
                             <label for="suprailiac" class="col-sm-4 col-form-label">Suprailíaco</label>
                             <div class="col-sm-8">
-                                <x-input name="suprailiac" type="number" value="{{ old('suprailiac') }}" />
+                                <x-input name="suprailiac" value="{{ old('suprailiac') }}" />
                             </div>
                         </div>
 
@@ -159,7 +159,7 @@
                         <div class="form-group row">
                             <label for="thigh" class="col-sm-4 col-form-label">Muslo</label>
                             <div class="col-sm-8">
-                                <x-input name="thigh" type="number" value="{{ old('thigh') }}" />
+                                <x-input name="thigh" value="{{ old('thigh') }}" />
                             </div>
                         </div>
 
@@ -167,7 +167,7 @@
                         <div class="form-group row">
                             <label for="calf" class="col-sm-4 col-form-label">Pantorrilla</label>
                             <div class="col-sm-8">
-                                <x-input name="calf" type="number" value="{{ old('calf') }}" />
+                                <x-input name="calf" value="{{ old('calf') }}" />
                             </div>
                         </div>
 
@@ -180,7 +180,7 @@
                         <div class="form-group row">
                             <label for="wrist" class="col-sm-4 col-form-label">Muñeca Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="wrist" type="number" value="{{ old('wrist') }}" />
+                                <x-input name="wrist" value="{{ old('wrist') }}" />
                             </div>
                         </div>
 
@@ -188,7 +188,7 @@
                         <div class="form-group row">
                             <label for="elbow" class="col-sm-4 col-form-label">Codo Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="elbow" type="number" value="{{ old('elbow') }}" />
+                                <x-input name="elbow" value="{{ old('elbow') }}" />
                             </div>
                         </div>
 
@@ -196,7 +196,7 @@
                         <div class="form-group row">
                             <label for="knee" class="col-sm-4 col-form-label">Rodilla Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="knee" type="number" value="{{ old('knee') }}" />
+                                <x-input name="knee" value="{{ old('knee') }}" />
                             </div>
                         </div>
 
@@ -209,7 +209,7 @@
                         <div class="form-group row">
                             <label for="biceps" class="col-sm-4 col-form-label">Bíceps Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="biceps" type="number" value="{{ old('biceps') }}" />
+                                <x-input name="biceps" value="{{ old('biceps') }}" />
                             </div>
                         </div>
 
@@ -217,7 +217,7 @@
                         <div class="form-group row">
                             <label for="calf_cm" class="col-sm-4 col-form-label">Pantorrilla Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="calf_cm" type="number" value="{{ old('calf_cm') }}" />
+                                <x-input name="calf_cm" value="{{ old('calf_cm') }}" />
                             </div>
                         </div>
 
@@ -230,7 +230,7 @@
                         <div class="form-group row">
                             <label for="fat" class="col-sm-4 col-form-label">%Grasa</label>
                             <div class="col-sm-8">
-                                <x-input name="fat" type="number" value="{{ old('fat') }}" />
+                                <x-input name="fat" value="{{ old('fat') }}" />
                             </div>
                         </div>
 
@@ -238,7 +238,7 @@
                         <div class="form-group row">
                             <label for="residual" class="col-sm-4 col-form-label">%Residual</label>
                             <div class="col-sm-8">
-                                <x-input name="residual" type="number" value="{{ old('residual') }}" />
+                                <x-input name="residual" value="{{ old('residual') }}" />
                             </div>
                         </div>
 
@@ -246,7 +246,7 @@
                         <div class="form-group row">
                             <label for="bone" class="col-sm-4 col-form-label">%Óseo</label>
                             <div class="col-sm-8">
-                                <x-input name="bone" type="number" value="{{ old('bone') }}" />
+                                <x-input name="bone" value="{{ old('bone') }}" />
                             </div>
                         </div>
 
@@ -254,7 +254,7 @@
                         <div class="form-group row">
                             <label for="muscle" class="col-sm-4 col-form-label">%Musculo</label>
                             <div class="col-sm-8">
-                                <x-input name="muscle" type="number" value="{{ old('muscle') }}" />
+                                <x-input name="muscle" value="{{ old('muscle') }}" />
                             </div>
                         </div>
 
@@ -262,7 +262,7 @@
                         <div class="form-group row">
                             <label for="visceral" class="col-sm-4 col-form-label">%Visceral</label>
                             <div class="col-sm-8">
-                                <x-input name="visceral" type="number" value="{{ old('visceral') }}" />
+                                <x-input name="visceral" value="{{ old('visceral') }}" />
                             </div>
                         </div>
 
@@ -275,7 +275,7 @@
                         <div class="form-group row">
                             <label for="ideal_weight" class="col-sm-4 col-form-label">Peso Ideal Kg</label>
                             <div class="col-sm-8">
-                                <x-input name="ideal_weight" type="number" value="{{ old('ideal_weight') }}" />
+                                <x-input name="ideal_weight" value="{{ old('ideal_weight') }}" />
                             </div>
                         </div>
 
@@ -283,7 +283,7 @@
                         <div class="form-group row">
                             <label for="calories" class="col-sm-4 col-form-label">Requerimiento Cal{orico</label>
                             <div class="col-sm-8">
-                                <x-input name="calories" type="number" value="{{ old('calories') }}" />
+                                <x-input name="calories" value="{{ old('calories') }}" />
                             </div>
                         </div>
 
@@ -291,7 +291,7 @@
                         <div class="form-group row">
                             <label for="bmi_high" class="col-sm-4 col-form-label">IMC Alto</label>
                             <div class="col-sm-8">
-                                <x-input name="bmi_high" type="number" value="{{ old('bmi_high') }}" />
+                                <x-input name="bmi_high" value="{{ old('bmi_high') }}" />
                             </div>
                         </div>
 
@@ -299,7 +299,7 @@
                         <div class="form-group row">
                             <label for="icc_high" class="col-sm-4 col-form-label">ICC Alto</label>
                             <div class="col-sm-8">
-                                <x-input name="icc_high" type="number" value="{{ old('icc_high') }}" />
+                                <x-input name="icc_high" value="{{ old('icc_high') }}" />
                             </div>
                         </div>
 
