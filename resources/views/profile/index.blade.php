@@ -236,9 +236,11 @@
                             <div class="col-sm-8">
                                 @foreach ($genders as $gender)
                                     <div class="custom-control custom-radio">
-                                        <input {{ $user->gender == $gender ? 'checked' : '' }}
+                                        <input
+                                            {{ $user->gender && $user->gender == $gender ? 'checked' : '' }}
                                             class="custom-control-input" type="radio" name="gender"
-                                            id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                            id="gender-{{ $loop->index }}"
+                                            value="{{ old('gender') ?? $user->gender }}">
                                         <label class="custom-control-label" for="gender-{{ $loop->index }}">
                                             {{ $gender }}
                                         </label>
@@ -246,6 +248,8 @@
                                 @endforeach
                             </div>
                         </div>
+
+                        <hr>
 
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary">

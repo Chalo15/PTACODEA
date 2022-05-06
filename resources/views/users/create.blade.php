@@ -131,16 +131,12 @@
                             <label for="gender" class="col-sm-4 col-form-label">Género</label>
                             <div class="col-sm-8">
                                 @foreach ($genders as $gender)
-                                    <div class="custom-control custom-radio">
-                                        <input id="gender"
-                                            {{ (old('gender') && old('gender') == $gender) || (!old('gender') && $loop->index == 0) ? 'checked' : '' }}
-                                            class="custom-control-input" type="radio" name="gender"
-                                            id="gender-{{ $loop->index }}" value="{{ $gender }}"/>
-                                            <span class="badge text-danger errors-gender"></span>
-                                        <label class="custom-control-label" for="gender-{{ $loop->index }}">
-                                            {{ $gender }}
-                                        </label>
-                                    </div>
+                                <div class="custom-control custom-radio">
+                                    <input {{ (old('gender') && old('gender') == $gender ) || !old('gender') && $loop->index == 0 ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                    <label class="custom-control-label" for="gender-{{ $loop->index }}">
+                                        {{ $gender }}
+                                    </label>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
