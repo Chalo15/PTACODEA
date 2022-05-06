@@ -34,20 +34,6 @@
                             </div>
                         </div>
 
-                        {{-- Hora de registro --}}
-                        @php
-                        $hour = now()->toTimeString();
-                        /*$today = today()->toDateString();
-                        $lastWeek = today()->subDays(7)->toDateString();
-                        $nextWeek = today()->addDay(7)->toDateString();*/
-                        @endphp
-                        <div class="form-group row">
-
-                            <label for="date" class="col-sm-4 col-form-label">Hora</label>
-                            <div class="col-sm-8">
-                                <x-input readonly name="time" type="time" {{--min="{{ $lastWeek }}" max="{{ $nextWeek }}"--}} value="{{ $hour }}" />
-                            </div>
-                        </div>
 
                         {{-- Atleta --}}
                         <div class="form-group row">
@@ -80,14 +66,14 @@
                                 <x-textarea name="app" value="{{ old('app') }}" />
                             </div>
                         </div>
-
+                        {{--Tratamiento --}}
                         <div class="form-group row">
                             <label for="treatment" class="col-sm-4 col-form-label">Tratamiento</label>
                             <div class="col-sm-8">
                                 <x-textarea name="treatment" value="{{ old('treatment') }}" />
                             </div>
                         </div>
-
+                        {{-- Cirugias --}}
                         <div x-data="{ isOpen: {{ old('is_surgeries') ? 'true' : 'false' }} }">
 
                             <div class="form-group form-check">
@@ -98,7 +84,7 @@
                             </div>
 
                             <div x-show="isOpen">
-                                {{-- Cédula de Identidad o DIMEX --}}
+                                {{-- Tratamiento --}}
                                 <div class="form-group row">
                                     <label for="surgeries" class="col-sm-4 col-form-label">Detalle del tratamiento</label>
                                     <div class="col-sm-8">
@@ -109,7 +95,7 @@
                             </div>
                         </div>
 
-
+                        {{-- Fracturas --}}
                         <div x-data="{ isOpen: {{ old('is_fractures') ? 'true' : 'false' }} }">
 
                             <div class="form-group form-check">
@@ -120,7 +106,7 @@
                             </div>
 
                             <div x-show="isOpen">
-                                {{-- Cédula de Identidad o DIMEX --}}
+                                {{-- Detalle Fractura --}}
                                 <div class="form-group row">
                                     <label for="fractures" class="col-sm-4 col-form-label">Detalle de la
                                         fractura</label>
@@ -132,11 +118,18 @@
                         </div>
 
 
-                        {{-- hora de inicio --}}
+                        {{-- Hora de registro --}}
+                        @php
+                        $hour = now()->toTimeString();
+                        /*$today = today()->toDateString();
+                        $lastWeek = today()->subDays(7)->toDateString();
+                        $nextWeek = today()->addDay(7)->toDateString();*/
+                        @endphp
                         <div class="form-group row">
-                            <label for="session_start" class="col-sm-4 col-form-label">Hora de inicio</label>
+
+                            <label for="session_start" class="col-sm-4 col-form-label">Hora</label>
                             <div class="col-sm-8">
-                                <x-input name="session_start" type="time" value="{{ old('session_start') }}" />
+                                <x-input readonly name="session_start" type="time" {{--min="{{ $lastWeek }}" max="{{ $nextWeek }}"--}} value="{{ $hour }}" />
                             </div>
                         </div>
 
