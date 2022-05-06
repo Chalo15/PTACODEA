@@ -282,25 +282,6 @@
 
  $(document).ready(function(){
 
-
-    //Metodo para validar la cédula
-/*jQuery.validator.addMethod("idnumber", function (value, element) {
-        if ( /^\d{3}-?\d{3}-?\d{3}$/g.test(value) ) {
-            return true;
-        } else {
-            return false;
-        };
-    }, "La cédula debe tener 9 dígitos ");
-*/
-//Metodo para validar la cédula
-jQuery.validator.addMethod("idnumber", function (value, element) {
-        if ( /^\d{2}-?\d{1}-?\d{1}$/g.test(value) ) {
-            return true;
-        } else {
-            return false;
-        };
-    }, "La cédula debe tener 9 dígitos *");
-
 //Metodo para validar número telefónico
 jQuery.validator.addMethod("phonenumber", function (value, element) {
         if ( /^\d{3}-?\d{3}-?\d{2}$/g.test(value) ) {
@@ -309,18 +290,16 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             return false;
         };
     }, "El número telefónico debe tener 8 dígitos *");
-    
 
 //Método que valida solo numeros
     jQuery.validator.addMethod("numbersonly", function(value, element) {
     return this.optional(element) || /^[0-9]+$/i.test(value);
-    }, 'Por favor digite solo valores numéricos y números naturales *',);  
-
+    }, 'Por favor digite solo valores numéricos y números naturales *',); 
 
 //Método que valida solo letras
     jQuery.validator.addMethod("lettersonly", function(value, element) {
     return this.optional(element) || /^[a-z," "]+$/i.test(value);
-    }, 'Por favor digite solo valores alfanuméricos *',);  
+    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);  
 
 //Método que valida la contraseña
     jQuery.validator.addMethod("passwordCheck",
@@ -337,17 +316,6 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             return true;
         },
         "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *");
-
-//Metodo que valida la fecha de nacimiento
-/*$.validator.addMethod("CheckDOB", function (value, element) {
-       var  minDate = Date.parse("01/01/1990");  
-        var today=new Date();
-        var DOB = Date.parse(value);  
-        if((DOB <= today && DOB >= minDate)) {  
-            return true;  
-        }  
-        return false;  
-    }, "La fecha de nacimiento es invalida");*/
 
 //Validaciones del formulario
     if($("#form_users_create").length > 0)
@@ -402,7 +370,6 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             experience:{
             required : true,
             numbersonly: true,
-//            min : 1,
             max : 50
             },
             contract_number:{
@@ -441,11 +408,6 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             sport_id:{
             required : true
             },
-          /*  message : {
-            required : true,
-            minlength : 50,
-            maxlength : 500
-            }*/
         },
 
         messages : {
@@ -529,13 +491,6 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             sport_id:{
             required : 'Por favor ingrese su disciplina *'
             },
-
-
-         /*   message : {
-            required : 'Enter Message Detail',
-            minlength : 'Message Details must be minimum 50 character long',
-            maxlength : 'Message Details must be maximum 500 character long'
-            }*/
         }
         });
     }
@@ -544,6 +499,5 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
     </script>
     
 @endpush
-
 
 </x-app-layout>

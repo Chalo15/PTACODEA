@@ -61,49 +61,27 @@
         </div>
     </div>
 
-    @push('scripts')
+   @push('scripts')
     <script>
 
     $(document).ready(function(){
-
-        jQuery.validator.addMethod("idnumber", function (value, element) {
-                if ( /^\d{3}-?\d{3}-?\d{3}$/g.test(value) ) {
-                    return true;
-                } else {
-                    return false;
-                };
-            }, "La cédula debe tener 9 dígitos ");
-
-        jQuery.validator.addMethod("lettersonly", function(value, element) {
-        return this.optional(element) || /^[a-z," "]+$/i.test(value);
-        }, 'Por favor digite solo valores alfanuméricos *',);  
-
+       
         if($("#form_login").length > 0)
         {
             $('#form_login').validate({
             rules:{
-                identification : {
-                required : true,
-                numbersonly:true,
-                idnumber: true         
-                },
-                password : {
-                required : true,
-                passwordCheck:true,
-                minlength : 8,
-                maxlength : 60
-                },
+            identification : {
+            required : true,
+            maxlength : 15,
+            minlength: 9    
             },
-
+            },
             messages : {
-                identification : { 
-                required : 'Por favor ingrese su cédula *'
-                },
-                password : {
-                required : 'Por favor ingrese su contraseña *',
-                minlength : 'La contraseña no debe ser menor a 8 caracteres *',
-                maxlength : 'La contraseña no debe ser mayor a 60 caracteres *'
-                },
+            identification : { 
+            required : 'Por favor ingrese su cédula *',
+            maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+            minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+            },
             }
             });
         }

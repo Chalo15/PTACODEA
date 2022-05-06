@@ -126,7 +126,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 //Método que valida solo letras
     jQuery.validator.addMethod("lettersonly", function(value, element) {
     return this.optional(element) || /^[a-z," "]+$/i.test(value);
-    }, 'Por favor digite solo valores alfanuméricos *',);  
+    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);  
 
 //Método que valida la contraseña
     jQuery.validator.addMethod("passwordCheck",
@@ -151,26 +151,25 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         rules:{
             identification : {
             required : true,
-            numbersonly:true,
             maxlength : 15,
             minlength: 9    
-            //idnumber: true         
             },
             name : {
             required : true,
             lettersonly: true,
-            maxlength : 50,    
-            minlength: 3
+            maxlength : 30,
+            minlength: 3    
             },
             last_name : {
             required : true,
             lettersonly: true,
-            maxlength : 50          
+            minlength: 3, 
+            maxlength : 30          
             },
             email : {
             required : true,
-            maxlength : 50, 
-            minlength: 5,
+            maxlength : 30, 
+            minlength: 3,
             email : true
             },
             phone : {
@@ -188,33 +187,29 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             required : true,
             equalTo: "#password"
             },
-          /*  message : {
-            required : true,
-            minlength : 50,
-            maxlength : 500
-            }*/
         },
 
         messages : {
             identification : { 
             required : 'Por favor ingrese su cédula *',
-            maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres *',
-            minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres *'
+            maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+            minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
             },
             name : {
             required : 'Por favor ingrese su nombre *',
-            maxlength : 'Su nombre no puede ser mayor a 50 caracteres *',
+            maxlength : 'Su nombre no puede ser mayor a 30 caracteres *',
             minlength : 'Su nombre no puede ser menor a 3 caracteres *'
             },
             last_name : {
             required : 'Por favor ingrese sus apellidos *',
-            maxlength : 'Sus apellidos no pueden ser mayores a 50 caracteres *'
+            maxlength : 'Sus apellidos no pueden ser mayores a 30 caracteres *',
+            minlength : 'Sus apellidos no pueden ser menores a 3 caracteres *'
             },
             email : {
             required : 'Por favor ingrese su email *',
-            email : 'Por favor ingrese una dirección de correo válida *',
-            maxlength : 'Su correo electrónico no debe ser de más de 50 caracteres *',
-            minlength : 'Su correo electrónico no debe ser de menos de 5 caracteres*'
+            email : 'Por favor ingrese una dirección de correo electrónico válida *',
+            maxlength : 'Su correo electrónico no puede ser de más de 30 caracteres *',
+            minlength : 'Su correo electrónico no puede ser de menos de 3 caracteres *'
             },
             phone : {
             required : 'Por favor ingrese su número telefónico *',
