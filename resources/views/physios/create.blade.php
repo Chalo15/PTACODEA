@@ -81,6 +81,7 @@
                             </div>
                         </div>
 
+                        {{-- Tratamiento --}}
                         <div class="form-group row">
                             <label for="treatment" class="col-sm-4 col-form-label">Tratamiento</label>
                             <div class="col-sm-8">
@@ -161,7 +162,7 @@
                         <div class="form-group row">
                             <label for="count_session" class="col-sm-4 col-form-label">Cantidad de sesiones</label>
                             <div class="col-sm-8">
-                                <x-input name="count_session" type="number" min="1" value="{{ old('count_session') }}" />
+                                <x-input name="count_session" min="1" value="{{ old('count_session') }}" />
                             </div>
                         </div>
 
@@ -208,24 +209,6 @@
  $(document).ready(function(){
 
 
-    //Metodo para validar la cédula
-/*jQuery.validator.addMethod("idnumber", function (value, element) {
-        if ( /^\d{3}-?\d{3}-?\d{3}$/g.test(value) ) {
-            return true;
-        } else {
-            return false;
-        };
-    }, "La cédula debe tener 9 dígitos ");
-*/
-//Metodo para validar la cédula
-jQuery.validator.addMethod("idnumber", function (value, element) {
-        if ( /^\d{2}-?\d{1}-?\d{1}$/g.test(value) ) {
-            return true;
-        } else {
-            return false;
-        };
-    }, "La cédula debe tener 9 dígitos *");
-
 //Metodo para validar número telefónico
 jQuery.validator.addMethod("phonenumber", function (value, element) {
         if ( /^\d{3}-?\d{3}-?\d{2}$/g.test(value) ) {
@@ -235,7 +218,6 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         };
     }, "El número telefónico debe tener 8 dígitos *");
     
-
 //Método que valida solo numeros
     jQuery.validator.addMethod("numbersonly", function(value, element) {
     return this.optional(element) || /^[0-9]+$/i.test(value);
@@ -263,180 +245,82 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         },
         "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *");
 
-//Metodo que valida la fecha de nacimiento
-$.validator.addMethod("CheckDOB", function (value, element) {
-       var  minDate = Date.parse("01/01/1990");  
-        var today=new Date();
-        var DOB = Date.parse(value);  
-        if((DOB <= today && DOB >= minDate)) {  
-            return true;  
-        }  
-        return false;  
-    }, "La fecha de nacimiento es invalida");
-
 //Validaciones del formulario
     if($("#form_physios_create").length > 0)
     {
         $('#form_physios_create').validate({
         rules:{
-            identification : {
-            required : true,
-            maxlength : 15,
-            minlength: 9    
-            },
-            name : {
-            required : true,
-            lettersonly: true,
-            maxlength : 30,
-            minlength: 3    
-            },
-            last_name : {
-            required : true,
-            lettersonly: true,
-            minlength: 3, 
-            maxlength : 30          
-            },
-            city : {
-            required : true,
-            lettersonly: true,
-            minlength: 3, 
-            maxlength : 30    
-            },
-            severity:{
-            required : true
-            },
-            email : {
-            required : true,
-            maxlength : 30, 
-            minlength: 3,
-            email : true
-            },
-            phone : {
-            required : true,        
-            numbersonly: true,
-            phonenumber: true
-            },
-            sph : {
-            required : true,
-            minlength : 20,
-            maxlength : 120
-            },
-            experience:{
-            required : true,
-            numbersonly: true,
-//            min : 1,
-            max : 50
-            },
-            contract_number:{
-            required : true,
-            numbersonly: true,
-            minlength : 1,
-            maxlength : 5
-            },
-            contract_year:{
-            required : true,
-            numbersonly: true,
-            max : 50,
-            min : 1
-            },
-            other_phone:{
-            required : true,        
-            numbersonly: true,
-            phonenumber: true
-            },
-            password : {
-            required : true,
-            passwordCheck:true,
-            minlength : 8,
-            maxlength : 60
-            },
-            password_confirmation : {
-            required : true,
-            equalTo: "#password"
-            },
-          /*  message : {
-            required : true,
-            minlength : 50,
-            maxlength : 500
-            }*/
+
+        athlete_id: {
+        required : true    
+        },
+        sph: {
+        required : true               
+        },
+        app: {
+        required : true     
+        },        
+        treatment: {
+        required : true 
+        },
+        surgeries: {
+        required : true 
+        },
+        fractures: {
+        required : true 
+        },
+        session_start: {
+        required : true 
+        },
+        session_end: {
+        required : true 
+        },
+        inability: {
+        required : true 
+        },
+        count_session: {
+        required : true, 
+        numbersonl: true
+        },
+        severity: {       
+        required : true 
+        },
         },
 
         messages : {
-            identification : { 
-            required : 'Por favor ingrese su cédula *',
-            maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
-            minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
-            },
-            name : {
-            required : 'Por favor ingrese su nombre *',
-            maxlength : 'Su nombre no puede ser mayor a 30 caracteres *',
-            minlength : 'Su nombre no puede ser menor a 3 caracteres *'
-            },
-            last_name : {
-            required : 'Por favor ingrese sus apellidos *',
-            maxlength : 'Sus apellidos no pueden ser mayores a 30 caracteres *',
-            minlength : 'Sus apellidos no pueden ser menores a 3 caracteres *'
-            },
-            city : {
-            required : 'Por favor ingrese la ciudad donde vive *',
-            maxlength : 'La ciudad no puede ser mayor a 30 caracteres *',
-            minlength : 'La ciudad no puede ser menor a 3 caracteres *'
-            },
-            severity:{
-            required : 'Por favor ingrese su tipo de lesión *'
-            },
-            email : {
-            required : 'Por favor ingrese su email *',
-            email : 'Por favor ingrese una dirección de correo electrónico válida *',
-            maxlength : 'Su correo electrónico no puede ser de más de 30 caracteres *',
-            minlength : 'Su correo electrónico no puede ser de menos de 3 caracteres *'
-            },
-            phone : {
-            required : 'Por favor ingrese su número telefónico *'
-            },
-            sph : {
-            required : 'Por favor ingrese su dirección completa *',
-            maxlength : 'Su dirección no puede ser de más de 20 caracteres *',
-            minlength : 'Su dirección no puede ser de menos de 120 caracteres *'
-            },
-            experience : {
-            required : 'Por favor ingrese sus años de experiencia *',
-            max : 'Sus años de experiencia no pueden ser de más de 50 *'       
-            },
-            contract_number : {
-            required : 'Por favor ingrese su número de contacto *',
-            maxlength : 'Su número de contrato no puede ser de más de 5 caracteres *',
-            minlength : 'Su número de contrato no puede ser de menos de 1 caracter *'   
-            },
-            contract_year : {
-            required : 'Por favor ingrese su años de contacto *',
-            max : 'Sus años de contrato no pueden ser de más de 50 *',
-            min : 'Sus años de contrato no pueden ser de menos de 1 *'  
-            },
-            address : {
-            required : 'Por favor ingrese su dirección exacta *',
-            minlength : 'La dirección no puede ser menor a 20 caracteres *',
-            maxlength : 'La dirección no puede ser mayor a 120 caracteres *'
-            },
-            other_phone : {
-            required : 'Por favor ingrese su número telefónico *'
-            },
-            password : {
-            required : 'Por favor ingrese su contraseña *',
-            minlength : 'La contraseña no puede ser menor a 8 caracteres *',
-            maxlength : 'La contraseña no puede ser mayor a 60 caracteres *'
-            },
-            password_confirmation : {
-            required : 'Por favor ingrese de nuevo su contraseña *',
-            equalTo: 'Por favor introduzca la misma contraseña *'
-            },
-
-
-         /*   message : {
-            required : 'Enter Message Detail',
-            minlength : 'Message Details must be minimum 50 character long',
-            maxlength : 'Message Details must be maximum 500 character long'
-            }*/
+        athlete_id: {
+        required : 'Por favor seleccione un atleta *'    
+        },
+        sph: {
+        required : 'Por favor ingrese su SPH *'               
+        },
+        app: {
+        required : 'Por favor ingrese su APP *'     
+        },        
+        treatment: {
+        required : 'Por favor ingrese el detalle del tratamiento *' 
+        },
+        surgeries: {
+        required : 'Por favor ingrese el detalle de la cirujía *' 
+        },
+        fractures: {
+        required : 'Por favor ingrese el detalle de la fractura *' 
+        },
+        session_start: {
+        required : 'Por favor ingrese la hora de inicio *' 
+        },
+        session_end: {
+        required : 'Por favor ingrese la hora de fin *' 
+        },
+        inability: {
+        required : 'Por favor ingrese su dirección completa *' 
+        },
+        count_session: {
+        required : 'Por favor ingrese la cantidad de secciones *' 
+        },
+        severity: {       
+        required : 'Por favor ingrese el tipo de lesión*' 
+        },
         }
         });
     }
