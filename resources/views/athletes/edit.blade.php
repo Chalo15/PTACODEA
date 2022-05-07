@@ -153,9 +153,9 @@
                                     </div>
                                 </div>
 
-                                {{-- Provincia --}}
+                                {{-- Categoria --}}
                                 <div class="form-group row">
-                                    <label for="category" class="col-sm-4 col-form-label">Provincia</label>
+                                    <label for="category" class="col-sm-4 col-form-label">Categoria</label>
                                     <div class="col-sm-8">
                                         <x-select name="category">
                                             <option {{ $athlete->user->category ? '' : 'selected' }} value=""> --
@@ -399,7 +399,7 @@
                         return true;
                     },
                     "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
-                    );
+                );
 
                 //Validaciones del formulario
                 if ($("#form_athlete_edit").length > 0) {
