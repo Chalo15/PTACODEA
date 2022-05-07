@@ -209,6 +209,23 @@
  $(document).ready(function(){
 
 
+//Metodo para validar la hora
+jQuery.validator.addMethod("horahhmm", function(value, element) {
+	var res = false;
+
+	// Formato hh:mm
+	res = this.optional(element) || /^\d{2}[:]\d{2}$/.test(value);
+
+	var hora = value.split(':');
+	var hh = parseInt(hora[0],10);
+	var mm = parseInt(hora[1],10);
+	if (hh < 0 || hh > 23) res = false;
+	if (mm < 0 || mm > 59) res = false;
+
+	return res;
+}, "La hora indicada no es válida"
+);    
+
 //Metodo para validar número telefónico
 jQuery.validator.addMethod("phonenumber", function (value, element) {
         if ( /^\d{3}-?\d{3}-?\d{2}$/g.test(value) ) {
@@ -270,7 +287,8 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         required : true 
         },
         session_start: {
-        required : true 
+        required : true,
+        horahhmm : true
         },
         session_end: {
         required : true 

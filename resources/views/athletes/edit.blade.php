@@ -310,6 +310,23 @@
                                     </div>
 
                                     {{-- Fotocópia de Cédula --}}
+             <!--        <div class="form-group row">
+                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                        <div class="col-sm-8">
+
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input name="url" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="identification_image">Elija el archivo </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            
+                                   {{-- Fotocópia de Cédula --}}
                                     <div class="form-group row">
                                         <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                         <div class="col-sm-8">
@@ -471,7 +488,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             },
             policy : {
             required : true,
-            maxlength : 1,
+            maxlength : 3,
             minlength: 10    
             },
             pdf : {
@@ -562,7 +579,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             policy : {
             required : 'Por favor ingrese la numero de su póliza *',
             maxlength : 'Su póliza no puede ser mayor a 10 caracteres o dígitos *',
-            minlength : 'Su póliza no puede ser menor a 1 caracteres o dígitos *'        
+            minlength : 'Su póliza no puede ser menor a 3 caracteres o dígitos *'        
             },
             pdf : {
             required : 'Por favor ingrese su fotocopia de la cédula *'
