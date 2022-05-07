@@ -119,7 +119,7 @@ class TrainingsController extends Controller
     /**
      * Generacion de pdf de Entrenadores.
      *
-     * @param  \App\Models\Trainig  $physio
+     * @param  \App\Models\Training  $physio
      */
     public function generatePDF(Training $training)
     {
