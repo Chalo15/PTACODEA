@@ -29,7 +29,7 @@ class UpdateMuscularRequest extends FormRequest
             'time'             => ['required'],
             'physiological_age'=> ['required','min:1', 'max:2'],
             'weight'           => ['required','min:2', 'max:3'],
-            'height'           => ['required','min:2', 'max:3'],
+            'height'           => ['required','min:2', 'max:3'], 
             'bmi'              => ['required','min:1', 'max:3'],
             'waist'            => ['required','min:2', 'max:3'],
             'hip'              => ['required','min:2', 'max:3'],
