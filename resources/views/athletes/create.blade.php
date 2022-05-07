@@ -576,6 +576,74 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 
     </script>
 
+<script>
+    //Expresiones regulares
+    const expresiones = {
+        nombre: /[a-zA-Z]{4,16}/,
+        usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+        password: /^.{4,12}$/, // 4 a 12 digitos.contraseñas
+        correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, //correos
+        id: /^[0-9]{9}$/, //Solo numeros, 9 numeros requeridos
+        telefono: /^[0-9]{8}$/,
+        numeros: /^[0-9]/,
+        CCV: /^[0-9]{3}$/,
+        fecha_de_vencimiento: /[0-9]+[/]+[0-9]{2}/,
+    };
+
+
+
+    //Logeo
+    //Se crean 2 variables
+    const formulario = document.getElementById("form_athlete_create"); //Variable para identitificar el form_athlete_create
+    const inputs = document.querySelectorAll('#form_athlete_create input'); //Variable para guardar en un array todos los inputs del form_athlete_create
+
+    //Validar
+    var id;
+    var clave;
+
+    //Funcion que hace las validacion del el input correspondiente
+    function validarForm(e) {
+        try {
+            switch (e.target.name) {
+                case "identification":
+                    if (expresiones.id.test(e.target.value) == true && e.target.value != "") { //Correcto
+                        console.log("Correcto " + e.target.name);
+                        document.getElementById("identification").style.border = "5px solid springgreen";
+                        id = true;
+                    }
+                    if (expresiones.id.test(e.target.value) == false && e.target.value != "") { //Incorrecto
+                        console.log("Incorrecto " + e.target.name);
+                        document.getElementById("identification").style.border = "5px solid red";
+                        id = false;
+                    }
+                    if (e.target.value == "") {
+                        document.getElementById("identification").style.border = "2px solid #f6f6f6";
+                    }
+                    break;
+                case "fPassword":
+                    if (expresiones.password.test(e.target.value) == true && e.target.value != "") { //Correcto
+                        console.log("Correcto " + e.target.name)
+                        document.getElementById("fPassword").style.border = "5px solid springgreen";
+                        password = true;
+                    }
+                    if (expresiones.password.test(e.target.value) == false && e.target.value != "") { //Incorrecto
+                        console.log("Incorrecto " + e.target.name)
+                        document.getElementById("fPassword").style.border = "5px solid red";
+                        password = false;
+                    }
+                    if (e.target.value == "") {
+                        document.getElementById("fPassword").style.border = "2px solid #f6f6f6";
+                    }
+                    break;
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+</script>
+
 @endpush
 
 
