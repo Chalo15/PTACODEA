@@ -12,6 +12,8 @@ use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\NotificationController;
+use App\Mail\ConfirmMail;
+use App\Mail\PhysioConfirmMail;
 use App\Models\Appointment;
 
 /**

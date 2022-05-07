@@ -16,7 +16,7 @@
                             <div class="form-group row">
                                 <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
                                 <div class="col-sm-8">
-                                    <x-input name="identification" value="{{ old('identification') }} " pattern="[0-9]+"/>
+                                    <x-input onkeyup="validarForm()" id="identification" class="identification" name="identification" value="{{ old('identification') }}" />
                                 </div>
                             </div>
 
@@ -50,7 +50,7 @@
                                 <div class="col-sm-8">
                                     <x-input name="phone" value="{{ old('phone') }}" />
                                 </div>
-                            </div>                 
+                            </div>
 
                             {{-- Contraseña --}}
                             <div class="form-group row">
@@ -120,13 +120,13 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 //Método que valida solo numeros
     jQuery.validator.addMethod("numbersonly", function(value, element) {
     return this.optional(element) || /^[0-9]+$/i.test(value);
-    }, 'Por favor digite solo valores numéricos *',);  
+    }, 'Por favor digite solo valores numéricos *',);
 
 
 //Método que valida solo letras
     jQuery.validator.addMethod("lettersonly", function(value, element) {
     return this.optional(element) || /^[a-z," "]+$/i.test(value);
-    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);  
+    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);
 
 //Método que valida la contraseña
     jQuery.validator.addMethod("passwordCheck",
@@ -152,28 +152,28 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             identification : {
             required : true,
             maxlength : 15,
-            minlength: 9    
+            minlength: 9
             },
             name : {
             required : true,
             lettersonly: true,
             maxlength : 30,
-            minlength: 3    
+            minlength: 3
             },
             last_name : {
             required : true,
             lettersonly: true,
-            minlength: 3, 
-            maxlength : 30          
+            minlength: 3,
+            maxlength : 30
             },
             email : {
             required : true,
-            maxlength : 30, 
+            maxlength : 30,
             minlength: 3,
             email : true
             },
             phone : {
-            required : true,        
+            required : true,
             numbersonly: true,
             phonenumber: true
             },
@@ -190,7 +190,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         },
 
         messages : {
-            identification : { 
+            identification : {
             required : 'Por favor ingrese su cédula *',
             maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
             minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
@@ -223,11 +223,6 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             required : 'Por favor ingrese de nuevo su contraseña *',
             equalTo: 'Por favor introduzca la misma contraseña *'
             },
-         /*   message : {
-            required : 'Enter Message Detail',
-            minlength : 'Message Details must be minimum 50 character long',
-            maxlength : 'Message Details must be maximum 500 character long'
-            }*/
         }
         });
     }
@@ -236,4 +231,74 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
     </script>
 @endpush
 
-</x-guest-layout>
+
+@push('scripts')
+<script>
+    //Expresiones regulares
+    const expresiones = {
+        nombre: /[a-zA-Z]{4,16}/,
+        usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+        password: /^.{4,12}$/, // 4 a 12 digitos.contraseñas
+        correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, //correos
+        id: /^[0-9]{9}$/, //Solo numeros, 9 numeros requeridos
+        telefono: /^[0-9]{8}$/,
+        numeros: /^[0-9]/,
+        CCV: /^[0-9]{3}$/,
+        fecha_de_vencimiento: /[0-9]+[/]+[0-9]{2}/,
+    };
+
+
+
+    //Logeo
+    //Se crean 2 variables
+    const formulario = document.getElementById("formulario"); //Variable para identitificar el formulario
+    const inputs = document.querySelectorAll('#formulario input'); //Variable para guardar en un array todos los inputs del formulario
+
+    //Validar
+    var id;
+    var clave;
+
+    //Funcion que hace las validacion del el input correspondiente
+    function validarForm(e) {
+        try {
+            switch (e.target.name) {
+                case "identification":
+                    if (expresiones.id.test(e.target.value) == true && e.target.value != "") { //Correcto
+                        console.log("Correcto " + e.target.name);
+                        document.getElementById("identification").style.border = "5px solid springgreen";
+                        id = true;
+                    }
+                    if (expresiones.id.test(e.target.value) == false && e.target.value != "") { //Incorrecto
+                        console.log("Incorrecto " + e.target.name);
+                        document.getElementById("identification").style.border = "5px solid red";
+                        id = false;
+                    }
+                    if (e.target.value == "") {
+                        document.getElementById("identification").style.border = "2px solid #f6f6f6";
+                    }
+                    break;
+                case "fPassword":
+                    if (expresiones.password.test(e.target.value) == true && e.target.value != "") { //Correcto
+                        console.log("Correcto " + e.target.name)
+                        document.getElementById("fPassword").style.border = "5px solid springgreen";
+                        password = true;
+                    }
+                    if (expresiones.password.test(e.target.value) == false && e.target.value != "") { //Incorrecto
+                        console.log("Incorrecto " + e.target.name)
+                        document.getElementById("fPassword").style.border = "5px solid red";
+                        password = false;
+                    }
+                    if (e.target.value == "") {
+                        document.getElementById("fPassword").style.border = "2px solid #f6f6f6";
+                    }
+                    break;
+
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+</script>
+@endpush
+</x-app-layout>
