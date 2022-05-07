@@ -153,6 +153,22 @@
                                     </div>
                                 </div>
 
+                                {{-- Provincia --}}
+                                <div class="form-group row">
+                                    <label for="category" class="col-sm-4 col-form-label">Provincia</label>
+                                    <div class="col-sm-8">
+                                        <x-select name="category">
+                                            <option {{ $athlete->user->category ? '' : 'selected' }} value=""> --
+                                                Seleccione --
+                                            </option>
+                                            @foreach ($categories as $category)
+                                                <option {{ $athlete->user->category == $category ? 'selected' : '' }}
+                                                    value="{{ old('category') ?? $category }}">{{ $category }}
+                                                </option>
+                                            @endforeach
+                                        </x-select>
+                                    </div>
+                                </div>
 
                                 {{-- Número de Póliza --}}
                                 <div class="form-group row">
