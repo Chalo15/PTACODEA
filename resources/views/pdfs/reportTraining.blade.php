@@ -178,12 +178,14 @@
         <div id="project">
 
             @foreach($data as $value)
-
-            <div><span>Encargado:</span> {{ $value->user_id }}</div>
+            @php
+                $nombre=$value->user->full_name;
+            @endphp
+           
+            @endforeach
+            <div><span>Encargado:</span> {{ $nombre}}</div>
             {{-- <div><span>Correo</span> <a href="{{ $data->user->email }}">{{ $training->user->email }}</a></div> --}}
 
-            @endforeach
-         
         </div>
     </header>
 
@@ -199,7 +201,7 @@
             <tbody>
                 @foreach ($data as $value)
                     <tr>
-                        <td>{{$value->}}</td>
+                        <td>{{$value->athlete->user->full_name}}</td>
                         <td>{{$value->date->isoFormat('LL')}}</td>
                         <td>{{$value->lesion}}</td>
                     </tr>
