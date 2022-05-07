@@ -24,15 +24,14 @@
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo
                                 </a>
-                                
                             @endcan
-                           
+
                             {{-- @can('role', ['Admin'])
                                 <a href="{{ route('trainings.generate-ReportPdf') }}" class="btn btn-primary mx-3">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Reporte de asistencia y lesiones
                                 </a>
-                            @endcan     --}}
+                            @endcan --}}
                         </div>
                     </div>
                 </div>
@@ -91,9 +90,10 @@
                                                                 <i class="fas fa-edit"></i> &nbsp;
                                                                 Editar
                                                             </a>
-                                                            <a href="{{ route('trainings.generate-ReportPdf',$training->user->id) }}" class="dropdown-item">
+                                                            <a href="{{ route('trainings.generate-ReportPdf', $training->user->id) }}"
+                                                                class="dropdown-item">
                                                                 <i class="fas fa-plus"></i> &nbsp;
-                                                               Mi reporte de asistencia y lesiones
+                                                                Mi reporte de asistencia y lesiones
                                                             </a>
                                                         @endcan
                                                         <a class="dropdown-item"
@@ -104,11 +104,11 @@
                                                         </a>
 
                                                         @can('role', ['Admin'])
-                                                            <a href="{{ route('trainings.generate-ReportPdf', $training->id) }}" class="dropdown-item">
+                                                            <a href="{{ route('trainings.generate-ReportPdf', $training->id) }}"
+                                                                class="dropdown-item">
                                                                 <i class="fas fa-plus"></i> &nbsp;
                                                                 Reporte de asistencia y lesiones
                                                             </a>
-
                                                         @endcan
                                                     </div>
                                                 </div>
