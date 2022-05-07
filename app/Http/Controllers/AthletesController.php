@@ -77,11 +77,13 @@ class AthletesController extends Controller
 
         $bloods = config('general.bloods');
 
+        $categories = config('general.categories');
+
         $lateralities = config('general.lateralities');
 
         $relationships = config('general.relationships');
 
-        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
+        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'categories', 'relationships', 'coaches'));
     }
 
     /**
@@ -139,13 +141,15 @@ class AthletesController extends Controller
 
         $provinces = config('general.provinces');
 
+        $categories = config('general.categories');
+
         $bloods = config('general.bloods');
 
         $lateralities = config('general.lateralities');
 
         $relationships = config('general.relationships');
 
-        return view('athletes.edit', compact('states','sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
+        return view('athletes.edit', compact('states','sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'categories', 'relationships', 'coaches'));
     }
 
     /**

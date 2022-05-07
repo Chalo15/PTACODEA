@@ -146,6 +146,28 @@
 
                                 <hr>
 
+                                {{-- Categoria --}}
+                                <div class="form-group row">
+                                    <label for="category" class="col-sm-4 col-form-label">Categoria</label>
+                                    <div class="col-sm-8">
+                                        <x-select name="category">
+                                            <option disabled {{ old('category') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                            @foreach ($categories as $category)
+                                            <option {{ old('category') == $category ? 'selected' : '' }} value="{{ $category }}">{{ $category }}</option>
+                                            @endforeach
+                                        </x-select>
+                                    </div>
+                                </div>
+
+                                {{-- Número de Póliza --}}
+                                <div class="form-group row">
+                                    <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="policy" type="number" value="{{ old('policy') }}" />
+                                    </div>
+                                </div>
+
+                                <hr>
                                 {{-- Contraseña --}}
                                 <div class="form-group row">
                                     <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
@@ -284,14 +306,6 @@
                         </div>
                     </div>
 
-                    {{-- Número de Póliza --}}
-                    <div class="form-group row">
-                        <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
-                        <div class="col-sm-8">
-                            <x-input name="policy" type="number" value="{{ old('policy') }}" />
-                        </div>
-                    </div>
-
                     {{-- Fotocópia de Cédula --}}
                     <div class="form-group row">
                         <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
@@ -321,7 +335,7 @@
     </div>
     </div>
 
-    
+
     @push('scripts')
     <script>
 
@@ -331,7 +345,7 @@
 //Metodo para validar número telefónico
 jQuery.validator.addMethod("phonenumber", function (value, element) {
         if ( /^\d{3}-?\d{3}-?\d{2}$/g.test(value) ) {
-            return true; 
+            return true;
         } else {
             return false;
         };
@@ -340,12 +354,12 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 //Método que valida solo numeros
     jQuery.validator.addMethod("numbersonly", function(value, element) {
     return this.optional(element) || /^[0-9]+$/i.test(value);
-    }, 'Por favor digite solo valores numéricos y números naturales *',); 
+    }, 'Por favor digite solo valores numéricos y números naturales *',);
 
 //Método que valida solo letras
     jQuery.validator.addMethod("lettersonly", function(value, element) {
     return this.optional(element) || /^[a-z," "]+$/i.test(value);
-    }, 'Por favor digite solo valores alfabéticos *',);  
+    }, 'Por favor digite solo valores alfabéticos *',);
 
 //Método que valida la contraseña
     jQuery.validator.addMethod("passwordCheck",
@@ -354,7 +368,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
                 return true;
             } else if (!/[A-Z]/.test(value)) {
                 return false;
-            } else if (!/[a-z]/.test(value)) { 
+            } else if (!/[a-z]/.test(value)) {
                 return false;
             } else if (!/[0-9]/.test(value)) {
                 return false;
@@ -371,43 +385,43 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             identification : {
             required : true,
             maxlength : 15,
-            minlength: 9    
+            minlength: 9
             },
             name : {
             required : true,
             lettersonly: true,
             maxlength : 30,
-            minlength: 3    
+            minlength: 3
             },
             last_name : {
             required : true,
             lettersonly: true,
-            minlength: 3, 
-            maxlength : 30          
+            minlength: 3,
+            maxlength : 30
             },
             birthdate:{
             required : true
             },
             state:{
-            required : true    
+            required : true
             },
-            province:{ 
+            province:{
             required : true
             },
             city : {
             required : true,
             lettersonly: true,
-            minlength: 3, 
-            maxlength : 30    
+            minlength: 3,
+            maxlength : 30
             },
             email : {
             required : true,
-            maxlength : 30, 
+            maxlength : 30,
             minlength: 3,
             email : true
             },
             phone : {
-            required : true,        
+            required : true,
             numbersonly: true,
             phonenumber: true
             },
@@ -434,23 +448,23 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             },
             identification_manager : {
             required : true,
-            maxlength : 15, 
-            minlength: 9    
+            maxlength : 15,
+            minlength: 9
             },
             name_manager : {
             required : true,
             lettersonly: true,
             maxlength : 30,
-            minlength: 3    
+            minlength: 3
             },
             lastname_manager : {
             required : true,
             lettersonly: true,
-            minlength: 3, 
-            maxlength : 30          
+            minlength: 3,
+            maxlength : 30
             },
             contact_manager : {
-            required : true,        
+            required : true,
             numbersonly: true,
             phonenumber: true
             },
@@ -459,8 +473,8 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             },
             policy : {
             required : true,
-            maxlength : 1,
-            minlength: 10    
+            maxlength : 10,
+            minlength: 1
             },
             url : {
             required : true
@@ -468,7 +482,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         },
 
         messages : {
-            identification : { 
+            identification : {
             required : 'Por favor ingrese su cédula *',
             maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
             minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
@@ -487,7 +501,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             required : 'Por favor ingrese su fecha de nacimiento *'
             },
             state:{
-            required :  'Por favor seleccione un estado *'  
+            required :  'Por favor seleccione un estado *'
             },
             province:{
             required : 'Por favor seleccione su provincia *'
@@ -539,7 +553,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             lastname_manager : {
             required : 'Por favor ingrese sus apellidos *',
             maxlength : 'Sus apellidos no pueden ser mayores a 30 caracteres *',
-            minlength : 'Sus apellidos no pueden ser menores a 3 caracteres *'      
+            minlength : 'Sus apellidos no pueden ser menores a 3 caracteres *'
             },
             contact_manager : {
             required : 'Por favor ingrese su número telefónico *'
@@ -550,7 +564,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             policy : {
             required : 'Por favor ingrese la numero de su póliza *',
             maxlength : 'Su póliza no puede ser mayor a 10 caracteres o dígitos *',
-            minlength : 'Su póliza no puede ser menor a 1 caracteres o dígitos *'        
+            minlength : 'Su póliza no puede ser menor a 1 caracteres o dígitos *'
             },
             url : {
             required : 'Por favor ingrese su fotocopia de la cédula *'
@@ -561,7 +575,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 });
 
     </script>
-    
+
 @endpush
 
 

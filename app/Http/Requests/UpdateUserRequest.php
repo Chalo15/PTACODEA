@@ -38,7 +38,7 @@ class UpdateUserRequest extends FormRequest
             'contract_number' => ['required', 'min:1', 'max:2'],
             'contract_year'   => ['required', 'min:1', 'max:2'],
             'role_id'         => ['required', 'numeric', 'exists:roles,id'],
-            'password'        => ['nullable', 'confirmed']
+            'password'        => ['required', 'confirmed']
         ];
 
         if ($this->role_id == 2) {
