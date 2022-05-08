@@ -421,11 +421,10 @@ if($('#form_profile_index2').length > 0)
         }
         });
     }
-        });
+    
 
     </script>
 
-        </script>
 
     @endpush
     
