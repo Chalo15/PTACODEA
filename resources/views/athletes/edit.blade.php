@@ -20,7 +20,7 @@
                     <form action="{{ route('athletes.update', $athlete->id) }}" method="POST" id='form_athlete_edit'>
                         @csrf
                         @method('PUT')
-
+                        
                         <div>
                             <div>
                                 {{-- Cédula de Identidad o DIMEX --}}
