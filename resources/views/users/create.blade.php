@@ -147,7 +147,7 @@
                         <div class="form-group row">
                             <label for="experience" class="col-sm-4 col-form-label">Años de Experiencia</label>
                             <div class="col-sm-8">
-                                <x-input name="experience" id="experience" 
+                                <x-input name="experience" id="experience"
                                     value="{{ old('experience') }}" />
                                     <span class="badge text-danger errors-experience"></span>
                             </div>
@@ -157,7 +157,7 @@
                         <div class="form-group row">
                             <label for="contract_number" class="col-sm-4 col-form-label">Número de Contrato</label>
                             <div class="col-sm-8">
-                                <x-input name="contract_number" id="contract_number" 
+                                <x-input name="contract_number" id="contract_number"
                                     value="{{ old('contract_number') }}" />
                                     <span class="badge text-danger errors-contract_number"></span>
                             </div>
@@ -167,7 +167,7 @@
                         <div class="form-group row">
                             <label for="contract_year" class="col-sm-4 col-form-label">Años de Contrato</label>
                             <div class="col-sm-8">
-                                <x-input name="contract_year" id="contract_year" 
+                                <x-input name="contract_year" id="contract_year"
                                     value="{{ old('contract_year') }}" />
                                     <span class="badge text-danger errors-contract_year"></span>
                             </div>
@@ -270,7 +270,7 @@
     </div>
 
 
-    
+
 
 @push('scripts')
     <script>
@@ -290,12 +290,12 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 //Método que valida solo numeros
     jQuery.validator.addMethod("numbersonly", function(value, element) {
     return this.optional(element) || /^[0-9]+$/i.test(value);
-    }, 'Por favor digite solo valores numéricos y números naturales *',); 
+    }, 'Por favor digite solo valores numéricos y números naturales *',);
 
 //Método que valida solo letras
     jQuery.validator.addMethod("lettersonly", function(value, element) {
     return this.optional(element) || /^[a-z," "]+$/i.test(value);
-    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);  
+    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);
 
 //Método que valida la contraseña
     jQuery.validator.addMethod("passwordCheck",
@@ -321,19 +321,19 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             identification : {
             required : true,
             maxlength : 15,
-            minlength: 9    
+            minlength: 9
             },
             name : {
             required : true,
             lettersonly: true,
             maxlength : 30,
-            minlength: 3    
+            minlength: 3
             },
             last_name : {
             required : true,
             lettersonly: true,
-            minlength: 3, 
-            maxlength : 30          
+            minlength: 3,
+            maxlength : 30
             },
             birthdate:{
             required : true
@@ -344,17 +344,17 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             city : {
             required : true,
             lettersonly: true,
-            minlength: 3, 
-            maxlength : 30    
+            minlength: 3,
+            maxlength : 30
             },
             email : {
             required : true,
-            maxlength : 30, 
+            maxlength : 30,
             minlength: 3,
             email : true
             },
             phone : {
-            required : true,        
+            required : true,
             numbersonly: true,
             phonenumber: true
             },
@@ -381,7 +381,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             min : 1
             },
             other_phone:{
-            required : true,        
+            required : true,
             numbersonly: true,
             phonenumber: true
             },
@@ -407,7 +407,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         },
 
         messages : {
-            identification : { 
+            identification : {
             required : 'Por favor ingrese su cédula *',
             maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
             minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
@@ -449,17 +449,17 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             },
             experience : {
             required : 'Por favor ingrese sus años de experiencia *',
-            max : 'Sus años de experiencia no pueden ser de más de 50 *'       
+            max : 'Sus años de experiencia no pueden ser de más de 50 *'
             },
             contract_number : {
             required : 'Por favor ingrese su número de contacto *',
             maxlength : 'Su número de contrato no puede ser de más de 5 caracteres *',
-            minlength : 'Su número de contrato no puede ser de menos de 1 caracter *'   
+            minlength : 'Su número de contrato no puede ser de menos de 1 caracter *'
             },
             contract_year : {
             required : 'Por favor ingrese su años de contacto *',
             max : 'Sus años de contrato no pueden ser de más de 50 *',
-            min : 'Sus años de contrato no pueden ser de menos de 1 *'  
+            min : 'Sus años de contrato no pueden ser de menos de 1 *'
             },
             address : {
             required : 'Por favor ingrese su dirección exacta *',
@@ -493,7 +493,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 });
 
     </script>
-    
+
 @endpush
 
 </x-app-layout>

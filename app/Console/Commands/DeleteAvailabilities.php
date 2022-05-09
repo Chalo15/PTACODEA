@@ -42,6 +42,7 @@ class DeleteAvailabilities extends Command
         $today = today()->toDateString();
 
         Availability::where('state','=', 'DISPONIBLE')->where('date','<',$today)->delete();
+        Availability::where('state','=', 'PENDIENTE')->where('date','<',$today)->delete();
         Log::info("Funciona");
     }
 }

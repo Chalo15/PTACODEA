@@ -12,6 +12,8 @@ use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\NotificationController;
+use App\Mail\ConfirmMail;
+use App\Mail\PhysioConfirmMail;
 use App\Models\Appointment;
 
 /**
@@ -106,8 +108,9 @@ Route::prefix('trainings')->group(function () {
     Route::get('{training}/edit', [TrainingsController::class, 'edit'])->name('trainings.edit')->middleware("can:role,'Instructor'");
     Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
     Route::get('{training}/generate-pdf', [TrainingsController::class, 'generatePDF'])->name('trainings.generate-pdf');
-});
+    Route::get('{training}/generate-reportPdf', [TrainingsController::class, 'generateReport'])->name('trainings.generate-ReportPdf');
 
+});
 
 /**
  * Rutas de Disponibilidades
