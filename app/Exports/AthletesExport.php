@@ -4,8 +4,10 @@ namespace App\Exports;
 
 use App\Models\Athlete;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class AthletesExport implements FromView, ShouldAutoSize
 {
@@ -14,6 +16,8 @@ class AthletesExport implements FromView, ShouldAutoSize
     */
     public function view(): View
     {
-        return view('athletes.index',['athletes'=> Athlete::all()]);
+        return view('excels.athlete', [
+            'athletes' => Athlete::all()
+        ]);
     }
 }
