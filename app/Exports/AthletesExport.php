@@ -3,15 +3,17 @@
 namespace App\Exports;
 
 use App\Models\Athlete;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class AthletesExport implements FromCollection
+class AthletesExport implements FromView, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    public function view(): View
     {
-        return Athlete::all();
+        return view('athletes.index',['athletes'=> Athlete::all()]);
     }
 }

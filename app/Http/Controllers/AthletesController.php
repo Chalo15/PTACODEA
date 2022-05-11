@@ -63,6 +63,10 @@ class AthletesController extends Controller
         }
     }
 
+    public function export(){
+        return Excel::download(new AthletesExport, 'athletes.xlsx');
+    }
+
     /**
      * Muestra el formulario para crear un nuevo recurso.
      *
@@ -201,9 +205,5 @@ class AthletesController extends Controller
         }
 
         return redirect()->route('athletes.index', ['athletes' => $athletes])->with('status', '¡Estado del Atleta Actualizado exitosamente!');
-    }
-
-    public function export(){
-        return Excel::download(new AthletesExport, 'athletes.xlsx');
     }
 }
