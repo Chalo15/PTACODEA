@@ -204,18 +204,7 @@
 
                         <hr>
 
-                        {{-- Disciplina --}}
-                        {{-- <div class="form-group row">
-                            <label for="coach_id" class="col-sm-4 col-form-label">Deporte</label>
-                            <div class="col-sm-8">
-                                <x-select2 name="sport_id">
-                                    <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
-                        @foreach ($sports as $sport)
-                        <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
-                        @endforeach
-                        </x-select2>
-                </div>
-            </div>--> --}}
+
 
                         {{-- Entrenadores --}}
                         <div class="form-group row">
