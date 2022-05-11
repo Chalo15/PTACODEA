@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\AthletesExport;
 use App\Http\Requests\StoreAthleteRequest;
 use App\Http\Requests\UpdateAthleteRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
 use App\Models\Coach;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 use App\Mail\CredentialsMail;
 
@@ -61,10 +60,6 @@ class AthletesController extends Controller
 
             return view('athletes.index', ['athletes' => $athletes]);
         }
-    }
-
-    public function export(){
-        return Excel::download(new AthletesExport, 'athletes.xlsx');
     }
 
     /**

@@ -5,9 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-
-
 
 class UserSeeder extends Seeder
 {
@@ -18,11 +15,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        /*$random = Str::random(10);
-        Hash::make($random)*/
         $users = [
             [
-
                 'role_id'         => 1,
                 'identification'  => '207630342',
                 'password'        => Hash::make('12346'),
