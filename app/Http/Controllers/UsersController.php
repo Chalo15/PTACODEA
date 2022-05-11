@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
@@ -13,6 +14,7 @@ use App\Notifications\AppointmentNotification;
 use App\Mail\CredentialsMail;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -28,6 +30,8 @@ class UsersController extends Controller
         $this->middleware("can:role,'Admin'");
     }
 
+
+
     /**
      * Mostrar una lista del recurso.
      *
@@ -40,6 +44,9 @@ class UsersController extends Controller
         return view('users.index', compact('users'));
     }
 
+    public function export(){
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
     /**
      * Muestra el formulario para crear un nuevo recurso.
      *
