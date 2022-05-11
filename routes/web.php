@@ -69,6 +69,7 @@ Route::prefix('athletes')->group(function () {
     Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
     Route::get('delete/{athlete}', [AthletesController::class, 'destroy'])->name('athletes.destroy');
+    Route::get('export', [AthletesController::class, 'export'])->name('athletes.export');
 });
 
 /**

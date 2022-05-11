@@ -23,6 +23,10 @@
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo
                                 </a>
+                                <a href="{{ route('athletes.export') }}" class="btn btn-success">
+                                    <i class="fas fa-plus"></i> &nbsp;
+                                    Exportar Datos
+                                </a>
                             @endcan
                         </div>
                     </div>

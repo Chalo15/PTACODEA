@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Coach;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\Mail\CredentialsMail;
 
@@ -200,5 +201,9 @@ class AthletesController extends Controller
         }
 
         return redirect()->route('athletes.index', ['athletes' => $athletes])->with('status', '¡Estado del Atleta Actualizado exitosamente!');
+    }
+
+    public function export(){
+        return Excel::download(new AthletesExport, 'users.xlsx');
     }
 }
