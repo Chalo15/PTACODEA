@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AthletesExport;
 use App\Http\Requests\StoreAthleteRequest;
 use App\Http\Requests\UpdateAthleteRequest;
-use App\Http\Requests\UpdateUserRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
@@ -204,6 +204,6 @@ class AthletesController extends Controller
     }
 
     public function export(){
-        return Excel::download(new AthletesExport, 'users.xlsx');
+        return Excel::download(new AthletesExport, 'athletes.xlsx');
     }
 }
