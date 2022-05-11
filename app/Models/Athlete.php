@@ -21,6 +21,7 @@ class Athlete extends Model
         'state',
         'blood',
         'laterality',
+        'category',
         'name_manager',
         'lastname_manager',
         'manager',

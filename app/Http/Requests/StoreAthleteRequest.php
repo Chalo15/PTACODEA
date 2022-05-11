@@ -46,7 +46,9 @@ class StoreAthleteRequest extends FormRequest
                 'email'           => ['required', 'email', 'unique:users'],
                 'address'         => ['required','min:3', 'max:100'],
                 'gender'          => ['required'],
-                'password'        => ['required', 'confirmed']
+                'category'        => ['required'],
+                'password'        => ['required', 'confirmed'],
+                'policy'          => ['required','min:3', 'max:10'],
             ];
         }
 
@@ -57,7 +59,6 @@ class StoreAthleteRequest extends FormRequest
                 'manager'                => ['required'],
                 'identification_manager' => ['required', 'min:9', 'max:15'],
                 'contact_manager'        => ['required','digits:8'],
-                'policy'                 => ['required','min:3', 'max:10'],
                 'url'                    => ['required']
             ];
         }

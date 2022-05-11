@@ -35,7 +35,7 @@ class StoreUserRequest extends FormRequest
             'address'         => ['required', 'min:3', 'max:100'],
             'gender'          => ['required'],
             'experience'      => ['required', 'min:1', 'max:2'],
-            'contract_number' => ['required', 'min:1', 'max:2'],
+            'contract_number' => ['required', 'min:1', 'max:5'],
             'contract_year'   => ['required', 'min:1', 'max:2'],
             'role_id'         => ['required', 'numeric', 'exists:roles,id'],
             'password'        => ['nullable', 'confirmed']

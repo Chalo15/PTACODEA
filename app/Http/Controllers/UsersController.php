@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
@@ -9,6 +10,11 @@ use App\Models\Sport;
 use App\Models\Role;
 use App\Models\User;
 use App\Notifications\AppointmentNotification;
+
+use App\Mail\CredentialsMail;
+use App\Models\Notification;
+use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -24,6 +30,8 @@ class UsersController extends Controller
         $this->middleware("can:role,'Admin'");
     }
 
+
+
     /**
      * Mostrar una lista del recurso.
      *
@@ -36,6 +44,9 @@ class UsersController extends Controller
         return view('users.index', compact('users'));
     }
 
+    public function export(){
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
     /**
      * Muestra el formulario para crear un nuevo recurso.
      *
@@ -62,8 +73,14 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $user = User::create($request->validated());
+        $password = $request->password;
+        $id = $request->identification;
+        $email = $request->email;
+        //Sending an email with the password and the identification
+        Mail::to($email)->send(new CredentialsMail($id, $password));
 
+
+        $user = User::create($request->validated());
 
 
         if ($request->role_id == 2) {
@@ -75,6 +92,11 @@ class UsersController extends Controller
                 'url' => $path
             ]);
         }
+
+
+
+
+
 
         return redirect()->route('users.index');
     }

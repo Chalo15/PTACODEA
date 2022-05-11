@@ -60,31 +60,29 @@
         </div>
 
         <template x-for="notification in notifications" x-bind:key="notification.id">
-            <div class="dropdown-item">
+            <div class="dropdown-item ">
 
-                <span class="d-inline">
-                    <span x-text="message(notification)"></span> &nbsp;
-                    @if(auth()->user()->role_id == 4)
-                    <div x-show="role == 4" class="d-inline">
-                        <button type="button" class="d-inline btn" x-on:click="read(notification.id)">
-                            <i class="fas fa-envelope-open" data-toggle="tooltip" data-placement="top" title="Marcar como leido"></i>
-                        </button>
-                    </div>
-                    @elseif(auth()->user()->role_id == 6 || auth()->user()->role_id == 5 )
-                    <div x-show="role == 6" class="d-inline">
-                        <button type="button" class="d-inline btn" x-on:click="read(notification.id)">
-                            <i class="fas fa-envelope-open" data-toggle="tooltip" data-placement="top" title="Marcar como leido"></i>
-                        </button>
-                        <button type="button" class="d-inline btn" x-on:click="accept(notification.id)">
-                            <i data-toggle="tooltip" data-placement="top" title="Aceptar Reserva" class="fas fa-check-circle"></i>
-                        </button>
-                        <button type="button" class="d-inline btn" x-on:click="read(notification.id)">
-                            <i class="fas fa-ban" data-toggle="tooltip" data-placement="top" title="Denegar Reserva"></i>
-                        </button>
-                    </div>
-                    @endif
+                <span x-text="message(notification)"></span> &nbsp;
+                @if(auth()->user()->role_id == 4)
+                <div x-show="role == 4" class="d-inline">
+                    <button type="button" class="d-inline btn" x-on:click="read(notification.id)">
+                        <i class="fas fa-envelope-open" data-toggle="tooltip" data-placement="top" title="Marcar como leido"></i>
+                    </button>
+                </div>
+                @elseif(auth()->user()->role_id == 6 || auth()->user()->role_id == 5 )
+                <div x-show="role == 6" class="d-inline justify-content-end">
+                    <button type="button" class="d-inline btn" x-on:click="read(notification.id)">
+                        <i class="fas fa-envelope-open" data-toggle="tooltip" data-placement="top" title="Marcar como leido"></i>
+                    </button>
+                    <button type="button" class="d-inline btn" x-on:click="accept(notification.id)">
+                        <i data-toggle="tooltip" data-placement="top" title="Aceptar Reserva" class="fas fa-check-circle"></i>
+                    </button>
+                    <button type="button" class="d-inline btn" x-on:click="read(notification.id)">
+                        <i class="fas fa-ban" data-toggle="tooltip" data-placement="top" title="Denegar Reserva"></i>
+                    </button>
+                </div>
+                @endif
 
-                </span>
 
             </div>
         </template>

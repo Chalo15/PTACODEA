@@ -22,45 +22,65 @@
 
                         {{-- Fecha de disponibilidad --}}
                         @php
-                        $today = today()->toDateString();
-                        $thisWeek = date( 'Y-m-d', strtotime( 'sunday this week' ) );
+                            $today = today()->toDateString();
+                            $thisWeek = date('Y-m-d', strtotime('sunday this week'));
                         @endphp
                         <div class="form-group row">
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $today }}" max="{{ $thisWeek }}" value="{{ $today }}" />
+                                <x-input name="date" type="date" min="{{ $today }}" max="{{ $thisWeek }}"
+                                    value="{{ $today }}" />
                             </div>
                         </div>
 
 
-                        {{-- Hora Inicio --}}
-                        <div class="form-group row">
-                            <label for="start" class="col-sm-4 col-form-label">Hora Inicio</label>
-                            <div class="col-sm-8">
-                                <x-select2 name="start" id="inicio">
-                                    <option disabled {{ old('start') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
-                                    @foreach ($schedules as $schedule)
-                                    <option {{ old('start') == $schedule ? 'selected' : '' }} value="{{ $schedule }}">
-                                        {{ $schedule }}
-                                    </option>
-                                    @endforeach
-                                </x-select2>
-                            </div>
-                        </div>
+                        {{-- Reservas --}}
+                        <div x-data="{ isOpen: {{ old('is_not_all_book') ? 'true' : 'false' }} }">
 
-                        {{-- Hora Final --}}
-                        <div class="form-group row">
-                            <label for="end" class="col-sm-4 col-form-label">Hora Final</label>
-                            <div class="col-sm-8">
-                                <x-select2 name="end">
-                                    <option disabled {{ old('end') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
-                                    @foreach ($schedules as $schedule)
-                                    <option {{ old('end') == $schedule ? 'selected' : '' }} value="{{ $schedule }}">
-                                        {{ $schedule }}
-                                    </option>
-                                    @endforeach
-                                </x-select2>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="is_not_all_book"
+                                    id="is_not_all_book" x-model="isOpen">
+                                <label class="form-check-label" for="is_not_all_book">
+                                    ¿Habilitar una cita en un horario especial?
+                                </label>
+                            </div>
+
+                            <div x-show="isOpen">
+                                {{-- Hora Inicio --}}
+                                <div class="form-group row">
+                                    <label for="start" class="col-sm-4 col-form-label">Hora Inicio</label>
+                                    <div class="col-sm-8">
+                                        <x-select2 name="start" id="inicio">
+                                            <option disabled {{ old('start') ? '' : 'selected' }} value=""> --
+                                                Seleccione -- </option>
+                                            @foreach ($schedules as $schedule)
+                                                <option {{ old('start') == $schedule ? 'selected' : '' }}
+                                                    value="{{ $schedule }}">
+                                                    {{ $schedule }}
+                                                </option>
+                                            @endforeach
+                                        </x-select2>
+                                    </div>
+                                </div>
+
+                                {{-- Hora Final --}}
+                                <div class="form-group row">
+                                    <label for="end" class="col-sm-4 col-form-label">Hora Final</label>
+                                    <div class="col-sm-8">
+                                        <x-select2 name="end">
+                                            <option disabled {{ old('end') ? '' : 'selected' }} value=""> --
+                                                Seleccione -- </option>
+                                            @foreach ($schedules as $schedule)
+                                                <option {{ old('end') == $schedule ? 'selected' : '' }}
+                                                    value="{{ $schedule }}">
+                                                    {{ $schedule }}
+                                                </option>
+                                            @endforeach
+                                        </x-select2>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 

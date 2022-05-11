@@ -12,6 +12,8 @@ use App\Http\Controllers\TrainingsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\NotificationController;
+use App\Mail\ConfirmMail;
+use App\Mail\PhysioConfirmMail;
 use App\Models\Appointment;
 
 /**
@@ -28,6 +30,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
  * Rutas de Usuarios
  */
 Route::prefix('users')->group(function () {
+    Route::get('export/excel', [UsersController::class, 'export'])->name('users.export');
     Route::get('', [UsersController::class, 'index'])->name('users.index');
     Route::get('create', [UsersController::class, 'create'])->name('users.create');
     Route::post('', [UsersController::class, 'store'])->name('users.store');
@@ -60,6 +63,7 @@ Route::prefix('sports')->group(function () {
  * Rutas de Atletas
  */
 Route::prefix('athletes')->group(function () {
+    Route::get('export/excel', [AthletesController::class, 'export'])->name('athletes.export');
     Route::get('', [AthletesController::class, 'index'])->name('athletes.index');
     Route::get('create', [AthletesController::class, 'create'])->name('athletes.create');
     Route::post('', [AthletesController::class, 'store'])->name('athletes.store');
@@ -106,8 +110,9 @@ Route::prefix('trainings')->group(function () {
     Route::get('{training}/edit', [TrainingsController::class, 'edit'])->name('trainings.edit')->middleware("can:role,'Instructor'");
     Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
     Route::get('{training}/generate-pdf', [TrainingsController::class, 'generatePDF'])->name('trainings.generate-pdf');
-});
+    Route::get('{training}/generate-reportPdf', [TrainingsController::class, 'generateReport'])->name('trainings.generate-ReportPdf');
 
+});
 
 /**
  * Rutas de Disponibilidades

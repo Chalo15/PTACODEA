@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('athletes.update', $athlete->id) }}" method="POST">
+                    <form action="{{ route('athletes.update', $athlete->id) }}" method="POST" id='form_athlete_edit'>
                         @csrf
                         @method('PUT')
 
@@ -118,8 +118,7 @@
                                 <div class="form-group row">
                                     <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                                     <div class="col-sm-8">
-                                        <x-input name="phone" type="number"
-                                            value="{{ old('phone') ?? $athlete->user->phone }}" />
+                                        <x-input name="phone" value="{{ old('phone') ?? $athlete->user->phone }}" />
                                     </div>
                                 </div>
 
@@ -154,26 +153,63 @@
                                     </div>
                                 </div>
 
-                                <hr>
-
-                                {{-- Contraseña --}}
+                                {{-- Categoria --}}
                                 <div class="form-group row">
-                                    <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
+                                    <label for="category" class="col-sm-4 col-form-label">Categoria</label>
                                     <div class="col-sm-8">
-                                        <x-input name="password" type="password" />
+                                        <x-select name="category">
+                                            <option {{ $athlete->user->category ? '' : 'selected' }} value=""> --
+                                                Seleccione --
+                                            </option>
+                                            @foreach ($categories as $category)
+                                                <option {{ $athlete->user->category == $category ? 'selected' : '' }}
+                                                    value="{{ old('category') ?? $category }}">{{ $category }}
+                                                </option>
+                                            @endforeach
+                                        </x-select>
                                     </div>
                                 </div>
 
-                                {{-- Confirmación de contraseña --}}
+                                {{-- Número de Póliza --}}
                                 <div class="form-group row">
-                                    <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
-                                        contraseña</label>
+                                    <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
                                     <div class="col-sm-8">
-                                        <x-input name="password_confirmation" type="password" />
+                                        <x-input name="policy" value="{{ old('policy') ?? $athlete->policy }}" />
                                     </div>
+                                </div>
+                                <hr>
+                                <div x-data="{ isOpen: {{ old('is_edit') ? 'true' : 'false' }} }">
+
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" name="is_edit" id="is_edit"
+                                            x-model="isOpen">
+                                        <label class="form-check-label" for="is_edit">
+                                            Editar Contraseña
+                                        </label>
+                                    </div>
+
+                                    <div x-show="isOpen">
+                                        {{-- Contraseña --}}
+                                        <div class="form-group row">
+                                            <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
+                                            <div class="col-sm-8">
+                                                <x-input name="password" type="password" />
+                                            </div>
+                                        </div>
+
+                                        {{-- Confirmación de contraseña --}}
+                                        <div class="form-group row">
+                                            <label for="password_confirmation"
+                                                class="col-sm-4 col-form-label">Confirmación de
+                                                contraseña</label>
+                                            <div class="col-sm-8">
+                                                <x-input name="password_confirmation" type="password" />
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-
 
                             <hr>
 
@@ -278,7 +314,7 @@
                                     <div class="form-group row">
                                         <label for="contact_manager" class="col-sm-4 col-form-label">Teléfono</label>
                                         <div class="col-sm-8">
-                                            <x-input name="contact_manager" type="number"
+                                            <x-input name="contact_manager"
                                                 value="{{ old('contact_manager') ?? $athlete->contact_manager }}" />
                                         </div>
                                     </div>
@@ -297,15 +333,6 @@
                                                         {{ $relationship }}</option>
                                                 @endforeach
                                             </x-select>
-                                        </div>
-                                    </div>
-
-                                    {{-- Número de Póliza --}}
-                                    <div class="form-group row">
-                                        <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
-                                        <div class="col-sm-8">
-                                            <x-input name="policy" type="number"
-                                                value="{{ old('policy') ?? $athlete->policy }}" />
                                         </div>
                                     </div>
 
@@ -331,5 +358,249 @@
             </div>
         </div>
     </div>
+
+
+
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+
+                //Metodo para validar número telefónico
+                jQuery.validator.addMethod("phonenumber", function(value, element) {
+                    if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
+                        return true;
+                    } else {
+                        return false;
+                    };
+                }, "El número telefónico debe tener 8 dígitos *");
+
+                //Método que valida solo numeros
+                jQuery.validator.addMethod("numbersonly", function(value, element) {
+                    return this.optional(element) || /^[0-9]+$/i.test(value);
+                }, 'Por favor digite solo valores numéricos y números naturales *', );
+
+                //Método que valida solo letras
+                jQuery.validator.addMethod("lettersonly", function(value, element) {
+                    return this.optional(element) || /^[a-z," "]+$/i.test(value);
+                }, 'Por favor digite solo valores alfabéticos *', );
+
+                //Método que valida la contraseña
+                jQuery.validator.addMethod("passwordCheck",
+                    function(value, element, param) {
+                        if (this.optional(element)) {
+                            return true;
+                        } else if (!/[A-Z]/.test(value)) {
+                            return false;
+                        } else if (!/[a-z]/.test(value)) {
+                            return false;
+                        } else if (!/[0-9]/.test(value)) {
+                            return false;
+                        }
+                        return true;
+                    },
+                    "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
+                );
+
+                //Validaciones del formulario
+                if ($("#form_athlete_edit").length > 0) {
+                    $('#form_athlete_edit').validate({
+                        rules: {
+                            identification: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            name: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            last_name: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            birthdate: {
+                                required: true
+                            },
+                            state: {
+                                required: true
+                            },
+                            province: {
+                                required: true
+                            },
+                            city: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            email: {
+                                required: true,
+                                maxlength: 30,
+                                minlength: 3,
+                                email: true
+                            },
+                            phone: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            address: {
+                                required: true,
+                                minlength: 20,
+                                maxlength: 120
+                            },
+                            policy: {
+                                required: true,
+                                maxlength: 10,
+                                minlength: 1
+                            },
+                            gender: {
+                                required: true
+                            },
+                            password: {
+                                required: true,
+                                passwordCheck: true,
+                                minlength: 8,
+                                maxlength: 60
+                            },
+                            password_confirmation: {
+                                required: true,
+                                equalTo: "#password"
+                            },
+                            coach_id: {
+                                required: true
+                            },
+                            blood: {
+                                required: true
+                            },
+                            identification_manager: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            name_manager: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            lastname_manager: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            contact_manager: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            manager: {
+                                required: true
+                            },
+                            pdf: {
+                                required: true
+                            },
+                        },
+
+                        messages: {
+                            identification: {
+                                required: 'Por favor ingrese su cédula *',
+                                maxlength: 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+                                minlength: 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+                            },
+                            name: {
+                                required: 'Por favor ingrese su nombre *',
+                                maxlength: 'Su nombre no puede ser mayor a 30 caracteres *',
+                                minlength: 'Su nombre no puede ser menor a 3 caracteres *'
+                            },
+                            last_name: {
+                                required: 'Por favor ingrese sus apellidos *',
+                                maxlength: 'Sus apellidos no pueden ser mayores a 30 caracteres *',
+                                minlength: 'Sus apellidos no pueden ser menores a 3 caracteres *'
+                            },
+                            birthdate: {
+                                required: 'Por favor ingrese su fecha de nacimiento *'
+                            },
+                            state: {
+                                required: 'Por favor seleccione un estado *'
+                            },
+                            province: {
+                                required: 'Por favor seleccione su provincia *'
+                            },
+                            city: {
+                                required: 'Por favor ingrese la ciudad donde vive *',
+                                maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
+                                minlength: 'La ciudad no puede ser menor a 3 caracteres *'
+                            },
+                            email: {
+                                required: 'Por favor ingrese su email *',
+                                email: 'Por favor ingrese una dirección de correo electrónico válida *',
+                                maxlength: 'Su correo electrónico no puede ser de más de 30 caracteres *',
+                                minlength: 'Su correo electrónico no puede ser de menos de 3 caracteres *'
+                            },
+                            phone: {
+                                required: 'Por favor ingrese su número telefónico *'
+                            },
+                            address: {
+                                required: 'Por favor ingrese su dirección completa *',
+                                maxlength: 'Su dirección no puede ser de más de 120 caracteres *',
+                                minlength: 'Su dirección no puede ser de menos de 20 caracteres *'
+                            },
+                            password: {
+                                required: 'Por favor ingrese su contraseña *',
+                                minlength: 'La contraseña no puede ser menor a 8 caracteres *',
+                                maxlength: 'La contraseña no puede ser mayor a 60 caracteres *'
+                            },
+                            password_confirmation: {
+                                required: 'Por favor ingrese de nuevo su contraseña *',
+                                equalTo: 'Por favor introduzca la misma contraseña *'
+                            },
+                            coach_id: {
+                                required: 'Por favor ingrese su instructor *'
+                            },
+                            blood: {
+                                required: 'Por favor ingrese su tipo de sangre *'
+                            },
+                            identification_manager: {
+                                required: 'Por favor ingrese la cédula del responsable *',
+                                maxlength: 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+                                minlength: 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+                            },
+                            name_manager: {
+                                required: 'Por favor ingrese su nombre *',
+                                maxlength: 'Su nombre no puede ser mayor a 30 caracteres *',
+                                minlength: 'Su nombre no puede ser menor a 3 caracteres *'
+                            },
+                            lastname_manager: {
+                                required: 'Por favor ingrese sus apellidos *',
+                                maxlength: 'Sus apellidos no pueden ser mayores a 30 caracteres *',
+                                minlength: 'Sus apellidos no pueden ser menores a 3 caracteres *'
+                            },
+                            contact_manager: {
+                                required: 'Por favor ingrese su número telefónico *'
+                            },
+                            manager: {
+                                required: 'Por favor ingrese su número parentezco *'
+                            },
+                            policy: {
+                                required: 'Por favor ingrese la numero de su póliza *',
+                                maxlength: 'Su póliza no puede ser mayor a 10 caracteres o dígitos *',
+                                minlength: 'Su póliza no puede ser menor a 3 caracteres o dígitos *'
+                            },
+                            pdf: {
+                                required: 'Por favor ingrese su fotocopia de la cédula *'
+                            },
+                        }
+                    });
+                }
+            });
+        </script>
+
+    @endpush
 
 </x-app-layout>

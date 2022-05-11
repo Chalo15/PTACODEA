@@ -9,6 +9,10 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use App\Mail\CredentialsMail;
+
+use Illuminate\Support\Facades\Mail;
+
 class RegisterController extends Controller
 {
     /*
@@ -56,7 +60,7 @@ class RegisterController extends Controller
                 'name'           => ['required', 'string', 'min:3', 'max:30'],
                 'last_name'      => ['required', 'string', 'min:3', 'max:30'],
                 'email'          => ['required', 'email', 'max:60', 'unique:users'],
-                'phone'          => ['required', 'digits:8','numeric'],
+                'phone'          => ['required', 'digits:8', 'numeric'],
                 'password'       => ['required', 'min:8', 'confirmed'],
             ],
         );
@@ -70,6 +74,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $id = $data['identification'];
+        $password = $data['password'];
+        $email = $data['email'];
+        //Sending an email with the password and the identification
+        Mail::to($email)->send(new CredentialsMail($id, $password));
         $data['role_id'] = 7;
 
         return User::create($data);

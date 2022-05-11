@@ -35,10 +35,16 @@ class   UpdateAthleteRequest extends FormRequest
             'phone'           => ['required', 'numeric', 'unique:users,phone,' . $this->athlete->user->id],
             'address'         => ['required','min:3', 'max:100'],
             'gender'          => ['required'],
-            'password'        => ['nullable', 'confirmed'],
+            'category'        => ['required'],
             'blood'           => ['required'],
-            'laterality'      => ['required']
+            'laterality'      => ['required'],
+            'policy'          => ['required','min:3', 'max:10']
         ];
+        if ($this->is_edit) {
+            $rules += [
+                'password'        => ['required', 'confirmed']
+            ];
+        }
 
         if ($this->is_younger) {
             $rules += [
@@ -47,7 +53,6 @@ class   UpdateAthleteRequest extends FormRequest
                 'manager'                => ['required'],
                 'identification_manager' => ['required', 'min:9', 'max:15'],
                 'contact_manager'        => ['required','digits:8'],
-                'policy'                 => ['required','min:3', 'max:10'],
                 'pdf'                    => ['required']
             ];
         }
