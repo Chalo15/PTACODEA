@@ -120,7 +120,7 @@
                                 <div class="form-group row">
                                     <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                                     <div class="col-sm-8">
-                                        <x-input name="phone" value="{{ old('phone') }}" />
+                                        <x-input name="phone" type="number" value="{{ old('phone') }}" />
                                     </div>
                                 </div>
 
@@ -175,7 +175,7 @@
                                 <div class="form-group row">
                                     <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
                                     <div class="col-sm-8">
-                                        <x-input name="policy"  value="{{ old('policy') }}" />
+                                        <x-input name="policy" type="number" value="{{ old('policy') }}" />
                                     </div>
                                 </div>
 
@@ -204,7 +204,18 @@
 
                         <hr>
 
-
+                        {{-- Disciplina --}}
+                        {{-- <div class="form-group row">
+                            <label for="coach_id" class="col-sm-4 col-form-label">Deporte</label>
+                            <div class="col-sm-8">
+                                <x-select2 name="sport_id">
+                                    <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                        @foreach ($sports as $sport)
+                        <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
+                        @endforeach
+                        </x-select2>
+                </div>
+            </div>--> --}}
 
                         {{-- Entrenadores --}}
                         <div class="form-group row">
@@ -306,7 +317,7 @@
                                 <div class="form-group row">
                                     <label for="contact_manager" class="col-sm-4 col-form-label">Teléfono</label>
                                     <div class="col-sm-8">
-                                        <x-input name="contact_manager"
+                                        <x-input name="contact_manager" type="number"
                                             value="{{ old('contact_manager') }}" />
                                     </div>
                                 </div>
