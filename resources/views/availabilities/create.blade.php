@@ -34,19 +34,6 @@
                             </div>
                         </div>
 
-
-                        {{-- Reservas --}}
-                        <div x-data="{ isOpen: {{ old('is_not_all_book') ? 'true' : 'false' }} }">
-
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" name="is_not_all_book"
-                                    id="is_not_all_book" x-model="isOpen">
-                                <label class="form-check-label" for="is_not_all_book">
-                                    ¿Habilitar una cita en un horario especial?
-                                </label>
-                            </div>
-
-                            <div x-show="isOpen">
                                 {{-- Hora Inicio --}}
                                 <div class="form-group row">
                                     <label for="start" class="col-sm-4 col-form-label">Hora Inicio</label>
@@ -81,8 +68,7 @@
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
+                 
 
                         <div class="form-group row">
 
