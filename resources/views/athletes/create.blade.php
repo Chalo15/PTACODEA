@@ -344,8 +344,8 @@
 
                                         <div class="input-group mb-3">
                                             <div class="custom-file">
-                                                <input name="url" type="file" class="custom-file-input"
-                                                    id="identification_image" aria-describedby="inputGroupFileAddon01">
+                                                <x-input name="url" type="file" class="custom-file-input"
+                                                    id="identification_image" aria-describedby="inputGroupFileAddon01"/>
                                                 <label class="custom-file-label" for="identification_image">Elija el
                                                     archivo </label>
                                             </div>
@@ -355,7 +355,7 @@
                                 </div>
                             </div>
                         </div>
-
+                            
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary">
                                 <i class="fas fa-save"></i> &nbsp;
@@ -417,6 +417,9 @@
                                 required: true,
                                 maxlength: 15,
                                 minlength: 9
+                            },
+                            user_id: {
+                                required: true
                             },
                             name: {
                                 required: true,
@@ -517,6 +520,9 @@
                                 required: 'Por favor ingrese su cédula *',
                                 maxlength: 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
                                 minlength: 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+                            },
+                            user_id : {
+                                required: 'Por favor seleccione un usuario *',
                             },
                             name: {
                                 required: 'Por favor ingrese su nombre *',

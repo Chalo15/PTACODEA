@@ -34,6 +34,7 @@
                             </div>
                         </div>
 
+
                                 {{-- Hora Inicio --}}
                                 <div class="form-group row">
                                     <label for="start" class="col-sm-4 col-form-label">Hora Inicio</label>
@@ -50,6 +51,7 @@
                                         </x-select2>
                                     </div>
                                 </div>
+                                
                     
 
                                 {{-- Hora Final --}}

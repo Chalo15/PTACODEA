@@ -502,7 +502,10 @@
                     numbersfloatonly: true,
                     maxlength : 5,
                     minlength: 1    
-                    },                    
+                    },
+                    get_better : {
+                    required : true   
+                    },                   
                 },
                 messages : {
                     physiological_age : { 

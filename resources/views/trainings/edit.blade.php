@@ -121,5 +121,152 @@
         </div>
     </div>
 
+        
+
+    @push('scripts')
+    <script>
+
+
+ $(document).ready(function(){
+
+
+//Metodo para validar la hora
+jQuery.validator.addMethod("horahhmm", function(value, element) {
+	var res = false;
+
+	// Formato hh:mm
+	res = this.optional(element) || /^\d{2}[:]\d{2}$/.test(value);
+
+	var hora = value.split(':');
+	var hh = parseInt(hora[0],10);
+	var mm = parseInt(hora[1],10);
+	if (hh < 0 || hh > 23) res = false;
+	if (mm < 0 || mm > 59) res = false;
+
+	return res;
+}, "La hora indicada no es válida"
+);    
+
+//Metodo para validar número telefónico
+jQuery.validator.addMethod("phonenumber", function (value, element) {
+        if ( /^\d{3}-?\d{3}-?\d{2}$/g.test(value) ) {
+            return true;
+        } else {
+            return false;
+        };
+    }, "El número telefónico debe tener 8 dígitos *");
+    
+//Método que valida solo numeros
+    jQuery.validator.addMethod("numbersonly", function(value, element) {
+    return this.optional(element) || /^[0-9]+$/i.test(value);
+    }, 'Por favor digite solo valores numéricos y números naturales *',);  
+
+
+//Método que valida solo letras
+    jQuery.validator.addMethod("lettersonly", function(value, element) {
+    return this.optional(element) || /^[a-z," "]+$/i.test(value);
+    }, 'Por favor digite solo valores alfanuméricos *',);  
+
+//Método que valida la contraseña
+    jQuery.validator.addMethod("passwordCheck",
+        function(value, element, param) {
+            if (this.optional(element)) {
+                return true;
+            } else if (!/[A-Z]/.test(value)) {
+                return false;
+            } else if (!/[a-z]/.test(value)) {
+                return false;
+            } else if (!/[0-9]/.test(value)) {
+                return false;
+            }
+            return true;
+        },
+        "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *");
+
+//Validaciones del formulario
+    if($("#form_physios_create").length > 0)
+    {
+        $('#form_physios_create').validate({
+        rules:{
+
+        athlete_id: {
+        required : true    
+        },
+        sph: {
+        required : true               
+        },
+        app: {
+        required : true     
+        },        
+        treatment: {
+        required : true 
+        },
+        surgeries: {
+        required : true 
+        },
+        fractures: {
+        required : true 
+        },
+        session_start: {
+        required : true,
+        horahhmm : true
+        },
+        session_end: {
+        required : true 
+        },
+        inability: {
+        required : true 
+        },
+        count_session: {
+        required : true, 
+        numbersonl: true
+        },
+        severity: {       
+        required : true 
+        },
+        },
+
+        messages : {
+        athlete_id: {
+        required : 'Por favor seleccione un atleta *'    
+        },
+        sph: {
+        required : 'Por favor ingrese su SPH *'               
+        },
+        app: {
+        required : 'Por favor ingrese su APP *'     
+        },        
+        treatment: {
+        required : 'Por favor ingrese el detalle del tratamiento *' 
+        },
+        surgeries: {
+        required : 'Por favor ingrese el detalle de la cirujía *' 
+        },
+        fractures: {
+        required : 'Por favor ingrese el detalle de la fractura *' 
+        },
+        session_start: {
+        required : 'Por favor ingrese la hora de inicio *' 
+        },
+        session_end: {
+        required : 'Por favor ingrese la hora de fin *' 
+        },
+        inability: {
+        required : 'Por favor ingrese su dirección completa *' 
+        },
+        count_session: {
+        required : 'Por favor ingrese la cantidad de secciones *' 
+        },
+        severity: {       
+        required : 'Por favor ingrese el tipo de lesión*' 
+        },
+        }
+        });
+    }
+});
+
+    </script>
+    
+@endpush
 
 </x-app-layout>
