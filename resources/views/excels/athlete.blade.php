@@ -15,7 +15,7 @@
                 <th>Nombre Encargado</th>
                 <th>Parentesco</th>
                 <th>Cédula del Encargado</th>
-                <th>Télefono del Encargado</th>
+                <th>Teléfono del Encargado</th>
                 <th>Fecha de Creación</th>
 
             </tr>

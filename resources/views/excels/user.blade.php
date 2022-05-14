@@ -7,14 +7,14 @@
                 <th>Rol</th>
                 <th>Fecha de Nacimiento</th>
                 <th>Genero</th>
-                <th>Télefono</th>
+                <th>Teléfono</th>
                 <th>Provincia</th>
                 <th>Ciudad</th>
                 <th>Dirección</th>
                 <th>Numero de Contrato</th>
                 <th>Años de Contrato</th>
                 <th>Años de Experiencia</th>
-                <th>Fecha de Creacion</th>
+                <th>Fecha de Creación</th>
             </tr>
         </thead>
         <tbody>
