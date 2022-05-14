@@ -3,20 +3,22 @@
 namespace App\Exports;
 
 use App\Models\User;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class UsersExport implements FromCollection, ShouldAutoSize, WithHeadings
+class UsersExport implements FromView, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    public function view(): View
     {
-        return User::all();
+        return view('excels.user', [
+            'users' => User::where('role_id','!=','4')->where('role_id','!=','7')->get()
+        ]);
     }
-    public function headings(): array
+    /*public function headings(): array
     {
         return [
             'ID',
@@ -39,5 +41,5 @@ class UsersExport implements FromCollection, ShouldAutoSize, WithHeadings
             'Fecha Creación',
             'Ultima Actualización',
         ];
-    }
+    }*/
 }
