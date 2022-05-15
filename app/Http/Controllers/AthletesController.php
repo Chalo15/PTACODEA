@@ -103,6 +103,7 @@ class AthletesController extends Controller
      */
     public function store(StoreAthleteRequest $request)
     {
+        //Envia las credenciales por correo del athleta registrado, Id y Password
         $id = $request->identification;
         $password = $request->password;
         $email = $request->email;
