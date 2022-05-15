@@ -242,11 +242,10 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
     return this.optional(element) || /^[0-9]+$/i.test(value);
     }, 'Por favor digite solo valores numéricos y números naturales *',);  
 
-
 //Método que valida solo letras
-    jQuery.validator.addMethod("lettersonly", function(value, element) {
-    return this.optional(element) || /^[a-z," "]+$/i.test(value);
-    }, 'Por favor digite solo valores alfanuméricos *',);  
+jQuery.validator.addMethod("lettersonly", function(value, element) {
+    return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
+}, 'Por favor digite solo valores alfabéticos *', );
 
 //Método que valida la contraseña
     jQuery.validator.addMethod("passwordCheck",

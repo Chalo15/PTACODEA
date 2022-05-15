@@ -381,7 +381,7 @@
 
                 //Método que valida solo letras
                 jQuery.validator.addMethod("lettersonly", function(value, element) {
-                    return this.optional(element) || /^[a-z," "]+$/i.test(value);
+                    return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
                 }, 'Por favor digite solo valores alfabéticos *', );
 
                 //Método que valida la contraseña

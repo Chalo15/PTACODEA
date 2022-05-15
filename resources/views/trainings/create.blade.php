@@ -134,22 +134,6 @@
  $(document).ready(function(){
 
 
-//Metodo para validar la hora
-jQuery.validator.addMethod("horahhmm", function(value, element) {
-	var res = false;
-
-	// Formato hh:mm
-	res = this.optional(element) || /^\d{2}[:]\d{2}$/.test(value);
-
-	var hora = value.split(':');
-	var hh = parseInt(hora[0],10);
-	var mm = parseInt(hora[1],10);
-	if (hh < 0 || hh > 23) res = false;
-	if (mm < 0 || mm > 59) res = false;
-
-	return res;
-}, "La hora indicada no es válida"
-);    
 
 //Metodo para validar número telefónico
 jQuery.validator.addMethod("phonenumber", function (value, element) {
@@ -167,9 +151,9 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 
 
 //Método que valida solo letras
-    jQuery.validator.addMethod("lettersonly", function(value, element) {
-    return this.optional(element) || /^[a-z," "]+$/i.test(value);
-    }, 'Por favor digite solo valores alfanuméricos *',);  
+jQuery.validator.addMethod("lettersonly", function(value, element) {
+    return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
+}, 'Por favor digite solo valores alfabéticos *', );
 
 //Método que valida la contraseña
     jQuery.validator.addMethod("passwordCheck",
