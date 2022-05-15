@@ -154,30 +154,6 @@
                                     </div>
                                 </div>
 
-                                <hr>
-
-                                {{-- Categoria --}}
-                                <div class="form-group row">
-                                    <label for="category" class="col-sm-4 col-form-label">Categoria</label>
-                                    <div class="col-sm-8">
-                                        <x-select name="category">
-                                            <option disabled {{ old('category') ? '' : 'selected' }} value=""> --
-                                                Seleccione -- </option>
-                                            @foreach ($categories as $category)
-                                                <option {{ old('category') == $category ? 'selected' : '' }}
-                                                    value="{{ $category }}">{{ $category }}</option>
-                                            @endforeach
-                                        </x-select>
-                                    </div>
-                                </div>
-
-                                {{-- Número de Póliza --}}
-                                <div class="form-group row">
-                                    <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
-                                    <div class="col-sm-8">
-                                        <x-input name="policy" type="number" value="{{ old('policy') }}" />
-                                    </div>
-                                </div>
 
                                 <hr>
                                 {{-- Contraseña --}}
@@ -203,19 +179,29 @@
                         </div>
 
                         <hr>
-
-                        {{-- Disciplina --}}
-                        {{-- <div class="form-group row">
-                            <label for="coach_id" class="col-sm-4 col-form-label">Deporte</label>
+                        {{-- Categoria --}}
+                        <div class="form-group row">
+                            <label for="category" class="col-sm-4 col-form-label">Categoria</label>
                             <div class="col-sm-8">
-                                <x-select2 name="sport_id">
-                                    <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
-                        @foreach ($sports as $sport)
-                        <option {{ old('sport_id') == $sport->description ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
-                        @endforeach
-                        </x-select2>
-                </div>
-            </div>--> --}}
+                                <x-select name="category">
+                                    <option disabled {{ old('category') ? '' : 'selected' }} value=""> --
+                                        Seleccione -- </option>
+                                    @foreach ($categories as $category)
+                                        <option {{ old('category') == $category ? 'selected' : '' }}
+                                            value="{{ $category }}">{{ $category }}</option>
+                                    @endforeach
+                                </x-select>
+                            </div>
+                        </div>
+
+                        {{-- Número de Póliza --}}
+                        <div class="form-group row">
+                            <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
+                            <div class="col-sm-8">
+                                <x-input name="policy" value="{{ old('policy') }}" />
+                            </div>
+                        </div>
+
 
                         {{-- Entrenadores --}}
                         <div class="form-group row">
@@ -317,8 +303,7 @@
                                 <div class="form-group row">
                                     <label for="contact_manager" class="col-sm-4 col-form-label">Teléfono</label>
                                     <div class="col-sm-8">
-                                        <x-input name="contact_manager" type="number"
-                                            value="{{ old('contact_manager') }}" />
+                                        <x-input name="contact_manager" value="{{ old('contact_manager') }}" />
                                     </div>
                                 </div>
 
@@ -355,7 +340,7 @@
                                 </div>
                             </div>
                         </div>
-                            
+
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary">
                                 <i class="fas fa-save"></i> &nbsp;
@@ -407,7 +392,7 @@
                         return true;
                     },
                     "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
-                    );
+                );
 
                 //Validaciones del formulario
                 if ($("#form_athlete_create").length > 0) {

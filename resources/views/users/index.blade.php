@@ -18,10 +18,18 @@
                             Usuarios
                         </div>
                         <div class="col d-flex justify-content-end">
-                            <a href="{{ route('users.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> &nbsp;
-                                Nuevo
-                            </a>
+                            <div class="mx-2">
+                                <a href="{{ route('users.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> &nbsp;
+                                    Nuevo
+                                </a>
+                            </div>
+                            <div class="mx-2">
+                                <a href="{{ route('users.export') }}" class="btn btn-success">
+                                    <i class="fas fa-plus"></i> &nbsp;
+                                    Exportar Datos
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -41,40 +49,37 @@
 
                         <x-slot name="body">
                             @foreach ($users as $user)
-                                <tr>
-                                    <td class="text-center">
-                                        <img class="rounded"
-                                            src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}"
-                                            width="30" height="30">
-                                    </td>
-                                    <td>{{ $user->identification }}</td>
-                                    <td>{{ $user->full_name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role->description }}</td>
-                                    <td width="50px" class="text-center">
+                            <tr>
+                                <td class="text-center">
+                                    <img class="rounded" src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}" width="30" height="30">
+                                </td>
+                                <td>{{ $user->identification }}</td>
+                                <td>{{ $user->full_name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->role->description }}</td>
+                                <td width="50px" class="text-center">
 
-                                        <div class="dropdown">
-                                            <button class="btn" type="button" id="dropdownMenu2"
-                                                data-toggle="dropdown" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </button>
+                                    <div class="dropdown">
+                                        <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
 
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <a class="dropdown-item" href="{{ route('users.show', $user->id) }}">
-                                                    <i class="fas fa-info-circle"></i> &nbsp;
-                                                    Información
-                                                </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <a class="dropdown-item" href="{{ route('users.show', $user->id) }}">
+                                                <i class="fas fa-info-circle"></i> &nbsp;
+                                                Información
+                                            </a>
 
-                                                <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">
-                                                    <i class="fas fa-edit"></i> &nbsp;
-                                                    Editar
-                                                </a>
+                                            <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">
+                                                <i class="fas fa-edit"></i> &nbsp;
+                                                Editar
+                                            </a>
 
-                                            </div>
                                         </div>
+                                    </div>
 
-                                    </td>
-                                </tr>
+                                </td>
+                            </tr>
                             @endforeach
                         </x-slot>
 
