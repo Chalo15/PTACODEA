@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
             ['description' => 'Fisioterapia'],
             ['description' => 'Musculacion'],
             ['description' => 'Usuario Externo'],
-            ['description' => 'Guarda Seguridad'],
+            //['description' => 'Guarda Seguridad'],
         ];
 
         DB::table('roles')->insert($roles);

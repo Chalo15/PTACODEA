@@ -24,8 +24,8 @@
                                     Nuevo
                                 </a>
                                 <a href="{{ route('athletes.export') }}" class="btn btn-success">
-                                    <i class="fas fa-plus"></i> &nbsp;
-                                    Exportar Datos
+                                    <i class="fa fa-table"></i> &nbsp;
+                                    Exportar Excel
                                 </a>
                             @endcan
                         </div>
@@ -83,11 +83,11 @@
                                                         </a>
 
                                                         <a class="dropdown-item"
-                                                            href="{{ route('athletes.destroy', $athlete->id) }}" onclick="return confirm('¿Desea cambiar el estado de este registro?')">
+                                                            href="{{ route('athletes.destroy', $athlete->id) }}"
+                                                            onclick="return confirm('¿Desea cambiar el estado de este registro?')">
                                                             <i class="fas fa-exclamation-triangle"></i> &nbsp;
                                                             Habilitar/Deshabilitar Atletas
                                                         </a>
-
                                                     @endcan
                                                 </div>
                                             </div>
