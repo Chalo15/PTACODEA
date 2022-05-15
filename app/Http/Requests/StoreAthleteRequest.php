@@ -28,6 +28,8 @@ class StoreAthleteRequest extends FormRequest
             'blood'      => ['required'],
             'laterality' => ['required'],
             'coach_id'   => ['required'],
+            'category'   => ['required'],
+            'policy'     => ['required','min:3', 'max:10'],
         ];
 
         if ($this->is_user) {
@@ -46,9 +48,7 @@ class StoreAthleteRequest extends FormRequest
                 'email'           => ['required', 'email', 'unique:users'],
                 'address'         => ['required','min:3', 'max:100'],
                 'gender'          => ['required'],
-                'category'        => ['required'],
                 'password'        => ['required', 'confirmed'],
-                'policy'          => ['required','min:3', 'max:10'],
             ];
         }
 
