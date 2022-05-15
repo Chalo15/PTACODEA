@@ -376,6 +376,8 @@
                 "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
             );
 
+
+
             //Validaciones del formulario
             if ($("#form_athlete_create").length > 0) {
                 $('#form_athlete_create').validate({
