@@ -19,14 +19,18 @@
                         </div>
                         <div class="col d-flex justify-content-end">
                             @can('role', ['Admin'])
+                            <div class="mx-2">
                                 <a href="{{ route('athletes.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo
                                 </a>
+                            </div>
+                            <div class="mx-2">
                                 <a href="{{ route('athletes.export') }}" class="btn btn-success">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Exportar Datos
                                 </a>
+                            </div>
                             @endcan
                         </div>
                     </div>
@@ -49,50 +53,44 @@
 
                         <x-slot name="body">
                             @foreach ($athletes as $athlete)
-                                <tr>
-                                    <td class="text-center">
-                                        <img class="rounded"
-                                            src="{{ $athlete->user->photo ? asset($athlete->user->photo) : asset('images/default.png') }}"
-                                            width="30" height="30">
-                                    </td>
-                                    <td>{{ $athlete->user->identification }}</td>
-                                    <td>{{ $athlete->user->name . ' ' . $athlete->user->lastname }}</td>
-                                    <td>{{ $athlete->user->phone }}</td>
-                                    <td>{{ $athlete->state }}</td>
-                                    <td>{{ $athlete->sport->description }}</td>
-                                    <td width="100px" class="text-center">
+                            <tr>
+                                <td class="text-center">
+                                    <img class="rounded" src="{{ $athlete->user->photo ? asset($athlete->user->photo) : asset('images/default.png') }}" width="30" height="30">
+                                </td>
+                                <td>{{ $athlete->user->identification }}</td>
+                                <td>{{ $athlete->user->name . ' ' . $athlete->user->lastname }}</td>
+                                <td>{{ $athlete->user->phone }}</td>
+                                <td>{{ $athlete->state }}</td>
+                                <td>{{ $athlete->sport->description }}</td>
+                                <td width="100px" class="text-center">
 
+                                    <div class="dropdown">
                                         <div class="dropdown">
-                                            <div class="dropdown">
-                                                <button class="btn" type="button" id="dropdownMenu2"
-                                                    data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </button>
+                                            <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </button>
 
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('athletes.show', $athlete->id) }}">
-                                                        <i class="fas fa-info-circle"></i> &nbsp;
-                                                        Información
-                                                    </a>
-                                                    @can('role', ['Admin'])
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('athletes.edit', $athlete->id) }}">
-                                                            <i class="fas fa-edit"></i> &nbsp;
-                                                            Editar
-                                                        </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <a class="dropdown-item" href="{{ route('athletes.show', $athlete->id) }}">
+                                                    <i class="fas fa-info-circle"></i> &nbsp;
+                                                    Información
+                                                </a>
+                                                @can('role', ['Admin'])
+                                                <a class="dropdown-item" href="{{ route('athletes.edit', $athlete->id) }}">
+                                                    <i class="fas fa-edit"></i> &nbsp;
+                                                    Editar
+                                                </a>
 
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('athletes.destroy', $athlete->id) }}" onclick="return confirm('¿Desea cambiar el estado de este registro?')">
-                                                            <i class="fas fa-exclamation-triangle"></i> &nbsp;
-                                                            Habilitar/Deshabilitar Atletas
-                                                        </a>
+                                                <a class="dropdown-item" href="{{ route('athletes.destroy', $athlete->id) }}" onclick="return confirm('¿Desea cambiar el estado de este registro?')">
+                                                    <i class="fas fa-exclamation-triangle"></i> &nbsp;
+                                                    Habilitar/Deshabilitar Atletas
+                                                </a>
 
-                                                    @endcan
-                                                </div>
+                                                @endcan
                                             </div>
-                                    </td>
-                                </tr>
+                                        </div>
+                                </td>
+                            </tr>
                             @endforeach
                         </x-slot>
 

@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
                 'experience'      => 2
             ], [
                 'role_id'         => 1,
-                'identification'  => '240',
+                'identification'  => '123456789',
                 'password'        => Hash::make('12346'),
                 'name'            => 'Carlos',
                 'last_name'       => 'Alpizar Gutierrez',
