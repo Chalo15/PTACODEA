@@ -74,6 +74,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //Envia por correo el Id y el password del usuario
         $id = $data['identification'];
         $password = $data['password'];
         $email = $data['email'];
