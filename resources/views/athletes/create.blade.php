@@ -151,27 +151,7 @@
 
                                 <hr>
 
-                                {{-- Categoria --}}
-                                <div class="form-group row">
-                                    <label for="category" class="col-sm-4 col-form-label">Categoria</label>
-                                    <div class="col-sm-8">
-                                        <x-select name="category">
-                                            <option disabled {{ old('category') ? '' : 'selected' }} value=""> --
-                                                Seleccione -- </option>
-                                            @foreach ($categories as $category)
-                                            <option {{ old('category') == $category ? 'selected' : '' }} value="{{ $category }}">{{ $category }}</option>
-                                            @endforeach
-                                        </x-select>
-                                    </div>
-                                </div>
 
-                                {{-- Número de Póliza --}}
-                                <div class="form-group row">
-                                    <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
-                                    <div class="col-sm-8">
-                                        <x-input name="policy" value="{{ old('policy') }}" />
-                                    </div>
-                                </div>
 
                                 <hr>
                                 {{-- Contraseña --}}
@@ -197,6 +177,27 @@
 
                         <hr>
 
+                        {{-- Categoria --}}
+                        <div class="form-group row">
+                            <label for="category" class="col-sm-4 col-form-label">Categoria</label>
+                            <div class="col-sm-8">
+                                <x-select name="category">
+                                    <option disabled {{ old('category') ? '' : 'selected' }} value=""> --
+                                        Seleccione -- </option>
+                                    @foreach ($categories as $category)
+                                    <option {{ old('category') == $category ? 'selected' : '' }} value="{{ $category }}">{{ $category }}</option>
+                                    @endforeach
+                                </x-select>
+                            </div>
+                        </div>
+
+                        {{-- Número de Póliza --}}
+                        <div class="form-group row">
+                            <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
+                            <div class="col-sm-8">
+                                <x-input name="policy" value="{{ old('policy') }}" />
+                            </div>
+                        </div>
 
 
                         {{-- Entrenadores --}}
