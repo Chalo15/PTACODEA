@@ -184,9 +184,9 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *");
 
 //Validaciones del formulario
-    if($("#form_physios_create").length > 0)
+    if($("#form_create_trainings").length > 0)
     {
-        $('#form_physios_create').validate({
+        $('#form_create_trainings').validate({
         rules:{
 
         athlete_id: {
