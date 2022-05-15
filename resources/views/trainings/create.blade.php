@@ -31,7 +31,7 @@
                                     <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">
                                         {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
                                     </option>
-                                    @endforeach
+                                    @endforeach 
                                 </x-select2>
                             </div>
                         </div>

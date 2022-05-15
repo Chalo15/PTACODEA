@@ -32,37 +32,4 @@
         </div>
     </div>
 
-     
-    @push('scripts')
-    <script>
-
-
- $(document).ready(function(){
-
-
-//Validaciones del formulario
-    if($("#form_sports_edit").length > 0)
-    {
-        $('#form_sports_edit').validate({
-        rules:{
-
-        content: {
-        required : true    
-        },
-
-        },
-
-        messages : {
-        content: {
-        required : 'Por favor seleccione un atleta *'    
-        },
-        }
-        });
-    }
-});
-
-    </script>
-    
-@endpush
-
 </x-app-layout>

@@ -120,7 +120,7 @@
                                 <div class="form-group row">
                                     <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                                     <div class="col-sm-8">
-                                        <x-input name="phone" type="number" value="{{ old('phone') }}" />
+                                        <x-input name="phone" value="{{ old('phone') }}" />
                                     </div>
                                 </div>
 
@@ -389,7 +389,7 @@
 
                 //Método que valida solo letras
                 jQuery.validator.addMethod("lettersonly", function(value, element) {
-                    return this.optional(element) || /^[a-z," "]+$/i.test(value);
+                    return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
                 }, 'Por favor digite solo valores alfabéticos *', );
 
                 //Método que valida la contraseña
