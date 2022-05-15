@@ -9,14 +9,14 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="/login" method="POST">
+                        <form id='form_login' action="/login" method="POST">
                             @csrf
 
                             {{-- Cédula de Identidad o DIMEX --}}
                             <div class="form-group row">
                                 <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
                                 <div class="col-sm-8">
-                                    <x-input name="identification" value="{{ old('identification') }}" />
+                                    <x-input id="identification" name="identification" value="{{ old('identification') }}" />
                                 </div>
                             </div>
 
@@ -24,7 +24,7 @@
                             <div class="form-group row">
                                 <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
                                 <div class="col-sm-8">
-                                    <x-input name="password" type="password" />
+                                    <x-input id="identification" name="password" type="password" />
                                 </div>
                             </div>
 
@@ -60,5 +60,34 @@
             </div>
         </div>
     </div>
+
+   @push('scripts')
+    <script>
+
+    $(document).ready(function(){
+       
+        if($("#form_login").length > 0)
+        {
+            $('#form_login').validate({
+            rules:{
+            identification : {
+            required : true,
+            maxlength : 15,
+            minlength: 9    
+            },
+            },
+            messages : {
+            identification : { 
+            required : 'Por favor ingrese su cédula *',
+            maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+            minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+            },
+            }
+            });
+        }
+    });
+
+        </script>
+    @endpush
 
 </x-guest-layout>
