@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <h3 class="d-5">{{$sport->description}}</h3>
                     <div>
-                        <form action="{{route('sports.update', $sport)}} " method="post">
+                        <form id="form_sports_edit"action="{{route('sports.update', $sport)}} " method="post">
                             @csrf
                             @method('put')
 
@@ -41,19 +41,19 @@
 
 
 //Validaciones del formulario
-    if($("#form_create_trainings").length > 0)
+    if($("#form_sports_edit").length > 0)
     {
-        $('#form_create_trainings').validate({
+        $('#form_sports_edit').validate({
         rules:{
 
-        athlete_id: {
+        content: {
         required : true    
         },
 
         },
 
         messages : {
-        athlete_id: {
+        content: {
         required : 'Por favor seleccione un atleta *'    
         },
         }
