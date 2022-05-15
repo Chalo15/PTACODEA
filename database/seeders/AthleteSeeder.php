@@ -24,6 +24,7 @@ class AthleteSeeder extends Seeder
                 'laterality'             => 'D',
                 'name_manager'           => 'Pepito',
                 'lastname_manager'       => 'Salazar',
+                'manager'                => 'Padre',
                 'identification_manager' => '123546',
                 'birthdate_manager'      => '1999-12-04',
                 'contact_manager'        => 0202153,
