@@ -192,37 +192,24 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         athlete_id: {
         required : true    
         },
-        sph: {
+        type_training: {
         required : true               
         },
-        app: {
+        time: {
         required : true     
         },        
-        treatment: {
+        level: {
         required : true 
         },
-        surgeries: {
+        get_better: {
         required : true 
         },
-        fractures: {
+        planification: {
         required : true 
         },
-        session_start: {
+        details: {
         required : true,
         horahhmm : true
-        },
-        session_end: {
-        required : true 
-        },
-        inability: {
-        required : true 
-        },
-        count_session: {
-        required : true, 
-        numbersonl: true
-        },
-        severity: {       
-        required : true 
         },
         },
 
@@ -230,35 +217,23 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         athlete_id: {
         required : 'Por favor seleccione un atleta *'    
         },
-        sph: {
+        type_training: {
         required : 'Por favor ingrese su SPH *'               
         },
-        app: {
+        time: {
         required : 'Por favor ingrese su APP *'     
         },        
-        treatment: {
+        level: {
         required : 'Por favor ingrese el detalle del tratamiento *' 
         },
-        surgeries: {
+        get_better: {
         required : 'Por favor ingrese el detalle de la cirujía *' 
         },
-        fractures: {
+        planification: {
         required : 'Por favor ingrese el detalle de la fractura *' 
         },
-        session_start: {
+        details: {
         required : 'Por favor ingrese la hora de inicio *' 
-        },
-        session_end: {
-        required : 'Por favor ingrese la hora de fin *' 
-        },
-        inability: {
-        required : 'Por favor ingrese su dirección completa *' 
-        },
-        count_session: {
-        required : 'Por favor ingrese la cantidad de secciones *' 
-        },
-        severity: {       
-        required : 'Por favor ingrese el tipo de lesión*' 
         },
         }
         });
