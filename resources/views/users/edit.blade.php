@@ -37,7 +37,7 @@
                             <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
                                 DIMEX</label>
                             <div class="col-sm-8">
-                                <x-input  disabled name="identification" value="{{ $user->identification }}" />
+                                <x-input  readonly name="identification" value="{{ $user->identification }}" />
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label">Nombre</label>
                             <div class="col-sm-8">
-                                <x-input  disabled name="name" value="{{ $user->name }}" />
+                                <x-input  readonly name="name" value="{{ $user->name }}" />
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                             <div class="col-sm-8">
-                                <x-input  disabled name="last_name" value="{{ $user->last_name }}" />
+                                <x-input  readonly name="last_name" value="{{ $user->last_name }}" />
                             </div>
                         </div>
 
@@ -250,7 +250,7 @@
         </div>
     </div>
 
-       
+
 
 @push('scripts')
     <script>
@@ -275,18 +275,18 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             return false;
         };
     }, "El número telefónico debe tener 8 dígitos *");
-    
+
 
 //Método que valida solo numeros
     jQuery.validator.addMethod("numbersonly", function(value, element) {
     return this.optional(element) || /^[0-9]+$/i.test(value);
-    }, 'Por favor digite solo valores numéricos y números naturales *',);  
+    }, 'Por favor digite solo valores numéricos y números naturales *',);
 
 
 //Método que valida solo letras
     jQuery.validator.addMethod("lettersonly", function(value, element) {
     return this.optional(element) || /^[a-z," "]+$/i.test(value);
-    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);  
+    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);
 
 //Método que valida la contraseña
     jQuery.validator.addMethod("passwordCheck",
@@ -318,17 +318,17 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             city : {
             required : true,
             lettersonly: true,
-            minlength: 3, 
-            maxlength : 30    
+            minlength: 3,
+            maxlength : 30
             },
             email : {
             required : true,
-            maxlength : 30, 
+            maxlength : 30,
             minlength: 3,
             email : true
             },
             phone : {
-            required : true,        
+            required : true,
             numbersonly: true,
             phonenumber: true
             },
@@ -355,7 +355,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             min : 1
             },
             other_phone:{
-            required : true,        
+            required : true,
             numbersonly: true,
             phonenumber: true
             },
@@ -408,17 +408,17 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
             },
             experience : {
             required : 'Por favor ingrese sus años de experiencia *',
-            max : 'Sus años de experiencia no pueden ser de más de 50 *'       
+            max : 'Sus años de experiencia no pueden ser de más de 50 *'
             },
             contract_number : {
             required : 'Por favor ingrese su número de contacto *',
             maxlength : 'Su número de contrato no puede ser de más de 5 caracteres *',
-            minlength : 'Su número de contrato no puede ser de menos de 1 caracter *'   
+            minlength : 'Su número de contrato no puede ser de menos de 1 caracter *'
             },
             contract_year : {
             required : 'Por favor ingrese su años de contacto *',
             max : 'Sus años de contrato no pueden ser de más de 50 *',
-            min : 'Sus años de contrato no pueden ser de menos de 1 *'  
+            min : 'Sus años de contrato no pueden ser de menos de 1 *'
             },
             other_phone : {
             required : 'Por favor ingrese su número telefónico *'
@@ -447,6 +447,6 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
 });
 
     </script>
-    
+
 @endpush
 </x-app-layout>
