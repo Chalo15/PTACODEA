@@ -212,8 +212,7 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
         required : true 
         },
         details: {
-        required : true,
-        horahhmm : true
+        required : true
         },
         },
 

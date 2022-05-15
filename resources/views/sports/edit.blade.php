@@ -32,4 +32,37 @@
         </div>
     </div>
 
+     
+    @push('scripts')
+    <script>
+
+
+ $(document).ready(function(){
+
+
+//Validaciones del formulario
+    if($("#form_create_trainings").length > 0)
+    {
+        $('#form_create_trainings').validate({
+        rules:{
+
+        athlete_id: {
+        required : true    
+        },
+
+        },
+
+        messages : {
+        athlete_id: {
+        required : 'Por favor seleccione un atleta *'    
+        },
+        }
+        });
+    }
+});
+
+    </script>
+    
+@endpush
+
 </x-app-layout>
