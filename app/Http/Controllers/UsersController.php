@@ -66,7 +66,6 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //Envia por correo las credenciales del usuario registrado Id y Password
         $password = $request->password;
         $id = $request->identification;
         $email = $request->email;
