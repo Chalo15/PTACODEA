@@ -59,7 +59,7 @@
 
                         {{-- type_training --}}
                         <div class="form-group row">
-                            <label for="type_training" class="col-sm-4 col-form-label">Tipo de Entrenamienro</label>
+                            <label for="type_training" class="col-sm-4 col-form-label">Tipo de Entrenamiento</label>
                             <div class="col-sm-8">
                                 <x-input name="type_training" value="{{ old('type_training') }}" />
                             </div>
@@ -131,13 +131,16 @@
             </div>
         </div>
     </div>
+
     @push('scripts')
-        <script>
-            $(document).ready(function() {
-                //Método que valida solo numeros
-                jQuery.validator.addMethod("numbersonly", function(value, element) {
-                    return this.optional(element) || /^[0-9,":"]+$/i.test(value);
-                }, 'Por favor digite solo valores numéricos y números naturales *', );
+    <script>
+        $(document).ready(function() {
+
+            //Método que valida solo numeros
+            jQuery.validator.addMethod("numbersonly", function(value, element) {
+                return this.optional(element) || /^[0-9,":"]+$/i.test(value);
+            }, 'Por favor digite solo valores numéricos y números naturales *', );
+
                 //Validaciones del formulario
                 if ($("#form_create_trainings").length > 0) {
                     $('#form_create_trainings').validate({
@@ -164,7 +167,7 @@
                             planification: {
                                 required: true
                             },
-                            details: {
+                            lesion: {
                                 required: true
                             },
                         },
@@ -194,6 +197,7 @@
                             lesion: {
                                 required: 'Por favor ingrese la lesión que presenta *'
                             },
+
                         }
                     });
                 }
