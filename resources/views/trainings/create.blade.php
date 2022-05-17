@@ -59,7 +59,7 @@
 
                         {{-- type_training --}}
                         <div class="form-group row">
-                            <label for="type_training" class="col-sm-4 col-form-label">Tipo de Entrenamienro</label>
+                            <label for="type_training" class="col-sm-4 col-form-label">Tipo de Entrenamiento</label>
                             <div class="col-sm-8">
                                 <x-input name="type_training" value="{{ old('type_training') }}" />
                             </div>
@@ -132,7 +132,6 @@
             </div>
         </div>
     </div>
-
 
     @push('scripts')
         <script>

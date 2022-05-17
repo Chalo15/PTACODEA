@@ -28,7 +28,7 @@
                                     <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
                                         DIMEX</label>
                                     <div class="col-sm-8">
-                                        <x-input name="identification" value="{{ old('identification') ?? $athlete->user->identification }}" />
+                                        <x-input readonly name="identification" value="{{ old('identification') ?? $athlete->user->identification }}" />
                                     </div>
                                 </div>
 
@@ -36,7 +36,7 @@
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
                                     <div class="col-sm-8">
-                                        <x-input name="name" value="{{ old('name') ?? $athlete->user->name }}" />
+                                        <x-input readonly name="name" value="{{ old('name') ?? $athlete->user->name }}" />
                                     </div>
                                 </div>
 
@@ -44,7 +44,7 @@
                                 <div class="form-group row">
                                     <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                                     <div class="col-sm-8">
-                                        <x-input name="last_name" value="{{ old('last_name') ?? $athlete->user->last_name }}" />
+                                        <x-input readonly name="last_name" value="{{ old('last_name') ?? $athlete->user->last_name }}" />
                                     </div>
                                 </div>
 

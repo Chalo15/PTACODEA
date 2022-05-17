@@ -27,7 +27,7 @@ class UserFactory extends Factory
         $genders = config('general.genders');
 
         return [
-            'role_id' => $this->faker->randomElement([1, 5, 6, 7, 8]),
+            'role_id' => $this->faker->randomElement([1, 5, 6, 7]),
             'identification' => $this->faker->unique()->randomNumber(9),
             'password' => 'password', // password
             'name' => $this->faker->name(),
