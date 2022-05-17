@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('trainings.update', $training->id) }}" method="POST">
+                    <form id="edit_create_trainings"action="{{ route('trainings.update', $training->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -120,6 +120,85 @@
             </div>
         </div>
     </div>
+
+        
+
+@push('scripts')
+    <script>
+
+$(document).ready(function(){
+
+//Método que valida solo numeros
+    jQuery.validator.addMethod("numbersonly", function(value, element) {
+    return this.optional(element) || /^[0-9,":"]+$/i.test(value);
+    }, 'Por favor digite solo valores numéricos y números naturales *',);  
+
+//Validaciones del formulario
+    if($("#edit_create_trainings").length > 0)
+    {
+        $('#edit_create_trainings').validate({
+        rules:{
+        date: {
+        required : true    
+        },
+        type_training: {
+        required : true               
+        },
+        calification: {
+        required : true     
+        },   
+        time: {
+        required : true,
+        numbersonly : true     
+        },        
+        level: {
+        required : true 
+        },
+        get_better: {
+        required : true 
+        },
+        planification: {
+        required : true 
+        },
+        details: {
+        required : true
+        },
+    },
+
+        messages : {
+        date: {
+        required : 'Por favor seleccione una fecha *'    
+        },
+        type_training: {
+        required : 'Por favor ingrese el tipo de entrenamiento *'               
+        },
+        calification: {
+        required : 'Por favor ingrese la calificación *' 
+        },
+        time: {
+        required : 'Por favor la duración del entrenamiento *'     
+        },        
+        level: {
+        required : 'Por favor ingrese el nivel *' 
+        },
+        get_better: {
+        required : 'Por favor ingrese los aspectos a mejorar *' 
+        },
+        planification: {
+        required : 'Por favor ingrese la planificación *' 
+        },
+        lesion: {
+        required : 'Por favor ingrese la lesión que presenta *' 
+        },
+        }
+        });
+    }
+});
+
+    </script>
+    
+@endpush
+
 
 
 </x-app-layout>
