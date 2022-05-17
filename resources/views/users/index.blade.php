@@ -13,19 +13,30 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
+                    <h2 class="text-center d-block font-weight-bold ">
+                        Usuarios
+                    </h2>
                     <div class="row">
-                        <div class="col d-flex align-items-center">
-                            Usuarios
-                        </div>
                         <div class="col d-flex justify-content-end">
-                            <a href="{{ route('users.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> &nbsp;
-                                Nuevo
-                            </a>
-                            <a href="{{ route('users.export') }}" class="btn btn-success">
-                                <i class="fa fa-table"></i> &nbsp;
-                                Exportar Datos
-                            </a>
+
+                            <div class="mx-2">
+
+                                <a href="{{ route('users.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> &nbsp;
+                                    Nuevo
+                                </a>
+
+                            </div>
+
+                            <div class="mx-2">
+
+                                <a href="{{ route('users.export') }}" class="btn btn-success">
+                                    <i class="fa fa-table"></i> &nbsp;
+                                    Exportar Datos
+                                </a>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -13,17 +13,19 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <div class="col d-flex align-items-center">
+                    <div class="text-center">
+                        <h2 class="text-center d-block font-weight-bold ">
                             Musculaciones
-                        </div>
+                        </h2>
+                    </div>
+                    <div class="row">
 
                         <div class="col d-flex justify-content-end">
                             @can('role', ['Musculacion'])
-                                <a href="{{ route('musculars.create') }}" class="btn btn-primary">
-                                    <i class="fas fa-plus"></i> &nbsp;
-                                    Nuevo
-                                </a>
+                            <a href="{{ route('musculars.create') }}" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> &nbsp;
+                                Nuevo
+                            </a>
                             @endcan
                         </div>
                     </div>
@@ -49,52 +51,46 @@
 
                                 <x-slot name="body">
                                     @foreach ($musculars as $muscular)
-                                        <tr>
-                                            <td>{{ $muscular->id }}</td>
-                                            <td>{{ $muscular->date->isoFormat('LL') }}</td>
-                                            <td>{{ $muscular->time }}</td>
-                                            <td>{{ $muscular->athlete->user->identification }}</td>
-                                            <td>
-                                                <a target="_blank" class="link"
-                                                    href="{{ route('athletes.show', $muscular->athlete->id) }}">
-                                                    {{ $muscular->athlete->user->full_name }}
-                                                    <i class="fas fa-external-link-alt"></i>
-                                                </a>
-                                            </td>
-                                            <td>{{ $muscular->athlete->sport->description }}</td>
-                                            <td>{{ $muscular->user->identification }}</td>
-                                            <td>
-                                                <a target="_blank" class="link"
-                                                    href="{{ route('users.show', $muscular->user->id) }}">
-                                                    {{ $muscular->user->full_name }}
-                                                    <i class="fas fa-external-link-alt"></i>
-                                                </a>
-                                            </td>
-                                            <td width="100px" class="text-center">
-                                                <div class="dropdown">
-                                                    <button class="btn" type="button" id="dropdownMenu2"
-                                                        data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                    </button>
+                                    <tr>
+                                        <td>{{ $muscular->id }}</td>
+                                        <td>{{ $muscular->date->isoFormat('LL') }}</td>
+                                        <td>{{ $muscular->time }}</td>
+                                        <td>{{ $muscular->athlete->user->identification }}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('athletes.show', $muscular->athlete->id) }}">
+                                                {{ $muscular->athlete->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td>{{ $muscular->athlete->sport->description }}</td>
+                                        <td>{{ $muscular->user->identification }}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('users.show', $muscular->user->id) }}">
+                                                {{ $muscular->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td width="100px" class="text-center">
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
 
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                        @can('role', ['Musculacion'])
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('musculars.edit', $muscular->id) }}">
-                                                                <i class="fas fa-edit"></i> &nbsp;
-                                                                Editar
-                                                            </a>
-                                                        @endcan
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('musculars.generate-pdf', $muscular->id) }}"
-                                                            target="_blank">
-                                                            <i class="fas fa-download"></i> &nbsp;
-                                                            Descargar
-                                                        </a>
-                                                    </div>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    @can('role', ['Musculacion'])
+                                                    <a class="dropdown-item" href="{{ route('musculars.edit', $muscular->id) }}">
+                                                        <i class="fas fa-edit"></i> &nbsp;
+                                                        Editar
+                                                    </a>
+                                                    @endcan
+                                                    <a class="dropdown-item" href="{{ route('musculars.generate-pdf', $muscular->id) }}" target="_blank">
+                                                        <i class="fas fa-download"></i> &nbsp;
+                                                        Descargar
+                                                    </a>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </x-slot>
                                 <x-slot name="foot">

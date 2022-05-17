@@ -12,16 +12,18 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header">
-                    Nueva Musculación
+                <div class="text-center card-header">
+                    <h2 class="font-weight-bold ">
+                        Nueva Musculación
+                    </h2>
                 </div>
                 {{-- }} @json($errors->all()) --}}
                 <div class="card-body">
                     <form action="{{ route('musculars.store') }}" method="POST">
                         @csrf
 
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Instrumento de Medición</label>
+                        <div class="mb-3 col-12 text-center">
+                            <h4 class="text-center font-weight-bold ">Instrumento de Medición</h4>
                         </div>
 
                         {{-- Fecha de Toma Datos --}}
@@ -119,9 +121,11 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Pliegues</label>
+
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Pliegues</h4>
                         </div>
+
                         <br>
                         {{-- Tricipital --}}
                         <div class="form-group row">
@@ -172,8 +176,8 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Diámetros</label>
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Diámetros</h4>
                         </div>
                         <br>
                         {{-- Muñeca Cm --}}
@@ -201,8 +205,8 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Anchuras</label>
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Anchuras</h4>
                         </div>
                         <br>
                         {{-- Biceps Cm --}}
@@ -222,9 +226,11 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Resultados</label>
+
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Resultados</h4>
                         </div>
+
                         <br>
                         {{-- %Grasa --}}
                         <div class="form-group row">
@@ -267,8 +273,8 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Recomendaciones</label>
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Recomendaciones</h4>
                         </div>
                         <br>
                         {{-- Peso Ideal Kg --}}
@@ -304,8 +310,8 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Acotaciones Extras</label>
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Acotaciones Extras</h4>
                         </div>
 
                         <div class="form-group row">

@@ -13,7 +13,9 @@
         <div class="col">
             <div class="card mb-5">
                 <div class="card-header">
-                    Nuevo Atleta
+                    <h2 class="text-center d-block font-weight-bold ">
+                        Nuevo Atleta
+                    </h2>
                 </div>
 
                 <div class="card-body">
@@ -260,7 +262,10 @@
 
                                 <div class="row">
                                     <div class="col mb-3 d-flex justify-content-center">
-                                        Información del Responsable
+
+                                        <h3 class="text-center d-block font-weight-bold ">
+                                            Información del Responsable
+                                        </h3>
                                     </div>
                                 </div>
 
