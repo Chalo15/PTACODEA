@@ -367,10 +367,10 @@
                     };
                 }, "El número telefónico debe tener 8 dígitos *");
 
-                //Método que valida solo numeros
-                jQuery.validator.addMethod("numbersonly", function(value, element) {
-                    return this.optional(element) || /^[0-9]+$/i.test(value);
-                }, 'Por favor digite solo valores numéricos y números naturales *', );
+//Método que valida solo numeros
+jQuery.validator.addMethod("numbersonly", function(value, element) {
+    return this.optional(element) || /^[0-9,":"]+$/i.test(value);
+    }, 'Por favor digite solo valores numéricos y números naturales *',);  
 
                 //Método que valida solo letras
                 jQuery.validator.addMethod("lettersonly", function(value, element) {
