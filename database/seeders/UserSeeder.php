@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'role_id'         => 1,
-                'identification'  => 207630342,
+                'identification'  => '207630342',
                 'password'        => Hash::make('12346'),
                 'name'            => 'Josue',
                 'last_name'       => 'Perez Sequeira',
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
                 'experience'      => 2
             ], [
                 'role_id'         => 1,
-                'identification'  => 240,
+                'identification'  => '207910178',
                 'password'        => Hash::make('12346'),
                 'name'            => 'Carlos',
                 'last_name'       => 'Alpizar Gutierrez',

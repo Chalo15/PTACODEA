@@ -24,8 +24,7 @@ class AvailabilityController extends Controller
         } else if ($user->hasRole(['Atleta'])) {
             $availabilities = Availability::where([['state', '=', 'DISPONIBLE'], ['date', '>=', date('Y.m.d', strtotime("-1 days"))]])->get();
         } else {
-            $availabilities = Availability::where('state', '=', 'PENDIENTE')->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])
-            ->orWhere('state', '=', 'DISPONIBLE')->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])->get();
+            $availabilities = Availability::where('state', '=', 'PENDIENTE')->orWhere('state', '=', 'DISPONIBLE')->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])->get();
         }
 
         return view('availabilities.index', compact('availabilities'));
@@ -56,13 +55,9 @@ class AvailabilityController extends Controller
         try {
             $user->availabilities()->create($request->validated());
             return redirect()->route('availabilities.index')->with('status', 'Disponibilidad creada exitosamente!');
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('availabilities.create')->with('status', 'ERROR: Ya Existe una Disponibilidad Creada en ese Horario!');
-
         }
-
-
     }
 
     /**

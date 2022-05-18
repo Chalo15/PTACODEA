@@ -24,7 +24,8 @@
                                 <div x-show="!isOpen">
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <img src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}" class="rounded mx-auto d-block" width="200" height="200">
+                                            <img src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}"
+                                                class="rounded mx-auto d-block" width="200" height="200">
                                         </div>
                                     </div>
 
@@ -37,13 +38,15 @@
                                 </div>
 
                                 <div x-show="isOpen">
-                                    <form action="{{ route('profile.update-picture') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('profile.update-picture') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
 
                                         <div class="row">
                                             <div class="col d-flex justify-content-center mb-3">
-                                                <img id="selected" class="rounded" style="max-height: 200px; max-width: 200px;">
+                                                <img id="selected" class="rounded"
+                                                    style="max-height: 200px; max-width: 200px;">
                                             </div>
                                         </div>
 
@@ -55,7 +58,8 @@
 
                                         <div class="row">
                                             <div class="col d-flex justify-content-end">
-                                                <button @click="isOpen = !isOpen" type="button" class="btn btn-secondary mr-3">
+                                                <button @click="isOpen = !isOpen" type="button"
+                                                    class="btn btn-secondary mr-3">
                                                     <i class="fas fa-times"></i> &nbsp;
                                                     Cancelar
                                                 </button>
@@ -83,7 +87,8 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="{{ route('profile.update-password') }}" method="POST">
+                            <form id='form_profile_index1' action="{{ route('profile.update-password') }}"
+                                method="POST">
                                 @csrf
                                 @method('PUT')
 
@@ -107,7 +112,8 @@
 
                                 {{-- Confirmación de contraseña --}}
                                 <div class="form-group row">
-                                    <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de contraseña</label>
+                                    <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
+                                        contraseña</label>
                                     <div class="col-sm-8">
                                         <x-input name="password_confirmation" type="password" />
                                     </div>
@@ -136,15 +142,17 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('profile.update-personal-information') }}" method="POST">
+                    <form id='form_profile_index2' action="{{ route('profile.update-personal-information') }}"
+                        method="POST">
                         @csrf
                         @method('PUT')
 
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
-                            <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
+                            <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
+                                DIMEX</label>
                             <div class="col-sm-8">
-                                <x-input disabled name="identification" value="{{ $user->identification }}" />
+                                <x-input readonly name="identification" value="{{ $user->identification }}" />
                             </div>
                         </div>
 
@@ -152,7 +160,9 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label">Nombre</label>
                             <div class="col-sm-8">
-                                <x-input  disabled name="name" value="{{ $user->name }}" />
+
+                                <x-input readonly name="name" value="{{ $user->name }}" />
+
                             </div>
                         </div>
 
@@ -160,11 +170,20 @@
                         <div class="form-group row">
                             <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                             <div class="col-sm-8">
-                                <x-input  disabled name="last_name" value="{{ $user->last_name }}" />
+
+                                <x-input readonly name="last_name" value="{{ $user->last_name }}" />
                             </div>
                         </div>
 
                         {{-- Fecha de Nacimiento --}}
+
+                        <!-- @php
+                            $today = today()->toDateString();
+                            $age = today()
+                                ->subYears(18)
+                                ->toDateString();
+                        @endphp -->
+
                         <div class="form-group row">
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
@@ -177,9 +196,12 @@
                             <label for="province" class="col-sm-4 col-form-label">Provincia</label>
                             <div class="col-sm-8">
                                 <x-select name="province">
-                                    <option {{ !$user->province ? 'selected' : '' }} disabled value=""> -- Seleccione -- </option>
+                                    <option {{ !$user->province ? 'selected' : '' }} readonly value=""> -- Seleccione
+                                        -- </option>
                                     @foreach ($provinces as $province)
-                                    <option {{ $user->province && $user->province == $province  ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
+                                        <option
+                                            {{ $user->province && $user->province == $province ? 'selected' : '' }}
+                                            value="{{ $province }}">{{ $province }}</option>
                                     @endforeach
                                 </x-select>
                             </div>
@@ -189,7 +211,7 @@
                         <div class="form-group row">
                             <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
                             <div class="col-sm-8">
-                                <x-input name="city" value="{{ $user->city }}" />
+                                <x-input id='city' name="city" value="{{ $user->city }}" />
                             </div>
                         </div>
 
@@ -207,7 +229,7 @@
                         <div class="form-group row">
                             <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                             <div class="col-sm-8">
-                                <x-input name="phone" type="number" value="{{ $user->phone }}" />
+                                <x-input id='phone' name="phone" value="{{ $user->phone }}" />
                             </div>
                         </div>
 
@@ -226,15 +248,20 @@
                             <label for="gender" class="col-sm-4 col-form-label">Género</label>
                             <div class="col-sm-8">
                                 @foreach ($genders as $gender)
-                                <div class="custom-control custom-radio">
-                                    <input {{ $user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
-                                    <label class="custom-control-label" for="gender-{{ $loop->index }}">
-                                        {{ $gender }}
-                                    </label>
-                                </div>
+                                    <div class="custom-control custom-radio">
+                                        <input {{ $user->gender && $user->gender == $gender ? 'checked' : '' }}
+                                            class="custom-control-input" type="radio" name="gender"
+                                            id="gender-{{ $loop->index }}"
+                                            value="{{ old('gender') ?? $user->gender }}">
+                                        <label class="custom-control-label" for="gender-{{ $loop->index }}">
+                                            {{ $gender }}
+                                        </label>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
+
+                        <hr>
 
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary">
@@ -250,109 +277,141 @@
     </div>
 
     @push('scripts')
-    <script>
-        $(document).ready(function(e) {
-            $('#image').change(function() {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    $('#selected').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
+        <script>
+            $(document).ready(function(e) {
+                $('#image').change(function() {
+                    let reader = new FileReader();
+                    reader.onload = (e) => {
+                        $('#selected').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                });
             });
-        });
+            //Metodo para validar número telefónico
+            jQuery.validator.addMethod("phonenumber", function(value, element) {
+                if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
+                    return true;
+                } else {
+                    return false;
+                };
+            }, "El número telefónico debe tener 8 dígitos *");
 
-    </script>
+            //Método que valida solo numeros
+            jQuery.validator.addMethod("numbersonly", function(value, element) {
+                return this.optional(element) || /^[0-9]+$/i.test(value);
+            }, 'Por favor digite solo valores numéricos y números naturales *', );
+            //Método que valida solo letras
+            jQuery.validator.addMethod("lettersonly", function(value, element) {
+                return this.optional(element) || /^[a-z," "]+$/i.test(value);
+            }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *', );
+            //Método que valida la contraseña
+            jQuery.validator.addMethod("passwordCheck",
+                function(value, element, param) {
+                    if (this.optional(element)) {
+                        return true;
+                    } else if (!/[A-Z]/.test(value)) {
+                        return false;
+                    } else if (!/[a-z]/.test(value)) {
+                        return false;
+                    } else if (!/[0-9]/.test(value)) {
+                        return false;
+                    }
+                    return true;
+                },
+                "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
+                );
+            //Validaciones del formulario
+            if ($('#form_profile_index1').length > 0) {
+                $('#form_profile_index1').validate({
+                    rules: {
+                        password: {
+                            required: true,
+                            passwordCheck: true,
+                            minlength: 8,
+                            maxlength: 60
+                        },
+                        password_confirmation: {
+                            required: true,
+                            equalTo: "#password"
+                        }
+                    },
+                    messages: {
+                        password: {
+                            required: 'Por favor ingrese su contraseña *',
+                            minlength: 'La contraseña no puede ser menor a 8 caracteres *',
+                            maxlength: 'La contraseña no puede ser mayor a 60 caracteres *'
+                        },
+                        password_confirmation: {
+                            required: 'Por favor ingrese de nuevo su contraseña *',
+                            equalTo: 'Por favor introduzca la misma contraseña *'
+                        },
+                    }
+                });
+            }
+            //Formulario del index2
+            if ($('#form_profile_index2').length > 0) {
+                $('#form_profile_index2').validate({
+                    rules: {
+                        birthdate: {
+                            required: true
+                        },
+                        province: {
+                            required: true
+                        },
+                        city: {
+                            required: true,
+                            lettersonly: true,
+                            minlength: 3,
+                            maxlength: 30
+                        },
+                        email: {
+                            required: true,
+                            maxlength: 30,
+                            minlength: 3,
+                            email: true
+                        },
+                        phone: {
+                            required: true,
+                            numbersonly: true,
+                            phonenumber: true
+                        },
+                        address: {
+                            required: true,
+                            minlength: 20,
+                            maxlength: 120
+                        },
+                    },
+                    messages: {
+                        birthdate: {
+                            required: 'Por favor ingrese su fecha de nacimiento *'
+                        },
+                        province: {
+                            required: 'Por favor ingrese su provincia *'
+                        },
+                        city: {
+                            required: 'Por favor ingrese la ciudad donde vive *',
+                            maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
+                            minlength: 'La ciudad no puede ser menor a 3 caracteres *'
+                        },
+                        email: {
+                            required: 'Por favor ingrese su email *',
+                            email: 'Por favor ingrese una dirección de correo electrónico válida *',
+                            maxlength: 'Su correo electrónico no puede ser de más de 30 caracteres *',
+                            minlength: 'Su correo electrónico no puede ser de menos de 3 caracteres *'
+                        },
+                        phone: {
+                            required: 'Por favor ingrese su número telefónico *'
+                        },
+                        address: {
+                            required: 'Por favor ingrese su dirección completa *',
+                            maxlength: 'Su dirección no puede ser de más de 120 caracteres *',
+                            minlength: 'Su dirección no puede ser de menos de 20 caracteres *'
+                        },
+                    }
+                });
+            }
+        </script>
     @endpush
 
+
 </x-app-layout>
-
-{{-- <x-app-layout title="Perfil">
-
-    <div class="py-3 row justify-content-center">
-
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="d-5 text-center">Perfil Personal</h3>
-                </div>
-
-                <div class="card-body">
-
-
-                    <form class="well form-horizontal" action="{{route('saveProfile')}} " method="post" id="formulario_perfil" enctype="multipart/form-data">
-
-@csrf
-@method('put')
-
-
-<!--foto de perfil-->
-<div class="form-group">
-
-    <div class="col-md-12 col-12 justify-content-center text-center">
-        <img src="{{ asset('storage/imagenes/'.$user->photo)}}" width="50%">
-    </div>
-
-</div>
-
-<div class="form-group">
-    <div class="col-12 col-sm-12 col-12 justify-content-center text-center">
-        <a href="{{ route('changePhoto') }}" type="button" class="btn btn-primary btn-block">{{ __('Seleccionar foto de perfil') }}</a>
-    </div>
-</div>
-
-
-<div class="form-group row">
-
-    <div class="col-12 col-sm-6 col-md-6">
-        <label>Nombre</label>
-        <input value="{{$user->name}}" type="text" name="name" class="form-control form-control-sm ">
-    </div>
-
-    <div class="col-12 col-sm-6 col-md-6">
-        <label>Apellidos</label>
-        <input value="{{$user->lastname}}" type="text" name="lastname" class="form-control form-control-sm ">
-    </div>
-
-</div>
-
-<div class="form-group row">
-
-    <div class="col-md-6">
-        <label>Correo</label>
-        <input value="{{$user->email}}" type="text" name="email" class="form-control form-control-sm ">
-    </div>
-    <div class="col-md-6">
-        <label>Fecha de nacimiento</label>
-        <input value="{{$user->birthdate}}" type="text" name="birthdate" class="form-control form-control-sm ">
-    </div>
-
-</div>
-
-<div class="form-group row">
-    <div class="col-md-6">
-        <label>Teléfono</label>
-        <input value="{{$user->phone}}" type="text" name="phone" class="form-control form-control-sm ">
-    </div>
-</div>
-
-<div class="form-group row pt-2">
-    <div class="col-md-12 justify-content-center text-center">
-        <button type="submit" class="btn btn-primary btn-block">
-            Actualizar datos
-        </button>
-        @can('role',"Atleta")
-        <a href="{{ route('datos_extra') }}" type="button" class="btn btn-primary btn-block">{{ __('Datos extra del atleta') }}</a>
-        @endcan
-    </div>
-</div>
-
-
-</form>
-
-</div>
-
-</div>
-</div>
-
-</div>
-</x-app-layout> --}}

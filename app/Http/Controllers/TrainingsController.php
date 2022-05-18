@@ -35,8 +35,8 @@ class TrainingsController extends Controller
         $user = request()->user();
 
         $trainings = $user->role->description == 'Admin' ?
-            Training::with('user', 'athlete.user', 'athlete.sport','coach.user')->get() :
-            $user->trainings->load('user', 'athlete.user', 'athlete.sport','coach.user');
+            Training::with('user', 'athlete.user', 'athlete.sport', 'coach.user')->get() :
+            $user->trainings->load('user', 'athlete.user', 'athlete.sport', 'coach.user');
 
         return view('trainings.index', compact('trainings'));
     }
@@ -120,7 +120,7 @@ class TrainingsController extends Controller
     /**
      * Generacion de pdf de Entrenadores.
      *
-     * @param  \App\Models\Trainig  $physio
+     * @param  \App\Models\Training  $physio
      */
     public function generatePDF(Training $training)
     {
@@ -129,7 +129,6 @@ class TrainingsController extends Controller
         //return $pdf->download('document.pdf');
 
         return $pdf->download($training->athlete->user->full_name . '.pdf');
-
     }
 
 
@@ -137,29 +136,25 @@ class TrainingsController extends Controller
     public function generateReport(Training $training)
     {
         $user = request()->user();
-        $id=$training->user_id;
+        $id = $training->user_id;
         //dd($id);
-      
+
         if ($user->hasRole(['Instructor'])) {
-            
 
-            $data = Training::with('user', 'athlete.user', 'athlete.sport')->where("user_id", "=",$user->id)->get();
 
-            $pdf=PDF::loadView('pdfs.reportTraining',compact('data'));
+            $data = Training::with('user', 'athlete.user', 'athlete.sport')->where("user_id", "=", $user->id)->get();
+
+            $pdf = PDF::loadView('pdfs.reportTraining', compact('data'));
             return $pdf->download('Reporte.pdf');
         }
 
-        if($user->hasRole(['Admin'])){
+        if ($user->hasRole(['Admin'])) {
 
-            
-            $data = Training::with('user', 'athlete.user', 'athlete.sport')->where("user_id", "=",$id)->get();
 
-            $pdf=PDF::loadView('pdfs.reportTraining',compact('data'));
+            $data = Training::with('user', 'athlete.user', 'athlete.sport')->where("user_id", "=", $id)->get();
+
+            $pdf = PDF::loadView('pdfs.reportTraining', compact('data'));
             return $pdf->download('Reporte.pdf');
-
         }
-        
-       
-
     }
 }

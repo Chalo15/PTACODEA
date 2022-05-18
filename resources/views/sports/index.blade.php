@@ -13,7 +13,9 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Deportes
+                    <h2 class="text-center d-block font-weight-bold ">
+                        Deportes
+                    </h2>
                 </div>
 
                 <div class="card-body">
