@@ -287,8 +287,6 @@
                     reader.readAsDataURL(this.files[0]);
                 });
             });
-
-
             //Metodo para validar número telefónico
             jQuery.validator.addMethod("phonenumber", function(value, element) {
                 if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
@@ -298,18 +296,14 @@
                 };
             }, "El número telefónico debe tener 8 dígitos *");
 
-
             //Método que valida solo numeros
             jQuery.validator.addMethod("numbersonly", function(value, element) {
                 return this.optional(element) || /^[0-9]+$/i.test(value);
             }, 'Por favor digite solo valores numéricos y números naturales *', );
-
-
             //Método que valida solo letras
             jQuery.validator.addMethod("lettersonly", function(value, element) {
                 return this.optional(element) || /^[a-z," "]+$/i.test(value);
             }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *', );
-
             //Método que valida la contraseña
             jQuery.validator.addMethod("passwordCheck",
                 function(value, element, param) {
@@ -326,12 +320,10 @@
                 },
                 "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
                 );
-
             //Validaciones del formulario
             if ($('#form_profile_index1').length > 0) {
                 $('#form_profile_index1').validate({
                     rules: {
-
                         password: {
                             required: true,
                             passwordCheck: true,
@@ -343,7 +335,6 @@
                             equalTo: "#password"
                         }
                     },
-
                     messages: {
                         password: {
                             required: 'Por favor ingrese su contraseña *',
@@ -357,7 +348,6 @@
                     }
                 });
             }
-
             //Formulario del index2
             if ($('#form_profile_index2').length > 0) {
                 $('#form_profile_index2').validate({
@@ -391,7 +381,6 @@
                             maxlength: 120
                         },
                     },
-
                     messages: {
                         birthdate: {
                             required: 'Por favor ingrese su fecha de nacimiento *'

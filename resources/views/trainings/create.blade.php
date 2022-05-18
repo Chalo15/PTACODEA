@@ -136,12 +136,10 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
-
                 //Método que valida solo numeros
                 jQuery.validator.addMethod("numbersonly", function(value, element) {
-                    return this.optional(element) || /^[0-9, ":"]+$/i.test(value);
+                    return this.optional(element) || /^[0-9,":"]+$/i.test(value);
                 }, 'Por favor digite solo valores numéricos y números naturales *', );
-
                 //Validaciones del formulario
                 if ($("#form_create_trainings").length > 0) {
                     $('#form_create_trainings').validate({
@@ -166,9 +164,6 @@
                                 required: true
                             },
                             planification: {
-                                required: true
-                            },
-                            lesion: {
                                 required: true
                             },
                             details: {
