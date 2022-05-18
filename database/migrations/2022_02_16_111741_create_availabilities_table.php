@@ -21,6 +21,7 @@ class CreateAvailabilitiesTable extends Migration
             $table->time('end');
             $table->unique(array('user_id', 'date', 'start', 'end'));
             $table->text('state', 50);
+            $table->integer('counter');
             $table->timestamps();
         });
     }
