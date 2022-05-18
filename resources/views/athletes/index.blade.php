@@ -13,10 +13,12 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <div class="col d-flex align-items-center">
+                    <div class="text-center">
+                        <h2 class="text-center d-block font-weight-bold ">
                             Atletas
-                        </div>
+                        </h2>
+                    </div>
+                    <div class="row">
                         <div class="col d-flex justify-content-end">
                             @can('role', ['Admin'])
                             <div class="mx-2">
@@ -81,16 +83,14 @@
                                                     Editar
                                                 </a>
 
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('athletes.destroy', $athlete->id) }}"
-                                                            onclick="return confirm('¿Desea cambiar el estado de este registro?')">
-                                                            <i class="fas fa-exclamation-triangle"></i> &nbsp;
-                                                            Habilitar/Deshabilitar Atletas
-                                                        </a>
-                                                    @endcan
-                                                </div>
+                                                <a class="dropdown-item" href="{{ route('athletes.destroy', $athlete->id) }}" onclick="return confirm('¿Desea cambiar el estado de este registro?')">
+                                                    <i class="fas fa-exclamation-triangle"></i> &nbsp;
+                                                    Habilitar/Deshabilitar Atletas
+                                                </a>
+                                                @endcan
                                             </div>
                                         </div>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

@@ -12,16 +12,18 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header">
-                    Nueva Musculación
+                <div class="text-center card-header">
+                    <h2 class="font-weight-bold ">
+                        Nueva Musculación
+                    </h2>
                 </div>
                 {{-- }} @json($errors->all()) --}}
                 <div class="card-body">
                     <form id='form_musculars_create' action="{{ route('musculars.store') }}" method="POST">
                         @csrf
 
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Instrumento de Medición</label>
+                        <div class="mb-3 col-12 text-center">
+                            <h4 class="text-center font-weight-bold ">Instrumento de Medición</h4>
                         </div>
 
                         {{-- Fecha de Toma Datos --}}
@@ -119,9 +121,11 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Pliegues</label>
+
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Pliegues</h4>
                         </div>
+
                         <br>
                         {{-- Tricipital --}}
                         <div class="form-group row">
@@ -172,8 +176,8 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Diámetros</label>
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Diámetros</h4>
                         </div>
                         <br>
                         {{-- Muñeca Cm --}}
@@ -201,8 +205,8 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Anchuras</label>
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Anchuras</h4>
                         </div>
                         <br>
                         {{-- Biceps Cm --}}
@@ -222,9 +226,11 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Resultados</label>
+
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Resultados</h4>
                         </div>
+
                         <br>
                         {{-- %Grasa --}}
                         <div class="form-group row">
@@ -267,8 +273,8 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Recomendaciones</label>
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Recomendaciones</h4>
                         </div>
                         <br>
                         {{-- Peso Ideal Kg --}}
@@ -304,8 +310,8 @@
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Acotaciones Extras</label>
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Acotaciones Extras</h4>
                         </div>
 
                         <div class="form-group row">
@@ -335,26 +341,26 @@
         </div>
     </div>
 
-    
+
     @push('scripts')
     <script>
     $(document).ready(function(){
         //Método que valida solo numeros
         jQuery.validator.addMethod("numbersonly", function(value, element) {
         return this.optional(element) || /^[0-9]+$/i.test(value);
-        }, 'Por favor digite solo valores numéricos y números naturales *',); 
+        }, 'Por favor digite solo valores numéricos y números naturales *',);
 
         //Método que valida enteros y decimales
         jQuery.validator.addMethod("numbersfloatonly", function(value, element) {
         return this.optional(element) || /^[0-9,.]+$/g.test(value);
-        }, 'Por favor digite solo valores numéricos enteros o decimales *',); 
+        }, 'Por favor digite solo valores numéricos enteros o decimales *',);
 
         if($("#form_musculars_create").length > 0){
             $('#form_musculars_create').validate({
                 rules:{
                     physiological_age : {
-                    required : true,                    
-                    numbersonly: true,   
+                    required : true,
+                    numbersonly: true,
                     maxlength : 2,
                     minlength: 1
                     },
@@ -362,286 +368,286 @@
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     height : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
-                    },                    
+                    minlength: 2
+                    },
                     bmi : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     waist : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     hip : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     cint_code : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     tricipital : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     subscapular : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     abdominal : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     suprailiac : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     thigh : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     calf : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     wrist : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     elbow : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     knee : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     biceps : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     calf_cm : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 2    
+                    minlength: 2
                     },
                     fat : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     residual : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     bone : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     muscle : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     visceral : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     ideal_weight : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     calories : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     bmi_high : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
+                    minlength: 1
                     },
                     icc_high : {
                     required : true,
                     numbersfloatonly: true,
                     maxlength : 5,
-                    minlength: 1    
-                    },                    
+                    minlength: 1
+                    },
                 },
                 messages : {
-                    physiological_age : { 
+                    physiological_age : {
                     required : 'Ingrese una edad *',
                     maxlength : 'La edad no puede ser mayor a dos dígitos *',
                     minlength : 'La edad no puede ser menor a 1 *'
                     },
-                    weight : { 
+                    weight : {
                     required : 'Ingrese un peso *',
                     maxlength : 'El peso no puede exceder de tres dígitos *',
                     minlength : 'El peso no puede ser de un solo dígito *'
                     },
-                    height : { 
+                    height : {
                     required : 'Ingrese una altura *',
                     maxlength : 'La altura no puede ser mayor a tres dígitos *',
                     minlength : 'La altura no puede ser menor a dos dígitos *'
-                    },                    
-                    bmi : { 
+                    },
+                    bmi : {
                     required : 'Ingrese el índice de masa corporal *',
                     maxlength : 'El índice de masa corporal no puede exceder los cinco dígitos *',
                     minlength : 'El índice de masa corporal no puede ser inferior a un dígito *'
                     },
-                    waist : { 
+                    waist : {
                     required : 'Ingrese una circunferencia de cintura *',
                     maxlength : 'La circunferencia de cintura no puede ser mayor a cinco dígitos *',
-                    minlength : 'La circunferencia de cintura no puede ser menor a dos dígitos *'   
+                    minlength : 'La circunferencia de cintura no puede ser menor a dos dígitos *'
                     },
-                    hip : { 
+                    hip : {
                     required : 'Ingrese una circunferencia de cadera *',
                     maxlength : 'La circunferencia de cadera no puede ser mayor a cinco dígitos *',
                     minlength : 'La circunferencia de cadera no puede ser menor a dos dígitos *'
                     },
-                    cint_code : { 
+                    cint_code : {
                     required : 'Ingrese una relacion de cintura-cadera *',
                     maxlength : 'La relacion de cintura-cadera no puede ser mayor a cinco dígitos *',
                     minlength : 'La relacion de cintura-cadera no puede ser menor a dos dígitos *'
                     },
-                    tricipital : { 
+                    tricipital : {
                     required : 'Ingrese una medida tricipital *',
                     maxlength : 'La medida tricipitalura no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida tricipital no puede ser menor a dos dígitos *'
                     },
-                    subscapular : { 
+                    subscapular : {
                     required : 'Ingrese una medida subescapular *',
                     maxlength : 'La medida subescapular no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida subescapular no puede ser menor a dos dígitos *'
                     },
-                    suprailiac : { 
+                    suprailiac : {
                     required : 'Ingrese una medida suprailíaca *',
                     maxlength : 'La medida suprailíaca no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida suprailíaca no puede ser menor a dos dígitos *'
                     },
-                    thigh : { 
+                    thigh : {
                     required : 'Ingrese una medida de muslo *',
                     maxlength : 'La medida de muslo no puede ser mayor a cinco dígitos *',
                     minlength : 'La mmedida de muslo no puede ser menor a dos dígitos *'
                     },
-                    calf : { 
+                    calf : {
                     required : 'Ingrese una medida de pantorrilla *',
                     maxlength : 'La medida de pantorrilla no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de pantorrilla no puede ser menor a dos dígitos *'
                     },
-                    wrist : { 
+                    wrist : {
                     required : 'Ingrese una medida de muñeca *',
                     maxlength : 'La medida de muñeca no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de muñeca no puede ser menor a dos dígitos *'
                     },
-                    elbow : { 
+                    elbow : {
                     required : 'Ingrese una medida de codo *',
                     maxlength : 'La medida de codo no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de codo no puede ser menor a dos dígitos *'
                     },
-                    knee : { 
+                    knee : {
                     required : 'Ingrese una medida de rodilla *',
                     maxlength : 'La medida de rodilla no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de rodilla no puede ser menor a dos dígitos *'
                     },
-                    biceps : { 
+                    biceps : {
                     required : 'Ingrese una medida de bíceps *',
                     maxlength : 'La medida de bíceps no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de bíceps no puede ser menor a dos dígitos *'
                     },
-                    calf_cm : { 
+                    calf_cm : {
                     required : 'Ingrese una medida de pantorrilla en centímetros *',
                     maxlength : 'La medida de pantorrilla en centímetros no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de pantorrilla en centímetros no puede ser menor a dos dígitos *'
                     },
-                    fat : { 
+                    fat : {
                     required : 'Ingrese una medida de grasa *',
                     maxlength : 'La medida de grasa no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de grasa no puede ser menor a uno dígito *'
                     },
-                    residual : { 
+                    residual : {
                     required : 'Ingrese una medida de %residual *',
                     maxlength : 'La medida de %residual no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de %residual no puede ser menor a uno dígito *'
                     },
-                    bone : { 
+                    bone : {
                     required : 'Ingrese una medida de % óseo *',
                     maxlength : 'La medida de % óseo no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de % óseo no puede ser menor a uno dígito *'
                     },
-                    muscle : { 
+                    muscle : {
                     required : 'Ingrese una medida de % muscular  *',
                     maxlength : 'La medida de % muscular  no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de % muscular  no puede ser menor a uno dígito *'
                     },
-                    visceral : { 
+                    visceral : {
                     required : 'Ingrese una medida de % visceral *',
                     maxlength : 'La medida de % visceral no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de % visceral no puede ser menor a uno dígito *'
                     },
-                    ideal_weight : { 
+                    ideal_weight : {
                     required : 'Ingrese una medida peso recomendado *',
                     maxlength : 'La medida peso recomendado no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida peso recomendado no puede ser menor a uno dígito *'
                     },
-                    calories : { 
+                    calories : {
                     required : 'Ingrese una medida requerimiento calórico *',
                     maxlength : 'La medida requerimiento calórico no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida requerimiento calórico no puede ser menor a uno dígito *'
                     },
-                    bmi_high : { 
+                    bmi_high : {
                     required : 'Ingrese una medida de IMC *',
                     maxlength : 'La medida de IMC no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de IMC no puede ser menor a uno dígito *'
                     },
-                    icc_high : { 
+                    icc_high : {
                     required : 'Ingrese una medida de ICC *',
                     maxlength : 'La medida de ICC no puede ser mayor a cinco dígitos *',
                     minlength : 'La medida de ICC no puede ser menor a uno dígito *'
@@ -649,7 +655,7 @@
                 },
             });
         }
-    });    
+    });
     </script>
     @endpush
 </x-app-layout>

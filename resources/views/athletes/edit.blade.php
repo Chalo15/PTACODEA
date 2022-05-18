@@ -13,7 +13,9 @@
         <div class="col">
             <div class="card mb-5">
                 <div class="card-header">
-                    Editar Atleta
+                    <h2 class="text-center d-block font-weight-bold ">
+                        Editar Atleta
+                    </h2>
                 </div>
 
                 <div class="card-body">

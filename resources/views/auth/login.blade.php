@@ -5,7 +5,9 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        Iniciar Sesión
+                        <h2 class="text-center d-block font-weight-bold ">
+                            Iniciar Sesión
+                        </h2>
                     </div>
 
                     <div class="card-body">
@@ -61,33 +63,30 @@
         </div>
     </div>
 
-   @push('scripts')
+    @push('scripts')
     <script>
+        $(document).ready(function() {
 
-    $(document).ready(function(){
-       
-        if($("#form_login").length > 0)
-        {
-            $('#form_login').validate({
-            rules:{
-            identification : {
-            required : true,
-            maxlength : 15,
-            minlength: 9    
-            },
-            },
-            messages : {
-            identification : { 
-            required : 'Por favor ingrese su cédula *',
-            maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
-            minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
-            },
+            if ($("#form_login").length > 0) {
+                $('#form_login').validate({
+                    rules: {
+                        identification: {
+                            required: true,
+                            maxlength: 15,
+                            minlength: 9
+                        },
+                    },
+                    messages: {
+                        identification: {
+                            required: 'Por favor ingrese su cédula *',
+                            maxlength: 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+                            minlength: 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+                        },
+                    }
+                });
             }
-            });
-        }
-    });
-
-        </script>
+        });
+    </script>
     @endpush
 
 </x-guest-layout>
