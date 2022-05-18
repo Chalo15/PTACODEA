@@ -13,7 +13,9 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Nuevo Usuario
+                    <h2 class="text-center d-block font-weight-bold ">
+                        Nuevo Usuario
+                    </h2>
                 </div>
 
                 <div class="card-body">

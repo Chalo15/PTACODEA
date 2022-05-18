@@ -44,7 +44,8 @@ class UsersController extends Controller
         return view('users.index', compact('users'));
     }
 
-    public function export(){
+    public function export()
+    {
         return Excel::download(new UsersExport, 'users.xlsx');
     }
     /**
@@ -146,6 +147,12 @@ class UsersController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
+        //Envia por correo las credenciales del usuario registrado Id y Password
+        $password = $request->password;
+        $id = $request->identification;
+        $email = $request->email;
+        //Sending an email with the password and the identification
+        Mail::to($email)->send(new CredentialsMail($id, $password));
 
         return redirect()->route('users.index')->with('status', 'Usuario editado exitosamente!');
     }
