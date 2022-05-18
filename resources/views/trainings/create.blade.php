@@ -65,7 +65,7 @@
                             </div>
                         </div>
 
-                        {{-- calification --}}
+                        {{-- Calificacion --}}
                         <div class="form-group row">
                             <label for="calification" class="col-sm-4 col-form-label">Calificacion</label>
                             <div class="col-sm-8">
@@ -73,6 +73,7 @@
                             </div>
                         </div>
 
+                        {{-- Tiempo --}}
                         <div class="form-group row">
                             <label for="time" class="col-sm-4 col-form-label">Duración del Entrenamiento</label>
                             <div class="col-sm-8">
@@ -133,14 +134,12 @@
     </div>
 
     @push('scripts')
-    <script>
-        $(document).ready(function() {
-
-            //Método que valida solo numeros
-            jQuery.validator.addMethod("numbersonly", function(value, element) {
-                return this.optional(element) || /^[0-9,":"]+$/i.test(value);
-            }, 'Por favor digite solo valores numéricos y números naturales *', );
-
+        <script>
+            $(document).ready(function() {
+                //Método que valida solo numeros
+                jQuery.validator.addMethod("numbersonly", function(value, element) {
+                    return this.optional(element) || /^[0-9,":"]+$/i.test(value);
+                }, 'Por favor digite solo valores numéricos y números naturales *', );
                 //Validaciones del formulario
                 if ($("#form_create_trainings").length > 0) {
                     $('#form_create_trainings').validate({
@@ -167,7 +166,7 @@
                             planification: {
                                 required: true
                             },
-                            lesion: {
+                            details: {
                                 required: true
                             },
                         },
@@ -197,7 +196,6 @@
                             lesion: {
                                 required: 'Por favor ingrese la lesión que presenta *'
                             },
-
                         }
                     });
                 }
