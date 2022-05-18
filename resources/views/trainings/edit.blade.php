@@ -82,7 +82,7 @@
                         <div class="form-group row">
                             <label for="level" class="col-sm-4 col-form-label">Nivel</label>
                             <div class="col-sm-8">
-                                <x-input name="level" value="{{ old('level') ?? $training->level }}" />
+                                <x-input id="level" name="level" value="{{ old('level') ?? $training->level }}" />
                             </div>
                         </div>
 

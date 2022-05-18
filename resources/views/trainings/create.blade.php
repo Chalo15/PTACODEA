@@ -77,7 +77,7 @@
                         <div class="form-group row">
                             <label for="time" class="col-sm-4 col-form-label">Duración del Entrenamiento</label>
                             <div class="col-sm-8">
-                                <x-input name="time" value="{{ old('time') }}" />
+                                <x-input id="time" name="time" value="{{ old('time') }}" type="time" />
                             </div>
                         </div>
 
@@ -85,7 +85,7 @@
                         <div class="form-group row">
                             <label for="level" class="col-sm-4 col-form-label">Nivel</label>
                             <div class="col-sm-8">
-                                <x-input name="level" value="{{ old('level') }}" />
+                                <x-input id="level" name="level" value="{{ old('level') }}" />
                             </div>
                         </div>
 
