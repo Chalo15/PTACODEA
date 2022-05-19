@@ -54,23 +54,6 @@ class UserSeeder extends Seeder
                 'contract_number' => '200000',
                 'contract_year'   => 2,
                 'experience'      => 2
-            ],
-            [
-                'role_id'         => 1,
-                'identification'  => '702620492',
-                'password'        => Hash::make('12346'),
-                'name'            => 'Billy',
-                'last_name'       => 'Chacon Serrano',
-                'birthdate'       => '1998-08-17',
-                'phone'           => 72209278,
-                'email'           => 'bichacon98s@gmail.com',
-                'province'        => 'Limon',
-                'city'            => 'Siquirres',
-                'address'         => 'Siquirres',
-                'gender'          => 'Masculino',
-                'contract_number' => '200000',
-                'contract_year'   => 2,
-                'experience'      => 2
             ]
         ];
 
