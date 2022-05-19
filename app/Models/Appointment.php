@@ -10,13 +10,13 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'athlete_id',
+        'coach_id',
         'availability_id'
     ];
 
-    public function athlete()
+    public function coach()
     {
-        return $this->belongsTo(Athlete::class);
+        return $this->belongsTo(Coach::class);
     }
 
     public function availability()

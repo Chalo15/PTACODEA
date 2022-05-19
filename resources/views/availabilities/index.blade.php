@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="col d-flex justify-content-end">
-                            @can('role', ['Musculacion'])
+                            @can('role', ['Musculacion','Fisioterapia'])
                                 <a href="{{ route('availabilities.create') }}" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> &nbsp;
                                     Nuevo
@@ -36,17 +36,18 @@
                                 <x-slot name="head">
                                     <tr>
                                         <th>ID</th>
-                                        @can('role', ['Admin', 'Atleta'])
+                                        @can('role', ['Admin', 'Instructor'])
                                             <th>Encargado</th>
                                         @endcan
-                                        @can('role', ['Atleta'])
+                                        @can('role', ['Instructor'])
                                             <th>Sala</th>
                                         @endcan
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
+                                        <th>Numero Cita</th>
                                         <th>Estado</th>
-                                        @can('role', ['Musculacion', 'Atleta'])
+                                        @can('role', ['Musculacion', 'Instructor', 'Fisioterapia'])
                                             <th>Acciones</th>
                                         @endcan
 
@@ -57,15 +58,16 @@
                                     @foreach ($availabilities as $availability)
                                         <tr class="text-center">
                                             <td>{{ $availability->id }}</td>
-                                            @can('role', ['Admin', 'Atleta'])
+                                            @can('role', ['Admin', 'Instructor'])
                                                 <td>{{ $availability->user->full_name }}</td>
                                             @endcan
-                                            @can('role', ['Atleta'])
+                                            @can('role', ['Instructor'])
                                                 <td>{{ $availability->user->role->description }}</td>
                                             @endcan
                                             <td>{{ $availability->date->isoFormat('LL') }}</td>
                                             <td>{{ $availability->start->format('g:i A') }}</td>
                                             <td>{{ $availability->end->format('g:i A') }}</td>
+                                            <td>{{ $availability->counter }}</td>
 
                                             <?php
                                             if ($availability->state == 'PENDIENTE') {
@@ -90,7 +92,7 @@
                                                 <span class="{{ $label_class }}">{{ $text_state }}</span>
                                             </td>
 
-                                            @can('role', ['Atleta', 'Musculacion'])
+                                            @can('role', ['Instructor', 'Musculacion','Fisioterapia'])
                                                 <td width="50px" class="text-center">
 
                                                     <div class="dropdown">
@@ -109,7 +111,7 @@
                                                                 $hidden = '';
                                                             }
                                                             ?>
-                                                            @can('role', ['Musculacion'])
+                                                            @can('role', ['Musculacion','Fisioterapia'])
                                                                 <form
                                                                     action="{{ route('availabilities.update', $availability) }}"
                                                                     method="POST">
@@ -138,7 +140,7 @@
                                                                 </form>
                                                             @endcan
 
-                                                            @can('role', ['Atleta'])
+                                                            @can('role', ['Instructor'])
                                                                 <form action="{{ route('appointments.store') }}"
                                                                     method="POST">
                                                                     @csrf
@@ -166,17 +168,18 @@
                                 <x-slot name="foot">
                                     <tr>
                                         <th>ID</th>
-                                        @can('role', ['Admin', 'Atleta'])
+                                        @can('role', ['Admin', 'Instructor'])
                                             <th>Encargado</th>
                                         @endcan
-                                        @can('role', ['Atleta'])
+                                        @can('role', ['Instructor'])
                                             <th>Sala</th>
                                         @endcan
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
+                                        <th>Numero Cita</th>
                                         <th>Estado</th>
-                                        @can('role', ['Musculacion', 'Atleta'])
+                                        @can('role', ['Musculacion', 'Instructor', 'Fisioterapia'])
                                             <th>Acciones</th>
                                         @endcan
                                     </tr>
