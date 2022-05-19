@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\AthletesExport;
 use App\Http\Requests\StoreAthleteRequest;
 use App\Http\Requests\UpdateAthleteRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
 use App\Models\Coach;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 use App\Mail\CredentialsMail;
 use App\Mail\UpdateCredentialsMail;
@@ -64,11 +63,6 @@ class AthletesController extends Controller
         }
     }
 
-    public function export()
-    {
-        return Excel::download(new AthletesExport, 'athletes.xlsx');
-    }
-
     /**
      * Muestra el formulario para crear un nuevo recurso.
      *
@@ -105,7 +99,6 @@ class AthletesController extends Controller
      */
     public function store(StoreAthleteRequest $request)
     {
-        //Envia las credenciales por correo del athleta registrado, Id y Password
         $id = $request->identification;
         $password = $request->password;
         $email = $request->email;

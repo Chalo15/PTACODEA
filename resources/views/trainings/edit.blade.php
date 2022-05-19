@@ -127,29 +127,78 @@
         </div>
     </div>
 
+
+
     @push('scripts')
     <script>
         $(document).ready(function() {
+
+
+            //Metodo para validar la hora
+            jQuery.validator.addMethod("horahhmm", function(value, element) {
+                var res = false;
+
+                // Formato hh:mm
+                res = this.optional(element) || /^\d{2}[:]\d{2}$/.test(value);
+
+                var hora = value.split(':');
+                var hh = parseInt(hora[0], 10);
+                var mm = parseInt(hora[1], 10);
+                if (hh < 0 || hh > 23) res = false;
+                if (mm < 0 || mm > 59) res = false;
+
+                return res;
+            }, "La hora indicada no es válida");
+
+            //Metodo para validar número telefónico
+            jQuery.validator.addMethod("phonenumber", function(value, element) {
+                if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
+                    return true;
+                } else {
+                    return false;
+                };
+            }, "El número telefónico debe tener 8 dígitos *");
+
             //Método que valida solo numeros
             jQuery.validator.addMethod("numbersonly", function(value, element) {
-                return this.optional(element) || /^[0-9,":"]+$/i.test(value);
+                return this.optional(element) || /^[0-9]+$/i.test(value);
             }, 'Por favor digite solo valores numéricos y números naturales *', );
+
+
+            //Método que valida solo letras
+            jQuery.validator.addMethod("lettersonly", function(value, element) {
+                return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
+            }, 'Por favor digite solo valores alfabéticos *', );
+
+            //Método que valida la contraseña
+            jQuery.validator.addMethod("passwordCheck",
+                function(value, element, param) {
+                    if (this.optional(element)) {
+                        return true;
+                    } else if (!/[A-Z]/.test(value)) {
+                        return false;
+                    } else if (!/[a-z]/.test(value)) {
+                        return false;
+                    } else if (!/[0-9]/.test(value)) {
+                        return false;
+                    }
+                    return true;
+                },
+                "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *");
+
             //Validaciones del formulario
-            if ($("#edit_create_trainings").length > 0) {
-                $('#edit_create_trainings').validate({
+            if ($("#form_create_trainings").length > 0) {
+                $('#form_create_trainings').validate({
                     rules: {
-                        date: {
+
+                        athlete_id: {
                             required: true
                         },
                         type_training: {
                             required: true
                         },
-                        calification: {
-                            required: true
-                        },
                         time: {
-                            required: true,
-                            numbersonly: true
+                            required: true
                         },
                         level: {
                             required: true
@@ -158,44 +207,41 @@
                             required: true
                         },
                         planification: {
-                            required: true
-                        },
-                        lesion: {
                             required: true
                         },
                         details: {
                             required: true
                         },
                     },
+
                     messages: {
-                        date: {
-                            required: 'Por favor seleccione una fecha *'
+                        athlete_id: {
+                            required: 'Por favor seleccione un atleta *'
                         },
                         type_training: {
-                            required: 'Por favor ingrese el tipo de entrenamiento *'
-                        },
-                        calification: {
-                            required: 'Por favor ingrese la calificación *'
+                            required: 'Por favor ingrese su SPH *'
                         },
                         time: {
-                            required: 'Por favor la duración del entrenamiento *'
+                            required: 'Por favor ingrese su APP *'
                         },
                         level: {
-                            required: 'Por favor ingrese el nivel *'
+                            required: 'Por favor ingrese el detalle del tratamiento *'
                         },
                         get_better: {
-                            required: 'Por favor ingrese los aspectos a mejorar *'
+                            required: 'Por favor ingrese el detalle de la cirujía *'
                         },
                         planification: {
-                            required: 'Por favor ingrese la planificación *'
+                            required: 'Por favor ingrese el detalle de la fractura *'
                         },
-                        lesion: {
-                            required: 'Por favor ingrese la lesión que presenta *'
+                        details: {
+                            required: 'Por favor ingrese la hora de inicio *'
                         },
                     }
                 });
             }
         });
     </script>
+
     @endpush
+
 </x-app-layout>

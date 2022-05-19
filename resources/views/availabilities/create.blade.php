@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('availabilities.store') }}" method="POST">
+                    <form id="form_availabilities_create" action="{{ route('availabilities.store') }}" method="POST">
                         @csrf
 
                         {{-- Fecha de disponibilidad --}}
@@ -35,18 +35,6 @@
                         </div>
 
 
-                        {{-- Reservas --}}
-                        <div x-data="{ isOpen: {{ old('is_not_all_book') ? 'true' : 'false' }} }">
-
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" name="is_not_all_book"
-                                    id="is_not_all_book" x-model="isOpen">
-                                <label class="form-check-label" for="is_not_all_book">
-                                    ¿Habilitar una cita en un horario especial?
-                                </label>
-                            </div>
-
-                            <div x-show="isOpen">
                                 {{-- Hora Inicio --}}
                                 <div class="form-group row">
                                     <label for="start" class="col-sm-4 col-form-label">Hora Inicio</label>
@@ -63,6 +51,8 @@
                                         </x-select2>
                                     </div>
                                 </div>
+                                
+                    
 
                                 {{-- Hora Final --}}
                                 <div class="form-group row">
@@ -81,8 +71,7 @@
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
+                 
 
                         <div class="form-group row">
 
@@ -102,6 +91,46 @@
             </div>
         </div>
     </div>
+
+
+    @push('scripts')
+    <script>
+
+
+ $(document).ready(function(){
+
+
+//Validaciones del formulario
+    if($("#form_availabilities_create").length > 0)
+    {
+        $('#form_availabilities_create').validate({
+        rules:{
+
+        start: {
+        required : true,  
+        time_select : true
+        },
+        end: {
+        required : true,    
+        time_select : true           
+        },
+        },
+
+        start : {
+        athlete_id: {
+        required : 'Por favor seleccione una hora de inicio *'    
+        },
+        end: {
+        required : 'Por favor seleccione una hora de finalización *'             
+        },     
+        }
+        });
+    }
+});
+
+    </script>
+    
+@endpush
 
 
 </x-app-layout>

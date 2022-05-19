@@ -382,14 +382,137 @@
                 "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
             );
 
+            //Método que valida solo numeros
+            jQuery.validator.addMethod("numbersonly", function(value, element) {
+                return this.optional(element) || /^[0-9]+$/i.test(value);
+            }, 'Por favor digite solo valores numéricos y números naturales *', );
+
+            //Método que valida solo letras
+            jQuery.validator.addMethod("lettersonly", function(value, element) {
+                return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
+            }, 'Por favor digite solo valores alfabéticos *', );
+
+            //Método que valida la contraseña
+            jQuery.validator.addMethod("passwordCheck",
+                function(value, element, param) {
+                    if (this.optional(element)) {
+                        return true;
+                    } else if (!/[A-Z]/.test(value)) {
+                        return false;
+                    } else if (!/[a-z]/.test(value)) {
+                        return false;
+                    } else if (!/[0-9]/.test(value)) {
+                        return false;
+                    }
+                    return true;
+                },
+                "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
+            );
+
             //Validaciones del formulario
             if ($("#form_athlete_edit").length > 0) {
                 $('#form_athlete_edit').validate({
-                    rules: {
-                        identification: {
-                            required: true,
-                            maxlength: 15,
-                            minlength: 9
+                        rules: {
+                            identification: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            name: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            last_name: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            birthdate: {
+                                required: true
+                            },
+                            state: {
+                                required: true
+                            },
+                            province: {
+                                required: true
+                            },
+                            city: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            email: {
+                                required: true,
+                                maxlength: 30,
+                                minlength: 3,
+                                email: true
+                            },
+                            phone: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            address: {
+                                required: true,
+                                minlength: 20,
+                                maxlength: 120
+                            },
+                            policy: {
+                                required: true,
+                                maxlength: 10,
+                                minlength: 1
+                            },
+                            gender: {
+                                required: true
+                            },
+                            password: {
+                                required: true,
+                                passwordCheck: true,
+                                minlength: 8,
+                                maxlength: 60
+                            },
+                            password_confirmation: {
+                                required: true,
+                                equalTo: "#password"
+                            },
+                            coach_id: {
+                                required: true
+                            },
+                            blood: {
+                                required: true
+                            },
+                            identification_manager: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            name_manager: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            lastname_manager: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            contact_manager: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            manager: {
+                                required: true
+                            },
+                            pdf: {
+                                required: true
+                            },
                         },
                         name: {
                             required: true,
@@ -578,7 +701,7 @@
                         },
                     }
                 });
-            }
+        }
         });
     </script>
 

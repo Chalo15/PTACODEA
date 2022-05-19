@@ -321,8 +321,11 @@
                                     <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                     <div class="col-sm-4">
                                         <div class="input-group mb-3">
-                                            <label class="custom-file-label" for="identification_image">Elija el archivo </label>
-                                            <input name="url" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01">
+                                            <div class="custom-file">
+                                                <x-input name="url" type="file" class="custom-file-input" id="identification_image" aria-describedby="inputGroupFileAddon01" />
+                                                <label class="custom-file-label" for="identification_image">Elija el
+                                                    archivo </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -383,15 +386,132 @@
             );
 
 
+            //Método que valida solo letras
+            jQuery.validator.addMethod("lettersonly", function(value, element) {
+                return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
+            }, 'Por favor digite solo valores alfabéticos *', );
+
+            //Método que valida la contraseña
+            jQuery.validator.addMethod("passwordCheck",
+                function(value, element, param) {
+                    if (this.optional(element)) {
+                        return true;
+                    } else if (!/[A-Z]/.test(value)) {
+                        return false;
+                    } else if (!/[a-z]/.test(value)) {
+                        return false;
+                    } else if (!/[0-9]/.test(value)) {
+                        return false;
+                    }
+                    return true;
+                },
+                "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
+            );
 
             //Validaciones del formulario
             if ($("#form_athlete_create").length > 0) {
                 $('#form_athlete_create').validate({
-                    rules: {
-                        identification: {
-                            required: true,
-                            maxlength: 15,
-                            minlength: 9
+                        rules: {
+                            identification: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            user_id: {
+                                required: true
+                            },
+                            name: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            last_name: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            birthdate: {
+                                required: true
+                            },
+                            state: {
+                                required: true
+                            },
+                            province: {
+                                required: true
+                            },
+                            city: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            email: {
+                                required: true,
+                                maxlength: 30,
+                                minlength: 3,
+                                email: true
+                            },
+                            phone: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            address: {
+                                required: true,
+                                minlength: 20,
+                                maxlength: 120
+                            },
+                            password: {
+                                required: true,
+                                passwordCheck: true,
+                                minlength: 8,
+                                maxlength: 60
+                            },
+                            password_confirmation: {
+                                required: true,
+                                equalTo: "#password"
+                            },
+                            coach_id: {
+                                required: true
+                            },
+                            blood: {
+                                required: true
+                            },
+                            identification_manager: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            name_manager: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            lastname_manager: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            contact_manager: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            manager: {
+                                required: true
+                            },
+                            policy: {
+                                required: true,
+                                maxlength: 10,
+                                minlength: 1
+                            },
+                            url: {
+                                required: true
+                            },
                         },
                         name: {
                             required: true,
@@ -493,6 +613,9 @@
                             maxlength: 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
                             minlength: 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
                         },
+                        user_id: {
+                            required: 'Por favor seleccione un usuario *',
+                        },
                         name: {
                             required: 'Por favor ingrese su nombre *',
                             maxlength: 'Su nombre no puede ser mayor a 30 caracteres *',
@@ -577,7 +700,7 @@
                         },
                     }
                 });
-            }
+        }
         });
     </script>
     @endpush
