@@ -188,6 +188,23 @@
         </div>
         @endcan
 
+        @can('role', ['Fisioterapia'])
+        <div class="col-md mb-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    Confirmacion Citas Fisioterapia
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-calendar-week fa-5x"></i>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ route('appointments.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                        <i class="fas fa-share"></i></a>
+                </div>
+            </div>
+        </div>
+        @endcan
+
         @can('role', ['Instructor'])
         <div class="col-md mb-3">
             <div class="card text-center">
@@ -205,7 +222,7 @@
         </div>
         @endcan
 
-        @can('role', ['Atleta'])
+        @can('role', ['Instructor'])
         <div class="col-md mb-3">
             <div class="card text-center">
                 <div class="card-header">

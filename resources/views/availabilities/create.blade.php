@@ -75,16 +75,7 @@
                             <div class="form-group row">
                                 <label for="counter" class="col-sm-4 col-form-label">Numero de registro</label>
                                 <div class="col-sm-8">
-                                    <x-select2 name="counter">
-                                        <option disabled {{ old('counter') ? '' : 'selected' }} value=""> --
-                                            Seleccione -- </option>
-                                        @foreach ($capacities_musculars as $capacity_muscular)
-                                            <option {{ old('counter') == $capacity_muscular ? 'selected' : '' }}
-                                                value="{{ $capacity_muscular }}">
-                                                {{ $capacity_muscular }}
-                                            </option>
-                                        @endforeach
-                                    </x-select2>
+                                    <x-input name="counter" type="hidden" value="1" />
                                 </div>
                             </div>
                         @endcan
