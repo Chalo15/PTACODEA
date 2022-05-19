@@ -21,10 +21,13 @@ class AvailabilityController extends Controller
 
         if ($user->hasRole(['Admin'])) {
             $availabilities = Availability::all();
-        } else if ($user->hasRole(['Atleta'])) {
+        } else if ($user->hasRole(['Instructor'])) {
             $availabilities = Availability::where([['state', '=', 'DISPONIBLE'], ['date', '>=', date('Y.m.d', strtotime("-1 days"))]])->get();
         } else {
-            $availabilities = Availability::where('state', '=', 'PENDIENTE')->orWhere('state', '=', 'DISPONIBLE')->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])->get();
+            $availabilities = Availability::where('state', '=', 'PENDIENTE')
+                                                ->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])
+                                                        ->orWhere('state', '=', 'DISPONIBLE')
+                                                                ->where([['user_id', '=', $user->id], ['date', '>', date('Y.m.d', strtotime("-1 days"))]])->get();
         }
 
         return view('availabilities.index', compact('availabilities'));
@@ -39,8 +42,10 @@ class AvailabilityController extends Controller
     {
         //
         $schedules = config('general.schedules');
+        $capacities_musculars = config('general.capacities_musculars');
+        $capacities_physios = config('general.capacities_physios');
 
-        return view('availabilities.create', compact('availabilities', 'schedules'));
+        return view('availabilities.create', compact('availabilities', 'schedules','capacities_musculars','capacities_physios'));
     }
 
     /**
@@ -53,10 +58,15 @@ class AvailabilityController extends Controller
     {
         $user = $request->user();
         try {
+
             $user->availabilities()->create($request->validated());
+            $user->update([
+                'counter' => +1,
+            ]);
             return redirect()->route('availabilities.index')->with('status', 'Disponibilidad creada exitosamente!');
         } catch (Exception $e) {
-            return redirect()->route('availabilities.create')->with('status', 'ERROR: Ya Existe una Disponibilidad Creada en ese Horario!');
+            return redirect()->route('availabilities.create')->
+                                with('status', 'ERROR: Ya Existe este numero de cita creada en este Horario!');
         }
     }
 

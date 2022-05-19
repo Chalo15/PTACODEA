@@ -28,9 +28,10 @@
                                     <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> -- Seleccione
                                         -- </option>
                                     @foreach ($athletes as $athlete)
-                                    <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">
-                                        {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
-                                    </option>
+                                        <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }}
+                                            value="{{ $athlete->id }}">
+                                            {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
+                                        </option>
                                     @endforeach
                                 </x-select2>
                             </div>
@@ -63,7 +64,7 @@
                             </div>
                         </div>
 
-                        {{-- calification --}}
+                        {{-- Calificacion --}}
                         <div class="form-group row">
                             <label for="calification" class="col-sm-4 col-form-label">Calificacion</label>
                             <div class="col-sm-8">
@@ -71,6 +72,7 @@
                             </div>
                         </div>
 
+                        {{-- Tiempo --}}
                         <div class="form-group row">
                             <label for="time" class="col-sm-4 col-form-label">Duración del Entrenamiento</label>
                             <div class="col-sm-8">
@@ -131,76 +133,73 @@
     </div>
 
     @push('scripts')
-    <script>
-        $(document).ready(function() {
-
-            //Método que valida solo numeros
-            jQuery.validator.addMethod("numbersonly", function(value, element) {
-                return this.optional(element) || /^[0-9,":"]+$/i.test(value);
-            }, 'Por favor digite solo valores numéricos y números naturales *', );
-
-            //Validaciones del formulario
-            if ($("#form_create_trainings").length > 0) {
-                $('#form_create_trainings').validate({
-                    rules: {
-                        date: {
-                            required: true
-                        },
-                        type_training: {
-                            required: true
-                        },
-                        calification: {
-                            required: true
-                        },
-                        time: {
-                            required: true,
-                            numbersonly: true
-                        },
-                        level: {
-                            required: true
-                        },
-                        get_better: {
-                            required: true
-                        },
-                        planification: {
-                            required: true
-                        },
-                        lesion: {
-                            required: true
-                        },
-                    },
-
-                    messages: {
-                        date: {
-                            required: 'Por favor seleccione una fecha *'
-                        },
-                        type_training: {
-                            required: 'Por favor ingrese el tipo de entrenamiento *'
-                        },
-                        calification: {
-                            required: 'Por favor ingrese la calificación *'
-                        },
-                        time: {
-                            required: 'Por favor la duración del entrenamiento *'
-                        },
-                        level: {
-                            required: 'Por favor ingrese el nivel *'
-                        },
-                        get_better: {
-                            required: 'Por favor ingrese los aspectos a mejorar *'
-                        },
-                        planification: {
-                            required: 'Por favor ingrese la planificación *'
-                        },
-                        lesion: {
-                            required: 'Por favor ingrese la lesión que presenta *'
+        <script>
+            $(document).ready(function() {
+                //Método que valida solo numeros
+                jQuery.validator.addMethod("numbersonly", function(value, element) {
+                    return this.optional(element) || /^[0-9,":"]+$/i.test(value);
+                }, 'Por favor digite solo valores numéricos y números naturales *', );
+                //Validaciones del formulario
+                if ($("#form_create_trainings").length > 0) {
+                    $('#form_create_trainings').validate({
+                        rules: {
+                            date: {
+                                required: true
+                            },
+                            type_training: {
+                                required: true
+                            },
+                            calification: {
+                                required: true
+                            },
+                            time: {
+                                required: true,
+                                numbersonly: true
+                            },
+                            level: {
+                                required: true
+                            },
+                            get_better: {
+                                required: true
+                            },
+                            planification: {
+                                required: true
+                            },
+                            details: {
+                                required: true
+                            },
                         },
 
-                    }
-                });
-            }
-        });
-    </script>
+                        messages: {
+                            date: {
+                                required: 'Por favor seleccione una fecha *'
+                            },
+                            type_training: {
+                                required: 'Por favor ingrese el tipo de entrenamiento *'
+                            },
+                            calification: {
+                                required: 'Por favor ingrese la calificación *'
+                            },
+                            time: {
+                                required: 'Por favor la duración del entrenamiento *'
+                            },
+                            level: {
+                                required: 'Por favor ingrese el nivel *'
+                            },
+                            get_better: {
+                                required: 'Por favor ingrese los aspectos a mejorar *'
+                            },
+                            planification: {
+                                required: 'Por favor ingrese la planificación *'
+                            },
+                            lesion: {
+                                required: 'Por favor ingrese la lesión que presenta *'
+                            },
+                        }
+                    });
+                }
+            });
+        </script>
     @endpush
 
 

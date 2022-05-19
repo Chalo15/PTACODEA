@@ -28,15 +28,16 @@
                                 <x-slot name="head">
                                     <tr>
                                         <th>ID</th>
-                                        @can('role', ['Admin', 'Musculacion'])
-                                        <th>Atleta</th>
+                                        @can('role', ['Admin', 'Musculacion', 'Fisioterapia'])
+                                        <th>Entrenador</th>
                                         @endcan
                                         <th>Encargado</th>
+                                        <th>Sala</th>
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
                                         <th>Estado</th>
-                                        @can('role', ['Musculacion'])
+                                        @can('role', ['Musculacion', 'Fisioterapia'])
                                         <th>Acciones</th>
                                         @endcan
 
@@ -47,10 +48,11 @@
                                     @foreach ($appointments as $appointment)
                                     <tr class="text-center">
                                         <td>{{ $appointment->id }}</td>
-                                        @can('role', ['Admin', 'Musculacion'])
-                                        <td>{{ $appointment->athlete->user->full_name }}</td>
+                                        @can('role', ['Admin', 'Musculacion','Fisioterapia'])
+                                        <td>{{ $appointment->coach->user->full_name }}</td>
                                         @endcan
                                         <td>{{ $appointment->availability->user->full_name }}</td>
+                                        <td>{{ $appointment->availability->user->role->description }}</td>
                                         <td>{{ $appointment->availability->date->isoFormat('LL') }}</td>
                                         <td>{{ $appointment->availability->start->format('h:i A') }}</td>
                                         <td>{{ $appointment->availability->end->format('h:i A')}}</td>
@@ -65,7 +67,7 @@
                                             <span class="{{ $label_class }}">{{ $appointment->availability->state }}</span>
                                         </td>
 
-                                        @can('role', ['Musculacion'])
+                                        @can('role', ['Musculacion','Fisioterapia'])
                                         <td width="50px" class="text-center">
 
                                             <div class="dropdown">
@@ -118,15 +120,16 @@
                                 <x-slot name="foot">
                                     <tr>
                                         <th>ID</th>
-                                        @can('role', ['Admin', 'Musculacion'])
-                                        <th>Atleta</th>
+                                        @can('role', ['Admin', 'Musculacion', 'Fisioterapia'])
+                                        <th>Entrenador</th>
                                         @endcan
                                         <th>Encargado</th>
+                                        <th>Sala</th>
                                         <th>Fecha</th>
                                         <th>Hora Inicio</th>
                                         <th>Hora Fin</th>
                                         <th>Estado</th>
-                                        @can('role', ['Musculacion'])
+                                        @can('role', ['Musculacion', 'Fisioterapia'])
                                         <th>Acciones</th>
                                         @endcan
                                     </tr>

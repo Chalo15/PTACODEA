@@ -24,7 +24,8 @@
 
                         <div x-data="{ isOpen: {{ old('is_user') ? 'true' : 'false' }} }">
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" name="is_user" id="is_user" x-model="isOpen">
+                                <input type="checkbox" class="form-check-input" name="is_user" id="is_user"
+                                    x-model="isOpen">
                                 <label class="form-check-label" for="is_user">
                                     ¿El usuario se encuentra registrado en el sistema?
                                 </label>
@@ -41,9 +42,10 @@
                                             <option disabled {{ old('user_id') ? '' : 'selected' }} value=""> --
                                                 Seleccione -- </option>
                                             @foreach ($users as $user)
-                                            <option {{ old('user_id') == $user->id ? 'selected' : '' }} value="{{ $user->id }}">
-                                                {{ $user->identification . ' | ' . $user->full_name }}
-                                            </option>
+                                                <option {{ old('user_id') == $user->id ? 'selected' : '' }}
+                                                    value="{{ $user->id }}">
+                                                    {{ $user->identification . ' | ' . $user->full_name }}
+                                                </option>
                                             @endforeach
                                         </x-select2>
                                     </div>
@@ -92,7 +94,8 @@
                                             <option disabled {{ old('province') ? '' : 'selected' }} value=""> --
                                                 Seleccione -- </option>
                                             @foreach ($provinces as $province)
-                                            <option {{ old('province') == $province ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
+                                                <option {{ old('province') == $province ? 'selected' : '' }}
+                                                    value="{{ $province }}">{{ $province }}</option>
                                             @endforeach
                                         </x-select>
                                     </div>
@@ -141,12 +144,15 @@
                                     <label for="gender" class="col-sm-4 col-form-label">Género</label>
                                     <div class="col-sm-8">
                                         @foreach ($genders as $gender)
-                                        <div class="custom-control custom-radio">
-                                            <input {{ (old('gender') && old('gender') == $gender) || (!old('gender') && $loop->index == 0) ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
-                                            <label class="custom-control-label" for="gender-{{ $loop->index }}">
-                                                {{ $gender }}
-                                            </label>
-                                        </div>
+                                            <div class="custom-control custom-radio">
+                                                <input
+                                                    {{ (old('gender') && old('gender') == $gender) || (!old('gender') && $loop->index == 0) ? 'checked' : '' }}
+                                                    class="custom-control-input" type="radio" name="gender"
+                                                    id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                                <label class="custom-control-label" for="gender-{{ $loop->index }}">
+                                                    {{ $gender }}
+                                                </label>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -170,7 +176,8 @@
                                     <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
                                         Contraseña</label>
                                     <div class="col-sm-8">
-                                        <x-input name="password_confirmation" id="password_confirmation" type="password" />
+                                        <x-input name="password_confirmation" id="password_confirmation"
+                                            type="password" />
                                         <span class="badge text-danger errors-password_confirmation"></span>
                                     </div>
                                 </div>
@@ -187,7 +194,8 @@
                                     <option disabled {{ old('category') ? '' : 'selected' }} value=""> --
                                         Seleccione -- </option>
                                     @foreach ($categories as $category)
-                                    <option {{ old('category') == $category ? 'selected' : '' }} value="{{ $category }}">{{ $category }}</option>
+                                        <option {{ old('category') == $category ? 'selected' : '' }}
+                                            value="{{ $category }}">{{ $category }}</option>
                                     @endforeach
                                 </x-select>
                             </div>
@@ -210,9 +218,10 @@
                                     <option disabled {{ old('coach_id') ? '' : 'selected' }} value=""> -- Seleccione
                                         -- </option>
                                     @foreach ($coaches as $coach)
-                                    <option {{ old('coach_id') == $coach->id ? 'selected' : '' }} value="{{ $coach->id }}">
-                                        {{ $coach->user->identification . ' | ' . $coach->user->full_name }}
-                                    </option>
+                                        <option {{ old('coach_id') == $coach->id ? 'selected' : '' }}
+                                            value="{{ $coach->id }}">
+                                            {{ $coach->user->identification . ' | ' . $coach->user->full_name }}
+                                        </option>
                                     @endforeach
                                 </x-select2>
                             </div>
@@ -226,7 +235,8 @@
                                     <option disabled {{ old('blood') ? '' : 'selected' }} value=""> -- Seleccione --
                                     </option>
                                     @foreach ($bloods as $blood)
-                                    <option {{ old('blood') == $blood ? 'selected' : '' }} value="{{ $blood }}">{{ $blood }}</option>
+                                        <option {{ old('blood') == $blood ? 'selected' : '' }}
+                                            value="{{ $blood }}">{{ $blood }}</option>
                                     @endforeach
                                 </x-select>
                             </div>
@@ -237,12 +247,15 @@
                             <label for="laterality" class="col-sm-4 col-form-label">Lateralidad</label>
                             <div class="col-sm-8">
                                 @foreach ($lateralities as $laterality)
-                                <div class="custom-control custom-radio">
-                                    <input {{ (old('laterality') && old('laterality') == $laterality) || (!old('laterality') && $loop->index == 0) ? 'checked' : '' }} class="custom-control-input" type="radio" name="laterality" id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
-                                    <label class="custom-control-label" for="laterality-{{ $loop->index }}">
-                                        {{ $laterality }}
-                                    </label>
-                                </div>
+                                    <div class="custom-control custom-radio">
+                                        <input
+                                            {{ (old('laterality') && old('laterality') == $laterality) || (!old('laterality') && $loop->index == 0) ? 'checked' : '' }}
+                                            class="custom-control-input" type="radio" name="laterality"
+                                            id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
+                                        <label class="custom-control-label" for="laterality-{{ $loop->index }}">
+                                            {{ $laterality }}
+                                        </label>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -252,7 +265,8 @@
                         <div x-data="{ isOpen: {{ old('is_younger') ? 'true' : 'false' }} }">
 
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" name="is_younger" id="is_younger" x-model="isOpen">
+                                <input type="checkbox" class="form-check-input" name="is_younger" id="is_younger"
+                                    x-model="isOpen">
                                 <label class="form-check-label" for="is_younger">
                                     ¿El atleta es menor de edad?
                                 </label>
@@ -274,7 +288,8 @@
                                     <label for="identification_manager" class="col-sm-4 col-form-label">Cédula de
                                         Identidad o DIMEX</label>
                                     <div class="col-sm-8">
-                                        <x-input name="identification_manager" value="{{ old('identification_manager') }}" />
+                                        <x-input name="identification_manager"
+                                            value="{{ old('identification_manager') }}" />
                                     </div>
                                 </div>
 
@@ -310,7 +325,8 @@
                                             <option disabled {{ old('manager') ? '' : 'selected' }} value=""> --
                                                 Seleccione -- </option>
                                             @foreach ($relationships as $relationship)
-                                            <option {{ old('manager') == $relationship ? 'selected' : '' }} value="{{ $relationship }}">{{ $relationship }}</option>
+                                                <option {{ old('manager') == $relationship ? 'selected' : '' }}
+                                                    value="{{ $relationship }}">{{ $relationship }}</option>
                                             @endforeach
                                         </x-select>
                                     </div>
@@ -343,34 +359,13 @@
 
 
     @push('scripts')
-    <script>
-        $(document).ready(function() {
-
-            //Metodo para validar número telefónico
-            jQuery.validator.addMethod("phonenumber", function(value, element) {
-                if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
-                    return true;
-                } else {
-                    return false;
-                };
-            }, "El número telefónico debe tener 8 dígitos *");
-
-            //Método que valida solo numeros
-            jQuery.validator.addMethod("numbersonly", function(value, element) {
-                return this.optional(element) || /^[0-9]+$/i.test(value);
-            }, 'Por favor digite solo valores numéricos y números naturales *', );
-
-            //Método que valida solo letras
-            jQuery.validator.addMethod("lettersonly", function(value, element) {
-                return this.optional(element) || /^[a-z," "]+$/i.test(value);
-            }, 'Por favor digite solo valores alfabéticos *', );
-
-            //Método que valida la contraseña
-            jQuery.validator.addMethod("passwordCheck",
-                function(value, element, param) {
-                    if (this.optional(element)) {
+        <script>
+            $(document).ready(function() {
+                //Metodo para validar número telefónico
+                jQuery.validator.addMethod("phonenumber", function(value, element) {
+                    if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
                         return true;
-                    } else if (!/[A-Z]/.test(value)) {
+                    } else {
                         return false;
                     } else if (!/[a-z]/.test(value)) {
                         return false;
@@ -581,6 +576,5 @@
         });
     </script>
     @endpush
-
 
 </x-app-layout>

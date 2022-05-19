@@ -24,10 +24,11 @@ class StoreAvailabilityRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'date'  => ['required'],
-            'start' => ['required'],
-            'end'   => ['required'],
-            'state' => ['required']
+            'date'    => ['required'],
+            'start'   => ['required'],
+            'end'     => ['required'],
+            'counter' => ['required'],
+            'state'   => ['required']
         ];
         if ($this->is_not_all_book) {
             $rules += [

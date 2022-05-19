@@ -28,10 +28,10 @@ class AppointmentController extends Controller
         //
         $user = request()->user();
 
-        if ($user->hasRole(['Musculacion'])) {
+        if ($user->hasRole(['Musculacion'])||$user->hasRole(['Fisioterapia'])) {
             $appointments = Appointment::with('availability')->get();
         } else {
-            $appointments = Appointment::where('athlete_id', '=', $user->athlete->id)->get();
+            $appointments = Appointment::where('coach_id', '=', $user->coach->id)->get();
         }
 
         return view('appointments.index', compact('appointments'));
@@ -62,7 +62,7 @@ class AppointmentController extends Controller
         $user = $request->user();
 
         $appoint = Appointment::create($request->validated() + [
-            'athlete_id' => $user->athlete->id
+            'coach_id' => $user->coach->id
         ]);
 
         //Envio de notificacion al encargado de musculacion o al fisioterapeuta;
@@ -112,7 +112,7 @@ class AppointmentController extends Controller
             $appointment->availability->update(['state' => 'CONFIRMADA']);
 
             //Envio de notificacion al Atleta;
-            User::where('identification', $appointment->athlete->user->identification)
+            User::where('identification', $appointment->coach->user->identification)
                 ->each(function (User $user) use ($appointment) {
                     //Se guarda en una variable las notificaciones
                     $AppoitmentNotification = new AppointmentNotification($appointment);
@@ -121,7 +121,7 @@ class AppointmentController extends Controller
                     //Rol del usuario, ya sea de musculacion o fisioterapeuta
                     $role = $appointment->availability->user->role_id;
                     //Email de confirmacion del usuario a notificar
-                    $email = $appointment->athlete->user->email;
+                    $email = $appointment->coach->user->email;
 
                     //Envio de email al usuario que pidio una reserva para musculacion
                     if ($role == 6) {
@@ -140,8 +140,8 @@ class AppointmentController extends Controller
 
 
             $appointment->availability->update(['state' => 'PENDIENTE']);
-            //Envio de notificacion al Atleta;
-            User::where('identification', $appointment->athlete->user->identification)
+            //Envio de notificacion al Entrenador;
+            User::where('identification', $appointment->coach->user->identification)
                 ->each(function (User $user) use ($appointment) {
                     //Se crea una variable con la informacion de las notificaciones
                     $AppoitmentNotification = new AppointmentNotification($appointment);
@@ -151,7 +151,7 @@ class AppointmentController extends Controller
 
                     //Email de confirmacion del usuario a notificar, en este caso seria al
                     //usuario que pidio la reserva
-                    $email = $appointment->athlete->user->email;
+                    $email = $appointment->coach->user->email;
 
                     //Envio de email al usuario que pidio una reserva para musculacion
                     if ($role == 6) {
