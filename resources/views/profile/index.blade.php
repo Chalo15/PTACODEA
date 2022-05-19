@@ -409,74 +409,10 @@
                 }
             });
         }
-
-
-
-        //Formulario del index2
-        if ($('#form_profile_index2').length > 0) {
-            $('#form_profile_index2').validate({
-                rules: {
-                    birthdate: {
-                        required: true
-                    },
-                    province: {
-                        required: true
-                    },
-                    city: {
-                        required: true,
-                        lettersonly: true,
-                        minlength: 3,
-                        maxlength: 30
-                    },
-                    email: {
-                        required: true,
-                        maxlength: 30,
-                        minlength: 3,
-                        email: true
-                    },
-                    phone: {
-                        required: true,
-                        numbersonly: true,
-                        phonenumber: true
-                    },
-                    address: {
-                        required: true,
-                        minlength: 20,
-                        maxlength: 120
-                    },
-                },
-
-                messages: {
-                    birthdate: {
-                        required: 'Por favor ingrese su fecha de nacimiento *'
-                    },
-                    province: {
-                        required: 'Por favor ingrese su provincia *'
-                    },
-                    city: {
-                        required: 'Por favor ingrese la ciudad donde vive *',
-                        maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
-                        minlength: 'La ciudad no puede ser menor a 3 caracteres *'
-                    },
-                    email: {
-                        required: 'Por favor ingrese su email *',
-                        email: 'Por favor ingrese una dirección de correo electrónico válida *',
-                        maxlength: 'Su correo electrónico no puede ser de más de 30 caracteres *',
-                        minlength: 'Su correo electrónico no puede ser de menos de 3 caracteres *'
-                    },
-                    phone: {
-                        required: 'Por favor ingrese su número telefónico *'
-                    },
-                    address: {
-                        required: 'Por favor ingrese su dirección completa *',
-                        maxlength: 'Su dirección no puede ser de más de 120 caracteres *',
-                        minlength: 'Su dirección no puede ser de menos de 20 caracteres *'
-                    },
-                }
-            });
-        }
+        });
     </script>
 
+    </script>
 
     @endpush
 

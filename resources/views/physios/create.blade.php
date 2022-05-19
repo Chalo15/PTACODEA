@@ -242,10 +242,11 @@ jQuery.validator.addMethod("phonenumber", function (value, element) {
     return this.optional(element) || /^[0-9]+$/i.test(value);
     }, 'Por favor digite solo valores numéricos y números naturales *',);  
 
+
 //Método que valida solo letras
-jQuery.validator.addMethod("lettersonly", function(value, element) {
-    return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
-}, 'Por favor digite solo valores alfabéticos *', );
+    jQuery.validator.addMethod("lettersonly", function(value, element) {
+    return this.optional(element) || /^[a-z," "]+$/i.test(value);
+    }, 'Por favor digite solo valores alfanuméricos *',);  
 
 //Método que valida la contraseña
     jQuery.validator.addMethod("passwordCheck",
@@ -287,6 +288,10 @@ jQuery.validator.addMethod("lettersonly", function(value, element) {
         fractures: {
         required : true 
         },
+        session_start: {
+        required : true,
+        horahhmm : true
+        },
         session_end: {
         required : true 
         },
@@ -320,6 +325,9 @@ jQuery.validator.addMethod("lettersonly", function(value, element) {
         },
         fractures: {
         required : 'Por favor ingrese el detalle de la fractura *' 
+        },
+        session_start: {
+        required : 'Por favor ingrese la hora de inicio *' 
         },
         session_end: {
         required : 'Por favor ingrese la hora de fin *' 

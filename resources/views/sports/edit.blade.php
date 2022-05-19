@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <h3 class="d-5">{{$sport->description}}</h3>
                     <div>
-                        <form id="form_sports_edit"action="{{route('sports.update', $sport)}} " method="post">
+                        <form action="{{route('sports.update', $sport)}} " method="post">
                             @csrf
                             @method('put')
 
