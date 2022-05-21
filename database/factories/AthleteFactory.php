@@ -44,6 +44,7 @@ class AthleteFactory extends Factory
             'identification_manager' => $this->faker->randomNumber(9),
             'contact_manager' => $this->faker->randomNumber(8),
             'policy' => $this->faker->unique()->randomNumber(8),
+            'medical_opinion' => $this->faker->unique()->randomNumber(8),
         ];
     }
 }

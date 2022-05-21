@@ -47,8 +47,6 @@ class MuscularFactory extends Factory
             'biceps' => $this->faker->numerify('#.#'),
             'calf_cm' => $this->faker->numerify('#.#'),
             'calories' => $this->faker->numerify('#.#'),
-            'bmi_high' => $this->faker->numerify('#.#'),
-            'icc_high' => $this->faker->numerify('#.#'),
             'fat' => $this->faker->numerify('#.#'),
             'residual' => $this->faker->numerify('#.#'),
             'bone' => $this->faker->numerify('#.#'),
