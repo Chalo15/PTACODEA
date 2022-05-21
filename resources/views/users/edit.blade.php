@@ -25,7 +25,9 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Editar Usuario
+                    <h2 class="text-center d-block font-weight-bold ">
+                        Editar Usuario
+                    </h2>
                 </div>
 
                 <div class="card-body">

@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="col d-flex justify-content-end">
-                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-gray-codea">
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">
                         <i class="fas fa-edit"></i> &nbsp;
                         Editar
                     </a>
@@ -432,5 +432,5 @@
         </div>
     </div>
 
-    
+
 </x-app-layout>

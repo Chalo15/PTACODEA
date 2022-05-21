@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+
 
 class UserSeeder extends Seeder
 {
@@ -15,8 +18,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        /*$random = Str::random(10);
+        Hash::make($random)*/
         $users = [
             [
+
                 'role_id'         => 1,
                 'identification'  => '207630342',
                 'password'        => Hash::make('12346'),
@@ -45,6 +51,23 @@ class UserSeeder extends Seeder
                 'canton'            => 'Alajuela',
                 'address'         => 'El Roble',
                 'gender'          => 'M',
+                'contract_number' => '200000',
+                'contract_year'   => 2,
+                'experience'      => 2
+            ],
+            [
+                'role_id'         => 1,
+                'identification'  => '702620492',
+                'password'        => Hash::make('12346'),
+                'name'            => 'Billy',
+                'last_name'       => 'Chacon Serrano',
+                'birthdate'       => '1998-08-17',
+                'phone'           => 83451018,
+                'email'           => 'bichacon98s@gmail.com',
+                'province'        => 'Limon',
+                'city'            => 'Siquirres',
+                'address'         => 'San Alberto',
+                'gender'          => 'Masculino',
                 'contract_number' => '200000',
                 'contract_year'   => 2,
                 'experience'      => 2
