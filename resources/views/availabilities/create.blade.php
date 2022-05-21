@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('availabilities.store') }}" method="POST">
+                    <form id="form_availabilities_create" action="{{ route('availabilities.store') }}" method="POST">
                         @csrf
 
                         {{-- Fecha de disponibilidad --}}
