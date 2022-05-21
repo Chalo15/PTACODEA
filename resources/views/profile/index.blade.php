@@ -87,7 +87,8 @@
                         </div>
 
                         <div class="card-body">
-                            <form id='form_profile_index1' action="{{ route('profile.update-password') }}" method="POST">
+                            <form id='form_profile_index1' action="{{ route('profile.update-password') }}"
+                                method="POST">
                                 @csrf
                                 @method('PUT')
 
@@ -141,7 +142,8 @@
                 </div>
 
                 <div class="card-body">
-                    <form id='form_profile_index2' action="{{ route('profile.update-personal-information') }}" method="POST">
+                    <form id='form_profile_index2' action="{{ route('profile.update-personal-information') }}"
+                        method="POST">
                         @csrf
                         @method('PUT')
 
@@ -172,10 +174,10 @@
                                 <x-input readonly name="last_name" value="{{ $user->last_name }}" />
                             </div>
                         </div>
-                        
+
                         {{-- Fecha de Nacimiento --}}
 
-                       <!-- @php
+                        <!-- @php
                             $today = today()->toDateString();
                             $age = today()
                                 ->subYears(18)
@@ -212,7 +214,7 @@
                                 <x-input id='city' name="city" value="{{ $user->city }}" />
                             </div>
                         </div>
-                        
+
                         <hr>
 
                         {{-- Correo Electrónico --}}
@@ -247,8 +249,7 @@
                             <div class="col-sm-8">
                                 @foreach ($genders as $gender)
                                     <div class="custom-control custom-radio">
-                                        <input
-                                            {{ $user->gender && $user->gender == $gender ? 'checked' : '' }}
+                                        <input {{ $user->gender && $user->gender == $gender ? 'checked' : '' }}
                                             class="custom-control-input" type="radio" name="gender"
                                             id="gender-{{ $loop->index }}"
                                             value="{{ old('gender') ?? $user->gender }}">
@@ -286,147 +287,131 @@
                     reader.readAsDataURL(this.files[0]);
                 });
             });
+            //Metodo para validar número telefónico
+            jQuery.validator.addMethod("phonenumber", function(value, element) {
+                if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
+                    return true;
+                } else {
+                    return false;
+                };
+            }, "El número telefónico debe tener 8 dígitos *");
 
-
-//Metodo para validar número telefónico
-jQuery.validator.addMethod("phonenumber", function (value, element) {
-        if ( /^\d{3}-?\d{3}-?\d{2}$/g.test(value) ) {
-            return true;
-        } else {
-            return false;
-        };
-    }, "El número telefónico debe tener 8 dígitos *");
-    
-
-//Método que valida solo numeros
-    jQuery.validator.addMethod("numbersonly", function(value, element) {
-    return this.optional(element) || /^[0-9]+$/i.test(value);
-    }, 'Por favor digite solo valores numéricos y números naturales *',);  
-
-
-//Método que valida solo letras
-    jQuery.validator.addMethod("lettersonly", function(value, element) {
-    return this.optional(element) || /^[a-z," "]+$/i.test(value);
-    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);  
-
-//Método que valida la contraseña
-    jQuery.validator.addMethod("passwordCheck",
-        function(value, element, param) {
-            if (this.optional(element)) {
-                return true;
-            } else if (!/[A-Z]/.test(value)) {
-                return false;
-            } else if (!/[a-z]/.test(value)) {
-                return false;
-            } else if (!/[0-9]/.test(value)) {
-                return false;
+            //Método que valida solo numeros
+            jQuery.validator.addMethod("numbersonly", function(value, element) {
+                return this.optional(element) || /^[0-9]+$/i.test(value);
+            }, 'Por favor digite solo valores numéricos y números naturales *', );
+            //Método que valida solo letras
+            jQuery.validator.addMethod("lettersonly", function(value, element) {
+                return this.optional(element) || /^[a-z," "]+$/i.test(value);
+            }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *', );
+            //Método que valida la contraseña
+            jQuery.validator.addMethod("passwordCheck",
+                function(value, element, param) {
+                    if (this.optional(element)) {
+                        return true;
+                    } else if (!/[A-Z]/.test(value)) {
+                        return false;
+                    } else if (!/[a-z]/.test(value)) {
+                        return false;
+                    } else if (!/[0-9]/.test(value)) {
+                        return false;
+                    }
+                    return true;
+                },
+                "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
+                );
+            //Validaciones del formulario
+            if ($('#form_profile_index1').length > 0) {
+                $('#form_profile_index1').validate({
+                    rules: {
+                        password: {
+                            required: true,
+                            passwordCheck: true,
+                            minlength: 8,
+                            maxlength: 60
+                        },
+                        password_confirmation: {
+                            required: true,
+                            equalTo: "#password"
+                        }
+                    },
+                    messages: {
+                        password: {
+                            required: 'Por favor ingrese su contraseña *',
+                            minlength: 'La contraseña no puede ser menor a 8 caracteres *',
+                            maxlength: 'La contraseña no puede ser mayor a 60 caracteres *'
+                        },
+                        password_confirmation: {
+                            required: 'Por favor ingrese de nuevo su contraseña *',
+                            equalTo: 'Por favor introduzca la misma contraseña *'
+                        },
+                    }
+                });
             }
-            return true;
-        },
-        "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *");
-
-//Validaciones del formulario
-    if($('#form_profile_index1').length > 0)
-    {
-        $('#form_profile_index1').validate({
-        rules:{
-
-            password : {
-            required : true,
-            passwordCheck:true,
-            minlength : 8,
-            maxlength : 60
-            },
-            password_confirmation : {
-            required : true,
-            equalTo: "#password"
+            //Formulario del index2
+            if ($('#form_profile_index2').length > 0) {
+                $('#form_profile_index2').validate({
+                    rules: {
+                        birthdate: {
+                            required: true
+                        },
+                        province: {
+                            required: true
+                        },
+                        city: {
+                            required: true,
+                            lettersonly: true,
+                            minlength: 3,
+                            maxlength: 30
+                        },
+                        email: {
+                            required: true,
+                            maxlength: 30,
+                            minlength: 3,
+                            email: true
+                        },
+                        phone: {
+                            required: true,
+                            numbersonly: true,
+                            phonenumber: true
+                        },
+                        address: {
+                            required: true,
+                            minlength: 20,
+                            maxlength: 120
+                        },
+                    },
+                    messages: {
+                        birthdate: {
+                            required: 'Por favor ingrese su fecha de nacimiento *'
+                        },
+                        province: {
+                            required: 'Por favor ingrese su provincia *'
+                        },
+                        city: {
+                            required: 'Por favor ingrese la ciudad donde vive *',
+                            maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
+                            minlength: 'La ciudad no puede ser menor a 3 caracteres *'
+                        },
+                        email: {
+                            required: 'Por favor ingrese su email *',
+                            email: 'Por favor ingrese una dirección de correo electrónico válida *',
+                            maxlength: 'Su correo electrónico no puede ser de más de 30 caracteres *',
+                            minlength: 'Su correo electrónico no puede ser de menos de 3 caracteres *'
+                        },
+                        phone: {
+                            required: 'Por favor ingrese su número telefónico *'
+                        },
+                        address: {
+                            required: 'Por favor ingrese su dirección completa *',
+                            maxlength: 'Su dirección no puede ser de más de 120 caracteres *',
+                            minlength: 'Su dirección no puede ser de menos de 20 caracteres *'
+                        },
+                    }
+                });
             }
-        },
-
-        messages : {
-            password : {
-            required : 'Por favor ingrese su contraseña *',
-            minlength : 'La contraseña no puede ser menor a 8 caracteres *',
-            maxlength : 'La contraseña no puede ser mayor a 60 caracteres *'
-            },
-            password_confirmation : {
-            required : 'Por favor ingrese de nuevo su contraseña *',
-            equalTo: 'Por favor introduzca la misma contraseña *'
-            },
-        }
-        });
-    }
-
-//Formulario del index2
-if($('#form_profile_index2').length > 0)
-    {
-        $('#form_profile_index2').validate({
-        rules:{
-            birthdate:{
-            required : true
-            },
-            province:{
-            required : true
-            },
-            city : {
-            required : true,
-            lettersonly: true,
-            minlength: 3, 
-            maxlength : 30    
-            },
-            email : {
-            required : true,
-            maxlength : 30, 
-            minlength: 3,
-            email : true
-            },
-            phone : {
-            required : true,        
-            numbersonly: true,
-            phonenumber: true
-            },
-            address : {
-            required : true,
-            minlength : 20,
-            maxlength : 120
-            },
-        },
-
-        messages : {
-            birthdate:{
-            required : 'Por favor ingrese su fecha de nacimiento *'
-            },
-            province:{
-            required : 'Por favor ingrese su provincia *'
-            },
-            city : {
-            required : 'Por favor ingrese la ciudad donde vive *',
-            maxlength : 'La ciudad no puede ser mayor a 30 caracteres *',
-            minlength : 'La ciudad no puede ser menor a 3 caracteres *'
-            },
-            email : {
-            required : 'Por favor ingrese su email *',
-            email : 'Por favor ingrese una dirección de correo electrónico válida *',
-            maxlength : 'Su correo electrónico no puede ser de más de 30 caracteres *',
-            minlength : 'Su correo electrónico no puede ser de menos de 3 caracteres *'
-            },
-            phone : {
-            required : 'Por favor ingrese su número telefónico *'
-            },
-            address : {
-            required : 'Por favor ingrese su dirección completa *',
-            maxlength : 'Su dirección no puede ser de más de 120 caracteres *',
-            minlength : 'Su dirección no puede ser de menos de 20 caracteres *'
-            },
-        }
-        });
-    }
-    
-
-    </script>
-
-
+        </script>
     @endpush
-    
+
 
 </x-app-layout>

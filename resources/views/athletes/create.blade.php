@@ -13,7 +13,9 @@
         <div class="col">
             <div class="card mb-5">
                 <div class="card-header">
-                    Nuevo Atleta
+                    <h2 class="text-center d-block font-weight-bold ">
+                        Nuevo Atleta
+                    </h2>
                 </div>
 
                 <div class="card-body">
@@ -186,7 +188,7 @@
 
                         {{-- Categoria --}}
                         <div class="form-group row">
-                            <label for="category" class="col-sm-4 col-form-label">Categoria</label>
+                            <label for="category" class="col-sm-4 col-form-label">Categoria de deporte</label>
                             <div class="col-sm-8">
                                 <x-select name="category">
                                     <option disabled {{ old('category') ? '' : 'selected' }} value=""> --
@@ -274,7 +276,10 @@
 
                                 <div class="row">
                                     <div class="col mb-3 d-flex justify-content-center">
-                                        Información del Responsable
+
+                                        <h3 class="text-center d-block font-weight-bold ">
+                                            Información del Responsable
+                                        </h3>
                                     </div>
                                 </div>
 
@@ -332,7 +337,8 @@
                                     <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                     <div class="col-sm-4">
                                         <div class="input-group mb-3">
-                                            <label class="custom-file-label" for="identification_image">Elija el archivo
+                                            <label class="custom-file-label" for="identification_image">Elija el
+                                                archivo
                                             </label>
                                             <input name="url" type="file" class="custom-file-input"
                                                 id="identification_image" aria-describedby="inputGroupFileAddon01">
@@ -358,7 +364,6 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
-
                 //Metodo para validar número telefónico
                 jQuery.validator.addMethod("phonenumber", function(value, element) {
                     if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
@@ -367,17 +372,14 @@
                         return false;
                     };
                 }, "El número telefónico debe tener 8 dígitos *");
-
                 //Método que valida solo numeros
                 jQuery.validator.addMethod("numbersonly", function(value, element) {
                     return this.optional(element) || /^[0-9,":"]+$/i.test(value);
                 }, 'Por favor digite solo valores numéricos y números naturales *', );
-
                 //Método que valida solo letras
                 jQuery.validator.addMethod("lettersonly", function(value, element) {
                     return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
                 }, 'Por favor digite solo valores alfabéticos *', );
-
                 //Método que valida la contraseña
                 jQuery.validator.addMethod("passwordCheck",
                     function(value, element, param) {
@@ -394,114 +396,111 @@
                     },
                     "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
                 );
-
                 //Validaciones del formulario
                 if ($("#form_athlete_create").length > 0) {
                     $('#form_athlete_create').validate({
-                            rules: {
-                                identification: {
-                                    required: true,
-                                    maxlength: 15,
-                                    minlength: 9
-                                },
-                                user_id: {
-                                    required: true
-                                },
-                                name: {
-                                    required: true,
-                                    lettersonly: true,
-                                    maxlength: 30,
-                                    minlength: 3
-                                },
-                                last_name: {
-                                    required: true,
-                                    lettersonly: true,
-                                    minlength: 3,
-                                    maxlength: 30
-                                },
-                                birthdate: {
-                                    required: true
-                                },
-                                state: {
-                                    required: true
-                                },
-                                province: {
-                                    required: true
-                                },
-                                city: {
-                                    required: true,
-                                    lettersonly: true,
-                                    minlength: 3,
-                                    maxlength: 30
-                                },
-                                email: {
-                                    required: true,
-                                    maxlength: 30,
-                                    minlength: 3,
-                                    email: true
-                                },
-                                phone: {
-                                    required: true,
-                                    numbersonly: true,
-                                    phonenumber: true
-                                },
-                                address: {
-                                    required: true,
-                                    minlength: 20,
-                                    maxlength: 120
-                                },
-                                password: {
-                                    required: true,
-                                    passwordCheck: true,
-                                    minlength: 8,
-                                    maxlength: 60
-                                },
-                                password_confirmation: {
-                                    required: true,
-                                    equalTo: "#password"
-                                },
-                                coach_id: {
-                                    required: true
-                                },
-                                blood: {
-                                    required: true
-                                },
-                                identification_manager: {
-                                    required: true,
-                                    maxlength: 15,
-                                    minlength: 9
-                                },
-                                name_manager: {
-                                    required: true,
-                                    lettersonly: true,
-                                    maxlength: 30,
-                                    minlength: 3
-                                },
-                                lastname_manager: {
-                                    required: true,
-                                    lettersonly: true,
-                                    minlength: 3,
-                                    maxlength: 30
-                                },
-                                contact_manager: {
-                                    required: true,
-                                    numbersonly: true,
-                                    phonenumber: true
-                                },
-                                manager: {
-                                    required: true
-                                },
-                                policy: {
-                                    required: true,
-                                    maxlength: 10,
-                                    minlength: 1
-                                },
-                                url: {
-                                    required: true
-                                },
+                        rules: {
+                            identification: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            user_id: {
+                                required: true
+                            },
+                            name: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            last_name: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            birthdate: {
+                                required: true
+                            },
+                            state: {
+                                required: true
+                            },
+                            province: {
+                                required: true
+                            },
+                            city: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            email: {
+                                required: true,
+                                maxlength: 30,
+                                minlength: 3,
+                                email: true
+                            },
+                            phone: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            address: {
+                                required: true,
+                                minlength: 20,
+                                maxlength: 120
+                            },
+                            password: {
+                                required: true,
+                                passwordCheck: true,
+                                minlength: 8,
+                                maxlength: 60
+                            },
+                            password_confirmation: {
+                                required: true,
+                                equalTo: "#password"
+                            },
+                            coach_id: {
+                                required: true
+                            },
+                            blood: {
+                                required: true
+                            },
+                            identification_manager: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            name_manager: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            lastname_manager: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
+                            contact_manager: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            manager: {
+                                required: true
+                            },
+                            policy: {
+                                required: true,
+                                maxlength: 10,
+                                minlength: 1
+                            },
+                            url: {
+                                required: true
                             },
                         },
-
                         messages: {
                             identification: {
                                 required: 'Por favor ingrese su cédula *',
@@ -595,10 +594,9 @@
                             },
                         }
                     });
-            }
+                }
             });
         </script>
     @endpush
-
 
 </x-app-layout>

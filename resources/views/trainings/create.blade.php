@@ -28,10 +28,15 @@
                                     <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> -- Seleccione
                                         -- </option>
                                     @foreach ($athletes as $athlete)
-                                    <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">
+                                    <<<<<<< HEAD <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">
                                         {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
-                                    </option>
-                                    @endforeach
+                                        </option>
+                                        =======
+                                        <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">
+                                            {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
+                                        </option>
+                                        >>>>>>> origin/Gonzalo
+                                        @endforeach
                                 </x-select2>
                             </div>
                         </div>
@@ -127,12 +132,10 @@
     @push('scripts')
     <script>
         $(document).ready(function() {
-
             //Método que valida solo numeros
             jQuery.validator.addMethod("numbersonly", function(value, element) {
                 return this.optional(element) || /^[0-9,":"]+$/i.test(value);
             }, 'Por favor digite solo valores numéricos y números naturales *', );
-
             //Validaciones del formulario
             if ($("#form_create_trainings").length > 0) {
                 $('#form_create_trainings').validate({
@@ -159,7 +162,7 @@
                         , planification: {
                             required: true
                         }
-                        , lesion: {
+                        , details: {
                             required: true
                         }
                     , },
@@ -188,9 +191,8 @@
                         }
                         , lesion: {
                             required: 'Por favor ingrese la lesión que presenta *'
-                        },
-
-                    }
+                        }
+                    , }
                 });
             }
         });

@@ -24,10 +24,12 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <div class="col d-flex align-items-center">
+                    <div class="text-center">
+                        <h2 class="text-center d-block font-weight-bold ">
                             Musculaciones
-                        </div>
+                        </h2>
+                    </div>
+                    <div class="row">
 
                         <div class="col d-flex justify-content-end">
                             @can('role', ['Musculacion'])

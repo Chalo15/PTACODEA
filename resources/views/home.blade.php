@@ -27,7 +27,7 @@
                     Atletas
                 </div>
                 <div class="card-body">
-                    <i class="fas fa-swimmer fa-5x"></i>
+                    <i class="fas fa-child fa-5x"></i>
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('athletes.index') }}" class="btn btn-primary btn-block">
@@ -46,7 +46,7 @@
                     Deportes
                 </div>
                 <div class="card-body">
-                    <i class="fas fa-table-tennis fa-5x"></i>
+                    <i class="fas fa-bolt fa-5x"></i>
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('sports.index') }}" class="btn btn-primary btn-block">

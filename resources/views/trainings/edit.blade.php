@@ -13,79 +13,80 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    Editar Entrenamiento
+                    <h2 class="text-center d-block font-weight-bold ">
+                        Editar Entrenamiento
+                    </h2>
                 </div>
 
                 <div class="card-body">
-                        <form id="edit_create_trainings" action="{{ route('trainings.update', $training->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                    <form id="edit_create_trainings" action="{{ route('trainings.update', $training->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
-                            {{-- Atleta --}}
-                            <div class="form-group row">
-                                <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
-                                <div class="col-sm-8">
-                                    <x-input name="athlete_id" readonly value="{{ $training->athlete->id }}">
-                                    </x-input>
-                                </div>
+                        {{-- Atleta --}}
+                        <div class="form-group row">
+                            <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
+                            <div class="col-sm-8">
+                                <x-input name="athlete_id" readonly value="{{ $training->athlete->id }}">
+                                </x-input>
                             </div>
+                        </div>
 
 
-                            @php
-                            $today = today()->toDateString();
-                            $lastWeek = today()
-                            ->subDays(7)
-                            ->toDateString();
-                            $nextWeek = today()
-                            ->addDay(7)
-                            ->toDateString();
-                            @endphp
+                        @php
+                        $today = today()->toDateString();
+                        $lastWeek = today()
+                        ->subDays(7)
+                        ->toDateString();
+                        $nextWeek = today()
+                        ->addDay(7)
+                        ->toDateString();
+                        @endphp
 
-                            <div class="form-group row">
+                        <div class="form-group row">
 
-                                <label for="date" class="col-sm-4 col-form-label">Fecha</label>
-                                <div class="col-sm-8">
-                                    <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ old('date') ?? $training->date }}" />
-                                </div>
+                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
+                            <div class="col-sm-8">
+                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ old('date') ?? $training->date }}" />
                             </div>
+                        </div>
 
-                            {{-- type_training --}}
-                            <div class="form-group row">
-                                <label for="type_training" class="col-sm-4 col-form-label">Tipo de Entrenamiento</label>
-                                <div class="col-sm-8">
-                                    <x-input name="type_training" value="{{ old('type_training') ?? $training->type_training }}" />
-                                </div>
+                        {{-- type_training --}}
+                        <div class="form-group row">
+                            <label for="type_training" class="col-sm-4 col-form-label">Tipo de Entrenamiento</label>
+                            <div class="col-sm-8">
+                                <x-input name="type_training" value="{{ old('type_training') ?? $training->type_training }}" />
                             </div>
+                        </div>
 
-                            {{-- calification --}}
-                            <div class="form-group row">
-                                <label for="calification" class="col-sm-4 col-form-label">Calificación</label>
-                                <div class="col-sm-8">
-                                    <x-input name="calification" value="{{ old('calification') ?? $training->calification }}" />
-                                </div>
+                        {{-- calification --}}
+                        <div class="form-group row">
+                            <label for="calification" class="col-sm-4 col-form-label">Calificación</label>
+                            <div class="col-sm-8">
+                                <x-input name="calification" value="{{ old('calification') ?? $training->calification }}" />
                             </div>
+                        </div>
 
-                            <div class="form-group row">
-                                <label for="time" class="col-sm-4 col-form-label">Duración del Entrenamiento</label>
-                                <div class="col-sm-8">
-                                    <x-textarea name="time" value="{{ old('time') ?? $training->time }}" />
-                                </div>
+                        <div class="form-group row">
+                            <label for="time" class="col-sm-4 col-form-label">Duración del Entrenamiento</label>
+                            <div class="col-sm-8">
+                                <x-textarea name="time" value="{{ old('time') ?? $training->time }}" />
                             </div>
+                        </div>
 
-                            {{-- Nivel --}}
-                            <div class="form-group row">
-                                <label for="level" class="col-sm-4 col-form-label">Nivel</label>
-                                <div class="col-sm-8">
-                                    <x-input name="level" value="{{ old('level') ?? $training->level }}" />
-                                </div>
+                        {{-- Nivel --}}
+                        <div class="form-group row">
+                            <label for="level" class="col-sm-4 col-form-label">Nivel</label>
+                            <div class="col-sm-8">
+                                <x-input name="level" value="{{ old('level') ?? $training->level }}" />
                             </div>
+                        </div>
 
-                            {{-- Aspectos a Mejorar --}}
-                            <div class="form-group row">
-                                <label for="get_better" class="col-sm-4 col-form-label">Aspectos a Mejorar</label>
-                                <div class="col-sm-8">
-                                    <x-input name="get_better" value="{{ old('get_better') ?? $training->get_better }}" />
-                                </div>
+                        {{-- Aspectos a Mejorar --}}
+                        <div class="form-group row">
+                            <label for="get_better" class="col-sm-4 col-form-label">Aspectos a Mejorar</label>
+                            <div class="col-sm-8">
+                                <x-input name="get_better" value="{{ old('get_better') ?? $training->get_better }}" />
                             </div>
 
                             {{-- Planificacion --}}
@@ -119,7 +120,7 @@
                                     Guardar
                                 </button>
                             </div>
-                        </form>
+                    </form>
                 </div>
             </div>
         </div>
@@ -156,9 +157,6 @@
                             required: true
                         }
                         , planification: {
-                            required: true
-                        }
-                        , lesion: {
                             required: true
                         }
                         , details: {
