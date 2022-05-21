@@ -113,19 +113,19 @@
                                 </div>
                             </div>
 
-                            {{-- Provincia --}}
+                            {{-- Cantón --}}
                             <div class="form-group row">
-                                <label for="province" class="col-sm-4 col-lg-12 col-form-label">Provincia</label>
+                                <label for="canton" class="col-sm-4 col-lg-12 col-form-label">Cantón</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="province" value="{{ $athlete->user->province }}" />
+                                    <x-input disabled name="canton" value="{{ $athlete->user->canton }}" />
                                 </div>
                             </div>
 
-                            {{-- Ciudad --}}
+                            {{-- Distrito --}}
                             <div class="form-group row">
-                                <label for="city" class="col-sm-4 col-lg-12 col-form-label">Ciudad</label>
+                                <label for="district" class="col-sm-4 col-lg-12 col-form-label">Distrito</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="city" value="{{ $athlete->user->city }}" />
+                                    <x-input disabled name="district" value="{{ $athlete->user->district }}" />
                                 </div>
                             </div>
 
@@ -169,40 +169,14 @@
 
                             <hr>
 
-                            {{-- Role --}}
-                            <div x-data="{ role: '{{ $athlete->user->role_id }}' }">
-
-                                <div class="form-group row">
-                                    <label for="role_id" class="col-sm-4 col-lg-12 col-form-label">Rol</label>
-                                    <div class="col-sm-8 col-lg-12">
-                                        <x-input disabled name="role_id"
-                                            value="{{ $athlete->user->role->description }}" />
-                                    </div>
-                                </div>
-
-                                {{-- Entrenadores --}}
-                                <div x-show="role == 2">
-
-                                    {{-- Deporte --}}
-                                    <div class="form-group row">
-                                        <label for="sport" class="col-sm-4 col-lg-12 col-form-label">Deporte</label>
-                                        <div class="col-sm-8 col-lg-12">
-                                            <x-input disabled name="sport_id"
-                                                value="{{ $athlete->user->role_id == 2 ? $athlete->user->coach->sport->description : '' }}" />
-                                        </div>
-                                    </div>
-
-                                    {{-- Teléfono Celular --}}
-                                    <div class="form-group row">
-                                        <label for="other_phone" class="col-sm-4 col-lg-12 col-form-label">Teléfono
-                                            Celular</label>
-                                        <div class="col-sm-8 col-lg-12">
-                                            <x-input disabled name="other_phone" type="number"
-                                                value="{{ $athlete->user->role_id == 2 && $athlete->user->coach->phone }}" />
-                                        </div>
-                                    </div>
+                            {{-- Disciplina Deportiva --}}
+                            <div class="form-group row">
+                                <label for="sport_id" class="col-sm-4 col-lg-12 col-form-label">Disciplina Deportiva</label>
+                                <div class="col-sm-8 col-lg-12">
+                                    <x-textarea disabled name="sport_id">{{ $athlete->sport_id }}</x-textarea>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

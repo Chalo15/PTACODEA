@@ -117,4 +117,28 @@ return [
     'capacities_physios' => ['1','2','3','4','5','6'],
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Distritos del Canton central de Alajuela
+    |--------------------------------------------------------------------------
+    */
+
+
+    'districts' => ['Alajuela',
+                    'San José',
+                    'Carrizal',
+                    'San Antonio',
+                    'Guácima',
+                    'San Isidro',
+                    'Sabanilla',
+                    'San Rafael',
+                    'Río Segundo',
+                    'Desamparados',
+                    'Turrúcares',
+                    'Tambor',
+                    'La Garita',
+                    'Sarapiquí',
+                    'Otro'],
+
+
 ];

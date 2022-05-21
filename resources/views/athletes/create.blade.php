@@ -86,26 +86,26 @@
                                     </div>
                                 </div>
 
-                                {{-- Provincia --}}
+                                {{-- Cantón --}}
                                 <div class="form-group row">
-                                    <label for="province" class="col-sm-4 col-form-label">Provincia</label>
+                                    <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
                                     <div class="col-sm-8">
-                                        <x-select name="province">
-                                            <option disabled {{ old('province') ? '' : 'selected' }} value=""> --
-                                                Seleccione -- </option>
-                                            @foreach ($provinces as $province)
-                                                <option {{ old('province') == $province ? 'selected' : '' }}
-                                                    value="{{ $province }}">{{ $province }}</option>
-                                            @endforeach
-                                        </x-select>
+                                        <x-input readonly name="canton" value="{{ old('canton') }}" />
                                     </div>
                                 </div>
 
-                                {{-- Ciudad --}}
+                                {{-- Distrito --}}
                                 <div class="form-group row">
-                                    <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
+                                    <label for="district" class="col-sm-4 col-form-label">Distrito</label>
                                     <div class="col-sm-8">
-                                        <x-input name="city" value="{{ old('city') }}" />
+                                        <x-select name="district">
+                                            <option disabled {{ old('district') ? '' : 'selected' }} value=""> --
+                                                Seleccione -- </option>
+                                            @foreach ($districts as $district)
+                                                <option {{ old('district') == $district ? 'selected' : '' }}
+                                                    value="{{ $district }}">{{ $district }}</option>
+                                            @endforeach
+                                        </x-select>
                                     </div>
                                 </div>
 
@@ -210,18 +210,16 @@
                         </div>
 
 
-                        {{-- Entrenadores --}}
+                        {{-- Disciplina Deportiva --}}
                         <div class="form-group row">
-                            <label for="coach_id" class="col-sm-4 col-form-label">Instructor</label>
+                            <label for="sport_id" class="col-sm-4 col-form-label">Disciplina Deportiva</label>
                             <div class="col-sm-8">
-                                <x-select2 name="coach_id">
-                                    <option disabled {{ old('coach_id') ? '' : 'selected' }} value=""> -- Seleccione
+                                <x-select2 name="sport_id">
+                                    <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione
                                         -- </option>
-                                    @foreach ($coaches as $coach)
-                                        <option {{ old('coach_id') == $coach->id ? 'selected' : '' }}
-                                            value="{{ $coach->id }}">
-                                            {{ $coach->user->identification . ' | ' . $coach->user->full_name }}
-                                        </option>
+                                    @foreach ($sports as $sport)
+                                        <option {{ old('sport_id') == $sport->id ? 'selected' : '' }}
+                                            value="{{ $sport }}">{{ $sport }}</option>
                                     @endforeach
                                 </x-select2>
                             </div>
@@ -426,10 +424,10 @@
                             state: {
                                 required: true
                             },
-                            province: {
+                            district: {
                                 required: true
                             },
-                            city: {
+                            canton: {
                                 required: true,
                                 lettersonly: true,
                                 minlength: 3,
@@ -461,7 +459,7 @@
                                 required: true,
                                 equalTo: "#password"
                             },
-                            coach_id: {
+                            sport_id: {
                                 required: true
                             },
                             blood: {
@@ -526,10 +524,10 @@
                             state: {
                                 required: 'Por favor seleccione un estado *'
                             },
-                            province: {
-                                required: 'Por favor seleccione su provincia *'
+                            district: {
+                                required: 'Por favor seleccione su Distrito *'
                             },
-                            city: {
+                            canton: {
                                 required: 'Por favor ingrese la ciudad donde vive *',
                                 maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
                                 minlength: 'La ciudad no puede ser menor a 3 caracteres *'
@@ -557,8 +555,8 @@
                                 required: 'Por favor ingrese de nuevo su contraseña *',
                                 equalTo: 'Por favor introduzca la misma contraseña *'
                             },
-                            coach_id: {
-                                required: 'Por favor ingrese su instructor *'
+                            sport_id: {
+                                required: 'Por favor ingrese su Disciplina *'
                             },
                             blood: {
                                 required: 'Por favor ingrese su tipo de sangre *'
