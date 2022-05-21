@@ -112,13 +112,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="details" class="col-sm-4 col-form-label">Datos extra</label>
-                            <div class="col-sm-8">
-                                <x-editor name="details" value="{!! $athlete->sport->ckeditor !!}" />
-                            </div>
-                        </div>
-
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary">
                                 <i class="fas fa-save"></i> &nbsp;

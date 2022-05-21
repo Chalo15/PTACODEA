@@ -7,6 +7,17 @@
                 Atrás
             </a>
         </div>
+        <div class="col mb-3 text-right">
+            @can('role',['Musculacion'])
+            @php
+            $user = Auth::user();
+            @endphp
+            <a href="{{ route('musculars.generateReport-pdf', $user) }}" class="btn btn-primary">
+                <i class="fas fa-file-pdf"></i> &nbsp;
+                Reporte
+            </a>
+            @endcan
+        </div>
     </div>
 
     <div class="row">
@@ -20,10 +31,10 @@
 
                         <div class="col d-flex justify-content-end">
                             @can('role', ['Musculacion'])
-                                <a href="{{ route('musculars.create') }}" class="btn btn-primary">
-                                    <i class="fas fa-plus"></i> &nbsp;
-                                    Nuevo
-                                </a>
+                            <a href="{{ route('musculars.create') }}" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> &nbsp;
+                                Nuevo
+                            </a>
                             @endcan
                         </div>
                     </div>
@@ -39,7 +50,7 @@
                                         <th>Fecha</th>
                                         <th>Hora</th>
                                         <th>Cédula del Atleta</th>
-                                        <th>Nombre Completo</th>
+                                        <th>Nombre del Atleta</th>
                                         <th>Disciplina</th>
                                         <th>Cédula del Especialista</th>
                                         <th>Nombre Completo</th>
@@ -49,52 +60,46 @@
 
                                 <x-slot name="body">
                                     @foreach ($musculars as $muscular)
-                                        <tr>
-                                            <td>{{ $muscular->id }}</td>
-                                            <td>{{ $muscular->date->isoFormat('LL') }}</td>
-                                            <td>{{ $muscular->time }}</td>
-                                            <td>{{ $muscular->athlete->user->identification }}</td>
-                                            <td>
-                                                <a target="_blank" class="link"
-                                                    href="{{ route('athletes.show', $muscular->athlete->id) }}">
-                                                    {{ $muscular->athlete->user->full_name }}
-                                                    <i class="fas fa-external-link-alt"></i>
-                                                </a>
-                                            </td>
-                                            <td>{{ $muscular->athlete->sport->description }}</td>
-                                            <td>{{ $muscular->user->identification }}</td>
-                                            <td>
-                                                <a target="_blank" class="link"
-                                                    href="{{ route('users.show', $muscular->user->id) }}">
-                                                    {{ $muscular->user->full_name }}
-                                                    <i class="fas fa-external-link-alt"></i>
-                                                </a>
-                                            </td>
-                                            <td width="100px" class="text-center">
-                                                <div class="dropdown">
-                                                    <button class="btn" type="button" id="dropdownMenu2"
-                                                        data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fas fa-ellipsis-v"></i>
-                                                    </button>
+                                    <tr>
+                                        <td>{{ $muscular->id }}</td>
+                                        <td>{{ $muscular->date->isoFormat('LL') }}</td>
+                                        <td>{{ $muscular->time }}</td>
+                                        <td>{{ $muscular->athlete->user->identification }}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('athletes.show', $muscular->athlete->id) }}">
+                                                {{ $muscular->athlete->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td>{{ $muscular->athlete->sport->description }}</td>
+                                        <td>{{ $muscular->user->identification }}</td>
+                                        <td>
+                                            <a target="_blank" class="link" href="{{ route('users.show', $muscular->user->id) }}">
+                                                {{ $muscular->user->full_name }}
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                        </td>
+                                        <td width="100px" class="text-center">
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
 
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                        @can('role', ['Musculacion'])
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('musculars.edit', $muscular->id) }}">
-                                                                <i class="fas fa-edit"></i> &nbsp;
-                                                                Editar
-                                                            </a>
-                                                        @endcan
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('musculars.generate-pdf', $muscular->id) }}"
-                                                            target="_blank">
-                                                            <i class="fas fa-download"></i> &nbsp;
-                                                            Descargar
-                                                        </a>
-                                                    </div>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    @can('role', ['Musculacion'])
+                                                    <a class="dropdown-item" href="{{ route('musculars.edit', $muscular->id) }}">
+                                                        <i class="fas fa-edit"></i> &nbsp;
+                                                        Editar
+                                                    </a>
+                                                    @endcan
+                                                    <a class="dropdown-item" href="{{ route('musculars.generate-pdf', $muscular->id) }}" target="_blank">
+                                                        <i class="fas fa-download"></i> &nbsp;
+                                                        Descargar
+                                                    </a>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </x-slot>
                                 <x-slot name="foot">
@@ -103,7 +108,7 @@
                                         <th>Fecha</th>
                                         <th>Hora</th>
                                         <th>Cédula del Atleta</th>
-                                        <th>Nombre Completo</th>
+                                        <th>Nombre del Atleta</th>
                                         <th>Disciplina</th>
                                         <th>Cédula del Especialista</th>
                                         <th>Nombre Completo</th>
