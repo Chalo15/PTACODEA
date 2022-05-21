@@ -188,7 +188,7 @@
 
                         {{-- Categoria --}}
                         <div class="form-group row">
-                            <label for="category" class="col-sm-4 col-form-label">Categoria</label>
+                            <label for="category" class="col-sm-4 col-form-label">Categoria de deporte</label>
                             <div class="col-sm-8">
                                 <x-select name="category">
                                     <option disabled {{ old('category') ? '' : 'selected' }} value=""> --

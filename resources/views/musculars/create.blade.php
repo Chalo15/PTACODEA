@@ -288,7 +288,7 @@
 
                         {{-- Requerimiento Calorico --}}
                         <div class="form-group row">
-                            <label for="calories" class="col-sm-4 col-form-label">Requerimiento Cal{orico</label>
+                            <label for="calories" class="col-sm-4 col-form-label">Requerimiento Calorico</label>
                             <div class="col-sm-8">
                                 <x-input name="calories" value="{{ old('calories') }}" />
                             </div>
@@ -298,7 +298,7 @@
                         <div class="text-center ">
                             <h4 class="text-center font-weight-bold ">Acotaciones Extras</h4>
                         </div>
-
+                        <br>
                         <div class="form-group row">
                             <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
                             <div class="col-sm-8">
