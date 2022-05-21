@@ -54,11 +54,11 @@
                                 <div class="col-sm-8">
                                     <x-select name="district">
                                         <option disabled {{ old('district') ? '' : 'selected' }} value=""> --
-                                            Seleccione -- </option>
+                                            Seleccione -- </option>{{--
                                         @foreach ($districts as $district)
                                             <option {{ old('district') == $district ? 'selected' : '' }}
                                                 value="{{ $district }}">{{ $district }}</option>
-                                        @endforeach
+                                        @endforeach--}}
                                     </x-select>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                             <div class="form-group row">
                                 <label for="gender" class="col-sm-4 col-form-label">Género</label>
                                 <div class="col-sm-8">
-                                    @foreach ($genders as $gender)
+                                   {{-- @foreach ($genders as $gender)
                                         <div class="custom-control custom-radio">
                                             <input
                                                 {{ (old('gender') && old('gender') == $gender) || (!old('gender') && $loop->index == 0) ? 'checked' : '' }}
@@ -103,7 +103,7 @@
                                                 {{ $gender }}
                                             </label>
                                         </div>
-                                    @endforeach
+                                    @endforeach--}}
                                 </div>
                             </div>
 
@@ -114,10 +114,10 @@
                                     <x-select name="category">
                                         <option disabled {{ old('category') ? '' : 'selected' }} value=""> --
                                             Seleccione -- </option>
-                                        @foreach ($categories as $category)
+                                       {{-- @foreach ($categories as $category)
                                             <option {{ old('category') == $category ? 'selected' : '' }}
                                                 value="{{ $category }}">{{ $category }}</option>
-                                        @endforeach
+                                        @endforeach--}}
                                     </x-select>
                                 </div>
                             </div>
@@ -130,10 +130,10 @@
                                         <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> --
                                             Seleccione
                                             -- </option>
-                                        @foreach ($sports as $sport)
+                                       {{-- @foreach ($sports as $sport)
                                             <option {{ old('sport_id') == $sport->id ? 'selected' : '' }}
                                                 value="{{ $sport }}">{{ $sport }}</option>
-                                        @endforeach
+                                        @endforeach--}}
                                     </x-select2>
                                 </div>
                             </div>
@@ -146,10 +146,10 @@
                                         <option disabled {{ old('blood') ? '' : 'selected' }} value=""> -- Seleccione
                                             --
                                         </option>
-                                        @foreach ($bloods as $blood)
+                                        {{--oreach ($bloods as $blood)
                                             <option {{ old('blood') == $blood ? 'selected' : '' }}
                                                 value="{{ $blood }}">{{ $blood }}</option>
-                                        @endforeach
+                                        @endforeach--}}
                                     </x-select>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
                             <div class="form-group row">
                                 <label for="laterality" class="col-sm-4 col-form-label">Lateralidad</label>
                                 <div class="col-sm-8">
-                                    @foreach ($lateralities as $laterality)
+                                    {{--@foreach ($lateralities as $laterality)
                                         <div class="custom-control custom-radio">
                                             <input
                                                 {{ (old('laterality') && old('laterality') == $laterality) || (!old('laterality') && $loop->index == 0) ? 'checked' : '' }}
@@ -168,7 +168,7 @@
                                                 {{ $laterality }}
                                             </label>
                                         </div>
-                                    @endforeach
+                                    @endforeach--}}
                                 </div>
                             </div>
 
@@ -261,10 +261,10 @@
                                             <x-select name="manager">
                                                 <option disabled {{ old('manager') ? '' : 'selected' }} value=""> --
                                                     Seleccione -- </option>
-                                                @foreach ($relationships as $relationship)
+                                                {{--@foreach ($relationships as $relationship)
                                                     <option {{ old('manager') == $relationship ? 'selected' : '' }}
                                                         value="{{ $relationship }}">{{ $relationship }}</option>
-                                                @endforeach
+                                                @endforeach--}}
                                             </x-select>
                                         </div>
                                     </div>

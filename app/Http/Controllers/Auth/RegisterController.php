@@ -93,6 +93,7 @@ class RegisterController extends Controller
         $genders = config('general.genders');
 
         $districts = config('general.districts');
+        dd($districts);
 
         $bloods = config('general.bloods');
 
@@ -109,8 +110,8 @@ class RegisterController extends Controller
         Mail::to($email)->send(new CredentialsMail($id, $password));
         $data['role_id'] = 4;
         $data['state'] = 'R';
-        return view($this, compact('sports', 'users', 'genders', 'districts', 'bloods', 'lateralities', 'categories', 'relationships'));
-        return User::create($data);
 
+        $this->view('auth.register', compact('sports', 'users', 'genders', 'districts', 'bloods', 'lateralities', 'categories', 'relationships'));
+        return User::create($data);
     }
 }
