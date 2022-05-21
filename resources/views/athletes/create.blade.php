@@ -209,6 +209,14 @@
                             </div>
                         </div>
 
+                        {{-- Número de Dictamen Medico --}}
+                        <div class="form-group row">
+                            <label for="medical_opinion" class="col-sm-4 col-form-label">Número de Dictamen Médico</label>
+                            <div class="col-sm-8">
+                                <x-input name="medical_opinion" value="{{ old('medical_opinion') }}" />
+                            </div>
+                        </div>
+
 
                         {{-- Disciplina Deportiva --}}
                         <div class="form-group row">
@@ -439,7 +447,7 @@
                             required: true,
                             equalTo: "#password"
                         },
-                        coach_id: {
+                        sport_id: {
                             required: true
                         },
                         blood: {
@@ -471,6 +479,11 @@
                             required: true
                         },
                         policy: {
+                            required: true,
+                            maxlength: 10,
+                            minlength: 1
+                        },
+                        medical_opinion: {
                             required: true,
                             maxlength: 10,
                             minlength: 1
@@ -533,7 +546,7 @@
                             required: 'Por favor ingrese de nuevo su contraseña *',
                             equalTo: 'Por favor introduzca la misma contraseña *'
                         },
-                        coach_id: {
+                        sport_id: {
                             required: 'Por favor ingrese su instructor *'
                         },
                         blood: {
@@ -561,9 +574,14 @@
                             required: 'Por favor ingrese su número parentezco *'
                         },
                         policy: {
-                            required: 'Por favor ingrese la numero de su póliza *',
+                            required: 'Por favor ingrese el numero de su póliza *',
                             maxlength: 'Su póliza no puede ser mayor a 10 caracteres o dígitos *',
                             minlength: 'Su póliza no puede ser menor a 1 caracteres o dígitos *'
+                        },
+                        medical_opinion: {
+                            required: 'Por favor ingrese el numero de su dictamen medico *',
+                            maxlength: 'El numero de su dictamen medico no puede ser mayor a 10 caracteres o dígitos *',
+                            minlength: 'El numero de su dictamen medico no puede ser menor a 1 caracteres o dígitos *'
                         },
                         url: {
                             required: 'Por favor ingrese su fotocopia de la cédula *'

@@ -171,9 +171,28 @@
 
                             {{-- Disciplina Deportiva --}}
                             <div class="form-group row">
-                                <label for="sport_id" class="col-sm-4 col-lg-12 col-form-label">Disciplina Deportiva</label>
+                                <label for="sport_id" class="col-sm-4 col-lg-12 col-form-label">Disciplina
+                                    Deportiva</label>
                                 <div class="col-sm-8 col-lg-12">
                                     <x-textarea disabled name="sport_id">{{ $athlete->sport_id }}</x-textarea>
+                                </div>
+                            </div>
+
+                            {{-- Número de Poliza --}}
+                            <div class="form-group row">
+                                <label for="medical_opinion" class="col-sm-4 col-form-label">Número de Póliza</label>
+                                <div class="col-sm-8">
+                                    <x-input disable name="medical_opinion" value="{{ $user->policy }}" />
+                                </div>
+                            </div>
+
+                            {{-- Número de Dictamen Medico --}}
+                            <div class="form-group row">
+                                <label for="medical_opinion" class="col-sm-4 col-form-label">Número de Dictamen
+                                    Médico</label>
+                                <div class="col-sm-8">
+                                    <x-input disable name="medical_opinion"
+                                        value="{{ $athlete->medical_opinion }}" />
                                 </div>
                             </div>
 

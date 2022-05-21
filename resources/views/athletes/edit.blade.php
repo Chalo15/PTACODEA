@@ -83,7 +83,8 @@
                                 <div class="form-group row">
                                     <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
                                     <div class="col-sm-8">
-                                        <x-input name="canton" value="{{ old('canton') ?? $athlete->user->canton }}" />
+                                        <x-input name="canton"
+                                            value="{{ old('canton') ?? $athlete->user->canton }}" />
                                     </div>
                                 </div>
 
@@ -96,7 +97,8 @@
                                                 Seleccione --
                                             </option>
                                             @foreach ($districtss as $districts)
-                                                <option {{ $athlete->user->districts == $districts ? 'selected' : '' }}
+                                                <option
+                                                    {{ $athlete->user->districts == $districts ? 'selected' : '' }}
                                                     value="{{ old('districts') ?? $districts }}">{{ $districts }}
                                                 </option>
                                             @endforeach
@@ -176,7 +178,17 @@
                                 <div class="form-group row">
                                     <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
                                     <div class="col-sm-8">
-                                        <x-input name="policy" value="{{ old('policy') ?? $athlete->policy }}" />
+                                        <x-input name="policy" value="{{ old('policy') ?? $user->policy }}" />
+                                    </div>
+                                </div>
+
+
+                                {{-- Número de Dictamen Medico --}}
+                                <div class="form-group row">
+                                    <label for="medical_opinion" class="col-sm-4 col-form-label">Número de
+                                        Dictamen Médico</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="medical_opinion" value="{{ old('medical_opinion') ?? $athlete->medical_opinion }}" />
                                     </div>
                                 </div>
                                 <hr>
@@ -459,6 +471,11 @@
                                 maxlength: 10,
                                 minlength: 1
                             },
+                            medical_opinion: {
+                                required: true,
+                                maxlength: 10,
+                                minlength: 1
+                            },
                             gender: {
                                 required: true
                             },
@@ -591,6 +608,11 @@
                                 required: 'Por favor ingrese la numero de su póliza *',
                                 maxlength: 'Su póliza no puede ser mayor a 10 caracteres o dígitos *',
                                 minlength: 'Su póliza no puede ser menor a 3 caracteres o dígitos *'
+                            },
+                            medical_opinion: {
+                                required: 'Por favor ingrese el numero de su dictamen medico *',
+                                maxlength: 'El numero de su dictamen medico no puede ser mayor a 10 caracteres o dígitos *',
+                                minlength: 'El numero de su dictamen medico no puede ser menor a 1 caracteres o dígitos *'
                             },
                             pdf: {
                                 required: 'Por favor ingrese su fotocopia de la cédula *'

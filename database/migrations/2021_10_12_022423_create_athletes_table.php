@@ -21,6 +21,7 @@ class CreateAthletesTable extends Migration
             $table->string('blood');
             $table->char('laterality');
             $table->string('category');
+            $table->string('medical_opinion');
             $table->string('name_manager')->nullable();
             $table->string('lastname_manager')->nullable();
             $table->string('manager')->nullable();

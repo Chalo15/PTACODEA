@@ -294,22 +294,6 @@
                             </div>
                         </div>
 
-                        {{-- IMC Alto --}}
-                        <div class="form-group row">
-                            <label for="bmi_high" class="col-sm-4 col-form-label">IMC Alto</label>
-                            <div class="col-sm-8">
-                                <x-input name="bmi_high" value="{{ old('bmi_high') }}" />
-                            </div>
-                        </div>
-
-                        {{-- ICC Alto --}}
-                        <div class="form-group row">
-                            <label for="icc_high" class="col-sm-4 col-form-label">ICC Alto</label>
-                            <div class="col-sm-8">
-                                <x-input name="icc_high" value="{{ old('icc_high') }}" />
-                            </div>
-                        </div>
-
                         <hr>
                         <div class="text-center ">
                             <h4 class="text-center font-weight-bold ">Acotaciones Extras</h4>
@@ -507,18 +491,6 @@
                                 maxlength: 5,
                                 minlength: 1
                             },
-                            bmi_high: {
-                                required: true,
-                                numbersfloatonly: true,
-                                maxlength: 5,
-                                minlength: 1
-                            },
-                            icc_high: {
-                                required: true,
-                                numbersfloatonly: true,
-                                maxlength: 5,
-                                minlength: 1
-                            },
                         },
                         messages: {
                             physiological_age: {
@@ -640,16 +612,6 @@
                                 required: 'Ingrese una medida requerimiento calórico *',
                                 maxlength: 'La medida requerimiento calórico no puede ser mayor a cinco dígitos *',
                                 minlength: 'La medida requerimiento calórico no puede ser menor a uno dígito *'
-                            },
-                            bmi_high: {
-                                required: 'Ingrese una medida de IMC *',
-                                maxlength: 'La medida de IMC no puede ser mayor a cinco dígitos *',
-                                minlength: 'La medida de IMC no puede ser menor a uno dígito *'
-                            },
-                            icc_high: {
-                                required: 'Ingrese una medida de ICC *',
-                                maxlength: 'La medida de ICC no puede ser mayor a cinco dígitos *',
-                                minlength: 'La medida de ICC no puede ser menor a uno dígito *'
                             },
                         },
                     });
