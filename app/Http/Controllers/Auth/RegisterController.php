@@ -93,7 +93,7 @@ class RegisterController extends Controller
         $genders = config('general.genders');
 
         $districts = config('general.districts');
-        dd($districts);
+        //dd($districts);
 
         $bloods = config('general.bloods');
 

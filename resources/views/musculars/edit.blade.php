@@ -56,7 +56,7 @@
 
                         {{-- Edad Fisiologica --}}
                         <div class="form-group row">
-                            <label for="physiological_age" class="col-sm-4 col-form-label">Edad</label>
+                            <label for="physiological_age" class="col-sm-4 col-form-label">Edad Fisiológica</label>
                             <div class="col-sm-8">
                                 <x-input name="physiological_age" type="number"
                                     value="{{ old('physiological_age') ?? $muscular->physiological_age }}" />
