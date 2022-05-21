@@ -138,7 +138,6 @@ class AppointmentController extends Controller
         } else {
 
 
-
             $appointment->availability->update(['state' => 'PENDIENTE']);
             //Envio de notificacion al Entrenador;
             User::where('identification', $appointment->coach->user->identification)

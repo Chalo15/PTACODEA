@@ -15,9 +15,9 @@
     },
     message(notification) {
         if (this.role == 6 || this.role == 5) {
-            return `El atleta ${notification.data.Nombre_Atleta} ${notification.data.Apellidos_Atleta}, cédula ${notification.data.Id_Atleta} reservó una cita`;
+            return `El instructor ${notification.data.Nombre_Atleta} ${notification.data.Apellidos_Atleta}, cédula ${notification.data.Id_Atleta} reservó una cita`;
 
-        } else if (this.role == 4) {
+        } else if (this.role == 2) {
             if(notification.data.State == 'CONFIRMADA'){
                 return `${notification.data.Nombre_Encargado} aceptó la reserva de ${notification.data.Role_Encargado}.`;
             }else if(notification.data.State == 'PENDIENTE'){
@@ -63,8 +63,8 @@
             <div class="dropdown-item ">
 
                 <span x-text="message(notification)"></span> &nbsp;
-                @if(auth()->user()->role_id == 4)
-                <div x-show="role == 4" class="d-inline">
+                @if(auth()->user()->role_id == 2)
+                <div x-show="role == 2" class="d-inline">
                     <button type="button" class="d-inline btn" x-on:click="read(notification.id)">
                         <i class="fas fa-envelope-open" data-toggle="tooltip" data-placement="top" title="Marcar como leido"></i>
                     </button>
@@ -88,7 +88,7 @@
         </template>
 
         <div class="dropdown-divider"></div>
-        @can('role',['Atleta'])
+        @can('role',['Instructor'])
         <div class="text-center">
             <a href="{{ route('appointments.index') }}" class="btn btn-primary my-1">
                 Mis citas
