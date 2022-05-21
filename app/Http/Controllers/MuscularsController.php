@@ -125,8 +125,18 @@ class MuscularsController extends Controller
     {
         $pdf = PDF::loadView('pdfs.muscular', compact('muscular'));
 
-        return $pdf->download('document.pdf');
-
         return $pdf->download($muscular->athlete->user->full_name . '.pdf');
+    }
+    public function generateReportPDF(User $user)
+    {
+
+        setlocale(LC_ALL, 'es_ES@euro', 'es_ES', 'esp');
+        $today = strftime('%B');
+
+        $musculars = Muscular::where("user_id", "=", $user->id)->whereRaw('MONTH(date) = ?', [date('m')])->whereRaw('YEAR(date) = ?', [date('Y')])->get();
+
+        $pdf = PDF::loadView('pdfs.muscularReport', compact('user', 'musculars'));
+
+        return $pdf->download($today . '.pdf');
     }
 }

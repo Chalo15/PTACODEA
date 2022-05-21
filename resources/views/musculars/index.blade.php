@@ -7,6 +7,17 @@
                 Atrás
             </a>
         </div>
+        <div class="col mb-3 text-right">
+            @can('role',['Musculacion'])
+            @php
+            $user = Auth::user();
+            @endphp
+            <a href="{{ route('musculars.generateReport-pdf', $user) }}" class="btn btn-primary">
+                <i class="fas fa-file-pdf"></i> &nbsp;
+                Reporte
+            </a>
+            @endcan
+        </div>
     </div>
 
     <div class="row">
@@ -41,7 +52,7 @@
                                         <th>Fecha</th>
                                         <th>Hora</th>
                                         <th>Cédula del Atleta</th>
-                                        <th>Nombre Completo</th>
+                                        <th>Nombre del Atleta</th>
                                         <th>Disciplina</th>
                                         <th>Cédula del Especialista</th>
                                         <th>Nombre Completo</th>
@@ -99,7 +110,7 @@
                                         <th>Fecha</th>
                                         <th>Hora</th>
                                         <th>Cédula del Atleta</th>
-                                        <th>Nombre Completo</th>
+                                        <th>Nombre del Atleta</th>
                                         <th>Disciplina</th>
                                         <th>Cédula del Especialista</th>
                                         <th>Nombre Completo</th>

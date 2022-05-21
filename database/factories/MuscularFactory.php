@@ -27,7 +27,7 @@ class MuscularFactory extends Factory
             'user_id' => User::where('role_id', '=', 6)->get()->random(),
             'athlete_id' => Athlete::all()->random(),
             'date' => $this->faker->date(),
-            'time'=>$this->faker->sentence(),
+            'time' => $this->faker->time(),
             'physiological_age' => $this->faker->numerify('#.#'),
             'weight' => $this->faker->numerify('#.#'),
             'height' => $this->faker->numerify('#.#'),
@@ -52,7 +52,9 @@ class MuscularFactory extends Factory
             'fat' => $this->faker->numerify('#.#'),
             'residual' => $this->faker->numerify('#.#'),
             'bone' => $this->faker->numerify('#.#'),
+            'muscle' => $this->faker->numerify('#.#'),
             'visceral' => $this->faker->numerify('#.#'),
+            'ideal_weight' => $this->faker->numerify('#.#'),
             'get_better' => $this->faker->numerify('#.#'),
             'details' => $this->faker->paragraph(3),
         ];
