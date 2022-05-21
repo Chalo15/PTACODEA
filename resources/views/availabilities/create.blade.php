@@ -72,12 +72,7 @@
                         </div>
                         @can('role', ['Musculacion'])
                             {{-- Cantidad de registros en la hora --}}
-                            <div class="form-group row">
-                                <label for="counter" class="col-sm-4 col-form-label">Numero de registro</label>
-                                <div class="col-sm-8">
-                                    <x-input name="counter" type="hidden" value="1" />
-                                </div>
-                            </div>
+                            <x-input name="counter" type="hidden" value="1" />
                         @endcan
 
                         @can('role', ['Fisioterapia'])

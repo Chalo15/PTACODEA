@@ -30,19 +30,6 @@ class StoreAvailabilityRequest extends FormRequest
             'counter' => ['required'],
             'state'   => ['required']
         ];
-        if ($this->is_not_all_book) {
-            $rules += [
-            'start' => ['required'],
-            'end' => ['required'],
-            ];
-            return $rules;
-        }
-        if ($this->is_all_book) {
-            $rules += [
-            'start' => ['required'],
-            'end' => ['required'],
-            ];
-            return $rules;
-        }
+        return $rules;
     }
 }
