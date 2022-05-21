@@ -111,7 +111,7 @@ class RegisterController extends Controller
         $data['role_id'] = 4;
         $data['state'] = 'R';
 
-        $this->view('auth.register', compact('sports', 'users', 'genders', 'districts', 'bloods', 'lateralities', 'categories', 'relationships'));
+        //$this->view('auth.register', compact('sports', 'users', 'genders', 'districts', 'bloods', 'lateralities', 'categories', 'relationships'));
         return User::create($data);
     }
 }

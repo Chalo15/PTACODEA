@@ -48,9 +48,9 @@
                                 </div>
                             </div>
 
-                            {{-- Distrtito --}}
+                            {{-- Distrito --}}
                             <div class="form-group row">
-                                <label for="district" class="col-sm-4 col-form-label">Distrtito</label>
+                                <label for="district" class="col-sm-4 col-form-label">Distrito</label>
                                 <div class="col-sm-8">
                                     <x-select name="district">
                                         <option disabled {{ old('district') ? '' : 'selected' }} value=""> --
