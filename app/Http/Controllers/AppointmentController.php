@@ -29,7 +29,8 @@ class AppointmentController extends Controller
         $user = request()->user();
 
         if ($user->hasRole(['Musculacion'])||$user->hasRole(['Fisioterapia'])) {
-            $appointments = Appointment::with('availability')->get();
+            $appointments = Appointment::with('availability.user')->get();
+            //->where('availability_id','=', $user->availabilities->user)
         } else {
             $appointments = Appointment::where('coach_id', '=', $user->coach->id)->get();
         }
