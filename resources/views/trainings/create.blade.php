@@ -24,7 +24,7 @@
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
                             <div class="col-sm-8">
-                                <x-select2 name="athlete_id">
+                                <x-select2 id="athlete_id" name="athlete_id">
                                     <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> -- Seleccione
                                         -- </option>
                                     @foreach ($athletes as $athlete)
@@ -52,7 +52,7 @@
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}"
+                                <x-input id="date" name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}"
                                     value="{{ $today }}" />
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                         <div class="form-group row">
                             <label for="type_training" class="col-sm-4 col-form-label">Tipo de Entrenamiento</label>
                             <div class="col-sm-8">
-                                <x-input name="type_training" value="{{ old('type_training') }}" />
+                                <x-input id="type_training" name="type_training" value="{{ old('type_training') }}" />
                             </div>
                         </div>
 
@@ -69,7 +69,7 @@
                         <div class="form-group row">
                             <label for="calification" class="col-sm-4 col-form-label">Calificacion</label>
                             <div class="col-sm-8">
-                                <x-input name="calification" value="{{ old('calification') }}" />
+                                <x-input id="calification" name="calification" value="{{ old('calification') }}" />
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@
                         <div class="form-group row">
                             <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
                             <div class="col-sm-8">
-                                <x-input name="get_better" value="{{ old('get_better') }}" />
+                                <x-input id="get_better" name="get_better" value="{{ old('get_better') }}" />
                             </div>
                         </div>
 
@@ -101,7 +101,7 @@
                         <div class="form-group row">
                             <label for="planification" class="col-sm-4 col-form-label">Planificación</label>
                             <div class="col-sm-8">
-                                <x-input name="planification" value="{{ old('planification') }}" />
+                                <x-input id="planification" name="planification" value="{{ old('planification') }}" />
                             </div>
                         </div>
 
@@ -110,7 +110,7 @@
                             <label for="lesion" class="col-sm-4 col-form-label">Lesiones Durante el
                                 Entrenamiento</label>
                             <div class="col-sm-8">
-                                <x-input name="lesion" value="{{ old('lesion') }}" />
+                                <x-input id="lesion" name="lesion" value="{{ old('lesion') }}" />
                             </div>
                         </div>
 

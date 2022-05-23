@@ -288,27 +288,13 @@
 
                         {{-- Requerimiento Calorico --}}
                         <div class="form-group row">
-                            <label for="calories" class="col-sm-4 col-form-label">Requerimiento Cal{orico</label>
+                            <label for="calories" class="col-sm-4 col-form-label">Requerimiento Calórico</label>
                             <div class="col-sm-8">
                                 <x-input name="calories" value="{{ old('calories') }}" />
                             </div>
                         </div>
 
-                        {{-- IMC Alto --}}
-                        <div class="form-group row">
-                            <label for="bmi_high" class="col-sm-4 col-form-label">IMC Alto</label>
-                            <div class="col-sm-8">
-                                <x-input name="bmi_high" value="{{ old('bmi_high') }}" />
-                            </div>
-                        </div>
-
-                        {{-- ICC Alto --}}
-                        <div class="form-group row">
-                            <label for="icc_high" class="col-sm-4 col-form-label">ICC Alto</label>
-                            <div class="col-sm-8">
-                                <x-input name="icc_high" value="{{ old('icc_high') }}" />
-                            </div>
-                        </div>
+                    
 
                         <hr>
                         <div class="text-center ">
