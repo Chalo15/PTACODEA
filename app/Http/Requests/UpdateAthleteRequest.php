@@ -37,6 +37,7 @@ class   UpdateAthleteRequest extends FormRequest
             'category'        => ['required'],
             'blood'           => ['required'],
             'laterality'      => ['required'],
+            'sport_id'      => ['required'],
             'policy'          => ['required','min:3', 'max:10']
         ];
         if ($this->is_edit) {

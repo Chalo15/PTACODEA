@@ -24,7 +24,7 @@ class StoreAthleteRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            #'sport_id'   => ['required'],
+            'sport_id'   => ['required'],
             'blood'      => ['required'],
             'laterality' => ['required'],
             'category'   => ['required'],
