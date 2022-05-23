@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <form id='form_register' action="/register" method="POST">
                             @csrf
-                            @json($errors->all())
+                            {{--@json($errors->all())--}}
                             {{-- Cédula de Identidad o DIMEX --}}
                             <div class="form-group row">
                                 <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
@@ -233,18 +233,7 @@
 
                             <hr>
 
-                            <div x-data="{ isOpen: {{ old('is_younger') ? 'true' : 'false' }} }">
-
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" name="is_younger" id="is_younger"
-                                        x-model="isOpen">
-                                    <label class="form-check-label" for="is_younger">
-                                        ¿El atleta es menor de edad?
-                                    </label>
-                                </div>
-
-                                <div x-show="isOpen">
-
+                            
                                     <div class="row">
                                         <div class="col mb-3 d-flex justify-content-center">
 
@@ -320,9 +309,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
+                                
                             <div class="form-group d-flex justify-content-end">
                                 <button class="btn btn-primary">
                                     <i class="fas fa-sign-in-alt"></i> &nbsp;

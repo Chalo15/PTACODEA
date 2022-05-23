@@ -69,11 +69,12 @@ class RegisterController extends Controller
                 'canton'                 => ['required'],
                 'category'               => ['required'],
                 'policy'                 => ['required','min:3', 'max:10'],
-                'name_manager'           => ['min:3', 'max:30'],
-                'lastname_manager'       => ['min:3', 'max:30'],
-                'manager'                => ['min:3', 'max:15'],
-                'identification_manager' => ['min:9', 'max:15'],
+                'name_manager'           => ['required','min:3', 'max:30'],
+                'lastname_manager'       => ['required','min:3', 'max:30'],
+                'manager'                => ['required','min:3', 'max:15'],
+                'identification_manager' => ['required','min:9', 'max:15'],
                 'contact_manager'        => ['digits:8'],
+                'url'        => ['digits:8'],
 
             ],
         );
