@@ -49,6 +49,6 @@ class PhysioConfirmMail extends Mailable
     public function build()
     {
         $datos = $this->data();
-        return $this->markdown('emails.confirm', compact('datos'));
+        return $this->markdown('emails.physioConfirmMail', compact('datos'));
     }
 }
