@@ -60,9 +60,9 @@ class UsersController extends Controller
 
         $genders = config('general.genders');
 
-        $provinces = config('general.provinces');
+        $districts = config('general.districts');
 
-        return view('users.create', compact('roles', 'sports', 'genders', 'provinces'));
+        return view('users.create', compact('roles', 'sports', 'genders', 'districts'));
     }
 
     /**
