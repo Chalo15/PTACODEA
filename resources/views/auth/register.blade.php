@@ -427,6 +427,56 @@
                                 required: true,
                                 equalTo: "#password"
                             },
+                            sport_id: {
+                                required: true
+                            },
+                            blood: {
+                                required: true
+                            },
+                            laterality: {
+                                required: true
+                            },
+                            district: {
+                                required: true
+                            },
+                            canton: {
+                                required: true
+                            },
+                            category: {
+                                required: true
+                            },
+                            policy: {
+                                required: true
+                            },
+                            name_manager: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            lastname_manager: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            manager: {
+                                required: true
+                            },
+                            identification_manager: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            contact_manager: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            url: {
+                                required: true
+                            },
+
                         },
 
                         messages: {
@@ -462,6 +512,48 @@
                             password_confirmation: {
                                 required: 'Por favor ingrese de nuevo su contraseña *',
                                 equalTo: 'Por favor introduzca la misma contraseña *'
+                            },
+                            sport_id: {
+                                required: 'Por favor ingrese su disciplina deportiva *',
+                            },
+                            blood: {
+                                required: 'Por favor ingrese su tipo de sangre *',
+                            },
+                            laterality: {
+                                required: 'Por favor ingrese su lateralidad *',
+                            },
+                            canton: {
+                                required: 'Por favor ingrese su cantón *',
+                            },
+                            category: {
+                                required: 'Por favor ingrese su categoria deportiva *',
+                            },
+                            policy: {
+                                required: 'Por favor ingrese su numero de poliza *',
+                            },
+                            name_manager: {
+                                required: 'Por favor ingrese el nombre del responsable *',
+                                maxlength: 'El nombre no puede ser mayor a 30 caracteres *',
+                                minlength: 'El nombre no puede ser menor a 3 caracteres *'
+                            },
+                            lastname_manager: {
+                                required: 'Por favor ingrese los apellidos del responsable *',
+                                maxlength: 'El apellido no puede ser mayor a 30 caracteres *',
+                                minlength: 'El apellido no puede ser menor a 3 caracteres *'
+                            },
+                            manager: {
+                                required: 'Por favor ingrese el parentesco *'
+                            },
+                            identification_manager: {
+                                required: 'Por favor ingrese la cédula de su encargado(a) *',
+                                maxlength: 'La cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+                                minlength: 'La cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+                            },
+                            contact_manager: {
+                                required: 'Por favor ingrese el número telefónico *',
+                            },
+                            url: {
+                                required: 'Por favor ingrese la fotocopia en formato pdf de la cédula de su encargado *',
                             },
                         }
                     });

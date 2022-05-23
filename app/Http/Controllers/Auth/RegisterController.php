@@ -74,7 +74,7 @@ class RegisterController extends Controller
                 'manager'                => ['required','min:3', 'max:15'],
                 'identification_manager' => ['required','min:9', 'max:15'],
                 'contact_manager'        => ['digits:8'],
-                'url'        => ['digits:8'],
+                'url'                    => ['require'],
 
             ],
         );
