@@ -11,7 +11,8 @@ class Appointment extends Model
 
     protected $fillable = [
         'coach_id',
-        'availability_id'
+        'availability_id',
+        'user_id'
     ];
 
     public function coach()

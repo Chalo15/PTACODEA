@@ -33,7 +33,6 @@ class AthleteFactory extends Factory
         return [
             'user_id' => User::factory()->create(['role_id' => 4]),
             'sport_id' => Sport::all()->random(),
-            'coach_id' => Coach::all()->random(),
             'state' => $this->faker->randomElement(['A', 'R']),
             'blood' => $bloods[array_rand($bloods)],
             'laterality' => $lateralities[array_rand($lateralities)],
