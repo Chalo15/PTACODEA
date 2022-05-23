@@ -39,8 +39,6 @@ class CreateMuscularsTable extends Migration
             $table->float('biceps');
             $table->float('calf_cm');
             $table->float('calories');
-            $table->float('bmi_high');
-            $table->float('icc_high');
             $table->float('fat');
             $table->float('residual');
             $table->float('bone');

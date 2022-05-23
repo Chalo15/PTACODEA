@@ -79,31 +79,32 @@
                                     </div>
                                 </div>
 
-                                {{-- Provincia --}}
+                                {{-- Cantón --}}
                                 <div class="form-group row">
-                                    <label for="province" class="col-sm-4 col-form-label">Provincia</label>
+                                    <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
                                     <div class="col-sm-8">
-                                        <x-select name="province">
-                                            <option {{ $athlete->user->province ? '' : 'selected' }} value=""> --
+                                        <x-input name="canton"
+                                            value="{{ old('canton') ?? $athlete->user->canton }}" />
+                                    </div>
+                                </div>
+
+                                {{-- Distrito --}}
+                                <div class="form-group row">
+                                    <label for="districts" class="col-sm-4 col-form-label">Distrito</label>
+                                    <div class="col-sm-8">
+                                        <x-select name="districts">
+                                            <option {{ $athlete->user->districts ? '' : 'selected' }} value=""> --
                                                 Seleccione --
                                             </option>
-                                            @foreach ($provinces as $province)
-                                                <option {{ $athlete->user->province == $province ? 'selected' : '' }}
-                                                    value="{{ old('province') ?? $province }}">{{ $province }}
+                                            @foreach ($districtss as $districts)
+                                                <option
+                                                    {{ $athlete->user->districts == $districts ? 'selected' : '' }}
+                                                    value="{{ old('districts') ?? $districts }}">{{ $districts }}
                                                 </option>
                                             @endforeach
                                         </x-select>
                                     </div>
                                 </div>
-
-                                {{-- Ciudad --}}
-                                <div class="form-group row">
-                                    <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
-                                    <div class="col-sm-8">
-                                        <x-input name="city" value="{{ old('city') ?? $athlete->user->city }}" />
-                                    </div>
-                                </div>
-
 
                                 <hr>
 
@@ -177,7 +178,17 @@
                                 <div class="form-group row">
                                     <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
                                     <div class="col-sm-8">
-                                        <x-input name="policy" value="{{ old('policy') ?? $athlete->policy }}" />
+                                        <x-input name="policy" value="{{ old('policy') ?? $user->policy }}" />
+                                    </div>
+                                </div>
+
+
+                                {{-- Número de Dictamen Medico --}}
+                                <div class="form-group row">
+                                    <label for="medical_opinion" class="col-sm-4 col-form-label">Número de
+                                        Dictamen Médico</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="medical_opinion" value="{{ old('medical_opinion') ?? $athlete->medical_opinion }}" />
                                     </div>
                                 </div>
                                 <hr>
@@ -216,18 +227,16 @@
 
                             <hr>
 
-                            {{-- Instructor --}}
+                            {{-- Disciplina Deportiva --}}
 
                             <div class="form-group row">
-                                <label for="coach_id" class="col-sm-4 col-form-label">Instructor</label>
+                                <label for="sport_id" class="col-sm-4 col-form-label">Instructor</label>
                                 <div class="col-sm-8">
-                                    <x-select2 name="coach_id">
+                                    <x-select2 name="sport_id">
                                         <option disabled value=""> -- Seleccione -- </option>
-                                        @foreach ($coaches as $coach)
-                                            <option {{ $athlete->coach->id == $coach->id ? 'selected' : '' }}
-                                                value="{{ old('coach_id') ?? $coach->id }}">
-                                                {{ $coach->user->identification . ' | ' . $coach->user->full_name }}
-                                            </option>
+                                        @foreach ($sports as $sport)
+                                            <option {{ $sport->id == $sport->id ? 'selected' : '' }}
+                                                value="{{ $sport }}">{{ $sport }}</option>
                                         @endforeach
                                     </x-select2>
                                 </div>
@@ -432,10 +441,10 @@
                             state: {
                                 required: true
                             },
-                            province: {
+                            districts: {
                                 required: true
                             },
-                            city: {
+                            canton: {
                                 required: true,
                                 lettersonly: true,
                                 minlength: 3,
@@ -462,6 +471,11 @@
                                 maxlength: 10,
                                 minlength: 1
                             },
+                            medical_opinion: {
+                                required: true,
+                                maxlength: 10,
+                                minlength: 1
+                            },
                             gender: {
                                 required: true
                             },
@@ -475,7 +489,7 @@
                                 required: true,
                                 equalTo: "#password"
                             },
-                            coach_id: {
+                            sport_id: {
                                 required: true
                             },
                             blood: {
@@ -532,13 +546,13 @@
                             state: {
                                 required: 'Por favor seleccione un estado *'
                             },
-                            province: {
-                                required: 'Por favor seleccione su provincia *'
+                            districts: {
+                                required: 'Por favor seleccione su Distrito *'
                             },
-                            city: {
-                                required: 'Por favor ingrese la ciudad donde vive *',
-                                maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
-                                minlength: 'La ciudad no puede ser menor a 3 caracteres *'
+                            canton: {
+                                required: 'Por favor ingrese la Cantón donde vive *',
+                                maxlength: 'La Cantón no puede ser mayor a 30 caracteres *',
+                                minlength: 'La Cantón no puede ser menor a 3 caracteres *'
                             },
                             email: {
                                 required: 'Por favor ingrese su email *',
@@ -563,7 +577,7 @@
                                 required: 'Por favor ingrese de nuevo su contraseña *',
                                 equalTo: 'Por favor introduzca la misma contraseña *'
                             },
-                            coach_id: {
+                            sport_id: {
                                 required: 'Por favor ingrese su instructor *'
                             },
                             blood: {
@@ -594,6 +608,11 @@
                                 required: 'Por favor ingrese la numero de su póliza *',
                                 maxlength: 'Su póliza no puede ser mayor a 10 caracteres o dígitos *',
                                 minlength: 'Su póliza no puede ser menor a 3 caracteres o dígitos *'
+                            },
+                            medical_opinion: {
+                                required: 'Por favor ingrese el numero de su dictamen medico *',
+                                maxlength: 'El numero de su dictamen medico no puede ser mayor a 10 caracteres o dígitos *',
+                                minlength: 'El numero de su dictamen medico no puede ser menor a 1 caracteres o dígitos *'
                             },
                             pdf: {
                                 required: 'Por favor ingrese su fotocopia de la cédula *'

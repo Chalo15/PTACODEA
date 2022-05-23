@@ -78,13 +78,11 @@ class AthletesController extends Controller
     {
         $sports = Sport::all();
 
-        $coaches = Coach::with('user')->get();
-
         $users = User::where('role_id', '=', 7)->get();
 
         $genders = config('general.genders');
 
-        $provinces = config('general.provinces');
+        $districts = config('general.districts');
 
         $bloods = config('general.bloods');
 
@@ -94,7 +92,7 @@ class AthletesController extends Controller
 
         $relationships = config('general.relationships');
 
-        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'categories', 'relationships', 'coaches'));
+        return view('athletes.create', compact('sports', 'users', 'genders', 'districts', 'bloods', 'lateralities', 'categories', 'relationships'));
     }
 
     /**
@@ -158,7 +156,7 @@ class AthletesController extends Controller
 
         $genders = config('general.genders');
 
-        $provinces = config('general.provinces');
+        $districts = config('general.districts');
 
         $categories = config('general.categories');
 
@@ -169,7 +167,7 @@ class AthletesController extends Controller
         $relationships = config('general.relationships');
 
 
-        return view('athletes.edit', compact('states', 'sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'categories', 'relationships', 'coaches'));
+        return view('athletes.edit', compact('states', 'sports', 'athlete', 'genders', 'districts', 'bloods', 'lateralities', 'categories', 'relationships', 'coaches'));
     }
 
     /**

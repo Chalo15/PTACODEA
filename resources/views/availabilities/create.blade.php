@@ -35,43 +35,65 @@
                         </div>
 
 
-                                {{-- Hora Inicio --}}
-                                <div class="form-group row">
-                                    <label for="start" class="col-sm-4 col-form-label">Hora Inicio</label>
-                                    <div class="col-sm-8">
-                                        <x-select2 name="start" id="inicio">
-                                            <option disabled {{ old('start') ? '' : 'selected' }} value=""> --
-                                                Seleccione -- </option>
-                                            @foreach ($schedules as $schedule)
-                                                <option {{ old('start') == $schedule ? 'selected' : '' }}
-                                                    value="{{ $schedule }}">
-                                                    {{ $schedule }}
-                                                </option>
-                                            @endforeach
-                                        </x-select2>
-                                    </div>
-                                </div>
-                                
-                    
+                        {{-- Hora Inicio --}}
+                        <div class="form-group row">
+                            <label for="start" class="col-sm-4 col-form-label">Hora Inicio</label>
+                            <div class="col-sm-8">
+                                <x-select2 name="start" id="inicio">
+                                    <option disabled {{ old('start') ? '' : 'selected' }} value=""> --
+                                        Seleccione -- </option>
+                                    @foreach ($schedules as $schedule)
+                                        <option {{ old('start') == $schedule ? 'selected' : '' }}
+                                            value="{{ $schedule }}">
+                                            {{ $schedule }}
+                                        </option>
+                                    @endforeach
+                                </x-select2>
+                            </div>
+                        </div>
 
-                                {{-- Hora Final --}}
-                                <div class="form-group row">
-                                    <label for="end" class="col-sm-4 col-form-label">Hora Final</label>
-                                    <div class="col-sm-8">
-                                        <x-select2 name="end">
-                                            <option disabled {{ old('end') ? '' : 'selected' }} value=""> --
-                                                Seleccione -- </option>
-                                            @foreach ($schedules as $schedule)
-                                                <option {{ old('end') == $schedule ? 'selected' : '' }}
-                                                    value="{{ $schedule }}">
-                                                    {{ $schedule }}
-                                                </option>
-                                            @endforeach
-                                        </x-select2>
-                                    </div>
-                                </div>
 
-                 
+
+                        {{-- Hora Final --}}
+                        <div class="form-group row">
+                            <label for="end" class="col-sm-4 col-form-label">Hora Final</label>
+                            <div class="col-sm-8">
+                                <x-select2 name="end">
+                                    <option disabled {{ old('end') ? '' : 'selected' }} value=""> --
+                                        Seleccione -- </option>
+                                    @foreach ($schedules as $schedule)
+                                        <option {{ old('end') == $schedule ? 'selected' : '' }}
+                                            value="{{ $schedule }}">
+                                            {{ $schedule }}
+                                        </option>
+                                    @endforeach
+                                </x-select2>
+                            </div>
+                        </div>
+                        @can('role', ['Musculacion'])
+                            {{-- Cantidad de registros en la hora --}}
+                            <x-input name="counter" type="hidden" value="1" />
+                        @endcan
+
+                        @can('role', ['Fisioterapia'])
+                            {{-- Cantidad de registros en la hora --}}
+                            <div class="form-group row">
+                                <label for="counter" class="col-sm-4 col-form-label">Numero de registro</label>
+                                <div class="col-sm-8">
+                                    <x-select2 name="counter">
+                                        <option disabled {{ old('counter') ? '' : 'selected' }} value=""> --
+                                            Seleccione -- </option>
+                                        @foreach ($capacities_physios as $capacity_physio)
+                                            <option {{ old('counter') == $capacity_physio ? 'selected' : '' }}
+                                                value="{{ $capacity_physio }}">
+                                                {{ $capacity_physio }}
+                                            </option>
+                                        @endforeach
+                                    </x-select2>
+                                </div>
+                            </div>
+                        @endcan
+
 
                         <div class="form-group row">
 
@@ -94,43 +116,38 @@
 
 
     @push('scripts')
-    <script>
+        <script>
+            $(document).ready(function() {
 
 
- $(document).ready(function(){
+                //Validaciones del formulario
+                if ($("#form_availabilities_create").length > 0) {
+                    $('#form_availabilities_create').validate({
+                        rules: {
 
+                            start: {
+                                required: true,
+                                time_select: true
+                            },
+                            end: {
+                                required: true,
+                                time_select: true
+                            },
+                        },
 
-//Validaciones del formulario
-    if($("#form_availabilities_create").length > 0)
-    {
-        $('#form_availabilities_create').validate({
-        rules:{
-
-        start: {
-        required : true,  
-        time_select : true
-        },
-        end: {
-        required : true,    
-        time_select : true           
-        },
-        },
-
-        start : {
-        athlete_id: {
-        required : 'Por favor seleccione una hora de inicio *'    
-        },
-        end: {
-        required : 'Por favor seleccione una hora de finalización *'             
-        },     
-        }
-        });
-    }
-});
-
-    </script>
-    
-@endpush
+                        start: {
+                            athlete_id: {
+                                required: 'Por favor seleccione una hora de inicio *'
+                            },
+                            end: {
+                                required: 'Por favor seleccione una hora de finalización *'
+                            },
+                        }
+                    });
+                }
+            });
+        </script>
+    @endpush
 
 
 </x-app-layout>

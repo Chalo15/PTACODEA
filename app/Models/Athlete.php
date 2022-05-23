@@ -67,8 +67,4 @@ class Athlete extends Model
         return $this->belongsTo(Coach::class);
     }
 
-    public function appointments()
-    {
-        return $this->hasMany(Appointment::class);
-    }
 }

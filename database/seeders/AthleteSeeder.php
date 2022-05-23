@@ -18,7 +18,6 @@ class AthleteSeeder extends Seeder
             [
                 'user_id'                => 1,
                 'sport_id'               => 1,
-                'coach_id'               => 1,
                 'state'                  => 'P',
                 'blood'                  => 'B+',
                 'laterality'             => 'D',
