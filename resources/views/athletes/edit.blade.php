@@ -53,12 +53,24 @@
                                     </div>
                                 </div>
 
+                                @php
+                        $today = today()->toDateString();
+                        $age = today()
+                        ->subYears(7)
+                        ->toDateString();
+                        @endphp
+
+                        <div class="form-group row">
+                            <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
+                            <div class="col-sm-8">
+
+
                                 {{-- Fecha de Nacimiento --}}
                                 <div class="form-group row">
                                     <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                                     <div class="col-sm-8">
-                                        <x-input type="date" name="birthdate"
-                                            value="{{ old('birthdate') ?? $athlete->user->birthdate }}" />
+                                        <x-input type="date" id="birthdate" max="{{ $age }}" name="birthdate"
+                                        value="{{ old('birthdate') ?? $athlete->user->birthdate }}" />
                                     </div>
                                 </div>
 
