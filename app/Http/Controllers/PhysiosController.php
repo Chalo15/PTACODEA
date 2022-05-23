@@ -132,4 +132,15 @@ class PhysiosController extends Controller
 
         return $pdf->stream($physio->athlete->user->full_name . '.pdf');
     }
+    public function generateReportPDF(User $user)
+    {
+
+        setlocale(LC_ALL, 'es_ES@euro', 'es_ES', 'esp');
+        $today = strftime('%B');
+
+        $physios = Physio::where("user_id", "=", $user->id)->whereRaw('MONTH(date) = ?', [date('m')])->whereRaw('YEAR(date) = ?', [date('Y')])->get();
+        $pdf = PDF::loadView('pdfs.physioReport', compact('user', 'physios'));
+
+        return $pdf->download($today . '.pdf');
+    }
 }

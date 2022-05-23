@@ -70,7 +70,10 @@ return [
         '02:00 PM',
         '03:00 PM',
         '04:00 PM',
-        '05:00 PM'
+        '05:00 PM',
+        '06:00 PM',
+        '07:00 PM',
+        '08:00 PM'
     ],
 
 
@@ -115,6 +118,30 @@ return [
 
 
     'capacities_physios' => ['1','2','3','4','5','6'],
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Distritos del Canton central de Alajuela
+    |--------------------------------------------------------------------------
+    */
+
+
+    'districts' => ['Alajuela',
+                    'San José',
+                    'Carrizal',
+                    'San Antonio',
+                    'Guácima',
+                    'San Isidro',
+                    'Sabanilla',
+                    'San Rafael',
+                    'Río Segundo',
+                    'Desamparados',
+                    'Turrúcares',
+                    'Tambor',
+                    'La Garita',
+                    'Sarapiquí',
+                    'Otro'],
 
 
 ];

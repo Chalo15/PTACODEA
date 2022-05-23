@@ -27,9 +27,11 @@ class AppointmentController extends Controller
     {
         //
         $user = request()->user();
+        //dd($user->id);
 
         if ($user->hasRole(['Musculacion']) || $user->hasRole(['Fisioterapia'])) {
-            $appointments = Appointment::with('availability')->get();
+            $appointments = Appointment::where('user_id', '=', $user->id)->get();
+            //
         } else {
             $appointments = Appointment::where('coach_id', '=', $user->coach->id)->get();
         }
@@ -62,7 +64,8 @@ class AppointmentController extends Controller
         $user = $request->user();
 
         $appoint = Appointment::create($request->validated() + [
-            'coach_id' => $user->coach->id
+            'coach_id' => $user->coach->id,
+            'user_id' => $availability->user->id
         ]);
 
         //Envio de notificacion al encargado de musculacion o al fisioterapeuta;

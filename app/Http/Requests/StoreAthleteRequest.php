@@ -24,10 +24,9 @@ class StoreAthleteRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            #'sport_id'   => ['required'],
+            'sport_id'   => ['required'],
             'blood'      => ['required'],
             'laterality' => ['required'],
-            'coach_id'   => ['required'],
             'category'   => ['required'],
             'policy'     => ['required','min:3', 'max:10'],
         ];
@@ -43,8 +42,8 @@ class StoreAthleteRequest extends FormRequest
                 'last_name'       => ['required','min:3', 'max:30'],
                 'birthdate'       => ['required'],
                 'phone'           => ['required', 'digits:8','numeric', 'unique:users,phone'],
-                'province'        => ['required'],
-                'city'            => ['required','min:3', 'max:30'],
+                'canton'          => ['required'],
+                'district'        => ['required','min:3', 'max:30'],
                 'email'           => ['required', 'email', 'unique:users'],
                 'address'         => ['required','min:3', 'max:100'],
                 'gender'          => ['required'],

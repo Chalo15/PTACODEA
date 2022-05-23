@@ -24,7 +24,8 @@
                                 <div x-show="!isOpen">
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <img src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}" class="rounded mx-auto d-block" width="200" height="200">
+                                            <img src="{{ $user->photo ? asset($user->photo) : asset('images/default.png') }}"
+                                                class="rounded mx-auto d-block" width="200" height="200">
                                         </div>
                                     </div>
 
@@ -37,13 +38,15 @@
                                 </div>
 
                                 <div x-show="isOpen">
-                                    <form action="{{ route('profile.update-picture') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('profile.update-picture') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
 
                                         <div class="row">
                                             <div class="col d-flex justify-content-center mb-3">
-                                                <img id="selected" class="rounded" style="max-height: 200px; max-width: 200px;">
+                                                <img id="selected" class="rounded"
+                                                    style="max-height: 200px; max-width: 200px;">
                                             </div>
                                         </div>
 
@@ -55,7 +58,8 @@
 
                                         <div class="row">
                                             <div class="col d-flex justify-content-end">
-                                                <button @click="isOpen = !isOpen" type="button" class="btn btn-secondary mr-3">
+                                                <button @click="isOpen = !isOpen" type="button"
+                                                    class="btn btn-secondary mr-3">
                                                     <i class="fas fa-times"></i> &nbsp;
                                                     Cancelar
                                                 </button>
@@ -195,7 +199,9 @@
                                     <option {{ !$user->province ? 'selected' : '' }} readonly value=""> -- Seleccione
                                         -- </option>
                                     @foreach ($provinces as $province)
-                                    <option {{ $user->province && $user->province == $province ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
+                                        <option
+                                            {{ $user->province && $user->province == $province ? 'selected' : '' }}
+                                            value="{{ $province }}">{{ $province }}</option>
                                     @endforeach
                                 </x-select>
                             </div>
@@ -242,12 +248,15 @@
                             <label for="gender" class="col-sm-4 col-form-label">Género</label>
                             <div class="col-sm-8">
                                 @foreach ($genders as $gender)
-                                <div class="custom-control custom-radio">
-                                    <input {{ $user->gender && $user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ old('gender') ?? $user->gender }}">
-                                    <label class="custom-control-label" for="gender-{{ $loop->index }}">
-                                        {{ $gender }}
-                                    </label>
-                                </div>
+                                    <div class="custom-control custom-radio">
+                                        <input {{ $user->gender && $user->gender == $gender ? 'checked' : '' }}
+                                            class="custom-control-input" type="radio" name="gender"
+                                            id="gender-{{ $loop->index }}"
+                                            value="{{ old('gender') ?? $user->gender }}">
+                                        <label class="custom-control-label" for="gender-{{ $loop->index }}">
+                                            {{ $gender }}
+                                        </label>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -268,14 +277,15 @@
     </div>
 
     @push('scripts')
-    <script>
-        $(document).ready(function(e) {
-            $('#image').change(function() {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    $('#selected').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
+        <script>
+            $(document).ready(function(e) {
+                $('#image').change(function() {
+                    let reader = new FileReader();
+                    reader.onload = (e) => {
+                        $('#selected').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                });
             });
             //Metodo para validar número telefónico
             jQuery.validator.addMethod("phonenumber", function(value, element) {
@@ -402,7 +412,6 @@
             }
         </script>
     @endpush
-
 
 
 </x-app-layout>

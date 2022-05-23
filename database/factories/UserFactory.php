@@ -23,11 +23,11 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $provinces = config('general.provinces');
+        $districts = config('general.districts');
         $genders = config('general.genders');
 
         return [
-            'role_id' => $this->faker->randomElement([1, 5, 6, 7]),
+            'role_id' => $this->faker->randomElement([1, 5, 6]),
             'identification' => $this->faker->unique()->randomNumber(9),
             'password' => 'password', // password
             'name' => $this->faker->name(),
@@ -35,8 +35,8 @@ class UserFactory extends Factory
             'birthdate' => now(),
             'phone' => $this->faker->unique()->randomNumber(8),
             'email' => $this->faker->unique()->safeEmail(),
-            'province' => $provinces[array_rand($provinces)],
-            'city' => $this->faker->city(),
+            'district' => $districts[array_rand($districts)],
+            'canton' => $this->faker->city(),
             'address' => $this->faker->address(),
             'gender' => $genders[array_rand($genders)],
             'contract_number' => $this->faker->randomNumber(),

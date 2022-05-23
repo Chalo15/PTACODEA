@@ -24,13 +24,12 @@ class   UpdateAthleteRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'coach_id'   => ['required'],
             'identification'  => ['unique:users,identification,' . $this->athlete->user->id],
             'name'            => ['required','min:3', 'max:30'],
             'last_name'       => ['required','min:3', 'max:30'],
             'birthdate'       => ['required'],
-            'province'        => ['required'],
-            'city'            => ['required','min:3', 'max:30'],
+            'canton'          => ['required'],
+            'district'        => ['required','min:3', 'max:30'],
             'email'           => ['required', 'email', 'unique:users,email,' . $this->athlete->user->id],
             'phone'           => ['required', 'numeric', 'unique:users,phone,' . $this->athlete->user->id],
             'address'         => ['required','min:3', 'max:100'],
@@ -38,6 +37,7 @@ class   UpdateAthleteRequest extends FormRequest
             'category'        => ['required'],
             'blood'           => ['required'],
             'laterality'      => ['required'],
+            'sport_id'      => ['required'],
             'policy'          => ['required','min:3', 'max:10']
         ];
         if ($this->is_edit) {

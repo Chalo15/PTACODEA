@@ -60,9 +60,6 @@ class AvailabilityController extends Controller
         try {
 
             $user->availabilities()->create($request->validated());
-            $user->update([
-                'counter' => +1,
-            ]);
             return redirect()->route('availabilities.index')->with('status', 'Disponibilidad creada exitosamente!');
         } catch (Exception $e) {
             return redirect()->route('availabilities.create')->

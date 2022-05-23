@@ -24,35 +24,32 @@
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
                             <div class="col-sm-8">
-                                <x-select2 name="athlete_id">
+                                <x-select2 id="athlete_id" name="athlete_id">
                                     <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> -- Seleccione
                                         -- </option>
                                     @foreach ($athletes as $athlete)
-                                        <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }}
-                                            value="{{ $athlete->id }}">
+                                    <<<<<<< HEAD <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">
+                                        {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
+                                        </option>
+                                        =======
+                                        <option {{ old('athlete_id') == $athlete->id ? 'selected' : '' }} value="{{ $athlete->id }}">
                                             {{ $athlete->user->identification . ' | ' . $athlete->user->name . ' ' . $athlete->user->last_name }}
                                         </option>
-                                    @endforeach
+                                        >>>>>>> origin/Gonzalo
+                                        @endforeach
                                 </x-select2>
                             </div>
                         </div>
 
                         {{-- Fecha de registro --}}
+                        {{-- Fecha de Toma Datos --}}
                         @php
-                        $today = today()->toDateString();
-                        $lastWeek = today()
-                        ->subDays(7)
-                        ->toDateString();
-                        $nextWeek = today()
-                        ->addDay(7)
-                        ->toDateString();
+                            $today = today()->toDateString();
                         @endphp
-
                         <div class="form-group row">
-
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ $today }}" />
+                                <x-input readonly type="date" name="date" value="{{ $today }}" />
                             </div>
                         </div>
 
@@ -60,7 +57,7 @@
                         <div class="form-group row">
                             <label for="type_training" class="col-sm-4 col-form-label">Tipo de Entrenamiento</label>
                             <div class="col-sm-8">
-                                <x-input name="type_training" value="{{ old('type_training') }}" />
+                                <x-input id="type_training" name="type_training" value="{{ old('type_training') }}" />
                             </div>
                         </div>
 
@@ -68,7 +65,7 @@
                         <div class="form-group row">
                             <label for="calification" class="col-sm-4 col-form-label">Calificacion</label>
                             <div class="col-sm-8">
-                                <x-input name="calification" value="{{ old('calification') }}" />
+                                <x-input id="calification" name="calification" value="{{ old('calification') }}" />
                             </div>
                         </div>
 
@@ -76,7 +73,7 @@
                         <div class="form-group row">
                             <label for="time" class="col-sm-4 col-form-label">Duración del Entrenamiento</label>
                             <div class="col-sm-8">
-                                <x-input name="time" value="{{ old('time') }}" />
+                                <x-input id="time" name="time" value="{{ old('time') }}" type="time" />
                             </div>
                         </div>
 
@@ -84,7 +81,7 @@
                         <div class="form-group row">
                             <label for="level" class="col-sm-4 col-form-label">Nivel</label>
                             <div class="col-sm-8">
-                                <x-input name="level" value="{{ old('level') }}" />
+                                <x-input id="level" name="level" value="{{ old('level') }}" />
                             </div>
                         </div>
 
@@ -92,7 +89,7 @@
                         <div class="form-group row">
                             <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
                             <div class="col-sm-8">
-                                <x-input name="get_better" value="{{ old('get_better') }}" />
+                                <x-input id="get_better" name="get_better" value="{{ old('get_better') }}" />
                             </div>
                         </div>
 
@@ -100,7 +97,7 @@
                         <div class="form-group row">
                             <label for="planification" class="col-sm-4 col-form-label">Planificación</label>
                             <div class="col-sm-8">
-                                <x-input name="planification" value="{{ old('planification') }}" />
+                                <x-input id="planification" name="planification" value="{{ old('planification') }}" />
                             </div>
                         </div>
 
@@ -109,14 +106,7 @@
                             <label for="lesion" class="col-sm-4 col-form-label">Lesiones Durante el
                                 Entrenamiento</label>
                             <div class="col-sm-8">
-                                <x-input name="lesion" value="{{ old('lesion') }}" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="details" class="col-sm-4 col-form-label">Datos extra</label>
-                            <div class="col-sm-8">
-                                <x-editor name="details" value="{!! $athlete->sport->ckeditor !!}" />
+                                <x-input id="lesion" name="lesion" value="{{ old('lesion') }}" />
                             </div>
                         </div>
 
@@ -133,73 +123,74 @@
     </div>
 
     @push('scripts')
-        <script>
-            $(document).ready(function() {
-                //Método que valida solo numeros
-                jQuery.validator.addMethod("numbersonly", function(value, element) {
-                    return this.optional(element) || /^[0-9,":"]+$/i.test(value);
-                }, 'Por favor digite solo valores numéricos y números naturales *', );
-                //Validaciones del formulario
-                if ($("#form_create_trainings").length > 0) {
-                    $('#form_create_trainings').validate({
-                        rules: {
-                            date: {
-                                required: true
-                            },
-                            type_training: {
-                                required: true
-                            },
-                            calification: {
-                                required: true
-                            },
-                            time: {
-                                required: true,
-                                numbersonly: true
-                            },
-                            level: {
-                                required: true
-                            },
-                            get_better: {
-                                required: true
-                            },
-                            planification: {
-                                required: true
-                            },
-                            details: {
-                                required: true
-                            },
-                        },
-
-                        messages: {
-                            date: {
-                                required: 'Por favor seleccione una fecha *'
-                            },
-                            type_training: {
-                                required: 'Por favor ingrese el tipo de entrenamiento *'
-                            },
-                            calification: {
-                                required: 'Por favor ingrese la calificación *'
-                            },
-                            time: {
-                                required: 'Por favor la duración del entrenamiento *'
-                            },
-                            level: {
-                                required: 'Por favor ingrese el nivel *'
-                            },
-                            get_better: {
-                                required: 'Por favor ingrese los aspectos a mejorar *'
-                            },
-                            planification: {
-                                required: 'Por favor ingrese la planificación *'
-                            },
-                            lesion: {
-                                required: 'Por favor ingrese la lesión que presenta *'
-                            },
+    <script>
+        $(document).ready(function() {
+            //Método que valida solo numeros
+            jQuery.validator.addMethod("numbersonly", function(value, element) {
+                return this.optional(element) || /^[0-9,":"]+$/i.test(value);
+            }, 'Por favor digite solo valores numéricos y números naturales *', );
+            //Validaciones del formulario
+            if ($("#form_create_trainings").length > 0) {
+                $('#form_create_trainings').validate({
+                    rules: {
+                        date: {
+                            required: true
                         }
-                    });
-                }
-            });
-        </script>
+                        , type_training: {
+                            required: true
+                        }
+                        , calification: {
+                            required: true
+                        }
+                        , time: {
+                            required: true
+                            , numbersonly: true
+                        }
+                        , level: {
+                            required: true
+                        }
+                        , get_better: {
+                            required: true
+                        }
+                        , planification: {
+                            required: true
+                        }
+                        , details: {
+                            required: true
+                        }
+                    , },
+
+                    messages: {
+                        date: {
+                            required: 'Por favor seleccione una fecha *'
+                        }
+                        , type_training: {
+                            required: 'Por favor ingrese el tipo de entrenamiento *'
+                        }
+                        , calification: {
+                            required: 'Por favor ingrese la calificación *'
+                        }
+                        , time: {
+                            required: 'Por favor la duración del entrenamiento *'
+                        }
+                        , level: {
+                            required: 'Por favor ingrese el nivel *'
+                        }
+                        , get_better: {
+                            required: 'Por favor ingrese los aspectos a mejorar *'
+                        }
+                        , planification: {
+                            required: 'Por favor ingrese la planificación *'
+                        }
+                        , lesion: {
+                            required: 'Por favor ingrese la lesión que presenta *'
+                        }
+                    , }
+                });
+            }
+        });
+
+    </script>
     @endpush
 
 

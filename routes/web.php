@@ -84,6 +84,7 @@ Route::prefix('musculars')->group(function () {
     Route::get('{muscular}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit')->middleware("can:role,'Musculacion'");
     Route::put('{muscular}', [MuscularsController::class, 'update'])->name('musculars.update');
     Route::get('{muscular}/generate-pdf', [MuscularsController::class, 'generatePDF'])->name('musculars.generate-pdf');
+    Route::get('{user}/generateReport-pdf', [MuscularsController::class, 'generateReportPDF'])->name('musculars.generateReport-pdf');
 });
 
 /**
@@ -97,6 +98,7 @@ Route::prefix('physios')->group(function () {
     Route::get('{physio}/edit', [PhysiosController::class, 'edit'])->name('physios.edit')->middleware("can:role,'Fisioterapia'");
     Route::put('{physio}', [PhysiosController::class, 'update'])->name('physios.update');
     Route::get('{physio}/generate-pdf', [PhysiosController::class, 'generatePDF'])->name('physios.generate-pdf');
+    Route::get('{user}/generateReport-pdf', [PhysiosController::class, 'generateReportPDF'])->name('physios.generateReport-pdf');
 });
 
 /**
@@ -111,7 +113,6 @@ Route::prefix('trainings')->group(function () {
     Route::put('{training}', [TrainingsController::class, 'update'])->name('trainings.update');
     Route::get('{training}/generate-pdf', [TrainingsController::class, 'generatePDF'])->name('trainings.generate-pdf');
     Route::get('{training}/generate-reportPdf', [TrainingsController::class, 'generateReport'])->name('trainings.generate-ReportPdf');
-
 });
 
 /**
