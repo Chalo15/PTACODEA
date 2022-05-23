@@ -18,7 +18,7 @@
         "alpinejs": "^3.8.1",
         "axios": "^0.21",
         "bootstrap": "^4.6.1",
-        "jquery": "^3.6",
+        "jquery": "^3.6.0",
         "laravel-mix": "^6.0.37",
         "lodash": "^4.17.19",
         "popper.js": "^1.16.1",
@@ -32,6 +32,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "fullcalendar": "^5.10.2"
+        "fullcalendar": "^5.10.2",
+        "jquery-validation": "^1.19.3"
     }
 }

@@ -67,7 +67,7 @@
 
                         {{-- Edad Fisiologica --}}
                         <div class="form-group row">
-                            <label for="physiological_age" class="col-sm-4 col-form-label">Edad Fisiológica</label>
+                            <label for="physiological_age" class="col-sm-4 col-form-label">Edad</label>
                             <div class="col-sm-8">
                                 <x-input name="physiological_age" value="{{ old('physiological_age') }}" />
                             </div>
@@ -288,7 +288,7 @@
 
                         {{-- Requerimiento Calorico --}}
                         <div class="form-group row">
-                            <label for="calories" class="col-sm-4 col-form-label">Requerimiento Calorico</label>
+                            <label for="calories" class="col-sm-4 col-form-label">Requerimiento Calórico</label>
                             <div class="col-sm-8">
                                 <x-input name="calories" value="{{ old('calories') }}" />
                             </div>
@@ -298,7 +298,7 @@
                         <div class="text-center ">
                             <h4 class="text-center font-weight-bold ">Acotaciones Extras</h4>
                         </div>
-                        <br>
+
                         <div class="form-group row">
                             <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
                             <div class="col-sm-8">
@@ -491,6 +491,7 @@
                                 maxlength: 5,
                                 minlength: 1
                             },
+
                         },
                         messages: {
                             physiological_age: {
