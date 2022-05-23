@@ -214,6 +214,14 @@
                                 </div>
                             </div>
 
+                            {{-- Número de Dictamen Medico --}}
+                            <div class="form-group row">
+                                <label for="medical_opinion" class="col-sm-4 col-form-label">Número de Dictamen Medico</label>
+                                <div class="col-sm-8">
+                                    <x-input name="medical_opinion" id="medical_opinion" value="{{ old('medical_opinion') }}" />
+                                </div>
+                            </div>
+
                             {{-- Contraseña --}}
                             <div class="form-group row">
                                 <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
