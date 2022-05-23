@@ -19,8 +19,8 @@
                                 <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
                                     DIMEX</label>
                                 <div class="col-sm-8">
-                                    <x-input id="identification" class="identification"
-                                        name="identification" value="{{ old('identification') }}" />
+                                    <x-input id="identification" name="identification"
+                                        value="{{ old('identification') }}" />
                                 </div>
                             </div>
 
@@ -28,7 +28,7 @@
                             <div class="form-group row">
                                 <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
                                 <div class="col-sm-8">
-                                    <x-input name="name" value="{{ old('name') }}" id="name" />
+                                    <x-input id="name" name="name" value="{{ old('name') }}" />
                                 </div>
                             </div>
 
@@ -44,7 +44,8 @@
                             <div class="form-group row">
                                 <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                                 <div class="col-sm-8">
-                                    <x-input type="date" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" />
+                                    <x-input type="date" id="birthdate" name="birthdate"
+                                        value="{{ old('birthdate') }}" />
                                 </div>
                             </div>
 
@@ -267,7 +268,8 @@
                                     <div class="form-group row">
                                         <label for="name_manager" class="col-sm-4 col-form-label">Nombre</label>
                                         <div class="col-sm-8">
-                                            <x-input id="name_manager" name="name_manager" value="{{ old('name_manager') }}" />
+                                            <x-input id="name_manager" name="name_manager"
+                                                value="{{ old('name_manager') }}" />
                                         </div>
                                     </div>
 
@@ -275,7 +277,8 @@
                                     <div class="form-group row">
                                         <label for="lastname_manager" class="col-sm-4 col-form-label">Apellidos</label>
                                         <div class="col-sm-8">
-                                            <x-input id="lastname_manager" name="lastname_manager" value="{{ old('lastname_manager') }}" />
+                                            <x-input id="lastname_manager" name="lastname_manager"
+                                                value="{{ old('lastname_manager') }}" />
                                         </div>
                                     </div>
 
@@ -283,7 +286,8 @@
                                     <div class="form-group row">
                                         <label for="contact_manager" class="col-sm-4 col-form-label">Teléfono</label>
                                         <div class="col-sm-8">
-                                            <x-input id="contact_manager" name="contact_manager" value="{{ old('contact_manager') }}" />
+                                            <x-input id="contact_manager" name="contact_manager"
+                                                value="{{ old('contact_manager') }}" />
                                         </div>
                                     </div>
 
@@ -343,8 +347,7 @@
         </div>
     </div>
 
-{{--
-    @push('scripts')
+    {{-- @push('scripts')
         <script>
             $(document).ready(function() {
 
@@ -549,5 +552,5 @@
                 }
             }
         </script>
-    @endpush--}}
+    @endpush --}}
     </x-app-layout>
