@@ -24,7 +24,7 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         $array = [
-            'identification'  => ['min:9', 'max:15','required', 'unique:users,identification,' . $this->user->id],
+            'identification'  => ['required', 'min:9', 'max:15','unique:users,identification,' . $this->user->id],
             'name'            => ['required','min:3', 'max:30'],
             'last_name'       => ['required','min:3', 'max:30'],
             'birthdate'       => ['required'],
