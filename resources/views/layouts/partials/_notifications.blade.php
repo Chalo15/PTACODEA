@@ -15,13 +15,13 @@
     },
     message(notification) {
         if (this.role == 6 || this.role == 5) {
-            return `El instructor ${notification.data.Nombre_Atleta} ${notification.data.Apellidos_Atleta}, cédula ${notification.data.Id_Atleta} reservó una cita`;
+            return `El instructor ${notification.data.Nombre_Entrenador} ${notification.data.Apellidos_Entrenador}, cédula ${notification.data.Id_Entrenador} reservó una cita`;
 
         } else if (this.role == 2) {
             if(notification.data.State == 'CONFIRMADA'){
-                return `${notification.data.Nombre_Encargado} aceptó la reserva de ${notification.data.Role_Encargado}.`;
+                return `${notification.data.Nombre_Encargado} ${notification.data.Apellidos_Encargado} aceptó la reserva de ${notification.data.Rol_Encargado}.`;
             }else if(notification.data.State == 'PENDIENTE'){
-                return `${notification.data.Nombre_Encargado} rechazó la reserva de ${notification.data.Role_Encargado}.`;
+                return `${notification.data.Nombre_Encargado} ${notification.data.Apellidos_Encargado} rechazó la reserva de ${notification.data.Rol_Encargado}.`;
             }
         }
     },
