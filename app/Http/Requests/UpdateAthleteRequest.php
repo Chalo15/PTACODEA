@@ -48,8 +48,8 @@ class   UpdateAthleteRequest extends FormRequest
 
         if ($this->is_younger) {
             $rules += [
-                'name_manager'           => ['required', 'min:3', 'max:15'],
-                'lastname_manager'       => ['required','min:3', 'max:15'],
+                'name_manager'           => ['required', 'min:3', 'max:30'],
+                'lastname_manager'       => ['required','min:3', 'max:30'],
                 'manager'                => ['required'],
                 'identification_manager' => ['required', 'min:9', 'max:15'],
                 'contact_manager'        => ['required','digits:8'],

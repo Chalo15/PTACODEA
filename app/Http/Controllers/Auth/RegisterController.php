@@ -56,11 +56,11 @@ class RegisterController extends Controller
         return Validator::make(
             $data,
             [
-                'identification'         => ['required', 'min:9', 'max:15', 'unique:users'],
-                'name'                   => ['required', 'string', 'min:3', 'max:30'],
-                'last_name'              => ['required', 'string', 'min:3', 'max:30'],
+                'identification'         => ['required', 'unique:users'],
+                'name'                   => ['required'],
+                'last_name'              => ['required'],
                 'email'                  => ['required', 'email', 'max:60', 'unique:users'],
-                'phone'                  => ['required', 'digits:8', 'numeric'],
+                'phone'                  => ['required'],
                 'password'               => ['required', 'min:8', 'confirmed'],
                 'sport_id'               => ['required'],
                 'blood'                  => ['required'],
@@ -69,12 +69,11 @@ class RegisterController extends Controller
                 'canton'                 => ['required'],
                 'category'               => ['required'],
                 'policy'                 => ['required','min:3', 'max:10'],
-                'name_manager'           => ['min:3', 'max:15'],
-                'lastname_manager'       => ['min:3', 'max:15'],
+                'name_manager'           => ['min:3', 'max:30'],
+                'lastname_manager'       => ['min:3', 'max:30'],
                 'manager'                => ['min:3', 'max:15'],
                 'identification_manager' => ['min:9', 'max:15'],
                 'contact_manager'        => ['digits:8'],
-                'url'                    => ['required']
 
             ],
         );
@@ -88,20 +87,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $sports = Sport::all();
-
-        $genders = config('general.genders');
-
-        $districts = config('general.districts');
-        //dd($districts);
-
-        $bloods = config('general.bloods');
-
-        $categories = config('general.categories');
-
-        $lateralities = config('general.lateralities');
-
-        $relationships = config('general.relationships');
         //Envia por correo el Id y el password del usuario
         $id = $data['identification'];
         $password = $data['password'];
@@ -110,8 +95,6 @@ class RegisterController extends Controller
         Mail::to($email)->send(new CredentialsMail($id, $password));
         $data['role_id'] = 4;
         $data['state'] = 'R';
-
-        //$this->view('auth.register', compact('sports', 'users', 'genders', 'districts', 'bloods', 'lateralities', 'categories', 'relationships'));
         return User::create($data);
     }
 }

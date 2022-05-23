@@ -89,7 +89,7 @@ class UsersController extends Controller
 
             $user->coach()->create([
                 'sport_id' => $request->sport_id,
-                'phone' => $request->other_phone,
+                'other_phone' => $request->other_phone,
                 'url' => $path
             ]);
         }

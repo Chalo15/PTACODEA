@@ -26,7 +26,6 @@ class StorePhysioRequest extends FormRequest
         $rules = [
             'athlete_id'   => ['required'],
             'date'      => ['required'],
-            'time'             => ['required'],
             'sph' => ['required'],
             'app' => ['required'],
             'treatment' => ['required'],

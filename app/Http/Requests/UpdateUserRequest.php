@@ -28,11 +28,11 @@ class UpdateUserRequest extends FormRequest
             'name'            => ['required','min:3', 'max:30'],
             'last_name'       => ['required','min:3', 'max:30'],
             'birthdate'       => ['required'],
-            'canton'        => ['required'],
-            'district'            => ['required', 'min:3', 'max:30'],
+            'canton'          => ['required'],
+            'district'        => ['required', 'min:3', 'max:30'],
             'email'           => ['required', 'email', 'unique:users,email,' . $this->user->id],
             'phone'           => ['required', 'digits:8', 'numeric', 'unique:users,phone,' . $this->user->id],
-            'address'         => ['required', 'min:3', 'max:100'],
+            'address'         => ['required', 'min:3', 'max:150'],
             'gender'          => ['required'],
             'experience'      => ['required', 'min:1', 'max:2'],
             'contract_number' => ['required', 'min:1', 'max:8'],
@@ -42,9 +42,11 @@ class UpdateUserRequest extends FormRequest
         ];
 
         if ($this->role_id == 2) {
-            $array['sport_id'] = ['required'];
-
-            // Teléfono de habitación
+            $array += [
+                'sport_id'    => ['required'],
+                'other_phone' => ['required', 'digits:8'],
+                'pdf'         => ['required', 'file', 'mimes:pdf']
+            ];
         }
 
         return $array;

@@ -64,30 +64,32 @@
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
                                 <x-input type="date" max="{{ $age }}" name="birthdate"
-                                    value="{{ $user->birthdate }}" />
+                                    value="{{ old('birthdate') ?? $user->birthdate }}" />
                             </div>
                         </div>
 
-                        {{-- Provincia --}}
+                        {{-- Cantón --}}
                         <div class="form-group row">
-                            <label for="province" class="col-sm-4 col-form-label">Provincia</label>
+                            <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
                             <div class="col-sm-8">
-                                <x-select name="province">
-                                    <option {{ $user->province ? '' : 'selected' }} value=""> -- Seleccione --
+                                <x-input readonly name="canton" value="{{ old('canton') ?? $user->canton }}" />
+                            </div>
+                        </div>
+
+                        {{-- Distrito --}}
+                        <div class="form-group row">
+                            <label for="district" class="col-sm-4 col-form-label">Distrito</label>
+                            <div class="col-sm-8">
+                                <x-select name="district">
+                                    <option {{ $user->district ? '' : 'selected' }} value=""> --
+                                        Seleccione --
                                     </option>
-                                    @foreach ($provinces as $province)
-                                        <option {{ $user->province == $province ? 'selected' : '' }}
-                                            value="{{ $province }}">{{ $province }}</option>
+                                    @foreach ($districts as $district)
+                                        <option {{ $user->district == $district ? 'selected' : '' }}
+                                            value="{{ old('district') ?? $district }}">{{ $district }}
+                                        </option>
                                     @endforeach
                                 </x-select>
-                            </div>
-                        </div>
-
-                        {{-- Ciudad --}}
-                        <div class="form-group row">
-                            <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
-                            <div class="col-sm-8">
-                                <x-input name="city" value="{{ $user->city }}" />
                             </div>
                         </div>
 
@@ -196,8 +198,7 @@
                                         <x-select name="sport_id">
                                             <option disabled value=""> -- Seleccione -- </option>
                                             @foreach ($sports as $sport)
-                                                <option
-                                                    {{ $user->role_id == 2 && $user->coach->sport == $sport ? 'selected' : '' }}
+                                                <option {{ $user->role_id == 2 ? 'selected' : '' }}
                                                     value="{{ $sport->id }}">{{ $sport->description }}</option>
                                             @endforeach
                                         </x-select>
@@ -260,8 +261,6 @@
         </div>
     </div>
 
-
-
     @push('scripts')
         <script>
             $(document).ready(function() {
@@ -304,7 +303,7 @@
                         return true;
                     },
                     "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
-                    );
+                );
                 //Validaciones del formulario
                 if ($("#form_users_edit").length > 0) {
                     $('#form_users_edit').validate({
@@ -312,14 +311,12 @@
                             birthdate: {
                                 required: true
                             },
-                            province: {
+                            district: {
                                 required: true
                             },
-                            city: {
+                            canton: {
                                 required: true,
-                                lettersonly: true,
-                                minlength: 3,
-                                maxlength: 30
+                                lettersonly: true
                             },
                             email: {
                                 required: true,
@@ -354,11 +351,6 @@
                                 max: 50,
                                 min: 1
                             },
-                            other_phone: {
-                                required: true,
-                                numbersonly: true,
-                                phonenumber: true
-                            },
                             role_id: {
                                 required: true
                             },
@@ -372,9 +364,6 @@
                                 required: true,
                                 equalTo: "#password"
                             },
-                            pdf: {
-                                required: true
-                            },
                             sport_id: {
                                 required: true
                             },
@@ -383,10 +372,10 @@
                             birthdate: {
                                 required: 'Por favor ingrese su fecha de nacimiento *'
                             },
-                            province: {
+                            district: {
                                 required: 'Por favor ingrese su provincia *'
                             },
-                            city: {
+                            canton: {
                                 required: 'Por favor ingrese la ciudad donde vive *',
                                 maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
                                 minlength: 'La ciudad no puede ser menor a 3 caracteres *'
@@ -419,9 +408,6 @@
                                 max: 'Sus años de contrato no pueden ser de más de 50 *',
                                 min: 'Sus años de contrato no pueden ser de menos de 1 *'
                             },
-                            other_phone: {
-                                required: 'Por favor ingrese su número telefónico *'
-                            },
                             role_id: {
                                 required: 'Por favor ingrese su rol *'
                             },
@@ -433,9 +419,6 @@
                             password_confirmation: {
                                 required: 'Por favor ingrese de nuevo su contraseña *',
                                 equalTo: 'Por favor introduzca la misma contraseña *'
-                            },
-                            pdf: {
-                                required: 'Por favor ingrese la copia de su cédula de identidad *'
                             },
                             sport_id: {
                                 required: 'Por favor ingrese su disciplina *'

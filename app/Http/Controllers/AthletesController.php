@@ -114,7 +114,7 @@ class AthletesController extends Controller
         $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated() + ['role_id' => 7]);
 
 
-        $user->athlete()->create($request->validated() + ['state' => 'A', 'sport_id' => Coach::find($request->coach_id)->sport_id]);
+        $user->athlete()->create($request->validated() + ['state' => 'A']);
 
         $user->update([
             'role_id' => 4
@@ -182,7 +182,7 @@ class AthletesController extends Controller
 
 
 
-        $athlete->update($request->validated() + ['sport_id' => Coach::find($request->coach_id)->sport_id]);
+        $athlete->update($request->validated());
 
         $athlete->user->update($request->validated());
 

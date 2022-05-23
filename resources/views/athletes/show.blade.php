@@ -174,24 +174,24 @@
                                 <label for="sport_id" class="col-sm-4 col-lg-12 col-form-label">Disciplina
                                     Deportiva</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-textarea disabled name="sport_id">{{ $athlete->sport_id }}</x-textarea>
+                                    <x-input disabled name="sport_id" value="{{ $athlete->sport->description }}"/>
                                 </div>
                             </div>
 
                             {{-- Número de Poliza --}}
                             <div class="form-group row">
-                                <label for="medical_opinion" class="col-sm-4 col-form-label">Número de Póliza</label>
-                                <div class="col-sm-8">
-                                    <x-input disable name="medical_opinion" value="{{ $user->policy }}" />
+                                <label for="medical_opinion" class="col-sm-4 col-lg-12 col-form-label">Número de Póliza</label>
+                                <div class="col-sm-8 col-lg-12">
+                                    <x-input disabled name="medical_opinion" value="{{ $athlete->policy }}" />
                                 </div>
                             </div>
 
                             {{-- Número de Dictamen Medico --}}
                             <div class="form-group row">
-                                <label for="medical_opinion" class="col-sm-4 col-form-label">Número de Dictamen
+                                <label for="medical_opinion" class="col-sm-4 col-lg-12 col-form-label">Número de Dictamen
                                     Médico</label>
-                                <div class="col-sm-8">
-                                    <x-input disable name="medical_opinion"
+                                <div class="col-sm-8 col-lg-12">
+                                    <x-input disabled name="medical_opinion"
                                         value="{{ $athlete->medical_opinion }}" />
                                 </div>
                             </div>

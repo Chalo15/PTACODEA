@@ -30,7 +30,7 @@
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input readonly name="date" type="date" {{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}" --}}
+                                <x-input readonly name="date" id="date" type="date" {{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}" --}}
                                     value="{{ $today }}" />
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
                             <div class="col-sm-8">
-                                <x-select2 name="athlete_id">
+                                <x-select2 name="athlete_id" id="athlete_id">
                                     <option disabled {{ old('athlete_id') ? '' : 'selected' }} value=""> -- Seleccione
                                         -- </option>
                                     @foreach ($athletes as $athlete)
@@ -53,11 +53,11 @@
                             </div>
                         </div>
 
-                        {{-- SPH --}}
+                        {{-- sph --}}
                         <div class="form-group row">
                             <label for="sph" class="col-sm-4 col-form-label">SPH</label>
                             <div class="col-sm-8">
-                                <x-textarea name="sph" value="{{ old('sph') }}" />
+                                <x-textarea id="sph" name="sph" value="{{ old('sph') }}" />
                             </div>
                         </div>
 
@@ -65,7 +65,7 @@
                         <div class="form-group row">
                             <label for="app" class="col-sm-4 col-form-label">APP</label>
                             <div class="col-sm-8">
-                                <x-textarea name="app" value="{{ old('app') }}" />
+                                <x-textarea id="app" name="app" value="{{ old('app') }}" />
                             </div>
                         </div>
 
@@ -74,7 +74,7 @@
                         <div class="form-group row">
                             <label for="treatment" class="col-sm-4 col-form-label">Tratamiento</label>
                             <div class="col-sm-8">
-                                <x-textarea name="treatment" value="{{ old('treatment') }}" />
+                                <x-textarea id="treatment" name="treatment" value="{{ old('treatment') }}" />
                             </div>
                         </div>
                         {{-- Cirugias --}}
@@ -98,7 +98,7 @@
                                     <label for="surgeries" class="col-sm-4 col-form-label">Detalle del
                                         tratamiento</label>
                                     <div class="col-sm-8">
-                                        <x-textarea name="surgeries" value="{{ old('surgeries') }}" />
+                                        <x-textarea id="sugeries" name="surgeries" value="{{ old('surgeries') }}" />
                                     </div>
                                 </div>
 
@@ -126,7 +126,7 @@
                                     <label for="fractures" class="col-sm-4 col-form-label">Detalle de la
                                         fractura</label>
                                     <div class="col-sm-8">
-                                        <x-textarea name="fractures" value="{{ old('fractures') }}" />
+                                        <x-textarea id="fractures" name="fractures" value="{{ old('fractures') }}" />
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
 
                             <label for="session_start" class="col-sm-4 col-form-label">Hora</label>
                             <div class="col-sm-8">
-                                <x-input readonly name="session_start" type="time" {{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}" --}}
+                                <x-input readonly  id="session_start" name="session_start" type="time" {{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}" --}}
                                     value="{{ $hour }}" />
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                         <div class="form-group row">
                             <label for="session_end" class="col-sm-4 col-form-label">Hora de fin</label>
                             <div class="col-sm-8">
-                                <x-input name="session_end" type="time" value="{{ old('session_end') }}" />
+                                <x-input id="session_end" name="session_end" type="time" value="{{ old('session_end') }}" />
                             </div>
                         </div>
 
@@ -162,7 +162,7 @@
                         <div class="form-group row">
                             <label for="inability" class="col-sm-4 col-form-label">Fecha de inactividad</label>
                             <div class="col-sm-8">
-                                <x-input name="inability" type="date" min="{{ date('Y-m-d') }}"
+                                <x-input id="inability" name="inability" type="date" min="{{ date('Y-m-d') }}"
                                     value="{{ old('inability') }}" />
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                         <div class="form-group row">
                             <label for="count_session" class="col-sm-4 col-form-label">Cantidad de sesiones</label>
                             <div class="col-sm-8">
-                                <x-input name="count_session" min="1" value="{{ old('count_session') }}" />
+                                <x-input id="count_session" name="count_session" min="1" value="{{ old('count_session') }}" />
                             </div>
                         </div>
 
@@ -180,7 +180,7 @@
                         <div class="form-group row">
                             <label for="severity" class="col-sm-4 col-form-label">Tipo de lesión</label>
                             <div class="col-sm-8">
-                                <x-select name="severity">
+                                <x-select id="severity" name="severity">
                                     <option disabled {{ old('severity') ? '' : 'selected' }} value=""> -- Seleccione
                                         -- </option>
                                     @foreach ($severities as $severity)
@@ -194,7 +194,7 @@
                         <div class="form-group row">
                             <label for="details" class="col-sm-4 col-form-label">Datos extra</label>
                             <div class="col-sm-8">
-                                <x-editor name="details" value="{!! old('details') !!}" />
+                                <x-editor id="details" name="details" value="{!! old('details') !!}" />
                             </div>
                         </div>
 
@@ -267,6 +267,9 @@
                             athlete_id: {
                                 required: true
                             },
+                            date: {
+                                required: true
+                            },
                             sph: {
                                 required: true
                             },
@@ -282,6 +285,10 @@
                             fractures: {
                                 required: true
                             },
+
+                            session_start: {
+                                required: true
+                            },
                             session_end: {
                                 required: true
                             },
@@ -290,7 +297,7 @@
                             },
                             count_session: {
                                 required: true,
-                                numbersonl: true
+                                numbersonly: true
                             },
                             severity: {
                                 required: true
@@ -301,7 +308,7 @@
                                 required: 'Por favor seleccione un atleta *'
                             },
                             sph: {
-                                required: 'Por favor ingrese su SPH *'
+                                required: 'Por favor ingrese su sph *'
                             },
                             app: {
                                 required: 'Por favor ingrese su APP *'

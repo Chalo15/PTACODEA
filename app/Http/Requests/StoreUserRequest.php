@@ -32,7 +32,7 @@ class StoreUserRequest extends FormRequest
             'district'        => ['required', 'min:3', 'max:30'],
             'email'           => ['required', 'email', 'unique:users,email'],
             'phone'           => ['required', 'digits:8','numeric', 'unique:users,phone'],
-            'address'         => ['required', 'min:3', 'max:100'],
+            'address'         => ['required', 'min:3', 'max:150'],
             'gender'          => ['required'],
             'experience'      => ['required', 'min:1', 'max:2'],
             'contract_number' => ['required', 'min:1', 'max:5'],

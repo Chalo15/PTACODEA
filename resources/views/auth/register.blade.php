@@ -13,13 +13,13 @@
                     <div class="card-body">
                         <form id='form_register' action="/register" method="POST">
                             @csrf
-
+                            @json($errors->all())
                             {{-- Cédula de Identidad o DIMEX --}}
                             <div class="form-group row">
                                 <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
                                     DIMEX</label>
                                 <div class="col-sm-8">
-                                    <x-input onkeyup="validarForm()" id="identification" class="identification"
+                                    <x-input id="identification" class="identification"
                                         name="identification" value="{{ old('identification') }}" />
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                             <div class="form-group row">
                                 <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
                                 <div class="col-sm-8">
-                                    <x-input name="name" value="{{ old('name') }}" />
+                                    <x-input name="name" value="{{ old('name') }}" id="name" />
                                 </div>
                             </div>
 
@@ -36,7 +36,7 @@
                             <div class="form-group row">
                                 <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                                 <div class="col-sm-8">
-                                    <x-input name="last_name" value="{{ old('last_name') }}" />
+                                    <x-input name="last_name" id="last_name" value="{{ old('last_name') }}" />
                                 </div>
                             </div>
 
@@ -44,7 +44,15 @@
                             <div class="form-group row">
                                 <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                                 <div class="col-sm-8">
-                                    <x-input type="date" name="birthdate" value="{{ old('birthdate') }}" />
+                                    <x-input type="date" id="birthdate" name="birthdate" value="{{ old('birthdate') }}" />
+                                </div>
+                            </div>
+
+                            {{-- Cantón --}}
+                            <div class="form-group row">
+                                <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
+                                <div class="col-sm-8">
+                                    <x-input readonly id="canton" name="canton" value="Alajuela" />
                                 </div>
                             </div>
 
@@ -52,14 +60,24 @@
                             <div class="form-group row">
                                 <label for="district" class="col-sm-4 col-form-label">Distrito</label>
                                 <div class="col-sm-8">
-                                    <x-select name="district">
-                                        <option disabled {{ old('district') ? '' : 'selected' }} value=""> --
-                                            Seleccione -- </option>{{--
-                                        @foreach ($districts as $district)
-                                            <option {{ old('district') == $district ? 'selected' : '' }}
-                                                value="{{ $district }}">{{ $district }}</option>
-                                        @endforeach--}}
-                                    </x-select>
+                                    <x-select2 id="district" name="district" value="{{ old('district') }}">
+                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="Alajuela">Alajuela</option>
+                                        <option value="San José">San José</option>
+                                        <option value="Carrizal">Carrizal</option>
+                                        <option value="San Antonio">San Antonio</option>
+                                        <option value="Guácima">Guácima</option>
+                                        <option value="San Isidro">San Isidro</option>
+                                        <option value="Sabanilla">Sabanilla</option>
+                                        <option value="San Rafael">San Rafael</option>
+                                        <option value="Río Segundo">Río Segundo</option>
+                                        <option value="Desamparados">Desamparados</option>
+                                        <option value="Turrúcares">Turrúcares</option>
+                                        <option value="Tambor">Tambor</option>
+                                        <option value="La Garita">La Garita</option>
+                                        <option value="Sarapiquí">Sarapiquí</option>
+                                        <option value="Otro">Otro</option>
+                                    </x-select2>
                                 </div>
                             </div>
 
@@ -67,7 +85,7 @@
                             <div class="form-group row">
                                 <label for="address" class="col-sm-4 col-form-label">Dirección</label>
                                 <div class="col-sm-8">
-                                    <x-textarea name="address">
+                                    <x-textarea id="address" name="address">
                                         {{ old('address') }}
                                     </x-textarea>
                                 </div>
@@ -77,7 +95,7 @@
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label">Correo Electrónico</label>
                                 <div class="col-sm-8">
-                                    <x-input type="email" name="email" value="{{ old('email') }}" />
+                                    <x-input type="email" id="email" name="email" value="{{ old('email') }}" />
                                 </div>
                             </div>
 
@@ -85,7 +103,7 @@
                             <div class="form-group row">
                                 <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                                 <div class="col-sm-8">
-                                    <x-input name="phone" value="{{ old('phone') }}" />
+                                    <x-input name="phone" id="phone" value="{{ old('phone') }}" />
                                 </div>
                             </div>
 
@@ -93,17 +111,12 @@
                             <div class="form-group row">
                                 <label for="gender" class="col-sm-4 col-form-label">Género</label>
                                 <div class="col-sm-8">
-                                   {{-- @foreach ($genders as $gender)
-                                        <div class="custom-control custom-radio">
-                                            <input
-                                                {{ (old('gender') && old('gender') == $gender) || (!old('gender') && $loop->index == 0) ? 'checked' : '' }}
-                                                class="custom-control-input" type="radio" name="gender"
-                                                id="gender-{{ $loop->index }}" value="{{ $gender }}">
-                                            <label class="custom-control-label" for="gender-{{ $loop->index }}">
-                                                {{ $gender }}
-                                            </label>
-                                        </div>
-                                    @endforeach--}}
+                                    <x-select2 id="gender" name="gender" value="{{ old('gender') }}">
+                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                        <option value="Otro">Otro</option>
+                                    </x-select2>
                                 </div>
                             </div>
 
@@ -111,14 +124,18 @@
                             <div class="form-group row">
                                 <label for="category" class="col-sm-4 col-form-label">Categoria</label>
                                 <div class="col-sm-8">
-                                    <x-select name="category">
-                                        <option disabled {{ old('category') ? '' : 'selected' }} value=""> --
-                                            Seleccione -- </option>
-                                       {{-- @foreach ($categories as $category)
-                                            <option {{ old('category') == $category ? 'selected' : '' }}
-                                                value="{{ $category }}">{{ $category }}</option>
-                                        @endforeach--}}
-                                    </x-select>
+                                    <x-select2 id="category" name="category" value="{{ old('category') }}">
+                                        <option disabled value=" ">-- Seleccione --</option>
+                                        <option value="U-7">U-7</option>
+                                        <option value="U-9">U-9</option>
+                                        <option value="U-11">U-11</option>
+                                        <option value="U-13">U-13</option>
+                                        <option value="U-15">U-15</option>
+                                        <option value="U-17">U-17</option>
+                                        <option value="U-19">U-19</option>
+                                        <option value="U-21">U-21</option>
+                                        <option value="U-23">U-23</option>
+                                    </x-select2>
                                 </div>
                             </div>
 
@@ -126,14 +143,33 @@
                             <div class="form-group row">
                                 <label for="sport_id" class="col-sm-4 col-form-label">Disciplina Deportiva</label>
                                 <div class="col-sm-8">
-                                    <x-select2 name="sport_id">
-                                        <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> --
-                                            Seleccione
-                                            -- </option>
-                                       {{-- @foreach ($sports as $sport)
-                                            <option {{ old('sport_id') == $sport->id ? 'selected' : '' }}
-                                                value="{{ $sport }}">{{ $sport }}</option>
-                                        @endforeach--}}
+                                    <x-select2 id="sport_id" name="sport_id" value="{{ old('sport_id') }}">
+                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="Ajedrez">Ajedrez</option>
+                                        <option value="Atletismo">Atletismo</option>
+                                        <option value="Baloncesto">Baloncesto</option>
+                                        <option value="Balonmano">Balonmano</option>
+                                        <option value="Beisbol">Beisbol</option>
+                                        <option value="Boxeo">Boxeo</option>
+                                        <option value="Ciclismo de Ruta y Montaña">Ciclismo de Ruta y Montaña</option>
+                                        <option value="Fútbol">Fútbol</option>
+                                        <option value="Futsal">Futsal</option>
+                                        <option value="Gimnasia Artística">Gimnasia Artística</option>
+                                        <option value="Gimnasia Rítmica">Gimnasia Rítmica</option>
+                                        <option value="Halterofilia">Halterofilia</option>
+                                        <option value="Judo">Judo</option>
+                                        <option value="Karate Do">Karate Do</option>
+                                        <option value="Natación">Natación</option>
+                                        <option value="Patinaje">Patinaje</option>
+                                        <option value="Tae Kwon Do">Tae Kwon Do</option>
+                                        <option value="Tenis">Tenis</option>
+                                        <option value="Baloncesto">Baloncesto</option>
+                                        <option value="Tenis de Mesa">Tenis de Mesa</option>
+                                        <option value="Triatlón">Triatlón</option>
+                                        <option value="Voleibol">Voleibol</option>
+                                        <option value="Voleybol de Playa">Voleibol de Playa</option>
+                                        <option value="Tiro con Arco">Tiro con Arco</option>
+                                        <option value="Football Americano">Football Americano</option>
                                     </x-select2>
                                 </div>
                             </div>
@@ -142,15 +178,17 @@
                             <div class="form-group row">
                                 <label for="blood" class="col-sm-4 col-form-label">Tipo de Sangre</label>
                                 <div class="col-sm-8">
-                                    <x-select name="blood">
-                                        <option disabled {{ old('blood') ? '' : 'selected' }} value=""> -- Seleccione
-                                            --
-                                        </option>
-                                        {{--oreach ($bloods as $blood)
-                                            <option {{ old('blood') == $blood ? 'selected' : '' }}
-                                                value="{{ $blood }}">{{ $blood }}</option>
-                                        @endforeach--}}
-                                    </x-select>
+                                    <x-select2 id="blood" name="blood" value="{{ old('blood') }}">
+                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                    </x-select2>
                                 </div>
                             </div>
 
@@ -158,17 +196,12 @@
                             <div class="form-group row">
                                 <label for="laterality" class="col-sm-4 col-form-label">Lateralidad</label>
                                 <div class="col-sm-8">
-                                    {{--@foreach ($lateralities as $laterality)
-                                        <div class="custom-control custom-radio">
-                                            <input
-                                                {{ (old('laterality') && old('laterality') == $laterality) || (!old('laterality') && $loop->index == 0) ? 'checked' : '' }}
-                                                class="custom-control-input" type="radio" name="laterality"
-                                                id="laterality-{{ $loop->index }}" value="{{ $laterality }}">
-                                            <label class="custom-control-label" for="laterality-{{ $loop->index }}">
-                                                {{ $laterality }}
-                                            </label>
-                                        </div>
-                                    @endforeach--}}
+                                    <x-select2 id="laterality" name="laterality" value="{{ old('laterality') }}">
+                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="Diestro">Diestro</option>
+                                        <option value="Zurdo">Zurdo</option>
+                                        <option value="Ambidiestro">Ambidiestro</option>
+                                    </x-select2>
                                 </div>
                             </div>
 
@@ -176,7 +209,7 @@
                             <div class="form-group row">
                                 <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
                                 <div class="col-sm-8">
-                                    <x-input name="policy" value="{{ old('policy') }}" />
+                                    <x-input name="policy" id="policy" value="{{ old('policy') }}" />
                                 </div>
                             </div>
 
@@ -225,7 +258,7 @@
                                         <label for="identification_manager" class="col-sm-4 col-form-label">Cédula de
                                             Identidad o DIMEX</label>
                                         <div class="col-sm-8">
-                                            <x-input name="identification_manager"
+                                            <x-input id="identification_manager" name="identification_manager"
                                                 value="{{ old('identification_manager') }}" />
                                         </div>
                                     </div>
@@ -234,7 +267,7 @@
                                     <div class="form-group row">
                                         <label for="name_manager" class="col-sm-4 col-form-label">Nombre</label>
                                         <div class="col-sm-8">
-                                            <x-input name="name_manager" value="{{ old('name_manager') }}" />
+                                            <x-input id="name_manager" name="name_manager" value="{{ old('name_manager') }}" />
                                         </div>
                                     </div>
 
@@ -242,7 +275,7 @@
                                     <div class="form-group row">
                                         <label for="lastname_manager" class="col-sm-4 col-form-label">Apellidos</label>
                                         <div class="col-sm-8">
-                                            <x-input name="lastname_manager" value="{{ old('lastname_manager') }}" />
+                                            <x-input id="lastname_manager" name="lastname_manager" value="{{ old('lastname_manager') }}" />
                                         </div>
                                     </div>
 
@@ -250,7 +283,7 @@
                                     <div class="form-group row">
                                         <label for="contact_manager" class="col-sm-4 col-form-label">Teléfono</label>
                                         <div class="col-sm-8">
-                                            <x-input name="contact_manager" value="{{ old('contact_manager') }}" />
+                                            <x-input id="contact_manager" name="contact_manager" value="{{ old('contact_manager') }}" />
                                         </div>
                                     </div>
 
@@ -258,21 +291,22 @@
                                     <div class="form-group row">
                                         <label for="manager" class="col-sm-4 col-form-label">Parentezco</label>
                                         <div class="col-sm-8">
-                                            <x-select name="manager">
-                                                <option disabled {{ old('manager') ? '' : 'selected' }} value=""> --
-                                                    Seleccione -- </option>
-                                                {{--@foreach ($relationships as $relationship)
-                                                    <option {{ old('manager') == $relationship ? 'selected' : '' }}
-                                                        value="{{ $relationship }}">{{ $relationship }}</option>
-                                                @endforeach--}}
-                                            </x-select>
+                                            <x-select2 id="manager" name="manager">
+                                                <option disabled value="">-- Seleccione --</option>
+                                                <option value="Madre">Madre</option>
+                                                <option value="Padre">Padre</option>
+                                                <option value="Abuelo(a)">Abuelo(a)</option>
+                                                <option value="Tío(a)">Balonmano</option>
+                                                <option value="Hermano(a)">Beisbol</option>
+                                                <option value="Encargado(a)">Boxeo</option>
+                                            </x-select2>
                                         </div>
                                     </div>
 
                                     {{-- Fotocópia de Cédula --}}
                                     <div class="form-group row">
                                         <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <div class="input-group mb-3">
                                                 <label class="custom-file-label" for="identification_image">Elija el
                                                     archivo
@@ -309,7 +343,7 @@
         </div>
     </div>
 
-
+{{--
     @push('scripts')
         <script>
             $(document).ready(function() {
@@ -515,5 +549,5 @@
                 }
             }
         </script>
-    @endpush
+    @endpush--}}
     </x-app-layout>

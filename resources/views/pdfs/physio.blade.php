@@ -174,7 +174,7 @@
       <div id="project">
 
         <div><span>Fecha de Sesion</span> {{ $physio->date->isoFormat('LL') }}</div>
-        <div><span>Hora de Sesión:</span> {{ $physio->time }}</div>
+        <div><span>Hora de Sesión:</span> {{ $physio->session_start }}</div>
         <div><span>Fisioterapeuta</span> {{ $physio->user->full_name }}</div>
         <div><span>Correo</span> <a href="{{ $physio->user->email }}">{{ $physio->user->email }}</a></div>
         <div><span>Atleta</span> {{ $physio->athlete->user->full_name }}</div>

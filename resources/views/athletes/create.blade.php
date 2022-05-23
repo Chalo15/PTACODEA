@@ -101,7 +101,7 @@
                                 <div class="form-group row">
                                     <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
                                     <div class="col-sm-8">
-                                        <x-input readonly name="canton" value="{{ old('canton') }}" />
+                                        <x-input readonly name="canton" value="Alajuela" />
                                     </div>
                                 </div>
 
@@ -199,7 +199,7 @@
 
                         {{-- Categoria --}}
                         <div class="form-group row">
-                            <label for="category" class="col-sm-4 col-form-label">Categoria de deporte</label>
+                            <label for="category" class="col-sm-4 col-form-label">Categoria del deporte</label>
                             <div class="col-sm-8">
                                 <x-select name="category">
                                     <option disabled {{ old('category') ? '' : 'selected' }} value=""> --
