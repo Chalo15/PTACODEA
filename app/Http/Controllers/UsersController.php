@@ -133,7 +133,9 @@ class UsersController extends Controller
 
         $districts = config('general.districts');
 
-        return view('users.edit', compact('user', 'roles', 'sports', 'genders', 'districts'));
+        $states = config('general.states');
+
+        return view('users.edit', compact('user', 'roles', 'sports', 'genders', 'districts', 'states'));
     }
 
     /**
