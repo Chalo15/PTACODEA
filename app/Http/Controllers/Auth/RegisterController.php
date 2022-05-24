@@ -101,6 +101,8 @@ class RegisterController extends Controller
         $data['state'] = 'R';
         //dd($data);
         $user = User::create($data);
-        return Athlete::with('user')->create($user);
+        $user->athlete()->create($data);
+        return $user;
+
     }
 }

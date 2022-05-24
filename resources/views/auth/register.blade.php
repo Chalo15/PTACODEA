@@ -146,31 +146,31 @@
                                 <div class="col-sm-8">
                                     <x-select2 id="sport_id" name="sport_id" value="{{ old('sport_id') }}">
                                         <option disabled value="">-- Seleccione --</option>
-                                        <option value="Ajedrez">Ajedrez</option>
-                                        <option value="Atletismo">Atletismo</option>
-                                        <option value="Baloncesto">Baloncesto</option>
-                                        <option value="Balonmano">Balonmano</option>
-                                        <option value="Beisbol">Beisbol</option>
-                                        <option value="Boxeo">Boxeo</option>
-                                        <option value="Ciclismo de Ruta y Montaña">Ciclismo de Ruta y Montaña</option>
-                                        <option value="Fútbol">Fútbol</option>
-                                        <option value="Futsal">Futsal</option>
-                                        <option value="Gimnasia Artística">Gimnasia Artística</option>
-                                        <option value="Gimnasia Rítmica">Gimnasia Rítmica</option>
-                                        <option value="Halterofilia">Halterofilia</option>
-                                        <option value="Judo">Judo</option>
-                                        <option value="Karate Do">Karate Do</option>
-                                        <option value="Natación">Natación</option>
-                                        <option value="Patinaje">Patinaje</option>
-                                        <option value="Tae Kwon Do">Tae Kwon Do</option>
-                                        <option value="Tenis">Tenis</option>
-                                        <option value="Baloncesto">Baloncesto</option>
-                                        <option value="Tenis de Mesa">Tenis de Mesa</option>
-                                        <option value="Triatlón">Triatlón</option>
-                                        <option value="Voleibol">Voleibol</option>
-                                        <option value="Voleybol de Playa">Voleibol de Playa</option>
-                                        <option value="Tiro con Arco">Tiro con Arco</option>
-                                        <option value="Football Americano">Football Americano</option>
+                                        <option value="1">Ajedrez</option>
+                                        <option value="2">Atletismo</option>
+                                        <option value="3">Baloncesto</option>
+                                        <option value="4">Balonmano</option>
+                                        <option value="5">Beisbol</option>
+                                        <option value="6">Boxeo</option>
+                                        <option value="7">Ciclismo de Ruta y Montaña</option>
+                                        <option value="8">Fútbol</option>
+                                        <option value="9">Futsal</option>
+                                        <option value="10">Gimnasia Artística</option>
+                                        <option value="11">Gimnasia Rítmica</option>
+                                        <option value="12">Halterofilia</option>
+                                        <option value="13">Judo</option>
+                                        <option value="14">Karate Do</option>
+                                        <option value="15">Natación</option>
+                                        <option value="16">Patinaje</option>
+                                        <option value="17">Tae Kwon Do</option>
+                                        <option value="18">Tenis</option>
+                                        <option value="19">Baloncesto</option>
+                                        <option value="20">Tenis de Mesa</option>
+                                        <option value="21">Triatlón</option>
+                                        <option value="22">Voleibol</option>
+                                        <option value="23">Voleibol de Playa</option>
+                                        <option value="24">Tiro con Arco</option>
+                                        <option value="25">Football Americano</option>
                                     </x-select2>
                                 </div>
                             </div>
@@ -199,9 +199,9 @@
                                 <div class="col-sm-8">
                                     <x-select2 id="laterality" name="laterality" value="{{ old('laterality') }}">
                                         <option disabled value="">-- Seleccione --</option>
-                                        <option value="Diestro">Diestro</option>
-                                        <option value="Zurdo">Zurdo</option>
-                                        <option value="Ambidiestro">Ambidiestro</option>
+                                        <option value="D">Diestro</option>
+                                        <option value="I">Zurdo</option>
+                                        <option value="A">Ambidiestro</option>
                                     </x-select2>
                                 </div>
                             </div>
@@ -241,7 +241,7 @@
 
                             <hr>
 
-                            
+
                                     <div class="row">
                                         <div class="col mb-3 d-flex justify-content-center">
 
@@ -297,9 +297,9 @@
                                                 <option value="Madre">Madre</option>
                                                 <option value="Padre">Padre</option>
                                                 <option value="Abuelo(a)">Abuelo(a)</option>
-                                                <option value="Tío(a)">Balonmano</option>
-                                                <option value="Hermano(a)">Beisbol</option>
-                                                <option value="Encargado(a)">Boxeo</option>
+                                                <option value="Tío(a)">Tío(a)</option>
+                                                <option value="Hermano(a)">Hermano(a)</option>
+                                                <option value="Encargado(a)">Encargado(a)</option>
                                             </x-select2>
                                         </div>
                                     </div>
@@ -317,7 +317,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                
+
                             <div class="form-group d-flex justify-content-end">
                                 <button class="btn btn-primary">
                                     <i class="fas fa-sign-in-alt"></i> &nbsp;

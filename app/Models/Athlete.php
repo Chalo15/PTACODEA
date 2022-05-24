@@ -22,6 +22,7 @@ class Athlete extends Model
         'blood',
         'laterality',
         'category',
+        'medical_opinion',
         'name_manager',
         'lastname_manager',
         'manager',
