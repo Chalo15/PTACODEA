@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <form id='form_register' action="/register" method="POST">
                             @csrf
-                            @json($errors->all())
+                            {{--@json($errors->all())--}}
                             {{-- Cédula de Identidad o DIMEX --}}
                             <div class="form-group row">
                                 <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
@@ -50,12 +50,7 @@
                             </div>
 
                             {{-- Cantón --}}
-                            <div class="form-group row">
-                                <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
-                                <div class="col-sm-8">
-                                    <x-input readonly id="canton" name="canton" value="Alajuela" />
-                                </div>
-                            </div>
+                            <x-input name="canton" type="hidden" value="Alajuela" />
 
                             {{-- Distrito --}}
                             <div class="form-group row">
@@ -146,31 +141,31 @@
                                 <div class="col-sm-8">
                                     <x-select2 id="sport_id" name="sport_id" value="{{ old('sport_id') }}">
                                         <option disabled value="">-- Seleccione --</option>
-                                        <option value="Ajedrez">Ajedrez</option>
-                                        <option value="Atletismo">Atletismo</option>
-                                        <option value="Baloncesto">Baloncesto</option>
-                                        <option value="Balonmano">Balonmano</option>
-                                        <option value="Beisbol">Beisbol</option>
-                                        <option value="Boxeo">Boxeo</option>
-                                        <option value="Ciclismo de Ruta y Montaña">Ciclismo de Ruta y Montaña</option>
-                                        <option value="Fútbol">Fútbol</option>
-                                        <option value="Futsal">Futsal</option>
-                                        <option value="Gimnasia Artística">Gimnasia Artística</option>
-                                        <option value="Gimnasia Rítmica">Gimnasia Rítmica</option>
-                                        <option value="Halterofilia">Halterofilia</option>
-                                        <option value="Judo">Judo</option>
-                                        <option value="Karate Do">Karate Do</option>
-                                        <option value="Natación">Natación</option>
-                                        <option value="Patinaje">Patinaje</option>
-                                        <option value="Tae Kwon Do">Tae Kwon Do</option>
-                                        <option value="Tenis">Tenis</option>
-                                        <option value="Baloncesto">Baloncesto</option>
-                                        <option value="Tenis de Mesa">Tenis de Mesa</option>
-                                        <option value="Triatlón">Triatlón</option>
-                                        <option value="Voleibol">Voleibol</option>
-                                        <option value="Voleybol de Playa">Voleibol de Playa</option>
-                                        <option value="Tiro con Arco">Tiro con Arco</option>
-                                        <option value="Football Americano">Football Americano</option>
+                                        <option value="1">Ajedrez</option>
+                                        <option value="2">Atletismo</option>
+                                        <option value="3">Baloncesto</option>
+                                        <option value="4">Balonmano</option>
+                                        <option value="5">Beisbol</option>
+                                        <option value="6">Boxeo</option>
+                                        <option value="7">Ciclismo de Ruta y Montaña</option>
+                                        <option value="8">Fútbol</option>
+                                        <option value="9">Futsal</option>
+                                        <option value="10">Gimnasia Artística</option>
+                                        <option value="11">Gimnasia Rítmica</option>
+                                        <option value="12">Halterofilia</option>
+                                        <option value="13">Judo</option>
+                                        <option value="14">Karate Do</option>
+                                        <option value="15">Natación</option>
+                                        <option value="16">Patinaje</option>
+                                        <option value="17">Tae Kwon Do</option>
+                                        <option value="18">Tenis</option>
+                                        <option value="19">Baloncesto</option>
+                                        <option value="20">Tenis de Mesa</option>
+                                        <option value="21">Triatlón</option>
+                                        <option value="22">Voleibol</option>
+                                        <option value="23">Voleibol de Playa</option>
+                                        <option value="24">Tiro con Arco</option>
+                                        <option value="25">Football Americano</option>
                                     </x-select2>
                                 </div>
                             </div>
@@ -199,9 +194,9 @@
                                 <div class="col-sm-8">
                                     <x-select2 id="laterality" name="laterality" value="{{ old('laterality') }}">
                                         <option disabled value="">-- Seleccione --</option>
-                                        <option value="Diestro">Diestro</option>
-                                        <option value="Zurdo">Zurdo</option>
-                                        <option value="Ambidiestro">Ambidiestro</option>
+                                        <option value="D">Diestro</option>
+                                        <option value="I">Zurdo</option>
+                                        <option value="A">Ambidiestro</option>
                                     </x-select2>
                                 </div>
                             </div>
@@ -211,6 +206,14 @@
                                 <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
                                 <div class="col-sm-8">
                                     <x-input name="policy" id="policy" value="{{ old('policy') }}" />
+                                </div>
+                            </div>
+
+                            {{-- Número de Dictamen Medico --}}
+                            <div class="form-group row">
+                                <label for="medical_opinion" class="col-sm-4 col-form-label">Número de Dictamen Medico</label>
+                                <div class="col-sm-8">
+                                    <x-input name="medical_opinion" id="medical_opinion" value="{{ old('medical_opinion') }}" />
                                 </div>
                             </div>
 
@@ -233,17 +236,6 @@
 
                             <hr>
 
-                            <div x-data="{ isOpen: {{ old('is_younger') ? 'true' : 'false' }} }">
-
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" name="is_younger" id="is_younger"
-                                        x-model="isOpen">
-                                    <label class="form-check-label" for="is_younger">
-                                        ¿El atleta es menor de edad?
-                                    </label>
-                                </div>
-
-                                <div x-show="isOpen">
 
                                     <div class="row">
                                         <div class="col mb-3 d-flex justify-content-center">
@@ -300,9 +292,9 @@
                                                 <option value="Madre">Madre</option>
                                                 <option value="Padre">Padre</option>
                                                 <option value="Abuelo(a)">Abuelo(a)</option>
-                                                <option value="Tío(a)">Balonmano</option>
-                                                <option value="Hermano(a)">Beisbol</option>
-                                                <option value="Encargado(a)">Boxeo</option>
+                                                <option value="Tío(a)">Tío(a)</option>
+                                                <option value="Hermano(a)">Hermano(a)</option>
+                                                <option value="Encargado(a)">Encargado(a)</option>
                                             </x-select2>
                                         </div>
                                     </div>
@@ -320,8 +312,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
                             <div class="form-group d-flex justify-content-end">
                                 <button class="btn btn-primary">
@@ -440,6 +430,56 @@
                                 required: true,
                                 equalTo: "#password"
                             },
+                            sport_id: {
+                                required: true
+                            },
+                            blood: {
+                                required: true
+                            },
+                            laterality: {
+                                required: true
+                            },
+                            district: {
+                                required: true
+                            },
+                            canton: {
+                                required: true
+                            },
+                            category: {
+                                required: true
+                            },
+                            policy: {
+                                required: true
+                            },
+                            name_manager: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            lastname_manager: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            manager: {
+                                required: true
+                            },
+                            identification_manager: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            contact_manager: {
+                                required: true,
+                                numbersonly: true,
+                                phonenumber: true
+                            },
+                            url: {
+                                required: true
+                            },
+
                         },
 
                         messages: {
@@ -475,6 +515,48 @@
                             password_confirmation: {
                                 required: 'Por favor ingrese de nuevo su contraseña *',
                                 equalTo: 'Por favor introduzca la misma contraseña *'
+                            },
+                            sport_id: {
+                                required: 'Por favor ingrese su disciplina deportiva *',
+                            },
+                            blood: {
+                                required: 'Por favor ingrese su tipo de sangre *',
+                            },
+                            laterality: {
+                                required: 'Por favor ingrese su lateralidad *',
+                            },
+                            canton: {
+                                required: 'Por favor ingrese su cantón *',
+                            },
+                            category: {
+                                required: 'Por favor ingrese su categoria deportiva *',
+                            },
+                            policy: {
+                                required: 'Por favor ingrese su numero de poliza *',
+                            },
+                            name_manager: {
+                                required: 'Por favor ingrese el nombre del responsable *',
+                                maxlength: 'El nombre no puede ser mayor a 30 caracteres *',
+                                minlength: 'El nombre no puede ser menor a 3 caracteres *'
+                            },
+                            lastname_manager: {
+                                required: 'Por favor ingrese los apellidos del responsable *',
+                                maxlength: 'El apellido no puede ser mayor a 30 caracteres *',
+                                minlength: 'El apellido no puede ser menor a 3 caracteres *'
+                            },
+                            manager: {
+                                required: 'Por favor ingrese el parentesco *'
+                            },
+                            identification_manager: {
+                                required: 'Por favor ingrese la cédula de su encargado(a) *',
+                                maxlength: 'La cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+                                minlength: 'La cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+                            },
+                            contact_manager: {
+                                required: 'Por favor ingrese el número telefónico *',
+                            },
+                            url: {
+                                required: 'Por favor ingrese la fotocopia en formato pdf de la cédula de su encargado *',
                             },
                         }
                     });

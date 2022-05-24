@@ -98,12 +98,8 @@
                                 </div>
 
                                 {{-- Cantón --}}
-                                <div class="form-group row">
-                                    <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
-                                    <div class="col-sm-8">
-                                        <x-input readonly name="canton" value="Alajuela" />
-                                    </div>
-                                </div>
+                                <x-input name="canton" type="hidden" value="Alajuela" />
+
 
                                 {{-- Distrito --}}
                                 <div class="form-group row">

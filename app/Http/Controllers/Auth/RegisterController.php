@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Athlete;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -57,23 +58,26 @@ class RegisterController extends Controller
             $data,
             [
                 'identification'         => ['required', 'unique:users'],
-                'name'                   => ['required'],
+                'name'                   => ['required','max:30'],
                 'last_name'              => ['required'],
+                'birthdate'              => ['required'],
                 'email'                  => ['required', 'email', 'max:60', 'unique:users'],
                 'phone'                  => ['required'],
+                'district'               => ['required'],
+                'canton'                 => ['required'],
                 'password'               => ['required', 'min:8', 'confirmed'],
                 'sport_id'               => ['required'],
                 'blood'                  => ['required'],
                 'laterality'             => ['required'],
-                'district'               => ['required'],
-                'canton'                 => ['required'],
                 'category'               => ['required'],
+                'medical_opinion'        => ['required'],
                 'policy'                 => ['required','min:3', 'max:10'],
-                'name_manager'           => ['min:3', 'max:30'],
-                'lastname_manager'       => ['min:3', 'max:30'],
-                'manager'                => ['min:3', 'max:15'],
-                'identification_manager' => ['min:9', 'max:15'],
-                'contact_manager'        => ['digits:8'],
+                'name_manager'           => ['required','min:3', 'max:30'],
+                'lastname_manager'       => ['required','min:3', 'max:30'],
+                'manager'                => ['required','min:3', 'max:15'],
+                'identification_manager' => ['required','min:9', 'max:15'],
+                'contact_manager'        => ['required'],
+                'url'                    => ['required'],
 
             ],
         );
@@ -95,6 +99,10 @@ class RegisterController extends Controller
         Mail::to($email)->send(new CredentialsMail($id, $password));
         $data['role_id'] = 4;
         $data['state'] = 'R';
-        return User::create($data);
+        //dd($data);
+        $user = User::create($data);
+        $user->athlete()->create($data);
+        return $user;
+
     }
 }

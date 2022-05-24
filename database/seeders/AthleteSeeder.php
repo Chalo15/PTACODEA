@@ -18,7 +18,7 @@ class AthleteSeeder extends Seeder
             [
                 'user_id'                => 1,
                 'sport_id'               => 1,
-                'state'                  => 'P',
+                'state'                  => 'R',
                 'blood'                  => 'B+',
                 'laterality'             => 'D',
                 'name_manager'           => 'Pepito',
