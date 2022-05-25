@@ -221,17 +221,18 @@
                                 </div>
 
                                 {{-- Fotocópia de Cédula --}}
-                                <div class="form-group row">
-                                    <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
-                                    <div class="col-sm-4">
-                                        <div class="input-group mb-3">
-                                            <label class="custom-file-label" for="pdf">Elija el
-                                                archivo</label>
-                                            <input name="pdf" id="pdf" type="file">
-                                            <span class="badge text-danger errors-pdf"></span>
+                                    <div class="form-group row">
+                                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group mb-3">
+                                                <label class="custom-file-label" for="identification_image">Elija el
+                                                    archivo
+                                                </label>
+                                                <input name="url" type="file" class="custom-file-input"
+                                                    id="identification_image" aria-describedby="inputGroupFileAddon01">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
 

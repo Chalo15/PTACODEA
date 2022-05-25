@@ -9,18 +9,6 @@
         </div>
     </div>
 
-    {{-- Fecha de registr --}}
-    @php
-
-        $today = today()->toDateString();
-        $age = today()
-            ->subYears(18)
-            ->toDateString();
-
-    @endphp
-
-
-
     <div class="row">
         <div class="col">
             <div class="card">
@@ -34,6 +22,7 @@
                     <form action="{{ route('users.update', $user->id) }}" method="POST" id='form_users_edit'>
                         @csrf
                         @method('PUT')
+                        @json($errors->all())
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
                             <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
@@ -60,6 +49,14 @@
                         </div>
 
                         {{-- Fecha de Nacimiento --}}
+                                @php
+
+                                    $today = today()->toDateString();
+                                    $age = today()
+                                        ->subYears(18)
+                                        ->toDateString();
+
+                                @endphp
                         <div class="form-group row">
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
@@ -215,17 +212,18 @@
                                 </div>
 
                                 {{-- Fotocópia de Cédula --}}
-                                <div class="form-group row">
-                                    <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
-                                    <div class="col-sm-4">
-                                        <div class="input-group mb-3">
-
-                                            <label class="custom-file-label" for="pdf">Elija el archivo </label>
-                                            <x-input aria-describedby="inputGroupFileAddon01" id="pdf" name="pdf"
-                                                type="file" class="custom-file-input" />
+                                    <div class="form-group row">
+                                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group mb-3">
+                                                <label class="custom-file-label" for="identification_image">Elija el
+                                                    archivo
+                                                </label>
+                                                <input name="url" type="file" class="custom-file-input"
+                                                    id="identification_image" aria-describedby="inputGroupFileAddon01">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
 
