@@ -190,8 +190,8 @@
         </thead>
         <tbody>
           <tr>
-            <td class="service">SPH</td>
-            <td class="desc">{{ $physio->sph }}</td>
+            <td class="service">APH</td>
+            <td class="desc">{{ $physio->aph }}</td>
           </tr>
           <tr>
             <td class="service">APP</td>

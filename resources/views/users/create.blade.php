@@ -225,7 +225,7 @@
                                     <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                     <div class="col-sm-4">
                                         <div class="input-group mb-3">
-                                            <label class="custom-file-label" for="identification_image">Elija el
+                                            <label class="custom-file-label" for="pdf">Elija el
                                                 archivo</label>
                                             <input name="pdf" id="pdf" type="file">
                                             <span class="badge text-danger errors-pdf"></span>

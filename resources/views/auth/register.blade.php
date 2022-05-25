@@ -41,11 +41,17 @@
                             </div>
 
                             {{-- Fecha de Nacimiento --}}
+                            @php
+                                    $today = today()->toDateString();
+                                    $age = today()
+                                        ->subYears(7)
+                                        ->toDateString();
+                                @endphp
                             <div class="form-group row">
                                 <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                                 <div class="col-sm-8">
-                                    <x-input type="date" id="birthdate" name="birthdate"
-                                        value="{{ old('birthdate') }}" />
+                                    <x-input type="date" id="birthdate" max="{{ $age }}" name="birthdate"
+                                            value="{{ old('birthdate') }}" />
                                 </div>
                             </div>
 
@@ -57,7 +63,7 @@
                                 <label for="district" class="col-sm-4 col-form-label">Distrito</label>
                                 <div class="col-sm-8">
                                     <x-select2 id="district" name="district" value="{{ old('district') }}">
-                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="">-- Seleccione --</option>
                                         <option value="Alajuela">Alajuela</option>
                                         <option value="San José">San José</option>
                                         <option value="Carrizal">Carrizal</option>
@@ -108,7 +114,7 @@
                                 <label for="gender" class="col-sm-4 col-form-label">Género</label>
                                 <div class="col-sm-8">
                                     <x-select2 id="gender" name="gender" value="{{ old('gender') }}">
-                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="">-- Seleccione --</option>
                                         <option value="Masculino">Masculino</option>
                                         <option value="Femenino">Femenino</option>
                                         <option value="Otro">Otro</option>
@@ -121,7 +127,7 @@
                                 <label for="category" class="col-sm-4 col-form-label">Categoria</label>
                                 <div class="col-sm-8">
                                     <x-select2 id="category" name="category" value="{{ old('category') }}">
-                                        <option disabled value=" ">-- Seleccione --</option>
+                                        <option value="">-- Seleccione --</option>
                                         <option value="U-7">U-7</option>
                                         <option value="U-9">U-9</option>
                                         <option value="U-11">U-11</option>
@@ -140,7 +146,7 @@
                                 <label for="sport_id" class="col-sm-4 col-form-label">Disciplina Deportiva</label>
                                 <div class="col-sm-8">
                                     <x-select2 id="sport_id" name="sport_id" value="{{ old('sport_id') }}">
-                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="">-- Seleccione --</option>
                                         <option value="1">Ajedrez</option>
                                         <option value="2">Atletismo</option>
                                         <option value="3">Baloncesto</option>
@@ -175,7 +181,7 @@
                                 <label for="blood" class="col-sm-4 col-form-label">Tipo de Sangre</label>
                                 <div class="col-sm-8">
                                     <x-select2 id="blood" name="blood" value="{{ old('blood') }}">
-                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="">-- Seleccione --</option>
                                         <option value="A+">A+</option>
                                         <option value="A-">A-</option>
                                         <option value="B+">B+</option>
@@ -193,7 +199,7 @@
                                 <label for="laterality" class="col-sm-4 col-form-label">Lateralidad</label>
                                 <div class="col-sm-8">
                                     <x-select2 id="laterality" name="laterality" value="{{ old('laterality') }}">
-                                        <option disabled value="">-- Seleccione --</option>
+                                        <option value="">-- Seleccione --</option>
                                         <option value="D">Diestro</option>
                                         <option value="I">Zurdo</option>
                                         <option value="A">Ambidiestro</option>
@@ -288,7 +294,7 @@
                                         <label for="manager" class="col-sm-4 col-form-label">Parentezco</label>
                                         <div class="col-sm-8">
                                             <x-select2 id="manager" name="manager">
-                                                <option disabled value="">-- Seleccione --</option>
+                                                <option value="">-- Seleccione --</option>
                                                 <option value="Madre">Madre</option>
                                                 <option value="Padre">Padre</option>
                                                 <option value="Abuelo(a)">Abuelo(a)</option>
@@ -337,7 +343,7 @@
         </div>
     </div>
 
-    {{-- @push('scripts')
+    @push('scripts')
         <script>
             $(document).ready(function() {
 
@@ -430,7 +436,15 @@
                                 required: true,
                                 equalTo: "#password"
                             },
+                            address: {
+                                required: true,
+                                maxlength: 150,
+                                minlength: 3
+                            },
                             sport_id: {
+                                required: true
+                            },
+                            gender: {
                                 required: true
                             },
                             blood: {
@@ -449,6 +463,9 @@
                                 required: true
                             },
                             policy: {
+                                required: true
+                            },
+                            medical_opinion: {
                                 required: true
                             },
                             name_manager: {
@@ -479,6 +496,10 @@
                             url: {
                                 required: true
                             },
+                            birthdate: {
+                                required: true
+                            },
+
 
                         },
 
@@ -507,6 +528,11 @@
                             phone: {
                                 required: 'Por favor ingrese su número telefónico *',
                             },
+                            address: {
+                                required: 'Por favor ingrese su direccion exacta *',
+                                maxlength: 'Su dirección no puede ser mayor a 150 caracteres *',
+                                minlength: 'Su dirección no puede ser menor a 3 caracteres *'
+                            },
                             password: {
                                 required: 'Por favor ingrese su contraseña *',
                                 minlength: 'La contraseña no debe ser menor a 8 caracteres *',
@@ -519,6 +545,9 @@
                             sport_id: {
                                 required: 'Por favor ingrese su disciplina deportiva *',
                             },
+                            gender: {
+                                required: 'Por favor ingrese género *',
+                            },
                             blood: {
                                 required: 'Por favor ingrese su tipo de sangre *',
                             },
@@ -528,11 +557,17 @@
                             canton: {
                                 required: 'Por favor ingrese su cantón *',
                             },
+                            district: {
+                                required: 'Por favor ingrese su distrito *',
+                            },
                             category: {
                                 required: 'Por favor ingrese su categoria deportiva *',
                             },
                             policy: {
                                 required: 'Por favor ingrese su numero de poliza *',
+                            },
+                            medical_opinion: {
+                                required: 'Por favor ingrese su numero de dictamen medico *',
                             },
                             name_manager: {
                                 required: 'Por favor ingrese el nombre del responsable *',
@@ -557,6 +592,9 @@
                             },
                             url: {
                                 required: 'Por favor ingrese la fotocopia en formato pdf de la cédula de su encargado *',
+                            },
+                            birthdate: {
+                                required: 'Por favor ingrese su fecha de nacimiento *',
                             },
                         }
                     });
@@ -634,5 +672,5 @@
                 }
             }
         </script>
-    @endpush --}}
+    @endpush
     </x-app-layout>

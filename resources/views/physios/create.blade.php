@@ -53,11 +53,11 @@
                             </div>
                         </div>
 
-                        {{-- sph --}}
+                        {{-- APH --}}
                         <div class="form-group row">
-                            <label for="sph" class="col-sm-4 col-form-label">SPH</label>
+                            <label for="aph" class="col-sm-4 col-form-label">APH</label>
                             <div class="col-sm-8">
-                                <x-textarea id="sph" name="sph" value="{{ old('sph') }}" />
+                                <x-textarea id="aph" name="aph" value="{{ old('aph') }}" />
                             </div>
                         </div>
 
@@ -84,7 +84,7 @@
                                 <input type="checkbox" class="form-check-input" name="is_surgeries" id="is_surgeries"
                                     x-model="isOpen">
                                 <label class="form-check-label" for="is_surgeries">
-                                    ¿El atleta tiene alguna cirugía?
+                                    ¿El atleta ha tenido alguna cirugía?
                                 </label>
                             </div>
 
@@ -270,7 +270,7 @@
                             date: {
                                 required: true
                             },
-                            sph: {
+                            aph: {
                                 required: true
                             },
                             app: {
@@ -307,8 +307,8 @@
                             athlete_id: {
                                 required: 'Por favor seleccione un atleta *'
                             },
-                            sph: {
-                                required: 'Por favor ingrese su sph *'
+                            aph: {
+                                required: 'Por favor ingrese su aph *'
                             },
                             app: {
                                 required: 'Por favor ingrese su APP *'

@@ -29,8 +29,8 @@ class AppointmentController extends Controller
         $user = request()->user();
         //dd($user->id);
 
-        if ($user->hasRole(['Musculacion'])||$user->hasRole(['Fisioterapia'])) {
-            $appointments = Appointment::where('user_id','=', $user->id)->get();
+        if ($user->hasRole(['Musculacion']) || $user->hasRole(['Fisioterapia'])) {
+            $appointments = Appointment::where('user_id', '=', $user->id)->get();
             //
         } else {
             $appointments = Appointment::where('coach_id', '=', $user->coach->id)->get();
@@ -132,7 +132,7 @@ class AppointmentController extends Controller
                     }
                     //Envio de email al usuario que pidio una reserva para fisioterapia
                     elseif ($role == 5) {
-                        //Mail::to($email)->send(new PhysioConfirmMail());
+                        Mail::to($email)->send(new PhysioConfirmMail($appointment));
                     }
                 });
 
@@ -161,7 +161,7 @@ class AppointmentController extends Controller
                     }
                     //Envio de email al usuario que pidio una reserva para fisioterapia
                     elseif ($role == 5) {
-                        //Mail::to($email)->send(new PhysioConfirmMail());
+                        Mail::to($email)->send(new PhysioConfirmMail($appointment));
                     }
                 });
 

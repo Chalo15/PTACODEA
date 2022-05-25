@@ -105,7 +105,7 @@
                                 </div>
                             </div>
 
-                            {{-- Estado del Athleta --}}
+                            {{-- Estado del Atleta --}}
                             <div class="form-group row">
                                 <label for="state" class="col-sm-4 col-lg-12 col-form-label">Estado</label>
                                 <div class="col-sm-8 col-lg-12">
@@ -180,9 +180,9 @@
 
                             {{-- Número de Poliza --}}
                             <div class="form-group row">
-                                <label for="medical_opinion" class="col-sm-4 col-lg-12 col-form-label">Número de Póliza</label>
+                                <label for="policy" class="col-sm-4 col-lg-12 col-form-label">Número de Póliza</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="medical_opinion" value="{{ $athlete->policy }}" />
+                                    <x-input disabled name="policy" value="{{ $athlete->policy }}" />
                                 </div>
                             </div>
 
@@ -501,15 +501,15 @@
     <div class="col-lg-10">
         <p class="form-control-static">{{ $us->email}}</p>
     </div>
-    <label class="col-lg-5 control-label font-weight-bold">Provincia:</label>
+    <label class="col-lg-5 control-label font-weight-bold">Cantón:</label>
     <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->province}}</p>
+        <p class="form-control-static">{{ $us->canton}}</p>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-lg-5 control-label font-weight-bold">Ciudad:</label>
+    <label class="col-lg-5 control-label font-weight-bold">Distrito:</label>
     <div class="col-lg-10">
-        <p class="form-control-static">{{ $us->city}}</p>
+        <p class="form-control-static">{{ $us->district}}</p>
     </div>
     <label class="col-lg-5 control-label font-weight-bold">Dirección:</label>
     <div class="col-lg-10">
