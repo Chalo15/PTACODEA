@@ -30,7 +30,7 @@ class PhysioFactory extends Factory
             'appointment_id' => Appointment::all()->random(),
             'date' => $this->faker->date(),
             'time' => $this->faker->time(),
-            'sph' => $this->faker->sentence(),
+            'aph' => $this->faker->sentence(),
             'app' => $this->faker->sentence(),
             'treatment' => $this->faker->paragraph(),
             'surgeries' => $this->faker->paragraph(),

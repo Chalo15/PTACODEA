@@ -32,10 +32,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::prefix('users')->group(function () {
     Route::get('export/excel', [UsersController::class, 'export'])->name('users.export');
     Route::get('', [UsersController::class, 'index'])->name('users.index');
-    Route::get('create', [UsersController::class, 'create'])->name('users.create');
+    Route::get('create', [UsersController::class, 'create'])->name('users.create')->middleware("can:role,'Admin'");
     Route::post('', [UsersController::class, 'store'])->name('users.store');
     Route::get('{user}', [UsersController::class, 'show'])->name('users.show');
-    Route::get('{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
+    Route::get('{user}/edit', [UsersController::class, 'edit'])->name('users.edit')->middleware("can:role,'Admin'");
     Route::put('{user}', [UsersController::class, 'update'])->name('users.update');
 });
 
@@ -55,7 +55,7 @@ Route::prefix('profile')->group(function () {
 Route::prefix('sports')->group(function () {
     Route::get('', [SportsController::class, 'index'])->name('sports.index');
     Route::get('{sport}', [SportsController::class, 'show'])->name('sports.show');
-    Route::get('{sport}/edit', [SportsController::class, 'edit'])->name('sports.edit');
+    Route::get('{sport}/edit', [SportsController::class, 'edit'])->name('sports.edit')->middleware("can:role,'Admin'");
     Route::put('{sport}', [SportsController::class, 'update'])->name('sports.update');
 });
 
@@ -65,12 +65,12 @@ Route::prefix('sports')->group(function () {
 Route::prefix('athletes')->group(function () {
     Route::get('export/excel', [AthletesController::class, 'export'])->name('athletes.export');
     Route::get('', [AthletesController::class, 'index'])->name('athletes.index');
-    Route::get('create', [AthletesController::class, 'create'])->name('athletes.create');
+    Route::get('create', [AthletesController::class, 'create'])->name('athletes.create')->middleware("can:role,'Admin'");
     Route::post('', [AthletesController::class, 'store'])->name('athletes.store');
     Route::get('{athlete}', [AthletesController::class, 'show'])->name('athletes.show');
-    Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit');
+    Route::get('{athlete}/edit', [AthletesController::class, 'edit'])->name('athletes.edit')->middleware("can:role,'Admin'");
     Route::put('{athlete}', [AthletesController::class, 'update'])->name('athletes.update');
-    Route::get('delete/{athlete}', [AthletesController::class, 'destroy'])->name('athletes.destroy');
+    Route::get('delete/{athlete}', [AthletesController::class, 'destroy'])->name('athletes.destroy')->middleware("can:role,'Admin'");
 });
 
 /**
@@ -78,7 +78,7 @@ Route::prefix('athletes')->group(function () {
  */
 Route::prefix('musculars')->group(function () {
     Route::get('', [MuscularsController::class, 'index'])->name('musculars.index');
-    Route::get('create', [MuscularsController::class, 'create'])->name('musculars.create');
+    Route::get('create', [MuscularsController::class, 'create'])->name('musculars.create')->middleware("can:role,'Musculacion'");
     Route::post('', [MuscularsController::class, 'store'])->name('musculars.store');
     Route::get('{muscular}', [MuscularsController::class, 'show'])->name('musculars.show');
     Route::get('{muscular}/edit', [MuscularsController::class, 'edit'])->name('musculars.edit')->middleware("can:role,'Musculacion'");
@@ -92,7 +92,7 @@ Route::prefix('musculars')->group(function () {
  */
 Route::prefix('physios')->group(function () {
     Route::get('', [PhysiosController::class, 'index'])->name('physios.index');
-    Route::get('create', [PhysiosController::class, 'create'])->name('physios.create');
+    Route::get('create', [PhysiosController::class, 'create'])->name('physios.create')->middleware("can:role,'Fisioterapia'");
     Route::post('', [PhysiosController::class, 'store'])->name('physios.store');
     Route::get('{physio}', [PhysiosController::class, 'show'])->name('physios.show');
     Route::get('{physio}/edit', [PhysiosController::class, 'edit'])->name('physios.edit')->middleware("can:role,'Fisioterapia'");
@@ -106,7 +106,7 @@ Route::prefix('physios')->group(function () {
  */
 Route::prefix('trainings')->group(function () {
     Route::get('', [TrainingsController::class, 'index'])->name('trainings.index');
-    Route::get('create', [TrainingsController::class, 'create'])->name('trainings.create');
+    Route::get('create', [TrainingsController::class, 'create'])->name('trainings.create')->middleware("can:role,'Instructor'");
     Route::post('', [TrainingsController::class, 'store'])->name('trainings.store');
     Route::get('{training}', [TrainingsController::class, 'show'])->name('trainings.show');
     Route::get('{training}/edit', [TrainingsController::class, 'edit'])->name('trainings.edit')->middleware("can:role,'Instructor'");
@@ -120,10 +120,10 @@ Route::prefix('trainings')->group(function () {
  */
 Route::prefix('availabilities')->group(function () {
     Route::get('', [AvailabilityController::class, 'index'])->name('availabilities.index');
-    Route::get('create', [AvailabilityController::class, 'create'])->name('availabilities.create');
+    Route::get('create', [AvailabilityController::class, 'create'])->name('availabilities.create')->middleware("can:role,'Musculacion','Fisioterapia'");
     Route::post('', [AvailabilityController::class, 'store'])->name('availabilities.store');
-    Route::put('{availability}', [AvailabilityController::class, 'update'])->name('availabilities.update');
-    Route::delete('{availability}', [AvailabilityController::class, 'destroy'])->name('availabilities.destroy');
+    Route::put('{availability}', [AvailabilityController::class, 'update'])->name('availabilities.update')->middleware("can:role,'Musculacion','Fisioterapia'");
+    Route::delete('{availability}', [AvailabilityController::class, 'destroy'])->name('availabilities.destroy')->middleware("can:role,'Musculacion','Fisioterapia'");
 });
 
 /**
@@ -132,7 +132,7 @@ Route::prefix('availabilities')->group(function () {
 Route::prefix('appointments')->group(function () {
     Route::get('', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::post('', [AppointmentController::class, 'store'])->name('appointments.store');
-    Route::put('{appointment}', [AppointmentController::class, 'update'])->name('appointments.update');
+    Route::put('{appointment}', [AppointmentController::class, 'update'])->name('appointments.update')->middleware("can:role,'Musculacion','Fisioterapia'");
     /*Route::get('create', [AvailabilityController::class, 'create'])->name('availabilities.create');
     Route::delete('{availability}', [AvailabilityController::class, 'destroy'])->name('availabilities.destroy');*/
 });
