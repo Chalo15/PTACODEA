@@ -45,7 +45,7 @@ class StoreUserRequest extends FormRequest
             $rules += [
                 'sport_id'    => ['required'],
                 'other_phone' => ['required', 'digits:8'],
-                'pdf'         => ['required', 'file', 'mimes:pdf']
+                'url'         => ['required']
             ];
         }
 
