@@ -365,18 +365,21 @@
                             sport_id: {
                                 required: true
                             },
+                            condition: {
+                                required: true
+                            },
                         },
                         messages: {
                             birthdate: {
                                 required: 'Por favor ingrese su fecha de nacimiento *'
                             },
                             district: {
-                                required: 'Por favor ingrese su provincia *'
+                                required: 'Por favor ingrese su distrito *'
                             },
                             canton: {
-                                required: 'Por favor ingrese la ciudad donde vive *',
-                                maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
-                                minlength: 'La ciudad no puede ser menor a 3 caracteres *'
+                                required: 'Por favor ingrese el cantón donde vive *',
+                                maxlength: 'El cantón no puede ser mayor a 30 caracteres *',
+                                minlength: 'El cantón no puede ser menor a 3 caracteres *'
                             },
                             email: {
                                 required: 'Por favor ingrese su email *',
