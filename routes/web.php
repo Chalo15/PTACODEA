@@ -37,6 +37,7 @@ Route::prefix('users')->group(function () {
     Route::get('{user}', [UsersController::class, 'show'])->name('users.show');
     Route::get('{user}/edit', [UsersController::class, 'edit'])->name('users.edit')->middleware("can:role,'Admin'");
     Route::put('{user}', [UsersController::class, 'update'])->name('users.update');
+    Route::get('delete/{user}', [UsersController::class, 'destroy'])->name('users.destroy')->middleware("can:role,'Admin'");
 });
 
 /**

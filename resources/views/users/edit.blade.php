@@ -138,6 +138,23 @@
                             </div>
                         </div>
 
+                        {{-- Estado del Atleta --}}
+                        <div class="form-group row">
+                            <label for="condition" class="col-sm-4 col-form-label">Estado</label>
+                            <div class="col-sm-8">
+                                <x-select name="condition">
+                                    <option {{ $user->condition ? '' : 'selected' }} value=""> --
+                                        Seleccione --
+                                    </option>
+                                    @foreach ($conditions as $condition)
+                                        <option {{ $user->condition == $condition ? 'selected' : '' }}
+                                            value="{{ old('condition') ?? $condition }}">{{ $condition }}
+                                        </option>
+                                    @endforeach
+                                </x-select>
+                            </div>
+                        </div>
+
                         <hr>
 
                         {{-- Años de Experiencia --}}
@@ -352,6 +369,9 @@
                             role_id: {
                                 required: true
                             },
+                            condition: {
+                                required: true
+                            },
                             password: {
                                 required: true,
                                 passwordCheck: true,
@@ -411,6 +431,9 @@
                             },
                             role_id: {
                                 required: 'Por favor ingrese su rol *'
+                            },
+                            condition: {
+                                required: 'Por favor el estado del usuario *'
                             },
                             password: {
                                 required: 'Por favor ingrese su contraseña *',

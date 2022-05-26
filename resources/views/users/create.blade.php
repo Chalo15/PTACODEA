@@ -257,6 +257,9 @@
                             </div>
                         </div>
 
+                        {{-- Estado del Usuario --}}
+                        <x-input name="condition" type="hidden" value="A" />
+
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary" id="guardarBtn">
                                 <i class="fas fa-save"></i> &nbsp;

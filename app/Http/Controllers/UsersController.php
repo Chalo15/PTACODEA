@@ -62,7 +62,9 @@ class UsersController extends Controller
 
         $districts = config('general.districts');
 
-        return view('users.create', compact('roles', 'sports', 'genders', 'districts'));
+        $conditions = config('general.conditions');
+
+        return view('users.create', compact('roles', 'sports', 'genders', 'districts', 'conditions'));
     }
 
     /**
@@ -133,9 +135,9 @@ class UsersController extends Controller
 
         $districts = config('general.districts');
 
-        $states = config('general.states');
+        $conditions = config('general.conditions');
 
-        return view('users.edit', compact('user', 'roles', 'sports', 'genders', 'districts', 'states'));
+        return view('users.edit', compact('user', 'roles', 'sports', 'genders', 'districts', 'conditions'));
     }
 
     /**
@@ -156,5 +158,28 @@ class UsersController extends Controller
         Mail::to($email)->send(new CredentialsMail($id, $password));
 
         return redirect()->route('users.index')->with('status', 'Usuario editado exitosamente!');
+    }
+
+    /**
+     * Elimina el recurso especificado del almacenamiento.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        $users = User::all();
+
+        if ($user->condition == 'A') {
+            $user->update([
+                'condition' => 'I'
+            ]);
+        } else {
+            $user->update([
+                'condition' => 'A'
+            ]);
+        }
+
+        return redirect()->route('users.index', ['users' => $users])->with('status', '¡Estado del Usuario Actualizado exitosamente!');
     }
 }

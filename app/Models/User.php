@@ -47,6 +47,7 @@ class User extends Authenticatable
         'phone',
         'address',
         'gender',
+        'condition',
         'experience',
         'contract_number',
         'contract_year',
