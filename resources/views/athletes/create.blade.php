@@ -22,7 +22,7 @@
                     <form action="{{ route('athletes.store') }}" method="POST" id='form_athlete_create'>
                         @csrf
 
-                        <div x-data="{ isOpen: {{ old('is_user') ? 'true' : 'false' }} }">
+                        {{-- <div x-data="{ isOpen: {{ old('is_user') ? 'true' : 'false' }} }">
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" name="is_user" id="is_user"
                                     x-model="isOpen">
@@ -34,7 +34,7 @@
                             <hr>
 
                             <div x-show="isOpen">
-                                {{-- Usuario --}}
+
                                 <div class="form-group row">
                                     <label for="user_id" class="col-sm-4 col-form-label">Usuario</label>
                                     <div class="col-sm-8">
@@ -53,7 +53,7 @@
                             </div>
 
                             <div x-show="!isOpen">
-                                {{-- Cédula de Identidad o DIMEX --}}
+
                                 <div class="form-group row">
                                     <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
                                         DIMEX</label>
@@ -62,7 +62,6 @@
                                     </div>
                                 </div>
 
-                                {{-- Nombre --}}
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
                                     <div class="col-sm-8">
@@ -70,7 +69,6 @@
                                     </div>
                                 </div>
 
-                                {{-- Apellidos --}}
                                 <div class="form-group row">
                                     <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                                     <div class="col-sm-8">
@@ -78,9 +76,6 @@
                                     </div>
                                 </div>
 
-
-
-                                {{-- Fecha de Nacimiento --}}
                                 @php
                                     $today = today()->toDateString();
                                     $age = today()
@@ -97,11 +92,9 @@
                                     </div>
                                 </div>
 
-                                {{-- Cantón --}}
                                 <x-input name="canton" type="hidden" value="Alajuela" />
 
 
-                                {{-- Distrito --}}
                                 <div class="form-group row">
                                     <label for="district" class="col-sm-4 col-form-label">Distrito</label>
                                     <div class="col-sm-8">
@@ -118,7 +111,6 @@
 
                                 <hr>
 
-                                {{-- Correo Electrónico --}}
                                 <div class="form-group row">
                                     <label for="email" class="col-sm-4 col-form-label">Correo Electrónico</label>
                                     <div class="col-sm-8">
@@ -126,7 +118,6 @@
                                     </div>
                                 </div>
 
-                                {{-- Teléfono --}}
                                 <div class="form-group row">
                                     <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                                     <div class="col-sm-8">
@@ -134,7 +125,6 @@
                                     </div>
                                 </div>
 
-                                {{-- Dirección Exacta --}}
                                 <div class="form-group row">
                                     <label for="address" class="col-sm-4 col-form-label">Dirección</label>
                                     <div class="col-sm-8">
@@ -146,7 +136,6 @@
 
                                 <hr>
 
-                                {{-- Género --}}
                                 <div class="form-group row">
                                     <label for="gender" class="col-sm-4 col-form-label">Género</label>
                                     <div class="col-sm-8">
@@ -169,7 +158,7 @@
 
 
                                 <hr>
-                                {{-- Contraseña --}}
+
                                 <div class="form-group row">
                                     <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
                                     <div class="col-sm-8">
@@ -178,7 +167,6 @@
                                     </div>
                                 </div>
 
-                                {{-- Confirmación de contraseña --}}
                                 <div class="form-group row">
                                     <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
                                         Contraseña</label>
@@ -189,8 +177,141 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> --}}
+                        {{-- Cédula de Identidad o DIMEX --}}
+                        <div class="form-group row">
+                            <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
+                                DIMEX</label>
+                            <div class="col-sm-8">
+                                <x-input name="identification" value="{{ old('identification') }}" />
+                            </div>
                         </div>
 
+                        {{-- Nombre --}}
+                        <div class="form-group row">
+                            <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
+                            <div class="col-sm-8">
+                                <x-input name="name" value="{{ old('name') }}" />
+                            </div>
+                        </div>
+
+                        {{-- Apellidos --}}
+                        <div class="form-group row">
+                            <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
+                            <div class="col-sm-8">
+                                <x-input name="last_name" value="{{ old('last_name') }}" />
+                            </div>
+                        </div>
+
+
+
+                        {{-- Fecha de Nacimiento --}}
+                        @php
+                            $today = today()->toDateString();
+                            $age = today()
+                                ->subYears(7)
+                                ->toDateString();
+                        @endphp
+
+                        <div class="form-group row">
+                            <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
+                            <div class="col-sm-8">
+                                <x-input type="date" id="birthdate" max="{{ $age }}" name="birthdate"
+                                    value="{{ old('birthdate') }}" />
+                                <span class="badge text-danger errors-birthdate"></span>
+                            </div>
+                        </div>
+
+                        {{-- Cantón --}}
+                        <x-input name="canton" type="hidden" value="Alajuela" />
+
+
+                        {{-- Distrito --}}
+                        <div class="form-group row">
+                            <label for="district" class="col-sm-4 col-form-label">Distrito</label>
+                            <div class="col-sm-8">
+                                <x-select name="district">
+                                    <option disabled {{ old('district') ? '' : 'selected' }} value=""> --
+                                        Seleccione -- </option>
+                                    @foreach ($districts as $district)
+                                        <option {{ old('district') == $district ? 'selected' : '' }}
+                                            value="{{ $district }}">{{ $district }}</option>
+                                    @endforeach
+                                </x-select>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        {{-- Correo Electrónico --}}
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-4 col-form-label">Correo Electrónico</label>
+                            <div class="col-sm-8">
+                                <x-input type="email" name="email" value="{{ old('email') }}" />
+                            </div>
+                        </div>
+
+                        {{-- Teléfono --}}
+                        <div class="form-group row">
+                            <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
+                            <div class="col-sm-8">
+                                <x-input name="phone" value="{{ old('phone') }}" />
+                            </div>
+                        </div>
+
+                        {{-- Dirección Exacta --}}
+                        <div class="form-group row">
+                            <label for="address" class="col-sm-4 col-form-label">Dirección</label>
+                            <div class="col-sm-8">
+                                <x-textarea name="address">
+                                    {{ old('address') }}
+                                </x-textarea>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        {{-- Género --}}
+                        <div class="form-group row">
+                            <label for="gender" class="col-sm-4 col-form-label">Género</label>
+                            <div class="col-sm-8">
+                                @foreach ($genders as $gender)
+                                    <div class="custom-control custom-radio">
+                                        <input
+                                            {{ (old('gender') && old('gender') == $gender) || (!old('gender') && $loop->index == 0) ? 'checked' : '' }}
+                                            class="custom-control-input" type="radio" name="gender"
+                                            id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                                        <label class="custom-control-label" for="gender-{{ $loop->index }}">
+                                            {{ $gender }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <hr>
+
+
+
+                        <hr>
+                        {{-- Contraseña --}}
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
+                            <div class="col-sm-8">
+                                <x-input name="password" id="password" type="password" />
+                                <span class="badge text-danger errors-password"></span>
+                            </div>
+                        </div>
+
+                        {{-- Confirmación de contraseña --}}
+                        <div class="form-group row">
+                            <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
+                                Contraseña</label>
+                            <div class="col-sm-8">
+                                <x-input name="password_confirmation" id="password_confirmation" type="password" />
+                                <span class="badge text-danger errors-password_confirmation"></span>
+                            </div>
+                        </div>
                         <hr>
 
                         {{-- Categoria --}}
