@@ -24,7 +24,6 @@ class UpdateMuscularRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'athlete_id'       => ['required'],
             'date'             => ['required'],
             'time'             => ['required'],
             'physiological_age'=> ['required','min:1', 'max:2'],

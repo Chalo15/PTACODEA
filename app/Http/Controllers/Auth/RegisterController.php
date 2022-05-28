@@ -97,7 +97,7 @@ class RegisterController extends Controller
         $email = $data['email'];
         //Sending an email with the password and the identification
         Mail::to($email)->send(new CredentialsMail($id, $password));
-        $data['role_id'] = 4;
+        $data['role_id'] = 3;
         $data['state'] = 'R';
         //dd($data);
         $user = User::create($data);

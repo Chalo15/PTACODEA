@@ -13,13 +13,13 @@
         <div class="col">
             <div class="card">
                 <div class="text-center card-header">
-                    <h2 class="font-weight-bold ">
+                    <h3 class="font-weight-bold ">
                         Nueva Musculación
-                    </h2>
+                    </h3>
                 </div>
                 {{--  @json($errors->all()) --}}
                 <div class="card-body">
-                    <form id='form_musculars_create' action="{{ route('musculars.store') }}" method="POST">
+                    <form id="form_musculars_create" action="{{ route('musculars.store') }}" method="POST">
                         @csrf
 
                         <div class="mb-3 col-12 text-center">

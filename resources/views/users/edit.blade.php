@@ -22,7 +22,7 @@
                     <form action="{{ route('users.update', $user->id) }}" method="POST" id='form_users_edit'>
                         @csrf
                         @method('PUT')
-                        @json($errors->all())
+                       {{-- @json($errors->all())--}}
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
                             <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
@@ -138,6 +138,23 @@
                             </div>
                         </div>
 
+                        {{-- Estado del Atleta --}}
+                        <div class="form-group row">
+                            <label for="condition" class="col-sm-4 col-form-label">Estado</label>
+                            <div class="col-sm-8">
+                                <x-select name="condition">
+                                    <option {{ $user->condition ? '' : 'selected' }} value=""> --
+                                        Seleccione --
+                                    </option>
+                                    @foreach ($conditions as $condition)
+                                        <option {{ $user->condition == $condition ? 'selected' : '' }}
+                                            value="{{ old('condition') ?? $condition }}">{{ $condition }}
+                                        </option>
+                                    @endforeach
+                                </x-select>
+                            </div>
+                        </div>
+
                         <hr>
 
                         {{-- Años de Experiencia --}}
@@ -175,7 +192,7 @@
                                     <x-select name="role_id" x-model="role">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($roles as $role)
-                                            @if ($role->id == 4)
+                                            @if ($role->id == 3)
                                                 @continue
                                             @endif
 
@@ -352,6 +369,9 @@
                             role_id: {
                                 required: true
                             },
+                            condition: {
+                                required: true
+                            },
                             password: {
                                 required: true,
                                 passwordCheck: true,
@@ -365,18 +385,21 @@
                             sport_id: {
                                 required: true
                             },
+                            condition: {
+                                required: true
+                            },
                         },
                         messages: {
                             birthdate: {
                                 required: 'Por favor ingrese su fecha de nacimiento *'
                             },
                             district: {
-                                required: 'Por favor ingrese su provincia *'
+                                required: 'Por favor ingrese su distrito *'
                             },
                             canton: {
-                                required: 'Por favor ingrese la ciudad donde vive *',
-                                maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
-                                minlength: 'La ciudad no puede ser menor a 3 caracteres *'
+                                required: 'Por favor ingrese el cantón donde vive *',
+                                maxlength: 'El cantón no puede ser mayor a 30 caracteres *',
+                                minlength: 'El cantón no puede ser menor a 3 caracteres *'
                             },
                             email: {
                                 required: 'Por favor ingrese su email *',
@@ -408,6 +431,9 @@
                             },
                             role_id: {
                                 required: 'Por favor ingrese su rol *'
+                            },
+                            condition: {
+                                required: 'Por favor el estado del usuario *'
                             },
                             password: {
                                 required: 'Por favor ingrese su contraseña *',

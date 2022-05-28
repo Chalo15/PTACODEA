@@ -20,6 +20,7 @@
                     <form action="{{ route('physios.store') }}" method="POST" id='form_physios_create'>
                         @csrf
 
+                        @json($errors->all())
                         {{-- Fecha de registro --}}
                         @php
                             $today = today()->toDateString();
@@ -30,7 +31,7 @@
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input readonly name="date" id="date" type="date" {{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}" --}}
+                                <x-input readonly name="date" id="date" type="date" min="{{ date('Y-m-d') }}"
                                     value="{{ $today }}" />
                             </div>
                         </div>

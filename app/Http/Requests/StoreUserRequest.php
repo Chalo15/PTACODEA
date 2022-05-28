@@ -34,6 +34,7 @@ class StoreUserRequest extends FormRequest
             'phone'           => ['required', 'digits:8','numeric', 'unique:users,phone'],
             'address'         => ['required', 'min:3', 'max:150'],
             'gender'          => ['required'],
+            'condition'      => ['required'],
             'experience'      => ['required', 'min:1', 'max:2'],
             'contract_number' => ['required', 'min:1', 'max:5'],
             'contract_year'   => ['required', 'min:1', 'max:2'],

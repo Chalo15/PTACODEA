@@ -152,6 +152,14 @@
 
                             <hr>
 
+                            {{-- Estado --}}
+                            <div class="form-group row">
+                                <label for="condition" class="col-sm-4 col-lg-12 col-form-label">Estado</label>
+                                <div class="col-sm-8 col-lg-12">
+                                    <x-input disabled name="condition" value="{{ $user->condition }}" />
+                                </div>
+                            </div>
+
                             {{-- Años de Experiencia --}}
                             <div class="form-group row">
                                 <label for="experience" class="col-sm-4 col-lg-12 col-form-label">Años de Experiencia</label>

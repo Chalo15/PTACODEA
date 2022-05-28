@@ -35,10 +35,15 @@ class LoginController extends Controller
 
         $user = request()->user();
 
-        if ($user->role_id == 4 && $user->athlete->state == 'R') {
+        if ($user->role_id == 3 && $user->athlete->state == 'R') {
             Auth::logout();
             return view('auth/login')->with('status', '¡Su perfil esta en proceso de aceptación, por favor sea paciente!');
-        } else {
+        }
+        if ($user->role_id != 3 && $user->condition == 'I') {
+            Auth::logout();
+            return view('auth/login')->with('status', '¡Su perfil esta en proceso de aceptación, por favor sea paciente!');
+        }
+        else {
             return redirect('/');
         }
     }
