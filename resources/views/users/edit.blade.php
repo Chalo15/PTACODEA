@@ -22,7 +22,7 @@
                     <form action="{{ route('users.update', $user->id) }}" method="POST" id='form_users_edit'>
                         @csrf
                         @method('PUT')
-                        @json($errors->all())
+                       {{-- @json($errors->all())--}}
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
                             <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
@@ -192,7 +192,7 @@
                                     <x-select name="role_id" x-model="role">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($roles as $role)
-                                            @if ($role->id == 4)
+                                            @if ($role->id == 3)
                                                 @continue
                                             @endif
 

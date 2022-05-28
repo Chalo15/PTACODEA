@@ -25,7 +25,7 @@ class UpdatePhysioRequest extends FormRequest
     {
         $rules = [
             'date'      => ['required'],
-            'sph' => ['required'],
+            'aph' => ['required'],
             'app' => ['required'],
             'treatment' => ['required'],
             'session_start' => ['required'],

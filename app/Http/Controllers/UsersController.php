@@ -101,7 +101,7 @@ class UsersController extends Controller
 
 
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('status', 'Usuario creado exitosamente!');;
     }
 
     /**

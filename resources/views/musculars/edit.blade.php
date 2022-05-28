@@ -12,24 +12,26 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header">
-                    Editar Sesión
+                <div class="text-center card-header">
+                    <h3 class="font-weight-bold ">
+                        Editar Sesión
+                    </h3>
                 </div>
                 <div class="card-body">
-                    <form id='form_musculars_edit' action="{{ route('musculars.update', $muscular->id) }}" method="POST">
+                    <form id="form_musculars_edit" action="{{ route('musculars.update', $muscular->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Instrumento de Medición</label>
+                        <div class="mb-3 col-12 text-center">
+                            <h4 class="text-center font-weight-bold ">Instrumento de Medición</h4>
                         </div>
 
                         {{-- Fecha de Toma Datos --}}
                         <div class="form-group row">
                             <label for="date" class="col-sm-4 col-form-label">Fecha de Cita</label>
                             <div class="col-sm-8">
-                                <x-input readonly type="date" name="date"
-                                    value="{{ old('date') ?? $muscular->date }}" />
+                                <x-input readonly type="date" name="date" min="{{ date('Y-m-d') }}"
+                                    value="{{ old('date') ?? $muscular->date->isoFormat('YYYY-MM-DD') }}" />
                             </div>
                         </div>
 
@@ -58,7 +60,7 @@
                         <div class="form-group row">
                             <label for="physiological_age" class="col-sm-4 col-form-label">Edad Fisiológica</label>
                             <div class="col-sm-8">
-                                <x-input name="physiological_age" type="number"
+                                <x-input name="physiological_age"
                                     value="{{ old('physiological_age') ?? $muscular->physiological_age }}" />
                             </div>
                         </div>
@@ -67,7 +69,7 @@
                         <div class="form-group row">
                             <label for="weight" class="col-sm-4 col-form-label">Peso Kg</label>
                             <div class="col-sm-8">
-                                <x-input name="weight" type="number"
+                                <x-input name="weight"
                                     value="{{ old('weight') ?? $muscular->weight }}" />
                             </div>
                         </div>
@@ -76,7 +78,7 @@
                         <div class="form-group row">
                             <label for="height" class="col-sm-4 col-form-label">Altura Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="height" type="number"
+                                <x-input name="height"
                                     value="{{ old('height') ?? $muscular->height }}" />
                             </div>
                         </div>
@@ -85,7 +87,7 @@
                         <div class="form-group row">
                             <label for="bmi" class="col-sm-4 col-form-label">IMC</label>
                             <div class="col-sm-8">
-                                <x-input name="bmi" type="number" value="{{ old('bmi') ?? $muscular->bmi }}" />
+                                <x-input name="bmi"  value="{{ old('bmi') ?? $muscular->bmi }}" />
                             </div>
                         </div>
 
@@ -93,7 +95,7 @@
                         <div class="form-group row">
                             <label for="waist" class="col-sm-4 col-form-label">Circ. Cintura Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="waist" type="number" value="{{ old('waist') ?? $muscular->waist }}" />
+                                <x-input name="waist"  value="{{ old('waist') ?? $muscular->waist }}" />
                             </div>
                         </div>
 
@@ -101,7 +103,7 @@
                         <div class="form-group row">
                             <label for="hip" class="col-sm-4 col-form-label">Circ. Cadera Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="hip" type="number" value="{{ old('hip') ?? $muscular->hip }}" />
+                                <x-input name="hip"  value="{{ old('hip') ?? $muscular->hip }}" />
                             </div>
                         </div>
 
@@ -109,21 +111,21 @@
                         <div class="form-group row">
                             <label for="cint" class="col-sm-4 col-form-label">Relación Cintura Cadera</label>
                             <div class="col-sm-8">
-                                <x-input name="cint_code" type="number"
+                                <x-input name="cint_code"
                                     value="{{ old('cint_code') ?? $muscular->cint_code }}" />
                             </div>
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Pliegues</label>
+                        <div class="mb-3 col-12 text-center">
+                            <h4 class="text-center font-weight-bold ">Pliegues</h4>
                         </div>
                         <br>
                         {{-- Tricipital --}}
                         <div class="form-group row">
                             <label for="tricipital" class="col-sm-4 col-form-label">Tricipital</label>
                             <div class="col-sm-8">
-                                <x-input name="tricipital" type="number"
+                                <x-input name="tricipital"
                                     value="{{ old('tricipital') ?? $muscular->tricipital }}" />
                             </div>
                         </div>
@@ -132,7 +134,7 @@
                         <div class="form-group row">
                             <label for="subscapular" class="col-sm-4 col-form-label">Subescapular</label>
                             <div class="col-sm-8">
-                                <x-input name="subscapular" type="number"
+                                <x-input name="subscapular"
                                     value="{{ old('subscapular') ?? $muscular->subscapular }}" />
                             </div>
                         </div>
@@ -141,7 +143,7 @@
                         <div class="form-group row">
                             <label for="abdominal" class="col-sm-4 col-form-label">Abdominal</label>
                             <div class="col-sm-8">
-                                <x-input name="abdominal" type="number"
+                                <x-input name="abdominal"
                                     value="{{ old('abdominal') ?? $muscular->abdominal }}" />
                             </div>
                         </div>
@@ -150,7 +152,7 @@
                         <div class="form-group row">
                             <label for="suprailiac" class="col-sm-4 col-form-label">Suprailíaco</label>
                             <div class="col-sm-8">
-                                <x-input name="suprailiac" type="number"
+                                <x-input name="suprailiac"
                                     value="{{ old('suprailiac') ?? $muscular->suprailiac }}" />
                             </div>
                         </div>
@@ -159,7 +161,7 @@
                         <div class="form-group row">
                             <label for="thigh" class="col-sm-4 col-form-label">Muslo</label>
                             <div class="col-sm-8">
-                                <x-input name="thigh" type="number" value="{{ old('thigh') ?? $muscular->thigh }}" />
+                                <x-input name="thigh"  value="{{ old('thigh') ?? $muscular->thigh }}" />
                             </div>
                         </div>
 
@@ -167,20 +169,20 @@
                         <div class="form-group row">
                             <label for="calf" class="col-sm-4 col-form-label">Pantorrilla</label>
                             <div class="col-sm-8">
-                                <x-input name="calf" type="number" value="{{ old('calf') ?? $muscular->calf }}" />
+                                <x-input name="calf"  value="{{ old('calf') ?? $muscular->calf }}" />
                             </div>
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Diámetros</label>
+                        <div class="mb-3 col-12 text-center">
+                            <h4 class="text-center font-weight-bold ">Diámetros</h4>
                         </div>
                         <br>
                         {{-- Muñeca Cm --}}
                         <div class="form-group row">
                             <label for="wrist" class="col-sm-4 col-form-label">Muñeca Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="wrist" type="number" value="{{ old('wrist') ?? $muscular->wrist }}" />
+                                <x-input name="wrist"  value="{{ old('wrist') ?? $muscular->wrist }}" />
                             </div>
                         </div>
 
@@ -188,7 +190,7 @@
                         <div class="form-group row">
                             <label for="elbow" class="col-sm-4 col-form-label">Codo Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="elbow" type="number" value="{{ old('elbow') ?? $muscular->elbow }}" />
+                                <x-input name="elbow"  value="{{ old('elbow') ?? $muscular->elbow }}" />
                             </div>
                         </div>
 
@@ -196,20 +198,20 @@
                         <div class="form-group row">
                             <label for="knee" class="col-sm-4 col-form-label">Rodilla Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="knee" type="number" value="{{ old('knee') ?? $muscular->knee }}" />
+                                <x-input name="knee"  value="{{ old('knee') ?? $muscular->knee }}" />
                             </div>
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Anchuras</label>
+                        <div class="mb-3 col-12 text-center">
+                            <h4 class="text-center font-weight-bold ">Anchuras</h4>
                         </div>
                         <br>
                         {{-- Biceps Cm --}}
                         <div class="form-group row">
                             <label for="biceps" class="col-sm-4 col-form-label">Bíceps Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="biceps" type="number"
+                                <x-input name="biceps"
                                     value="{{ old('biceps') ?? $muscular->biceps }}" />
                             </div>
                         </div>
@@ -218,21 +220,21 @@
                         <div class="form-group row">
                             <label for="calf_cm" class="col-sm-4 col-form-label">Pantorrilla Cm</label>
                             <div class="col-sm-8">
-                                <x-input name="calf_cm" type="number"
+                                <x-input name="calf_cm"
                                     value="{{ old('calf_cm') ?? $muscular->calf_cm }}" />
                             </div>
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Resultados</label>
+                        <div class="mb-3 col-12 text-center">
+                            <h4 class="text-center font-weight-bold ">Resultados</h4>
                         </div>
                         <br>
                         {{-- %Grasa --}}
                         <div class="form-group row">
                             <label for="fat" class="col-sm-4 col-form-label">%Grasa</label>
                             <div class="col-sm-8">
-                                <x-input name="fat" type="number" value="{{ old('fat') ?? $muscular->fat }}" />
+                                <x-input name="fat"  value="{{ old('fat') ?? $muscular->fat }}" />
                             </div>
                         </div>
 
@@ -240,7 +242,7 @@
                         <div class="form-group row">
                             <label for="residual" class="col-sm-4 col-form-label">%Residual</label>
                             <div class="col-sm-8">
-                                <x-input name="residual" type="number"
+                                <x-input name="residual"
                                     value="{{ old('residual') ?? $muscular->residual }}" />
                             </div>
                         </div>
@@ -249,7 +251,7 @@
                         <div class="form-group row">
                             <label for="bone" class="col-sm-4 col-form-label">%Óseo</label>
                             <div class="col-sm-8">
-                                <x-input name="bone" type="number" value="{{ old('bone') ?? $muscular->bone }}" />
+                                <x-input name="bone"  value="{{ old('bone') ?? $muscular->bone }}" />
                             </div>
                         </div>
 
@@ -257,7 +259,7 @@
                         <div class="form-group row">
                             <label for="muscle" class="col-sm-4 col-form-label">%Musculo</label>
                             <div class="col-sm-8">
-                                <x-input name="muscle" type="number"
+                                <x-input name="muscle"
                                     value="{{ old('muscle') ?? $muscular->muscle }}" />
                             </div>
                         </div>
@@ -266,21 +268,21 @@
                         <div class="form-group row">
                             <label for="visceral" class="col-sm-4 col-form-label">%Visceral</label>
                             <div class="col-sm-8">
-                                <x-input name="visceral" type="number"
+                                <x-input name="visceral"
                                     value="{{ old('visceral') ?? $muscular->visceral }}" />
                             </div>
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Recomendaciones</label>
+                        <div class="mb-3 col-12 text-center">
+                            <h4 class="text-center font-weight-bold ">Recomendaciones</h4>
                         </div>
                         <br>
                         {{-- Peso Ideal Kg --}}
                         <div class="form-group row">
                             <label for="ideal_weight" class="col-sm-4 col-form-label">Peso Ideal Kg</label>
                             <div class="col-sm-8">
-                                <x-input name="ideal_weight" type="number"
+                                <x-input name="ideal_weight"
                                     value="{{ old('ideal_weight') ?? $muscular->ideal_weight }}" />
                             </div>
                         </div>
@@ -289,20 +291,20 @@
                         <div class="form-group row">
                             <label for="calories" class="col-sm-4 col-form-label">Requerimiento Calórico</label>
                             <div class="col-sm-8">
-                                <x-input name="calories" type="number"
+                                <x-input name="calories"
                                     value="{{ old('calories') ?? $muscular->calories }}" />
                             </div>
                         </div>
 
                         <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Acotaciones Extras</label>
+                        <div class="text-center ">
+                            <h4 class="text-center font-weight-bold ">Acotaciones Extras</h4>
                         </div>
 
                         <div class="form-group row">
                             <label for="get_better" class="col-sm-4 col-form-label">Aspectos por Mejorar</label>
                             <div class="col-sm-8">
-                                <x-textarea placeher="Aspectos por mejorar" name="get_better" cols="30" rows="5"
+                                <x-textarea placeher="Aspectos por mejorar" name="get_better"
                                     value="{{ old('get_better') ?? $muscular->get_better }}" />
                             </div>
                         </div>

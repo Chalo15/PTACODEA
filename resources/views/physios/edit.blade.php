@@ -22,33 +22,20 @@
                         @method('PUT')
 
                         {{-- Fecha de registro --}}
-                        @php
-                            $today = today()->toDateString();
-                            /*$lastWeek = today()->subDays(7)->toDateString();
-                             $nextWeek = today()->addDay(7)->toDateString();*/
-                        @endphp
                         <div class="form-group row">
-
-                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
+                            <label for="date" class="col-sm-4 col-form-label">Fecha de Registro</label>
                             <div class="col-sm-8">
-                                <x-input readonly name="date" type="date" {{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}" --}}
-                                    value="{{ old('date') ?? $physio->date }}" />
+                                <x-input name="date" type="date" min="{{ date('Y-m-d') }}"
+                                    readonly value="{{ old('date') ?? $physio->date->isoFormat('YYYY-MM-DD') }}" />
                             </div>
                         </div>
 
-                        {{-- Hora de registro --}}
-                        @php
-                            $hour = now()->toTimeString();
-                            /*$today = today()->toDateString();
-                                                    $lastWeek = today()->subDays(7)->toDateString();
-                                                    $nextWeek = today()->addDay(7)->toDateString();*/
-                        @endphp
+                        {{--Hora de Inicio --}}
                         <div class="form-group row">
 
-                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
+                            <label for="session_start" class="col-sm-4 col-form-label">Hora de Inicio</label>
                             <div class="col-sm-8">
-                                <x-input readonly name="time" type="time" {{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}" --}}
-                                    value="{{ old('timr') ?? $physio->time }}" />
+                                <x-input name="session_start" readonly value="{{ old('session_start') ?? $physio->session_start }}" />
                             </div>
                         </div>
 
@@ -95,7 +82,7 @@
                             </div>
 
                             <div x-show="isOpen">
-                                {{-- Cédula de Identidad o DIMEX --}}
+                                {{-- Detalle Tratamiento --}}
                                 <div class="form-group row">
                                     <label for="surgeries" class="col-sm-4 col-form-label">Detalle del
                                         tratamiento</label>
@@ -120,7 +107,7 @@
                             </div>
 
                             <div x-show="isOpen">
-                                {{-- Cédula de Identidad o DIMEX --}}
+                                {{-- Detalle Fractura --}}
                                 <div class="form-group row">
                                     <label for="fractures" class="col-sm-4 col-form-label">Detalle de la
                                         fractura</label>
@@ -133,17 +120,7 @@
                         </div>
 
 
-                        {{-- hora de inicio --}}
-                        <div class="form-group row">
-                            <label for="session_start" class="col-sm-4 col-form-label">Hora de inicio</label>
-                            <div class="col-sm-8">
-                                <x-input name="session_start" type="time"
-                                    value="{{ old('session_start') ?? $physio->session_start }}" />
-                            </div>
-                        </div>
-
-
-                        {{-- hora de fin --}}
+                        {{-- Hora de fin --}}
                         <div class="form-group row">
                             <label for="session_end" class="col-sm-4 col-form-label">Hora de fin</label>
                             <div class="col-sm-8">
@@ -252,7 +229,7 @@
                         return true;
                     },
                     "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
-                    );
+                );
                 //Validaciones del formulario
                 if ($("#form_physios_create").length > 0) {
                     $('#form_physios_create').validate({

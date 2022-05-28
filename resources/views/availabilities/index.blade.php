@@ -14,10 +14,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col d-flex align-items-center">
+                        <h3 class="font-weight-bold ">
                             Disponibilidades
-                        </div>
-
+                        </h3>
                         <div class="col d-flex justify-content-end">
                             @can('role', ['Musculacion','Fisioterapia'])
                                 <a href="{{ route('availabilities.create') }}" class="btn btn-primary">
@@ -39,7 +38,7 @@
                                         @can('role', ['Admin', 'Instructor'])
                                             <th>Encargado</th>
                                         @endcan
-                                        @can('role', ['Instructor'])
+                                        @can('role', ['Instructor','Admin'])
                                             <th>Sala</th>
                                         @endcan
                                         <th>Fecha</th>
@@ -61,7 +60,7 @@
                                             @can('role', ['Admin', 'Instructor'])
                                                 <td>{{ $availability->user->full_name }}</td>
                                             @endcan
-                                            @can('role', ['Instructor'])
+                                            @can('role', ['Instructor','Admin'])
                                                 <td>{{ $availability->user->role->description }}</td>
                                             @endcan
                                             <td>{{ $availability->date->isoFormat('LL') }}</td>
@@ -171,7 +170,7 @@
                                         @can('role', ['Admin', 'Instructor'])
                                             <th>Encargado</th>
                                         @endcan
-                                        @can('role', ['Instructor'])
+                                        @can('role', ['Instructor', 'Admin'])
                                             <th>Sala</th>
                                         @endcan
                                         <th>Fecha</th>

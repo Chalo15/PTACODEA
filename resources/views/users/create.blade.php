@@ -23,6 +23,7 @@
                         enctype="multipart/form-data" id="user-form">
                         @csrf
 
+                        {{--@json($errors->all())--}}
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
                             <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
@@ -180,7 +181,7 @@
                                     <x-select name="role_id" id="role_id" x-model="role">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($roles as $role)
-                                            @if ($role->id == 4 || $role->id == 7)
+                                            @if ($role->id == 3)
                                                 @continue
                                             @endif
 
