@@ -349,16 +349,17 @@
 
                         {{-- Disciplina Deportiva --}}
                         <div class="form-group row">
-                            <label for="sport_id" class="col-sm-4 col-form-label">Disciplina Deportiva</label>
+                            <label for="sport" class="col-sm-4 col-form-label">Deporte</label>
                             <div class="col-sm-8">
-                                <x-select2 name="sport_id">
-                                    <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione
-                                        -- </option>
+                                <x-select name="sport_id" id="sport_id">
+                                    <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> --
+                                        Seleccione -- </option>
                                     @foreach ($sports as $sport)
                                         <option {{ old('sport_id') == $sport->id ? 'selected' : '' }}
-                                            value="{{ $sport }}">{{ $sport }}</option>
+                                            value="{{ $sport->id }}">{{ $sport->description }}</option>
                                     @endforeach
-                                </x-select2>
+                                </x-select>
+                                <span class="badge text-danger errors-sport_id"></span>
                             </div>
                         </div>
 
@@ -394,6 +395,9 @@
                                 @endforeach
                             </div>
                         </div>
+
+                        {{-- Estado --}}
+                        <x-input name="condition" type="hidden" value="A" />
 
                         <hr>
 
@@ -540,13 +544,10 @@
                             birthdate: {
                                 required: true
                             },
-                            state: {
+                            district: {
                                 required: true
                             },
-                            province: {
-                                required: true
-                            },
-                            city: {
+                            canton: {
                                 required: true,
                                 lettersonly: true,
                                 minlength: 3,
@@ -646,11 +647,11 @@
                             state: {
                                 required: 'Por favor seleccione un estado *'
                             },
-                            province: {
-                                required: 'Por favor seleccione su provincia *'
+                            district: {
+                                required: 'Por favor seleccione su distrito *'
                             },
-                            city: {
-                                required: 'Por favor ingrese la ciudad donde vive *',
+                            canton: {
+                                required: 'Por favor ingrese el canton donde vive *',
                                 maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
                                 minlength: 'La ciudad no puede ser menor a 3 caracteres *'
                             },

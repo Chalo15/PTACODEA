@@ -34,11 +34,13 @@ class   UpdateAthleteRequest extends FormRequest
             'phone'           => ['required', 'numeric', 'unique:users,phone,' . $this->athlete->user->id],
             'address'         => ['required','min:3', 'max:100'],
             'gender'          => ['required'],
+            'condition'       => ['required'],
             'category'        => ['required'],
             'blood'           => ['required'],
             'laterality'      => ['required'],
-            'sport_id'      => ['required'],
-            'policy'          => ['required','min:3', 'max:10']
+            'sport_id'        => ['required'],
+            'policy'          => ['required','min:3', 'max:10'],
+            'medical_opinion' => ['required','min:1', 'max:10'],
         ];
         if ($this->is_edit) {
             $rules += [

@@ -22,7 +22,7 @@
                     <form action="{{ route('athletes.update', $athlete->id) }}" method="POST" id='form_athlete_edit'>
                         @csrf
                         @method('PUT')
-                        {{--@json($errors->all())--}}
+                        @json($errors->all())
                         <div>
                             <div>
                                 {{-- Cédula de Identidad o DIMEX --}}
@@ -99,14 +99,10 @@
                                     <label for="district" class="col-sm-4 col-form-label">Distrito</label>
                                     <div class="col-sm-8">
                                         <x-select name="district">
-                                            <option {{ $athlete->user->district ? '' : 'selected' }} value=""> --
-                                                Seleccione --
-                                            </option>
+                                            <option disabled value=""> -- Seleccione -- </option>
                                             @foreach ($districts as $district)
-                                                <option
-                                                    {{ old('district') == $athlete->user->district ? 'selected' : '' }}
-                                                    value="{{ $district }}">{{ $district }}
-                                                </option>
+                                                <option {{ $athlete->user->district == $district ? 'selected' : '' }}
+                                                    value="{{ old('district') ?? $district }}">{{ $district }}</option>
                                             @endforeach
                                         </x-select>
                                     </div>
@@ -165,17 +161,13 @@
 
                                 {{-- Categoria --}}
                                 <div class="form-group row">
-                                    <label for="category" class="col-sm-4 col-form-label">Categoria del deporte</label>
+                                    <label for="category" class="col-sm-4 col-form-label">Categoria</label>
                                     <div class="col-sm-8">
                                         <x-select name="category">
-                                            <option {{ $athlete->user->category ? '' : 'selected' }} value=""> --
-                                                Seleccione --
-                                            </option>
+                                            <option disabled value=""> -- Seleccione -- </option>
                                             @foreach ($categories as $category)
-                                                <option
-                                                    {{ old('category') == $athlete->user->category ? 'selected' : '' }}
-                                                    value="{{ $category }}">{{ $category }}
-                                                </option>
+                                                <option {{ $athlete->category == $category ? 'selected' : '' }}
+                                                    value="{{ old('category') ?? $category }}">{{ $category }}</option>
                                             @endforeach
                                         </x-select>
                                     </div>
@@ -186,7 +178,7 @@
                                     <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
                                     <div class="col-sm-8">
                                         <x-input name="policy"
-                                            value="{{ old('policy') ?? $athlete->user->policy }}" />
+                                            value="{{ old('policy') ?? $athlete->policy }}" />
                                     </div>
                                 </div>
 
@@ -244,7 +236,7 @@
                                     <x-select name="sport_id">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($sports as $sport)
-                                            <option {{ old('sport_id') == $sport->id ? 'selected' : '' }}
+                                            <option {{ $athlete->sport_id == $sport->id ? 'selected' : '' }}
                                                 value="{{ $sport->id }}">{{ $sport->description }}</option>
                                         @endforeach
                                     </x-select>
@@ -282,6 +274,8 @@
                                     @endforeach
                                 </div>
                             </div>
+
+                            <x-input name="condition" type="hidden" value="A" />
 
                             <hr>
 
