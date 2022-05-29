@@ -127,11 +127,11 @@ class AppointmentController extends Controller
                     $email = $appointment->coach->user->email;
 
                     //Envio de email al usuario que pidio una reserva para musculacion
-                    if ($role == 6) {
+                    if ($role == 5) {
                         Mail::to($email)->send(new ConfirmMail($appointment));
                     }
                     //Envio de email al usuario que pidio una reserva para fisioterapia
-                    elseif ($role == 5) {
+                    elseif ($role == 4) {
                         Mail::to($email)->send(new PhysioConfirmMail($appointment));
                     }
                 });
@@ -156,11 +156,11 @@ class AppointmentController extends Controller
                     $email = $appointment->coach->user->email;
 
                     //Envio de email al usuario que pidio una reserva para musculacion
-                    if ($role == 6) {
+                    if ($role == 5) {
                         Mail::to($email)->send(new ConfirmMail($appointment));
                     }
                     //Envio de email al usuario que pidio una reserva para fisioterapia
-                    elseif ($role == 5) {
+                    elseif ($role == 4) {
                         Mail::to($email)->send(new PhysioConfirmMail($appointment));
                     }
                 });

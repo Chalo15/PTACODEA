@@ -14,7 +14,7 @@
         axios.put('/notifications/markAll').then(() => this.refresh());
     },
     message(notification) {
-        if (this.role == 6 || this.role == 5) {
+        if (this.role == 5 || this.role == 4) {
             return `El instructor ${notification.data.Nombre_Entrenador} ${notification.data.Apellidos_Entrenador}, cédula ${notification.data.Id_Entrenador} reservó una cita`;
 
         } else if (this.role == 2) {
