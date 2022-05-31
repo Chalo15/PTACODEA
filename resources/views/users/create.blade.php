@@ -396,7 +396,7 @@
                                 required: true,
                                 equalTo: "#password"
                             },
-                            pdf: {
+                            url: {
                                 required: true
                             },
                             sport_id: {
@@ -478,7 +478,7 @@
                                 required: 'Por favor ingrese de nuevo su contraseña *',
                                 equalTo: 'Por favor introduzca la misma contraseña *'
                             },
-                            pdf: {
+                            url: {
                                 required: 'Por favor ingrese la copia de su cédula de identidad *'
                             },
                             sport_id: {
