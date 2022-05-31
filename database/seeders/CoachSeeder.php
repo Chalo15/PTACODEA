@@ -18,7 +18,7 @@ class CoachSeeder extends Seeder
             [
                 'user_id'  => 1,
                 'sport_id' => 2,
-                'phone'    => 86774667
+                'other_phone'    => 86774667
             ],
         ];
 

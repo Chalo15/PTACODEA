@@ -15,7 +15,7 @@ class Coach extends Model
      * @var array
      */
     protected $fillable = [
-        'phone',
+        'other_phone',
         'sport_id',
         'user_id',
         'url'

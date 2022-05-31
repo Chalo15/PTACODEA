@@ -197,7 +197,7 @@
 
                                 {{-- Deporte --}}
                                 <div class="form-group row">
-                                    <label for="sport" class="col-sm-4 col-form-label">Deporte</label>
+                                    <label for="sport_id" class="col-sm-4 col-form-label">Deporte</label>
                                     <div class="col-sm-8">
                                         <x-select name="sport_id" id="sport_id">
                                             <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> --
@@ -223,7 +223,7 @@
 
                                 {{-- Fotocópia de Cédula --}}
                                     <div class="form-group row">
-                                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                        <label for="url" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                         <div class="col-sm-8">
                                             <div class="input-group mb-3">
                                                 <label class="custom-file-label" for="identification_image">Elija el
