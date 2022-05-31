@@ -240,6 +240,10 @@
                                 </div>
                             </div>
 
+
+                            {{-- Condicion --}}
+                            <x-input name="condition" type="hidden" value="A" />
+
                             <hr>
 
 
