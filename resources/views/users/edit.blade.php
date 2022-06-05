@@ -22,7 +22,7 @@
                     <form action="{{ route('users.update', $user->id) }}" method="POST" id='form_users_edit'>
                         @csrf
                         @method('PUT')
-                       {{-- @json($errors->all())--}}
+                        {{-- @json($errors->all()) --}}
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
                             <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
@@ -49,14 +49,14 @@
                         </div>
 
                         {{-- Fecha de Nacimiento --}}
-                                @php
+                        @php
 
-                                    $today = today()->toDateString();
-                                    $age = today()
-                                        ->subYears(18)
-                                        ->toDateString();
+                            $today = today()->toDateString();
+                            $age = today()
+                                ->subYears(18)
+                                ->toDateString();
 
-                                @endphp
+                        @endphp
                         <div class="form-group row">
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
@@ -229,38 +229,52 @@
                                 </div>
 
                                 {{-- Fotocópia de Cédula --}}
-                                    <div class="form-group row">
-                                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
-                                        <div class="col-sm-8">
-                                            <div class="input-group mb-3">
-                                                <label class="custom-file-label" for="identification_image">Elija el
-                                                    archivo
-                                                </label>
-                                                <input name="url" type="file" class="custom-file-input"
-                                                    id="identification_image" aria-describedby="inputGroupFileAddon01">
-                                            </div>
+                                <div class="form-group row">
+                                    <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group mb-3">
+                                            <label class="custom-file-label" for="identification_image">Elija el
+                                                archivo
+                                            </label>
+                                            <input name="url" type="file" class="custom-file-input"
+                                                id="identification_image" aria-describedby="inputGroupFileAddon01">
                                         </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
 
                         <hr>
 
-                        {{-- Contraseña --}}
-                        <div class="form-group row">
-                            <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
-                            <div class="col-sm-8">
-                                <x-input name="password" type="password" />
-                            </div>
-                        </div>
+                        <div x-data="{ isOpen: {{ old('is_edit') ? 'true' : 'false' }} }">
 
-                        {{-- Confirmación de contraseña --}}
-                        <div class="form-group row">
-                            <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
-                                contraseña</label>
-                            <div class="col-sm-8">
-                                <x-input name="password_confirmation" type="password" />
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="is_edit" id="is_edit"
+                                    x-model="isOpen">
+                                <label class="form-check-label" for="is_edit">
+                                    Editar Contraseña
+                                </label>
                             </div>
+
+                            <div x-show="isOpen">
+                                {{-- Contraseña --}}
+                                <div class="form-group row">
+                                    <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="password" type="password" />
+                                    </div>
+                                </div>
+
+                                {{-- Confirmación de contraseña --}}
+                                <div class="form-group row">
+                                    <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
+                                        contraseña</label>
+                                    <div class="col-sm-8">
+                                        <x-input name="password_confirmation" type="password" />
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="d-flex justify-content-end">
@@ -323,6 +337,23 @@
                 if ($("#form_users_edit").length > 0) {
                     $('#form_users_edit').validate({
                         rules: {
+                            identification: {
+                                required: true,
+                                maxlength: 15,
+                                minlength: 9
+                            },
+                            name: {
+                                required: true,
+                                lettersonly: true,
+                                maxlength: 30,
+                                minlength: 3
+                            },
+                            last_name: {
+                                required: true,
+                                lettersonly: true,
+                                minlength: 3,
+                                maxlength: 30
+                            },
                             birthdate: {
                                 required: true
                             },
@@ -390,6 +421,21 @@
                             },
                         },
                         messages: {
+                            identification: {
+                                required: 'Por favor ingrese su cédula *',
+                                maxlength: 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+                                minlength: 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+                            },
+                            name: {
+                                required: 'Por favor ingrese su nombre *',
+                                maxlength: 'Su nombre no puede ser mayor a 30 caracteres *',
+                                minlength: 'Su nombre no puede ser menor a 3 caracteres *'
+                            },
+                            last_name: {
+                                required: 'Por favor ingrese sus apellidos *',
+                                maxlength: 'Sus apellidos no pueden ser mayores a 30 caracteres *',
+                                minlength: 'Sus apellidos no pueden ser menores a 3 caracteres *'
+                            },
                             birthdate: {
                                 required: 'Por favor ingrese su fecha de nacimiento *'
                             },
