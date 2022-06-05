@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav  navbar-right ml-auto">
 
-                        @can('role',['Musculacion','Atleta'])
+                        @can('role',['Musculacion','Instructor','Fisioterapia'])
                         <li class="nav-item dropdown">
                             @include('layouts.partials._notifications')
                         </li>
@@ -108,7 +108,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script src=" https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-    
+
     <script src="  https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 
     <script src="  https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>

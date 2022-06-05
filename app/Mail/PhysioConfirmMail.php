@@ -6,8 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+
 use App\Models\Appointment;
-use App\Notifications\AppointmentNotification;
 
 class PhysioConfirmMail extends Mailable
 {
@@ -28,25 +28,27 @@ class PhysioConfirmMail extends Mailable
      *
      * @return $this
      */
+
     public function data()
     {
         return [
-            'Id_Atleta' => $this->appointment->athlete->user->identification,
-            'Nombre_Atleta' => $this->appointment->athlete->user->name,
-            'Apellidos_Atleta' => $this->appointment->athlete->user->last_name,
-            'Id_Fisioterapeuta' => $this->appointment->availability->user->identification,
-            'Nombre_Fisioterapeuta' => $this->appointment->availability->user->name,
-            'Apellidos_Fisioterapeuta' => $this->appointment->availability->user->last_name,
+            'Id_Entrenador' => $this->appointment->coach->user->identification,
+            'Nombre_Entrenador' => $this->appointment->coach->user->name,
+            'Apellidos_Entrenador' => $this->appointment->coach->user->last_name,
+            'Id_Encargado' => $this->appointment->availability->user->identification,
+            'Nombre_Encargado' => $this->appointment->availability->user->name,
+            'Apellidos_Encargado' => $this->appointment->availability->user->last_name,
+            'Rol_Encargado' => $this->appointment->availability->user->role->description,
             'Date' => $this->appointment->availability->date,
             'Start' => $this->appointment->availability->start,
             'End' => $this->appointment->availability->end,
-            'State' => $this->appointment->availability->state,
-            'Role' => $this->appointment->availability->user->role_id
+            'State' => $this->appointment->availability->state
         ];
     }
+
     public function build()
     {
         $datos = $this->data();
-        return $this->markdown('emails.physioMail', compact($datos));
+        return $this->markdown('emails.physioConfirmMail', compact('datos'));
     }
 }

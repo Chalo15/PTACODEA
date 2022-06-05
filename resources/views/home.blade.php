@@ -27,7 +27,7 @@
                     Atletas
                 </div>
                 <div class="card-body">
-                    <i class="fas fa-swimmer fa-5x"></i>
+                    <i class="fas fa-child fa-5x"></i>
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('athletes.index') }}" class="btn btn-primary btn-block">
@@ -46,7 +46,7 @@
                     Deportes
                 </div>
                 <div class="card-body">
-                    <i class="fas fa-table-tennis fa-5x"></i>
+                    <i class="fas fa-bolt fa-5x"></i>
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('sports.index') }}" class="btn btn-primary btn-block">
@@ -116,24 +116,24 @@
 
 
     {{-- --------------------TERCER BLOQUE------------------ --}}
-   {{-- <div class="row">
-        @can('role', ['Admin', 'Musculacion'])
+   <div class="row">
+        @can('role', ['Atleta',])
         <div class="col-md mb-3">
             <div class="card text-center">
                 <div class="card-header">
-                    Disponibilidades
+                    Mi Perfil
                 </div>
                 <div class="card-body">
-                    <i class="fas fa-calendar-week fa-5x"></i>
+                    <i class="fas fa-users fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary btn-block">Acceder &nbsp;
+                    <a href="{{ route('profile.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
                         <i class="fas fa-share"></i></a>
                 </div>
             </div>
         </div>
         @endcan
-    </div>--}}
+    </div>
 
 
     <div class="row">
@@ -147,7 +147,7 @@
                     <i class="fas fa-calendar-alt fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary btn-block">Acceder &nbsp;
+                    <a href="{{ route('availabilities.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
                         <i class="fas fa-share"></i></a>
                 </div>
             </div>
@@ -188,7 +188,24 @@
         </div>
         @endcan
 
-        @can('role', ['Atleta'])
+        @can('role', ['Fisioterapia'])
+        <div class="col-md mb-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    Confirmacion Citas Fisioterapia
+                </div>
+                <div class="card-body">
+                    <i class="fas fa-calendar-week fa-5x"></i>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ route('appointments.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                        <i class="fas fa-share"></i></a>
+                </div>
+            </div>
+        </div>
+        @endcan
+
+        @can('role', ['Instructor'])
         <div class="col-md mb-3">
             <div class="card text-center">
                 <div class="card-header">
@@ -205,7 +222,7 @@
         </div>
         @endcan
 
-        @can('role', ['Atleta'])
+        @can('role', ['Instructor'])
         <div class="col-md mb-3">
             <div class="card text-center">
                 <div class="card-header">

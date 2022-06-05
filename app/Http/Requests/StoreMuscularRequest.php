@@ -46,8 +46,6 @@ class StoreMuscularRequest extends FormRequest
             'biceps'           => ['required','min:2', 'max:2'],
             'calf_cm'          => ['required','min:2', 'max:2'],
             'calories'         => ['required','min:2', 'max:4'],
-            'bmi_high'         => ['required','min:1', 'max:3'],
-            'icc_high'         => ['required','min:1', 'max:3'],
             'fat'              => ['required','min:1', 'max:2'],
             'residual'         => ['required','min:1', 'max:2'],
             'bone'             => ['required','min:1', 'max:2'],

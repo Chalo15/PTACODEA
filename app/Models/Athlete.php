@@ -21,6 +21,8 @@ class Athlete extends Model
         'state',
         'blood',
         'laterality',
+        'category',
+        'medical_opinion',
         'name_manager',
         'lastname_manager',
         'manager',
@@ -66,8 +68,4 @@ class Athlete extends Model
         return $this->belongsTo(Coach::class);
     }
 
-    public function appointments()
-    {
-        return $this->hasMany(Appointment::class);
-    }
 }

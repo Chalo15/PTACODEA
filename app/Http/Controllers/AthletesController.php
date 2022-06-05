@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AthletesExport;
 use App\Http\Requests\StoreAthleteRequest;
 use App\Http\Requests\UpdateAthleteRequest;
-use App\Http\Requests\UpdateUserRequest;
 use App\Models\Athlete;
 use App\Models\Sport;
 use App\Models\User;
 use App\Models\Coach;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Mail\CredentialsMail;
+use App\Mail\UpdateCredentialsMail;
+
+use Illuminate\Support\Facades\Mail;
 
 class AthletesController extends Controller
 {
@@ -58,6 +64,11 @@ class AthletesController extends Controller
         }
     }
 
+    public function export()
+    {
+        return Excel::download(new AthletesExport, 'athletes.xlsx');
+    }
+
     /**
      * Muestra el formulario para crear un nuevo recurso.
      *
@@ -67,21 +78,21 @@ class AthletesController extends Controller
     {
         $sports = Sport::all();
 
-        $coaches = Coach::with('user')->get();
-
         $users = User::where('role_id', '=', 7)->get();
 
         $genders = config('general.genders');
 
-        $provinces = config('general.provinces');
+        $districts = config('general.districts');
 
         $bloods = config('general.bloods');
+
+        $categories = config('general.categories');
 
         $lateralities = config('general.lateralities');
 
         $relationships = config('general.relationships');
 
-        return view('athletes.create', compact('sports', 'users', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
+        return view('athletes.create', compact('sports', 'users', 'genders', 'districts', 'bloods', 'lateralities', 'categories', 'relationships'));
     }
 
     /**
@@ -92,13 +103,21 @@ class AthletesController extends Controller
      */
     public function store(StoreAthleteRequest $request)
     {
-        $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated() + ['role_id' => 7]);
+        //Envia las credenciales por correo del athleta registrado, Id y Password
+        $id = $request->identification;
+        $password = $request->password;
+        $email = $request->email;
+        //Sending an email with the password and the identification
+        Mail::to($email)->send(new CredentialsMail($id, $password));
 
 
-        $user->athlete()->create($request->validated() + ['state' => 'A', 'sport_id' => Coach::find($request->coach_id)->sport_id]);
+        $user = User::create($request->validated() + ['role_id' => 3]);
+
+
+        $user->athlete()->create($request->validated() + ['state' => 'A']);
 
         $user->update([
-            'role_id' => 4
+            'role_id' => 3
         ]);
 
         // Almacenaje de la imagen.
@@ -137,7 +156,9 @@ class AthletesController extends Controller
 
         $genders = config('general.genders');
 
-        $provinces = config('general.provinces');
+        $districts = config('general.districts');
+
+        $categories = config('general.categories');
 
         $bloods = config('general.bloods');
 
@@ -145,7 +166,8 @@ class AthletesController extends Controller
 
         $relationships = config('general.relationships');
 
-        return view('athletes.edit', compact('states','sports', 'athlete', 'genders', 'provinces', 'bloods', 'lateralities', 'relationships', 'coaches'));
+
+        return view('athletes.edit', compact('states', 'sports', 'athlete', 'genders', 'districts', 'bloods', 'lateralities', 'categories', 'relationships', 'coaches'));
     }
 
     /**
@@ -157,9 +179,21 @@ class AthletesController extends Controller
      */
     public function update(UpdateAthleteRequest $request, Athlete $athlete)
     {
-        $athlete->update($request->validated() + ['sport_id' => Coach::find($request->coach_id)->sport_id]);
+
+
+
+        $athlete->update($request->validated());
 
         $athlete->user->update($request->validated());
+
+        //Envia las credenciales por correo del athleta registrado, Id y Password
+        $id = $request->identification;
+        $password = $request->password;
+        $email = $request->email;
+        //Sending an email with the password and the identification
+        Mail::to($email)->send(new UpdateCredentialsMail($id, $password));
+
+
 
         return redirect()->route('athletes.index')->with('status', 'Atleta editado exitosamente!');
     }
@@ -174,7 +208,7 @@ class AthletesController extends Controller
     {
         $athletes = Athlete::with('user')->get();
 
-        if($athlete->state == 'A'){
+        if ($athlete->state == 'A') {
             $athlete->update([
                 'state' => 'R'
             ]);
@@ -182,7 +216,6 @@ class AthletesController extends Controller
             $athlete->update([
                 'state' => 'A'
             ]);
-
         }
 
         return redirect()->route('athletes.index', ['athletes' => $athletes])->with('status', '¡Estado del Atleta Actualizado exitosamente!');

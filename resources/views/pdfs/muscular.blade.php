@@ -266,14 +266,6 @@
                     <td class="desc">{{ $muscular->calf_cm }}</td>
                 </tr>
                 <tr>
-                    <td class="service">IMC ALTO</td>
-                    <td class="desc">{{ $muscular->bmi_high }}</td>
-                </tr>
-                <tr>
-                    <td class="service">ICC ALTO</td>
-                    <td class="desc">{{ $muscular->icc_high }}</td>
-                </tr>
-                <tr>
                     <td class="service">%GRASA</td>
                     <td class="desc">{{ $muscular->fat }}</td>
                 </tr>

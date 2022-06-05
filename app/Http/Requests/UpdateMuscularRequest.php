@@ -24,12 +24,11 @@ class UpdateMuscularRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'athlete_id'       => ['required'],
             'date'             => ['required'],
             'time'             => ['required'],
             'physiological_age'=> ['required','min:1', 'max:2'],
             'weight'           => ['required','min:2', 'max:3'],
-            'height'           => ['required','min:2', 'max:3'], 
+            'height'           => ['required','min:2', 'max:3'],
             'bmi'              => ['required','min:1', 'max:3'],
             'waist'            => ['required','min:2', 'max:3'],
             'hip'              => ['required','min:2', 'max:3'],
@@ -46,8 +45,6 @@ class UpdateMuscularRequest extends FormRequest
             'biceps'           => ['required','min:2', 'max:2'],
             'calf_cm'          => ['required','min:2', 'max:2'],
             'calories'         => ['required','min:2', 'max:4'],
-            'bmi_high'         => ['required','min:1', 'max:3'],
-            'icc_high'         => ['required','min:1', 'max:3'],
             'fat'              => ['required','min:1', 'max:2'],
             'residual'         => ['required','min:1', 'max:2'],
             'bone'             => ['required','min:1', 'max:2'],

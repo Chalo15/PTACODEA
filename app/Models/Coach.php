@@ -15,7 +15,7 @@ class Coach extends Model
      * @var array
      */
     protected $fillable = [
-        'phone',
+        'other_phone',
         'sport_id',
         'user_id',
         'url'
@@ -35,5 +35,10 @@ class Coach extends Model
     public function sport()
     {
         return $this->belongsTo(Sport::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

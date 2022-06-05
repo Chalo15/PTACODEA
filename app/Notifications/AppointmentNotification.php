@@ -55,21 +55,19 @@ class AppointmentNotification extends Notification
     {
 
         return [
-            'Id_Atleta' => $this->appointment->athlete->user->identification,
-            'Nombre_Atleta' => $this->appointment->athlete->user->name,
-            'Apellidos_Atleta' => $this->appointment->athlete->user->last_name,
+            'Id_Entrenador' => $this->appointment->coach->user->identification,
+            'Nombre_Entrenador' => $this->appointment->coach->user->name,
+            'Apellidos_Entrenador' => $this->appointment->coach->user->last_name,
             'Id_Encargado' => $this->appointment->availability->user->identification,
             'Nombre_Encargado' => $this->appointment->availability->user->name,
-            'Role_Encargado' => $this->appointment->availability->user->role->description,
+            'Rol_Encargado' => $this->appointment->availability->user->role->description,
             'Apellidos_Encargado' => $this->appointment->availability->user->last_name,
+            'Espacios_Reservacion' => $this->appointment->counter,
             'Date' => $this->appointment->availability->date,
             'Start' => $this->appointment->availability->start,
             'End' => $this->appointment->availability->end,
             'State' => $this->appointment->availability->state
         ];
-
-
-        //Si la solicitud procede de un usuario Atleta
     }
     /**
      * Get the array representation of the notification.

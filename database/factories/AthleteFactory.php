@@ -27,20 +27,23 @@ class AthleteFactory extends Factory
     {
         $bloods = config('general.bloods');
         $lateralities = config('general.lateralities');
+        $categories = config('general.categories');
+        $relationships = config('general.relationships');
 
         return [
-            'user_id' => User::factory()->create(['role_id' => 4]),
+            'user_id' => User::factory()->create(['role_id' => 3]),
             'sport_id' => Sport::all()->random(),
-            'coach_id' => Coach::all()->random(),
             'state' => $this->faker->randomElement(['A', 'R']),
             'blood' => $bloods[array_rand($bloods)],
             'laterality' => $lateralities[array_rand($lateralities)],
+            'category' => $categories[array_rand($categories)],
             'name_manager' => $this->faker->name(),
             'lastname_manager' => $this->faker->lastName(),
+            'manager' => $relationships[array_rand($relationships)],
             'identification_manager' => $this->faker->randomNumber(9),
             'contact_manager' => $this->faker->randomNumber(8),
-            'policy' => $this->faker->unique()->randomNumber(8),
-            'manager' => "207910178",
+            'policy' => $this->faker->unique()->randomNumber(5),
+            'medical_opinion' => $this->faker->unique()->randomNumber(5),
         ];
     }
 }

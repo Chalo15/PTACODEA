@@ -17,12 +17,9 @@ class RoleSeeder extends Seeder
         $roles = [
             ['description' => 'Admin'],
             ['description' => 'Instructor'],
-            ['description' => 'Funcionario'],
             ['description' => 'Atleta'],
             ['description' => 'Fisioterapia'],
             ['description' => 'Musculacion'],
-            ['description' => 'Usuario Externo'],
-            ['description' => 'Guarda Seguridad'],
         ];
 
         DB::table('roles')->insert($roles);

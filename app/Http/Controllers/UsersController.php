@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
@@ -9,6 +10,11 @@ use App\Models\Sport;
 use App\Models\Role;
 use App\Models\User;
 use App\Notifications\AppointmentNotification;
+
+use App\Mail\CredentialsMail;
+use App\Models\Notification;
+use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
@@ -24,6 +30,8 @@ class UsersController extends Controller
         $this->middleware("can:role,'Admin'");
     }
 
+
+
     /**
      * Mostrar una lista del recurso.
      *
@@ -31,11 +39,14 @@ class UsersController extends Controller
      */
     function index()
     {
-        $users = User::where('role_id', '!=', 4)->where('role_id', '!=', 7)->with('role')->get();
+        $users = User::where('role_id', '!=', 3)->with('role')->get();
 
         return view('users.index', compact('users'));
     }
 
+    public function export(){
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
     /**
      * Muestra el formulario para crear un nuevo recurso.
      *
@@ -49,9 +60,11 @@ class UsersController extends Controller
 
         $genders = config('general.genders');
 
-        $provinces = config('general.provinces');
+        $districts = config('general.districts');
 
-        return view('users.create', compact('roles', 'sports', 'genders', 'provinces'));
+        $conditions = config('general.conditions');
+
+        return view('users.create', compact('roles', 'sports', 'genders', 'districts', 'conditions'));
     }
 
     /**
@@ -62,21 +75,33 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        //Envia por correo las credenciales del usuario registrado Id y Password
+        $password = $request->password;
+        $id = $request->identification;
+        $email = $request->email;
+        //Sending an email with the password and the identification
+        Mail::to($email)->send(new CredentialsMail($id, $password));
+
+
         $user = User::create($request->validated());
 
 
-
         if ($request->role_id == 2) {
-            $path = $request->file('pdf')->store('pdfs');
+            $path = $request->file('url')->store('pdfs');
 
             $user->coach()->create([
                 'sport_id' => $request->sport_id,
-                'phone' => $request->other_phone,
+                'other_phone' => $request->other_phone,
                 'url' => $path
             ]);
         }
 
-        return redirect()->route('users.index');
+
+
+
+
+
+        return redirect()->route('users.index')->with('status', 'Usuario creado exitosamente!');;
     }
 
     /**
@@ -108,9 +133,11 @@ class UsersController extends Controller
 
         $genders = config('general.genders');
 
-        $provinces = config('general.provinces');
+        $districts = config('general.districts');
 
-        return view('users.edit', compact('user', 'roles', 'sports', 'genders', 'provinces'));
+        $conditions = config('general.conditions');
+
+        return view('users.edit', compact('user', 'roles', 'sports', 'genders', 'districts', 'conditions'));
     }
 
     /**
@@ -123,7 +150,36 @@ class UsersController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
+        //Envia por correo las credenciales del usuario registrado Id y Password
+        $password = $request->password;
+        $id = $request->identification;
+        $email = $request->email;
+        //Sending an email with the password and the identification
+        Mail::to($email)->send(new CredentialsMail($id, $password));
 
         return redirect()->route('users.index')->with('status', 'Usuario editado exitosamente!');
+    }
+
+    /**
+     * Elimina el recurso especificado del almacenamiento.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        $users = User::all();
+
+        if ($user->condition == 'A') {
+            $user->update([
+                'condition' => 'I'
+            ]);
+        } else {
+            $user->update([
+                'condition' => 'A'
+            ]);
+        }
+
+        return redirect()->route('users.index', ['users' => $users])->with('status', '¡Estado del Usuario Actualizado exitosamente!');
     }
 }

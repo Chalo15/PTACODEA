@@ -14,6 +14,7 @@ class Availability extends Model
         'date',
         'start',
         'end',
+        'counter',
         'state'
     ];
 

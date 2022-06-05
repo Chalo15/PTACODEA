@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="col d-flex justify-content-end">
-                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-gray-codea">
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">
                         <i class="fas fa-edit"></i> &nbsp;
                         Editar
                     </a>
@@ -98,19 +98,19 @@
                                 </div>
                             </div>
 
-                            {{-- Provincia --}}
+                            {{-- Canton --}}
                             <div class="form-group row">
-                                <label for="province" class="col-sm-4 col-lg-12 col-form-label">Provincia</label>
+                                <label for="canton" class="col-sm-4 col-lg-12 col-form-label">Canton</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="province" value="{{ $user->province }}" />
+                                    <x-input disabled name="canton" value="{{ $user->canton }}" />
                                 </div>
                             </div>
 
-                            {{-- Ciudad --}}
+                            {{-- Distrito --}}
                             <div class="form-group row">
-                                <label for="city" class="col-sm-4 col-lg-12 col-form-label">Ciudad</label>
+                                <label for="district" class="col-sm-4 col-lg-12 col-form-label">Distrito</label>
                                 <div class="col-sm-8 col-lg-12">
-                                    <x-input disabled name="city" value="{{ $user->city }}" />
+                                    <x-input disabled name="district" value="{{ $user->district }}" />
                                 </div>
                             </div>
 
@@ -151,6 +151,14 @@
                             </div>
 
                             <hr>
+
+                            {{-- Estado --}}
+                            <div class="form-group row">
+                                <label for="condition" class="col-sm-4 col-lg-12 col-form-label">Estado</label>
+                                <div class="col-sm-8 col-lg-12">
+                                    <x-input disabled name="condition" value="{{ $user->condition }}" />
+                                </div>
+                            </div>
 
                             {{-- Años de Experiencia --}}
                             <div class="form-group row">
@@ -432,5 +440,5 @@
         </div>
     </div>
 
-    
+
 </x-app-layout>

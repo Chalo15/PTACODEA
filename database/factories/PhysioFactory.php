@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Appointment;
 use App\Models\Athlete;
 use App\Models\Physio;
 use App\Models\User;
@@ -26,8 +27,10 @@ class PhysioFactory extends Factory
         return [
             'user_id' => User::where('role_id', '=', 5)->get()->random(),
             'athlete_id' => Athlete::all()->random(),
+            'appointment_id' => Appointment::all()->random(),
             'date' => $this->faker->date(),
-            'sph' => $this->faker->sentence(),
+            'time' => $this->faker->time(),
+            'aph' => $this->faker->sentence(),
             'app' => $this->faker->sentence(),
             'treatment' => $this->faker->paragraph(),
             'surgeries' => $this->faker->paragraph(),
