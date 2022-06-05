@@ -36,15 +36,15 @@ class StoreAthleteRequest extends FormRequest
             ];
         } else {
             $rules += [
-                'identification'  => ['required', 'unique:users'],
-                'name'            => ['required'],
-                'last_name'       => ['required'],
+                'identification'  => ['required', 'min:9', 'max:15', 'unique:users'],
+                'name'            => ['required','min:3', 'max:30'],
+                'last_name'       => ['required','min:3', 'max:30'],
                 'birthdate'       => ['required'],
-                'phone'           => ['required', 'numeric', 'unique:users,phone'],
+                'phone'           => ['required', 'digits:8','numeric', 'unique:users,phone'],
                 'province'        => ['required'],
-                'city'            => ['required'],
+                'city'            => ['required','min:3', 'max:30'],
                 'email'           => ['required', 'email', 'unique:users'],
-                'address'         => ['required'],
+                'address'         => ['required','min:3', 'max:100'],
                 'gender'          => ['required'],
                 'password'        => ['required', 'confirmed']
             ];
@@ -52,12 +52,12 @@ class StoreAthleteRequest extends FormRequest
 
         if ($this->is_younger) {
             $rules += [
-                'name_manager'           => ['required'],
-                'lastname_manager'       => ['required'],
+                'name_manager'           => ['required', 'min:3', 'max:15'],
+                'lastname_manager'       => ['required','min:3', 'max:15'],
                 'manager'                => ['required'],
-                'identification_manager' => ['required'],
-                'contact_manager'        => ['required'],
-                'policy'                 => ['required'],
+                'identification_manager' => ['required', 'min:9', 'max:15'],
+                'contact_manager'        => ['required','digits:8'],
+                'policy'                 => ['required','min:3', 'max:10'],
                 'url'                    => ['required']
             ];
         }

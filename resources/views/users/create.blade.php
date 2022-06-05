@@ -17,14 +17,18 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id='form_users_create' action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data"
+                        id="user-form">
                         @csrf
 
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
-                            <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o DIMEX</label>
+                            <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
+                                DIMEX</label>
                             <div class="col-sm-8">
-                                <x-input name="identification" value="{{ old('identification') }}" />
+                                <x-input name="identification" id="identification"
+                                    value="{{ old('identification') }}" />
+                                    <span class="badge text-danger errors-identification"></span>
                             </div>
                         </div>
 
@@ -32,7 +36,8 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label">Nombre</label>
                             <div class="col-sm-8">
-                                <x-input name="name" value="{{ old('name') }}" />
+                                <x-input name="name" id="name" value="{{ old('name') }}" />
+                                <span class="badge text-danger errors-name"></span>
                             </div>
                         </div>
 
@@ -40,21 +45,26 @@
                         <div class="form-group row">
                             <label for="last_name" class="col-sm-4 col-form-label">Apellidos</label>
                             <div class="col-sm-8">
-                                <x-input name="last_name" value="{{ old('last_name') }}" />
+                                <x-input name="last_name" id="last_name" value="{{ old('last_name') }}" />
+                                <span class="badge text-danger errors-last_name"></span>
                             </div>
                         </div>
 
                         {{-- Fecha de Nacimiento --}}
 
                         @php
-                        $today = today()->toDateString();
-                        $age = today()->subYears(18)->toDateString();
+                            $today = today()->toDateString();
+                            $age = today()
+                                ->subYears(18)
+                                ->toDateString();
                         @endphp
 
                         <div class="form-group row">
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
-                                <x-input type="date" max="{{ $age }}" name="birthdate" value="{{ old('birthdate') }}" />
+                                <x-input type="date" id="birthdate" max="{{ $age }}" name="birthdate"
+                                    value="{{ old('birthdate') }}" />
+                                    <span class="badge text-danger errors-birthdate"></span>
                             </div>
                         </div>
 
@@ -62,12 +72,15 @@
                         <div class="form-group row">
                             <label for="province" class="col-sm-4 col-form-label">Provincia</label>
                             <div class="col-sm-8">
-                                <x-select name="province">
-                                    <option {{ old('province') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                <x-select name="province" id="province">
+                                    <option {{ old('province') ? '' : 'selected' }} value=""> -- Seleccione --
+                                    </option>
                                     @foreach ($provinces as $province)
-                                    <option {{ old('province') == $province ? 'selected' : '' }} value="{{ $province }}">{{ $province }}</option>
+                                        <option {{ old('province') == $province ? 'selected' : '' }}
+                                            value="{{ $province }}">{{ $province }}</option>
                                     @endforeach
                                 </x-select>
+                                <span class="badge text-danger errors-province"></span>
                             </div>
                         </div>
 
@@ -75,7 +88,8 @@
                         <div class="form-group row">
                             <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
                             <div class="col-sm-8">
-                                <x-input name="city" value="{{ old('city') }}" />
+                                <x-input name="city" id="city" value="{{ old('city') }}" />
+                                <span class="badge text-danger errors-city"></span>
                             </div>
                         </div>
 
@@ -85,7 +99,8 @@
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label">Correo Electrónico</label>
                             <div class="col-sm-8">
-                                <x-input type="email" name="email" value="{{ old('email') }}" />
+                                <x-input type="email" id="email" name="email" value="{{ old('email') }}" />
+                                <span class="badge text-danger errors-email"></span>
                             </div>
                         </div>
 
@@ -93,7 +108,8 @@
                         <div class="form-group row">
                             <label for="phone" class="col-sm-4 col-form-label">Teléfono</label>
                             <div class="col-sm-8">
-                                <x-input name="phone" type="number" value="{{ old('phone') }}" />
+                                <x-input name="phone" id="phone"  value="{{ old('phone') }}" />
+                                <span class="badge text-danger errors-phone"></span>
                             </div>
                         </div>
 
@@ -101,9 +117,10 @@
                         <div class="form-group row">
                             <label for="address" class="col-sm-4 col-form-label">Dirección</label>
                             <div class="col-sm-8">
-                                <x-textarea name="address">
+                                <x-textarea name="address" id="address">
                                     {{ old('address') }}
                                 </x-textarea>
+                                <span class="badge text-danger errors-address"></span>
                             </div>
                         </div>
 
@@ -130,7 +147,9 @@
                         <div class="form-group row">
                             <label for="experience" class="col-sm-4 col-form-label">Años de Experiencia</label>
                             <div class="col-sm-8">
-                                <x-input name="experience" type="number" value="{{ old('experience') }}" />
+                                <x-input name="experience" id="experience" 
+                                    value="{{ old('experience') }}" />
+                                    <span class="badge text-danger errors-experience"></span>
                             </div>
                         </div>
 
@@ -138,15 +157,19 @@
                         <div class="form-group row">
                             <label for="contract_number" class="col-sm-4 col-form-label">Número de Contrato</label>
                             <div class="col-sm-8">
-                                <x-input name="contract_number" type="number" value="{{ old('contract_number') }}" />
+                                <x-input name="contract_number" id="contract_number" 
+                                    value="{{ old('contract_number') }}" />
+                                    <span class="badge text-danger errors-contract_number"></span>
                             </div>
                         </div>
 
                         {{-- Año de Contrato --}}
                         <div class="form-group row">
-                            <label for="contract_year" class="col-sm-4 col-form-label">Año de Contrato</label>
+                            <label for="contract_year" class="col-sm-4 col-form-label">Años de Contrato</label>
                             <div class="col-sm-8">
-                                <x-input name="contract_year" type="number" value="{{ old('contract_year') }}" />
+                                <x-input name="contract_year" id="contract_year" 
+                                    value="{{ old('contract_year') }}" />
+                                    <span class="badge text-danger errors-contract_year"></span>
                             </div>
                         </div>
 
@@ -158,18 +181,17 @@
                             <div class="form-group row">
                                 <label for="role_id" class="col-sm-4 col-form-label">Rol</label>
                                 <div class="col-sm-8">
-                                    <x-select name="role_id" x-model="role">
+                                    <x-select name="role_id" id="role_id" x-model="role">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($roles as $role)
+                                            @if ($role->id == 4 ||$role->id == 7)
+                                                @continue
+                                            @endif
 
-                                        @if($role->id == 4)
-                                        @continue
-                                        @endif
-
-                                        <option value="{{ $role->id }}">{{ $role->description }}</option>
-
+                                            <option value="{{ $role->id }}">{{ $role->description }}</option>
                                         @endforeach
                                     </x-select>
+                                    <span class="badge text-danger errors-role_id"></span>
                                 </div>
                             </div>
 
@@ -180,12 +202,15 @@
                                 <div class="form-group row">
                                     <label for="sport" class="col-sm-4 col-form-label">Deporte</label>
                                     <div class="col-sm-8">
-                                        <x-select name="sport_id">
-                                            <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> -- Seleccione -- </option>
+                                        <x-select name="sport_id" id="sport_id">
+                                            <option disabled {{ old('sport_id') ? '' : 'selected' }} value=""> --
+                                                Seleccione -- </option>
                                             @foreach ($sports as $sport)
-                                            <option {{ old('sport_id') == $sport->id ? 'selected' : '' }} value="{{ $sport->id }}">{{ $sport->description }}</option>
+                                                <option {{ old('sport_id') == $sport->id ? 'selected' : '' }}
+                                                    value="{{ $sport->id }}">{{ $sport->description }}</option>
                                             @endforeach
                                         </x-select>
+                                        <span class="badge text-danger errors-sport_id"></span>
                                     </div>
                                 </div>
 
@@ -193,7 +218,9 @@
                                 <div class="form-group row">
                                     <label for="other_phone" class="col-sm-4 col-form-label">Teléfono Celular</label>
                                     <div class="col-sm-8">
-                                        <x-input name="other_phone" type="number" value="{{ old('other_phone') }}" />
+                                        <x-input name="other_phone" id="other_phone"
+                                            value="{{ old('other_phone') }}" />
+                                            <span class="badge text-danger errors-other_phone"></span>
                                     </div>
                                 </div>
 
@@ -201,7 +228,8 @@
                                 <div class="form-group row">
                                     <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
                                     <div class="col-sm-8">
-                                        <x-input name="pdf" type="file" />
+                                        <x-input name="pdf" id="pdf" type="file" />
+                                        <span class="badge text-danger errors-pdf"></span>
                                     </div>
                                 </div>
                             </div>
@@ -213,20 +241,23 @@
                         <div class="form-group row">
                             <label for="password" class="col-sm-4 col-form-label">Contraseña</label>
                             <div class="col-sm-8">
-                                <x-input name="password" type="password" />
+                                <x-input name="password" id="password" type="password" />
+                                <span class="badge text-danger errors-password"></span>
                             </div>
                         </div>
 
                         {{-- Confirmación de contraseña --}}
                         <div class="form-group row">
-                            <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de contraseña</label>
+                            <label for="password_confirmation" class="col-sm-4 col-form-label">Confirmación de
+                                Contraseña</label>
                             <div class="col-sm-8">
-                                <x-input name="password_confirmation" type="password" />
+                                <x-input name="password_confirmation" id="password_confirmation" type="password" />
+                                <span class="badge text-danger errors-password_confirmation"></span>
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" id="guardarBtn">
                                 <i class="fas fa-save"></i> &nbsp;
                                 Guardar
                             </button>
@@ -235,155 +266,234 @@
                     </form>
                 </div>
             </div>
-
-            {{-- <x-card title="Crear Usuario" color="primary">
-
-
-                <x-slot name="body">
-
-                    <div x-data="{ role: {{ old('tipo') ?? '1' }} }">
-            <form class="well form-horizontal" action="{{route('funcionarios.guardarFuncionario')}} " method="post" id="formulario_registro" enctype="multipart/form-data">
-                @csrf
-
-                <!--Nombre-->
-                <x-row>
-                    <x-input name="nombre" placeholder="Nombre" label="Nombre" />
-                </x-row>
-
-                <!--Apellidos-->
-                <x-row>
-                    <x-input name="apellidos" placeholder="Apellidos" label="Apellidos" />
-                </x-row>
-
-                <!--Cedula--->
-                <x-row>
-                    <x-input name="cedula" placeholder="Cedula Formato 9 Digitos" label="Cedula" type="number" />
-                </x-row>
-
-                <!--Genero-->
-                <x-row>
-                    <label class="col-md-4 col-form-label text-md-right">Género</label>
-                    <div class="col-md-7">
-                        <div class="checkbox"><label><input type="radio" name="genero" value="f" /> Femenino</label></div>
-                        <div class="checkbox"><label><input type="radio" name="genero" value="m" /> Masculino</label></div>
-                        <div class="checkbox"><label><input type="radio" name="genero" value="n" /> Otro</label></div>
-                    </div>
-                </x-row>
-
-                <!--Password-->
-                <x-row>
-                    <x-input name="password" placeholder="Contraseña" label="Contraseña" type="password" />
-                </x-row>
-
-                <!-- Comfirmar password-->
-                <x-row>
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
-                    <div class="col-md-7">
-                        <input placeholder="Confirmar Contraseña" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                    </div>
-                </x-row>
-
-                <!--Rol del Funcionario-->
-                <x-row>
-                    <label class="col-md-4 col-form-label text-md-right ">Permisos del Funcionario</label>
-                    <div class="col-md-5">
-                        <select name="tipo" class="form-control selectpicker" value="{{ old('tipo') }}" x-model="role">
-                            @foreach ($roles as $role)
-                            <option value="{{$role->id}}">
-                                {{$role->description}}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                </x-row>
-
-                <span x-show="role == 1">
-                    <input type="text" id="pepe">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                </span>
-
-                <!--Telefono de habitacion-->
-                <x-row>
-                    <x-input name="teleHabitacion" placeholder="Teléfono de habitación Formato 8 Digitos" label="Tel. Habitacion" type="number" />
-                </x-row>
-
-                <!--Correo -->
-                <x-row>
-                    <x-input name="correo" placeholder="Correo" label="Correo" type="email" />
-                </x-row>
-
-                <!--Telefono Celular -->
-                <x-row>
-                    <x-input name="telCelular" placeholder="Telefono Celular Formato 8 Digitos" label="Tel. Celular" type="number" />
-                </x-row>
-
-                <!--Direccion (text-area) -->
-                <x-row>
-                    <label class="col-md-4 col-sm-12 col-form-label text-md-right">Dirección exacta</label>
-                    <div class="col-md-7 col-sm-12">
-                        <textarea placeholder="Por favor escriba su direccion lo mas exacta posible" name="direccion" id="" style="width:100%; height:100px;" value="{{ old('direccion') }}"></textarea>
-                    </div>
-                </x-row>
-
-                <!--Años de experiencia -->
-                <x-row>
-                    <x-input name="experiencia" placeholder="Años de experiencia" label="Años de experiencia" type="number" />
-                </x-row>
-
-                <!--Numero de contrato -->
-                <x-row>
-                    <x-input name="numContrato" placeholder="Numero de contrato" label="Numero de Contrato" type="number" />
-                </x-row>
-
-                <!--Periodo de ligamen con la institucion (meses de contrato) -->
-                <x-row>
-                    <x-input name="periodoContrato" placeholder="Periodo de ligamen con la institución" type="number" label="Periodo" />
-                </x-row>
-
-                <!--Fotocopia de la cedula (boton para adjuntar pdf) -->
-                <!--Insercion de pdfs -->
-                <div class="card">
-                    <p class="text-center">En esta seccion debe adjuntar la fotocopia de su cedula en forma de pdf</p>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="text-center justify-content-center form-group col-sm-12 flex-column d-flex">
-                                <input type="file" class="offset-md-4  form-control-file" name="archivo" id="pdf" value="{{ old('archivo') }}">
-                                <small id="pfd" class="offset-md-1 text-center text-muted">
-                                    En esta sección introduzca el archivo pdf solicitado.
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Boton para registrar funcionario -->
-                <x-row>
-                    <div class="offset-md-4 col-md-6 p-2">
-                        <button type="submit" class="btn btn-negro">Registrar</button>
-                    </div>
-                </x-row>
-
-            </form>
         </div>
-
-        </x-slot>
-
-        </x-card> --}}
-    </div>
     </div>
 
 
+    
+
+@push('scripts')
+    <script>
 
 
+ $(document).ready(function(){
 
+//Metodo para validar número telefónico
+jQuery.validator.addMethod("phonenumber", function (value, element) {
+        if ( /^\d{3}-?\d{3}-?\d{2}$/g.test(value) ) {
+            return true;
+        } else {
+            return false;
+        };
+    }, "El número telefónico debe tener 8 dígitos *");
 
+//Método que valida solo numeros
+    jQuery.validator.addMethod("numbersonly", function(value, element) {
+    return this.optional(element) || /^[0-9]+$/i.test(value);
+    }, 'Por favor digite solo valores numéricos y números naturales *',); 
 
+//Método que valida solo letras
+    jQuery.validator.addMethod("lettersonly", function(value, element) {
+    return this.optional(element) || /^[a-z," "]+$/i.test(value);
+    }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *',);  
+
+//Método que valida la contraseña
+    jQuery.validator.addMethod("passwordCheck",
+        function(value, element, param) {
+            if (this.optional(element)) {
+                return true;
+            } else if (!/[A-Z]/.test(value)) {
+                return false;
+            } else if (!/[a-z]/.test(value)) {
+                return false;
+            } else if (!/[0-9]/.test(value)) {
+                return false;
+            }
+            return true;
+        },
+        "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *");
+
+//Validaciones del formulario
+    if($("#form_users_create").length > 0)
+    {
+        $('#form_users_create').validate({
+        rules:{
+            identification : {
+            required : true,
+            maxlength : 15,
+            minlength: 9    
+            },
+            name : {
+            required : true,
+            lettersonly: true,
+            maxlength : 30,
+            minlength: 3    
+            },
+            last_name : {
+            required : true,
+            lettersonly: true,
+            minlength: 3, 
+            maxlength : 30          
+            },
+            birthdate:{
+            required : true
+            },
+            province:{
+            required : true
+            },
+            city : {
+            required : true,
+            lettersonly: true,
+            minlength: 3, 
+            maxlength : 30    
+            },
+            email : {
+            required : true,
+            maxlength : 30, 
+            minlength: 3,
+            email : true
+            },
+            phone : {
+            required : true,        
+            numbersonly: true,
+            phonenumber: true
+            },
+            address : {
+            required : true,
+            minlength : 20,
+            maxlength : 120
+            },
+            experience:{
+            required : true,
+            numbersonly: true,
+            max : 50
+            },
+            contract_number:{
+            required : true,
+            numbersonly: true,
+            minlength : 1,
+            maxlength : 5
+            },
+            contract_year:{
+            required : true,
+            numbersonly: true,
+            max : 50,
+            min : 1
+            },
+            other_phone:{
+            required : true,        
+            numbersonly: true,
+            phonenumber: true
+            },
+            role_id:{
+            required : true
+            },
+            password : {
+            required : true,
+            passwordCheck:true,
+            minlength : 8,
+            maxlength : 60
+            },
+            password_confirmation : {
+            required : true,
+            equalTo: "#password"
+            },
+            pdf:{
+            required : true
+            },
+            sport_id:{
+            required : true
+            },
+        },
+
+        messages : {
+            identification : { 
+            required : 'Por favor ingrese su cédula *',
+            maxlength : 'Su cédula de identidad no puede ser mayor a 15 caracteres o dígitos *',
+            minlength : 'Su cédula de identidad no puede ser menor a 9 caracteres o dígitos *'
+            },
+            name : {
+            required : 'Por favor ingrese su nombre *',
+            maxlength : 'Su nombre no puede ser mayor a 30 caracteres *',
+            minlength : 'Su nombre no puede ser menor a 3 caracteres *'
+            },
+            last_name : {
+            required : 'Por favor ingrese sus apellidos *',
+            maxlength : 'Sus apellidos no pueden ser mayores a 30 caracteres *',
+            minlength : 'Sus apellidos no pueden ser menores a 3 caracteres *'
+            },
+            birthdate:{
+            required : 'Por favor ingrese su fecha de nacimiento *'
+            },
+            province:{
+            required : 'Por favor ingrese su provincia *'
+            },
+            city : {
+            required : 'Por favor ingrese la ciudad donde vive *',
+            maxlength : 'La ciudad no puede ser mayor a 30 caracteres *',
+            minlength : 'La ciudad no puede ser menor a 3 caracteres *'
+            },
+            email : {
+            required : 'Por favor ingrese su email *',
+            email : 'Por favor ingrese una dirección de correo electrónico válida *',
+            maxlength : 'Su correo electrónico no puede ser de más de 30 caracteres *',
+            minlength : 'Su correo electrónico no puede ser de menos de 3 caracteres *'
+            },
+            phone : {
+            required : 'Por favor ingrese su número telefónico *'
+            },
+            address : {
+            required : 'Por favor ingrese su dirección completa *',
+            maxlength : 'Su dirección no puede ser de más de 20 caracteres *',
+            minlength : 'Su dirección no puede ser de menos de 120 caracteres *'
+            },
+            experience : {
+            required : 'Por favor ingrese sus años de experiencia *',
+            max : 'Sus años de experiencia no pueden ser de más de 50 *'       
+            },
+            contract_number : {
+            required : 'Por favor ingrese su número de contacto *',
+            maxlength : 'Su número de contrato no puede ser de más de 5 caracteres *',
+            minlength : 'Su número de contrato no puede ser de menos de 1 caracter *'   
+            },
+            contract_year : {
+            required : 'Por favor ingrese su años de contacto *',
+            max : 'Sus años de contrato no pueden ser de más de 50 *',
+            min : 'Sus años de contrato no pueden ser de menos de 1 *'  
+            },
+            address : {
+            required : 'Por favor ingrese su dirección exacta *',
+            minlength : 'La dirección no puede ser menor a 20 caracteres *',
+            maxlength : 'La dirección no puede ser mayor a 120 caracteres *'
+            },
+            other_phone : {
+            required : 'Por favor ingrese su número telefónico *'
+            },
+            role_id:{
+            required : 'Por favor ingrese su rol *'
+            },
+            password : {
+            required : 'Por favor ingrese su contraseña *',
+            minlength : 'La contraseña no puede ser menor a 8 caracteres *',
+            maxlength : 'La contraseña no puede ser mayor a 60 caracteres *'
+            },
+            password_confirmation : {
+            required : 'Por favor ingrese de nuevo su contraseña *',
+            equalTo: 'Por favor introduzca la misma contraseña *'
+            },
+            pdf:{
+            required : 'Por favor ingrese la copia de su cédula de identidad *'
+            },
+            sport_id:{
+            required : 'Por favor ingrese su disciplina *'
+            },
+        }
+        });
+    }
+});
+
+    </script>
+    
+@endpush
 
 </x-app-layout>

@@ -14,6 +14,7 @@ class Physio extends Model
 
         'athlete_id',
         'date',
+        'time',
         'sph',
         'app',
         'treatment',
