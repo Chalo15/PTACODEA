@@ -7,11 +7,12 @@
                 <th>Genero</th>
                 <th>Estado</th>
                 <th>Disciplina</th>
-                <th>Entrenador</th>
                 <th>Numero de Poliza</th>
                 <th>Tipo de Sangre</th>
                 <th>Lateralidad</th>
                 <th>Categoría</th>
+                <th>Cantón</th>
+                <th>Distrito</th>
                 <th>Nombre Encargado</th>
                 <th>Parentesco</th>
                 <th>Cédula del Encargado</th>
@@ -29,11 +30,12 @@
                     <td>{{ $athlete->user->gender }}</td>
                     <td>{{ $athlete->state }}</td>
                     <td>{{ $athlete->sport->description }}</td>
-                    <td>{{ $athlete->coach->user->full_name }}</td>
                     <td>{{ $athlete->policy }}</td>
                     <td>{{ $athlete->blood }}</td>
                     <td>{{ $athlete->laterality }}</td>
                     <td>{{ $athlete->category }}</td>
+                    <td>{{ $athlete->user->canton }}</td>
+                    <td>{{ $athlete->user->district }}</td>
                     <td>{{ $athlete->name_manager . ' ' . $athlete->lastname_manager}}</td>
                     <td>{{ $athlete->manager }}</td>
                     <td>{{ $athlete->identification_manager }}</td>

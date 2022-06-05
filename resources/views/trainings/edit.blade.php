@@ -34,20 +34,16 @@
 
 
                         @php
-                        $today = today()->toDateString();
-                        $lastWeek = today()
-                        ->subDays(7)
-                        ->toDateString();
-                        $nextWeek = today()
-                        ->addDay(7)
-                        ->toDateString();
+                            $today = today()->toDateString();
+                            /*$lastWeek = today()->subDays(7)->toDateString();
+                             $nextWeek = today()->addDay(7)->toDateString();*/
                         @endphp
-
                         <div class="form-group row">
 
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}" value="{{ old('date') ?? $training->date }}" />
+                                <x-input readonly name="date" type="date" min="{{ date('Y-m-d') }}"
+                                    value="{{ old('date') ?? $training->date->isoFormat('YYYY-MM-DD') }}" />
                             </div>
                         </div>
 
@@ -88,6 +84,7 @@
                             <div class="col-sm-8">
                                 <x-input name="get_better" value="{{ old('get_better') ?? $training->get_better }}" />
                             </div>
+                        </div>
 
                             {{-- Planificacion --}}
                             <div class="form-group row">

@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <form id="form_create_trainings" action="{{ route('trainings.store') }}" method="POST">
                         @csrf
-
+                        @json($errors->all())
                         {{-- Atleta --}}
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
@@ -42,22 +42,14 @@
                         </div>
 
                         {{-- Fecha de registro --}}
+                        {{-- Fecha de Toma Datos --}}
                         @php
-                        $today = today()->toDateString();
-                        $lastWeek = today()
-                        ->subDays(7)
-                        ->toDateString();
-                        $nextWeek = today()
-                        ->addDay(7)
-                        ->toDateString();
+                            $today = today()->toDateString();
                         @endphp
-
                         <div class="form-group row">
-
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
                             <div class="col-sm-8">
-                                <x-input id="date" name="date" type="date" min="{{ $lastWeek }}" max="{{ $nextWeek }}"
-                                    value="{{ $today }}" />
+                                <x-input readonly type="date" name="date" value="{{ $today }}" />
                             </div>
                         </div>
 
@@ -115,6 +107,15 @@
                                 Entrenamiento</label>
                             <div class="col-sm-8">
                                 <x-input id="lesion" name="lesion" value="{{ old('lesion') }}" />
+                            </div>
+                        </div>
+
+
+                        {{-- Detalles --}}
+                        <div class="form-group row">
+                            <label for="details" class="col-sm-4 col-form-label">Otros Detalles</label>
+                            <div class="col-sm-8">
+                                <x-editor name="details" value="{!! old('details') !!}" />
                             </div>
                         </div>
 

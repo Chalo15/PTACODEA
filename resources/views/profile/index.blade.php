@@ -191,29 +191,30 @@
                             </div>
                         </div>
 
-                        {{-- Provincia --}}
+                        {{-- Cantón --}}
                         <div class="form-group row">
-                            <label for="province" class="col-sm-4 col-form-label">Provincia</label>
+                            <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
                             <div class="col-sm-8">
-                                <x-select name="province">
-                                    <option {{ !$user->province ? 'selected' : '' }} readonly value=""> -- Seleccione
+                                <x-input id='canton' name="canton" value="{{ $user->canton }}" />
+                            </div>
+                        </div>
+
+                        {{-- Distrito --}}
+                        <div class="form-group row">
+                            <label for="district" class="col-sm-4 col-form-label">Distrito</label>
+                            <div class="col-sm-8">
+                                <x-select name="district">
+                                    <option {{ !$user->district ? 'selected' : '' }} readonly value=""> -- Seleccione
                                         -- </option>
-                                    @foreach ($provinces as $province)
+                                    @foreach ($districts as $district)
                                         <option
-                                            {{ $user->province && $user->province == $province ? 'selected' : '' }}
-                                            value="{{ $province }}">{{ $province }}</option>
+                                            {{ $user->district && $user->district == $district ? 'selected' : '' }}
+                                            value="{{ $district }}">{{ $district }}</option>
                                     @endforeach
                                 </x-select>
                             </div>
                         </div>
 
-                        {{-- Ciudad --}}
-                        <div class="form-group row">
-                            <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
-                            <div class="col-sm-8">
-                                <x-input id='city' name="city" value="{{ $user->city }}" />
-                            </div>
-                        </div>
 
                         <hr>
 
@@ -319,7 +320,7 @@
                     return true;
                 },
                 "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
-                );
+            );
             //Validaciones del formulario
             if ($('#form_profile_index1').length > 0) {
                 $('#form_profile_index1').validate({
@@ -355,10 +356,10 @@
                         birthdate: {
                             required: true
                         },
-                        province: {
+                        district: {
                             required: true
                         },
-                        city: {
+                        canton: {
                             required: true,
                             lettersonly: true,
                             minlength: 3,
@@ -385,10 +386,10 @@
                         birthdate: {
                             required: 'Por favor ingrese su fecha de nacimiento *'
                         },
-                        province: {
+                        district: {
                             required: 'Por favor ingrese su provincia *'
                         },
-                        city: {
+                        canton: {
                             required: 'Por favor ingrese la ciudad donde vive *',
                             maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
                             minlength: 'La ciudad no puede ser menor a 3 caracteres *'

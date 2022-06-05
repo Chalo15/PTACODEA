@@ -31,7 +31,7 @@ class AthleteFactory extends Factory
         $relationships = config('general.relationships');
 
         return [
-            'user_id' => User::factory()->create(['role_id' => 4]),
+            'user_id' => User::factory()->create(['role_id' => 3]),
             'sport_id' => Sport::all()->random(),
             'state' => $this->faker->randomElement(['A', 'R']),
             'blood' => $bloods[array_rand($bloods)],
@@ -42,8 +42,8 @@ class AthleteFactory extends Factory
             'manager' => $relationships[array_rand($relationships)],
             'identification_manager' => $this->faker->randomNumber(9),
             'contact_manager' => $this->faker->randomNumber(8),
-            'policy' => $this->faker->unique()->randomNumber(8),
-            'medical_opinion' => $this->faker->unique()->randomNumber(8),
+            'policy' => $this->faker->unique()->randomNumber(5),
+            'medical_opinion' => $this->faker->unique()->randomNumber(5),
         ];
     }
 }

@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav  navbar-right ml-auto">
 
-                        @can('role',['Musculacion','Instructor'])
+                        @can('role',['Musculacion','Instructor','Fisioterapia'])
                         <li class="nav-item dropdown">
                             @include('layouts.partials._notifications')
                         </li>

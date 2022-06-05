@@ -50,6 +50,7 @@
                                 <th>Nombre Completo</th>
                                 <th>Correo electrónico</th>
                                 <th>Rol</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </x-slot>
@@ -64,6 +65,7 @@
                                 <td>{{ $user->full_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role->description }}</td>
+                                <td>{{ $user->condition }}</td>
                                 <td width="50px" class="text-center">
 
                                     <div class="dropdown">
@@ -82,6 +84,11 @@
                                                 Editar
                                             </a>
 
+                                            <a class="dropdown-item" href="{{ route('users.destroy', $user->id) }}" onclick="return confirm('¿Desea cambiar el estado de este registro?')">
+                                                <i class="fas fa-exclamation-triangle"></i> &nbsp;
+                                                Habilitar/Deshabilitar Usuario
+                                            </a>
+
                                         </div>
                                     </div>
 
@@ -97,6 +104,7 @@
                                 <th>Nombre Completo</th>
                                 <th>Correo electrónico</th>
                                 <th>Rol</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </x-slot>

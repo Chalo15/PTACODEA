@@ -22,7 +22,7 @@
                     <form action="{{ route('athletes.update', $athlete->id) }}" method="POST" id='form_athlete_edit'>
                         @csrf
                         @method('PUT')
-
+                        @json($errors->all())
                         <div>
                             <div>
                                 {{-- Cédula de Identidad o DIMEX --}}
@@ -53,11 +53,17 @@
                                     </div>
                                 </div>
 
+                                @php
+                                    $today = today()->toDateString();
+                                    $age = today()
+                                        ->subYears(7)
+                                        ->toDateString();
+                                @endphp
                                 {{-- Fecha de Nacimiento --}}
                                 <div class="form-group row">
                                     <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                                     <div class="col-sm-8">
-                                        <x-input type="date" name="birthdate"
+                                        <x-input type="date" id="birthdate" max="{{ $age }}" name="birthdate"
                                             value="{{ old('birthdate') ?? $athlete->user->birthdate }}" />
                                     </div>
                                 </div>
@@ -83,24 +89,20 @@
                                 <div class="form-group row">
                                     <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
                                     <div class="col-sm-8">
-                                        <x-input name="canton"
+                                        <x-input readonly name="canton"
                                             value="{{ old('canton') ?? $athlete->user->canton }}" />
                                     </div>
                                 </div>
 
                                 {{-- Distrito --}}
                                 <div class="form-group row">
-                                    <label for="districts" class="col-sm-4 col-form-label">Distrito</label>
+                                    <label for="district" class="col-sm-4 col-form-label">Distrito</label>
                                     <div class="col-sm-8">
-                                        <x-select name="districts">
-                                            <option {{ $athlete->user->districts ? '' : 'selected' }} value=""> --
-                                                Seleccione --
-                                            </option>
-                                            @foreach ($districtss as $districts)
-                                                <option
-                                                    {{ $athlete->user->districts == $districts ? 'selected' : '' }}
-                                                    value="{{ old('districts') ?? $districts }}">{{ $districts }}
-                                                </option>
+                                        <x-select name="district">
+                                            <option disabled value=""> -- Seleccione -- </option>
+                                            @foreach ($districts as $district)
+                                                <option {{ $athlete->user->district == $district ? 'selected' : '' }}
+                                                    value="{{ old('district') ?? $district }}">{{ $district }}</option>
                                             @endforeach
                                         </x-select>
                                     </div>
@@ -162,13 +164,10 @@
                                     <label for="category" class="col-sm-4 col-form-label">Categoria</label>
                                     <div class="col-sm-8">
                                         <x-select name="category">
-                                            <option {{ $athlete->user->category ? '' : 'selected' }} value=""> --
-                                                Seleccione --
-                                            </option>
+                                            <option disabled value=""> -- Seleccione -- </option>
                                             @foreach ($categories as $category)
-                                                <option {{ $athlete->user->category == $category ? 'selected' : '' }}
-                                                    value="{{ old('category') ?? $category }}">{{ $category }}
-                                                </option>
+                                                <option {{ $athlete->category == $category ? 'selected' : '' }}
+                                                    value="{{ old('category') ?? $category }}">{{ $category }}</option>
                                             @endforeach
                                         </x-select>
                                     </div>
@@ -178,7 +177,8 @@
                                 <div class="form-group row">
                                     <label for="policy" class="col-sm-4 col-form-label">Número de Póliza</label>
                                     <div class="col-sm-8">
-                                        <x-input name="policy" value="{{ old('policy') ?? $user->policy }}" />
+                                        <x-input name="policy"
+                                            value="{{ old('policy') ?? $athlete->policy }}" />
                                     </div>
                                 </div>
 
@@ -188,7 +188,8 @@
                                     <label for="medical_opinion" class="col-sm-4 col-form-label">Número de
                                         Dictamen Médico</label>
                                     <div class="col-sm-8">
-                                        <x-input name="medical_opinion" value="{{ old('medical_opinion') ?? $athlete->medical_opinion }}" />
+                                        <x-input name="medical_opinion"
+                                            value="{{ old('medical_opinion') ?? $athlete->medical_opinion }}" />
                                     </div>
                                 </div>
                                 <hr>
@@ -230,15 +231,15 @@
                             {{-- Disciplina Deportiva --}}
 
                             <div class="form-group row">
-                                <label for="sport_id" class="col-sm-4 col-form-label">Instructor</label>
+                                <label for="sport" class="col-sm-4 col-form-label">Deporte</label>
                                 <div class="col-sm-8">
-                                    <x-select2 name="sport_id">
+                                    <x-select name="sport_id">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($sports as $sport)
-                                            <option {{ $sport->id == $sport->id ? 'selected' : '' }}
-                                                value="{{ $sport }}">{{ $sport }}</option>
+                                            <option {{ $athlete->sport_id == $sport->id ? 'selected' : '' }}
+                                                value="{{ $sport->id }}">{{ $sport->description }}</option>
                                         @endforeach
-                                    </x-select2>
+                                    </x-select>
                                 </div>
                             </div>
 
@@ -273,6 +274,8 @@
                                     @endforeach
                                 </div>
                             </div>
+
+                            <x-input name="condition" type="hidden" value="A" />
 
                             <hr>
 
@@ -441,7 +444,7 @@
                             state: {
                                 required: true
                             },
-                            districts: {
+                            district: {
                                 required: true
                             },
                             canton: {
@@ -546,7 +549,7 @@
                             state: {
                                 required: 'Por favor seleccione un estado *'
                             },
-                            districts: {
+                            district: {
                                 required: 'Por favor seleccione su Distrito *'
                             },
                             canton: {
@@ -623,5 +626,4 @@
             });
         </script>
     @endpush
-
 </x-app-layout>

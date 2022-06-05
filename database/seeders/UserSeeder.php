@@ -37,7 +37,8 @@ class UserSeeder extends Seeder
                 'gender'          => 'M',
                 'contract_number' => '200',
                 'contract_year'   => 2,
-                'experience'      => 2
+                'experience'      => 2,
+                'condition'      => 'A'
             ], [
                 'role_id'         => 1,
                 'identification'  => '207910178',
@@ -53,7 +54,8 @@ class UserSeeder extends Seeder
                 'gender'          => 'M',
                 'contract_number' => '200000',
                 'contract_year'   => 2,
-                'experience'      => 2
+                'experience'      => 2,
+                'condition'       => 'A'
             ],
             [
                 'role_id'         => 1,
@@ -70,7 +72,8 @@ class UserSeeder extends Seeder
                 'gender'          => 'Masculino',
                 'contract_number' => '200000',
                 'contract_year'   => 2,
-                'experience'      => 2
+                'experience'      => 2,
+                'condition'       =>'A'
             ]
         ];
 

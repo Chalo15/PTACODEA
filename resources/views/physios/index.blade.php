@@ -63,7 +63,7 @@
                                     <tr>
                                         <td>{{ $physio->id }}</td>
                                         <td>{{ $physio->date->isoFormat('LL') }}</td>
-                                        <td>{{ $physio->time }}</td>
+                                        <td>{{ $physio->session_start }}</td>
                                         <td>{{ $physio->athlete->user->identification }}</td>
                                         <td>
                                             <a target="_blank" class="link" href="{{ route('athletes.show', $physio->athlete->id) }}">

@@ -15,7 +15,7 @@ class UsersExport implements FromView, ShouldAutoSize
     public function view(): View
     {
         return view('excels.user', [
-            'users' => User::where('role_id','!=','4')->where('role_id','!=','7')->get()
+            'users' => User::where('role_id','!=','3')->get()
         ]);
     }
     /*public function headings(): array
