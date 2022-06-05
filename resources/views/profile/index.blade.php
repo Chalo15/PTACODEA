@@ -320,7 +320,7 @@
                     return true;
                 },
                 "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
-                );
+            );
             //Validaciones del formulario
             if ($('#form_profile_index1').length > 0) {
                 $('#form_profile_index1').validate({

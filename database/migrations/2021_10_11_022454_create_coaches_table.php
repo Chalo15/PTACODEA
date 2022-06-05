@@ -18,7 +18,7 @@ class CreateCoachesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('sport_id')->constrained('sports');
-            $table->integer('phone');
+            $table->integer('other_phone');
             $table->string('url')->nullable();
             $table->timestamps();
         });

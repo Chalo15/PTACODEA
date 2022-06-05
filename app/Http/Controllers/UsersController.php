@@ -87,7 +87,7 @@ class UsersController extends Controller
 
 
         if ($request->role_id == 2) {
-            $path = $request->file('pdf')->store('pdfs');
+            $path = $request->file('url')->store('pdfs');
 
             $user->coach()->create([
                 'sport_id' => $request->sport_id,

@@ -240,6 +240,10 @@
                                 </div>
                             </div>
 
+
+                            {{-- Condicion --}}
+                            <x-input name="condition" type="hidden" value="A" />
+
                             <hr>
 
 
@@ -374,7 +378,7 @@
 
                 //Método que valida solo letras
                 jQuery.validator.addMethod("lettersonly", function(value, element) {
-                    return this.optional(element) || /^[a-z," "]+$/i.test(value);
+                    return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
                 }, 'Por favor digite solo cadenas de texto sin números o caracteres especiales *', );
 
                 //Método que valida la contraseña
