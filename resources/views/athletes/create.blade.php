@@ -504,9 +504,26 @@
             $(document).ready(function() {
                 //Metodo para validar número telefónico
                 jQuery.validator.addMethod("phonenumber", function(value, element) {
-                        if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
+                    if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
+                        return true;
+                    } else {
+                        return false;
+                    };
+                }, "El número telefónico debe tener 8 dígitos *");
+                //Método que valida solo numeros
+                jQuery.validator.addMethod("numbersonly", function(value, element) {
+                    return this.optional(element) || /^[0-9]+$/i.test(value);
+                }, 'Por favor digite solo valores numéricos y números naturales *', );
+                //Método que valida solo letras
+                jQuery.validator.addMethod("lettersonly", function(value, element) {
+                    return this.optional(element) || /^[a-z," ","ñ"]+$/i.test(value);
+                }, 'Por favor digite solo valores alfabéticos *', );
+                //Método que valida la contraseña
+                jQuery.validator.addMethod("passwordCheck",
+                    function(value, element, param) {
+                        if (this.optional(element)) {
                             return true;
-                        } else {
+                        } else if (!/[A-Z]/.test(value)) {
                             return false;
                         } else if (!/[a-z]/.test(value)) {
                             return false;
@@ -517,9 +534,6 @@
                     },
                     "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
                 );
-
-
-
                 //Validaciones del formulario
                 if ($("#form_athlete_create").length > 0) {
                     $('#form_athlete_create').validate({
@@ -542,6 +556,9 @@
                                 maxlength: 30
                             },
                             birthdate: {
+                                required: true
+                            },
+                            state: {
                                 required: true
                             },
                             district: {
@@ -568,6 +585,19 @@
                                 required: true,
                                 minlength: 20,
                                 maxlength: 120
+                            },
+                            policy: {
+                                required: true,
+                                maxlength: 10,
+                                minlength: 1
+                            },
+                            medical_opinion: {
+                                required: true,
+                                maxlength: 10,
+                                minlength: 1
+                            },
+                            gender: {
+                                required: true
                             },
                             password: {
                                 required: true,
@@ -610,21 +640,10 @@
                             manager: {
                                 required: true
                             },
-                            policy: {
-                                required: true,
-                                maxlength: 10,
-                                minlength: 1
-                            },
-                            medical_opinion: {
-                                required: true,
-                                maxlength: 10,
-                                minlength: 1
-                            },
                             url: {
                                 required: true
                             },
                         },
-
                         messages: {
                             identification: {
                                 required: 'Por favor ingrese su cédula *',
@@ -648,12 +667,12 @@
                                 required: 'Por favor seleccione un estado *'
                             },
                             district: {
-                                required: 'Por favor seleccione su distrito *'
+                                required: 'Por favor seleccione su Distrito *'
                             },
                             canton: {
-                                required: 'Por favor ingrese el canton donde vive *',
-                                maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
-                                minlength: 'La ciudad no puede ser menor a 3 caracteres *'
+                                required: 'Por favor ingrese la Cantón donde vive *',
+                                maxlength: 'La Cantón no puede ser mayor a 30 caracteres *',
+                                minlength: 'La Cantón no puede ser menor a 3 caracteres *'
                             },
                             email: {
                                 required: 'Por favor ingrese su email *',
@@ -706,9 +725,9 @@
                                 required: 'Por favor ingrese su número parentezco *'
                             },
                             policy: {
-                                required: 'Por favor ingrese el numero de su póliza *',
+                                required: 'Por favor ingrese la numero de su póliza *',
                                 maxlength: 'Su póliza no puede ser mayor a 10 caracteres o dígitos *',
-                                minlength: 'Su póliza no puede ser menor a 1 caracteres o dígitos *'
+                                minlength: 'Su póliza no puede ser menor a 3 caracteres o dígitos *'
                             },
                             medical_opinion: {
                                 required: 'Por favor ingrese el numero de su dictamen medico *',

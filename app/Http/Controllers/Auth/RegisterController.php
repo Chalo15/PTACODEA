@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Mail\CredentialsMail;
 use App\Models\Sport;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
@@ -98,7 +99,7 @@ class RegisterController extends Controller
         //Sending an email with the password and the identification
         Mail::to($email)->send(new CredentialsMail($id, $password));
         $data['role_id'] = 3;
-        $data['state'] = 'R';
+        $data['state'] = 'A';
         //dd($data);
         $user = User::create($data);
         $user->athlete()->create($data);
