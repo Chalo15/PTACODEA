@@ -142,7 +142,7 @@
                         <div class="form-group row">
                             <label for="count_session" class="col-sm-4 col-form-label">Cantidad de sesiones</label>
                             <div class="col-sm-8">
-                                <x-input name="count_session" type="number" min="1"
+                                <x-input name="count_session" 
                                     value="{{ old('count_session') ?? $physio->count_session }}" />
                             </div>
                         </div>
@@ -260,7 +260,8 @@
                             },
                             count_session: {
                                 required: true,
-                                numbersonl: true
+                                numbersonly: true,
+                                min:1
                             },
                             severity: {
                                 required: true
@@ -292,7 +293,8 @@
                                 required: 'Por favor ingrese su dirección completa *'
                             },
                             count_session: {
-                                required: 'Por favor ingrese la cantidad de secciones *'
+                                required: 'Por favor ingrese la cantidad de secciones *',
+                                min: 'Su cantidad de seciones no puede ser de menos de 1 caracter *'
                             },
                             severity: {
                                 required: 'Por favor ingrese el tipo de lesión*'
