@@ -9,18 +9,6 @@
         </div>
     </div>
 
-    {{-- Fecha de registr --}}
-    @php
-
-        $today = today()->toDateString();
-        $age = today()
-            ->subYears(18)
-            ->toDateString();
-
-    @endphp
-
-
-
     <div class="row">
         <div class="col">
             <div class="card">
@@ -34,6 +22,7 @@
                     <form action="{{ route('users.update', $user->id) }}" method="POST" id='form_users_edit'>
                         @csrf
                         @method('PUT')
+                       {{-- @json($errors->all())--}}
                         {{-- Cédula de Identidad o DIMEX --}}
                         <div class="form-group row">
                             <label for="identification" class="col-sm-4 col-form-label">Cédula de Identidad o
@@ -60,34 +49,44 @@
                         </div>
 
                         {{-- Fecha de Nacimiento --}}
+                                @php
+
+                                    $today = today()->toDateString();
+                                    $age = today()
+                                        ->subYears(18)
+                                        ->toDateString();
+
+                                @endphp
                         <div class="form-group row">
                             <label for="birthdate" class="col-sm-4 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-sm-8">
                                 <x-input type="date" max="{{ $age }}" name="birthdate"
-                                    value="{{ $user->birthdate }}" />
+                                    value="{{ old('birthdate') ?? $user->birthdate }}" />
                             </div>
                         </div>
 
-                        {{-- Provincia --}}
+                        {{-- Cantón --}}
                         <div class="form-group row">
-                            <label for="province" class="col-sm-4 col-form-label">Provincia</label>
+                            <label for="canton" class="col-sm-4 col-form-label">Cantón</label>
                             <div class="col-sm-8">
-                                <x-select name="province">
-                                    <option {{ $user->province ? '' : 'selected' }} value=""> -- Seleccione --
+                                <x-input readonly name="canton" value="{{ old('canton') ?? $user->canton }}" />
+                            </div>
+                        </div>
+
+                        {{-- Distrito --}}
+                        <div class="form-group row">
+                            <label for="district" class="col-sm-4 col-form-label">Distrito</label>
+                            <div class="col-sm-8">
+                                <x-select name="district">
+                                    <option {{ $user->district ? '' : 'selected' }} value=""> --
+                                        Seleccione --
                                     </option>
-                                    @foreach ($provinces as $province)
-                                        <option {{ $user->province == $province ? 'selected' : '' }}
-                                            value="{{ $province }}">{{ $province }}</option>
+                                    @foreach ($districts as $district)
+                                        <option {{ $user->district == $district ? 'selected' : '' }}
+                                            value="{{ old('district') ?? $district }}">{{ $district }}
+                                        </option>
                                     @endforeach
                                 </x-select>
-                            </div>
-                        </div>
-
-                        {{-- Ciudad --}}
-                        <div class="form-group row">
-                            <label for="city" class="col-sm-4 col-form-label">Ciudad</label>
-                            <div class="col-sm-8">
-                                <x-input name="city" value="{{ $user->city }}" />
                             </div>
                         </div>
 
@@ -139,6 +138,23 @@
                             </div>
                         </div>
 
+                        {{-- Estado del Atleta --}}
+                        <div class="form-group row">
+                            <label for="condition" class="col-sm-4 col-form-label">Estado</label>
+                            <div class="col-sm-8">
+                                <x-select name="condition">
+                                    <option {{ $user->condition ? '' : 'selected' }} value=""> --
+                                        Seleccione --
+                                    </option>
+                                    @foreach ($conditions as $condition)
+                                        <option {{ $user->condition == $condition ? 'selected' : '' }}
+                                            value="{{ old('condition') ?? $condition }}">{{ $condition }}
+                                        </option>
+                                    @endforeach
+                                </x-select>
+                            </div>
+                        </div>
+
                         <hr>
 
                         {{-- Años de Experiencia --}}
@@ -176,7 +192,7 @@
                                     <x-select name="role_id" x-model="role">
                                         <option disabled value=""> -- Seleccione -- </option>
                                         @foreach ($roles as $role)
-                                            @if ($role->id == 4)
+                                            @if ($role->id == 3)
                                                 @continue
                                             @endif
 
@@ -196,8 +212,7 @@
                                         <x-select name="sport_id">
                                             <option disabled value=""> -- Seleccione -- </option>
                                             @foreach ($sports as $sport)
-                                                <option
-                                                    {{ $user->role_id == 2 && $user->coach->sport == $sport ? 'selected' : '' }}
+                                                <option {{ $user->role_id == 2 ? 'selected' : '' }}
                                                     value="{{ $sport->id }}">{{ $sport->description }}</option>
                                             @endforeach
                                         </x-select>
@@ -214,17 +229,18 @@
                                 </div>
 
                                 {{-- Fotocópia de Cédula --}}
-                                <div class="form-group row">
-                                    <label for="pdf" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
-                                    <div class="col-sm-4">
-                                        <div class="input-group mb-3">
-
-                                            <label class="custom-file-label" for="pdf">Elija el archivo </label>
-                                            <x-input aria-describedby="inputGroupFileAddon01" id="pdf" name="pdf"
-                                                type="file" class="custom-file-input" />
+                                    <div class="form-group row">
+                                        <label for="file" class="col-sm-4 col-form-label">Fotocopia de Cédula</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group mb-3">
+                                                <label class="custom-file-label" for="identification_image">Elija el
+                                                    archivo
+                                                </label>
+                                                <input name="url" type="file" class="custom-file-input"
+                                                    id="identification_image" aria-describedby="inputGroupFileAddon01">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
 
@@ -259,8 +275,6 @@
             </div>
         </div>
     </div>
-
-
 
     @push('scripts')
         <script>
@@ -304,7 +318,7 @@
                         return true;
                     },
                     "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
-                    );
+                );
                 //Validaciones del formulario
                 if ($("#form_users_edit").length > 0) {
                     $('#form_users_edit').validate({
@@ -312,14 +326,12 @@
                             birthdate: {
                                 required: true
                             },
-                            province: {
+                            district: {
                                 required: true
                             },
-                            city: {
+                            canton: {
                                 required: true,
-                                lettersonly: true,
-                                minlength: 3,
-                                maxlength: 30
+                                lettersonly: true
                             },
                             email: {
                                 required: true,
@@ -354,12 +366,10 @@
                                 max: 50,
                                 min: 1
                             },
-                            other_phone: {
-                                required: true,
-                                numbersonly: true,
-                                phonenumber: true
-                            },
                             role_id: {
+                                required: true
+                            },
+                            condition: {
                                 required: true
                             },
                             password: {
@@ -372,10 +382,10 @@
                                 required: true,
                                 equalTo: "#password"
                             },
-                            pdf: {
+                            sport_id: {
                                 required: true
                             },
-                            sport_id: {
+                            condition: {
                                 required: true
                             },
                         },
@@ -383,13 +393,13 @@
                             birthdate: {
                                 required: 'Por favor ingrese su fecha de nacimiento *'
                             },
-                            province: {
-                                required: 'Por favor ingrese su provincia *'
+                            district: {
+                                required: 'Por favor ingrese su distrito *'
                             },
-                            city: {
-                                required: 'Por favor ingrese la ciudad donde vive *',
-                                maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
-                                minlength: 'La ciudad no puede ser menor a 3 caracteres *'
+                            canton: {
+                                required: 'Por favor ingrese el cantón donde vive *',
+                                maxlength: 'El cantón no puede ser mayor a 30 caracteres *',
+                                minlength: 'El cantón no puede ser menor a 3 caracteres *'
                             },
                             email: {
                                 required: 'Por favor ingrese su email *',
@@ -419,11 +429,11 @@
                                 max: 'Sus años de contrato no pueden ser de más de 50 *',
                                 min: 'Sus años de contrato no pueden ser de menos de 1 *'
                             },
-                            other_phone: {
-                                required: 'Por favor ingrese su número telefónico *'
-                            },
                             role_id: {
                                 required: 'Por favor ingrese su rol *'
+                            },
+                            condition: {
+                                required: 'Por favor el estado del usuario *'
                             },
                             password: {
                                 required: 'Por favor ingrese su contraseña *',
@@ -433,9 +443,6 @@
                             password_confirmation: {
                                 required: 'Por favor ingrese de nuevo su contraseña *',
                                 equalTo: 'Por favor introduzca la misma contraseña *'
-                            },
-                            pdf: {
-                                required: 'Por favor ingrese la copia de su cédula de identidad *'
                             },
                             sport_id: {
                                 required: 'Por favor ingrese su disciplina *'

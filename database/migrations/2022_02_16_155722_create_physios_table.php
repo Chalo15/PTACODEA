@@ -19,8 +19,7 @@ class CreatePhysiosTable extends Migration
             $table->foreignId('athlete_id')->constrained('athletes');
             $table->foreignId('appointment_id')->nullable()->constrained('appointments');
             $table->date('date');
-            $table->time('time');
-            $table->text('sph');
+            $table->text('aph');
             $table->text('app');
             $table->text('treatment');
             $table->text('surgeries')->nullable();

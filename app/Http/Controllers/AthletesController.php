@@ -111,13 +111,13 @@ class AthletesController extends Controller
         Mail::to($email)->send(new CredentialsMail($id, $password));
 
 
-        $user = $request->is_user ? User::findOrFail($request->user_id) : User::create($request->validated() + ['role_id' => 7]);
+        $user = User::create($request->validated() + ['role_id' => 3]);
 
 
-        $user->athlete()->create($request->validated() + ['state' => 'A', 'sport_id' => Coach::find($request->coach_id)->sport_id]);
+        $user->athlete()->create($request->validated() + ['state' => 'A']);
 
         $user->update([
-            'role_id' => 4
+            'role_id' => 3
         ]);
 
         // Almacenaje de la imagen.
@@ -182,7 +182,7 @@ class AthletesController extends Controller
 
 
 
-        $athlete->update($request->validated() + ['sport_id' => Coach::find($request->coach_id)->sport_id]);
+        $athlete->update($request->validated());
 
         $athlete->user->update($request->validated());
 

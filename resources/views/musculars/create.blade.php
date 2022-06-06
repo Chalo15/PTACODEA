@@ -13,13 +13,13 @@
         <div class="col">
             <div class="card">
                 <div class="text-center card-header">
-                    <h2 class="font-weight-bold ">
+                    <h3 class="font-weight-bold ">
                         Nueva Musculación
-                    </h2>
+                    </h3>
                 </div>
-                {{-- }} @json($errors->all()) --}}
+                {{--  @json($errors->all()) --}}
                 <div class="card-body">
-                    <form id='form_musculars_create' action="{{ route('musculars.store') }}" method="POST">
+                    <form id="form_musculars_create" action="{{ route('musculars.store') }}" method="POST">
                         @csrf
 
                         <div class="mb-3 col-12 text-center">
@@ -65,9 +65,9 @@
                             </div>
                         </div>
 
-                        {{-- Edad Fisiologica --}}
+                        {{--  Edad Fisiológica --}}
                         <div class="form-group row">
-                            <label for="physiological_age" class="col-sm-4 col-form-label">Edad</label>
+                            <label for="physiological_age" class="col-sm-4 col-form-label"> Edad Fisiológica</label>
                             <div class="col-sm-8">
                                 <x-input name="physiological_age" value="{{ old('physiological_age') }}" />
                             </div>
@@ -495,9 +495,9 @@
                         },
                         messages: {
                             physiological_age: {
-                                required: 'Ingrese una edad *',
-                                maxlength: 'La edad no puede ser mayor a dos dígitos *',
-                                minlength: 'La edad no puede ser menor a 1 *'
+                                required: 'Ingrese una  Edad Fisiológica *',
+                                maxlength: 'La  Edad Fisiológica no puede ser mayor a dos dígitos *',
+                                minlength: 'La  Edad Fisiológica no puede ser menor a 1 *'
                             },
                             weight: {
                                 required: 'Ingrese un peso *',

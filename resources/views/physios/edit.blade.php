@@ -22,33 +22,20 @@
                         @method('PUT')
 
                         {{-- Fecha de registro --}}
-                        @php
-                            $today = today()->toDateString();
-                            /*$lastWeek = today()->subDays(7)->toDateString();
-                             $nextWeek = today()->addDay(7)->toDateString();*/
-                        @endphp
                         <div class="form-group row">
-
-                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
+                            <label for="date" class="col-sm-4 col-form-label">Fecha de Registro</label>
                             <div class="col-sm-8">
-                                <x-input readonly name="date" type="date" {{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}" --}}
-                                    value="{{ old('date') ?? $physio->date }}" />
+                                <x-input name="date" type="date" min="{{ date('Y-m-d') }}"
+                                    readonly value="{{ old('date') ?? $physio->date->isoFormat('YYYY-MM-DD') }}" />
                             </div>
                         </div>
 
-                        {{-- Hora de registro --}}
-                        @php
-                            $hour = now()->toTimeString();
-                            /*$today = today()->toDateString();
-                                                    $lastWeek = today()->subDays(7)->toDateString();
-                                                    $nextWeek = today()->addDay(7)->toDateString();*/
-                        @endphp
+                        {{--Hora de Inicio --}}
                         <div class="form-group row">
 
-                            <label for="date" class="col-sm-4 col-form-label">Fecha</label>
+                            <label for="session_start" class="col-sm-4 col-form-label">Hora de Inicio</label>
                             <div class="col-sm-8">
-                                <x-input readonly name="time" type="time" {{-- min="{{ $lastWeek }}" max="{{ $nextWeek }}" --}}
-                                    value="{{ old('timr') ?? $physio->time }}" />
+                                <x-input name="session_start" readonly value="{{ old('session_start') ?? $physio->session_start }}" />
                             </div>
                         </div>
 
@@ -61,11 +48,11 @@
                             </div>
                         </div>
 
-                        {{-- SPH --}}
+                        {{-- APH --}}
                         <div class="form-group row">
-                            <label for="sph" class="col-sm-4 col-form-label">SPH</label>
+                            <label for="aph" class="col-sm-4 col-form-label">APH</label>
                             <div class="col-sm-8">
-                                <x-textarea name="sph" value="{{ old('sph') ?? $physio->sph }}" />
+                                <x-textarea name="aph" value="{{ old('aph') ?? $physio->aph }}" />
                             </div>
                         </div>
 
@@ -95,7 +82,7 @@
                             </div>
 
                             <div x-show="isOpen">
-                                {{-- Cédula de Identidad o DIMEX --}}
+                                {{-- Detalle Tratamiento --}}
                                 <div class="form-group row">
                                     <label for="surgeries" class="col-sm-4 col-form-label">Detalle del
                                         tratamiento</label>
@@ -120,7 +107,7 @@
                             </div>
 
                             <div x-show="isOpen">
-                                {{-- Cédula de Identidad o DIMEX --}}
+                                {{-- Detalle Fractura --}}
                                 <div class="form-group row">
                                     <label for="fractures" class="col-sm-4 col-form-label">Detalle de la
                                         fractura</label>
@@ -133,17 +120,7 @@
                         </div>
 
 
-                        {{-- hora de inicio --}}
-                        <div class="form-group row">
-                            <label for="session_start" class="col-sm-4 col-form-label">Hora de inicio</label>
-                            <div class="col-sm-8">
-                                <x-input name="session_start" type="time"
-                                    value="{{ old('session_start') ?? $physio->session_start }}" />
-                            </div>
-                        </div>
-
-
-                        {{-- hora de fin --}}
+                        {{-- Hora de fin --}}
                         <div class="form-group row">
                             <label for="session_end" class="col-sm-4 col-form-label">Hora de fin</label>
                             <div class="col-sm-8">
@@ -209,14 +186,18 @@
     @push('scripts')
         <script>
             $(document).ready(function() {
-                //Metodo para validar la cédula
-                jQuery.validator.addMethod("idnumber", function(value, element) {
-                    if (/^\d{2}-?\d{1}-?\d{1}$/g.test(value)) {
-                        return true;
-                    } else {
-                        return false;
-                    };
-                }, "La cédula debe tener 9 dígitos *");
+                //Metodo para validar la hora
+                jQuery.validator.addMethod("horahhmm", function(value, element) {
+                    var res = false;
+                    // Formato hh:mm
+                    res = this.optional(element) || /^\d{2}[:]\d{2}$/.test(value);
+                    var hora = value.split(':');
+                    var hh = parseInt(hora[0], 10);
+                    var mm = parseInt(hora[1], 10);
+                    if (hh < 0 || hh > 23) res = false;
+                    if (mm < 0 || mm > 59) res = false;
+                    return res;
+                }, "La hora indicada no es válida");
                 //Metodo para validar número telefónico
                 jQuery.validator.addMethod("phonenumber", function(value, element) {
                     if (/^\d{3}-?\d{3}-?\d{2}$/g.test(value)) {
@@ -225,7 +206,6 @@
                         return false;
                     };
                 }, "El número telefónico debe tener 8 dígitos *");
-
                 //Método que valida solo numeros
                 jQuery.validator.addMethod("numbersonly", function(value, element) {
                     return this.optional(element) || /^[0-9]+$/i.test(value);
@@ -249,141 +229,73 @@
                         return true;
                     },
                     "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
-                    );
+                );
                 //Validaciones del formulario
-                if ($("#form_users_edit").length > 0) {
-                    $('#form_users_edit').validate({
+                if ($("#form_physios_create").length > 0) {
+                    $('#form_physios_create').validate({
                         rules: {
-                            birthdate: {
+                            athlete_id: {
                                 required: true
                             },
-                            province: {
+                            aph: {
                                 required: true
                             },
-                            city: {
-                                required: true,
-                                lettersonly: true,
-                                minlength: 3,
-                                maxlength: 30
-                            },
-                            email: {
-                                required: true,
-                                maxlength: 30,
-                                minlength: 3,
-                                email: true
-                            },
-                            phone: {
-                                required: true,
-                                numbersonly: true,
-                                phonenumber: true
-                            },
-                            address: {
-                                required: true,
-                                minlength: 20,
-                                maxlength: 120
-                            },
-                            experience: {
-                                required: true,
-                                numbersonly: true,
-                                max: 50
-                            },
-                            contract_number: {
-                                required: true,
-                                numbersonly: true,
-                                minlength: 1,
-                                maxlength: 5
-                            },
-                            contract_year: {
-                                required: true,
-                                numbersonly: true,
-                                max: 50,
-                                min: 1
-                            },
-                            other_phone: {
-                                required: true,
-                                numbersonly: true,
-                                phonenumber: true
-                            },
-                            role_id: {
+                            app: {
                                 required: true
                             },
-                            password: {
-                                required: true,
-                                passwordCheck: true,
-                                minlength: 8,
-                                maxlength: 60
-                            },
-                            password_confirmation: {
-                                required: true,
-                                equalTo: "#password"
-                            },
-                            pdf: {
+                            treatment: {
                                 required: true
                             },
-                            sport_id: {
+                            surgeries: {
+                                required: true
+                            },
+                            fractures: {
+                                required: true
+                            },
+                            session_end: {
+                                required: true
+                            },
+                            inability: {
+                                required: true
+                            },
+                            count_session: {
+                                required: true,
+                                numbersonl: true
+                            },
+                            severity: {
                                 required: true
                             },
                         },
                         messages: {
-                            birthdate: {
-                                required: 'Por favor ingrese su fecha de nacimiento *'
+                            athlete_id: {
+                                required: 'Por favor seleccione un atleta *'
                             },
-                            province: {
-                                required: 'Por favor ingrese su provincia *'
+                            aph: {
+                                required: 'Por favor ingrese su aph *'
                             },
-                            city: {
-                                required: 'Por favor ingrese la ciudad donde vive *',
-                                maxlength: 'La ciudad no puede ser mayor a 30 caracteres *',
-                                minlength: 'La ciudad no puede ser menor a 3 caracteres *'
+                            app: {
+                                required: 'Por favor ingrese su APP *'
                             },
-                            email: {
-                                required: 'Por favor ingrese su email *',
-                                email: 'Por favor ingrese una dirección de correo electrónico válida *',
-                                maxlength: 'Su correo electrónico no puede ser de más de 30 caracteres *',
-                                minlength: 'Su correo electrónico no puede ser de menos de 3 caracteres *'
+                            treatment: {
+                                required: 'Por favor ingrese el detalle del tratamiento *'
                             },
-                            phone: {
-                                required: 'Por favor ingrese su número telefónico *'
+                            surgeries: {
+                                required: 'Por favor ingrese el detalle de la cirujía *'
                             },
-                            address: {
-                                required: 'Por favor ingrese su dirección completa *',
-                                maxlength: 'Su dirección no puede ser de más de 120 caracteres *',
-                                minlength: 'Su dirección no puede ser de menos de 20 caracteres *'
+                            fractures: {
+                                required: 'Por favor ingrese el detalle de la fractura *'
                             },
-                            experience: {
-                                required: 'Por favor ingrese sus años de experiencia *',
-                                max: 'Sus años de experiencia no pueden ser de más de 50 *'
+                            session_end: {
+                                required: 'Por favor ingrese la hora de fin *'
                             },
-                            contract_number: {
-                                required: 'Por favor ingrese su número de contacto *',
-                                maxlength: 'Su número de contrato no puede ser de más de 5 caracteres *',
-                                minlength: 'Su número de contrato no puede ser de menos de 1 caracter *'
+                            inability: {
+                                required: 'Por favor ingrese su dirección completa *'
                             },
-                            contract_year: {
-                                required: 'Por favor ingrese su años de contacto *',
-                                max: 'Sus años de contrato no pueden ser de más de 50 *',
-                                min: 'Sus años de contrato no pueden ser de menos de 1 *'
+                            count_session: {
+                                required: 'Por favor ingrese la cantidad de secciones *'
                             },
-                            other_phone: {
-                                required: 'Por favor ingrese su número telefónico *'
-                            },
-                            role_id: {
-                                required: 'Por favor ingrese su rol *'
-                            },
-                            password: {
-                                required: 'Por favor ingrese su contraseña *',
-                                minlength: 'La contraseña no puede ser menor a 8 caracteres *',
-                                maxlength: 'La contraseña no puede ser mayor a 60 caracteres *'
-                            },
-                            password_confirmation: {
-                                required: 'Por favor ingrese de nuevo su contraseña *',
-                                equalTo: 'Por favor introduzca la misma contraseña *'
-                            },
-                            pdf: {
-                                required: 'Por favor ingrese la copia de su cédula de identidad *'
-                            },
-                            sport_id: {
-                                required: 'Por favor ingrese su disciplina *'
+                            severity: {
+                                required: 'Por favor ingrese el tipo de lesión*'
                             },
                         }
                     });
@@ -391,5 +303,6 @@
             });
         </script>
     @endpush
+
 
 </x-app-layout>

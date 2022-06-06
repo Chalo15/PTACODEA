@@ -26,7 +26,7 @@ class CoachFactory extends Factory
         return [
             'user_id' => User::factory()->create(['role_id' => 2]),
             'sport_id' => Sport::all()->random(),
-            'phone' => $this->faker->randomNumber(8),
+            'other_phone' => $this->faker->randomNumber(8),
             'url' => 'test'
         ];
     }

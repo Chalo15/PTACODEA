@@ -1,26 +1,12 @@
 @component('mail::message')
-# Confirmacion de la cita de musculacion PTACODEA
-
-<h2>Datos de la cita</h2>
+# Confirmacion de la cita de fisioterapia PTACODEA
 
 
-@if($datos['State'] == 'CONFIRMADA')
-<div class="text-center">
-    <span class="text-center">Su solicitud de reserva ha sido aceptada</span>
-</div>
-@elseif($datos['State'] == 'PENDIENTE')
-<div class="text-center">
-    <span class="text-center">Su solicitud de reserva ha sido rechazada</span>
-</div>
-@endif
-
-
-# Table component:
+# Datos de la reservacion:
 @component('mail::table')
-| Atleta | Table | Example |
-| ------------- |:-------------:| --------:|
-| Col 2 is | Centered | $10 |
-| Col 3 is | Right-Aligned | $20 |
+| Estado | Fisioterapeuta | Fecha |
+| ---------|:---------:| --------|
+| <?php echo   $datos['State'] ?> | <?php echo $datos['Nombre_Encargado'] . " " . $datos['Apellidos_Encargado'] ?> | <?php echo $datos['Date'] ?> |
 @endcomponent
 
 

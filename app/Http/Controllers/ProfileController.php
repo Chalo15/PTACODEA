@@ -22,9 +22,9 @@ class ProfileController extends Controller
 
         $genders = config('general.genders');
 
-        $provinces = config('general.provinces');
+        $districts = config('general.districts');
 
-        return view('profile.index', compact('user', 'genders', 'provinces'));
+        return view('profile.index', compact('user', 'genders', 'districts'));
     }
 
     /**

@@ -194,7 +194,7 @@
                 @foreach ($physios as $physio)
                 <tr>
                     <td class="service">{{ $physio->date->isoFormat('LL') }}</td>
-                    <td class="desc">{{ $physio->time }}</td>
+                    <td class="desc">{{ $physio->session_start }}</td>
                     <td class="service">{{ $physio->athlete->user->full_name }}</td>
                 </tr>
                 @endforeach
