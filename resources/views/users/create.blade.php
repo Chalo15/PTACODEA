@@ -444,7 +444,7 @@
                             required: 'Por favor ingrese su número de contacto *',
                             maxlength: 'Su número de contrato no puede ser de más de 5 caracteres *',
                             minlength: 'Su número de contrato no puede ser de menos de 1 caracter *'
-                        },
+                        }, 
                         contract_year: {
                             required: 'Por favor ingrese su años de contacto *',
                             max: 'Sus años de contrato no pueden ser de más de 50 *',
