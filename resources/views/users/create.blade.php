@@ -310,6 +310,7 @@
                         }
                         return true;
                     },
+
                     "Por motivos de seguridad, asegúrese de que su contraseña contenga letras mayúsculas, minúsculas y dígitos *"
                 );
                 //Validaciones del formulario
@@ -489,6 +490,7 @@
                 }
             });
         </script>
+
     @endpush
 
 

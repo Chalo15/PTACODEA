@@ -32,9 +32,7 @@ class ConfirmMail extends Mailable
     public function data()
     {
         return [
-            'Id_Entrenador' => $this->appointment->coach->user->identification,
-            'Nombre_Entrenador' => $this->appointment->coach->user->name,
-            'Apellidos_Entrenador' => $this->appointment->coach->user->last_name,
+
             'Id_Encargado' => $this->appointment->availability->user->identification,
             'Nombre_Encargado' => $this->appointment->availability->user->name,
             'Apellidos_Encargado' => $this->appointment->availability->user->last_name,
