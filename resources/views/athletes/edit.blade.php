@@ -23,7 +23,7 @@
                         @csrf
                         @method('PUT')
                         @json($errors->all())
-                        
+
                         <div>
                             <div>
                                 {{-- Cédula de Identidad o DIMEX --}}
@@ -356,6 +356,13 @@
 
     @push('scripts')
     <script>
+        //Change the name of the label-input-fule 
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
+
         $(document).ready(function() {
             //Metodo para validar número telefónico
             jQuery.validator.addMethod("phonenumber", function(value, element) {
