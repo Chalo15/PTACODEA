@@ -70,7 +70,7 @@
                                     <label for="state" class="col-sm-4 col-form-label">Estado</label>
                                     <div class="col-sm-8">
                                         <x-select name="state">
-                                            <option {{ $athlete->state ? '' : 'selected' }} value=""> --
+                                            <option disabled value=""> --
                                                 Seleccione --
                                             </option>
                                             @foreach ($states as $state)
@@ -356,7 +356,7 @@
 
     @push('scripts')
     <script>
-        //Change the name of the label-input-fule 
+        //Change the name of the label-input-fule
         $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

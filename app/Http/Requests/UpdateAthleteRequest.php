@@ -35,6 +35,7 @@ class   UpdateAthleteRequest extends FormRequest
             'address'         => ['required','min:3', 'max:100'],
             'gender'          => ['required'],
             'condition'       => ['required'],
+            'state'           => ['required'],
             'category'        => ['required'],
             'blood'           => ['required'],
             'laterality'      => ['required'],
