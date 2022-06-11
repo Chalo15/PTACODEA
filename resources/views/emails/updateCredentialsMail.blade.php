@@ -61,7 +61,7 @@
     <img src="./img/1.png">
   </div>
 <div class="container">
-    <h1 class="text-center">Actualizacion de credenciales<br>
+    <h1 id="logo">Actualizacion de credenciales<br>
     No responda este mensaje
     </h1>
     <h2>
