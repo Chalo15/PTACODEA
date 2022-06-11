@@ -28,10 +28,6 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/mail', function () {
-    return new CredentialsMail(702620499, 'Codea123');
-});
-
 
 
 
