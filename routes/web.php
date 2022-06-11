@@ -15,6 +15,7 @@ use App\Http\Controllers\NotificationController;
 use App\Mail\ConfirmMail;
 use App\Mail\CredentialsMail;
 use App\Mail\PhysioConfirmMail;
+use App\Mail\UpdateCredentialsMail;
 use App\Models\Appointment;
 
 /**
@@ -30,6 +31,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::get('/mail', function () {
     return new CredentialsMail(702620499, 'Codea123');
+});
+
+Route::get('/updatemail', function () {
+    return new UpdateCredentialsMail(702620499, 'Codea123');
 });
 
 
