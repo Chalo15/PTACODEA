@@ -36,6 +36,9 @@ Route::get('/mail', function () {
 // Route::get('/confirm', function () {
 //     return new ConfirmMail('ss');
 // });
+Route::get('/updatemail', function () {
+    return new UpdateCredentialsMail(702620499, 'Codea123');
+});
 
 
 
