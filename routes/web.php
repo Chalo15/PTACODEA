@@ -15,6 +15,7 @@ use App\Http\Controllers\NotificationController;
 use App\Mail\ConfirmMail;
 use App\Mail\CredentialsMail;
 use App\Mail\PhysioConfirmMail;
+use App\Mail\UpdateCredentialsMail;
 use App\Models\Appointment;
 
 /**
@@ -26,6 +27,7 @@ Auth::routes();
  * Ruta de Inicio
  */
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 

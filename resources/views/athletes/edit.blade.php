@@ -139,7 +139,8 @@
                                     <div class="col-sm-8">
                                         @foreach ($genders as $gender)
                                         <div class="custom-control custom-radio">
-                                            <input {{ $athlete->user->gender && $athlete->user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ old('gender') ?? $athlete->user->gender }}">
+                                            <input {{ $athlete->user->gender && $athlete->user->gender == $gender ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender"
+                                            id="gender-{{ $loop->index }}" value="{{ old('gender') ?? $athlete->user->gender }}">
                                             <label class="custom-control-label" for="gender-{{ $loop->index }}">
                                                 {{ $gender }}
                                             </label>
