@@ -31,12 +31,26 @@ class ConfirmMail extends Mailable
 
     public function data()
     {
+        // return [
+
+        //     'Id_Instructor' => 702620477,
+        //     'Nombre_Instructor' => 'Billy',
+        //     'Apellidos_Instructor' => 'Chacon Serrano',
+        //     'Id_Encargado' => 702620411,
+        //     'Nombre_Encargado' => 'Josue',
+        //     'Apellidos_Encargado' => 'Perez Sequeira',
+        //     'Rol_Encargado' => 2,
+        //     'Date' => '17/08/1998',
+        //     'Start' => '17/08/1998',
+        //     'End' => '17/08/1998',
+        //     'State' => 'CONFIRMADO'
+        // ];
+
         return [
 
             'Id_Instructor' => $this->appointment->coach->user->identification,
             'Nombre_Instructor' => $this->appointment->coach->user->name,
             'Apellidos_Instructor' => $this->appointment->coach->user->last_name,
-
             'Id_Encargado' => $this->appointment->availability->user->identification,
             'Nombre_Encargado' => $this->appointment->availability->user->name,
             'Apellidos_Encargado' => $this->appointment->availability->user->last_name,
