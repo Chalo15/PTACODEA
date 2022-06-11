@@ -13,6 +13,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\NotificationController;
 use App\Mail\ConfirmMail;
+use App\Mail\CredentialsMail;
 use App\Mail\PhysioConfirmMail;
 use App\Models\Appointment;
 
@@ -27,7 +28,9 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
+Route::get('/mail', function () {
+    return new CredentialsMail(702620499, 'Codea123');
+});
 
 
 
