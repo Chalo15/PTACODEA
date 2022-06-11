@@ -39,7 +39,6 @@ class UpdateUserRequest extends FormRequest
             'contract_number' => ['required', 'min:1', 'max:8'],
             'contract_year'   => ['required', 'min:1', 'max:2'],
             'role_id'         => ['required', 'numeric', 'exists:roles,id'],
-            'password'        => ['required', 'confirmed']
         ];
 
         if ($this->role_id == 2) {
@@ -47,6 +46,12 @@ class UpdateUserRequest extends FormRequest
                 'sport_id'    => ['required'],
                 'other_phone' => ['required', 'digits:8'],
                 'url'         => ['required']
+            ];
+        }
+
+        if ($this->is_edit) {
+            $array += [
+                'password'        => ['required', 'confirmed']
             ];
         }
 

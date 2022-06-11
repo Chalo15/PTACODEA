@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Notifications\AppointmentNotification;
 
 use App\Mail\CredentialsMail;
+use App\Mail\UpdateCredentialsMail;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
@@ -44,7 +45,8 @@ class UsersController extends Controller
         return view('users.index', compact('users'));
     }
 
-    public function export(){
+    public function export()
+    {
         return Excel::download(new UsersExport, 'users.xlsx');
     }
     /**
@@ -155,7 +157,7 @@ class UsersController extends Controller
         $id = $request->identification;
         $email = $request->email;
         //Sending an email with the password and the identification
-        Mail::to($email)->send(new CredentialsMail($id, $password));
+        Mail::to($email)->send(new UpdateCredentialsMail($id, $password));
 
         return redirect()->route('users.index')->with('status', 'Usuario editado exitosamente!');
     }
