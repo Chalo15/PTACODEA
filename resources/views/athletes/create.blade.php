@@ -272,7 +272,9 @@
                     <div class="col-sm-8">
                         @foreach ($genders as $gender)
                         <div class="custom-control custom-radio">
-                            <input {{ (old('gender') && old('gender') == $gender) || (!old('gender') && $loop->index == 0) ? 'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}" value="{{ $gender }}">
+                            <input {{ (old('gender') && old('gender') == $gender) || (!old('gender') && $loop->index == 0) ?
+                             'checked' : '' }} class="custom-control-input" type="radio" name="gender" id="gender-{{ $loop->index }}"
+                             value="{{ $gender }}">
                             <label class="custom-control-label" for="gender-{{ $loop->index }}">
                                 {{ $gender }}
                             </label>
@@ -483,7 +485,7 @@
 
     @push('scripts')
     <script>
-        //Change the name of the label-input-fule 
+        //Change the name of the label-input-fule
         $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
