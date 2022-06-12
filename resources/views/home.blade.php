@@ -116,7 +116,7 @@
 
 
     {{-- --------------------TERCER BLOQUE------------------ --}}
-   <div class="row">
+    <div class="row">
         @can('role', ['Atleta',])
         <div class="col-md mb-3">
             <div class="card text-center">
@@ -127,7 +127,14 @@
                     <i class="fas fa-users fa-5x"></i>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('profile.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                    @php
+                    $iden = Auth::user();
+
+                    $ath = $iden->athlete->id;
+
+                    @endphp
+
+                    <a href="{{ route('athletes.show', $ath) }}" class="btn btn-primary btn-block">Acceder &nbsp;
                         <i class="fas fa-share"></i></a>
                 </div>
             </div>
@@ -247,8 +254,8 @@
                 <div class="card-header">
                     Procesando...
                 </div>
-            <h3>Tu perfil se encuentra en proceso de aceptación, por favor se paciente mientras se realiza este proceso.
-            </h3>
+                <h3>Tu perfil se encuentra en proceso de aceptación, por favor se paciente mientras se realiza este proceso.
+                </h3>
             </div>
             <div class="card text-center">
                 <div class="card-header">

@@ -132,4 +132,9 @@ class User extends Authenticatable
         return in_array($this->role->description, $roles);
     }
     protected $guarded = [];
+
+    public function Idathlete($id)
+    {
+        return in_array($this->athlete->id, $id);
+    }
 }
