@@ -29,7 +29,7 @@ class AthletesController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware("can:role,'Admin', 'Musculacion', 'Fisioterapia', 'Instructor'");
+        $this->middleware("can:role,'Admin', 'Musculacion', 'Fisioterapia', 'Instructor', 'Atleta'");
     }
 
     /**
@@ -133,6 +133,19 @@ class AthletesController extends Controller
      */
     public function show(Athlete $athlete)
     {
+        $user = request()->user();
+
+        if ($user->hasRole(['Atleta'])) {
+
+            if ($athlete->id != $user->athlete->id) {
+
+                return view('home');
+            }
+            $athlete->with('user', 'physios', 'trainings', 'musculars');
+
+            return view('athletes.show', compact('athlete'));
+        }
+
         $athlete->with('user', 'physios', 'trainings', 'musculars');
 
         return view('athletes.show', compact('athlete'));
