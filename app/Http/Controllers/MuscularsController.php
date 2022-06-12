@@ -35,11 +35,19 @@ class MuscularsController extends Controller
     {
         $user = request()->user();
 
-        $musculars = $user->role->description == 'Admin' ?
-            Muscular::with('user', 'athlete.user', 'athlete.sport')->get() :
-            $user->musculars->load('user', 'athlete.user', 'athlete.sport');
+        if ($user->hasRole(['Atleta'])) {
 
-        return view('musculars.index', compact('musculars'));
+            Muscular::with('user', 'athlete.user', 'athlete.sport')->where('user_id', '=', $user)->get();
+
+            return view('musculars.index', compact('musculars'));
+        } else {
+
+            $musculars = $user->role->description == 'Admin' ?
+                Muscular::with('user', 'athlete.user', 'athlete.sport')->get() :
+                $user->musculars->load('user', 'athlete.user', 'athlete.sport');
+
+            return view('musculars.index', compact('musculars'));
+        }
     }
 
     /**

@@ -68,4 +68,9 @@ class Athlete extends Model
         return $this->belongsTo(Coach::class);
     }
 
+    public function getId($id)
+    {
+        $athelete = Athlete::where('user_id', '=', $id)->first();
+        return $athelete->id;
+    }
 }
