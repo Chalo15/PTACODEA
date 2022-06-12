@@ -126,8 +126,12 @@
                 <div class="card-body">
                     <i class="fas fa-users fa-5x"></i>
                 </div>
+                @php
+                    $iden = Auth::user();
+                    $ath = $iden->athlete->id;
+                @endphp
                 <div class="card-footer">
-                    <a href="{{ route('profile.index') }}" class="btn btn-primary btn-block">Acceder &nbsp;
+                    <a href="{{ route('athletes.show', $ath) }}" class="btn btn-primary btn-block">Acceder &nbsp;
                         <i class="fas fa-share"></i></a>
                 </div>
             </div>
