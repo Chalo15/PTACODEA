@@ -1,7 +1,11 @@
+<!-- Se declara el titulo de la vista-->
 <x-app-layout title="Citas">
 
+
+    <!--Se declaran las clases de bootstrap "row" y dentro el codigo respectivo-->
     <div class="row">
         <div class="col mb-3">
+            <!--Enlace que redirige al home(pagina principal) mediante la ruta "home" -->
             <a href="{{ route('home') }}" class="btn btn-primary">
                 <i class="fas fa-reply"></i> &nbsp;
                 Atrás
@@ -58,9 +62,13 @@
                                         <td>{{ $appointment->availability->end->format('h:i A')}}</td>
 
                                         <?php
-                                            if ($appointment->availability->state=="SOLICITADA"){$label_class='badge badge-pill badge-warning m-1';}
-                                            else if ($appointment->availability->state=="CANCELADA"){$label_class='badge badge-pill badge-danger m-1';}
-                                            else{$label_class='badge badge-pill badge-success m-1';}
+                                        if ($appointment->availability->state == "SOLICITADA") {
+                                            $label_class = 'badge badge-pill badge-warning m-1';
+                                        } else if ($appointment->availability->state == "CANCELADA") {
+                                            $label_class = 'badge badge-pill badge-danger m-1';
+                                        } else {
+                                            $label_class = 'badge badge-pill badge-success m-1';
+                                        }
                                         ?>
 
                                         <td>
@@ -77,9 +85,13 @@
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                     <?php
-                                                        if($appointment->availability->state=='CANCELADA'){$hidden='disabled';}
-                                                        else if($appointment->availability->state=='CONFIRMADA'){$hidden='disabled';}
-                                                        else{$hidden='';}
+                                                    if ($appointment->availability->state == 'CANCELADA') {
+                                                        $hidden = 'disabled';
+                                                    } else if ($appointment->availability->state == 'CONFIRMADA') {
+                                                        $hidden = 'disabled';
+                                                    } else {
+                                                        $hidden = '';
+                                                    }
                                                     ?>
                                                     <form action="{{ route('appointments.update', $appointment) }}" method="POST">
                                                         @method('PUT')

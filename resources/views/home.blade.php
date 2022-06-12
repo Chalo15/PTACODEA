@@ -1,5 +1,5 @@
 <x-app-layout title="Inicio">
-    {{-- --------------------PRIMER BLOQUE------------------ --}}
+    {{-- --------------------PRIMER BLOQUE------------------ --}} 
     <div class="row">
         @can('role', ['Admin'])
         <div class="col-md mb-3">
