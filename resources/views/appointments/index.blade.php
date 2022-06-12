@@ -2,7 +2,7 @@
 <x-app-layout title="Citas">
 
 
-    <!--Se declaran las clases de bootstrap "row" y dentro el codigo respectivo-->
+    <!--Se declaran las clases de bootstrap "row" fila y dentro las columnas con  el codigo respectivo-->
     <div class="row">
         <div class="col mb-3">
             <!--Enlace que redirige al home(pagina principal) mediante la ruta "home" -->
