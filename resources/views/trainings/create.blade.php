@@ -19,8 +19,7 @@
                 <div class="card-body">
                     <form id="form_create_trainings" action="{{ route('trainings.store') }}" method="POST">
                         @csrf
-                        @json($errors->all())
-                        {{-- Atleta --}}
+
                         <div class="form-group row">
                             <label for="athlete_id" class="col-sm-4 col-form-label">Atleta</label>
                             <div class="col-sm-8">
@@ -44,7 +43,7 @@
                         {{-- Fecha de registro --}}
                         {{-- Fecha de Toma Datos --}}
                         @php
-                            $today = today()->toDateString();
+                        $today = today()->toDateString();
                         @endphp
                         <div class="form-group row">
                             <label for="date" class="col-sm-4 col-form-label">Fecha</label>
