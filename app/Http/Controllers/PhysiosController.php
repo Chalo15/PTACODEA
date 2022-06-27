@@ -23,7 +23,7 @@ class PhysiosController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware("can:role,'Admin','Fisioterapia'");
+        $this->middleware("can:role,'Admin','Fisioterapia','Atleta'");
     }
 
     /**

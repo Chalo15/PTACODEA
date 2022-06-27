@@ -23,7 +23,7 @@ class MuscularsController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware("can:role,'Admin','Musculacion'");
+        $this->middleware("can:role,'Admin','Musculacion','Atleta'");
     }
 
     /**
